@@ -1,0 +1,16 @@
+RewriteEngine on
+
+RewriteCond %{HTTP_REFERER} !^http://natelevesque.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://natelevesque.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://stoli.x10hosting.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://stoli.x10hosting.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://thenaterhood.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://thenaterhood.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.natelevesque.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.natelevesque.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.thenaterhood.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.thenaterhood.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://web.thenaterhood.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://web.thenaterhood.com$      [NC]
+RewriteRule .*\.(jpg|jpeg|gif|png|bmp)$ - [F,NC]
+

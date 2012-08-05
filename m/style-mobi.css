@@ -1,0 +1,91 @@
+body {
+	size: 12px;
+	background: white;
+	color: #dd7700;
+	font-family: Abel, Arial, Sans;
+}
+#header {
+	background: #dd7700;
+	color: white;
+}
+table {
+	position: absolute;
+	left: 0px;
+	top: 50px;
+	border-collapse: collapse;
+}
+h1 {
+	text-transform: uppercase;
+	line-height: 10px;
+	font-size: 1.8em;
+}
+h3 {
+	line-height: 10px;
+}
+span.siteversion {
+	color: black;
+}
+img {
+	width: 90px;
+	height: auto;
+}
+/* Feedburner buzzboost style */
+span.headline {
+	font-size: 1.3em;
+}
+p.date {
+	font-size: 1.1em;
+	padding: 0 0 0 0;
+	text-transform: uppercase;
+	color: #787878;
+}
+a {
+	text-decoration: none;
+	color: maroon;
+}
+ul, li {
+	list-style-type: none;
+	margin-left: 0px;
+}
+#sidebar ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#sidebar li {
+	margin: 0;
+	padding: 0;
+}
+
+#sidebar li ul {
+	margin: 0px 0px;
+	padding-bottom: 30px;
+}
+
+#sidebar li li {
+	line-height: 35px;
+
+	margin: 0px 30px;
+	border-left: none;
+}
+
+#sidebar li li a {
+	padding-left: 10px;
+	font-size: 1.2em;
+}
+h2.sidebar {
+	padding-left: 30px;
+	letter-spacing: -.5px;
+	font-size: 1em;
+}
+h2.content-head {
+	padding-left: 30px;
+	letter-spacing: -.5px;
+	font-size: 1.3em;
+	color: black;
+}
+#sidebar li {
+	line-height: 35px;
+}
+
