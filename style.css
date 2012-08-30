@@ -1,361 +1,168 @@
-body {
-	font-family: abel;
-	color: maroon;
-	margin: 0;
-	padding: 0;
-	background: #FFFFFF;
-	/* font-family: Arial, Helvetica, sans-serif; */
-	font-size: 12px;
-	/* color: #787878; */
+body {
+	font-family: 'Source Sans Pro', sans-serif;
+	color: maroon;
+	margin: 0;
+	padding: 0;
+	background: #FFFFFF;
+	font-size: 12px;
+	/* color: #787878; */
 }
-#upperbar {
-	position: absolute;
-	background: url(/images/headerbar_shadow.png) repeat-x;
-	left: 0px;
-	top: 40px;
-	width: 100%;
-	height: 114px;
-	z-index: -1;
+#upperbar {
+	position: absolute;
+	background: url(/images/headerbar_shadow.png) repeat-x;
+	left: 0px;
+	top: 40px;
+	width: 100%;
+	height: 114px;
+	z-index: -1;
 }
-div.side {
-	position: absolute;
-	background: url(images/alumni-side.png) no-repeat;
-	margin: 0px auto;
-	top: 0px;
-	width: 304px;
-	height: 150px;
-	z-index: 1;
+div.side {
+	position: absolute;
+	background: url(images/alumni-side.png) no-repeat;
+	margin: 0px auto;
+	top: 0px;
+	width: 304px;
+	height: 150px;
+	z-index: 1;
 }
-div.sitelinks {
-	position: relative;
-	top: 101px;
-	height: 30px;
-	width: 980px;
-	background: #dd7700;
+div.sitelinks {
+	position: relative;
+	top: 101px;
+	height: 30px;
+	width: 980px;
+	background: #dd7700;
 }
-h1, h2, h3 {
-	padding: 0;
-	font-weight: normal;
-	color: #000000;
+h1, h2, h3 {
+	padding: 0;
+	font-weight: normal;
+	color: #000000;
 }
-
-h1 {
-	font-size: 2em;
+h1 {
+	font-size: 2em;
 }
-
-h2 {
-	font-size: 2.4em;
+h2 {
+	font-size: 2.4em;
+}
+
+h3 {
+	font-size: 1.6em;
 }
-
-h3 {
-	font-size: 1.6em;
+p, ul, ol {
+	margin-top: 0;
+	line-height: 180%;
 }
-
-p, ul, ol {
-	margin-top: 0;
-	line-height: 180%;
-}
-
 ul, ol {
 }
-
-a {
-	text-decoration: none;
-	color: #dd7700;
+a {
+	text-decoration: none;
+	color: #dd7700;
 }
-
 a:hover {
 }
 
-#wrapper {
-	width: 980px;
-	margin: 0 auto;
-	padding: 0;
-}
-
-/* Header */
+#wrapper {
+	width: 980px;
+	margin: 0 auto;
+	padding: 0;
+}
+/* Header */
 /* Note- this controls where the content starts, modify the height */
-#header {
-	clear: both;
-	margin-top: 10px;
-	margin-left: 85px;
-	width: 790px;
-	height: 140px;
-	float: left;
-	padding: 0px;
+#header {
+	clear: both;
+	margin-top: 10px;
+	margin-left: 85px;
+	width: 790px;
+	height: 140px;
+	float: left;
+	padding: 0px;
+}
+
+/* Logo */
+#logo {
+	margin: 0;
+	padding: 0px 0px 0px 45px;
+	color: #000000;
+	font-size: .9em;
+	text-transform: uppercase;
 }
-
-/* Logo */
-#logo {
-	margin: 0;
-	padding: 0px 0px 0px 45px;
-	color: #000000;
-	font-size: .9em;
-	text-transform: uppercase;
+#siteversion {
+	position: absolute;
+	margin-left: 130px;
+	top: 8px;
+	color: black;
 }
-#siteversion {
-	position: absolute;
-	margin-left: 130px;
-	top: 8px;
-	color: black;
+#logo2 {
+	margin-top: -20px;
+	padding: 0px 0px 0px 0px;
+	float: right;
+	color: white;
+	text-transform: capitalize;
+	position: relative;
 }
-#logo2 {
-	margin-top: -20px;
-	padding: 0px 0px 0px 0px;
-	float: right;
-	color: white;
-	text-transform: capitalize;
-	position: relative;
+a.nav {
+	color: white;
 }
-a.nav {
-	color: white;
+a.nav:hover {
+	text-decoration: underline;
 }
-a.nav:hover {
-	text-decoration: underline;
+div.siteurl, ul.siteurl, li.siteurl {
+	display: inline;
+	list-style-type: none;
+	padding-left: 20px;
+	font-size: 1.15em;
+	color: white;
 }
-div.siteurl, ul.siteurl, li.siteurl {
-	display: inline;
-	list-style-type: none;
-	padding-left: 20px;
-	font-size: 1.15em;
-	color: white;
+#catchline {
+	font-size: 1.7em;
+	margin: 0;
+	padding: 0px 0px 0px 0px;
+	color: white;
+	text-transform: capitalize;
 }
-#catchline {
-	font-size: 1.7em;
-	margin: 0;
-	padding: 0px 0px 0px 0px;
-	color: white;
-	text-transform: capitalize;
+#logo h1, #logo p {
+	margin: 0;
+	padding: 0;
 }
-#logo h1, #logo p {
-	margin: 0;
-	padding: 0;
+#logo h1{
+	padding-top: 45px;
+	letter-spacing: 1px;
+	font-size: 3.8em;
+	color: white;
 }
-
-#logo h1{
-	padding-top: 45px;
-	letter-spacing: 1px;
-	/* font-family: Georgia, "Times New Roman", Times, serif; */
-	font-size: 3.8em;
-	color: white;
-}
-
-#logo p {
-	margin: 0;
-	padding: 0px 0 0 10px;
-	/* font: normal 14px Georgia, "Times New Roman", Times, serif; */
-	font-style: italic;
-	color: #FFFFFF;
+#logo p {
+	margin: 0;
+	padding: 0px 0 0 10px;
+	font-style: italic;
+	color: #FFFFFF;
 } 
-
-#logo a {
-	border: none;
-	background: none;
-	text-decoration: none;
-	color: white;
-}
-
-/* Search */
-
-#search {
-	text-align: center;
-	width: 280px;
-	height: 60px;
-	padding: 20px 0px 0px 0px;
-}
-
-/* Page */
-/* Feedburner Buzzboost styling */
-div.feedburnerFeedBlock {
-	margin-left: -40px;
-}
-span.headline {
-	font-size: 1em;
-	padding: 0px 0px 0px 0px;
-}
-p.date {
-	font-size: 1.1em;
-	padding: 0px 0px 0px 0px;
-	text-transform: uppercase;
-	color: #787878;
-}
-/* End Buzzboost styling */
-#page {
-	width: 768px;
-	margin: 0 auto;
-	padding: 0px 0px 0px 0px;
-}
-
-#page-bgtop {
-	padding: 20px 0px;
-}
-
-#page-bgbtm {
-}
-
-/* Content */
-
-#content {
-	float: left;
-	margin-left: 25px;
-	/* width: 660px; */
-	padding: 0px 0px 0px 0px;
-}
-
-.post {
-	margin-bottom: 15px;
-}
-.post .title {
-	height: 38px;
-	margin-bottom: 10px;
-	padding: 12px 0 0 0px;
-	letter-spacing: -.5px;
-	color: #000000;
-}
-
-.post .title a {
-	color: #000000;
-	border: none;
-}
-
-.post .meta {
-	margin-bottom: 30px;
-	padding: 5px 0px 15px 0px;
-	text-align: left;
-	/* font-family: Arial, Helvetica, sans-serif; */
-	font-size: 13px;
-	font-weight: bold;
-}
-
-.post .meta .date {
-	float: left;
-}
-
-.post .meta .posted {
-	float: right;
-}
-.post .entry {
-	/* padding top idk idk left*/
-	padding: 0px 0px 20px 40px;
-	padding-bottom: 20px;
-	text-align: justify;
-	font-size: 1.21em;
-	margin-left: -40px;
-}
-ul, li {
-	list-style-type: none;
-	margin-left: 0px;
-}
-.links {
-	padding-top: 20px;
-	font-size: .5em;
-	font-weight: bold;
-}
-
-/* Sidebar */
-
-#sidebar {
-	float: left;
-	width: 280px;
-	margin: 0px;
-	padding: 10px 0px 0px 0px;
-	color: #787878;
-}
-
-#sidebar ul {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
-
-#sidebar li {
-	margin: 0;
-	padding: 0;
-}
-
-#sidebar li ul {
-	margin: 0px 0px;
-	padding-bottom: 30px;
-}
-
-#sidebar li li {
-	line-height: 35px;
-
-	margin: 0px 20px;
-	border-left: none;
-}
-
-#sidebar li li a {
-	padding-left: 10px;
-	/* background: url(images/img01.gif) no-repeat left 6px; */
-	font-size: 1.2em;
-}
-
-#sidebar li li span {
-	display: block;
-	margin-top: -20px;
-	padding: 0;
-	font-size: 11px;
-	font-style: italic;
-}
-
-#sidebar h2 {
-	height: 38px;
-	padding-left: 30px;
-	letter-spacing: -.5px;
-	font-size: 1.8em;
-}
-
-#sidebar p {
-	margin: 0 0px;
-	padding: 0px 30px 20px 30px;
-	text-align: justify;
-}
-
-#sidebar a {
-	border: none;
-}
-
-#sidebar a:hover {
-	text-decoration: underline;
-	color: #8A8A8A;
-}
-/* Footer */
-
-#footer {
-	height: 50px;
-	margin: 0 auto;
-	padding: 0px 0 15px 0;
-	/* border-top: 1px solid #DEDEDE; */
-	/* font-family: Arial, Helvetica, sans-serif; */
-}
-
-#footer p {
-	margin: 0;
-	padding-top: 20px;
-	line-height: normal;
-	font-size: 1em;
-	text-transform: capitalize;
-	text-align: center;
-	color: #A0A0A0;
-}
-#greeting_spacer {
-	top: 100px;
-	height: 24px;
-}
-h2.greeting {
-	font-size: 1.7em;
-}
-#footer a {
-	color: #8A8A8A;
-}
-/* Sitemap styling, just makes the xml human-readable */ 
-url {
-	display: block;
-}
-loc {
-	display: block;
-}
-lastmod {
-	display: block;
-}
+#logo a {	border: none;	background: none;	text-decoration: none;	color: white;}/* Search */#search {	text-align: center;	width: 280px;	height: 60px;	padding: 20px 0px 0px 0px;}/* Page *//* Feedburner Buzzboost styling */div.feedburnerFeedBlock {	margin-left: -40px;}
+span.headline {	font-size: 1em;	padding: 0px 0px 0px 0px;}
+p.date {	font-size: 1.1em;	padding: 0px 0px 0px 0px;	text-transform: uppercase;	color: #787878;}/* End Buzzboost styling */
+#page {	width: 768px;	margin: 0 auto;	padding: 0px 0px 0px 0px;}
+#page-bgtop {	padding: 20px 0px;}
+#page-bgbtm {}
+/* Content */#content {	float: left;	margin-left: 25px;	/* width: 660px; */	padding: 0px 0px 0px 0px;}
+.post {	margin-bottom: 15px;}
+.post .title {	height: 38px;	margin-bottom: 10px;	padding: 12px 0 0 0px;	letter-spacing: -.5px;	color: #000000;}
+.post .title a {	color: #000000;	border: none;}.post .meta {	margin-bottom: 30px;	padding: 5px 0px 15px 0px;	text-align: left;	font-size: 13px;	font-weight: bold;}
+.post .meta .date {	float: left;}
+.post .meta .posted {	float: right;}
+.post .entry {	/* padding top idk idk left*/	padding: 0px 0px 20px 40px;	padding-bottom: 20px;	text-align: justify;	font-size: 1.21em;	margin-left: -40px;}
+ul, li {	list-style-type: none;	margin-left: 0px;}
+.links {	padding-top: 20px;	font-size: .5em;	font-weight: bold;}
+/* Sidebar */#sidebar {	float: left;	width: 280px;	margin: 0px;	padding: 10px 0px 0px 0px;	color: #787878;}
+#sidebar ul {	margin: 0;	padding: 0;	list-style: none;}
+#sidebar li {	margin: 0;	padding: 0;}#sidebar li ul {	margin: 0px 0px;	padding-bottom: 30px;}
+#sidebar li li {	line-height: 35px;	margin: 0px 20px;	border-left: none;}#sidebar li li a {	padding-left: 10px;	/* background: url(images/img01.gif) no-repeat left 6px; */	font-size: 1.2em;}
+#sidebar li li span {	display: block;	margin-top: -20px;	padding: 0;	font-size: 11px;	font-style: italic;}
+#sidebar h2 {	height: 38px;	padding-left: 30px;	letter-spacing: -.5px;	font-size: 1.8em;}#sidebar p {	margin: 0 0px;	padding: 0px 30px 20px 30px;	text-align: justify;}
+#sidebar a {	border: none;}
+#sidebar a:hover {	text-decoration: underline;	color: #8A8A8A;}
+/* Footer */#footer {	height: 50px;	margin: 0 auto;	padding: 0px 0 15px 0;	/* border-top: 1px solid #DEDEDE; */}
+#footer p {	margin: 0;	padding-top: 20px;	line-height: normal;	font-size: 1em;	text-transform: capitalize;	text-align: center;	color: #A0A0A0;}
+#greeting_spacer {	top: 100px;	height: 24px;}
+h2.greeting {	font-size: 1.7em;}
+#footer a {	color: #8A8A8A;}
+/* Sitemap styling, just makes the xml human-readable */ url {	display: block;}
+loc {	display: block;}
+lastmod {	display: block;}
