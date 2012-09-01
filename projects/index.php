@@ -3,13 +3,13 @@
 $first_name = $_GET['name'];
 $track = $_GET['track'];
 $konami = $_GET['konami'];
+$current_domain = ";";
+$current_domain = preg_replace('/^www\./i', '', $_SERVER['HTTP_HOST']);
 // Checks for cookies and sets them (or refreshes them) if necessary
 if (empty($first_name)) $first_name = $_COOKIE['visitor_name'];
 if (empty($track)) $track = $_COOKIE['track'];
-setcookie('visitor_name',$first_name,time() + (86400 * 30),"/","thenaterhood.com"); // 86400 = 1 day
-setcookie('visitor_name',$first_name,time() + (86400 * 30),"/","natelevesque.com"); // 86400 = 1 day
-setcookie('track',$track,time() + (86400 * 30),"/","thenaterhood.com"); // 86400 = 1 day
-setcookie('track',$track,time() + (86400 * 30),"/","natelevesque.com"); // 86400 = 1 day
+setcookie('visitor_name',$first_name,time() + (86400 * 30),"/","$current_domain"); // 86400 = 1 day
+setcookie('track',$track,time() + (86400 * 30),"/","$current_domain"); // 86400 = 1 day
 // Sets page options and variables
 if (empty($first_name)) $first_name = "Guest";
 if (empty($track)) $track = "y";

@@ -19,6 +19,7 @@ $page_content_file = "page_$id.html";
 $page_description_file = "page_$id_description.txt";
 $page_keywords_file = "page_$id_keywords.txt";
 if ("$track" != "n") $tracking = "template_tracking.php";
+if ("$track" == "n") $tracking = "template_no-track.php";
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -28,7 +29,7 @@ if ("$track" != "n") $tracking = "template_tracking.php";
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title><?php print "Nate Levesque :: $id"; ?></title>
 <link href="style.css" rel="stylesheet" type="text/css" media="screen" />
-<link href='http://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css' />
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css' />
 <style type="text/css">
 </style>
 <?php include "$tracking"; ?>
@@ -36,7 +37,7 @@ if ("$track" != "n") $tracking = "template_tracking.php";
 <?php if ("$konami" == "pride") print '<style type="text/css">body {background: url(images/rainbow.jpg) fixed}</style>'; ?>
 <body>
 <div id="wrapper">
-<?php include "template_header2.php";?>
+<?php include "template_header.php";?>
 	<div id="page">
 		<div id="content">
 			<div class="post">
