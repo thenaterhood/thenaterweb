@@ -1,0 +1,131 @@
+[20-Dec-2012 13:21:28 America/Chicago] PHP Parse error:  syntax error, unexpected T_ENCAPSED_AND_WHITESPACE, expecting T_STRING or T_VARIABLE or T_NUM_STRING in /home/natelev/public_html/index.php on line 8
+[20-Dec-2012 17:43:19 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 8
+[20-Dec-2012 17:43:19 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:8) in /home/natelev/public_html/index.php on line 14
+[20-Dec-2012 17:43:19 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:8) in /home/natelev/public_html/index.php on line 15
+[20-Dec-2012 17:43:25 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 8
+[20-Dec-2012 17:43:25 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:8) in /home/natelev/public_html/index.php on line 14
+[20-Dec-2012 17:43:25 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:8) in /home/natelev/public_html/index.php on line 15
+[20-Dec-2012 17:43:28 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 8
+[20-Dec-2012 17:43:28 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:8) in /home/natelev/public_html/index.php on line 14
+[20-Dec-2012 17:43:28 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:8) in /home/natelev/public_html/index.php on line 15
+[20-Dec-2012 17:43:36 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 8
+[20-Dec-2012 17:43:36 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:8) in /home/natelev/public_html/index.php on line 14
+[20-Dec-2012 17:43:36 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:8) in /home/natelev/public_html/index.php on line 15
+[20-Dec-2012 17:43:58 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 8
+[20-Dec-2012 17:43:58 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:8) in /home/natelev/public_html/index.php on line 14
+[20-Dec-2012 17:43:58 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:8) in /home/natelev/public_html/index.php on line 15
+[20-Dec-2012 17:46:31 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 3
+[20-Dec-2012 17:46:31 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:3) in /home/natelev/public_html/index.php on line 14
+[20-Dec-2012 17:46:31 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:3) in /home/natelev/public_html/index.php on line 15
+[20-Dec-2012 17:46:44 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 8
+[20-Dec-2012 17:46:44 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:8) in /home/natelev/public_html/index.php on line 14
+[20-Dec-2012 17:46:44 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:8) in /home/natelev/public_html/index.php on line 15
+[20-Dec-2012 17:46:46 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 3
+[20-Dec-2012 17:46:46 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:3) in /home/natelev/public_html/index.php on line 14
+[20-Dec-2012 17:46:46 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:3) in /home/natelev/public_html/index.php on line 15
+[20-Dec-2012 17:46:57 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 3
+[20-Dec-2012 17:46:57 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 8
+[20-Dec-2012 17:46:57 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:3) in /home/natelev/public_html/index.php on line 14
+[20-Dec-2012 17:46:57 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:3) in /home/natelev/public_html/index.php on line 15
+[20-Dec-2012 17:47:49 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 3
+[20-Dec-2012 17:47:49 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 8
+[20-Dec-2012 17:47:49 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:3) in /home/natelev/public_html/index.php on line 14
+[20-Dec-2012 17:47:49 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:3) in /home/natelev/public_html/index.php on line 15
+[20-Dec-2012 17:48:16 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 8
+[20-Dec-2012 17:48:16 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:8) in /home/natelev/public_html/index.php on line 14
+[20-Dec-2012 17:48:16 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:8) in /home/natelev/public_html/index.php on line 15
+[20-Dec-2012 17:48:32 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 8
+[20-Dec-2012 17:48:32 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:8) in /home/natelev/public_html/index.php on line 14
+[20-Dec-2012 17:48:32 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:8) in /home/natelev/public_html/index.php on line 15
+[20-Dec-2012 17:49:12 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 3
+[20-Dec-2012 17:49:12 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:3) in /home/natelev/public_html/index.php on line 14
+[20-Dec-2012 17:49:12 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:3) in /home/natelev/public_html/index.php on line 15
+[20-Dec-2012 17:49:21 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 3
+[20-Dec-2012 17:49:21 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:3) in /home/natelev/public_html/index.php on line 14
+[20-Dec-2012 17:49:21 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:3) in /home/natelev/public_html/index.php on line 15
+[20-Dec-2012 17:49:25 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 3
+[20-Dec-2012 17:49:25 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:3) in /home/natelev/public_html/index.php on line 14
+[20-Dec-2012 17:49:25 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:3) in /home/natelev/public_html/index.php on line 15
+[20-Dec-2012 17:49:35 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 8
+[20-Dec-2012 17:49:35 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:8) in /home/natelev/public_html/index.php on line 14
+[20-Dec-2012 17:49:35 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:8) in /home/natelev/public_html/index.php on line 15
+[20-Dec-2012 17:50:20 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 3
+[20-Dec-2012 17:50:20 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 8
+[20-Dec-2012 17:50:20 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:3) in /home/natelev/public_html/index.php on line 14
+[20-Dec-2012 17:50:20 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:3) in /home/natelev/public_html/index.php on line 15
+[20-Dec-2012 17:50:39 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 3
+[20-Dec-2012 17:50:39 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:3) in /home/natelev/public_html/index.php on line 14
+[20-Dec-2012 17:50:39 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:3) in /home/natelev/public_html/index.php on line 15
+[20-Dec-2012 17:50:44 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 3
+[20-Dec-2012 17:50:44 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:3) in /home/natelev/public_html/index.php on line 14
+[20-Dec-2012 17:50:44 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:3) in /home/natelev/public_html/index.php on line 15
+[20-Dec-2012 17:50:50 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 8
+[20-Dec-2012 17:50:50 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:8) in /home/natelev/public_html/index.php on line 14
+[20-Dec-2012 17:50:50 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:8) in /home/natelev/public_html/index.php on line 15
+[20-Dec-2012 18:05:51 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 3
+[20-Dec-2012 18:05:51 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 8
+[20-Dec-2012 18:05:51 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:3) in /home/natelev/public_html/index.php on line 14
+[20-Dec-2012 18:05:51 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:3) in /home/natelev/public_html/index.php on line 15
+[20-Dec-2012 18:06:02 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 8
+[20-Dec-2012 18:06:02 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:8) in /home/natelev/public_html/index.php on line 14
+[20-Dec-2012 18:06:02 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:8) in /home/natelev/public_html/index.php on line 15
+[20-Dec-2012 18:16:02 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 3
+[20-Dec-2012 18:16:02 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 8
+[20-Dec-2012 18:16:02 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:3) in /home/natelev/public_html/index.php on line 14
+[20-Dec-2012 18:16:02 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:3) in /home/natelev/public_html/index.php on line 15
+[20-Dec-2012 18:16:17 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 3
+[20-Dec-2012 18:16:17 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 8
+[20-Dec-2012 18:16:17 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:3) in /home/natelev/public_html/index.php on line 14
+[20-Dec-2012 18:16:17 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:3) in /home/natelev/public_html/index.php on line 15
+[20-Dec-2012 18:16:21 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 3
+[20-Dec-2012 18:16:21 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 8
+[20-Dec-2012 18:16:21 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:3) in /home/natelev/public_html/index.php on line 14
+[20-Dec-2012 18:16:21 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:3) in /home/natelev/public_html/index.php on line 15
+[20-Dec-2012 18:16:29 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 3
+[20-Dec-2012 18:16:29 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 8
+[20-Dec-2012 18:16:29 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:3) in /home/natelev/public_html/index.php on line 14
+[20-Dec-2012 18:16:29 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:3) in /home/natelev/public_html/index.php on line 15
+[20-Dec-2012 18:17:02 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 3
+[20-Dec-2012 18:17:02 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 8
+[20-Dec-2012 18:17:02 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:3) in /home/natelev/public_html/index.php on line 14
+[20-Dec-2012 18:17:02 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:3) in /home/natelev/public_html/index.php on line 15
+[20-Dec-2012 18:17:44 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 8
+[20-Dec-2012 18:17:44 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:8) in /home/natelev/public_html/index.php on line 14
+[20-Dec-2012 18:17:44 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:8) in /home/natelev/public_html/index.php on line 15
+[20-Dec-2012 18:17:53 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 8
+[20-Dec-2012 18:17:53 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:8) in /home/natelev/public_html/index.php on line 14
+[20-Dec-2012 18:17:53 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:8) in /home/natelev/public_html/index.php on line 15
+[20-Dec-2012 18:18:01 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 8
+[20-Dec-2012 18:18:01 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:8) in /home/natelev/public_html/index.php on line 14
+[20-Dec-2012 18:18:01 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:8) in /home/natelev/public_html/index.php on line 15
+[20-Dec-2012 18:18:06 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 8
+[20-Dec-2012 18:18:06 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:8) in /home/natelev/public_html/index.php on line 14
+[20-Dec-2012 18:18:06 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:8) in /home/natelev/public_html/index.php on line 15
+[20-Dec-2012 18:18:10 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 8
+[20-Dec-2012 18:18:10 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:8) in /home/natelev/public_html/index.php on line 14
+[20-Dec-2012 18:18:10 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:8) in /home/natelev/public_html/index.php on line 15
+[20-Dec-2012 18:18:23 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 8
+[20-Dec-2012 18:18:23 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:8) in /home/natelev/public_html/index.php on line 14
+[20-Dec-2012 18:18:23 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:8) in /home/natelev/public_html/index.php on line 15
+[20-Dec-2012 18:20:19 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 3
+[20-Dec-2012 18:20:19 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:3) in /home/natelev/public_html/index.php on line 14
+[20-Dec-2012 18:20:19 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:3) in /home/natelev/public_html/index.php on line 15
+[20-Dec-2012 18:21:00 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 3
+[20-Dec-2012 18:21:00 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:3) in /home/natelev/public_html/index.php on line 14
+[20-Dec-2012 18:21:00 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:3) in /home/natelev/public_html/index.php on line 15
+[20-Dec-2012 18:23:00 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 3
+[20-Dec-2012 18:23:00 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 8
+[20-Dec-2012 18:23:00 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:3) in /home/natelev/public_html/index.php on line 14
+[20-Dec-2012 18:23:00 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:3) in /home/natelev/public_html/index.php on line 15
+[20-Dec-2012 18:24:55 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 3
+[20-Dec-2012 18:24:55 America/Chicago] PHP Warning:  htmlspecialchars() expects parameter 1 to be string, array given in /home/natelev/public_html/index.php on line 8
+[20-Dec-2012 18:24:55 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:3) in /home/natelev/public_html/index.php on line 14
+[20-Dec-2012 18:24:55 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/natelev/public_html/index.php:3) in /home/natelev/public_html/index.php on line 15
+[20-Dec-2012 18:49:21 America/Chicago] PHP Parse error:  syntax error, unexpected '}' in /home/natelev/public_html/index.php on line 7
+[20-Dec-2012 18:59:46 America/Chicago] PHP Parse error:  syntax error, unexpected T_ELSE in /home/natelev/public_html/index.php on line 11
+[20-Dec-2012 19:00:06 America/Chicago] PHP Parse error:  syntax error, unexpected T_ELSE in /home/natelev/public_html/index.php on line 11
+[20-Dec-2012 19:00:15 America/Chicago] PHP Parse error:  syntax error, unexpected T_ELSE in /home/natelev/public_html/index.php on line 10
+[20-Dec-2012 19:01:10 America/Chicago] PHP Parse error:  syntax error, unexpected T_ELSE in /home/natelev/public_html/index.php on line 11
+[20-Dec-2012 19:01:21 America/Chicago] PHP Parse error:  syntax error, unexpected T_ELSE in /home/natelev/public_html/index.php on line 11
+[20-Dec-2012 19:10:36 America/Chicago] PHP Parse error:  syntax error, unexpected $end in /home/natelev/public_html/index.php on line 80
+[20-Dec-2012 19:18:30 America/Chicago] PHP Parse error:  syntax error, unexpected T_CONSTANT_ENCAPSED_STRING in /home/natelev/public_html/index.php on line 4
