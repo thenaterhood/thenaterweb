@@ -1,6 +1,6 @@
 	<div id="siteversion">
 	<!-- <p>view in: <a href="m/index.html">mobile</a> standard</p> -->
-	<?php if ("$track" == "n") print "Your visit is not being tracked." ?>
+	<?php if ("$track" == "n") print "Your visit is not being tracked. <a href='/?id=privacy'>(more information)</a>" ?>
 	</div>
 	<!-- This is the horizontal bar that runs across the top-ish area -->
 	<div id="upperbar"></div>
