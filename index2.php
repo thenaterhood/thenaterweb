@@ -37,7 +37,7 @@ echo 'Nate Levesque, TheNaterhood, the naterhood'?>' />
 <?php echo '<meta name="description" content="Nate Levesque" />'; ?>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title><?php echo "Nate Levesque :: $id"; ?></title>
-<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="style2.css" rel="stylesheet" type="text/css" media="screen" />
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css' />
 <style type="text/css">
 </style>
@@ -46,7 +46,7 @@ echo 'Nate Levesque, TheNaterhood, the naterhood'?>' />
 <?php if ("$konami" == "pride") print '<style type="text/css">body {background: url(images/rainbow.jpg) fixed}</style>'; ?>
 <body>
 <div id="wrapper">
-<?php include chooseInclude('template_header.php', 'layout_error.html');?>
+<?php include chooseInclude('template_header2.php', 'layout_error.html');?>
 	<div id="page">
 		<div id="content">
 			<div class="post">
