@@ -89,6 +89,7 @@ a:hover {
 	margin-left: 130px;
 	top: 8px;
 	color: black;
+	background: url(/images/greyback.gif) repeat;
 }
 #logo2 {
 	margin-top: -20px;
