@@ -1,5 +1,5 @@
 <?php 
-include '/home/natelev/www/webcore.php';
+include '/home/natelev/www/static/core_web.php';
 
 # Grab variables from the URL. Syntax for this is...
 # name of variable, default value of variable, maxlength of variable
@@ -23,10 +23,10 @@ $page_description_file = "page_$id_description.txt";
 $page_keywords_file = "page_$id_keywords.txt";
 
 if ("$track" == "n"){
-	$tracking = "../template_no-track.php";
+	$tracking = "/home/natelev/www/static/template_no-track.php";
 	}
 else {
-	$tracking = "../template_tracking.php";
+	$tracking = "/home/natelev/www/static/template_tracking.php";
 	}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
@@ -46,23 +46,23 @@ else {
 <?php if ("$konami" == "pride") print '<style type="text/css">body {background: url(/images/rainbow.jpg) fixed}</style>'; ?>
 <body>
 <div id="wrapper">
-<?php include "../template_header.php";?>
+<?php include "/home/natelev/www/static/template_header.php";?>
 	<div id="page">
 		<div id="content">
 			<div class="post">
 				<div style="clear: both;">&nbsp;</div>
 				<div class="entry">
-				<?php if ("$first_name" == "Guest") include "../template_introduction.php"; ?>
-				<?php if (file_exists("$page_content_file")) include "$page_content_file"; else include "../template_error.php"; ?>
+				<?php if ("$first_name" == "Guest") include "/home/natelev/www/static/template_introduction.php"; ?>
+				<?php if (file_exists("/home/natelev/www/static/$page_content_file")) include "/home/natelev/www/static/$page_content_file"; else include "/home/natelev/www/static/template_error.php"; ?>
 				</div>
 			</div>
 		<div style="clear: both;">&nbsp;</div>
 		</div>
 		<!-- end #content -->
-<?php include "../template_sidebar.php"; ?> 
+<?php include "/home/natelev/www/static/template_sidebar.php"; ?> 
 	</div>
 </div>
-<?php include "../template_footer.php"; ?>
+<?php include "/home/natelev/www/static/template_footer.php"; ?>
 </body>
 </html>
 

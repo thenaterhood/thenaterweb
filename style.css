@@ -1,23 +1,24 @@
 body {
 	font-family: 'Source Sans Pro', sans-serif;
-	color: maroon;
+	color: black;
 	margin: 0;
 	padding: 0;
 	background: #FFFFFF;
 	font-size: 12px;
 }
+
 #upperbar {
 	position: absolute;
 	background: url(/images/headerbar_shadow.png) repeat-x;
 	left: 0px;
-	top: 40px;
+	top: 37px;
 	width: 100%;
-	height: 114px;
+	height: 170px;
 	z-index: -1;
 }
 div.side {
 	position: absolute;
-	background: url(images/alumni-side.png) no-repeat;
+	/*background: url(images/alumni-side.png) no-repeat; */
 	margin: 0px auto;
 	top: 0px;
 	width: 304px;
@@ -26,10 +27,9 @@ div.side {
 }
 div.sitelinks {
 	position: relative;
-	top: 101px;
 	height: 30px;
-	width: 980px;
-	background: #dd7700;
+	text-size: 1em;
+	background: #FFFFFF;
 }
 h1, h2, h3 {
 	padding: 0;
@@ -54,9 +54,12 @@ ul, ol {
 }
 a {
 	text-decoration: none;
-	color: #dd7700;
+	/* color: #dd7700; */
+	color: #00bfff;
 }
 a:hover {
+	text-decoration: none;
+	color: black;
 }
 
 #wrapper {
@@ -71,15 +74,20 @@ a:hover {
 	margin-top: 10px;
 	margin-left: 85px;
 	width: 790px;
-	height: 140px;
+	height: 130px;
 	float: left;
 	padding: 0px;
+}
+
+#altHeader {
+	font-size: .8em;
+	padding-bottom: 5px;
 }
 
 /* Logo */
 #logo {
 	margin: 0;
-	padding: 0px 0px 0px 45px;
+	padding: 0px 0px 0px 40px;
 	color: #000000;
 	font-size: .9em;
 	text-transform: uppercase;
@@ -91,7 +99,7 @@ a:hover {
 	color: black;
 }
 #logo2 {
-	margin-top: -20px;
+	margin-top: -25px;
 	padding: 0px 0px 0px 0px;
 	float: right;
 	color: white;
@@ -99,7 +107,8 @@ a:hover {
 	position: relative;
 }
 a.nav {
-	color: white;
+	text-decoration: none;
+	color: #00bfff;
 }
 a.nav:hover {
 	text-decoration: underline;
@@ -115,7 +124,7 @@ div.siteurl, ul.siteurl, li.siteurl {
 	font-size: 1.7em;
 	margin: 0;
 	padding: 0px 0px 0px 0px;
-	color: white;
+	color: #00bfff;
 	text-transform: capitalize;
 }
 #logo h1, #logo p {
@@ -123,22 +132,22 @@ div.siteurl, ul.siteurl, li.siteurl {
 	padding: 0;
 }
 #logo h1{
-	padding-top: 45px;
+	padding-top: 40px;
 	letter-spacing: 1px;
 	font-size: 3.8em;
-	color: white;
+	color: #00bfff;
 }
 #logo p {
 	margin: 0;
 	padding: 0px 0 0 10px;
 	font-style: italic;
-	color: #FFFFFF;
+	color: #00bfff;
 } 
 #logo a {	
     border: none;	
     background: none;	
     text-decoration: none;	
-    color: white;
+    color: #00bfff;
 }
 
 /* Search */
@@ -279,23 +288,34 @@ ul, li {
 }
 #sidebar a:hover {
 	text-decoration: underline;	
-    color: #8A8A8A;
+    	color: #8A8A8A;
 }
 
 /* Footer */
 #footer {
-	height: 50px;	
-    margin: 0 auto;	
-    padding: 0px 0 15px 0;	
+	height: 90px;	
+    	margin: 0 auto;	
+    	padding: 0px 0 15px 0;
+	background: url(/images/footer_back_shadow.png) repeat-x;
+	background-size: 2px 100px;
 }
 #footer p {	
-    margin: 0;	
-    padding-top: 20px;	
-    line-height: normal;	
-    font-size: 1em;	
-    text-transform: capitalize;	
-    text-align: center;	
-    color: #A0A0A0;
+    	margin: 0;	
+    	padding-top: 3px;	
+    	line-height: normal;	
+    	font-size: .9em;	
+    	text-transform: capitalize;	
+    	text-align: center;	
+    	color: black;
+}
+
+div.footerurl, ul.footerurl, li.footerurl {
+	display: inline;
+	list-style-type: none;
+	padding-top: 10px;
+	padding-right: 10px;
+	font-size: .9em;
+	color: black;
 }
 #greeting_spacer {	
     top: 50px;	height: 10px;
@@ -304,7 +324,11 @@ h2.greeting {
 	font-size: 1.7em;
 }
 #footer a {	
-    color: #8A8A8A;
+    color: #00bfff;
+}
+
+#footer a.hover {
+    color: black;
 }
 
 /* Sitemap styling, just makes the xml human-readable */ 

@@ -1,5 +1,5 @@
 <?php 
-include '/home/natelev/www/webcore.php';
+include '/home/natelev/www/static/core_web.php';
 
 # Grab variables from the URL. Syntax for this is...
 # name of variable, default value of variable, maxlength of variable
@@ -7,6 +7,7 @@ $first_name = setVarFromURL('name', 'Guest', 42);
 $track = setVarFromURL('track', '', 1);
 $konami = setVarFromURL('konami', '', 0);
 $id = setVarFromURL('id', 'home', 15);
+$id = setIfEmpty($id, $_SERVER['REQUEST_URI']);
 
 $current_domain = ";";
 $current_domain = preg_replace('/^www\./i', '', $_SERVER['HTTP_HOST']);
@@ -23,10 +24,10 @@ $page_description_file = "page_description_page_$id.txt";
 $page_keywords_file = "page_keywords_$id.txt";
 
 if ($track == "n"){
-	$tracking = "template_no-track.php";
+	$tracking = "/home/natelev/www/static/template_no-track.php";
 	}
 else {
-	$tracking = "template_tracking.php";
+	$tracking = "/home/natelev/www/static/template_tracking.php";
 	}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
@@ -46,23 +47,23 @@ echo 'Nate Levesque, TheNaterhood, the naterhood'?>' />
 <?php if ("$konami" == "pride") print '<style type="text/css">body {background: url(images/rainbow.jpg) fixed}</style>'; ?>
 <body>
 <div id="wrapper">
-<?php include chooseInclude('template_header.php', 'layout_error.html');?>
+<?php include chooseInclude('/home/natelev/www/static/template_header.php', 'layout_error.html');?>
 	<div id="page">
 		<div id="content">
 			<div class="post">
 				<div style="clear: both;">&nbsp;</div>
 				<div class="entry">
 				<?php 
-                include chooseInclude($page_content_file, 'template_error.php');
+                include chooseInclude("/home/natelev/www/static/$page_content_file", '/home/natelev/www/static/template_error.php');
 				?>
 				</div>
 			</div>
 		<div style="clear: both;">&nbsp;</div>
 		</div>
 		<!-- end #content -->
-<?php include chooseInclude('template_sidebar.php', 'layout_error.html'); ?>
+<?php include chooseInclude('/home/natelev/www/static/template_sidebar.php', 'layout_error.html'); ?>
 	</div>
 </div>
-<?php include chooseInclude('template_footer.php', 'layout_error.html'); ?>
+<?php include chooseInclude('/home/natelev/www/static/template_footer.php', 'layout_error.html'); ?>
 </body>
 </html>
