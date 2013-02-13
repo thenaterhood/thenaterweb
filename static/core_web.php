@@ -116,4 +116,39 @@ function chooseInclude($preferred, $secondary){
         return "$secondary";
     }
 }
+
+function randomGreeting($first_name){
+    /*
+     * Displays a string with a random greeting and the string
+     * the function was called with.
+     * 
+     * Arguments:
+     *  $first_name (str): a string, preferably a name
+     * 
+     * Returns:
+     *  (str) a string with a personal greeting
+     */
+    $greetings = array("Howdy", "Hello", "Hi", "Hey there", "Hi there");
+    return $greetings[ array_rand($greetings) ].", $first_name";
+    
+}
+
+function avoidFiles(){
+    /*
+     * Returns a list of files that should not be displayed
+     * or linked to when dynamically finding and generating pages
+     * with lists of files or links to files
+     */
+     return array(
+     ".",
+     "..",
+     "index.php",
+     "error_log",
+     "post.php",
+     "feed.php",
+     "feed.xml",
+     "inventory.html",
+     "tags",
+     "posts");
+ }
 ?>
