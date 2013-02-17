@@ -1,0 +1,11 @@
+<?php
+/* Provides a nice filename (read: ID) for displaying the
+ * inventory.  Simply includes the inventory file after adding
+ * appropriate list tags for the html
+ */
+ 
+echo '<ul>';
+include 'inventory.html';
+echo '</ul>';
+
+?>
