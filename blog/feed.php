@@ -23,17 +23,17 @@ function generateFeed(){
         
         $newitem = new postObj("entries/$posts[$i]");
         
-        $file = fopen("entries/$posts[$i]", 'r');
+        #$file = fopen("entries/$posts[$i]", 'r');
         $title = $newitem->title;
         $date = $newitem->date;
         $datestamp = $newitem->datestamp;
-        $content = $newitem->content;
+        $content = htmlspecialchars($newitem->content);
         
         $link = "http://www.thenaterhood.com/blog/post.php?node=".$posts[$i];
         $atom->new_item($title, $link, $content, $datestamp);
 
         
-        fclose($file);
+        #fclose($file);
     }
 
 
