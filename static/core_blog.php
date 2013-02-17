@@ -1,6 +1,37 @@
 <?php
 include '/home/natelev/www/static/core_web.php';
 $postDir='entries';
+class postObj {
+    /*
+     * Defines a data object to
+     * contain a post as it is
+     * read from a file. 
+     */
+     public $title, $tags, $date, $datestamp, $content;
+     
+     public function __construct($nodefile){
+         /*
+          * Reads in a nodefile and returns a data object
+          * containing all of the data from it
+          */
+         $file = fopen($nodefile, 'r');
+         $this->title = rtrim(fgets($file), "\n");
+         $this->date = rtrim(fgets($file), "\n");
+         $this->tags = rtrim(fgets($file), "\n");
+         $this->datestamp = rtrim(fgets($file), "\n");         
+         $contents='';
+         
+         while(!feof($file)){
+            $contents .= "<p>".rtrim(fgets($file), "\n"). "</p>\n";
+         }
+         
+         $this->content = $contents;
+         
+         fclose($file);
+         
+         
+     }
+ }
 function getPostList(){
     /*
      * Creates a list of files in the working directory, sorts
@@ -40,20 +71,20 @@ function retrievePost($node){
      * 
      */
     if (file_exists("entries/$node")){
-    	$file = fopen("entries/$node", 'r');
-    	$title = rtrim(fgets($file));
-    	$date = rtrim(fgets($file));
-        $tags = rtrim(fgets($file));
-        $datestamp = fgets($file);
+        $postData = new postObj("entries/$node");
+        
+    	$title = $postData->title;
+    	$date = $postData->date;
+        $tags = $postData->tags;
+        $datestamp = $postData->datestamp;
     	/*** return the current line ***/
     	echo '<h3><a href="post.php?node='.$node.'" >'.$title."</a></h3>\n";
     	echo "<h4>".$date."</h4>\n";
-    	while(!feof($file)){
-        	echo "<p>".rtrim(fgets($file), "\n"). "</p>\n";
-    	}
+    	
+        echo $postData->content;
+        
         echo "<h5><i>Tags: ".$tags."</i></h5>\n";
 
-    	fclose($file);
     }
     else{
 	include "/home/natelev/www/static/template_error.php";
@@ -95,11 +126,13 @@ function regenInventory(){
     $posts = getPostList();
     
     foreach( $posts as $input ){
-        $file = fopen("entries/$input", 'r');
-        $title = rtrim(fgets($file));
-        $date = rtrim(fgets($file));
-        $tags = rtrim(fgets($file));
-        fclose($file);
+        
+        $postData = new postObj("entries/$input");
+        
+        $title = $postData->title;
+        $date = $postData->date;
+        $tags = $postData->tags;
+
         $item = '<li><a href="post.php?node='.$input.'">'.$title.'</a><i> - '.$tags.'</i></li>'."\n";
         fwrite($inventory, $item);
 
