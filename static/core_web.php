@@ -20,17 +20,19 @@ function safeChars($string, $length) {
     }
     
     #Santize input so that it's text so we don't have XSS problems
-    $safestring = htmlspecialchars($string, ENT_QUOTES);
+    $safestring = preg_replace('/[^a-zA-Z0-9\s.]/', '', $string);
+
+    $saferstring = htmlspecialchars($safestring, ENT_QUOTES);
     
     #Check the length of the string and the limit given, truncate if needed
     if ($length == 0){
-        return $safestring;
+        return $saferstring;
     }
-    if (strlen($safestring) > $length){
-        return substr($safestring, 0, $length);
+    if (strlen($saferstring) > $length){
+        return substr($saferstring, 0, $length);
     }
     else {
-        return $safestring;
+        return $saferstring;
     }
 }
 
