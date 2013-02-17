@@ -1,6 +1,6 @@
 <?php
 include '/home/natelev/www/static/core_web.php';
-
+$postDir='entries';
 function getPostList(){
     /*
      * Creates a list of files in the working directory, sorts
@@ -9,7 +9,7 @@ function getPostList(){
      */
     $avoid = avoidFiles();
     $posts = array();
-    $handler = opendir('./');
+    $handler = opendir("entries");
     $i = 0;
     while ($file = readdir($handler)){
       // if file isn't this directory or its parent, add it to the results
@@ -39,8 +39,8 @@ function retrievePost($node){
      * CONTENT
      * 
      */
-    if (file_exists("$node")){
-    	$file = fopen($node, 'r');
+    if (file_exists("entries/$node")){
+    	$file = fopen("entries/$node", 'r');
     	$title = rtrim(fgets($file));
     	$date = rtrim(fgets($file));
         $tags = rtrim(fgets($file));
@@ -56,7 +56,7 @@ function retrievePost($node){
     	fclose($file);
     }
     else{
-	include "/home/natelev/www/template_error.php";
+	include "/home/natelev/www/static/template_error.php";
     }
 }
 
@@ -95,7 +95,7 @@ function regenInventory(){
     $posts = getPostList();
     
     foreach( $posts as $input ){
-        $file = fopen($input, 'r');
+        $file = fopen("entries/$input", 'r');
         $title = rtrim(fgets($file));
         $date = rtrim(fgets($file));
         $tags = rtrim(fgets($file));
