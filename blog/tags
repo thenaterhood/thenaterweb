@@ -1,0 +1,69 @@
+<?php
+
+function getTags(){
+    /*
+     * Iterate through the list of posts and their tags in the inventory
+     * and add all the tags to an array and return the array.
+     */
+    $file = fopen('inventory.html', 'r');
+    $tags = array();
+    while(!feof($file)){
+        $line = fgets($file);
+        $start = strpos($line, '- ') + 2;
+        $end = -10;
+        $rawtags = split(', ', substr($line, $start, $end));
+        foreach( $rawtags as $item ){
+            if ( ! in_array($item, $tags) ){
+               $tags[]=$item; 
+           }
+        }
+    }    
+    return $tags;
+}
+function getByTag($tag){
+    /*
+     * Iterate through the inventory and echo each item that contains
+     * the requested tag.
+     * 
+     * Arguments:
+     *  $tag (str): the tag to retrieve
+     */
+    $file = fopen('inventory.html', 'r');
+    
+    while(!feof($file)){
+        $line = fgets($file);
+            if (strpos($line, $tag) ){
+        	echo $line;
+    	}
+    }
+}
+
+$tag = setVarFromURL(tag, 'False', 20);
+if ("$tag" != 'False' ){
+    print '<p><strong>Browsing tag "'.$tag.'".  </strong><a href="?id=tags">View all tags.</a></p>'."\n";
+
+}
+echo "<ul>";
+
+if ( "$tag" == 'False' ){
+    /*
+     * Check if a tag was requested, otherwise list the available
+     * tags.
+     */
+    $tags = getTags();
+    foreach( $tags as $item ){
+        echo '<li><a href="index.php?id=tags&amp;tag='.$item.'">'.$item.'</a></li>';
+    }
+}
+else{
+    /*
+     * If a tag was requested, call getByTag to print all posts
+     * with the tag.
+     */
+    getByTag($tag);
+
+}
+
+echo "</ul>";
+
+?>
