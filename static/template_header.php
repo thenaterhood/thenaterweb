@@ -17,7 +17,7 @@
 			<div class="siteurl">
 			<ul class="siteurl">
 			<li class="siteurl">{ <a class="nav" href="/?id=home">Home</a></li>
-			<li class="siteurl"><a class="nav" href="/projects">Projects</a></li>
+			<li class="siteurl"><a class="nav" href="/?id=projects">Projects</a></li>
 			<li class="siteurl"><a class="nav" href="/?id=about">Bio</a></li>
 			<li class="siteurl"><a class="nav" href="/?id=connect">Connect</a></li>
 			<li class="siteurl"><a class="nav" href="http://blog.thenaterhood.com">Blog</a> }</li>
