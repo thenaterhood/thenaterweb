@@ -48,12 +48,12 @@
       xml:lang="en"
       xml:base="http://www.thenaterhood.com/">';
             $r .= "\n";
-            $r .= '<subtitle type="html">' . $this->description . "</subtitle>";
+            $r .= '<subtitle type="html">' . $this->description . "</subtitle>\n";
             $r .= "";
-            $r .= "<id>" . $this->link . "</id>";
-            $r .= "<title>" . $this->title . "</title>";
-            $r .= "<updated>". $this->feedstamp ."</updated>";
-            $r .= "<author>"."<name>Nate Levesque</name>"."</author>";
+            $r .= "<id>" . $this->link . "</id>\n";
+            $r .= "<title>" . $this->title . "</title>\n";
+            $r .= "<updated>". $this->feedstamp ."</updated>\n";
+            $r .= "<author>"."<name>Nate Levesque</name>"."</author>\n";
             foreach ($this->items as $item) {
                 $r .= $item->output();
             }

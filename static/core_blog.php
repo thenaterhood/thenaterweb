@@ -12,8 +12,22 @@ class postObj {
      public function __construct($nodefile){
          /*
           * Reads in a nodefile and returns a data object
-          * containing all of the data from it
+          * containing all of the data from it.
+          * Accepts plaintext and json, but will prefer json
+          * over plaintext because it is superior.
           */
+        if (file_exists("$nodefile.json")){
+            $jsoncontents = file_get_contents("$nodefile.json");
+            $json_array = json_decode($jsoncontents, True);
+            
+            $this->title = $json_array['title'];
+            $this->date = $json_array['date'];
+            $this->tags = $json_array['tags'];
+            $this->datestamp = $json_array['datestamp'];
+            $this->content = implode($json_array['content']);
+            
+        }
+        else{
          $file = fopen($nodefile, 'r');
          $this->title = rtrim(fgets($file), "\n");
          $this->date = rtrim(fgets($file), "\n");
@@ -28,6 +42,7 @@ class postObj {
          $this->content = $contents;
          
          fclose($file);
+     }
          
          
      }
@@ -43,9 +58,16 @@ function getPostList(){
     $handler = opendir("entries");
     $i = 0;
     while ($file = readdir($handler)){
-      // if file isn't this directory or its parent, add it to the results
-      if (  !in_array($file, $avoid) ){
+      // if file isn't this directory or its parent, or itself, add it to the results
+      // We check if it's there already because we're migrating from plaintext to json
+      // so there may be duplicates.
+      if (  !in_array($file, $avoid) and !in_array($file, $posts) and !in_array(substr($file, 0, -5), $posts) ){
+          if ( strpos($file,"json") ){
+            $posts[] = substr($file, 0, -5);
+        }
+        else{
             $posts[] = $file;
+        }
             $i++;
       }
 
@@ -69,8 +91,11 @@ function retrievePost($node){
      * FEED DATESTAMP
      * CONTENT
      * 
+     * Isn't plaintext specific anymore because it uses the postObj
+     * object for retrieving posts rather than doing it directly.
+     * 
      */
-    if (file_exists("entries/$node")){
+    if (file_exists("entries/$node") or file_exists("entries/$node.json") ){
         $postData = new postObj("entries/$node");
         
     	$title = $postData->title;
