@@ -13,6 +13,9 @@ function setTitle($node){
 	return "Error";
     }
 }
+$first_name = setVarFromURL('name', 'Guest', 42);
+$track = setVarFromURL('track', '', 1);
+$konami = setVarFromURL('konami', '', 0);
 $node = setVarFromURL('node', '', 25);
 $id = 'Blog';
 ?>
