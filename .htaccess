@@ -1,3 +1,12 @@
-
+# Filetype definitions
 AddType text/plain sh
 
+# URL redirection static -> dynamic
+RedirectMatch "about$" http://www.thenaterhood.com/?id=about
+RedirectMatch "projects$" http://www.thenaterhood.com/?id=projects
+RedirectMatch "connect$" http://www.thenaterhood.com/?id=connect
+RedirectMatch 301 "projects/$" http://www.thenaterhood.com/?id=projects
+
+# Temporary URL redirection
+RedirectMatch "sitemap.xml$" http://www.thenaterhood.com/sitemap.php
+RedirectMatch "scratchandsniff$" http://www.thenaterhood.com/?id=scratchhere
