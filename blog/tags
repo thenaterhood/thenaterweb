@@ -9,7 +9,7 @@ function getTags(){
     $tags = array();
     while(!feof($file)){
         $line = fgets($file);
-        $start = strpos($line, '- ') + 2;
+        $start = strpos($line, ' - ') + 3;
         $end = -10;
         $rawtags = split(', ', substr($line, $start, $end));
         foreach( $rawtags as $item ){

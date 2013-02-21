@@ -23,6 +23,9 @@ function getPosts($start, $end){
     if ( count($posts) != $i ) echo "<a href='?start=".($start + 4)."&amp;end=".($end + 4)."'>  Older Posts</a>  ";
 
 }
+$first_name = setVarFromURL('name', 'Guest', 42);
+$track = setVarFromURL('track', '', 1);
+$konami = setVarFromURL('konami', '', 0);
 $start = setVarFromURL('start', 0, 0);
 $end = setVarFromURL('end', 4, 0);
 $id = setVarFromURL('id', blog, 18);
