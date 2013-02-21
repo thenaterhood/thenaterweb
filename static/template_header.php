@@ -2,7 +2,7 @@
 	<!-- <p>view in: <a href="m/index.html">mobile</a> standard</p> -->
 	<?php print "<table border='0' width='780'><tr>";
 		  if ("$track" == "n") print "<td valign='middle' width='180px'><p>Your visit is not being tracked. </p></td>" ;
-		  if ("$first_name" == "Guest") include "/home/natelev/www/static/template_introduction.php";
+		  if ("$first_name" == getConfigOption('default_visitor_name') ) include "/home/natelev/www/static/template_introduction.php";
 		  print "<td align='left'><p><a href='/?id=privacy'>(privacy information)</a></p></td></tr></table>";
 	?>
 	</div>
