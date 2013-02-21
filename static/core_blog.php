@@ -1,6 +1,6 @@
 <?php
 include '/home/natelev/www/static/core_web.php';
-$postDir='entries';
+
 class postObj {
     /*
      * Defines a data object to
@@ -27,6 +27,18 @@ class postObj {
             $this->content = implode($json_array['content']);
             
         }
+        /*
+         * This else statement allows the blog platform
+         * to support using plaintext files for post data, which
+         * is nasty.  Use json, it's better.  For a plaintext post,
+         * the syntax is: 
+         * 
+         * TITLE
+         * DISPLAY DATE
+         * TAGS
+         * FEED DATESTAMP
+         * CONTENT
+         */
         else{
          $file = fopen($nodefile, 'r');
          $this->title = rtrim(fgets($file), "\n");
@@ -53,9 +65,13 @@ function getPostList(){
      * and reverses the list, and returns it.  Intended for working
      * with blog posts stored as text files with date-coded filenames
      */
+     
+    # Grabs the post directory configured in the root configuration
+    $postDir = getConfigOption('post_directory');
+
     $avoid = avoidFiles();
     $posts = array();
-    $handler = opendir("entries");
+    $handler = opendir($postDir);
     $i = 0;
     while ($file = readdir($handler)){
       // if file isn't this directory or its parent, or itself, add it to the results
@@ -85,17 +101,12 @@ function retrievePost($node){
      * and adds appropriate formatting for it to be displayed.
      * Designed for use with plaintext blog posts with the format
      * 
-     * TITLE
-     * DISPLAY DATE
-     * TAGS
-     * FEED DATESTAMP
-     * CONTENT
-     * 
      * Isn't plaintext specific anymore because it uses the postObj
      * object for retrieving posts rather than doing it directly.
      * 
      */
-    if (file_exists("entries/$node") or file_exists("entries/$node.json") ){
+    $postDir = getConfigOption('post_directory');
+    if (file_exists("$postDir/$node") or file_exists("$postDir/$node.json") ){
         $postData = new postObj("entries/$node");
         
     	$title = $postData->title;
@@ -143,6 +154,8 @@ function regenInventory(){
     /*
      * Regenerates the inventory file
      */
+     
+    $postDir = getConfigOption('post_directory');
     $inventory = fopen('inventory.html', 'w');
     
     $avoid = avoidFiles();
@@ -152,7 +165,7 @@ function regenInventory(){
     
     foreach( $posts as $input ){
         
-        $postData = new postObj("entries/$input");
+        $postData = new postObj("$postDir/$input");
         
         $title = $postData->title;
         $date = $postData->date;
@@ -193,4 +206,13 @@ function getSuggestions($number, $tag){
         }
         
     }
+    
+function relevantImage($tag){
+    /*
+     * Retrieves and displays an image relevant to the 
+     * post being displayed, based on the first tag
+     */
+     
+    
+}
 ?>
