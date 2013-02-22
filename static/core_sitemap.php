@@ -31,7 +31,7 @@
              *      of the item
              *  $datestamp (str): the official datestamp of the item
              */
-            array_push($this->items, new feed_item($loc, $lastmod));
+            array_push($this->items, new url($loc, $lastmod));
         }
         
         public function output() {
@@ -40,7 +40,7 @@
              * with appropriate code added.
              */
             $r ='<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">';
+            <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">';
             $r .= "\n";
             foreach ($this->items as $item) {
                 $r .= $item->output();
@@ -51,7 +51,7 @@
 
     }
 
-    class feed_item {
+    class url {
         /*
          * Creates the data object to contain an item in the feed
          */
@@ -76,11 +76,11 @@
              * Produces the coded output of the item that can be 
              * returned and displayed or saved
              */
-            $r = "<url>\n";
-            $r .= "<loc>" . $this->loc . "</loc>\n";
-            $r .= '<lastmod>'.$this->lastmod."</lastmod>\n";
-            $r .= "</url>\n";
-            return $r;
+            $item = "<url>\n";
+            $item .= "<loc>" . $this->loc . "</loc>\n";
+            $item .= '<lastmod>'.$this->lastmod."</lastmod>\n";
+            $item .= "</url>\n";
+            return $item;
         }
 
 }
