@@ -6,7 +6,7 @@ include '/home/natelev/www/static/core_blog.php';
 function generateFeed(){
     $posts = getPostList();
     
-    $atom = new atom_channel("The Philosophy of Nate", "http://blog.thenaterhood.com/", "It's the cyber age, stay in the know.", date(DATE_ATOM) );
+    $atom = new atom_feed("The Philosophy of Nate", "http://blog.thenaterhood.com/", "It's the cyber age, stay in the know.", date(DATE_ATOM) );
 
     /*
      * Lists the files in a directory and returns an array of them
@@ -22,26 +22,12 @@ function generateFeed(){
     for ($i = 0; $i < count($posts); $i++){
         
         $newitem = new postObj("entries/$posts[$i]");
-        
-        #$file = fopen("entries/$posts[$i]", 'r');
-        $title = $newitem->title;
-        $date = $newitem->date;
-        $datestamp = $newitem->datestamp;
-        $content = htmlspecialchars($newitem->content);
-        
-        $link = "http://www.thenaterhood.com/blog/post.php?node=".$posts[$i];
-        $atom->new_item($title, $link, $content, $datestamp);
+
+        $atom->new_item($newitem);
 
         
-        #fclose($file);
     }
 
-
-    #$rss->new_item("Earnings Report", "http://example.com/earnings", "Earnings Report for Example.com");
-
-    #$rss->new_item("Stockholder's Meeting", "http://example.com/shmeeting", "Stockholder's Meeting Announcement");
-
-    #$rss->new_item("CEO Speech", "http://example.com/ceospeech", "Example CEO Delivers Speech");
     return $atom;
 }
 
