@@ -65,7 +65,7 @@ else{
 	* on the fly and prints the file without saving it.
 	*/
 	if ( file_exists("$dynamicLocation/sitemap.xml") ){
-		include "$dynamicLocation/sitemap.xml";
+		print file_get_contents("$dynamicLocation/sitemap.xml");
 	}
 	else{
 		$pageDirectories = array( getConfigOption('webcore_root') );
