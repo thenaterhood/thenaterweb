@@ -35,9 +35,45 @@ function createSitemap($localpath, $webpath, $delimeters){
     
     
 }
+$regen = setVarFromURL('regen', '', 4);
+$autoregen = getConfigOption('auto_file_regen');
+$dynamicLocation = getConfigOption('dynamic_directory');
+$save = getConfigOption('save_dynamics');
 
-$sitemap = createSitemap(array('/home/natelev/www/static'), array('http://www.thenaterhood.com/?id='), array('page'));
-print $sitemap->output();
+if ($autoregen || $regen){
+    /*
+     * Decides whether or not to regenerate the sitemap, and saves
+     * the generated sitemap if the config option is set.
+     */
+    $pageDirectories = array( getConfigOption('webcore_root') );
+
+    $sitemap = createSitemap($pageDirectories, array( getConfigOption('site_domain').'/?id=' ), array('page'));
+    print $sitemap->output();
+    
+    if ($save){
+        $file = fopen("$dynamicLocation/sitemap.xml", 'w');
+        fwrite($file, $sitemap->output());
+        fclose($file);
+    }
+}
+
+else{
+    /*
+     * If the software decides the sitemap should not be regenerated
+     * based on the config (and soon, if it is up to date) then it
+     * includes the saved file if it exists. Otherwise, it regenerates
+     * on the fly and prints the file without saving it.
+     */
+    if ( file_exists("$dynamicLocation/sitemap.xml") ){
+        include "$dynamicLocation/sitemap.xml";
+    }
+    else{
+        $pageDirectories = array( getConfigOption('webcore_root') );
+
+        $sitemap = createSitemap($pageDirectories, array( getConfigOption('site_domain').'/?id=' ), array('page') );
+        print $sitemap->output();
+    }
+}
 
 
 ?>
