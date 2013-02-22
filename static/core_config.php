@@ -44,14 +44,14 @@ class config{
 		
 		# Whether or not other dynamic files (such as sitemap) should
 		# regenerate automatically
-		$this->auto_file_regen = True;
+		$this->auto_file_regen = False;
 		
 		# Whether to save the dynamic files when they are generated.
 		# If this is turned off and no dynamic files have been 
 		# generated and saved already, regardless of the settings
 		# for automatically regenerating files the software will
 		# dynamically create the file requested.
-		$this->save_dynamics = False;
+		$this->save_dynamics = True;
 		
 		# The directory that blog posts are stored in
 		$this->post_directory = '/home/natelev/www/blog/entries';
