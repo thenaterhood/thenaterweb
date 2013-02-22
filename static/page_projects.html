@@ -1,0 +1,41 @@
+<h2>Projects</h2>
+<p>Projects are hosted on Github in order to simplify the process of sharing and using them.  Note that there may be more repositories on Github than are listed below, as some may correspond to school or temporary projects.</p>
+<p><strong>Disclaimer:</strong> I assume no responsibility for the outcome of using any of the software or configurations listed on this page.  If you break your system with them, it is not my fault.</p>
+<!-- <p>If you use anything from my site, please give me credit.  Projects are organized by language and device.</p>
+<br /> -->
+<!-- <ul class="navlists" style="text-transform:uppercase;font-size:1.5em;"> -->
+<ul>
+<li><a href="https://github.com/thenaterhood" target="_blank">Github Profile</a></li>
+</ul>
+<h4>Linux &amp; Linux-related</h4>
+<ul>
+<li><a href="https://github.com/thenaterhood/shellzilla/blob/master/README.md">Shellzilla</a> - a miscellaneous collection of possibly-useful Linux shell scripts.</li>
+<li><a href="https://github.com/thenaterhood/dotfiles/blob/master/README.md">dotfiles</a> - Version controlled Linux configuration files, based on ArchLinux but not limited to it.</li>
+</ul>
+<h4>TI Calculator, TI-Basic, &amp; related utilities</h4>
+<ul>
+<li><a href="https://github.com/thenaterhood/basically-ti-basic/blob/master/README.md">Basically, TI-Basic</a> - A project to make working with TI-Basic a little more pleasant.  Decompiles and compiles TI-Basic files.  Written in Python</li>
+
+
+<?php
+/* Automatically generates a list of internal links to the files in a directory
+if ($handle = opendir('./')) {
+    while (false !== ($file = readdir($handle))) {
+        if ($file != "." && $file != "projects_home.html" && $file != ".." && $file != "index.php"
+		&& $file != "index2.php" && $file != 'error_log') {
+            $page_name=substr($file, 0, strpos($file, "."));
+			if ($page_name != "" && $page_name != "index" && $page_name != "page_error" && $page_name != "page_projects") {
+				echo "<li><a href=\"";
+				echo "?id=";
+				echo substr($page_name,5);
+				echo "\">";
+				echo substr($page_name,5);
+				echo "</a></li>\n";
+			}
+        }
+    }
+}
+closedir($handle);
+*/
+?>
+</ul>
