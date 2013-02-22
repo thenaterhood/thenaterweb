@@ -1,5 +1,5 @@
 <?php
-    class atom_channel {
+    class atom_feed {
         /*
          * Defines a data object to contain an atom feed as items
          * are added and the feed is updated then returned
@@ -24,25 +24,27 @@
 
         }
 
-        public function new_item($title, $link, $description, $datestamp) {
+        public function new_item($postObject) {
             /*
              * Adds an item to the feed as an object in the object's
              * items array
              * 
              * Arguments:
-             *  $title (str): the title of the item
-             *  $link (str): the web address of the item's source
-             *  $description (str): a description of or the content 
-             *      of the item
-             *  $datestamp (str): the official datestamp of the item
+             *  $postObject: a fully initialized instance of the postObj
+             *      class.
+             * 
+             * TODO: use this directly rather than copying fields
+             * into another object
              */
-            array_push($this->items, new feed_item($title, $link, $description, $datestamp));
+            array_push($this->items, $postObject);
         }
         
         public function output() {
             /*
              * Returns a displayable representation of the feed
-             * with appropriate code added.
+             * with appropriate code added.  Relies on the postObj 
+             * atom_output() function to generate code for individidual
+             * feed items.
              */
             $r ='<feed xmlns="http://www.w3.org/2005/Atom"
       xml:lang="en"
@@ -55,50 +57,12 @@
             $r .= "<updated>". $this->feedstamp ."</updated>\n";
             $r .= "<author>"."<name>Nate Levesque</name>"."</author>\n";
             foreach ($this->items as $item) {
-                $r .= $item->output();
+                $r .= $item->atom_output();
             }
             $r .= "</feed>";
             return $r;
         }
 
     }
-
-    class feed_item {
-        /*
-         * Creates the data object to contain an item in the feed
-         */
-        public $title, $link, $description, $datestamp;
-        
-        public function __construct($title, $link, $description, $datestamp) {
-            /*
-             * Creates the data object to contain the atom feed item.
-             * 
-             * Arguments:
-             *  $title (str): the title of the item
-             *  $link (str): the web address of the item source
-             *  $description (str): the content of the item
-             *  $datestamp (str): the atom-format datestamp of the item
-             */
-            $this->title = $title;
-            $this->link = $link;
-            $this->datestamp = $datestamp;
-            $this->description = $description;
-        }
-        public function output() {
-            /*
-             * Produces the coded output of the item that can be 
-             * returned and displayed or saved
-             */
-            $r = "<entry>";
-            $r .= "<id>" . $this->link . "</id>";
-            $r .= '<link href="'.$this->link.'" />';
-            $r .= '<updated>'.$this->datestamp.'</updated>';
-            $r .= "<title>" . $this->title . "</title>";
-            $r .= "<content type='html'>" . $this->description . "</content>";
-            $r .= "</entry>";
-            return $r;
-        }
-
-}
 
 ?>
