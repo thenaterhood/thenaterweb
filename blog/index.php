@@ -2,25 +2,25 @@
 include '/home/natelev/www/static/core_blog.php';
 
 function getPosts($start, $end){
-    /*
-     * Lists the files in a directory and returns an array of them
-     * out to the given length section
-     * 
-     * Arguments:
-     *  $section (int): a range of posts to retrieve
-     * Returns:
-     *  $posts (array): an array of posts retrieved
-     * 
-    */
-    $posts = getPostList();
-    
-    for ($i = $start; $i < count($posts) && $i < $end; $i++){
-        retrievePost($posts[$i]);
+	/*
+	 * Lists the files in a directory and returns an array of them
+	 * out to the given length section
+	 * 
+	 * Arguments:
+	 *  $section (int): a range of posts to retrieve
+	 * Returns:
+	 *  $posts (array): an array of posts retrieved
+	 * 
+	*/
+	$posts = getPostList();
+	
+	for ($i = $start; $i < count($posts) && $i < $end; $i++){
+		retrievePost($posts[$i]);
 	echo "<hr />";
-    }
-    if (! $start <= 0) echo "<a href='?start=".($start - 4)."&amp;end=".($end - 4)."'>Newer Posts</a>";
-    if (! $start <= 0 and count($posts) != $i ) echo ' / ';
-    if ( count($posts) != $i ) echo "<a href='?start=".($start + 4)."&amp;end=".($end + 4)."'>  Older Posts</a>  ";
+	}
+	if (! $start <= 0) echo "<a href='?start=".($start - 4)."&amp;end=".($end - 4)."'>Newer Posts</a>";
+	if (! $start <= 0 and count($posts) != $i ) echo ' / ';
+	if ( count($posts) != $i ) echo "<a href='?start=".($start + 4)."&amp;end=".($end + 4)."'>  Older Posts</a>  ";
 
 }
 $first_name = setVarFromURL('name', 'Guest', 42);
@@ -55,13 +55,13 @@ echo 'Nate Levesque, TheNaterhood, the naterhood'?>' />
 				<div class="entry">
 				<?php
 				if ( $id != "blog" ){
-				    #echo '<h4>Note: For performance reasons, these pages are not generated dynamically.  If you feel they are out of date, visit the blog feed and they will be automatically regenerated.</h4>';
-				    include "$id";
-				    echo '<hr /><p><a href="index.php">Back to Blog home</a></p>';
+					#echo '<h4>Note: For performance reasons, these pages are not generated dynamically.  If you feel they are out of date, visit the blog feed and they will be automatically regenerated.</h4>';
+					include "$id";
+					echo '<hr /><p><a href="index.php">Back to Blog home</a></p>';
 				}
 				else{ 
-                			getPosts($start,$end);
-				    }
+							getPosts($start,$end);
+					}
 				?>
 				</div>
 			</div>

@@ -3,15 +3,15 @@ include '/home/natelev/www/static/core_blog.php';
 
 
 function setTitle($node){
-    if (file_exists("$node")){
+	if (file_exists("$node")){
 	$file = fopen($node, 'r');
 	$title = fgets($file);
 	fclose($file);
 	return $title;
-    }
-    else{
+	}
+	else{
 	return "Error";
-    }
+	}
 }
 $first_name = setVarFromURL('name', 'Guest', 42);
 $track = setVarFromURL('track', '', 1);
