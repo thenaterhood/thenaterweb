@@ -3,7 +3,7 @@ include '/home/natelev/www/static/core_web.php';
 
 # Grab variables from the URL. Syntax for this is...
 # name of variable, default value of variable, maxlength of variable
-$first_name = setVarFromURL('name', $GLOBAL_CONFIG['default_visitor_name'], 42);
+$first_name = setVarFromURL('name', getConfigOption('default_visitor_name'), 42);
 $track = setVarFromURL('track', '', 1);
 $konami = setVarFromURL('konami', '', 0);
 $id = setVarFromURL('id', 'home', 15);
