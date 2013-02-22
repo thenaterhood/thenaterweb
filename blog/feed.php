@@ -4,28 +4,23 @@ include '/home/natelev/www/static/core_atom.php';
 include '/home/natelev/www/static/core_blog.php';
 
 function generateFeed(){
-	$posts = getPostList();
-	
-	$atom = new atom_feed("The Philosophy of Nate", "http://blog.thenaterhood.com/", "It's the cyber age, stay in the know.", date(DATE_ATOM) );
-
 	/*
-	* Lists the files in a directory and returns an array of them
-	* out to the given length section
+	* Generates an atom feed
 	* 
 	* Arguments:
-	*  $section (int): a range of posts to retrieve
+	*  none
 	* Returns:
-	*  $posts (array): an array of posts retrieved
+	*  $atom (atom_feed): an instance of the atom_feed class
 	* 
 	*/
+	
+	$posts = getPostList();
+	$atom = new atom_feed("The Philosophy of Nate", "http://blog.thenaterhood.com/", "It's the cyber age, stay in the know.", date(DATE_ATOM) );
 	
 	for ($i = 0; $i < count($posts); $i++){
 		
 		$newitem = new postObj("entries/$posts[$i]");
-
 		$atom->new_item($newitem);
-
-		
 	}
 	return $atom;
 }
