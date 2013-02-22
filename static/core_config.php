@@ -15,6 +15,7 @@ class config{
     private static $default_visitor_name;
     private static $hidden_files;
     private static $posts_per_page;
+    private static $site_domain;
     
     function __construct(){
         /*
@@ -34,8 +35,12 @@ class config{
         # regenerate automatically
         $this->auto_file_regen = True;
         
-        # Whether to save the dynamic files when they are generated
-        $this->save_dynamics = True;
+        # Whether to save the dynamic files when they are generated.
+        # If this is turned off and no dynamic files have been 
+        # generated and saved already, regardless of the settings
+        # for automatically regenerating files the software will
+        # dynamically create the file requested.
+        $this->save_dynamics = False;
         
         # The directory that blog posts are stored in
         $this->post_directory = '/home/natelev/www/blog/entries';
@@ -45,6 +50,10 @@ class config{
         
         # How many posts should be displayed per each blog page
         $this->posts_per_page = 4;
+        
+        # The domain name of the site (note that this can be automatically
+        # determined if needed)
+        $this->site_domain = 'http://www.thenaterhood.com';
         
         # All the files that should be ignored when dynamically looking
         # at directories
