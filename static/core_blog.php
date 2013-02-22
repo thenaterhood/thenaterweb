@@ -3,11 +3,16 @@ include '/home/natelev/www/static/core_web.php';
 
 class postObj {
     /*
-     * Defines a data object to
-     * contain a post as it is
-     * read from a file. 
+     * Contains everything to do with retrieving and outputting
+     * posts in multiple forms.  Is capable of retrieving posts stored
+     * in .json format (preferred when available) as well as plaintext
+     * (file syntax described below in constructor).
+     * 
+     * Contains functions to output the post data in html format
+     * for displaying to a page, and atom format for use in generating
+     * an atom feed.
      */
-     public $title, $tags, $date, $datestamp, $content;
+     public $title, $tags, $date, $datestamp, $content, $link;
      
      public function __construct($nodefile){
          /*
@@ -25,6 +30,7 @@ class postObj {
             $this->tags = $json_array['tags'];
             $this->datestamp = $json_array['datestamp'];
             $this->content = implode($json_array['content']);
+            $this->link = getConfigOption('site_domain').'/blog/post.php?node='.basename($nodefile, '.json');
             
         }
         /*
@@ -44,7 +50,8 @@ class postObj {
          $this->title = rtrim(fgets($file), "\n");
          $this->date = rtrim(fgets($file), "\n");
          $this->tags = rtrim(fgets($file), "\n");
-         $this->datestamp = rtrim(fgets($file), "\n");         
+         $this->datestamp = rtrim(fgets($file), "\n"); 
+         $this->link = getConfigOption('site_domain').'/blog/post.php?node='.basename($nodefile);        
          $contents='';
          
          while(!feof($file)){
@@ -54,10 +61,35 @@ class postObj {
          $this->content = $contents;
          
          fclose($file);
-     }
+        }
+    }
          
-         
-     }
+        public function atom_output() {
+        /*
+        * Produces the coded output of the item that can be 
+        * returned and displayed or saved in an atom feed
+        */
+        $r = "<entry>";
+        $r .= "<id>" . $this->link . "</id>";
+        $r .= '<link href="'.$this->link.'" />';
+        $r .= '<updated>'.$this->datestamp.'</updated>';
+        $r .= "<title>" . $this->title . "</title>";
+        $r .= "<content type='html'>" . htmlspecialchars( $this->content ) . "</content>";
+        $r .= "</entry>";
+        return $r;
+        } 
+        
+        public function page_output() {
+        /*
+         * Produces the coded output of the item that can be displayed
+         * on an html page
+         */
+         $r = '<h3><a href="'.$this->link.'">'.$this->title.'</a></h3>'."\n";
+         $r .= '<h4>'.$this->date.'</h4>'."\n";
+         $r .= $this->content;
+         $r .= "<h5><i>Tags: ".$this->tags."</i></h5>\n";
+         return $r;
+        }
  }
 function getPostList(){
     /*
@@ -108,22 +140,11 @@ function retrievePost($node){
     $postDir = getConfigOption('post_directory');
     if (file_exists("$postDir/$node") or file_exists("$postDir/$node.json") ){
         $postData = new postObj("entries/$node");
-        
-    	$title = $postData->title;
-    	$date = $postData->date;
-        $tags = $postData->tags;
-        $datestamp = $postData->datestamp;
-    	/*** return the current line ***/
-    	echo '<h3><a href="post.php?node='.$node.'" >'.$title."</a></h3>\n";
-    	echo "<h4>".$date."</h4>\n";
     	
-        echo $postData->content;
-        
-        echo "<h5><i>Tags: ".$tags."</i></h5>\n";
-
+        echo $postData->page_output();
     }
     else{
-	include "/home/natelev/www/static/template_error.php";
+        include "/home/natelev/www/static/template_error.php";
     }
 }
 
