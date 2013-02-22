@@ -54,7 +54,7 @@ echo 'Nate Levesque, TheNaterhood, the naterhood'?>' />
 				<div style="clear: both;">&nbsp;</div>
 				<div class="entry">
 				<?php 
-                include chooseInclude("/home/natelev/www/static/$page_content_file", '/home/natelev/www/static/template_error.php');
+				include chooseInclude("/home/natelev/www/static/$page_content_file", '/home/natelev/www/static/template_error.php');
 				?>
 				</div>
 			</div>
