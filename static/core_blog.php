@@ -1,4 +1,14 @@
 <?php
+/*
+* Author: Nate Levesque <public@thenaterhood.com>
+* Language: PHP
+* Filename: core_blog.php
+
+* Description:
+*	Contains classes and functions for retrieving and displaying
+*	blog posts and other aspects of the blog platform
+*/
+
 include '/home/natelev/www/static/core_web.php';
 
 class postObj {
@@ -12,7 +22,7 @@ class postObj {
 	* for displaying to a page, and atom format for use in generating
 	* an atom feed.
 	*/
-	public $title, $tags, $date, $datestamp, $content, $link;
+	private $title, $tags, $date, $datestamp, $content, $link;
 	
 	public function __construct($nodefile){
 		/*
@@ -21,6 +31,20 @@ class postObj {
 		* Accepts plaintext and json, but will prefer json
 		* over plaintext because it is superior.
 		*/
+		
+		/* Handles the case where the post file does not exist
+		 * at all by pre-setting all the fields to a failure state.
+		 * This also safely handles any case where the data in a post
+		 * doesn't contain all of the expected fields in a typical way.
+		 */
+		
+		$this->title = "Oops! Post Not Found!";
+		$this->date = "";
+		$this->tags = "";
+		$this->datestamp = "";
+		$this->link = 'index.php';
+		$this->content = '<p>Sorry, the post you were looking for could not be found.  If you think it should be here, try browsing by title.  Otherwise, <a href="index.php">return to blog home.</a></p>'."\n".'<p>Think you were looking for something else? <a href="'.getConfigOption('site_domain').'">visit site home</a>.</p>';
+			
 		if (file_exists("$nodefile.json")){
 			$jsoncontents = file_get_contents("$nodefile.json");
 			$json_array = json_decode($jsoncontents, True);
@@ -34,37 +58,39 @@ class postObj {
 			
 		}
 		/*
-		* This else statement allows the blog platform
-		* to support using plaintext files for post data, which
-		* is nasty.  Use json, it's better.  For a plaintext post,
-		* the syntax is: 
-		* 
-		* TITLE
-		* DISPLAY DATE
-		* TAGS
-		* FEED DATESTAMP
-		* CONTENT
-		*/
+		 * This else statement allows the blog platform
+		 * to support using plaintext files for post data, which
+		 * is nasty.  Use json, it's better.  For a plaintext post,
+		 * the syntax is: 
+		 * 
+		 * TITLE
+		 * DISPLAY DATE
+		 * TAGS
+		 * FEED DATESTAMP
+		 * CONTENT
+		 */
 		else{
-			$file = fopen($nodefile, 'r');
-			$this->title = rtrim(fgets($file), "\n");
-			$this->date = rtrim(fgets($file), "\n");
-			$this->tags = rtrim(fgets($file), "\n");
-			$this->datestamp = rtrim(fgets($file), "\n"); 
-			$this->link = getConfigOption('site_domain').'/blog/post.php?node='.basename($nodefile);
-			$contents='';
-		
-			while(!feof($file)){
-				$contents .= "<p>".rtrim(fgets($file), "\n"). "</p>\n";
+			if ( file_exists($nodefile) ){
+				$file = fopen($nodefile, 'r');
+				$this->title = rtrim(fgets($file), "\n");
+				$this->date = rtrim(fgets($file), "\n");
+				$this->tags = rtrim(fgets($file), "\n");
+				$this->datestamp = rtrim(fgets($file), "\n"); 
+				$this->link = getConfigOption('site_domain').'/blog/post.php?node='.basename($nodefile);
+				$contents='';
+			
+				while(!feof($file)){
+					$contents .= "<p>".rtrim(fgets($file), "\n"). "</p>\n";
+				}
+			
+				$this->content = $contents;
+			
+				fclose($file);
 			}
-		
-			$this->content = $contents;
-		
-			fclose($file);
 		}
 	}
 		
-		public function atom_output() {
+	public function atom_output() {
 		/*
 		* Produces the coded output of the item that can be 
 		* returned and displayed or saved in an atom feed
@@ -77,9 +103,9 @@ class postObj {
 		$r .= "<content type='html'>" . htmlspecialchars( $this->content ) . "</content>";
 		$r .= "</entry>";
 		return $r;
-		} 
-		
-		public function page_output() {
+	} 
+	
+	public function page_output() {
 		/*
 		* Produces the coded output of the item that can be displayed
 		* on an html page
@@ -87,10 +113,30 @@ class postObj {
 		$r = '<h3><a href="'.$this->link.'">'.$this->title.'</a></h3>'."\n";
 		$r .= '<h4>'.$this->date.'</h4>'."\n";
 		$r .= $this->content;
-		$r .= "<h5><i>Tags: ".$this->tags."</i></h5>\n";
-		return $r;
+		if ( $this->datestamp != ""){
+			$r .= "<h5><i>Tags: ".$this->tags."</i></h5>\n";
 		}
+		return $r;
+	}
+	
+	public function list_item_output(){
+		/*
+		 * Returns a string containing the post title
+		 * and tags, suitable for outputting in an atom feed (maybe)
+		 * or an html list
+		 */
+		 $r = '<a href="'. $this->link .'">' . $this->title . '</a><i> - '. $this->tags .'</i>';
+		 return $r;
+	 }
+	
+	public function __get($field){
+		/*
+		 * Retrieves and returns the requested field
+		 */
+		return $this->$field;
+	}
  }
+ 
 function getPostList(){
 	/*
 	* Creates a list of files in the working directory, sorts
@@ -138,14 +184,14 @@ function retrievePost($node){
 	* 
 	*/
 	$postDir = getConfigOption('post_directory');
-	if (file_exists("$postDir/$node") or file_exists("$postDir/$node.json") ){
-		$postData = new postObj("entries/$node");
+	$postData = new postObj("entries/$node");
 		
-		echo $postData->page_output();
+	echo $postData->page_output();
+	
+	if ( $postData->datestamp == "" ){
+		return False;
 	}
-	else{
-		include "/home/natelev/www/static/template_error.php";
-	}
+	return True;
 }
 
 function checkInventory(){
@@ -187,12 +233,8 @@ function regenInventory(){
 	foreach( $posts as $input ){
 		
 		$postData = new postObj("$postDir/$input");
-		
-		$title = $postData->title;
-		$date = $postData->date;
-		$tags = $postData->tags;
 
-		$item = '<li><a href="post.php?node='.$input.'">'.$title.'</a><i> - '.$tags.'</i></li>'."\n";
+		$item = '<li>'. $postData->list_item_output() .'</li>'."\n";
 		fwrite($inventory, $item);
 
 	}

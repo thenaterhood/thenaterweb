@@ -1,4 +1,14 @@
 <?php
+/*
+* Author: Nate Levesque <public@thenaterhood.com>
+* Language: PHP
+* Filename: core_web.php
+* 
+* Description:
+* 	Contains functions for basic web capabilities such as reading
+* 	variables from the URL (safely), setting/getting cookies and config
+* 	options.
+*/
 
 include '/home/natelev/www/static/core_config.php';
 
