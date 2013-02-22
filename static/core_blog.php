@@ -173,27 +173,6 @@ function getPostList(){
 	return $posts;
 }
 
-function retrievePost($node){
-	/*
-	* Retrieves the post (file) received as an argument
-	* and adds appropriate formatting for it to be displayed.
-	* Designed for use with plaintext blog posts with the format
-	* 
-	* Isn't plaintext specific anymore because it uses the postObj
-	* object for retrieving posts rather than doing it directly.
-	* 
-	*/
-	$postDir = getConfigOption('post_directory');
-	$postData = new postObj("entries/$node");
-		
-	echo $postData->page_output();
-	
-	if ( $postData->datestamp == "" ){
-		return False;
-	}
-	return True;
-}
-
 function checkInventory(){
 	/*
 	* Checks the number of files in the current directory and
@@ -277,5 +256,29 @@ function relevantImage($tag){
 	*/
 	
 	
+}
+
+function getPosts($start, $end){
+	/*
+	 * Lists the files in a directory and returns an array of them
+	 * out to the given length section
+	 * 
+	 * Arguments:
+	 *  $section (int): a range of posts to retrieve
+	 * Returns:
+	 *  $posts (array): an array of posts retrieved
+	 * 
+	*/
+	$posts = getPostList();
+	
+	for ($i = $start; $i < count($posts) && $i < $end; $i++){
+		$nextpost = new postObj( getConfigOption('post_directory').'/'.$posts[$i] );
+		echo $nextpost->page_output();
+		echo "<hr />";
+	}
+	if (! $start <= 0) echo "<a href='?start=".($start - 4)."&amp;end=".($end - 4)."'>Newer Posts</a>";
+	if (! $start <= 0 and count($posts) != $i ) echo ' / ';
+	if ( count($posts) != $i ) echo "<a href='?start=".($start + 4)."&amp;end=".($end + 4)."'>  Older Posts</a>  ";
+
 }
 ?>
