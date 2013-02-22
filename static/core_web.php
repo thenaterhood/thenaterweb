@@ -2,53 +2,6 @@
 
 include '/home/natelev/www/static/core_config.php';
 
-# Adjust the path as necessary for where your config file is stored
-# This is global so that the config file and object are parsed/initialized
-# only once, rather than each time the config option function is called.
-#$CONFIG = oldconfig::getInstance('/home/natelev/www/static/core_config.json');
-
-class oldconfig{
-    /*
-     * Parses a json file and generates a config object.
-     * Restricts any external functions to creating an instance
-     * and looking up keys.
-     * 
-     */
-    private static $instance;
-    private static $settings;
-    
-    private function __construct($json_file){
-        /*
-         * Parses the json file and loads it into the settings
-         * slot.  Callable only from inside the class
-         */
-        $jsoncontents = file_get_contents($json_file);
-        $this->settings = json_decode($jsoncontents, True);
-    }
-    
-    public static function getInstance($json_file){
-        /*
-         * Generates an instance of the class
-         */
-        self::$instance = new config($json_file);
-        return self::$instance;
-    }
-    
-    public function __get($setting){
-        /*
-         * Retrieves the value of a key from the settings
-         * array and returns it.
-         */
-        if ( array_key_exists($setting, $this->settings) ){
-            return $this->settings[$setting];
-        }
-        else{
-        }
-    }
-        
-    
-}
-
 function safeChars($string, $length) {
     /*
      * Verify that a string is made of html-safe characters and
