@@ -1,29 +1,6 @@
 <?php 
 include '/home/natelev/www/static/core_blog.php';
 
-function getPosts($start, $end){
-	/*
-	 * Lists the files in a directory and returns an array of them
-	 * out to the given length section
-	 * 
-	 * Arguments:
-	 *  $section (int): a range of posts to retrieve
-	 * Returns:
-	 *  $posts (array): an array of posts retrieved
-	 * 
-	*/
-	$posts = getPostList();
-	
-	for ($i = $start; $i < count($posts) && $i < $end; $i++){
-		$nextpost = new postObj( getConfigOption('post_directory').'/'.$posts[$i] );
-		echo $nextpost->page_output();
-		echo "<hr />";
-	}
-	if (! $start <= 0) echo "<a href='?start=".($start - 4)."&amp;end=".($end - 4)."'>Newer Posts</a>";
-	if (! $start <= 0 and count($posts) != $i ) echo ' / ';
-	if ( count($posts) != $i ) echo "<a href='?start=".($start + 4)."&amp;end=".($end + 4)."'>  Older Posts</a>  ";
-
-}
 $first_name = setVarFromURL('name', 'Guest', 42);
 $track = setVarFromURL('track', '', 1);
 $konami = setVarFromURL('konami', '', 0);
