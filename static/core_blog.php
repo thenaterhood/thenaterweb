@@ -3,7 +3,7 @@
 * Author: Nate Levesque <public@thenaterhood.com>
 * Language: PHP
 * Filename: core_blog.php
-
+* 
 * Description:
 *	Contains classes and functions for retrieving and displaying
 *	blog posts and other aspects of the blog platform
@@ -147,7 +147,7 @@ function getPostList(){
 	# Grabs the post directory configured in the root configuration
 	$postDir = getConfigOption('post_directory');
 
-	$avoid = avoidFiles();
+	$avoid = getConfigOption('hidden_files');
 	$posts = array();
 	$handler = opendir($postDir);
 	$i = 0;
@@ -204,7 +204,7 @@ function regenInventory(){
 	$postDir = getConfigOption('post_directory');
 	$inventory = fopen('inventory.html', 'w');
 	
-	$avoid = avoidFiles();
+	$avoid = getConfigOption('hidden_files');
 	$handler = opendir('./');
 	
 	$posts = getPostList();
@@ -276,9 +276,9 @@ function getPosts($start, $end){
 		echo $nextpost->page_output();
 		echo "<hr />";
 	}
-	if (! $start <= 0) echo "<a href='?start=".($start - 4)."&amp;end=".($end - 4)."'>Newer Posts</a>";
+	if (! $start <= 0) echo "<a href='?start=".($start - getConfigOption('posts_per_page') )."&amp;end=".($end - getConfigOption('posts_per_page') )."'>Newer Posts</a>";
 	if (! $start <= 0 and count($posts) != $i ) echo ' / ';
-	if ( count($posts) != $i ) echo "<a href='?start=".($start + 4)."&amp;end=".($end + 4)."'>  Older Posts</a>  ";
+	if ( count($posts) != $i ) echo "<a href='?start=".($start + getConfigOption('posts_per_page') )."&amp;end=".($end + getConfigOption('posts_per_page') )."'>  Older Posts</a>  ";
 
 }
 ?>

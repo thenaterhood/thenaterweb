@@ -6,7 +6,9 @@
 * 
 * Description:
 * 	Contains a class for generating an atom feed. Relies on the postObj
-* 	class for retrieving and outputting post data into the feed.
+* 	class for retrieving and outputting post data into the feed.  Not
+* 	intended to be called independently, should be called by a file that
+* 	already has established instances of the config and session classes
 */
 
 class atom_feed {
@@ -30,7 +32,7 @@ class atom_feed {
 		$this->link = $link;
 		$this->description = $description;
 		$this->feedstamp = $feedstamp;
-		$this->author = getConfigOption('site_author');
+		$this->author = $config->site_author;
 		$this->items = array();
 
 	}
@@ -74,6 +76,28 @@ xml:base="'.getConfigOption('site_domain').'/">';
 		return $r;
 	}
 
+}
+
+function generateFeed(){
+	/*
+	* Generates an atom feed
+	* 
+	* Arguments:
+	*  none
+	* Returns:
+	*  $atom (atom_feed): an instance of the atom_feed class
+	* 
+	*/
+	
+	$posts = getPostList();
+	$atom = new atom_feed("The Philosophy of Nate", "http://blog.thenaterhood.com/", "It's the cyber age, stay in the know.", date(DATE_ATOM) );
+	
+	for ($i = 0; $i < count($posts); $i++){
+		
+		$newitem = new postObj("/home/natelev/www/blog/entries/$posts[$i]");
+		$atom->new_item($newitem);
+	}
+	return $atom;
 }
 
 ?>

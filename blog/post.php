@@ -1,10 +1,11 @@
 <?php 
 include '/home/natelev/www/static/core_blog.php';
 
-$first_name = setVarFromURL('name', getConfigOption('default_visitor_name'), 42);
-$track = setVarFromURL('track', '', 1);
-$konami = setVarFromURL('konami', '', 0);
-$node = setVarFromURL('node', '', 25);
+
+$session = new session( array('name', 'track', 'konami', 'node') );
+
+$first_name = $session->name;
+$track = $session->track;
 $id = 'Blog';
 ?>
 
@@ -31,8 +32,8 @@ else {
 	print getConfigOption('tracking_code');
 }
 ?>
+<?php if ($session->konami == "pride") print '<style type="text/css">body {background: url(images/rainbow.jpg) fixed}</style>'; ?>
 </head>
-<?php if ("$konami" == "pride") print '<style type="text/css">body {background: url(images/rainbow.jpg) fixed}</style>'; ?>
 <body>
 <div id="wrapper">
 <?php include chooseInclude( getConfigOption('webcore_root').'/template_header.php', 'layout_error.html');?>
@@ -44,7 +45,7 @@ else {
 
 				<div class="entry">
 				<?php 
-				$displaypost = new postObj( getConfigOption('post_directory').'/'.$node );
+				$displaypost = new postObj( getConfigOption('post_directory').'/'.$session->node );
 				print $displaypost->page_output();
 				
 				if ( $displaypost->datestamp ){
@@ -56,7 +57,7 @@ else {
 					 */
 					echo '<h5>If you liked this, you might also like...</h5>';
 					echo '<ul>';
-					getSuggestions(3, '');
+					getSuggestions(3, $displaypost->tags);
 					echo '</ul>';
 					echo '<p><a href="index.php">Back to Blog Home</a></p>';
 				}
