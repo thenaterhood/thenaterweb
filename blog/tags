@@ -1,5 +1,14 @@
 <?php
-
+/*
+ * Author: Nate Levesque <public@thenaterhood.com>
+ * Language: PHP
+ * Filename: tags
+ * 
+ * Description:
+ * 	Manages retrieving tags and posts via tags.  Is not intented
+ * 	to be called standalone and should be included in another file
+ * 	that already has established config and session instances.
+ */
 function getTags(){
     /*
      * Iterate through the list of posts and their tags in the inventory
@@ -38,19 +47,26 @@ function getByTag($tag){
     }
 }
 
-$tag = setVarFromURL(tag, 'False', 20);
-if ("$tag" != 'False' ){
+$tag = $session->tag;
+
+if ( $tag ){
+	/*
+	 * If a tag was requested, display which tag is being browsed
+	 * with a link back to the main page of tags
+	 */
     print '<p><strong>Browsing tag "'.$tag.'".  </strong><a href="?id=tags">View all tags.</a></p>'."\n";
 
 }
 echo "<ul>";
 
-if ( "$tag" == 'False' ){
+if ( !$tag ){
     /*
      * Check if a tag was requested, otherwise list the available
      * tags.
      */
     $tags = getTags();
+    sort($tags);
+    
     foreach( $tags as $item ){
         echo '<li><a href="index.php?id=tags&amp;tag='.$item.'">'.$item.'</a></li>';
     }

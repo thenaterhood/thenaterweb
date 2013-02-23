@@ -28,6 +28,15 @@ class config{
 	private static $site_author;
 	private static $tracking_code;
 	
+	# Variable settings
+	private static $name;
+	private static $id;
+	private static $konami;
+	private static $node;
+	private static $track;
+	private static $start;
+	private static $end;
+	
 	function __construct(){
 		/*
 		* Sets the configuration options en-masse.
@@ -102,8 +111,33 @@ class config{
 			"inventory.html",
 			"tags",
 			"posts",
-			"page_scratchhere.html"
+			".htaccess",
+			"page_scratchhere.html",
+			"page_quack.html",
+			"page_rit.html",
+			"page_seth.html",
 			);
+			
+		# The following are default settings and lengths for variables
+		# that would be retrieved via the URL.  DO NOT CHANGE THESE
+		# UNLESS YOU ARE ABSOLUTELY SURE WHAT YOU ARE DOING.
+		
+		# Setting for the maximum length and default value of visitor's name
+		$this->name = array( $this->default_visitor_name, 42 );
+		
+		# Settings for default and max values of the page id
+		$this->id = array( 'home', 18);
+		
+		# Easter egg variable settings
+		$this->konami = array( '', 0);
+		
+		# Node (post) variable settings
+		$this->node = array( '', 25 );
+		
+		$this->track = array( '', 1 );
+		$this->start = array( 0, 5 );
+		$this->end = array( $this->posts_per_page, 5);
+		
 	}
 	
 	function __get($setting){

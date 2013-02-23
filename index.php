@@ -1,14 +1,14 @@
 <?php 
 include '/home/natelev/www/static/core_web.php';
 
+
+$session = new session( array('name', 'track', 'konami', 'id') );
+
 # Grab variables from the URL. Syntax for this is...
 # name of variable, default value of variable, maxlength of variable
-$first_name = setVarFromURL('name', getConfigOption('default_visitor_name'), 42);
-$track = setVarFromURL('track', '', 1);
-$konami = setVarFromURL('konami', '', 0);
-$id = setVarFromURL('id', 'home', 15);
-$id = setIfEmpty($id, $_SERVER['REQUEST_URI']);
-
+$first_name = $session->name;
+$track = $session->track;
+$id = $session->id;
 $current_domain = ";";
 $current_domain = preg_replace('/^www\./i', '', $_SERVER['HTTP_HOST']);
 
@@ -20,8 +20,6 @@ setcookie('track',$track,time() + (86400 * 30),"/","$current_domain"); // 86400 
 // Sets page options and variables
 
 $page_content_file = "page_$id.html";
-$page_description_file = "page_description_page_$id.txt";
-$page_keywords_file = "page_keywords_$id.txt";
 	
 include getConfigOption('webcore_root').'/core_xhtml.html';
 ?>
@@ -41,15 +39,15 @@ echo 'Nate Levesque, TheNaterhood, the naterhood'?>' />
  * Inserts any tracking code into the page if the user hasn't
  * requested to not be tracked.
  */
-if ($track == "n"){
+if ($session->track == "n"){
 	print "<!-- Tracking code removed from page by request -->";
 }
 else {
 	print getConfigOption('tracking_code');
 }
 ?>
+<?php if ($session->konami == "pride") print '<style type="text/css">body {background: url(images/rainbow.jpg) fixed}</style>'; ?>
 </head>
-<?php if ("$konami" == "pride") print '<style type="text/css">body {background: url(images/rainbow.jpg) fixed}</style>'; ?>
 <body>
 <div id="wrapper">
 <?php include chooseInclude( getConfigOption('webcore_root').'/template_header.php', 'layout_error.html');?>
