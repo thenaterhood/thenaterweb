@@ -82,7 +82,13 @@ class postData():
     def readtext(self, infile):
         """
         Reads in a plaintext file and sets the fields of the class
-        to the data it contains.
+        to the data it contains.  Syntax of the text file is:
+        
+		 * TITLE
+		 * DISPLAY DATE
+		 * TAGS
+		 * FEED DATESTAMP
+		 * CONTENT
         
         Arguments:
             infile (str): the name of a file to open and pull from
