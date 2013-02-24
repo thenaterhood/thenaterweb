@@ -19,4 +19,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 		<li class="siteurl"><a href="index.php">Blog home</a></li>
 		<li class="siteurl" style="color:black">}</li>
 	</ul>
+	<p>You are using the new blog platform for thenaterhood.com.  For more information, visit <a href='/?id=scratchhere'>www.thenaterhood.com/scratchandsniff</a>.</p>
 </div>
+<br />
+<br />
