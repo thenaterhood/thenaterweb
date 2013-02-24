@@ -225,7 +225,7 @@ function randomGreeting($first_name){
 	* Returns:
 	*  (str) a string with a personal greeting
 	*/
-	$greetings = array("Howdy", "Hello", "Hi", "Hey there", "Hi there", "Greetings");
+	$greetings = array("Howdy", "Hello", "Hi", "Hey there", "Hi there", "Greetings", "Hiya");
 	return $greetings[ array_rand($greetings) ].", $first_name";
 	
 }

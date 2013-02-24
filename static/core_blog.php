@@ -110,11 +110,11 @@ class postObj {
 		* Produces the coded output of the item that can be displayed
 		* on an html page
 		*/
-		$r = '<h3><a href="'.$this->link.'">'.$this->title.'</a></h3>'."\n";
-		$r .= '<h4>'.$this->date.'</h4>'."\n";
+		$r = '<h3 class="title"><a href="'.$this->link.'">'.$this->title.'</a></h3>'."\n";
+		$r .= '<h4 class="date">'.$this->date.'</h4>'."\n";
 		$r .= $this->content;
 		if ( $this->datestamp != ""){
-			$r .= "<h5><i>Tags: ".$this->tags."</i></h5>\n";
+			$r .= "<h5 class='tags'><i>Tags: ".$this->tags."</i></h5>\n";
 		}
 		return $r;
 	}
