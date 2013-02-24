@@ -16,15 +16,7 @@ body {
 	height: 170px;
 	z-index: -1;
 }
-div.side {
-	position: absolute;
-	/*background: url(images/alumni-side.png) no-repeat; */
-	margin: 0px auto;
-	top: 0px;
-	width: 304px;
-	height: 150px;
-	z-index: 1;
-}
+
 div.sitelinks {
 	position: relative;
 	height: 30px;
@@ -87,10 +79,11 @@ a:hover {
 /* Logo */
 #logo {
 	margin: 0;
-	padding: 0px 0px 0px 40px;
+	padding: 9px 0px 0px 40px;
 	color: #000000;
-	font-size: .9em;
+	font-size: .8em;
 	text-transform: uppercase;
+	font-family: Electrolize;
 }
 #siteversion {
 	position: absolute;
@@ -113,12 +106,13 @@ a.nav {
 a.nav:hover {
 	text-decoration: underline;
 }
-div.siteurl, ul.siteurl, li.siteurl {
+.siteurl {
 	display: inline;
 	list-style-type: none;
 	padding-left: 20px;
 	font-size: 1.11em;
 	color: white;
+	font-family: Electrolize;
 }
 #catchline {
 	font-size: 1.7em;
@@ -179,10 +173,6 @@ p.date {
     margin: 0 auto;	
     padding: 0px 0px 0px 0px;
 }
-#page-bgtop {	
-    padding: 20px 0px;
-    }
-#page-bgbtm {}
 
 /* Content */
 #content {	
@@ -191,33 +181,8 @@ p.date {
     /* width: 660px; */	
     padding: 0px 0px 0px 0px;
 }
-.post {	
-    margin-bottom: 15px;
-}
-.post .title {	
-    height: 38px;	
-    margin-bottom: 10px;	
-    padding: 12px 0 0 0px;	
-    letter-spacing: -.5px;	
-    color: #000000;
-}
-.post .title a {	
-    color: #000000;	
-    border: none;
-}
-.post .meta {	
-    margin-bottom: 30px;	
-    padding: 5px 0px 15px 0px;	
-    text-align: left;	font-size: 13px;	
-    font-weight: bold;
-}
-.post .meta .date {	
-    float: left;
-}
-.post .meta .posted {	
-    float: right;
-}
-.post .entry {
+
+.entry {
     /* padding top idk idk left*/	
     padding: 0px 0px 20px 40px;	
     padding-bottom: 20px;	
@@ -225,91 +190,49 @@ p.date {
     font-size: 1.21em;	
     margin-left: -40px;
 }
+
+/* Blog styling code */
+.title {
+	padding-top: 15px;
+}
+
+.date {
+	font-size: .8em;
+}
+
+.tags {
+
+}
+
 ul, li {
 	list-style-type: none;
     margin-left: 0px;
 }
-.links {
-	padding-top: 20px;	
-    font-size: .5em;	
-    font-weight: bold;
-}
 
-/* Sidebar */
-#sidebar {
-	float: left;	
-    width: 280px;	
-    margin: 0px;	
-    padding: 10px 0px 0px 0px;	
-    color: #787878;
-}
-#sidebar ul {	
-    margin: 0;	
-    padding: 0;	
-    list-style: none;
-}
-#sidebar li {	
-    margin: 0;	
-    padding: 0;
-}
-#sidebar li ul {	
-    margin: 0px 0px;	
-    padding-bottom: 30px;
-}
-#sidebar li li {
-	line-height: 35px;	
-    margin: 0px 20px;	
-    border-left: none;
-}
-#sidebar li li a {	
-    padding-left: 10px;	
-    font-size: 1.2em;
-}
-#sidebar li li span {
-	display: block;	
-    margin-top: -20px;	
-    padding: 0;	
-    font-size: 11px;	
-    font-style: italic;
-}
-#sidebar h2 {
-	height: 38px;	
-    padding-left: 30px;	
-    letter-spacing: -.5px;	
-    font-size: 1.8em;
-}
-#sidebar p {	
-    margin: 0 0px;	
-    padding: 0px 30px 20px 30px;	
-    text-align: justify;
-}
-#sidebar a {
-	border: none;
-}
-#sidebar a:hover {
-	text-decoration: underline;	
-    	color: #8A8A8A;
-}
 
 /* Footer */
 #footer {
 	height: 90px;	
-    	margin: 0 auto;	
-    	padding: 0px 0 15px 0;
+    margin: 0 auto;	
+    padding: 0px 0 15px 0;
 	background: url(/images/footer_back_shadow.png) repeat-x;
 	background-size: 2px 100px;
 }
 #footer p {	
-    	margin: 0;	
-    	padding-top: 3px;	
-    	line-height: normal;	
-    	font-size: .9em;	
-    	text-transform: capitalize;	
-    	text-align: center;	
-    	color: black;
+    margin: 0;	
+    padding-top: 3px;	
+    line-height: normal;	
+    font-size: .9em;	
+    text-transform: capitalize;	
+    text-align: center;	
+    color: black;
 }
 
-div.footerurl, ul.footerurl, li.footerurl {
+ul.footerurl {
+	padding-left: 50px;
+}
+
+.footerurl {
 	display: inline;
 	list-style-type: none;
 	padding-top: 10px;
@@ -330,8 +253,3 @@ h2.greeting {
 #footer a.hover {
     color: black;
 }
-
-/* Sitemap styling, just makes the xml human-readable */ 
-url {	display: block;}
-loc {	display: block;}
-lastmod {	display: block;}
