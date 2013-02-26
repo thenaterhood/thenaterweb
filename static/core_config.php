@@ -132,7 +132,7 @@ class config{
 		$this->konami = array( '', 0);
 		
 		# Node (post) variable settings
-		$this->node = array( '', 25 );
+		$this->node = array( '', 10 );
 		
 		$this->track = array( '', 1 );
 		$this->start = array( 0, 5 );
