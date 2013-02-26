@@ -114,7 +114,7 @@ class postObj {
 		$r .= '<h4 class="date">'.$this->date.'</h4>'."\n";
 		$r .= $this->content;
 		if ( $this->datestamp != ""){
-			$r .= "<h5 class='tags'><i>Tags: ".$this->tags."</i></h5>\n";
+			$r .= "<h5 class='tags'>Tags: ".$this->tags."</h5>\n";
 		}
 		return $r;
 	}
