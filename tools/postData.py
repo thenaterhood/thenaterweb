@@ -7,6 +7,7 @@ Description:
     and plaintext formats
 """
 from datetime import datetime
+import os
 import codecs
 import json
 
@@ -66,7 +67,7 @@ class postData():
         return json.dumps({'title':self.title, 'datestamp':self.atomDate, 'date':self.humanDate, 'tags':self.tags, 'content':self.content},sort_keys=False, indent=4, separators=(',', ': ') )
 
         
-    def write(self):
+    def write(self, path='.'):
         """
         Writes the postData to the file contained in the filename slot
         
@@ -75,7 +76,7 @@ class postData():
         Returns:
             none
         """
-        outfile = open(self.filename, 'w')
+        outfile = open( path+'/'+self.filename, 'w')
         outfile.write( self.json() )
         outfile.close()
     
@@ -84,11 +85,11 @@ class postData():
         Reads in a plaintext file and sets the fields of the class
         to the data it contains.  Syntax of the text file is:
         
-		 * TITLE
-		 * DISPLAY DATE
-		 * TAGS
-		 * FEED DATESTAMP
-		 * CONTENT
+         * TITLE
+         * DISPLAY DATE
+         * TAGS
+         * FEED DATESTAMP
+         * CONTENT
         
         Arguments:
             infile (str): the name of a file to open and pull from
@@ -146,3 +147,29 @@ def getfilename():
             return filename
         except:
             filename = input("File does not exist: enter a name of a file to open: ")
+            
+def getConfig():
+    """
+    Retrieves the current site configuration
+    
+    Arguments:
+        none
+    Returns:
+        config (dict): the site config in dictionary form
+    """
+    currPath = os.getcwd()
+    rootPath = os.getcwd() + "/.."
+    confPath = rootPath + "/static/core_config.php"
+    config = {}
+    
+    config[ "curr_path" ] = rootPath
+    
+    for line in open( confPath ):
+        try:
+            if ( line.strip()[0] == '$' ):
+                confdata =  line[9:-3].strip().split(' = ')
+                config[ confdata[0] ] = confdata[1]
+        except:
+            pass
+        
+    return config
