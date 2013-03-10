@@ -11,6 +11,7 @@ Description:
 try:
     from postData import postData
     from postData import getfilename
+    from postData import getConfig
 except:
     print("The postData class is missing and is required for this program.")
     quit()
@@ -21,6 +22,13 @@ def main():
     then creates an instance of a postData object which is used to
     generate and save a json format file for the post.
     """
+    config = getConfig() 
+    # Pulls the post directory from the config and splits it at the
+    # www directory so the path can be made relative to the current
+    # directory.  This makes it possible to use this program from
+    # any system no matter where the web stuff is mounted locally
+    postPath = config["curr_path"] + config["post_directory"].split('www')[1]
+
     filename = getfilename()
     title = input("Title: ")
     tags = input("Tags: ")
@@ -31,8 +39,13 @@ def main():
     print("Post generated: \n")
     print(post)
     
+    loadNow = input( "Would you like to load the post to the blog now? (enter 'yes' if so): ")
+    
+    if ( loadNow != 'yes' ):
     # Calls the postData write function to save it in json format
-    post.write()
+        post.write()
+    else:
+        post.write( postPath )
     
     # Informs the user that the program has finished
     print("\nDone.")
