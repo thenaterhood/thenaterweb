@@ -10,7 +10,6 @@
 * 	intended to be called independently, should be called by a file that
 * 	already has established instances of the config and session classes
 */
-
 class atom_feed {
 	/*
 	* Defines a data object to contain an atom feed as items
@@ -93,8 +92,7 @@ function generateFeed(){
 	$atom = new atom_feed("The Philosophy of Nate", "http://blog.thenaterhood.com/", "It's the cyber age, stay in the know.", date(DATE_ATOM) );
 	
 	for ($i = 0; $i < count($posts); $i++){
-		
-		$newitem = new postObj("/home/natelev/www/blog/entries/$posts[$i]");
+		$newitem = new postObj(getConfigOption('post_directory').'/'.$posts[$i]);
 		$atom->new_item($newitem);
 	}
 	return $atom;

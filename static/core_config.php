@@ -43,10 +43,10 @@ class config{
 		*/
 		
 		# Sets the root directory for the main site page, template, and php files
-		$this->webcore_root =  '/home/natelev/www/static';
+		$this->webcore_root =  '/var/www/static';
 		
 		# Sets the directory for storing dynamically created files
-		$this->dynamic_directory =  '/home/natelev/www/dynamic';
+		$this->dynamic_directory =  '/var/www/dynamic';
 		
 		# Whether or not the blog feed should regenerate automatically
 		$this->auto_feed_regen = True;
@@ -63,7 +63,7 @@ class config{
 		$this->save_dynamics = True;
 		
 		# The directory that blog posts are stored in
-		$this->post_directory = '/home/natelev/www/blog/entries';
+		$this->post_directory = '/var/www/blog/entries';
 		
 		# The default name for visitors who haven't introduced themselves
 		$this->default_visitor_name = 'Guest';
@@ -73,7 +73,7 @@ class config{
 		
 		# The domain name of the site (note that this can be automatically
 		# determined if needed)
-		$this->site_domain = 'http://www.thenaterhood.com';
+		$this->site_domain = 'http://192.168.1.103';
 		
 		# The owner/author of the website, used in places where an author
 		# is needed, such as the atom feed.
