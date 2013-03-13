@@ -10,7 +10,7 @@
 * 	options.
 */
 
-include '/home/natelev/www/static/core_config.php';
+include 'core_config.php';
 
 class session{
 	/*
@@ -68,7 +68,7 @@ class session{
 		*/
 		$contents = $_COOKIE[$name];
 		
-		return $this->setIfEmpty(&$contents, &$emptyValue);
+		return $this->setIfEmpty($contents, $emptyValue);
 	}
 
 	private function setVarFromURL($name, $emptyValue, $length){
@@ -89,7 +89,7 @@ class session{
 		*	(string): the default value or the value pulled from a cookie or URL
 		*/
 		$sanitized = new sanitation($_GET[$name], 'str', $length);
-		return $this->setIfEmpty(&$sanitized->str, $this->checkCookie(&$name, &$emptyValue));
+		return $this->setIfEmpty($sanitized->str, $this->checkCookie($name, $emptyValue));
 	}
 	
 	private function setIfEmpty($string, $emptyValue){

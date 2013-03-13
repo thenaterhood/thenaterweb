@@ -9,7 +9,7 @@
 *	blog posts and other aspects of the blog platform
 */
 
-include '/home/natelev/www/static/core_web.php';
+include 'core_web.php';
 
 class postObj {
 	/*
