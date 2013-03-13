@@ -1,6 +1,6 @@
 <?php 
 include '/home/natelev/www/static/core_web.php';
-
+"TEST"
 
 $session = new session( array('name', 'track', 'konami', 'id') );
 $config = new config();
