@@ -43,7 +43,7 @@ class postObj {
 		$this->tags = "";
 		$this->datestamp = "";
 		$this->link = 'index.php';
-		$this->content = '<p>Sorry, the post you were looking for could not be found.  If you think it should be here, try browsing by title.  Otherwise, <a href="index.php">return to blog home.</a></p>'."\n".'<p>Think you were looking for something else? <a href="'.getConfigOption('site_domain').'">visit site home</a>.</p>';
+		$this->content = '<p>Sorry, the post you were looking for could not be found.  If you think it should be here, try browsing by title.  Otherwise, <a href="blog/index.php">return to blog home.</a></p>'."\n".'<p>Think you were looking for something else? <a href="'.getConfigOption('site_domain').'">visit site home</a>.</p>';
 			
 		if (file_exists("$nodefile.json")){
 			$jsoncontents = file_get_contents("$nodefile.json");
@@ -180,13 +180,13 @@ function checkInventory(){
 	* If the number doesn't match, it returns False.
 	*/
 	
-	if ( ! file_exists('inventory.html') ){
+	if ( ! file_exists($config->dynamic_directory.'/inventory.html') ){
 		return False;
 	}
 	
 	$existing = count( getPostList() );
 
-	$inventory = 'inventory.html';
+	$inventory = $config->dynamic_directory.'/inventory.html';
 	$recorded = count(file($inventory));
 	if ( $recorded == $existing ){
 		return True;
@@ -202,7 +202,7 @@ function regenInventory(){
 	*/
 	
 	$postDir = getConfigOption('post_directory');
-	$inventory = fopen('inventory.html', 'w');
+	$inventory = fopen(getConfigOption('dynamic_directory').'/inventory.html', 'w');
 	
 	$avoid = getConfigOption('hidden_files');
 	$handler = opendir('./');
@@ -243,7 +243,7 @@ function getSuggestions($number, $tag){
 	*/
 		$i = 0;
 		while ($i < $number){
-			echo RandomLine("inventory.html");
+			echo RandomLine(getConfigOption('dynamic_directory')."/inventory.html");
 			$i++;
 		}
 		

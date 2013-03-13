@@ -48,7 +48,7 @@ else {
 				<div class="entry">
 				<?php
 				if ( $session->id != 'home' ){
-					include $session->id;
+					include chooseInclude( $session->id, $config->webcore_root.'/template_error.php' );
 					echo '<hr /><p><a href="index.php">Back to Blog home</a></p>';
 				}
 				else{ 

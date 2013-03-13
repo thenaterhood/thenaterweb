@@ -5,7 +5,7 @@
  */
  
 echo '<ul>';
-include 'inventory.html';
+include $config->dynamic_directory.'/inventory.html';
 echo '</ul>';
 
 ?>
