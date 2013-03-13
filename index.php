@@ -1,5 +1,5 @@
 <?php 
-include '/home/natelev/www/static/core_web.php';
+include 'static/core_web.php';
 
 
 $session = new session( array('name', 'track', 'konami', 'id') );

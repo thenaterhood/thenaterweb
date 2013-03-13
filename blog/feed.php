@@ -1,7 +1,7 @@
 <?php
 
-include '/home/natelev/www/static/core_atom.php';
-include '/home/natelev/www/static/core_blog.php';
+include '../static/core_atom.php';
+include '../static/core_blog.php';
 
 $session = new session( array('regen') );
 $config = new config();

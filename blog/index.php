@@ -1,5 +1,5 @@
 <?php 
-include '/home/natelev/www/static/core_blog.php';
+include '../static/core_blog.php';
 
 
 $session = new session( array('name', 'track', 'konami', 'start', 'end', 'id', 'test', 'tag') );

@@ -1,6 +1,6 @@
 <?php
-include '/home/natelev/www/static/core_sitemap.php';
-include '/home/natelev/www/static/core_web.php';
+include 'static/core_sitemap.php';
+include 'static/core_web.php';
 
 $session = new session( array('regen') );
 $config = new config();
