@@ -1,6 +1,11 @@
 <?php 
+<<<<<<< HEAD
 include 'static/core_web.php';
 
+=======
+include '/home/natelev/www/static/core_web.php';
+"TEST"
+>>>>>>> f6c3b605559f2e1956283da72e14f15adef4f05d
 
 $session = new session( array('name', 'track', 'konami', 'id') );
 $config = new config();
