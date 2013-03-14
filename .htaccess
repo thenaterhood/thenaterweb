@@ -19,7 +19,7 @@ RedirectMatch 301 "blog/2009/07/downsides-to-mobile-life-part-1.html$" http://ww
 RedirectMatch 301 "blog/2009/08/downsides-to-mobile-life-part-2.html$" http://www.thenaterhood.com/blog/post.php?node=2009.08.07
 RedirectMatch 301 "blog/2009/08/downsides-to-mobile-life-part-3-health.html$" http://www.thenaterhood.com/blog/post.php?node=2009.08.14
 RedirectMatch 301 "blog/2009/08/downsides-to-mobile-life-conclusions.html$" http://www.thenaterhood.com/blog/post.php?node=2009.08.21
-RedirectMatch 301 "blog/2009/09/googles-global-downtime.html$ http://www.thenaterhood.com/blog/post.php?node=2009.09.01
+RedirectMatch 301 "blog/2009/09/googles-global-downtime.html$" http://www.thenaterhood.com/blog/post.php?node=2009.09.01
 RedirectMatch 301 "blog/2009/10/windows-live-hotmail-accounts.html$" http://www.thenaterhood.com/blog/post.php?node=2009.10.05
 RedirectMatch 301 "blog/2009/10/update-to-account-compromises-2.html$" http://www.thenaterhood.com/blog/post.php?node=2009.10.07
 RedirectMatch 301 "blog/2009/10/do-you-know-where-you-are.html$" http://www.thenaterhood.com/blog/post.php?node=2009.10.14
