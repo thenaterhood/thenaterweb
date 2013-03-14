@@ -3,7 +3,7 @@
  * inventory.  Simply includes the inventory file after adding
  * appropriate list tags for the html
  */
- 
+echo '<br />'; 
 echo '<ul>';
 include $config->dynamic_directory.'/inventory.html';
 echo '</ul>';
