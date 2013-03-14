@@ -1,7 +1,7 @@
 <?php 
 include 'static/core_web.php';
 
-$session = new session( array('name', 'track', 'konami', 'id') );
+$session = new session( array('name', 'track', 'konami', 'id', 'type') );
 $config = new config();
 
 # Grab variables from the URL. Syntax for this is...
@@ -9,6 +9,12 @@ $config = new config();
 $first_name = $session->name;
 $track = $session->track;
 $id = $session->id;
+$type = '404';
+/* THIS DOES NOT WORK DONT DO IT. 
+if ( $id == '' and $_SERVER['REQUEST_URI'] != '' and substr( $_SERVER['REQUEST_URI'], 0, 1) != '?' ){
+	$id = substr( $_SERVER['REQUEST_URI'], 1 );
+}
+*/
 $current_domain = ";";
 $current_domain = preg_replace('/^www\./i', '', $_SERVER['HTTP_HOST']);
 
@@ -29,7 +35,7 @@ include $config->webcore_root.'/core_xhtml.html';
 <?php echo '<meta name="description" content="Nate Levesque" />'; ?>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title><?php echo "Nate Levesque :: $id"; ?></title>
-<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="/style.css" rel="stylesheet" type="text/css" media="screen" />
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css' />
 <link href='http://fonts.googleapis.com/css?family=Electrolize' rel='stylesheet' type='text/css' />
 <style type="text/css">
