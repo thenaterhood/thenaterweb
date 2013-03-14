@@ -14,7 +14,7 @@ function getTags(){
      * Iterate through the list of posts and their tags in the inventory
      * and add all the tags to an array and return the array.
      */
-    $file = fopen('inventory.html', 'r');
+    $file = fopen(getConfigOption('dynamic_directory').'/inventory.html', 'r');
     $tags = array();
     while(!feof($file)){
         $line = fgets($file);
@@ -37,7 +37,7 @@ function getByTag($tag){
      * Arguments:
      *  $tag (str): the tag to retrieve
      */
-    $file = fopen('inventory.html', 'r');
+    $file = fopen(getConfigOption('dynamic_directory').'/inventory.html', 'r');
     
     while(!feof($file)){
         $line = fgets($file);
