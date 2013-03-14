@@ -4,6 +4,7 @@ AddType text/plain py
 
 # Custom error pages
 ErrorDocument 404 /index.php?id=error&type=404
+ErrorDocument 403 /index.php?id=error&type=403
 
 # URL redirection static -> dynamic
 RedirectMatch 301 "projects/$" http://www.thenaterhood.com/?id=projects
