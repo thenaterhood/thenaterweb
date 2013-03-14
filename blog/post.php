@@ -47,9 +47,16 @@ else {
 
 				<div class="entry">
 				<?php 
-				$displaypost = new postObj( $config->post_directory.'/'.$session->node );
+				if ( $session->node ){
+					
+					$displaypost = new postObj( $config->post_directory.'/'.$session->node );
+				}
+				else {
+					$displaypost = new postObj( 'latest' );
+				}
+					
 				print $displaypost->page_output();
-				
+
 				if ( True ){
 					/*
 					 * Shows suggestions for other posts only if the 
@@ -63,7 +70,7 @@ else {
 					echo '</ul>';
 					echo '<p><a href="index.php">Back to Blog Home</a></p>';
 				}
-				if ( $displaypost->datestamp ){
+				if ( $displaypost->datestamp and $session->node){
 					echo "
 				<!-- BEGIN DISQUS CODE -->
 				<div id='disqus_thread'></div>
@@ -84,6 +91,9 @@ else {
 				</div>
 				<!-- END DISQUS CODE -->";
 				
+				}
+				else {
+					print "<p>You're viewing the latest available post without comments.  To comment, visit <a href='".$displaypost->link."'>the post's page</a>.</p>";
 				}
 				?>
 			</div>
