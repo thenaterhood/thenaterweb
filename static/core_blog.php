@@ -44,6 +44,10 @@ class postObj {
 		$this->datestamp = "";
 		$this->link = 'index.php';
 		$this->content = '<p>Sorry, the post you were looking for could not be found.  If you think it should be here, try browsing by title.  Otherwise, <a href="blog/index.php">return to blog home.</a></p>'."\n".'<p>Think you were looking for something else? <a href="'.getConfigOption('site_domain').'">visit site home</a>.</p>';
+		
+		if ( $nodefile == '' ){
+			$nodefile = getPostList()[0];
+		}
 			
 		if (file_exists("$nodefile.json")){
 			$jsoncontents = file_get_contents("$nodefile.json");
