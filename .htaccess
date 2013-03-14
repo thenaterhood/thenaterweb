@@ -1,10 +1,11 @@
 # Filetype definitions
 AddType text/plain sh
+AddType text/plain py
+
+# Custom error pages
+ErrorDocument 404 /index.php?id=error&type=404
 
 # URL redirection static -> dynamic
-RedirectMatch "about$" http://www.thenaterhood.com/?id=about
-RedirectMatch "projects$" http://www.thenaterhood.com/?id=projects
-RedirectMatch "connect$" http://www.thenaterhood.com/?id=connect
 RedirectMatch 301 "projects/$" http://www.thenaterhood.com/?id=projects
 
 # Temporary URL redirection
