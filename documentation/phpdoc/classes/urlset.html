@@ -28,7 +28,7 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">89</span></a></li>
+                <span class="label label-info">58</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul></ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
@@ -52,12 +52,13 @@
 <ul class="side-nav nav nav-list"><li class="nav-header">
 <i class="icon-custom icon-method"></i> Methods
                     <ul>
-<li class="method public "><a href="#method___construct" title="__construct :: "><span class="description">__construct()
-        </span><pre>__construct()</pre></a></li>
-<li class="method public "><a href="#method_new_item" title="new_item :: "><span class="description">new_item()
-        </span><pre>new_item()</pre></a></li>
-<li class="method public "><a href="#method_output" title="output :: "><span class="description">output()
-        </span><pre>output()</pre></a></li>
+<li class="method public "><a href="#method___construct" title="__construct :: Creates an empty sitemap class"><span class="description">Creates an empty sitemap class</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#method_new_item" title="new_item :: Adds an item to the feed as an object in the object's
+items array"><span class="description">Adds an item to the feed as an object in the object's
+items array</span><pre>new_item()</pre></a></li>
+<li class="method public "><a href="#method_output" title="output :: Returns a displayable representation of the sitemap
+with appropriate code added."><span class="description">Returns a displayable representation of the sitemap
+with appropriate code added.</span><pre>output()</pre></a></li>
 </ul>
 </li></ul>
 </div>
@@ -71,42 +72,55 @@
 <span class="divider">\</span><a href="../classes/urlset.html">urlset</a>
 </li>
 </ul>
-<div class="element class"><div class="details">
+<div class="element class">
+<p class="short_description">Defines a data object to contain an atom feed as items
+are added and the feed is updated then returned</p>
+<div class="details">
+<div class="long_description"></div>
 <h3>
 <i class="icon-custom icon-method"></i> Methods</h3>
 <a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
-<h2>__construct()
-        </h2>
+<h2>Creates an empty sitemap class</h2>
 <pre>__construct() </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
 <a id="method_new_item"></a><div class="element clickable method public method_new_item" data-toggle="collapse" data-target=".method_new_item .collapse">
-<h2>new_item()
-        </h2>
+<h2>Adds an item to the feed as an object in the object's
+items array</h2>
 <pre>new_item($loc, $lastmod) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Parameters</h3>
-<div class="subelement argument"><h4>$loc</h4></div>
-<div class="subelement argument"><h4>$lastmod</h4></div>
+<div class="subelement argument">
+<h4>$loc</h4><p>(str): the web address of the item's source</p>
+</div>
+<div class="subelement argument">
+<h4>$lastmod</h4><p>(str): the modification date of the item</p>
+</div>
 </div></div>
 </div>
 <a id="method_output"></a><div class="element clickable method public method_output" data-toggle="collapse" data-target=".method_output .collapse">
-<h2>output()
-        </h2>
-<pre>output() </pre>
+<h2>Returns a displayable representation of the sitemap
+with appropriate code added.</h2>
+<pre>output() : \$r</pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
-</div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\$r</code>(string) - an xml encoded output of the class</div>
 </div></div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
-            generated on 2013-03-26T15:41:10-04:00.<br></footer></div>
+            generated on 2013-03-26T16:26:02-04:00.<br></footer></div>
 </div>
 </body>
 </html>

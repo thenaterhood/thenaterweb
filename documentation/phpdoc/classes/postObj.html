@@ -28,7 +28,7 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">89</span></a></li>
+                <span class="label label-info">58</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul></ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
@@ -53,16 +53,21 @@
 <li class="nav-header">
 <i class="icon-custom icon-method"></i> Methods
                     <ul>
-<li class="method public "><a href="#method___construct" title="__construct :: "><span class="description">__construct()
-        </span><pre>__construct()</pre></a></li>
-<li class="method public "><a href="#method___get" title="__get :: "><span class="description">__get()
-        </span><pre>__get()</pre></a></li>
-<li class="method public "><a href="#method_atom_output" title="atom_output :: "><span class="description">atom_output()
-        </span><pre>atom_output()</pre></a></li>
-<li class="method public "><a href="#method_list_item_output" title="list_item_output :: "><span class="description">list_item_output()
-        </span><pre>list_item_output()</pre></a></li>
-<li class="method public "><a href="#method_page_output" title="page_output :: "><span class="description">page_output()
-        </span><pre>page_output()</pre></a></li>
+<li class="method public "><a href="#method___construct" title="__construct :: Reads and parses a post file and creates an instance
+of the class with the post data."><span class="description">Reads and parses a post file and creates an instance
+of the class with the post data.</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#method___get" title="__get :: Retrieves and returns the requested field"><span class="description">Retrieves and returns the requested field</span><pre>__get()</pre></a></li>
+<li class="method public "><a href="#method_atom_output" title="atom_output :: Produces the coded output of the item that can be
+returned and displayed or saved in an atom feed"><span class="description">Produces the coded output of the item that can be
+returned and displayed or saved in an atom feed</span><pre>atom_output()</pre></a></li>
+<li class="method public "><a href="#method_list_item_output" title="list_item_output :: Returns a string containing the post title
+and tags, suitable for outputting in an atom feed (maybe)
+or an html list"><span class="description">Returns a string containing the post title
+and tags, suitable for outputting in an atom feed (maybe)
+or an html list</span><pre>list_item_output()</pre></a></li>
+<li class="method public "><a href="#method_page_output" title="page_output :: Produces the coded output of the item that can be displayed
+on an html page"><span class="description">Produces the coded output of the item that can be displayed
+on an html page</span><pre>page_output()</pre></a></li>
 </ul>
 </li>
 <li class="nav-header">
@@ -91,48 +96,65 @@
 <span class="divider">\</span><a href="../classes/postObj.html">postObj</a>
 </li>
 </ul>
-<div class="element class"><div class="details">
+<div class="element class">
+<p class="short_description">Contains everything to do with retrieving and outputting
+posts in multiple forms.</p>
+<div class="details">
+<div class="long_description"><p>Is capable of retrieving posts stored
+in .json format (preferred when available) as well as plaintext
+(file syntax described below in constructor).</p>
+
+<p>Contains functions to output the post data in html format
+for displaying to a page, and atom format for use in generating
+an atom feed.</p></div>
 <h3>
 <i class="icon-custom icon-method"></i> Methods</h3>
 <a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
-<h2>__construct()
-        </h2>
-<pre>__construct($nodefile) </pre>
+<h2>Reads and parses a post file and creates an instance
+of the class with the post data.</h2>
+<pre>__construct(\nodefile $nodefile) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
+<div class="long_description"><p>Capable of managing
+posts in json and plaintext, but prefers json if
+a json file exists for the requested post.</p></div>
 <h3>Parameters</h3>
-<div class="subelement argument"><h4>$nodefile</h4></div>
+<div class="subelement argument">
+<h4>$nodefile</h4>
+<code>\nodefile</code><p>(string) - a yyyy.mm.dd string of a nodefile</p>
+</div>
 </div></div>
 </div>
 <a id="method___get"></a><div class="element clickable method public method___get" data-toggle="collapse" data-target=".method___get .collapse">
-<h2>__get()
-        </h2>
+<h2>Retrieves and returns the requested field</h2>
 <pre>__get($field) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Parameters</h3>
-<div class="subelement argument"><h4>$field</h4></div>
+<div class="subelement argument">
+<h4>$field</h4><p>(str) - the name of the field to return</p>
+</div>
 </div></div>
 </div>
 <a id="method_atom_output"></a><div class="element clickable method public method_atom_output" data-toggle="collapse" data-target=".method_atom_output .collapse">
-<h2>atom_output()
-        </h2>
+<h2>Produces the coded output of the item that can be
+returned and displayed or saved in an atom feed</h2>
 <pre>atom_output() </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
 <a id="method_list_item_output"></a><div class="element clickable method public method_list_item_output" data-toggle="collapse" data-target=".method_list_item_output .collapse">
-<h2>list_item_output()
-        </h2>
+<h2>Returns a string containing the post title
+and tags, suitable for outputting in an atom feed (maybe)
+or an html list</h2>
 <pre>list_item_output() </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
 <a id="method_page_output"></a><div class="element clickable method public method_page_output" data-toggle="collapse" data-target=".method_page_output .collapse">
-<h2>page_output()
-        </h2>
+<h2>Produces the coded output of the item that can be displayed
+on an html page</h2>
 <pre>page_output() </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
@@ -175,13 +197,14 @@
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
-</div></div>
+</div>
+</div>
 </div>
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
-            generated on 2013-03-26T15:41:10-04:00.<br></footer></div>
+            generated on 2013-03-26T16:26:02-04:00.<br></footer></div>
 </div>
 </body>
 </html>
