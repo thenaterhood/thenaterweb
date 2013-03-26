@@ -1,0 +1,22 @@
+{
+    "datestamp": "2009-10-05T21:11:00-05:00",
+    "content": [
+        "<p><a href=\"http://www.gamerbytes.com/img_33742_microsoft-windows-live-logo_450x360.jpg\" imageanchor=\"1\" style=\"clear: right; float: right; margin-bottom: 1em; margin-left: 1em;\"><img border=\"0\" height=\"179\" src=\"http://www.gamerbytes.com/img_33742_microsoft-windows-live-logo_450x360.jpg\" width=\"241\" /></a>\n</p>\n",
+        "<p>It appears that thousands of Windows Live accounts have been compromised due to what Microsoft seems to think is a phishing scheme.  To quote Microsoft's description of the problem:\n</p>\n",
+        "<p><blockquote><i>\"<span id=\"ctl00_MainContentPlaceholder_ctl01_ctl00_lblEntry\">Over the weekend Microsoft learned that several thousand Windows Live Hotmail customers\u2019 credentials were exposed on a third-party site due to a likely phishing scheme. Upon learning of the issue, we immediately requested that the credentials be removed and launched an investigation to determine the impact to customers. As part of that investigation, we determined that this was not a breach of internal Microsoft data and initiated our standard process of working to help customers regain control of their accounts.\"</span></i>\n</p>\n",
+        "<p></blockquote>It would appear that Microsoft has regained control of the compromised accounts and is working to help the affected owners of those accounts regain control.  As far as my understanding of the situation goes, the credentials to the phished accounts were posted online, but have since been removed per request from Microsoft.  As of their latest update, which came at 3PM today, access to all the compromised accounts has been blocked.  <b>If you think that your account was among those that were affected, Microsoft provides a link to a form you can fill out;  </b><a href=\"https://support.live.com/eform.aspx?productKey=wlidvalidation&amp;ct=eformcs&amp;scrx=1\">https://support.live.com/eform.aspx?productKey=wlidvalidation&amp;ct=eformcs&amp;scrx=1</a>\n</p>\n",
+        "<p>In any case, it is advisable to change your password in order to ensure the safety of your account and any information you have on it.\n</p>\n",
+        "<p>In addition, they also recommend that you change your Windows Live password every 90 days.  The <a href=\"http://isc.sans.org/\">SANS Internet Storm Center</a> has more tips to avoid phishing and other data theft as well:\n</p>\n",
+        "<p><ul><li>Do change your passwords on a regular basis (every six months or so)</li>\n</p>\n",
+        "<p><li>Do use long complex pass-phrases rather than passwords where you can</li>\n</p>\n",
+        "<p><li>Do change all of your passwords if you notice something suspicious</li>\n</p>\n",
+        "<p><li>Do take identity theft seriously</li>\n</p>\n",
+        "<p><li>Do use up-to-date anti-virus and a firewall</li>\n</p>\n",
+        "<p><li>Do NOT click on links in emails, ever</li>\n</p>\n",
+        "<p><li>Do NOT use the same password at multiple sites</li>\n</p>\n",
+        "<p></ul>More information about the issue can be found on the BBC web site as well as on the <a href=\"http://windowslivewire.spaces.live.com/blog/cns%212F7EB29B42641D59%2141528.entry?wa=wsignin1.0&amp;sa=363915619\">Windows Live support center</a>.\n</p>\n"
+    ],
+    "tags": "internet, microsoft, passwords, security",
+    "title": "Windows Live Hotmail Accounts Compromised",
+    "date": "October 5, 2009"
+}

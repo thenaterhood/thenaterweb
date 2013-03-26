@@ -1,0 +1,17 @@
+{
+    "tags": "communications, review, safety, security, social networking",
+    "date": "November 9, 2009",
+    "title": "Reviews of OpenID: Your Internet ID (YIID)",
+    "datestamp": "2009-11-09T21:13:00-05:00",
+    "content": [
+        "<p><a href=\"http://blog.yiid.org/wp-content/uploads/2009/02/yiid_2.jpg\" imageanchor=\"1\" style=\"clear: right; float: right; margin-bottom: 1em; margin-left: 1em;\"><img border=\"0\" height=\"144\" src=\"http://blog.yiid.org/wp-content/uploads/2009/02/yiid_2.jpg\" width=\"221\" /></a>\n</p>\n",
+        "<p>Admittedly I haven't been using YIID for too long so I can only give a general overview of the main features.  YIID strikes me as your standard modern OpenID provider.\n</p>\n",
+        "<p><ul><li><b>Integration of other IDs.  </b>YIID allows you to make an account with a different OpenID or Hotmail or Facebook account, which makes a lot of sense.</li>\n</p>\n",
+        "<p><li><b>Contacts.  </b>YIID provides a contact list that you can add contacts to.  In addition, you can import contacts from a few other sites or upload a contacts file (vCard) from your computer.</li>\n</p>\n",
+        "<p><li><b>Multiple Identities.  </b>As with most providers, YIID allows you to set up separate IDs and choose the one you'd like to use when you sign up for a site.</li>\n</p>\n",
+        "<p><li><b>Twitter Integration.  </b>Not all providers currently support this and possibly never will, but YIID allows not only logging in via twitter, but also tweeting from the YIID site, which makes some sense given the next point;</li>\n</p>\n",
+        "<p><li><b>Networking.  </b>YIID follows with some of the newer OpenID providers in that it also provides social networking features such as friends and status updates.</li>\n</p>\n",
+        "<p></ul>Since I haven't been using YIID too extensively, I can't vouch for it in either direction particularly well.  It is similar to Chi.mp in regards to features, but does have some fewer features from what I can see.  The URL (and feel free to visit it, it has an Identity page like others) looks like <a href=\"http://thenaterhood.yiid.com/\">http://TheNaterhood.yiid.com</a>\n</p>\n",
+        "<p>It should also be noted that the site seems to be German based, so some of the labels and headings on the site are written in German.\n</p>\n"
+    ]
+}
