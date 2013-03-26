@@ -1,20 +1,21 @@
 <?php
 /*
-* Author: Nate Levesque <public@thenaterhood.com>
-* Language: PHP
-* Filename: core_config.php
-*
-* Description:
-* 	Contains a class to store configuration options with a getter
-* 	so that they can be retrieved arbitrarily.
-*/
+ * Author: Nate Levesque <public@thenaterhood.com>
+ * Language: PHP
+ * Filename: core_config.php
+ *
+ * Description:
+ * 	Contains a class to store configuration options with a getter
+ * 	so that they can be retrieved arbitrarily.
+ */
 
+/**
+ * Defines a class to hold variables for configuration
+ * options.  All variables are accessible only internally
+ * to keep things fairly clean.
+ */
 class config{
-	/*
-	* Defines a class to hold variables for configuration
-	* options.  All variables are accessible only internally
-	* to keep things fairly clean.
-	*/
+	
 	private static $webcore_root;
 	private static $dynamic_directory;
 	private static $auto_feed_regen;
@@ -37,10 +38,10 @@ class config{
 	private static $start;
 	private static $end;
 	
+	/**
+	 * Sets the configuration options en-masse.
+	 */
 	function __construct(){
-		/*
-		* Sets the configuration options en-masse.
-		*/
 		
 		# Sets the root directory for the main site page, template, and php files
 		$this->webcore_root =  '/var/www/static';
@@ -140,10 +141,15 @@ class config{
 		
 	}
 	
+	/**
+	 * Returns the value of the requested config key
+	 * 
+	 * @param $setting - the name of the key
+	 * 
+	 * @return - the value the key is associated with
+	 */
 	function __get($setting){
-		/*
-		* Returns the requested config option
-		*/
+
 		return $this->$setting;
 	}
 
