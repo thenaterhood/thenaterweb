@@ -17,7 +17,7 @@ echo 'Nate Levesque, TheNaterhood, the naterhood'?>' />
 <?php echo '<meta name="description" content="Nate Levesque" />'; ?>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title><?php echo "Nate Levesque :: $id"; ?></title>
-<link href="../style.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="/style.css" rel="stylesheet" type="text/css" media="screen" />
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css' />
 <link href='http://fonts.googleapis.com/css?family=Electrolize' rel='stylesheet' type='text/css' />
 
