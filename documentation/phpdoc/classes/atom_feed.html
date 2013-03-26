@@ -28,7 +28,7 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">89</span></a></li>
+                <span class="label label-info">58</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul></ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
@@ -53,12 +53,13 @@
 <li class="nav-header">
 <i class="icon-custom icon-method"></i> Methods
                     <ul>
-<li class="method public "><a href="#method___construct" title="__construct :: "><span class="description">__construct()
-        </span><pre>__construct()</pre></a></li>
-<li class="method public "><a href="#method_new_item" title="new_item :: "><span class="description">new_item()
-        </span><pre>new_item()</pre></a></li>
-<li class="method public "><a href="#method_output" title="output :: "><span class="description">output()
-        </span><pre>output()</pre></a></li>
+<li class="method public "><a href="#method___construct" title="__construct :: Creates an empty atom feed object with metadata"><span class="description">Creates an empty atom feed object with metadata</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#method_new_item" title="new_item :: Adds an item to the feed as an object in the object's
+items array"><span class="description">Adds an item to the feed as an object in the object's
+items array</span><pre>new_item()</pre></a></li>
+<li class="method public "><a href="#method_output" title="output :: Returns a displayable representation of the feed
+with appropriate code added."><span class="description">Returns a displayable representation of the feed
+with appropriate code added.</span><pre>output()</pre></a></li>
 </ul>
 </li>
 <li class="nav-header">
@@ -86,26 +87,37 @@
 <span class="divider">\</span><a href="../classes/atom_feed.html">atom_feed</a>
 </li>
 </ul>
-<div class="element class"><div class="details">
+<div class="element class">
+<p class="short_description">Defines a data object to contain an atom feed as items
+are added and the feed is updated then returned</p>
+<div class="details">
+<div class="long_description"></div>
 <h3>
 <i class="icon-custom icon-method"></i> Methods</h3>
 <a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
-<h2>__construct()
-        </h2>
+<h2>Creates an empty atom feed object with metadata</h2>
 <pre>__construct($title, $link, $description, $feedstamp) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Parameters</h3>
-<div class="subelement argument"><h4>$title</h4></div>
-<div class="subelement argument"><h4>$link</h4></div>
-<div class="subelement argument"><h4>$description</h4></div>
-<div class="subelement argument"><h4>$feedstamp</h4></div>
+<div class="subelement argument">
+<h4>$title</h4><p>(str): a title for the atom feed</p>
+</div>
+<div class="subelement argument">
+<h4>$link</h4><p>(str): the base url for the feed</p>
+</div>
+<div class="subelement argument">
+<h4>$description</h4><p>(str): a description or summary of the feed</p>
+</div>
+<div class="subelement argument">
+<h4>$feedstamp</h4><p>(str): a datestamp for the feed, in standard atom format</p>
+</div>
 </div></div>
 </div>
 <a id="method_new_item"></a><div class="element clickable method public method_new_item" data-toggle="collapse" data-target=".method_new_item .collapse">
-<h2>new_item()
-        </h2>
+<h2>Adds an item to the feed as an object in the object's
+items array</h2>
 <pre>new_item($postObject) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
@@ -115,11 +127,13 @@
 </div></div>
 </div>
 <a id="method_output"></a><div class="element clickable method public method_output" data-toggle="collapse" data-target=".method_output .collapse">
-<h2>output()
-        </h2>
+<h2>Returns a displayable representation of the feed
+with appropriate code added.</h2>
 <pre>output() </pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"><p>Relies on the postObj
+atom_output() function to generate code for individidual
+feed items.</p></div></div></div>
 </div>
 <h3>
 <i class="icon-custom icon-property"></i> Properties</h3>
@@ -153,13 +167,14 @@
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
-</div></div>
+</div>
+</div>
 </div>
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
-            generated on 2013-03-26T15:41:09-04:00.<br></footer></div>
+            generated on 2013-03-26T16:26:01-04:00.<br></footer></div>
 </div>
 </body>
 </html>
