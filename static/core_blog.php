@@ -11,27 +11,30 @@
 
 include 'core_web.php';
 
+/**
+* Contains everything to do with retrieving and outputting
+* posts in multiple forms.  Is capable of retrieving posts stored
+* in .json format (preferred when available) as well as plaintext
+* (file syntax described below in constructor).
+* 
+* Contains functions to output the post data in html format
+* for displaying to a page, and atom format for use in generating
+* an atom feed.
+*/
 class postObj {
-	/*
-	* Contains everything to do with retrieving and outputting
-	* posts in multiple forms.  Is capable of retrieving posts stored
-	* in .json format (preferred when available) as well as plaintext
-	* (file syntax described below in constructor).
-	* 
-	* Contains functions to output the post data in html format
-	* for displaying to a page, and atom format for use in generating
-	* an atom feed.
-	*/
+
 	private $title, $tags, $date, $datestamp, $content, $link;
 	
+	/**
+	 * Reads and parses a post file and creates an instance
+	 * of the class with the post data. Capable of managing
+	 * posts in json and plaintext, but prefers json if
+	 * a json file exists for the requested post.
+	 * 
+	 * @param nodefile (string) - a yyyy.mm.dd string of a nodefile
+	 */
 	public function __construct($nodefile){
-		/*
-		* Reads in a nodefile and returns a data object
-		* containing all of the data from it.
-		* Accepts plaintext and json, but will prefer json
-		* over plaintext because it is superior.
-		*/
-		
+
 		/* Handles the case where the post file does not exist
 		 * at all by pre-setting all the fields to a failure state.
 		 * This also safely handles any case where the data in a post
@@ -94,12 +97,13 @@ class postObj {
 			}
 		}
 	}
-		
+	
+	/**
+	* Produces the coded output of the item that can be 
+	* returned and displayed or saved in an atom feed
+	*/
 	public function atom_output() {
-		/*
-		* Produces the coded output of the item that can be 
-		* returned and displayed or saved in an atom feed
-		*/
+
 		$r = "<entry>";
 		$r .= "<id>" . $this->link . "</id>";
 		$r .= '<link href="'.$this->link.'" />';
@@ -110,11 +114,12 @@ class postObj {
 		return $r;
 	} 
 	
+	/**
+	* Produces the coded output of the item that can be displayed
+	* on an html page
+	*/
 	public function page_output() {
-		/*
-		* Produces the coded output of the item that can be displayed
-		* on an html page
-		*/
+		
 		$r = '<h3 class="title"><a href="'.$this->link.'">'.$this->title.'</a></h3>'."\n";
 		$r .= '<h4 class="date">'.$this->date.'</h4>'."\n";
 		$r .= $this->content;
@@ -124,30 +129,34 @@ class postObj {
 		return $r;
 	}
 
+	/**
+	 * Returns a string containing the post title
+	 * and tags, suitable for outputting in an atom feed (maybe)
+	 * or an html list
+	 */
 	public function list_item_output(){
-		/*
-		 * Returns a string containing the post title
-		 * and tags, suitable for outputting in an atom feed (maybe)
-		 * or an html list
-		 */
+
 		 $r = '<a href="'. $this->link .'">' . $this->title . '</a><i> - '. $this->tags .'</i>';
 		 return $r;
 	 }
 	
-	public function __get($field){
-		/*
-		 * Retrieves and returns the requested field
-		 */
-		return $this->$field;
+	/**
+	 * Retrieves and returns the requested field
+	 * 
+	 * @param $field (str) - the name of the field to return
+	 */
+	public function __get($field){ 
+		return $this->$field; 
 	}
  }
  
+/**
+* Creates a list of files in the working directory, sorts
+* and reverses the list, and returns it.  Intended for working
+* with blog posts stored as text files with date-coded filenames
+*/
 function getPostList(){
-	/*
-	* Creates a list of files in the working directory, sorts
-	* and reverses the list, and returns it.  Intended for working
-	* with blog posts stored as text files with date-coded filenames
-	*/
+
 	
 	# Grabs the post directory configured in the root configuration
 	$postDir = getConfigOption('post_directory');
@@ -178,12 +187,13 @@ function getPostList(){
 	return $posts;
 }
 
+/**
+* Checks the number of files in the current directory and
+* compares it to how many are listed in the current inventory.
+* If the number doesn't match, it returns False.
+*/
 function checkInventory(){
-	/*
-	* Checks the number of files in the current directory and
-	* compares it to how many are listed in the current inventory.
-	* If the number doesn't match, it returns False.
-	*/
+
 	
 	if ( ! file_exists($config->dynamic_directory.'/inventory.html') ){
 		return False;
@@ -201,11 +211,11 @@ function checkInventory(){
 	
 }
 
+/**
+ * Regenerates the blog inventory file
+ */
 function regenInventory(){
-	/*
-	* Regenerates the inventory file
-	*/
-	
+
 	$postDir = getConfigOption('post_directory');
 	$inventory = fopen(getConfigOption('dynamic_directory').'/inventory.html', 'w');
 	
@@ -226,26 +236,28 @@ function regenInventory(){
 	fclose($inventory);
 }
 
+/**
+* Returns a random line of a given file.
+* Used mainly for generating random suggestions 
+* for additional blog posts to read.
+*/
 function RandomLine($filename) {
-	/*
-	* Returns a random line of a given file.
-	* Used mainly for generating random suggestions 
-	* for additional blog posts to read.
-	*/
+
 	$lines = file($filename) ;
 	return $lines[array_rand($lines)] ;
 }
 
+/**
+* Generates and displays a list of additional 'suggested' blog
+* posts.  Right now picks them randomly, but in the future might
+* rely on a better algorithm.
+* 
+* Arguments:
+*  $number (int): how many to generate and display
+*  $tag (string): a tag or tags to use for generating suggestions
+*/
 function getSuggestions($number, $tag){
-	/*
-	* Generates and displays a list of additional 'suggested' blog
-	* posts.  Right now picks them randomly, but in the future might
-	* rely on a better algorithm.
-	* 
-	* Arguments:
-	*  $number (int): how many to generate and display
-	*  $tag (string): a tag or tags to use for generating suggestions
-	*/
+
 		$i = 0;
 		while ($i < $number){
 			echo RandomLine(getConfigOption('dynamic_directory')."/inventory.html");
@@ -253,27 +265,19 @@ function getSuggestions($number, $tag){
 		}
 		
 	}
-	
-function relevantImage($tag){
-	/*
-	* Retrieves and displays an image relevant to the 
-	* post being displayed, based on the first tag
-	*/
-	
-	
-}
 
+/**
+ * Lists the files in a directory and returns an array of them
+ * out to the given length section
+ * 
+ * @param $start (int) - a starting index for the files
+ * @param $end (int) - an ending index for the files
+ * 
+ * @return $posts (array) - an array of post objects
+ * 
+ */
 function getPosts($start, $end){
-	/*
-	 * Lists the files in a directory and returns an array of them
-	 * out to the given length section
-	 * 
-	 * Arguments:
-	 *  $section (int): a range of posts to retrieve
-	 * Returns:
-	 *  $posts (array): an array of posts retrieved
-	 * 
-	*/
+
 	$posts = getPostList();
 	
 	for ($i = $start; $i < count($posts) && $i < $end; $i++){
