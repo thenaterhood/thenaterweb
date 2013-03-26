@@ -11,6 +11,7 @@
 #   all the files.  It works in the path it's called from. Type carefully.
 #
 #
+cd ..
 read -p "Enter old import path: " oldImport
 read -p "Enter new import path: " newImport
 echo -e "\nFinding all files in `pwd` to update imports.\n"
