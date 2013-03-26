@@ -1,0 +1,12 @@
+{
+    "date": "November 16, 2009",
+    "title": "Reviews of OpenID: MyOpenID",
+    "tags": "communications, internet, passwords, review, safety, security",
+    "content": [
+        "<p><a href=\"http://kveton.com/blog/wp-content/uploads/2007/04/myopenid.png\" imageanchor=\"1\" style=\"clear: right; float: right; margin-bottom: 1em; margin-left: 1em;\"><img border=\"0\" height=\"68\" src=\"http://kveton.com/blog/wp-content/uploads/2007/04/myopenid.png\" width=\"275\" /></a><a href=\"http://myopenid.com/\">MyOpenID</a> was the first OpenID provider I used.  It's a very simple site, intended for pure authorization purposes rather than social networking.  That's not a bad thing though, as it makes it very simple to use for its purpose.  The features are simple but well-implemented;<br />\n</p>\n",
+        "<p><ul><li><b>Multiple Identities.  </b>As with most others, MyOpenID allows for multiple IDs.  It's fairly simple, you fill out an information form with the information you'd like on each \"Persona\" and choose which one you'd like to use when signing up for a site.</li>\n</p>\n",
+        "<p><li><b>Non-login landing page.  </b>This makes it harder to hack an OpenID- essentially, when you visit the site you need to click a link to visit the login page, which helps security a bit.</li>\n</p>\n",
+        "<p></ul>There's really no other major features to describe about the site, it is that simple.  I liked the site because it's fast and does what it needs to.  I had a certain trust for it, though that's just my opinion.  The OpenID URL is as follows, and you can see the Identity page.  <a href=\"http://kaminl.myopenid.com/\">http://KaminL.myopenid.com </a>\n</p>\n"
+    ],
+    "datestamp": "2009-11-16T21:28:00-05:00"
+}

@@ -1,0 +1,20 @@
+{
+    "tags": "google, internet, microsoft, safety, security",
+    "datestamp": "2010-01-20T16:05:00-05:00",
+    "date": "January 20, 2010",
+    "title": "Blaming Internet Explorer",
+    "content": [
+        "<p><a href=\"http://lh6.ggpht.com/__BBcPvPuMhA/SxrbdyL07KI/AAAAAAAAAIg/QBtchKNJD3E/padlock.png\" imageanchor=\"1\" style=\"clear: right; float: right; margin-bottom: 1em; margin-left: 1em;\"><img border=\"0\" src=\"http://lh6.ggpht.com/__BBcPvPuMhA/SxrbdyL07KI/AAAAAAAAAIg/QBtchKNJD3E/padlock.png\" /></a>\n</p>\n",
+        "<p>The news of the cyber attacks against Google, primarily its GMail service, have been circulating the Internet for some time.  Read more here about the original attack:  <a href=\"http://natesphilosophy.blogspot.com/2010/01/googles-new-position-on-china.html\">Google's New Position on China</a>\n</p>\n",
+        "<p>\n</p>\n",
+        "<p>All that was known about these attacks originally was that they originated from China and were more sophisticated than most other publicized attacks.  (Attacks such as those against Google aren't uncommon, however they are generally unpublished).  As more research into the issue was done, it appears that the hacking was made possible due to a security flaw in Microsoft Internet Explorer, a fact that has been confirmed by several security companies including McAfee.  The flaw has been confirmed for Internet Explorer versions 6, 7, and 8 and from the sounds of it focus around the user falling for a phishing attack.  McAfee:\n</p>\n",
+        "<p><blockquote>\n</p>\n",
+        "<p> These attacks will look like they come from a trusted source, leading the target to fall for the trap and clicking a link or file.  That's when the exploitation takes place, using the vulnerability in Microsoft's Internet Explorer. \n</p>\n",
+        "<p>Once the malware is downloaded and installed, it opens a back door that allows the attacker to perform reconnaissance and gain complete control over the compromised system. The attacker can now identify high value targets and start to siphon off valuable data from the company. \n</p>\n",
+        "<p></blockquote>\n</p>\n",
+        "<p>Microsoft has confirmed that the security flaw exists, has been used in other attacks and that they are aware of its existence:\n</p>\n",
+        "<p><blockquote>\n</p>\n",
+        "<p> \"At this time, we are aware of limited, active attacks attempting to use this vulnerability against Internet Explorer 6.  We have not seen attacks against other affected versions of Internet Explorer.\"</a></blockquote>\n</p>\n",
+        "<p>No software patch has been released from Microsoft as of yet in order to fix the security problem although Microsoft advises Internet Explorer users to change their browser security to \"High\" as this apparently solves the problem.  If a patch is released, it will likely become available on an upcoming Tuesday.\n</p>\n"
+    ]
+}
