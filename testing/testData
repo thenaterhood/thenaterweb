@@ -1,0 +1,15 @@
+logfile testing_results
+address http://192.168.1.103/
+page index.php
+page blog
+page blog/feed.php
+page blog/post.php
+page sitemap.php
+var id
+var konami
+var start
+var end
+var name
+var regen
+var node
+var tag
