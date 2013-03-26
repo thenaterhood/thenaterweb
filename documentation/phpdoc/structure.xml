@@ -1,0 +1,670 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project version="2.0.0a12" title="">
+  <file path="core_atom.php" hash="cc4d3aee28d80522093aa869a2564cf8" package="Default">
+    <function namespace="global" line="80" package="Default">
+      <name>generateFeed</name>
+      <full_name>\generateFeed</full_name>
+    </function>
+    <class final="false" abstract="false" namespace="global" line="13" package="Default">
+      <extends/>
+      <name>atom_feed</name>
+      <full_name>\atom_feed</full_name>
+      <property final="false" static="false" visibility="private" line="18" namespace="global" package="Default">
+        <name>$title</name>
+        <default></default>
+      </property>
+      <property final="false" static="false" visibility="private" line="18" namespace="global" package="Default">
+        <name>$link</name>
+        <default></default>
+      </property>
+      <property final="false" static="false" visibility="private" line="18" namespace="global" package="Default">
+        <name>$description</name>
+        <default></default>
+      </property>
+      <property final="false" static="false" visibility="private" line="18" namespace="global" package="Default">
+        <name>$feedstamp</name>
+        <default></default>
+      </property>
+      <property final="false" static="false" visibility="private" line="18" namespace="global" package="Default">
+        <name>$author</name>
+        <default></default>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="20" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <argument line="20">
+          <name>$title</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="20">
+          <name>$link</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="20">
+          <name>$description</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="20">
+          <name>$feedstamp</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="39" package="Default">
+        <name>new_item</name>
+        <full_name>new_item</full_name>
+        <argument line="39">
+          <name>$postObject</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="54" package="Default">
+        <name>output</name>
+        <full_name>output</full_name>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file core_atom.php</error>
+      <error line="80" code="50009">No DocBlock was found for function \generateFeed()</error>
+      <error line="13" code="50000">No DocBlock was found for \atom_feed</error>
+      <error line="18" code="50018">No DocBlock was found for property $title</error>
+      <error line="18" code="50018">No DocBlock was found for property $link</error>
+      <error line="18" code="50018">No DocBlock was found for property $description</error>
+      <error line="18" code="50018">No DocBlock was found for property $feedstamp</error>
+      <error line="18" code="50018">No DocBlock was found for property $author</error>
+      <error line="20" code="50010">No DocBlock was found for method __construct()</error>
+      <error line="39" code="50010">No DocBlock was found for method new_item()</error>
+      <error line="54" code="50010">No DocBlock was found for method output()</error>
+    </parse_markers>
+  </file>
+  <file path="core_blog.php" hash="f2d4c832d4cb6fb2df2045790fc25c72" package="Default">
+    <include line="12" type="Include" package="Default">
+      <name>core_web.php</name>
+    </include>
+    <function namespace="global" line="145" package="Default">
+      <name>getPostList</name>
+      <full_name>\getPostList</full_name>
+    </function>
+    <function namespace="global" line="181" package="Default">
+      <name>checkInventory</name>
+      <full_name>\checkInventory</full_name>
+    </function>
+    <function namespace="global" line="204" package="Default">
+      <name>regenInventory</name>
+      <full_name>\regenInventory</full_name>
+    </function>
+    <function namespace="global" line="229" package="Default">
+      <name>RandomLine</name>
+      <full_name>\RandomLine</full_name>
+      <argument line="229">
+        <name>$filename</name>
+        <default></default>
+        <type/>
+      </argument>
+    </function>
+    <function namespace="global" line="239" package="Default">
+      <name>getSuggestions</name>
+      <full_name>\getSuggestions</full_name>
+      <argument line="239">
+        <name>$number</name>
+        <default></default>
+        <type/>
+      </argument>
+      <argument line="239">
+        <name>$tag</name>
+        <default></default>
+        <type/>
+      </argument>
+    </function>
+    <function namespace="global" line="257" package="Default">
+      <name>relevantImage</name>
+      <full_name>\relevantImage</full_name>
+      <argument line="257">
+        <name>$tag</name>
+        <default></default>
+        <type/>
+      </argument>
+    </function>
+    <function namespace="global" line="266" package="Default">
+      <name>getPosts</name>
+      <full_name>\getPosts</full_name>
+      <argument line="266">
+        <name>$start</name>
+        <default></default>
+        <type/>
+      </argument>
+      <argument line="266">
+        <name>$end</name>
+        <default></default>
+        <type/>
+      </argument>
+    </function>
+    <class final="false" abstract="false" namespace="global" line="14" package="Default">
+      <extends/>
+      <name>postObj</name>
+      <full_name>\postObj</full_name>
+      <property final="false" static="false" visibility="private" line="25" namespace="global" package="Default">
+        <name>$title</name>
+        <default></default>
+      </property>
+      <property final="false" static="false" visibility="private" line="25" namespace="global" package="Default">
+        <name>$tags</name>
+        <default></default>
+      </property>
+      <property final="false" static="false" visibility="private" line="25" namespace="global" package="Default">
+        <name>$date</name>
+        <default></default>
+      </property>
+      <property final="false" static="false" visibility="private" line="25" namespace="global" package="Default">
+        <name>$datestamp</name>
+        <default></default>
+      </property>
+      <property final="false" static="false" visibility="private" line="25" namespace="global" package="Default">
+        <name>$content</name>
+        <default></default>
+      </property>
+      <property final="false" static="false" visibility="private" line="25" namespace="global" package="Default">
+        <name>$link</name>
+        <default></default>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="27" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <argument line="27">
+          <name>$nodefile</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="98" package="Default">
+        <name>atom_output</name>
+        <full_name>atom_output</full_name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="113" package="Default">
+        <name>page_output</name>
+        <full_name>page_output</full_name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="127" package="Default">
+        <name>list_item_output</name>
+        <full_name>list_item_output</full_name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="137" package="Default">
+        <name>__get</name>
+        <full_name>__get</full_name>
+        <argument line="137">
+          <name>$field</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file core_blog.php</error>
+      <error line="145" code="50009">No DocBlock was found for function \getPostList()</error>
+      <error line="181" code="50009">No DocBlock was found for function \checkInventory()</error>
+      <error line="204" code="50009">No DocBlock was found for function \regenInventory()</error>
+      <error line="229" code="50009">No DocBlock was found for function \RandomLine()</error>
+      <error line="239" code="50009">No DocBlock was found for function \getSuggestions()</error>
+      <error line="257" code="50009">No DocBlock was found for function \relevantImage()</error>
+      <error line="266" code="50009">No DocBlock was found for function \getPosts()</error>
+      <error line="14" code="50000">No DocBlock was found for \postObj</error>
+      <error line="25" code="50018">No DocBlock was found for property $title</error>
+      <error line="25" code="50018">No DocBlock was found for property $tags</error>
+      <error line="25" code="50018">No DocBlock was found for property $date</error>
+      <error line="25" code="50018">No DocBlock was found for property $datestamp</error>
+      <error line="25" code="50018">No DocBlock was found for property $content</error>
+      <error line="25" code="50018">No DocBlock was found for property $link</error>
+      <error line="27" code="50010">No DocBlock was found for method __construct()</error>
+      <error line="98" code="50010">No DocBlock was found for method atom_output()</error>
+      <error line="113" code="50010">No DocBlock was found for method page_output()</error>
+      <error line="127" code="50010">No DocBlock was found for method list_item_output()</error>
+      <error line="137" code="50010">No DocBlock was found for method __get()</error>
+    </parse_markers>
+  </file>
+  <file path="core_config.php" hash="1fa88b3649865c53ecb80713594c078d" package="Default">
+    <class final="false" abstract="false" namespace="global" line="12" package="Default">
+      <extends/>
+      <name>config</name>
+      <full_name>\config</full_name>
+      <property final="false" static="true" visibility="private" line="18" namespace="global" package="Default">
+        <name>$webcore_root</name>
+        <default></default>
+      </property>
+      <property final="false" static="true" visibility="private" line="19" namespace="global" package="Default">
+        <name>$dynamic_directory</name>
+        <default></default>
+      </property>
+      <property final="false" static="true" visibility="private" line="20" namespace="global" package="Default">
+        <name>$auto_feed_regen</name>
+        <default></default>
+      </property>
+      <property final="false" static="true" visibility="private" line="21" namespace="global" package="Default">
+        <name>$auto_file_regen</name>
+        <default></default>
+      </property>
+      <property final="false" static="true" visibility="private" line="22" namespace="global" package="Default">
+        <name>$save_dynamics</name>
+        <default></default>
+      </property>
+      <property final="false" static="true" visibility="private" line="23" namespace="global" package="Default">
+        <name>$post_directory</name>
+        <default></default>
+      </property>
+      <property final="false" static="true" visibility="private" line="24" namespace="global" package="Default">
+        <name>$default_visitor_name</name>
+        <default></default>
+      </property>
+      <property final="false" static="true" visibility="private" line="25" namespace="global" package="Default">
+        <name>$hidden_files</name>
+        <default></default>
+      </property>
+      <property final="false" static="true" visibility="private" line="26" namespace="global" package="Default">
+        <name>$posts_per_page</name>
+        <default></default>
+      </property>
+      <property final="false" static="true" visibility="private" line="27" namespace="global" package="Default">
+        <name>$site_domain</name>
+        <default></default>
+      </property>
+      <property final="false" static="true" visibility="private" line="28" namespace="global" package="Default">
+        <name>$site_author</name>
+        <default></default>
+      </property>
+      <property final="false" static="true" visibility="private" line="29" namespace="global" package="Default">
+        <name>$tracking_code</name>
+        <default></default>
+      </property>
+      <property final="false" static="true" visibility="private" line="32" namespace="global" package="Default">
+        <name>$name</name>
+        <default></default>
+      </property>
+      <property final="false" static="true" visibility="private" line="33" namespace="global" package="Default">
+        <name>$id</name>
+        <default></default>
+      </property>
+      <property final="false" static="true" visibility="private" line="34" namespace="global" package="Default">
+        <name>$konami</name>
+        <default></default>
+      </property>
+      <property final="false" static="true" visibility="private" line="35" namespace="global" package="Default">
+        <name>$node</name>
+        <default></default>
+      </property>
+      <property final="false" static="true" visibility="private" line="36" namespace="global" package="Default">
+        <name>$track</name>
+        <default></default>
+      </property>
+      <property final="false" static="true" visibility="private" line="37" namespace="global" package="Default">
+        <name>$start</name>
+        <default></default>
+      </property>
+      <property final="false" static="true" visibility="private" line="38" namespace="global" package="Default">
+        <name>$end</name>
+        <default></default>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="40" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="143" package="Default">
+        <name>__get</name>
+        <full_name>__get</full_name>
+        <argument line="143">
+          <name>$setting</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file core_config.php</error>
+      <error line="12" code="50000">No DocBlock was found for \config</error>
+      <error line="18" code="50018">No DocBlock was found for property $webcore_root</error>
+      <error line="19" code="50018">No DocBlock was found for property $dynamic_directory</error>
+      <error line="20" code="50018">No DocBlock was found for property $auto_feed_regen</error>
+      <error line="21" code="50018">No DocBlock was found for property $auto_file_regen</error>
+      <error line="22" code="50018">No DocBlock was found for property $save_dynamics</error>
+      <error line="23" code="50018">No DocBlock was found for property $post_directory</error>
+      <error line="24" code="50018">No DocBlock was found for property $default_visitor_name</error>
+      <error line="25" code="50018">No DocBlock was found for property $hidden_files</error>
+      <error line="26" code="50018">No DocBlock was found for property $posts_per_page</error>
+      <error line="27" code="50018">No DocBlock was found for property $site_domain</error>
+      <error line="28" code="50018">No DocBlock was found for property $site_author</error>
+      <error line="29" code="50018">No DocBlock was found for property $tracking_code</error>
+      <error line="32" code="50018">No DocBlock was found for property $name</error>
+      <error line="33" code="50018">No DocBlock was found for property $id</error>
+      <error line="34" code="50018">No DocBlock was found for property $konami</error>
+      <error line="35" code="50018">No DocBlock was found for property $node</error>
+      <error line="36" code="50018">No DocBlock was found for property $track</error>
+      <error line="37" code="50018">No DocBlock was found for property $start</error>
+      <error line="38" code="50018">No DocBlock was found for property $end</error>
+      <error line="40" code="50010">No DocBlock was found for method __construct()</error>
+      <error line="143" code="50010">No DocBlock was found for method __get()</error>
+    </parse_markers>
+  </file>
+  <file path="core_rss.php" hash="666c98fed9d86bc05949afdd8967916f" package="Default"/>
+  <file path="core_sitemap.php" hash="b3a029f8913fca93d0296f1b8e37f363" package="Default">
+    <function namespace="global" line="97" package="Default">
+      <name>createSitemap</name>
+      <full_name>\createSitemap</full_name>
+      <argument line="97">
+        <name>$localpath</name>
+        <default></default>
+        <type/>
+      </argument>
+      <argument line="97">
+        <name>$webpath</name>
+        <default></default>
+        <type/>
+      </argument>
+      <argument line="97">
+        <name>$delimeters</name>
+        <default></default>
+        <type/>
+      </argument>
+    </function>
+    <class final="false" abstract="false" namespace="global" line="11" package="Default">
+      <extends/>
+      <name>urlset</name>
+      <full_name>\urlset</full_name>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="17" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="31" package="Default">
+        <name>new_item</name>
+        <full_name>new_item</full_name>
+        <argument line="31">
+          <name>$loc</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="31">
+          <name>$lastmod</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="46" package="Default">
+        <name>output</name>
+        <full_name>output</full_name>
+      </method>
+    </class>
+    <class final="false" abstract="false" namespace="global" line="63" package="Default">
+      <extends/>
+      <name>url</name>
+      <full_name>\url</full_name>
+      <property final="false" static="false" visibility="public" line="67" namespace="global" package="Default">
+        <name>$loc</name>
+        <default></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="67" namespace="global" package="Default">
+        <name>$lastmod</name>
+        <default></default>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="69" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <argument line="69">
+          <name>$loc</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="69">
+          <name>$lastmod</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="83" package="Default">
+        <name>output</name>
+        <full_name>output</full_name>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file core_sitemap.php</error>
+      <error line="97" code="50009">No DocBlock was found for function \createSitemap()</error>
+      <error line="11" code="50000">No DocBlock was found for \urlset</error>
+      <error line="17" code="50010">No DocBlock was found for method __construct()</error>
+      <error line="31" code="50010">No DocBlock was found for method new_item()</error>
+      <error line="46" code="50010">No DocBlock was found for method output()</error>
+      <error line="63" code="50000">No DocBlock was found for \url</error>
+      <error line="67" code="50018">No DocBlock was found for property $loc</error>
+      <error line="67" code="50018">No DocBlock was found for property $lastmod</error>
+      <error line="69" code="50010">No DocBlock was found for method __construct()</error>
+      <error line="83" code="50010">No DocBlock was found for method output()</error>
+    </parse_markers>
+  </file>
+  <file path="core_web.php" hash="a56fa8c949d38c22ec0a0e9f26f4a112" package="Default">
+    <include line="13" type="Include" package="Default">
+      <name>core_config.php</name>
+    </include>
+    <function namespace="global" line="194" package="Default">
+      <name>chooseInclude</name>
+      <full_name>\chooseInclude</full_name>
+      <argument line="194">
+        <name>$preferred</name>
+        <default></default>
+        <type/>
+      </argument>
+      <argument line="194">
+        <name>$secondary</name>
+        <default></default>
+        <type/>
+      </argument>
+    </function>
+    <function namespace="global" line="217" package="Default">
+      <name>randomGreeting</name>
+      <full_name>\randomGreeting</full_name>
+      <argument line="217">
+        <name>$first_name</name>
+        <default></default>
+        <type/>
+      </argument>
+    </function>
+    <function namespace="global" line="233" package="Default">
+      <name>getConfigOption</name>
+      <full_name>\getConfigOption</full_name>
+      <argument line="233">
+        <name>$key</name>
+        <default></default>
+        <type/>
+      </argument>
+    </function>
+    <class final="false" abstract="false" namespace="global" line="15" package="Default">
+      <extends/>
+      <name>session</name>
+      <full_name>\session</full_name>
+      <property final="false" static="false" visibility="private" line="22" namespace="global" package="Default">
+        <name>$request</name>
+        <default></default>
+      </property>
+      <property final="false" static="false" visibility="private" line="22" namespace="global" package="Default">
+        <name>$varDefs</name>
+        <default></default>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="24" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <argument line="24">
+          <name>$request</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="44" package="Default">
+        <name>__get</name>
+        <full_name>__get</full_name>
+        <argument line="44">
+          <name>$field</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="56" package="Default">
+        <name>checkCookie</name>
+        <full_name>checkCookie</full_name>
+        <argument line="56">
+          <name>$name</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="56">
+          <name>$emptyValue</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="74" package="Default">
+        <name>setVarFromURL</name>
+        <full_name>setVarFromURL</full_name>
+        <argument line="74">
+          <name>$name</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="74">
+          <name>$emptyValue</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="74">
+          <name>$length</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="95" package="Default">
+        <name>setIfEmpty</name>
+        <full_name>setIfEmpty</full_name>
+        <argument line="95">
+          <name>$string</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="95">
+          <name>$emptyValue</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <class final="false" abstract="false" namespace="global" line="117" package="Default">
+      <extends/>
+      <name>sanitation</name>
+      <full_name>\sanitation</full_name>
+      <property final="false" static="false" visibility="private" line="127" namespace="global" package="Default">
+        <name>$dirty</name>
+        <default></default>
+      </property>
+      <property final="false" static="false" visibility="private" line="127" namespace="global" package="Default">
+        <name>$length</name>
+        <default></default>
+      </property>
+      <property final="false" static="false" visibility="private" line="127" namespace="global" package="Default">
+        <name>$type</name>
+        <default></default>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="129" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <argument line="129">
+          <name>$rawVar</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="129">
+          <name>$type</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="129">
+          <name>$length</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="141" package="Default">
+        <name>__get</name>
+        <full_name>__get</full_name>
+        <argument line="141">
+          <name>$type</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="157" package="Default">
+        <name>str</name>
+        <full_name>str</full_name>
+        <argument line="157">
+          <name>$string</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="157">
+          <name>$length</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file core_web.php</error>
+      <error line="194" code="50009">No DocBlock was found for function \chooseInclude()</error>
+      <error line="217" code="50009">No DocBlock was found for function \randomGreeting()</error>
+      <error line="233" code="50009">No DocBlock was found for function \getConfigOption()</error>
+      <error line="15" code="50000">No DocBlock was found for \session</error>
+      <error line="22" code="50018">No DocBlock was found for property $request</error>
+      <error line="22" code="50018">No DocBlock was found for property $varDefs</error>
+      <error line="24" code="50010">No DocBlock was found for method __construct()</error>
+      <error line="44" code="50010">No DocBlock was found for method __get()</error>
+      <error line="56" code="50010">No DocBlock was found for method checkCookie()</error>
+      <error line="74" code="50010">No DocBlock was found for method setVarFromURL()</error>
+      <error line="95" code="50010">No DocBlock was found for method setIfEmpty()</error>
+      <error line="117" code="50000">No DocBlock was found for \sanitation</error>
+      <error line="127" code="50018">No DocBlock was found for property $dirty</error>
+      <error line="127" code="50018">No DocBlock was found for property $length</error>
+      <error line="127" code="50018">No DocBlock was found for property $type</error>
+      <error line="129" code="50010">No DocBlock was found for method __construct()</error>
+      <error line="141" code="50010">No DocBlock was found for method __get()</error>
+      <error line="157" code="50010">No DocBlock was found for method str()</error>
+    </parse_markers>
+  </file>
+  <file path="template_blognav.php" hash="d2ad89fa2f253398c687485205cbf02a" package="Default">
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file template_blognav.php</error>
+    </parse_markers>
+  </file>
+  <file path="template_error.php" hash="18274c9babb90251f1b6d23ba9176a05" package="Default">
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file template_error.php</error>
+    </parse_markers>
+  </file>
+  <file path="template_footer.php" hash="b383daa2b9df6c761d50d085cc5f53dd" package="Default">
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file template_footer.php</error>
+    </parse_markers>
+  </file>
+  <file path="template_header.php" hash="4982f80f487b262e2eaa26b37596a482" package="Default">
+    <include line="5" type="Include" package="Default">
+      <name>template_introduction.php</name>
+    </include>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file template_header.php</error>
+    </parse_markers>
+  </file>
+  <file path="template_introduction.php" hash="f693b87309d8376388fea617f5508119" package="Default">
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file template_introduction.php</error>
+    </parse_markers>
+  </file>
+  <package name="Default" full_name="Default"/>
+  <namespace name="global" full_name="global"/>
+  <marker count="0">todo</marker>
+  <marker count="0">fixme</marker>
+  <deprecated count="0"/>
+</project>
