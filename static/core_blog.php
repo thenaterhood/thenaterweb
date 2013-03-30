@@ -45,7 +45,7 @@ class postObj {
 		$this->date = "";
 		$this->tags = "";
 		$this->datestamp = "";
-		$this->link = 'index.php';
+		$this->link = '/blog';
 		$this->content = '<p>Sorry, the post you were looking for could not be found.  If you think it should be here, try browsing by title.  Otherwise, <a href="blog/index.php">return to blog home.</a></p>'."\n".'<p>Think you were looking for something else? <a href="'.getConfigOption('site_domain').'">visit site home</a>.</p>';
 		
 		if ( $nodefile == 'latest' ){
@@ -62,7 +62,7 @@ class postObj {
 			$this->tags = $json_array['tags'];
 			$this->datestamp = $json_array['datestamp'];
 			$this->content = implode($json_array['content']);
-			$this->link = getConfigOption('site_domain').'/blog/post.php?node='.basename($nodefile, '.json');
+			$this->link = getConfigOption('site_domain').'/blog/read/'.basename($nodefile, '.json').'.htm';
 			
 		}
 		/*
@@ -84,7 +84,7 @@ class postObj {
 				$this->date = rtrim(fgets($file), "\n");
 				$this->tags = rtrim(fgets($file), "\n");
 				$this->datestamp = rtrim(fgets($file), "\n"); 
-				$this->link = getConfigOption('site_domain').'/blog/post.php?node='.basename($nodefile);
+				$this->link = getConfigOption('site_domain').'/blog/read/'.basename($nodefile).'.htm';
 				$contents='';
 			
 				while(!feof($file)){
