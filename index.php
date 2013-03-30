@@ -15,14 +15,11 @@ if ( $id == '' and $_SERVER['REQUEST_URI'] != '' and substr( $_SERVER['REQUEST_U
 	$id = substr( $_SERVER['REQUEST_URI'], 1 );
 }
 */
-$current_domain = ";";
-$current_domain = preg_replace('/^www\./i', '', $_SERVER['HTTP_HOST']);
-
 
 // Checks for cookies and sets them (or refreshes them) if necessary
 
-setcookie('name',$first_name,time() + (86400 * 30),"/","$current_domain"); // 86400 = 1 day
-setcookie('track',$track,time() + (86400 * 30),"/","$current_domain"); // 86400 = 1 day
+setcookie('name',$first_name,time() + (86400 * 30),"/",$session->domain); // 86400 = 1 day
+setcookie('track',$track,time() + (86400 * 30),"/",$session->domain); // 86400 = 1 day
 // Sets page options and variables
 
 $page_content_file = "page_$id.html";
