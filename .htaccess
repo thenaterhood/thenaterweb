@@ -17,7 +17,7 @@ ErrorDocument 403 /index.php?id=error&type=403
 # Temporary URL redirection
 RedirectMatch "sitemap.xml$" http://www.thenaterhood.com/sitemap.php
 RedirectMatch "scratchandsniff$" /?id=scratchhere
-RedirectMatch "/projects$" /?id=projects
+#RedirectMatch "/projects$" /?id=projects
 
 # URL Redirection for The Philosophy of Nate
 RedirectMatch 301 "blog/feeds/posts/default$" http://www.thenaterhood.com/blog/feed.php
