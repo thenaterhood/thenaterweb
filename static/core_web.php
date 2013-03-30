@@ -44,6 +44,7 @@ class session{
 		
 		$this->varDefs["domain"] = $_SERVER['HTTP_HOST'];
 		$this->varDefs["uri"] = $_SERVER['REQUEST_URI'];
+		$this->varDefs["referrer"] = $_SERVER['HTTP_REFERER'];
 	}
 	
 	/**
