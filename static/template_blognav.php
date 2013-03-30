@@ -16,7 +16,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 		<li class="siteurl"><a href="/blog/index.php?id=tags">Browse by Tag</a></li>
 		<li class="siteurl"><a href="http://feeds.feedburner.com/nphilosophy">Subscribe by Feed</a></li>
 		<li class="siteurl"><a href="http://feedburner.google.com/fb/a/mailverify?uri=nphilosophy&amp;loc=en_US">Get email updates</a></li>
-		<li class="siteurl"><a href="index.php">Blog home</a></li>
+		<li class="siteurl"><a href="/blog/index.php">Blog home</a></li>
 		<li class="siteurl" style="color:black">}</li>
 	</ul>
 </div>
