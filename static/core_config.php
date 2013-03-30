@@ -28,6 +28,7 @@ class config{
 	private static $site_domain;
 	private static $site_author;
 	private static $tracking_code;
+	private static $friendly_urls;
 	
 	# Variable settings
 	private static $name;
@@ -74,11 +75,18 @@ class config{
 		
 		# The domain name of the site (note that this can be automatically
 		# determined if needed)
-		$this->site_domain = 'http://192.168.1.103';
+		$this->site_domain = 'http://www.thenaterhood.com';
 		
 		# The owner/author of the website, used in places where an author
 		# is needed, such as the atom feed.
 		$this->site_author = 'Nate Levesque';
+		
+		# This tells the site software whether to use "friendly" urls
+		# rather than dynamic urls, so site.com/page/home rather than
+		# site.com/?id=home. ONLY enable this if your server allows you
+		# to do url rewriting, otherwise it won't work out well. Requires
+		# modifications to .htaccess as currently implemented.
+		$this->friendly_urls = True;
 		
 		# The tracking code that the site should use should be pasted here.
 		# Be careful with quotes, as this is read in as a string.  This
