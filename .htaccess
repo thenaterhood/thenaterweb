@@ -14,13 +14,10 @@ RewriteRule blog/read/([^/]*)\.htm$ /blog/post.php?node=$1 [L]
 ErrorDocument 404 /index.php?id=error&type=404
 ErrorDocument 403 /index.php?id=error&type=403
 
-# URL redirection static -> dynamic
-RedirectMatch 301 "http://www.thenaterhood.com/projects$" /page/projects
-RedirectMatch 301 "http://www.thenaterhood.com/projects/$" /page/projects
-
 # Temporary URL redirection
 RedirectMatch "sitemap.xml$" http://www.thenaterhood.com/sitemap.php
-RedirectMatch "scratchandsniff$" http://www.thenaterhood.com/?id=scratchhere
+RedirectMatch "scratchandsniff$" /?id=scratchhere
+RedirectMatch "/projects$" /?id=projects
 
 # URL Redirection for The Philosophy of Nate
 RedirectMatch 301 "blog/feeds/posts/default$" http://www.thenaterhood.com/blog/feed.php
