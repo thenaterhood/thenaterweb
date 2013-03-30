@@ -1,9 +1,15 @@
 <?php 
 include '../static/core_blog.php';
+include '../static/core_redirect.php';
 
 
 $session = new session( array('name', 'track', 'konami', 'node') );
 $config = new config();
+
+if ( $config->friendly_urls ){
+	$redirect = new condRedirect( "post.php", "/blog/read/".$session->node.".htm", $session->uri );
+	$redirect->apply( 301 );
+}
 
 $first_name = $session->name;
 $track = $session->track;
