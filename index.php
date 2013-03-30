@@ -1,5 +1,6 @@
 <?php 
 include 'static/core_web.php';
+include 'static/core_redirect.php';
 
 $session = new session( array('name', 'track', 'konami', 'id', 'type') );
 $config = new config();
@@ -10,11 +11,12 @@ $first_name = $session->name;
 $track = $session->track;
 $id = $session->id;
 $type = '404';
-/* THIS DOES NOT WORK DONT DO IT. 
-if ( $id == '' and $_SERVER['REQUEST_URI'] != '' and substr( $_SERVER['REQUEST_URI'], 0, 1) != '?' ){
-	$id = substr( $_SERVER['REQUEST_URI'], 1 );
+
+if ( $config->friendly_urls ){
+	$redirect = new condRedirect( "?id", "/page/".$session->id, $session->uri );
+	$redirect->apply( 301 );
 }
-*/
+
 
 // Checks for cookies and sets them (or refreshes them) if necessary
 
