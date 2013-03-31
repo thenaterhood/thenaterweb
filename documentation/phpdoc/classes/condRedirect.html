@@ -3,7 +3,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 <meta charset="utf-8">
-<title>thenaterhood.com » \sanitation</title>
+<title>thenaterhood.com » \condRedirect</title>
 <meta name="author" content="Mike van Riel">
 <meta name="description" content="">
 <link href="../css/template.css" rel="stylesheet" media="all">
@@ -53,18 +53,20 @@
 <li class="nav-header">
 <i class="icon-custom icon-method"></i> Methods
                     <ul>
-<li class="method public "><a href="#method___construct" title="__construct :: Constructs an instance of the class
-containing the original variable and the sanitized
-variable"><span class="description">Constructs an instance of the class
-containing the original variable and the sanitized
-variable</span><pre>__construct()</pre></a></li>
-<li class="method public "><a href="#method___get" title="__get :: Returns a sanitized version of the variable."><span class="description">Returns a sanitized version of the variable.</span><pre>__get()</pre></a></li>
+<li class="method public "><a href="#method___construct" title="__construct :: Creates an instance of the conditional redirect class
+and decides whether the redirect will be performed"><span class="description">Creates an instance of the conditional redirect class
+and decides whether the redirect will be performed</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#method_apply" title="apply :: Applies the redirect to the page if the redirect should happen"><span class="description">Applies the redirect to the page if the redirect should happen</span><pre>apply()</pre></a></li>
+<li class="method public inherited"><a href="#method_test" title="test :: Provides a simple text output to check if the class
+was initiated correctly"><span class="description">Provides a simple text output to check if the class
+was initiated correctly</span><pre>test()</pre></a></li>
 </ul>
 </li>
 <li class="nav-header private">» Private
-                    <ul><li class="method private "><a href="#method_str" title="str :: Verify that a string is made of html-safe characters and
-short enough to fit where it belongs."><span class="description">Verify that a string is made of html-safe characters and
-short enough to fit where it belongs.</span><pre>str()</pre></a></li></ul>
+                    <ul>
+<li class="method private inherited"><a href="#method_apply_301" title="apply_301 :: Performs a 301 (permanent) redirect"><span class="description">Performs a 301 (permanent) redirect</span><pre>apply_301()</pre></a></li>
+<li class="method private inherited"><a href="#method_apply_302" title="apply_302 :: Performs a 302 (temporary) redirect"><span class="description">Performs a 302 (temporary) redirect</span><pre>apply_302()</pre></a></li>
+</ul>
 </li>
 <li class="nav-header">
 <i class="icon-custom icon-property"></i> Properties
@@ -72,110 +74,143 @@ short enough to fit where it belongs.</span><pre>str()</pre></a></li></ul>
 </li>
 <li class="nav-header private">» Private
                     <ul>
-<li class="property private "><a href="#property_dirty" title="$dirty :: "><span class="description"></span><pre>$dirty</pre></a></li>
-<li class="property private "><a href="#property_length" title="$length :: "><span class="description"></span><pre>$length</pre></a></li>
-<li class="property private "><a href="#property_type" title="$type :: "><span class="description"></span><pre>$type</pre></a></li>
+<li class="property private "><a href="#property_apply" title="$apply :: "><span class="description"></span><pre>$apply</pre></a></li>
+<li class="property private inherited"><a href="#property_destination" title="$destination :: "><span class="description"></span><pre>$destination</pre></a></li>
+<li class="property private inherited"><a href="#property_origin" title="$origin :: "><span class="description"></span><pre>$origin</pre></a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="span8">
-<a id="\sanitation"></a><ul class="breadcrumb">
+<a id="\condRedirect"></a><ul class="breadcrumb">
 <li>
 <a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
 </li>
 <li><a href="../namespaces/global.html">global</a></li>
 <li class="active">
-<span class="divider">\</span><a href="../classes/sanitation.html">sanitation</a>
+<span class="divider">\</span><a href="../classes/condRedirect.html">condRedirect</a>
 </li>
 </ul>
 <div class="element class">
-<p class="short_description">Manages sanitizing user input.</p>
+<p class="short_description">Manages conditionally redirecting pages based
+on the requested uri and a given uri to redirect from.</p>
 <div class="details">
-<div class="long_description"><p>Currently works only for strings,
-but adding functions to sanitize other data types is trivial.
-Retrieving sanitized values from the class involves invoking
-the __get function with the type, str, arr, bool, etc for whichever
-sanitation functions are implemented. The sanitization for the
-requested return is called (returns an empty object if the
-sanitization can't convert the current one to the requested one).</p></div>
+<div class="long_description"><p>Checks to see if the uri requested by the user contains
+the uri to redirect from, and prepares to perform the
+redirect if so.</p>
+
+<p>Relies on the redirect class to manage the actual redirecting,
+this class is primarly an interface to it that deals with the
+conditional aspect.</p></div>
 <h3>
 <i class="icon-custom icon-method"></i> Methods</h3>
 <a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
-<h2>Constructs an instance of the class
-containing the original variable and the sanitized
-variable</h2>
-<pre>__construct($rawVar, $type, $length) </pre>
+<h2>Creates an instance of the conditional redirect class
+and decides whether the redirect will be performed</h2>
+<pre>__construct($origin, $destination, $uri) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$rawVar</h4><p>(str) - the raw variable contents</p>
+<h4>$origin</h4><ul>
+<li>a chosen uri to redirect from</li>
+</ul>
 </div>
 <div class="subelement argument">
-<h4>$type</h4><p>(str) - the desired type for the variable to be</p>
+<h4>$destination</h4><ul>
+<li>a uri to redirect to</li>
+</ul>
 </div>
 <div class="subelement argument">
-<h4>$length</h4><p>(int) - a maximum length for the variable</p>
+<h4>$uri</h4><ul>
+<li>the uri requested by the user</li>
+</ul>
 </div>
 </div></div>
 </div>
-<a id="method___get"></a><div class="element clickable method public method___get" data-toggle="collapse" data-target=".method___get .collapse">
-<h2>Returns a sanitized version of the variable.</h2>
-<pre>__get($type) : \-</pre>
+<a id="method_apply"></a><div class="element clickable method public method_apply" data-toggle="collapse" data-target=".method_apply .collapse">
+<h2>Applies the redirect to the page if the redirect should happen</h2>
+<pre>apply($type) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
-<div class="long_description"><p>If the requested
-type is not the same as the actual type, the class will
-attempt to convert it to the type if possible. Note that
-list cannot become a string.</p></div>
+<div class="long_description"></div>
 <h3>Parameters</h3>
-<div class="subelement argument"><h4>$type</h4></div>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>\-</code>a sanitized string</div>
+<div class="subelement argument">
+<h4>$type</h4><ul>
+<li>the type of redirect to apply</li>
+</ul>
+</div>
 </div></div>
 </div>
-<a id="method_str"></a><div class="element clickable method private method_str" data-toggle="collapse" data-target=".method_str .collapse">
-<h2>Verify that a string is made of html-safe characters and
-short enough to fit where it belongs.</h2>
-<pre>str($string, $length) : \$safestring</pre>
-<div class="labels"></div>
+<a id="method_test"></a><div class="element clickable method public method_test" data-toggle="collapse" data-target=".method_test .collapse">
+<h2>Provides a simple text output to check if the class
+was initiated correctly</h2>
+<pre>test() </pre>
+<div class="labels"><span class="label">Inherited</span></div>
 <div class="row collapse"><div class="detail-description">
-<div class="long_description"><p>Basically some simple
-input sanitizing for nonsecure things.</p></div>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$string</h4><p>(string): a string or something else</p>
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\redirect::test()</td>
+</tr></table>
+</div></div>
 </div>
-<div class="subelement argument">
-<h4>$length</h4><p>(integer): an integer value for the length limit of the string</p>
+<a id="method_apply_301"></a><div class="element clickable method private method_apply_301" data-toggle="collapse" data-target=".method_apply_301 .collapse">
+<h2>Performs a 301 (permanent) redirect</h2>
+<pre>apply_301() </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\redirect::apply_301()</td>
+</tr></table>
+</div></div>
 </div>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>\$safestring</code>(string): a html-safe and proper length string</div>
+<a id="method_apply_302"></a><div class="element clickable method private method_apply_302" data-toggle="collapse" data-target=".method_apply_302 .collapse">
+<h2>Performs a 302 (temporary) redirect</h2>
+<pre>apply_302() </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\redirect::apply_302()</td>
+</tr></table>
 </div></div>
 </div>
 <h3>
 <i class="icon-custom icon-property"></i> Properties</h3>
-<a id="property_dirty"> </a><div class="element clickable property private property_dirty" data-toggle="collapse" data-target=".property_dirty .collapse">
+<a id="property_apply"> </a><div class="element clickable property private property_apply" data-toggle="collapse" data-target=".property_apply .collapse">
 <h2></h2>
-<pre>$dirty </pre>
+<pre>$apply </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
-<a id="property_length"> </a><div class="element clickable property private property_length" data-toggle="collapse" data-target=".property_length .collapse">
+<a id="property_destination"> </a><div class="element clickable property private property_destination" data-toggle="collapse" data-target=".property_destination .collapse">
 <h2></h2>
-<pre>$length </pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+<pre>$destination </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\redirect::$$destination</td>
+</tr></table>
+</div></div>
 </div>
-<a id="property_type"> </a><div class="element clickable property private property_type" data-toggle="collapse" data-target=".property_type .collapse">
+<a id="property_origin"> </a><div class="element clickable property private property_origin" data-toggle="collapse" data-target=".property_origin .collapse">
 <h2></h2>
-<pre>$type </pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+<pre>$origin </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\redirect::$$origin</td>
+</tr></table>
+</div></div>
 </div>
 </div>
 </div>
