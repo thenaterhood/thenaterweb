@@ -2,6 +2,8 @@
 AddType text/plain sh
 AddType text/plain py
 
+Options -indexes
+
 # SEO friendly pages, if rewriting available (turn on friendly urls in
 # site core_config file for this to work the best).
 <IfModule mod_rewrite.c>
