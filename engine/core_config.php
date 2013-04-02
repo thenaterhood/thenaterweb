@@ -44,7 +44,7 @@ class config{
 	 */
 	function __construct(){
 		
-		# Sets the root directory for the main site page, template, and php files
+		# Sets the root directory for the main site pages and template
 		$this->webcore_root =  '/var/www/static';
 		
 		# Sets the directory for storing dynamically created files
