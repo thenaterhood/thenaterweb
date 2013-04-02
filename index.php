@@ -1,6 +1,6 @@
 <?php 
-include 'static/core_web.php';
-include 'static/core_redirect.php';
+include 'engine/core_web.php';
+include 'engine/core_redirect.php';
 
 $session = new session( array('name', 'track', 'konami', 'id', 'type') );
 $config = new config();
@@ -26,7 +26,7 @@ setcookie('track',$track,time() + (86400 * 30),"/",$session->domain); // 86400 =
 
 $page_content_file = "page_$id.html";
 	
-include $config->webcore_root.'/core_xhtml.html';
+include $config->webcore_root.'/html_doctype.html';
 ?>
 
 <head>

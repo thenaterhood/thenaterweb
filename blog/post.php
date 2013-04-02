@@ -1,6 +1,6 @@
 <?php 
-include '../static/core_blog.php';
-include '../static/core_redirect.php';
+include '../engine/core_blog.php';
+include '../engine/core_redirect.php';
 
 
 $session = new session( array('name', 'track', 'konami', 'node') );
@@ -16,7 +16,7 @@ $track = $session->track;
 $id = 'Blog';
 ?>
 
-<?php include $config->webcore_root.'/core_xhtml.html'; ?>
+<?php include $config->webcore_root.'/html_doctype.html'; ?>
 <head>
 <meta name="keywords" content='<?#php echo file_get_contents($page_keywords_file);
 echo 'Nate Levesque, TheNaterhood, the naterhood'?>' />

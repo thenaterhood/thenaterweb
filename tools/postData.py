@@ -159,7 +159,7 @@ def getConfig():
     """
     currPath = os.getcwd()
     rootPath = os.getcwd() + "/.."
-    confPath = rootPath + "/static/core_config.php"
+    confPath = rootPath + "/engine/core_config.php"
     config = {}
     
     config[ "curr_path" ] = rootPath
