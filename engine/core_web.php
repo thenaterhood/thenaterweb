@@ -115,6 +115,18 @@ class session{
 			return $string;
 		}
 	}
+	
+	/**
+	 * Dumps the contained session data as an associative array
+	 * 
+	 * @param - unused
+	 * @return - the session data
+	 */
+	public function dump(){
+		
+		return $this->varDefs;
+		
+	}
 }
 
 /**
