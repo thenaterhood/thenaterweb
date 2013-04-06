@@ -12,6 +12,10 @@
 
 include 'core_config.php';
 
+
+assert_options(ASSERT_ACTIVE, 1);
+assert_options(ASSERT_WARNING, 0);
+assert_options(ASSERT_QUIET_EVAL, 1);
 /**
  * Provides a common interface for picking up variables from the
  * user in a clean way, so that internal variables for pulling
@@ -91,8 +95,7 @@ class session{
 	* @return (string): the default value or the value pulled from a cookie or URL
 	*/
 	private function setVarFromURL($name, $emptyValue, $length){
-
-		$sanitized = new sanitation($_GET[$name], 'str', $length);
+		$sanitized = new varGetter( $name, $length );
 		return $this->setIfEmpty($sanitized->str, $this->checkCookie($name, $emptyValue));
 	}
 	
@@ -140,7 +143,7 @@ class session{
  */
 class sanitation{
 
-	private $dirty, $length, $type;
+	protected $dirty, $length;
 	
 	/**
 	 * Constructs an instance of the class
@@ -152,11 +155,10 @@ class sanitation{
 	 * @param $length (int) - a maximum length for the variable
 	 * 
 	 */
-	public function __construct($rawVar, $type, $length){
+	public function __construct($rawVar, $length){
 
 		$this->dirty = $rawVar;
 		$this->length = $length;
-		$this->type = $type;
 		
 	}
 	
@@ -173,7 +175,7 @@ class sanitation{
 	 */
 	public function __get($type){
 		
-		return $this->$type($this->dirty, $this->length);
+		return $this->$type();
 	}
 	
 	/**
@@ -186,24 +188,22 @@ class sanitation{
 	* 
 	* @return $safestring (string): a html-safe and proper length string
 	*/
-	private function str($string, $length) {
-		
+	private function str() {
 		# Check that the string is actually a string, return "" if not
-		if (gettype($string) != 'string'){
+		if (gettype($this->dirty) != 'string'){
 			return '';
 		}
 		
 		#Santize input so that it's text so we don't have XSS problems
-		$safestring = preg_replace('/[^a-zA-Z0-9\s.]/', '', $string);
+		$safestring = preg_replace('/[^a-zA-Z0-9\s.]/', '', $this->dirty);
 	
 		$saferstring = htmlspecialchars($safestring, ENT_QUOTES);
-		
 		#Check the length of the string and the limit given, truncate if needed
-		if ($length == 0){
+		if ($this->length == 0){
 			return $saferstring;
 		}
-		if (strlen($saferstring) > $length){
-			return substr($saferstring, 0, $length);
+		if (strlen($saferstring) > $this->length){
+			return substr($saferstring, 0, $this->length);
 		}
 		else {
 			return $saferstring;
@@ -246,6 +246,74 @@ function randomGreeting($first_name){
 	return $greetings[ array_rand($greetings) ].", $first_name";
 	
 }
+
+
+/**
+ * Provides an interface for retrieving variables using a specific
+ * method or by searching through each method to find a variable.
+ */
+class varGetter extends sanitation{
+	 
+	 /**
+	  * Constructs an instance of the class and finds the variable
+	  * 
+	  * @param $name - the name of the variable
+	  * @param $length - the allowed length of the variable
+	  * @param $method (optional) - the method to use
+	  */	 
+	 public function __construct( $name, $length, $method ){
+		 
+		 $this->length = $length;
+		 
+
+		 if ( ! $method ){ // If no method is specified, try all of them
+			 $methods = array( post, get, cookie, fallback );
+			 $i = 0;
+			 while ( $i < count( $methods ) and $this->dirty == null ){
+				 $this->$methods[$i]($name);
+				 $i++;
+			 }
+		 }
+		 else{
+			 $this->$method( $name );
+		 }
+		 
+		 
+	 }
+	 
+	 /**
+	  * Retrieves a variable via post
+	  * @param $name - the name of the variable
+	  */
+	 private function post( $name ){
+		 $this->dirty = $_POST[ $name ];
+	 }
+	 
+	 /**
+	  * Retrieves a variable via get
+	  * @param $name - the name of the variable
+	  */
+	 private function get( $name ){
+		 $this->dirty = $_GET[ $name ];
+	 }
+	 
+	 /**
+	  * Retrieves a variable via a cookie
+	  * @param $name - the name of the variable
+	  */
+	 private function cookie( $name ){
+		 $this->dirty = $_COOKIE[ $name ]; 
+	 }
+	 
+	 /**
+	  * Retrieves a variable via the default
+	  * @param $name - the name of the variable
+	  */
+	 private function fallback( $name ){
+		 $this->dirty = getConfigOption( $name )[0];
+	 }
+	 
+ }
 
 /**
  * Built to abstract retrieving config variables, since
