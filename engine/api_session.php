@@ -2,11 +2,11 @@
 /*
 * Author: Nate Levesque <public@thenaterhood.com>
 * Language: PHP
-* Filename: api_sanitize.php
+* Filename: api_session.php
 * 
 * Description:
 * 	Contains functions for testing and externally accessing the session
-* 	class for sanitizing input
+* 	class for retrieving session data.
 */
 
 include 'core_web.php';
