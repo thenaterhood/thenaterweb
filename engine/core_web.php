@@ -35,15 +35,11 @@ class session{
 	 */	
 	public function __construct($request){
 	
-		foreach( $request as $name){
-			$varConf = getConfigOption($name);
-			
-			if ( $varConf ){
-				$this->varDefs[$name] = $this->setVarFromURL( $name, $varConf[0], $varConf[1] );
-			}
-			else{
-				$this->varDefs[$name] = $this->setVarFromURL( $name, '', 50 );
-			}
+		foreach( $request as $name ){
+
+			$varGetter = new varGetter( $name );				// Retrieve the variable
+			$this->varDefs[$name] = $varGetter->str;			// Store the variable in the session
+			unset( $varGetter );								// Destroy the varGetter object
 		}
 		
 		$this->varDefs["domain"] = $_SERVER['HTTP_HOST'];
@@ -64,60 +60,7 @@ class session{
 		return $this->varDefs[$field];
 	}
 	
-	/**
-	* Checks the cookie with the given name and returns its contents,
-	* or a default value if the cookie is empty/doesn't exist
-	* 
-	* @param $name (string) - the name of the cookie to check
-	* @param $emptyValue (string) - string to return if the cookie is bad
-	*
-	* @return $contents (string)- the contents of the cookie or default value
-	*/
-	private function checkCookie($name, $emptyValue){
 
-		$contents = $_COOKIE[$name];
-		
-		return $this->setIfEmpty($contents, $emptyValue);
-	}
-
-	/**
-	* Sets a variable from the URL by running the URL input through
-	* safeChars to make it html-safe and the right size, then
-	* looking for a cookie if the variable has not been set, and 
-	* sets the variable to a default value if it has not been defined
-	* in the url or a cookie.
-	*
-	* @param $name (string): the name of the variable to get/set
-	* @param $emptyValue (string): a default value for the variable if no
-	* other value can be found
-	* @param $length (int): a maximum length for the variable if pulled from URL
-	*
-	* @return (string): the default value or the value pulled from a cookie or URL
-	*/
-	private function setVarFromURL($name, $emptyValue, $length){
-		$sanitized = new varGetter( $name, $length );
-		return $this->setIfEmpty($sanitized->str, $this->checkCookie($name, $emptyValue));
-	}
-	
-	/**
-	* Checks if a given string is empty and returns the value to set
-	* it as if it is.  if not, returns the string.
-	*
-	* @param $string (string): string value to check
-	* @param $emptyValue (string): Value to return if the string is empty
-	*
-	* @return $string or $emptyValue (string): $string if the string is not empty
-	*		or $emptyValue if the string is empty
-	*/
-	private function setIfEmpty($string, $emptyValue){
-
-		if (empty($string)){
-			return $emptyValue;
-		}
-		else{
-			return $string;
-		}
-	}
 	
 	/**
 	 * Dumps the contained session data as an associative array
@@ -168,9 +111,9 @@ class sanitation{
 	 * attempt to convert it to the type if possible. Note that
 	 * list cannot become a string.
 	 * 
-	 * @param $type: the type of data to return (str, bool, arr, etc)
+	 * @param $type - the type of data to return (str, bool, arr, etc)
 	 * 
-	 * @return - a sanitized string
+	 * @return - a sanitized variable
 	 * 
 	 */
 	public function __get($type){
@@ -183,10 +126,6 @@ class sanitation{
 	* short enough to fit where it belongs.  Basically some simple
 	* input sanitizing for nonsecure things.
 	* 
-	* @param $string (string): a string or something else
-	* @param $length (integer): an integer value for the length limit of the string
-	* 
-	* @return $safestring (string): a html-safe and proper length string
 	*/
 	private function str() {
 		# Check that the string is actually a string, return "" if not
@@ -208,6 +147,20 @@ class sanitation{
 		else {
 			return $saferstring;
 		}
+	}
+	
+	/**
+	 * Return a simple boolean based on the variable
+	 */
+	private function boo(){
+		
+		if ( $this->dirty and $this->dirty != "False" ){
+			return True;
+		}
+		else{ 
+			return False; 
+		}
+		
 	}
 }
 
@@ -258,13 +211,19 @@ class varGetter extends sanitation{
 	  * Constructs an instance of the class and finds the variable
 	  * 
 	  * @param $name - the name of the variable
-	  * @param $length - the allowed length of the variable
+	  * @param $length (optional) - the allowed length of the variable
 	  * @param $method (optional) - the method to use
 	  */	 
 	 public function __construct( $name, $length, $method ){
 		 
-		 $this->length = $length;
+		 if ( ! $length ){ // If no length specified, find the default
+			 $length = getConfigOption( $name )[1];
+		 }
+		 if ( ! $length ){ // If still no length, default to 50
+			 $length = 50;
+		 }
 		 
+		 $this->length = $length;		 
 
 		 if ( ! $method ){ // If no method is specified, try all of them
 			 $methods = array( post, get, cookie, fallback );
