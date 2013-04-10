@@ -1,14 +1,15 @@
 <?php
 /**
-* @author Nate Levesque <public@thenaterhood.com>
-* @copyright Nate Levesque 2013
-* Language: PHP
-* Filename: core_web.php
-* 
-* Contains functions for basic web capabilities such as reading
-* variables from the URL (safely), setting/getting cookies and config
-* options.
-*/
+ * 
+ * Contains functions for basic web capabilities such as reading
+ * variables from the URL (safely), setting/getting cookies and config
+ * options.
+ * @author Nate Levesque <public@thenaterhood.com>
+ * @copyright Nate Levesque 2013
+ * Language: PHP
+ * Filename: core_web.php
+ * 
+ */
 
 /**
  * Include the config file
