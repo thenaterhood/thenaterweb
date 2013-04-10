@@ -28,7 +28,7 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">66</span></a></li>
+                <span class="label label-info">68</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul></ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
@@ -57,25 +57,7 @@
 and sets them to their defaults or from the URL/cookie."><span class="description">Iterates through all the variables requested in $request
 and sets them to their defaults or from the URL/cookie.</span><pre>__construct()</pre></a></li>
 <li class="method public "><a href="#method___get" title="__get :: Retrieves a value from the associative array."><span class="description">Retrieves a value from the associative array.</span><pre>__get()</pre></a></li>
-</ul>
-</li>
-<li class="nav-header private">» Private
-                    <ul>
-<li class="method private "><a href="#method_checkCookie" title="checkCookie :: Checks the cookie with the given name and returns its contents,
-or a default value if the cookie is empty/doesn't exist"><span class="description">Checks the cookie with the given name and returns its contents,
-or a default value if the cookie is empty/doesn't exist</span><pre>checkCookie()</pre></a></li>
-<li class="method private "><a href="#method_setIfEmpty" title="setIfEmpty :: Checks if a given string is empty and returns the value to set
-it as if it is."><span class="description">Checks if a given string is empty and returns the value to set
-it as if it is.</span><pre>setIfEmpty()</pre></a></li>
-<li class="method private "><a href="#method_setVarFromURL" title="setVarFromURL :: Sets a variable from the URL by running the URL input through
-safeChars to make it html-safe and the right size, then
-looking for a cookie if the variable has not been set, and
-sets the variable to a default value if it has not been defined
-in the url or a cookie."><span class="description">Sets a variable from the URL by running the URL input through
-safeChars to make it html-safe and the right size, then
-looking for a cookie if the variable has not been set, and
-sets the variable to a default value if it has not been defined
-in the url or a cookie.</span><pre>setVarFromURL()</pre></a></li>
+<li class="method public "><a href="#method_dump" title="dump :: Dumps the contained session data as an associative array"><span class="description">Dumps the contained session data as an associative array</span><pre>dump()</pre></a></li>
 </ul>
 </li>
 <li class="nav-header">
@@ -137,69 +119,15 @@ and sets them to their defaults or from the URL/cookie.</h2>
 <code>\(str)</code>- the value of the variable or '' if nonexistant</div>
 </div></div>
 </div>
-<a id="method_checkCookie"></a><div class="element clickable method private method_checkCookie" data-toggle="collapse" data-target=".method_checkCookie .collapse">
-<h2>Checks the cookie with the given name and returns its contents,
-or a default value if the cookie is empty/doesn't exist</h2>
-<pre>checkCookie($name, $emptyValue) : \$contents</pre>
+<a id="method_dump"></a><div class="element clickable method public method_dump" data-toggle="collapse" data-target=".method_dump .collapse">
+<h2>Dumps the contained session data as an associative array</h2>
+<pre>dump() : \-</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$name</h4><p>(string) - the name of the cookie to check</p>
-</div>
-<div class="subelement argument">
-<h4>$emptyValue</h4><p>(string) - string to return if the cookie is bad</p>
-</div>
 <h3>Returns</h3>
 <div class="subelement response">
-<code>\$contents</code>(string)- the contents of the cookie or default value</div>
-</div></div>
-</div>
-<a id="method_setIfEmpty"></a><div class="element clickable method private method_setIfEmpty" data-toggle="collapse" data-target=".method_setIfEmpty .collapse">
-<h2>Checks if a given string is empty and returns the value to set
-it as if it is.</h2>
-<pre>setIfEmpty($string, $emptyValue) : \$string</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"><p>if not, returns the string.</p></div>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$string</h4><p>(string): string value to check</p>
-</div>
-<div class="subelement argument">
-<h4>$emptyValue</h4><p>(string): Value to return if the string is empty</p>
-</div>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>\$string</code>or $emptyValue (string): $string if the string is not empty
-	or $emptyValue if the string is empty</div>
-</div></div>
-</div>
-<a id="method_setVarFromURL"></a><div class="element clickable method private method_setVarFromURL" data-toggle="collapse" data-target=".method_setVarFromURL .collapse">
-<h2>Sets a variable from the URL by running the URL input through
-safeChars to make it html-safe and the right size, then
-looking for a cookie if the variable has not been set, and
-sets the variable to a default value if it has not been defined
-in the url or a cookie.</h2>
-<pre>setVarFromURL($name, $emptyValue, $length) : \(string):</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$name</h4><p>(string): the name of the variable to get/set</p>
-</div>
-<div class="subelement argument">
-<h4>$emptyValue</h4><p>(string): a default value for the variable if no
-other value can be found</p>
-</div>
-<div class="subelement argument">
-<h4>$length</h4><p>(int): a maximum length for the variable if pulled from URL</p>
-</div>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>\(string):</code>the default value or the value pulled from a cookie or URL</div>
+<code>\-</code>the session data</div>
 </div></div>
 </div>
 <h3>
@@ -223,7 +151,7 @@ other value can be found</p>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
-            generated on 2013-03-31T02:54:15-04:00.<br></footer></div>
+            generated on 2013-04-10T16:18:11-04:00.<br></footer></div>
 </div>
 </body>
 </html>

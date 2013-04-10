@@ -3,7 +3,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 <meta charset="utf-8">
-<title>thenaterhood.com » \sanitation</title>
+<title>thenaterhood.com » \varGetter</title>
 <meta name="author" content="Mike van Riel">
 <meta name="description" content="">
 <link href="../css/template.css" rel="stylesheet" media="all">
@@ -53,18 +53,18 @@
 <li class="nav-header">
 <i class="icon-custom icon-method"></i> Methods
                     <ul>
-<li class="method public "><a href="#method___construct" title="__construct :: Constructs an instance of the class
-containing the original variable and the sanitized
-variable"><span class="description">Constructs an instance of the class
-containing the original variable and the sanitized
-variable</span><pre>__construct()</pre></a></li>
-<li class="method public "><a href="#method___get" title="__get :: Returns a sanitized version of the variable."><span class="description">Returns a sanitized version of the variable.</span><pre>__get()</pre></a></li>
+<li class="method public "><a href="#method___construct" title="__construct :: Constructs an instance of the class and finds the variable"><span class="description">Constructs an instance of the class and finds the variable</span><pre>__construct()</pre></a></li>
+<li class="method public inherited"><a href="#method___get" title="__get :: Returns a sanitized version of the variable."><span class="description">Returns a sanitized version of the variable.</span><pre>__get()</pre></a></li>
 </ul>
 </li>
 <li class="nav-header private">» Private
                     <ul>
-<li class="method private "><a href="#method_boo" title="boo :: Return a simple boolean based on the variable"><span class="description">Return a simple boolean based on the variable</span><pre>boo()</pre></a></li>
-<li class="method private "><a href="#method_str" title="str :: Verify that a string is made of html-safe characters and
+<li class="method private inherited"><a href="#method_boo" title="boo :: Return a simple boolean based on the variable"><span class="description">Return a simple boolean based on the variable</span><pre>boo()</pre></a></li>
+<li class="method private "><a href="#method_cookie" title="cookie :: Retrieves a variable via a cookie"><span class="description">Retrieves a variable via a cookie</span><pre>cookie()</pre></a></li>
+<li class="method private "><a href="#method_fallback" title="fallback :: Retrieves a variable via the default"><span class="description">Retrieves a variable via the default</span><pre>fallback()</pre></a></li>
+<li class="method private "><a href="#method_get" title="get :: Retrieves a variable via get"><span class="description">Retrieves a variable via get</span><pre>get()</pre></a></li>
+<li class="method private "><a href="#method_post" title="post :: Retrieves a variable via post"><span class="description">Retrieves a variable via post</span><pre>post()</pre></a></li>
+<li class="method private inherited"><a href="#method_str" title="str :: Verify that a string is made of html-safe characters and
 short enough to fit where it belongs."><span class="description">Verify that a string is made of html-safe characters and
 short enough to fit where it belongs.</span><pre>str()</pre></a></li>
 </ul>
@@ -75,24 +75,25 @@ short enough to fit where it belongs.</span><pre>str()</pre></a></li>
 </li>
 <li class="nav-header protected">» Protected
                     <ul>
-<li class="property protected "><a href="#property_dirty" title="$dirty :: "><span class="description"></span><pre>$dirty</pre></a></li>
-<li class="property protected "><a href="#property_length" title="$length :: "><span class="description"></span><pre>$length</pre></a></li>
+<li class="property protected inherited"><a href="#property_dirty" title="$dirty :: "><span class="description"></span><pre>$dirty</pre></a></li>
+<li class="property protected inherited"><a href="#property_length" title="$length :: "><span class="description"></span><pre>$length</pre></a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="span8">
-<a id="\sanitation"></a><ul class="breadcrumb">
+<a id="\varGetter"></a><ul class="breadcrumb">
 <li>
 <a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
 </li>
 <li><a href="../namespaces/global.html">global</a></li>
 <li class="active">
-<span class="divider">\</span><a href="../classes/sanitation.html">sanitation</a>
+<span class="divider">\</span><a href="../classes/varGetter.html">varGetter</a>
 </li>
 </ul>
 <div class="element class">
-<p class="short_description">Manages sanitizing user input.</p>
+<p class="short_description">Provides an interface for retrieving variables using a specific
+method or by searching through each method to find a variable.</p>
 <div class="details">
 <div class="long_description"><p>Currently works only for strings,
 but adding functions to sanitize other data types is trivial.
@@ -104,31 +105,38 @@ sanitization can't convert the current one to the requested one).</p></div>
 <h3>
 <i class="icon-custom icon-method"></i> Methods</h3>
 <a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
-<h2>Constructs an instance of the class
-containing the original variable and the sanitized
-variable</h2>
-<pre>__construct($rawVar, $length) </pre>
+<h2>Constructs an instance of the class and finds the variable</h2>
+<pre>__construct($name, $length, $method) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$rawVar</h4><p>(str) - the raw variable contents</p>
+<h4>$name</h4><ul>
+<li>the name of the variable</li>
+</ul>
 </div>
 <div class="subelement argument">
-<h4>$length</h4><p>(int) - a maximum length for the variable</p>
+<h4>$length</h4><p>(optional) - the allowed length of the variable</p>
+</div>
+<div class="subelement argument">
+<h4>$method</h4><p>(optional) - the method to use</p>
 </div>
 </div></div>
 </div>
 <a id="method___get"></a><div class="element clickable method public method___get" data-toggle="collapse" data-target=".method___get .collapse">
 <h2>Returns a sanitized version of the variable.</h2>
 <pre>__get($type) : \-</pre>
-<div class="labels"></div>
+<div class="labels"><span class="label">Inherited</span></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"><p>If the requested
 type is not the same as the actual type, the class will
 attempt to convert it to the type if possible. Note that
 list cannot become a string.</p></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sanitation::__get()</td>
+</tr></table>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$type</h4><ul>
@@ -143,30 +151,110 @@ list cannot become a string.</p></div>
 <a id="method_boo"></a><div class="element clickable method private method_boo" data-toggle="collapse" data-target=".method_boo .collapse">
 <h2>Return a simple boolean based on the variable</h2>
 <pre>boo() </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sanitation::boo()</td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_cookie"></a><div class="element clickable method private method_cookie" data-toggle="collapse" data-target=".method_cookie .collapse">
+<h2>Retrieves a variable via a cookie</h2>
+<pre>cookie($name) </pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name</h4><ul>
+<li>the name of the variable</li>
+</ul>
+</div>
+</div></div>
+</div>
+<a id="method_fallback"></a><div class="element clickable method private method_fallback" data-toggle="collapse" data-target=".method_fallback .collapse">
+<h2>Retrieves a variable via the default</h2>
+<pre>fallback($name) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name</h4><ul>
+<li>the name of the variable</li>
+</ul>
+</div>
+</div></div>
+</div>
+<a id="method_get"></a><div class="element clickable method private method_get" data-toggle="collapse" data-target=".method_get .collapse">
+<h2>Retrieves a variable via get</h2>
+<pre>get($name) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name</h4><ul>
+<li>the name of the variable</li>
+</ul>
+</div>
+</div></div>
+</div>
+<a id="method_post"></a><div class="element clickable method private method_post" data-toggle="collapse" data-target=".method_post .collapse">
+<h2>Retrieves a variable via post</h2>
+<pre>post($name) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name</h4><ul>
+<li>the name of the variable</li>
+</ul>
+</div>
+</div></div>
 </div>
 <a id="method_str"></a><div class="element clickable method private method_str" data-toggle="collapse" data-target=".method_str .collapse">
 <h2>Verify that a string is made of html-safe characters and
 short enough to fit where it belongs.</h2>
 <pre>str() </pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><div class="long_description"><p>Basically some simple
-input sanitizing for nonsecure things.</p></div></div></div>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Basically some simple
+input sanitizing for nonsecure things.</p></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sanitation::str()</td>
+</tr></table>
+</div></div>
 </div>
 <h3>
 <i class="icon-custom icon-property"></i> Properties</h3>
 <a id="property_dirty"> </a><div class="element clickable property protected property_dirty" data-toggle="collapse" data-target=".property_dirty .collapse">
 <h2></h2>
 <pre>$dirty </pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sanitation::$$dirty</td>
+</tr></table>
+</div></div>
 </div>
 <a id="property_length"> </a><div class="element clickable property protected property_length" data-toggle="collapse" data-target=".property_length .collapse">
 <h2></h2>
 <pre>$length </pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\sanitation::$$length</td>
+</tr></table>
+</div></div>
 </div>
 </div>
 </div>
