@@ -1,21 +1,26 @@
 <?php
-/*
-* Author: Nate Levesque <public@thenaterhood.com>
-* Language: PHP
-* Filename: core_json.php
-* 
-* Description:
-* 	Constructs and returns an instance of a class that contains json
-*	data.
-*/
+/**
+ * Constructs json data
+ * 
+ * @author Nate Levesque <public@thenaterhood.com>
+ * Language: PHP
+ * Filename: core_json.php
+ * 
+ */
 
-
+/**
+ * Constructs an array of json data from an associative array
+ */
 class jsonMaker{
 	
+	/**
+	 * @var $jsonData - json data
+	 */
 	private $jsonData;
 	
 	/**
-	 * Creates json data from an associative array
+	 * Creates json data from an associative array using
+	 * php's builtin json_encode function
 	 * 
 	 * @param dataMap - an associative array
 	 */
@@ -27,7 +32,6 @@ class jsonMaker{
 	/**
 	 * Returns the json data
 	 * 
-	 * @param - unused
 	 */
 	function output(){
 		
