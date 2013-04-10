@@ -1,29 +1,33 @@
 <?php
-/*
-* Author: Nate Levesque <public@thenaterhood.com>
+/**
+* @author Nate Levesque <public@thenaterhood.com>
+* @copyright Nate Levesque 2013
 * Language: PHP
 * Filename: core_web.php
 * 
-* Description:
-* 	Contains functions for basic web capabilities such as reading
-* 	variables from the URL (safely), setting/getting cookies and config
-* 	options.
+* Contains functions for basic web capabilities such as reading
+* variables from the URL (safely), setting/getting cookies and config
+* options.
 */
 
+/**
+ * Include the config file
+ */
 include 'core_config.php';
 
-
-assert_options(ASSERT_ACTIVE, 1);
-assert_options(ASSERT_WARNING, 0);
-assert_options(ASSERT_QUIET_EVAL, 1);
 /**
  * Provides a common interface for picking up variables from the
  * user in a clean way, so that internal variables for pulling
  * pages and otherwise can be managed more easily and sanitation
  * settings are more easily applied site-wide.
+ * 
  */
 class session{
 	
+	/**
+	 * @var $request (array) - the variables to be contained
+	 * @var $varDefs (assoc. array) - the variables and assignments
+	 */
 	private $request, $varDefs;
 	
 	/**
@@ -65,7 +69,6 @@ class session{
 	/**
 	 * Dumps the contained session data as an associative array
 	 * 
-	 * @param - unused
 	 * @return - the session data
 	 */
 	public function dump(){
@@ -86,6 +89,10 @@ class session{
  */
 class sanitation{
 
+	/**
+	 * @var $dirty (str) - the string retrieved
+	 * @var $length (int) - the maximum allowed length of the string
+	 */
 	protected $dirty, $length;
 	
 	/**
@@ -94,7 +101,6 @@ class sanitation{
 	 * variable
 	 * 
 	 * @param $rawVar (str) - the raw variable contents
-	 * @param $type (str) - the desired type for the variable to be
 	 * @param $length (int) - a maximum length for the variable
 	 * 
 	 */
@@ -137,6 +143,7 @@ class sanitation{
 		$safestring = preg_replace('/[^a-zA-Z0-9\s.]/', '', $this->dirty);
 	
 		$saferstring = htmlspecialchars($safestring, ENT_QUOTES);
+		
 		#Check the length of the string and the limit given, truncate if needed
 		if ($this->length == 0){
 			return $saferstring;
