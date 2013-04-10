@@ -1,12 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project version="2.0.0a12" title="thenaterhood.com">
+  <file path="api_post.php" hash="d44f269a13dd9068698845846e804068" package="Default">
+    <include line="12" type="Include" package="Default">
+      <name>core_blog.php</name>
+    </include>
+    <include line="13" type="Include" package="Default">
+      <name>core_json.php</name>
+    </include>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file api_post.php</error>
+    </parse_markers>
+  </file>
+  <file path="api_saneString.php" hash="7067281ac608ef3d28b4931f45796d2d" package="Default">
+    <include line="12" type="Include" package="Default">
+      <name>core_web.php</name>
+    </include>
+    <include line="13" type="Include" package="Default">
+      <name>core_json.php</name>
+    </include>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file api_saneString.php</error>
+    </parse_markers>
+  </file>
+  <file path="api_session.php" hash="1ae2a35449e6c9cc4c940e3a1ebaed4f" package="Default">
+    <include line="12" type="Include" package="Default">
+      <name>core_web.php</name>
+    </include>
+    <include line="13" type="Include" package="Default">
+      <name>core_json.php</name>
+    </include>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file api_session.php</error>
+    </parse_markers>
+  </file>
   <file path="core_atom.php" hash="44e85dd7e4cefbb3c878217954a2fbaa" package="Default">
     <function namespace="global" line="90" package="Default">
       <name>generateFeed</name>
       <full_name>\generateFeed</full_name>
       <docblock line="83">
         <description>Generates an atom feed and returns it</description>
-        <long-description/>
+        <long-description></long-description>
         <tag line="83" name="param" description="unused" type="\-" variable="">
           <type by_reference="false">\-</type>
         </tag>
@@ -22,34 +55,34 @@
       <docblock line="14">
         <description>Defines a data object to contain an atom feed as items
 are added and the feed is updated then returned</description>
-        <long-description/>
+        <long-description></long-description>
       </docblock>
       <property final="false" static="false" visibility="private" line="20" namespace="global" package="Default">
         <name>$title</name>
-        <default/>
+        <default></default>
       </property>
       <property final="false" static="false" visibility="private" line="20" namespace="global" package="Default">
         <name>$link</name>
-        <default/>
+        <default></default>
       </property>
       <property final="false" static="false" visibility="private" line="20" namespace="global" package="Default">
         <name>$description</name>
-        <default/>
+        <default></default>
       </property>
       <property final="false" static="false" visibility="private" line="20" namespace="global" package="Default">
         <name>$feedstamp</name>
-        <default/>
+        <default></default>
       </property>
       <property final="false" static="false" visibility="private" line="20" namespace="global" package="Default">
         <name>$author</name>
-        <default/>
+        <default></default>
       </property>
       <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="30" package="Default">
         <name>__construct</name>
         <full_name>__construct</full_name>
         <docblock line="22">
           <description>Creates an empty atom feed object with metadata</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="22" name="param" description="(str): a title for the atom feed" type="\" variable="$title"/>
           <tag line="22" name="param" description="(str): the base url for the feed" type="\" variable="$link"/>
           <tag line="22" name="param" description="(str): a description or summary of the feed" type="\" variable="$description"/>
@@ -57,22 +90,22 @@ are added and the feed is updated then returned</description>
         </docblock>
         <argument line="30">
           <name>$title</name>
-          <default/>
+          <default></default>
           <type/>
         </argument>
         <argument line="30">
           <name>$link</name>
-          <default/>
+          <default></default>
           <type/>
         </argument>
         <argument line="30">
           <name>$description</name>
-          <default/>
+          <default></default>
           <type/>
         </argument>
         <argument line="30">
           <name>$feedstamp</name>
-          <default/>
+          <default></default>
           <type/>
         </argument>
       </method>
@@ -82,12 +115,12 @@ are added and the feed is updated then returned</description>
         <docblock line="41">
           <description>Adds an item to the feed as an object in the object's
 items array</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="41" name="param" description="a fully initialized instance of the postObj&#10;class." type="\" variable="$postObject:"/>
         </docblock>
         <argument line="49">
           <name>$postObject</name>
-          <default/>
+          <default></default>
           <type/>
         </argument>
       </method>
@@ -326,7 +359,7 @@ or an html list</description>
       <error line="26" code="50018">No DocBlock was found for property $link</error>
     </parse_markers>
   </file>
-  <file path="core_config.php" hash="acfda7bc13a85afebe2d645afb53ea07" package="Default">
+  <file path="core_config.php" hash="759e31d1f903200a098ac38d97da1d27" package="Default">
     <class final="false" abstract="false" namespace="global" line="17" package="Default">
       <extends/>
       <name>config</name>
@@ -465,6 +498,50 @@ to keep things fairly clean.&lt;/p&gt;</long-description>
       <error line="38" code="50018">No DocBlock was found for property $track</error>
       <error line="39" code="50018">No DocBlock was found for property $start</error>
       <error line="40" code="50018">No DocBlock was found for property $end</error>
+    </parse_markers>
+  </file>
+  <file path="core_json.php" hash="c90dbafbe2884e4483199b8fec7f6ce0" package="Default">
+    <class final="false" abstract="false" namespace="global" line="13" package="Default">
+      <extends/>
+      <name>jsonMaker</name>
+      <full_name>\jsonMaker</full_name>
+      <property final="false" static="false" visibility="private" line="15" namespace="global" package="Default">
+        <name>$jsonData</name>
+        <default></default>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="22" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="17">
+          <description>Creates json data from an associative array</description>
+          <long-description></long-description>
+          <tag line="17" name="param" description="- an associative array" type="\dataMap" variable="$dataMap">
+            <type by_reference="false">\dataMap</type>
+          </tag>
+        </docblock>
+        <argument line="22">
+          <name>$dataMap</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="32" package="Default">
+        <name>output</name>
+        <full_name>output</full_name>
+        <docblock line="27">
+          <description>Returns the json data</description>
+          <long-description></long-description>
+          <tag line="27" name="param" description="unused" type="\-" variable="">
+            <type by_reference="false">\-</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file core_json.php</error>
+      <error line="13" code="50000">No DocBlock was found for \jsonMaker</error>
+      <error line="15" code="50018">No DocBlock was found for property $jsonData</error>
+      <notice line="27" code="50013">Parameter  could not be found in output()</notice>
     </parse_markers>
   </file>
   <file path="core_redirect.php" hash="62f84650f96604a2a11cfcc51ae68d19" package="Default">
@@ -632,7 +709,7 @@ and decides whether the redirect will be performed</description>
       <docblock line="95">
         <description>Generates a sitemap given a list of local and web paths
 which correspond to each other</description>
-        <long-description/>
+        <long-description></long-description>
         <tag line="95" name="param" description="(list): a list of local paths to search for files in" type="\global\" variable="$localpath"/>
         <tag line="95" name="param" description="(list): a list of web addresses, which correspond to the localpaths" type="\global\" variable="$webpath"/>
         <tag line="95" name="param" description="(list): a list of file prefixes to search for in the dir" type="\global\" variable="$delimeters"/>
@@ -642,17 +719,17 @@ which correspond to each other</description>
       </docblock>
       <argument line="105">
         <name>$localpath</name>
-        <default/>
+        <default></default>
         <type/>
       </argument>
       <argument line="105">
         <name>$webpath</name>
-        <default/>
+        <default></default>
         <type/>
       </argument>
       <argument line="105">
         <name>$delimeters</name>
-        <default/>
+        <default></default>
         <type/>
       </argument>
     </function>
@@ -663,14 +740,14 @@ which correspond to each other</description>
       <docblock line="11">
         <description>Defines a data object to contain an atom feed as items
 are added and the feed is updated then returned</description>
-        <long-description/>
+        <long-description></long-description>
       </docblock>
       <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="21" package="Default">
         <name>__construct</name>
         <full_name>__construct</full_name>
         <docblock line="17">
           <description>Creates an empty sitemap class</description>
-          <long-description/>
+          <long-description></long-description>
         </docblock>
       </method>
       <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="33" package="Default">
@@ -679,18 +756,18 @@ are added and the feed is updated then returned</description>
         <docblock line="26">
           <description>Adds an item to the feed as an object in the object's
 items array</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="26" name="param" description="(str): the web address of the item's source" type="\" variable="$loc"/>
           <tag line="26" name="param" description="(str): the modification date of the item" type="\" variable="$lastmod"/>
         </docblock>
         <argument line="33">
           <name>$loc</name>
-          <default/>
+          <default></default>
           <type/>
         </argument>
         <argument line="33">
           <name>$lastmod</name>
-          <default/>
+          <default></default>
           <type/>
         </argument>
       </method>
@@ -700,7 +777,7 @@ items array</description>
         <docblock line="38">
           <description>Returns a displayable representation of the sitemap
 with appropriate code added.</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="38" name="return" description="(string) - an xml encoded output of the class" type="\$r">
             <type by_reference="false">\$r</type>
           </tag>
@@ -713,33 +790,33 @@ with appropriate code added.</description>
       <full_name>\url</full_name>
       <docblock line="58">
         <description>Creates a class to contain an item in the sitemap</description>
-        <long-description/>
+        <long-description></long-description>
       </docblock>
       <property final="false" static="false" visibility="public" line="63" namespace="global" package="Default">
         <name>$loc</name>
-        <default/>
+        <default></default>
       </property>
       <property final="false" static="false" visibility="public" line="63" namespace="global" package="Default">
         <name>$lastmod</name>
-        <default/>
+        <default></default>
       </property>
       <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="71" package="Default">
         <name>__construct</name>
         <full_name>__construct</full_name>
         <docblock line="65">
           <description>Creates the data object to contain the atom feed item.</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="65" name="param" description="(str): the web address of the item source" type="\" variable="$link"/>
           <tag line="65" name="param" description="(str): the item modification date" type="\" variable="$lastmod"/>
         </docblock>
         <argument line="71">
           <name>$loc</name>
-          <default/>
+          <default></default>
           <type/>
         </argument>
         <argument line="71">
           <name>$lastmod</name>
-          <default/>
+          <default></default>
           <type/>
         </argument>
       </method>
@@ -749,7 +826,7 @@ with appropriate code added.</description>
         <docblock line="78">
           <description>Produces the coded output of the item that can be
 returned and displayed or saved</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="78" name="return" description="- an xml-encoded representation of the item" type="\$item">
             <type by_reference="false">\$item</type>
           </tag>
@@ -764,102 +841,102 @@ returned and displayed or saved</description>
       <notice line="65" code="50013">Parameter $link could not be found in __construct()</notice>
     </parse_markers>
   </file>
-  <file path="core_web.php" hash="87b99aa9225eb9d39ad62cf5998dfed9" package="Default">
+  <file path="core_web.php" hash="b10505e194c469852fef501c2e35dc97" package="Default">
     <include line="13" type="Include" package="Default">
       <name>core_config.php</name>
     </include>
-    <function namespace="global" line="213" package="Default">
+    <function namespace="global" line="178" package="Default">
       <name>chooseInclude</name>
       <full_name>\chooseInclude</full_name>
-      <docblock line="202">
+      <docblock line="167">
         <description>Checks to see if the preferred file exists, and if it does
 returns it, otherwise it returns the secondary file, which ideally
 should be a file (like an error page) that is guaranteed to exist.</description>
         <long-description></long-description>
-        <tag line="202" name="param" description="(string): the preferred page to include" type="\global\" variable="$preferred"/>
-        <tag line="202" name="param" description="(string): the secondary, emergency page to include" type="\global\" variable="$secondary"/>
-        <tag line="202" name="return" description="(string): the page that should be included" type="\$page">
+        <tag line="167" name="param" description="(string): the preferred page to include" type="\global\" variable="$preferred"/>
+        <tag line="167" name="param" description="(string): the secondary, emergency page to include" type="\global\" variable="$secondary"/>
+        <tag line="167" name="return" description="(string): the page that should be included" type="\$page">
           <type by_reference="false">\$page</type>
         </tag>
       </docblock>
-      <argument line="213">
+      <argument line="178">
         <name>$preferred</name>
         <default></default>
         <type/>
       </argument>
-      <argument line="213">
+      <argument line="178">
         <name>$secondary</name>
         <default></default>
         <type/>
       </argument>
     </function>
-    <function namespace="global" line="231" package="Default">
+    <function namespace="global" line="196" package="Default">
       <name>randomGreeting</name>
       <full_name>\randomGreeting</full_name>
-      <docblock line="223">
+      <docblock line="188">
         <description>Displays a string with a random greeting and the string
 the function was called with.</description>
         <long-description></long-description>
-        <tag line="223" name="param" description="(str): a string, preferably a name" type="\global\" variable="$first_name"/>
-        <tag line="223" name="return" description="a string with a personal greeting" type="\-">
+        <tag line="188" name="param" description="(str): a string, preferably a name" type="\global\" variable="$first_name"/>
+        <tag line="188" name="return" description="a string with a personal greeting" type="\-">
           <type by_reference="false">\-</type>
         </tag>
       </docblock>
-      <argument line="231">
+      <argument line="196">
         <name>$first_name</name>
         <default></default>
         <type/>
       </argument>
     </function>
-    <function namespace="global" line="248" package="Default">
+    <function namespace="global" line="287" package="Default">
       <name>getConfigOption</name>
       <full_name>\getConfigOption</full_name>
-      <docblock line="238">
+      <docblock line="277">
         <description>Built to abstract retrieving config variables, since
 they're now contained in a class this is just for legacy
 support until everything else gets moved off
 of using this function</description>
         <long-description></long-description>
-        <tag line="238" name="param" description="- the name of a config key to retrieve" type="\global\" variable="$key"/>
-        <tag line="238" name="return" description="the value of the config key" type="\-">
+        <tag line="277" name="param" description="- the name of a config key to retrieve" type="\global\" variable="$key"/>
+        <tag line="277" name="return" description="the value of the config key" type="\-">
           <type by_reference="false">\-</type>
         </tag>
       </docblock>
-      <argument line="248">
+      <argument line="287">
         <name>$key</name>
         <default></default>
         <type/>
       </argument>
     </function>
-    <class final="false" abstract="false" namespace="global" line="21" package="Default">
+    <class final="false" abstract="false" namespace="global" line="25" package="Default">
       <extends/>
       <name>session</name>
       <full_name>\session</full_name>
-      <docblock line="15">
+      <docblock line="19">
         <description>Provides a common interface for picking up variables from the
 user in a clean way, so that internal variables for pulling
 pages and otherwise can be managed more easily and sanitation
 settings are more easily applied site-wide.</description>
         <long-description></long-description>
       </docblock>
-      <property final="false" static="false" visibility="private" line="23" namespace="global" package="Default">
+      <property final="false" static="false" visibility="private" line="27" namespace="global" package="Default">
         <name>$request</name>
         <default></default>
       </property>
-      <property final="false" static="false" visibility="private" line="23" namespace="global" package="Default">
+      <property final="false" static="false" visibility="private" line="27" namespace="global" package="Default">
         <name>$varDefs</name>
         <default></default>
       </property>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="32" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="36" package="Default">
         <name>__construct</name>
         <full_name>__construct</full_name>
-        <docblock line="25">
+        <docblock line="29">
           <description>Iterates through all the variables requested in $request
 and sets them to their defaults or from the URL/cookie.</description>
           <long-description></long-description>
-          <tag line="25" name="param" description="(array) - a list of variables to retrieve" type="\" variable="$request"/>
+          <tag line="29" name="param" description="(array) - a list of variables to retrieve" type="\" variable="$request"/>
         </docblock>
-        <argument line="32">
+        <argument line="36">
           <name>$request</name>
           <default></default>
           <type/>
@@ -882,93 +959,26 @@ and sets them to their defaults or from the URL/cookie.</description>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="72" package="Default">
-        <name>checkCookie</name>
-        <full_name>checkCookie</full_name>
-        <docblock line="63">
-          <description>Checks the cookie with the given name and returns its contents,
-or a default value if the cookie is empty/doesn't exist</description>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="71" package="Default">
+        <name>dump</name>
+        <full_name>dump</full_name>
+        <docblock line="65">
+          <description>Dumps the contained session data as an associative array</description>
           <long-description></long-description>
-          <tag line="63" name="param" description="(string) - the name of the cookie to check" type="\" variable="$name"/>
-          <tag line="63" name="param" description="(string) - string to return if the cookie is bad" type="\" variable="$emptyValue"/>
-          <tag line="63" name="return" description="(string)- the contents of the cookie or default value" type="\$contents">
-            <type by_reference="false">\$contents</type>
+          <tag line="65" name="param" description="unused" type="\-" variable="">
+            <type by_reference="false">\-</type>
+          </tag>
+          <tag line="65" name="return" description="the session data" type="\-">
+            <type by_reference="false">\-</type>
           </tag>
         </docblock>
-        <argument line="72">
-          <name>$name</name>
-          <default></default>
-          <type/>
-        </argument>
-        <argument line="72">
-          <name>$emptyValue</name>
-          <default></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="93" package="Default">
-        <name>setVarFromURL</name>
-        <full_name>setVarFromURL</full_name>
-        <docblock line="79">
-          <description>Sets a variable from the URL by running the URL input through
-safeChars to make it html-safe and the right size, then
-looking for a cookie if the variable has not been set, and
-sets the variable to a default value if it has not been defined
-in the url or a cookie.</description>
-          <long-description></long-description>
-          <tag line="79" name="param" description="(string): the name of the variable to get/set" type="\" variable="$name"/>
-          <tag line="79" name="param" description="(string): a default value for the variable if no&#10;other value can be found" type="\" variable="$emptyValue"/>
-          <tag line="79" name="param" description="(int): a maximum length for the variable if pulled from URL" type="\" variable="$length"/>
-          <tag line="79" name="return" description="the default value or the value pulled from a cookie or URL" type="\(string):">
-            <type by_reference="false">\(string):</type>
-          </tag>
-        </docblock>
-        <argument line="93">
-          <name>$name</name>
-          <default></default>
-          <type/>
-        </argument>
-        <argument line="93">
-          <name>$emptyValue</name>
-          <default></default>
-          <type/>
-        </argument>
-        <argument line="93">
-          <name>$length</name>
-          <default></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="109" package="Default">
-        <name>setIfEmpty</name>
-        <full_name>setIfEmpty</full_name>
-        <docblock line="99">
-          <description>Checks if a given string is empty and returns the value to set
-it as if it is.</description>
-          <long-description>&lt;p&gt;if not, returns the string.&lt;/p&gt;</long-description>
-          <tag line="99" name="param" description="(string): string value to check" type="\" variable="$string"/>
-          <tag line="99" name="param" description="(string): Value to return if the string is empty" type="\" variable="$emptyValue"/>
-          <tag line="99" name="return" description="or $emptyValue (string): $string if the string is not empty&#10;&#9;or $emptyValue if the string is empty" type="\$string">
-            <type by_reference="false">\$string</type>
-          </tag>
-        </docblock>
-        <argument line="109">
-          <name>$string</name>
-          <default></default>
-          <type/>
-        </argument>
-        <argument line="109">
-          <name>$emptyValue</name>
-          <default></default>
-          <type/>
-        </argument>
       </method>
     </class>
-    <class final="false" abstract="false" namespace="global" line="129" package="Default">
+    <class final="false" abstract="false" namespace="global" line="87" package="Default">
       <extends/>
       <name>sanitation</name>
       <full_name>\sanitation</full_name>
-      <docblock line="120">
+      <docblock line="78">
         <description>Manages sanitizing user input.</description>
         <long-description>&lt;p&gt;Currently works only for strings,
 but adding functions to sanitize other data types is trivial.
@@ -978,87 +988,163 @@ sanitation functions are implemented. The sanitization for the
 requested return is called (returns an empty object if the
 sanitization can't convert the current one to the requested one).&lt;/p&gt;</long-description>
       </docblock>
-      <property final="false" static="false" visibility="private" line="131" namespace="global" package="Default">
+      <property final="false" static="false" visibility="protected" line="89" namespace="global" package="Default">
         <name>$dirty</name>
         <default></default>
       </property>
-      <property final="false" static="false" visibility="private" line="131" namespace="global" package="Default">
+      <property final="false" static="false" visibility="protected" line="89" namespace="global" package="Default">
         <name>$length</name>
         <default></default>
       </property>
-      <property final="false" static="false" visibility="private" line="131" namespace="global" package="Default">
-        <name>$type</name>
-        <default></default>
-      </property>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="143" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="101" package="Default">
         <name>__construct</name>
         <full_name>__construct</full_name>
-        <docblock line="133">
+        <docblock line="91">
           <description>Constructs an instance of the class
 containing the original variable and the sanitized
 variable</description>
           <long-description></long-description>
-          <tag line="133" name="param" description="(str) - the raw variable contents" type="\" variable="$rawVar"/>
-          <tag line="133" name="param" description="(str) - the desired type for the variable to be" type="\" variable="$type"/>
-          <tag line="133" name="param" description="(int) - a maximum length for the variable" type="\" variable="$length"/>
+          <tag line="91" name="param" description="(str) - the raw variable contents" type="\" variable="$rawVar"/>
+          <tag line="91" name="param" description="(str) - the desired type for the variable to be" type="\" variable="$type"/>
+          <tag line="91" name="param" description="(int) - a maximum length for the variable" type="\" variable="$length"/>
         </docblock>
-        <argument line="143">
+        <argument line="101">
           <name>$rawVar</name>
           <default></default>
           <type/>
         </argument>
-        <argument line="143">
-          <name>$type</name>
-          <default></default>
-          <type/>
-        </argument>
-        <argument line="143">
+        <argument line="101">
           <name>$length</name>
           <default></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="162" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="119" package="Default">
         <name>__get</name>
         <full_name>__get</full_name>
-        <docblock line="151">
+        <docblock line="108">
           <description>Returns a sanitized version of the variable.</description>
           <long-description>&lt;p&gt;If the requested
 type is not the same as the actual type, the class will
 attempt to convert it to the type if possible. Note that
 list cannot become a string.&lt;/p&gt;</long-description>
-          <tag line="151" name="param" description="the type of data to return (str, bool, arr, etc)" type="\" variable="$type:"/>
-          <tag line="151" name="return" description="a sanitized string" type="\-">
+          <tag line="108" name="param" description="- the type of data to return (str, bool, arr, etc)" type="\" variable="$type"/>
+          <tag line="108" name="return" description="a sanitized variable" type="\-">
             <type by_reference="false">\-</type>
           </tag>
         </docblock>
-        <argument line="162">
+        <argument line="119">
           <name>$type</name>
           <default></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="177" package="Default">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="130" package="Default">
         <name>str</name>
         <full_name>str</full_name>
-        <docblock line="167">
+        <docblock line="124">
           <description>Verify that a string is made of html-safe characters and
 short enough to fit where it belongs.</description>
           <long-description>&lt;p&gt;Basically some simple
 input sanitizing for nonsecure things.&lt;/p&gt;</long-description>
-          <tag line="167" name="param" description="(string): a string or something else" type="\" variable="$string"/>
-          <tag line="167" name="param" description="(integer): an integer value for the length limit of the string" type="\" variable="$length"/>
-          <tag line="167" name="return" description="(string): a html-safe and proper length string" type="\$safestring">
-            <type by_reference="false">\$safestring</type>
-          </tag>
         </docblock>
-        <argument line="177">
-          <name>$string</name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="155" package="Default">
+        <name>boo</name>
+        <full_name>boo</full_name>
+        <docblock line="152">
+          <description>Return a simple boolean based on the variable</description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+    </class>
+    <class final="false" abstract="false" namespace="global" line="208" package="Default">
+      <extends>\sanitation</extends>
+      <name>varGetter</name>
+      <full_name>\varGetter</full_name>
+      <docblock line="204">
+        <description>Provides an interface for retrieving variables using a specific
+method or by searching through each method to find a variable.</description>
+        <long-description></long-description>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="217" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="210">
+          <description>Constructs an instance of the class and finds the variable</description>
+          <long-description></long-description>
+          <tag line="210" name="param" description="- the name of the variable" type="\" variable="$name"/>
+          <tag line="210" name="param" description="(optional) - the allowed length of the variable" type="\" variable="$length"/>
+          <tag line="210" name="param" description="(optional) - the method to use" type="\" variable="$method"/>
+        </docblock>
+        <argument line="217">
+          <name>$name</name>
           <default></default>
           <type/>
         </argument>
-        <argument line="177">
+        <argument line="217">
           <name>$length</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="217">
+          <name>$method</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="247" package="Default">
+        <name>post</name>
+        <full_name>post</full_name>
+        <docblock line="243">
+          <description>Retrieves a variable via post</description>
+          <long-description></long-description>
+          <tag line="243" name="param" description="- the name of the variable" type="\" variable="$name"/>
+        </docblock>
+        <argument line="247">
+          <name>$name</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="255" package="Default">
+        <name>get</name>
+        <full_name>get</full_name>
+        <docblock line="251">
+          <description>Retrieves a variable via get</description>
+          <long-description></long-description>
+          <tag line="251" name="param" description="- the name of the variable" type="\" variable="$name"/>
+        </docblock>
+        <argument line="255">
+          <name>$name</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="263" package="Default">
+        <name>cookie</name>
+        <full_name>cookie</full_name>
+        <docblock line="259">
+          <description>Retrieves a variable via a cookie</description>
+          <long-description></long-description>
+          <tag line="259" name="param" description="- the name of the variable" type="\" variable="$name"/>
+        </docblock>
+        <argument line="263">
+          <name>$name</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="271" package="Default">
+        <name>fallback</name>
+        <full_name>fallback</full_name>
+        <docblock line="267">
+          <description>Retrieves a variable via the default</description>
+          <long-description></long-description>
+          <tag line="267" name="param" description="- the name of the variable" type="\" variable="$name"/>
+        </docblock>
+        <argument line="271">
+          <name>$name</name>
           <default></default>
           <type/>
         </argument>
@@ -1066,41 +1152,13 @@ input sanitizing for nonsecure things.&lt;/p&gt;</long-description>
     </class>
     <parse_markers>
       <error line="0" code="50007">No page-level DocBlock was found in file core_web.php</error>
-      <error line="23" code="50018">No DocBlock was found for property $request</error>
-      <error line="23" code="50018">No DocBlock was found for property $varDefs</error>
-      <error line="131" code="50018">No DocBlock was found for property $dirty</error>
-      <error line="131" code="50018">No DocBlock was found for property $length</error>
-      <error line="131" code="50018">No DocBlock was found for property $type</error>
-      <error line="151" code="50014">Name of argument $type does not match with the DocBlock's name $type: in __get()</error>
-      <notice line="151" code="50013">Parameter $type: could not be found in __get()</notice>
-    </parse_markers>
-  </file>
-  <file path="template_blognav.php" hash="67c784f5265421db15d800c704a82c39" package="Default">
-    <parse_markers>
-      <error line="0" code="50007">No page-level DocBlock was found in file template_blognav.php</error>
-    </parse_markers>
-  </file>
-  <file path="template_error.php" hash="18274c9babb90251f1b6d23ba9176a05" package="Default">
-    <parse_markers>
-      <error line="0" code="50007">No page-level DocBlock was found in file template_error.php</error>
-    </parse_markers>
-  </file>
-  <file path="template_footer.php" hash="b383daa2b9df6c761d50d085cc5f53dd" package="Default">
-    <parse_markers>
-      <error line="0" code="50007">No page-level DocBlock was found in file template_footer.php</error>
-    </parse_markers>
-  </file>
-  <file path="template_header.php" hash="4982f80f487b262e2eaa26b37596a482" package="Default">
-    <include line="5" type="Include" package="Default">
-      <name>template_introduction.php</name>
-    </include>
-    <parse_markers>
-      <error line="0" code="50007">No page-level DocBlock was found in file template_header.php</error>
-    </parse_markers>
-  </file>
-  <file path="template_introduction.php" hash="f693b87309d8376388fea617f5508119" package="Default">
-    <parse_markers>
-      <error line="0" code="50007">No page-level DocBlock was found in file template_introduction.php</error>
+      <error line="27" code="50018">No DocBlock was found for property $request</error>
+      <error line="27" code="50018">No DocBlock was found for property $varDefs</error>
+      <notice line="65" code="50013">Parameter  could not be found in dump()</notice>
+      <error line="89" code="50018">No DocBlock was found for property $dirty</error>
+      <error line="89" code="50018">No DocBlock was found for property $length</error>
+      <error line="91" code="50014">Name of argument $length does not match with the DocBlock's name $type in __construct()</error>
+      <notice line="91" code="50013">Parameter $type could not be found in __construct()</notice>
     </parse_markers>
   </file>
   <package name="Default" full_name="Default"/>
