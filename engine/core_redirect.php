@@ -1,20 +1,24 @@
 <?php
-/*
-* Author: Nate Levesque <public@thenaterhood.com>
-* Language: PHP
-* Filename: core_redirect.php
-* 
-* Description:
-* 	Manages redirecting (conditionally and not) for 301 and 302 redirects
-* 
-*/
+/**
+ * Contains classes to manage generating page redirects
+ * @author Nate Levesque <public@thenaterhood.com>
+ * 
+ * Language: PHP
+ * Filename: core_redirect.php
+ * 
+ * 
+ */
 
 /**
- * Provides an interface for redirecting pages
+ * Provides a class for redirecting pages
  * 
  */
 class redirect{
 	
+	/**
+	 * @var $origin - the page to redirect from
+	 * @var $destination - the destination to redirect to
+	 */
 	private $origin, $destination;
 	
 	/**
@@ -32,7 +36,6 @@ class redirect{
 	 * Provides a simple text output to check if the class
 	 * was initiated correctly
 	 * 
-	 * @param - unused
 	 */
 	public function test(){
 		print $this->origin." to ".$this->destination;
@@ -57,7 +60,6 @@ class redirect{
 	/**
 	 * Performs a 301 (permanent) redirect
 	 * 
-	 * @param - unused
 	 */
 	private function apply_301(){
 		
@@ -69,7 +71,6 @@ class redirect{
 	/**
 	 * Performs a 302 (temporary) redirect
 	 * 
-	 * @param - unused
 	 */
 	private function apply_302(){
 		
@@ -92,6 +93,10 @@ class redirect{
  */
 class condRedirect extends redirect{
 	
+	/**
+	 * @var $apply - whether or not the redirect needs to occur
+	 */
+	 
 	private $apply;	
 	/**
 	 * Creates an instance of the conditional redirect class
