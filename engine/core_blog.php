@@ -27,14 +27,10 @@ include 'core_web.php';
 class postObj {
 
 	/**
-	 * @var $title - the title of the post
-	 * @var $tags - the post tags
-	 * @var $date - the human-readable display date for the post
-	 * @var $datestamp - the atom-form datestamp of the post
-	 * @var $content - the html-coded post content
-	 * @var $link - the web address of the post
+	 * @var $postData - an associative array containing data for the post.
+	 * 	Being used for more efficient (and flexible) variable definitions.
 	 */
-	private $title, $tags, $date, $datestamp, $content, $link;
+	private $postData;
 	
 	/**
 	 * Reads and parses a post file and creates an instance
@@ -52,12 +48,12 @@ class postObj {
 		 * doesn't contain all of the expected fields in a typical way.
 		 */
 		
-		$this->title = "Oops! Post Not Found!";
-		$this->date = "";
-		$this->tags = "";
-		$this->datestamp = "";
-		$this->link = '/blog';
-		$this->content = '<p>Sorry, the post you were looking for could not be found.  If you think it should be here, try browsing by title.  Otherwise, <a href="blog/index.php">return to blog home.</a></p>'."\n".'<p>Think you were looking for something else? <a href="'.getConfigOption('site_domain').'">visit site home</a>.</p>';
+		$this->postData['title'] = "Oops! Post Not Found!";
+		$this->postData['date'] = "";
+		$this->postData['tags'] = "";
+		$this->postData['datestamp'] = "";
+		$this->postData['link'] = '/blog';
+		$this->postData['content'] = '<p>Sorry, the post you were looking for could not be found.  If you think it should be here, try browsing by title.  Otherwise, <a href="blog/index.php">return to blog home.</a></p>'."\n".'<p>Think you were looking for something else? <a href="'.getConfigOption('site_domain').'">visit site home</a>.</p>';
 		
 		if ( $nodefile == 'latest' ){
 			$nodes = getPostList();
@@ -66,14 +62,16 @@ class postObj {
 			
 		if (file_exists("$nodefile.json")){
 			$jsoncontents = file_get_contents("$nodefile.json");
-			$json_array = json_decode($jsoncontents, True);
 			
-			$this->title = $json_array['title'];
-			$this->date = $json_array['date'];
-			$this->tags = $json_array['tags'];
-			$this->datestamp = $json_array['datestamp'];
-			$this->content = implode($json_array['content']);
-			$this->link = getConfigOption('site_domain').'/blog/read/'.basename($nodefile, '.json').'.htm';
+			// Directly read data into the class
+			$this->postData = json_decode($jsoncontents, True);
+			
+			// Reformat and add data that the class relies on
+			
+			// Implode the array of lines for the content into a string
+			$this->postData['content'] = implode( $this->postData['content'] );
+			// Add the web url for the post
+			$this->postData['link'] = getConfigOption('site_domain').'/blog/read/'.basename($nodefile, '.json').'.htm';
 			
 		}
 		/*
@@ -90,19 +88,21 @@ class postObj {
 		 */
 		else{
 			if ( file_exists($nodefile) ){
+				
 				$file = fopen($nodefile, 'r');
-				$this->title = rtrim(fgets($file), "\n");
-				$this->date = rtrim(fgets($file), "\n");
-				$this->tags = rtrim(fgets($file), "\n");
-				$this->datestamp = rtrim(fgets($file), "\n"); 
-				$this->link = getConfigOption('site_domain').'/blog/read/'.basename($nodefile).'.htm';
+				
+				$this->postData['title'] = rtrim(fgets($file), "\n");
+				$this->postData['date'] = rtrim(fgets($file), "\n");
+				$this->postData['tags'] = rtrim(fgets($file), "\n");
+				$this->postData['datestamp'] = rtrim(fgets($file), "\n"); 
+				$this->postData['link'] = getConfigOption('site_domain').'/blog/read/'.basename($nodefile).'.htm';
 				$contents='';
 			
 				while(!feof($file)){
 					$contents .= "<p>".rtrim(fgets($file), "\n"). "</p>\n";
 				}
 			
-				$this->content = $contents;
+				$this->postData['content'] = $contents;
 			
 				fclose($file);
 			}
@@ -116,11 +116,11 @@ class postObj {
 	public function atom_output() {
 
 		$r = "<entry>";
-		$r .= "<id>" . $this->link . "</id>";
-		$r .= '<link href="'.$this->link.'" />';
-		$r .= '<updated>'.$this->datestamp.'</updated>';
-		$r .= "<title>" . $this->title . "</title>";
-		$r .= "<content type='html'>" . htmlspecialchars( $this->content ) . "</content>";
+		$r .= "<id>" . $this->postData['link'] . "</id>";
+		$r .= '<link href="'.$this->postData['link'].'" />';
+		$r .= '<updated>'.$this->postData['datestamp'].'</updated>';
+		$r .= "<title>" . $this->postData['title'] . "</title>";
+		$r .= "<content type='html'>" . htmlspecialchars( $this->postData['content'] ) . "</content>";
 		$r .= "</entry>";
 		return $r;
 	} 
@@ -131,11 +131,11 @@ class postObj {
 	*/
 	public function page_output() {
 		
-		$r = '<h3 class="title"><a href="'.$this->link.'">'.$this->title.'</a></h3>'."\n";
-		$r .= '<h4 class="date">'.$this->date.'</h4>'."\n";
-		$r .= $this->content;
-		if ( $this->datestamp != ""){
-			$r .= "<h5 class='tags'>Tags: ".$this->tags."</h5>\n";
+		$r = '<h3 class="title"><a href="'.$this->postData['link'].'">'.$this->title.'</a></h3>'."\n";
+		$r .= '<h4 class="date">'.$this->postData['date'].'</h4>'."\n";
+		$r .= $this->postData['content'];
+		if ( $this->postData['datestamp'] != ""){
+			$r .= "<h5 class='tags'>Tags: ".$this->postData['tags']."</h5>\n";
 		}
 		return $r;
 	}
@@ -147,7 +147,7 @@ class postObj {
 	 */
 	public function list_item_output(){
 
-		 $r = '<a href="'. $this->link .'">' . $this->title . '</a><i> - '. $this->tags .'</i>';
+		 $r = '<a href="'. $this->postData['link'] .'">' . $this->postData['title'] . '</a><i> - '. $this->postData['tags'] .'</i>';
 		 return $r;
 	 }
 	
@@ -157,7 +157,7 @@ class postObj {
 	 * @param $field (str) - the name of the field to return
 	 */
 	public function __get($field){ 
-		return $this->$field; 
+		return $this->postData[$field]; 
 	}
  }
  
