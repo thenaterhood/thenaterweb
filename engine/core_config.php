@@ -148,8 +148,8 @@ class config{
 		$this->node = array( '', 10 );
 		
 		$this->track = array( '', 1 );
-		$this->start = array( 0, 5 );
-		$this->end = array( $this->posts_per_page, 5);
+		$this->start = array( '0', 5 );
+		$this->end = array( "$this->posts_per_page", 5);
 		
 	}
 	
