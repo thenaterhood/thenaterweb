@@ -28,7 +28,7 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">68</span></a></li>
+                <span class="label label-info">22</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul></ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
@@ -94,12 +94,7 @@ the function was called with.</span><pre>randomGreeting</pre></a></li>
 <i class="icon-custom icon-class"></i> Classes</li>
 <li><a href="#atom_feed" title="Defines a data object to contain an atom feed as items
 are added and the feed is updated then returned">atom_feed</a></li>
-<li><a href="#postObj" title="Contains everything to do with retrieving and outputting
-posts in multiple forms.">postObj</a></li>
-<li><a href="#config" title="Defines a class to hold variables for configuration
-options.">config</a></li>
-<li><a href="#jsonMaker" title="">jsonMaker</a></li>
-<li><a href="#redirect" title="Provides an interface for redirecting pages">redirect</a></li>
+<li><a href="#redirect" title="Provides a class for redirecting pages">redirect</a></li>
 <li><a href="#condRedirect" title="Manages conditionally redirecting pages based
 on the requested uri and a given uri to redirect from.">condRedirect</a></li>
 <li><a href="#urlset" title="Defines a data object to contain an atom feed as items
@@ -112,6 +107,11 @@ settings are more easily applied site-wide.">session</a></li>
 <li><a href="#sanitation" title="Manages sanitizing user input.">sanitation</a></li>
 <li><a href="#varGetter" title="Provides an interface for retrieving variables using a specific
 method or by searching through each method to find a variable.">varGetter</a></li>
+<li><a href="#config" title="Defines a class to hold variables for configuration
+options.">config</a></li>
+<li><a href="#jsonMaker" title="Constructs an array of json data from an associative array">jsonMaker</a></li>
+<li><a href="#postObj" title="Contains everything to do with retrieving and outputting
+posts in multiple forms.">postObj</a></li>
 </ul>
 </div>
 <div class="span8 package-contents">
@@ -129,7 +129,11 @@ method or by searching through each method to find a variable.">varGetter</a></l
 <div class="long_description"><p>Used mainly for generating random suggestions
 for additional blog posts to read.</p></div>
 <h3>Parameters</h3>
-<div class="subelement argument"><h4>$filename</h4></div>
+<div class="subelement argument">
+<h4>$filename</h4><ul>
+<li>a filename to pull a line from</li>
+</ul>
+</div>
 </div></div>
 </div>
 <a id="function_checkInventory"></a><div class="element clickable function  function_checkInventory" data-toggle="collapse" data-target=".function_checkInventory .collapse">
@@ -246,14 +250,14 @@ posts.</h2>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"><p>Right now picks them randomly, but in the future might
-rely on a better algorithm.</p>
-
-<p>Arguments:
- $number (int): how many to generate and display
- $tag (string): a tag or tags to use for generating suggestions</p></div>
+rely on a better algorithm.</p></div>
 <h3>Parameters</h3>
-<div class="subelement argument"><h4>$number</h4></div>
-<div class="subelement argument"><h4>$tag</h4></div>
+<div class="subelement argument">
+<h4>$number</h4><p>(int): how many to generate and display</p>
+</div>
+<div class="subelement argument">
+<h4>$tag</h4><p>(string): a tag or tags to use for generating suggestions</p>
+</div>
 </div></div>
 </div>
 <a id="function_randomGreeting"></a><div class="element clickable function  function_randomGreeting" data-toggle="collapse" data-target=".function_randomGreeting .collapse">
@@ -307,7 +311,7 @@ options.</p>
 <div id="jsonMaker" class="element ajax clickable class">
 <h1>jsonMaker<a href="../classes/jsonMaker.html">¶</a>
 </h1>
-<p class="short_description"></p>
+<p class="short_description">Constructs an array of json data from an associative array</p>
 <div class="details collapse"></div>
 <a href="../classes/jsonMaker.html" class="more">« More »</a>
 </div>
@@ -322,7 +326,7 @@ posts in multiple forms.</p>
 <div id="redirect" class="element ajax clickable class">
 <h1>redirect<a href="../classes/redirect.html">¶</a>
 </h1>
-<p class="short_description">Provides an interface for redirecting pages</p>
+<p class="short_description">Provides a class for redirecting pages</p>
 <div class="details collapse"></div>
 <a href="../classes/redirect.html" class="more">« More »</a>
 </div>
@@ -372,7 +376,7 @@ method or by searching through each method to find a variable.</p>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
-            generated on 2013-04-10T16:18:11-04:00.<br></footer></div>
+            generated on 2013-04-10T21:01:40-04:00.<br></footer></div>
 </div>
 </body>
 </html>

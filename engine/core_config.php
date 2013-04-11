@@ -1,12 +1,12 @@
 <?php
-/*
- * Author: Nate Levesque <public@thenaterhood.com>
+/**
+ * Contains configuration settings for the site engine to use
+ * as a php class that can be directly accessed.
+ * 
+ * @author Nate Levesque <public@thenaterhood.com>
  * Language: PHP
  * Filename: core_config.php
  *
- * Description:
- * 	Contains a class to store configuration options with a getter
- * 	so that they can be retrieved arbitrarily.
  */
 
 /**
@@ -16,6 +16,10 @@
  */
 class config{
 	
+	/**
+	 * variables are documented where they are set lower in the code
+	 * and so documenting here as per phpdoc standards appears excessive.
+	 */
 	private static $webcore_root;
 	private static $dynamic_directory;
 	private static $auto_feed_regen;

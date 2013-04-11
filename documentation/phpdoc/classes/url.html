@@ -28,7 +28,7 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">68</span></a></li>
+                <span class="label label-info">22</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul></ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
@@ -86,12 +86,14 @@ returned and displayed or saved</span><pre>output()</pre></a></li>
 <i class="icon-custom icon-method"></i> Methods</h3>
 <a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
 <h2>Creates the data object to contain the atom feed item.</h2>
-<pre>__construct($loc, $lastmod) </pre>
+<pre>__construct($link, $lastmod) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Parameters</h3>
-<div class="subelement argument"><h4>$loc</h4></div>
+<div class="subelement argument">
+<h4>$link</h4><p>(str): the web address of the item source</p>
+</div>
 <div class="subelement argument">
 <h4>$lastmod</h4><p>(str): the item modification date</p>
 </div>
@@ -113,13 +115,13 @@ returned and displayed or saved</h2>
 <i class="icon-custom icon-property"></i> Properties</h3>
 <a id="property_lastmod"> </a><div class="element clickable property public property_lastmod" data-toggle="collapse" data-target=".property_lastmod .collapse">
 <h2></h2>
-<pre>$lastmod </pre>
+<pre>$lastmod : \$loc: \$lastmod</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
 <a id="property_loc"> </a><div class="element clickable property public property_loc" data-toggle="collapse" data-target=".property_loc .collapse">
 <h2></h2>
-<pre>$loc </pre>
+<pre>$loc : \$loc: \$lastmod</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
@@ -130,7 +132,7 @@ returned and displayed or saved</h2>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
-            generated on 2013-04-10T16:18:11-04:00.<br></footer></div>
+            generated on 2013-04-10T21:01:40-04:00.<br></footer></div>
 </div>
 </body>
 </html>
