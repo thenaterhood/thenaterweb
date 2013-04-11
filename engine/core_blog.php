@@ -131,7 +131,7 @@ class postObj {
 	*/
 	public function page_output() {
 		
-		$r = '<h3 class="title"><a href="'.$this->postData['link'].'">'.$this->title.'</a></h3>'."\n";
+		$r = '<h3 class="title"><a href="'.$this->postData['link'].'">'.$this->postData['title'].'</a></h3>'."\n";
 		$r .= '<h4 class="date">'.$this->postData['date'].'</h4>'."\n";
 		$r .= $this->postData['content'];
 		if ( $this->postData['datestamp'] != ""){
