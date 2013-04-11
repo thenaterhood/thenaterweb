@@ -222,10 +222,11 @@ class varGetter extends sanitation{
 	  * @param $length (optional) - the allowed length of the variable
 	  * @param $method (optional) - the method to use
 	  */	 
-	 public function __construct( $name, $length, $method ){
+	 public function __construct( $name ){
 		 
 		 if ( ! $length ){ // If no length specified, find the default
-			 $length = getConfigOption( $name )[1];
+			 $conf = getConfigOption( $name );
+			 $length = $conf[1];
 		 }
 		 if ( ! $length ){ // If still no length, default to 50
 			 $length = 50;
@@ -277,7 +278,8 @@ class varGetter extends sanitation{
 	  * @param $name - the name of the variable
 	  */
 	 private function fallback( $name ){
-		 $this->dirty = getConfigOption( $name )[0];
+		 $conf = getConfigOption( $name );
+		 $this->dirty = $conf[0];
 	 }
 	 
  }
