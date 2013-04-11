@@ -1,14 +1,17 @@
 <?php
-/*
-* Author: Nate Levesque <public@thenaterhood.com>
-* Language: PHP
-* Filename: core_blog.php
-* 
-* Description:
-*	Contains classes and functions for retrieving and displaying
-*	blog posts and other aspects of the blog platform
-*/
+/**
+ * Contains classes and functions for retrieving, displaying, and
+ * managing blog posts and other aspects of the blog platform
+ * 
+ * @author Nate Levesque <public@thenaterhood.com>
+ * Language: PHP
+ * Filename: core_blog.php
+ * 
+ */
 
+/**
+ * Includes the core_web functions
+ */
 include 'core_web.php';
 
 /**
@@ -23,6 +26,14 @@ include 'core_web.php';
 */
 class postObj {
 
+	/**
+	 * @var $title - the title of the post
+	 * @var $tags - the post tags
+	 * @var $date - the human-readable display date for the post
+	 * @var $datestamp - the atom-form datestamp of the post
+	 * @var $content - the html-coded post content
+	 * @var $link - the web address of the post
+	 */
 	private $title, $tags, $date, $datestamp, $content, $link;
 	
 	/**
@@ -240,6 +251,8 @@ function regenInventory(){
 * Returns a random line of a given file.
 * Used mainly for generating random suggestions 
 * for additional blog posts to read.
+* 
+* @param $filename - a filename to pull a line from
 */
 function RandomLine($filename) {
 
@@ -252,9 +265,8 @@ function RandomLine($filename) {
 * posts.  Right now picks them randomly, but in the future might
 * rely on a better algorithm.
 * 
-* Arguments:
-*  $number (int): how many to generate and display
-*  $tag (string): a tag or tags to use for generating suggestions
+* @param $number (int): how many to generate and display
+* @param $tag (string): a tag or tags to use for generating suggestions
 */
 function getSuggestions($number, $tag){
 
