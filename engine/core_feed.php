@@ -74,9 +74,9 @@ class feed {
 	}
 	/**
 	 * Returns a displayable representation of the feed
-	 * with appropriate code added for an atom feed.  Relies on the postObj 
-	 * class to generate code for individidual
-	 * feed items.
+	 * with appropriate code added.  Relies on the postObj 
+	 * atom_output() function to generate code for individidual
+	 * feed items. Returns ATOM format.
 	 * 
 	 */
 	private function atom() {
@@ -107,6 +107,7 @@ xml:base="'.getConfigOption('site_domain').'/">';
 		# The code produced is not valid due to the xml tag 
 		# which should have a ? before each <>. This breaks the
 		# php.
+		
 		$r ='<xml version="1.0">';
 		$r .= '<rss version = "2.0">\n';
 		$r .= "<channel>";

@@ -92,11 +92,11 @@ class config{
 		# to do url rewriting, otherwise it won't work out well. Requires
 		# modifications to .htaccess as currently implemented.
 		$this->friendly_urls = True;
-		
-		# Which feed format to use, atom or rss. The only valid
-		# values here are either atom or rss. If the value is
-		# not recognized, the site software will default to atom
-		# as it is a superior format
+
+		# Sets which feed format to use when generating feeds. Valid
+		# options are 'atom' and 'rss'. Anything other than those will
+		# cause the site to default to atom, which is the superior 
+		# format.
 		$this->feed_type = 'atom';
 		
 		# The tracking code that the site should use should be pasted here.
