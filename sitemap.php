@@ -1,6 +1,6 @@
 <?php
-include 'static/core_sitemap.php';
-include 'static/core_web.php';
+include 'engine/core_sitemap.php';
+include 'engine/core_web.php';
 
 $session = new session( array('regen') );
 $config = new config();

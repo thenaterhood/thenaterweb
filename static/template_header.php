@@ -10,7 +10,7 @@
 	<div id="upperbar"></div>
 	<div id="header">
 		<div id="logo">
-			<h1><a <?php if ("$id" != "home") print "id='altHeader' " ?>href='http://www.thenaterhood.com/?id=home'>Nate Levesque</a>{ <?php if ("$id" == "home") print ""; else print "$id"; ?> };</h1>
+			<h1><a <?php if ("$id" != "home") print "id='altHeader' " ?>href='/?id=home'>Nate Levesque</a>{ <?php if ("$id" == "home") print ""; else print "$id"; ?> };</h1>
 			<?php if ("$id" == "home") print "<h2 id='catchline'>Colloquially, TheNaterhood</h2>"; else print "<h2></h2>" ?>
 		</div>
 		<div id="logo2">

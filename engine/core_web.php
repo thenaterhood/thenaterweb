@@ -1,15 +1,19 @@
 <?php
-/*
-* Author: Nate Levesque <public@thenaterhood.com>
-* Language: PHP
-* Filename: core_web.php
-* 
-* Description:
-* 	Contains functions for basic web capabilities such as reading
-* 	variables from the URL (safely), setting/getting cookies and config
-* 	options.
-*/
+/**
+ * 
+ * Contains functions for basic web capabilities such as reading
+ * variables from the URL (safely), setting/getting cookies and config
+ * options.
+ * @author Nate Levesque <public@thenaterhood.com>
+ * @copyright Nate Levesque 2013
+ * Language: PHP
+ * Filename: core_web.php
+ * 
+ */
 
+/**
+ * Include the config file
+ */
 include 'core_config.php';
 
 /**
@@ -17,9 +21,14 @@ include 'core_config.php';
  * user in a clean way, so that internal variables for pulling
  * pages and otherwise can be managed more easily and sanitation
  * settings are more easily applied site-wide.
+ * 
  */
 class session{
 	
+	/**
+	 * @var $request (array) - the variables to be contained
+	 * @var $varDefs (assoc. array) - the variables and assignments
+	 */
 	private $request, $varDefs;
 	
 	/**
@@ -31,16 +40,16 @@ class session{
 	 */	
 	public function __construct($request){
 	
-		foreach( $request as $name){
-			$varConf = getConfigOption($name);
-			
-			if ( $varConf ){
-				$this->varDefs[$name] = $this->setVarFromURL( $name, $varConf[0], $varConf[1] );
-			}
-			else{
-				$this->varDefs[$name] = $this->setVarFromURL( $name, '', 50 );
-			}
+		foreach( $request as $name ){
+
+			$varGetter = new varGetter( $name );				// Retrieve the variable
+			$this->varDefs[$name] = $varGetter->str;			// Store the variable in the session
+			unset( $varGetter );								// Destroy the varGetter object
 		}
+		
+		$this->varDefs["domain"] = $_SERVER['HTTP_HOST'];
+		$this->varDefs["uri"] = $_SERVER['REQUEST_URI'];
+		$this->varDefs["referrer"] = $_SERVER['HTTP_REFERER'];
 	}
 	
 	/**
@@ -56,60 +65,17 @@ class session{
 		return $this->varDefs[$field];
 	}
 	
-	/**
-	* Checks the cookie with the given name and returns its contents,
-	* or a default value if the cookie is empty/doesn't exist
-	* 
-	* @param $name (string) - the name of the cookie to check
-	* @param $emptyValue (string) - string to return if the cookie is bad
-	*
-	* @return $contents (string)- the contents of the cookie or default value
-	*/
-	private function checkCookie($name, $emptyValue){
 
-		$contents = $_COOKIE[$name];
-		
-		return $this->setIfEmpty($contents, $emptyValue);
-	}
-
-	/**
-	* Sets a variable from the URL by running the URL input through
-	* safeChars to make it html-safe and the right size, then
-	* looking for a cookie if the variable has not been set, and 
-	* sets the variable to a default value if it has not been defined
-	* in the url or a cookie.
-	*
-	* @param $name (string): the name of the variable to get/set
-	* @param $emptyValue (string): a default value for the variable if no
-	* other value can be found
-	* @param $length (int): a maximum length for the variable if pulled from URL
-	*
-	* @return (string): the default value or the value pulled from a cookie or URL
-	*/
-	private function setVarFromURL($name, $emptyValue, $length){
-
-		$sanitized = new sanitation($_GET[$name], 'str', $length);
-		return $this->setIfEmpty($sanitized->str, $this->checkCookie($name, $emptyValue));
-	}
 	
 	/**
-	* Checks if a given string is empty and returns the value to set
-	* it as if it is.  if not, returns the string.
-	*
-	* @param $string (string): string value to check
-	* @param $emptyValue (string): Value to return if the string is empty
-	*
-	* @return $string or $emptyValue (string): $string if the string is not empty
-	*		or $emptyValue if the string is empty
-	*/
-	private function setIfEmpty($string, $emptyValue){
-
-		if (empty($string)){
-			return $emptyValue;
-		}
-		else{
-			return $string;
-		}
+	 * Dumps the contained session data as an associative array
+	 * 
+	 * @return - the session data
+	 */
+	public function dump(){
+		
+		return $this->varDefs;
+		
 	}
 }
 
@@ -124,7 +90,11 @@ class session{
  */
 class sanitation{
 
-	private $dirty, $length, $type;
+	/**
+	 * @var $dirty (str) - the string retrieved
+	 * @var $length (int) - the maximum allowed length of the string
+	 */
+	protected $dirty, $length;
 	
 	/**
 	 * Constructs an instance of the class
@@ -132,15 +102,13 @@ class sanitation{
 	 * variable
 	 * 
 	 * @param $rawVar (str) - the raw variable contents
-	 * @param $type (str) - the desired type for the variable to be
 	 * @param $length (int) - a maximum length for the variable
 	 * 
 	 */
-	public function __construct($rawVar, $type, $length){
+	public function __construct($rawVar, $length){
 
 		$this->dirty = $rawVar;
 		$this->length = $length;
-		$this->type = $type;
 		
 	}
 	
@@ -150,14 +118,14 @@ class sanitation{
 	 * attempt to convert it to the type if possible. Note that
 	 * list cannot become a string.
 	 * 
-	 * @param $type: the type of data to return (str, bool, arr, etc)
+	 * @param $type - the type of data to return (str, bool, arr, etc)
 	 * 
-	 * @return - a sanitized string
+	 * @return - a sanitized variable
 	 * 
 	 */
 	public function __get($type){
 		
-		return $this->$type($this->dirty, $this->length);
+		return $this->$type();
 	}
 	
 	/**
@@ -165,33 +133,42 @@ class sanitation{
 	* short enough to fit where it belongs.  Basically some simple
 	* input sanitizing for nonsecure things.
 	* 
-	* @param $string (string): a string or something else
-	* @param $length (integer): an integer value for the length limit of the string
-	* 
-	* @return $safestring (string): a html-safe and proper length string
 	*/
-	private function str($string, $length) {
-		
+	private function str() {
 		# Check that the string is actually a string, return "" if not
-		if (gettype($string) != 'string'){
+		if (gettype($this->dirty) != 'string'){
 			return '';
 		}
 		
 		#Santize input so that it's text so we don't have XSS problems
-		$safestring = preg_replace('/[^a-zA-Z0-9\s.]/', '', $string);
+		$safestring = preg_replace('/[^a-zA-Z0-9\s.]/', '', $this->dirty);
 	
 		$saferstring = htmlspecialchars($safestring, ENT_QUOTES);
 		
 		#Check the length of the string and the limit given, truncate if needed
-		if ($length == 0){
+		if ($this->length == 0){
 			return $saferstring;
 		}
-		if (strlen($saferstring) > $length){
-			return substr($saferstring, 0, $length);
+		if (strlen($saferstring) > $this->length){
+			return substr($saferstring, 0, $this->length);
 		}
 		else {
 			return $saferstring;
 		}
+	}
+	
+	/**
+	 * Return a simple boolean based on the variable
+	 */
+	private function boo(){
+		
+		if ( $this->dirty and $this->dirty != "False" ){
+			return True;
+		}
+		else{ 
+			return False; 
+		}
+		
 	}
 }
 
@@ -230,6 +207,82 @@ function randomGreeting($first_name){
 	return $greetings[ array_rand($greetings) ].", $first_name";
 	
 }
+
+
+/**
+ * Provides an interface for retrieving variables using a specific
+ * method or by searching through each method to find a variable.
+ */
+class varGetter extends sanitation{
+	 
+	 /**
+	  * Constructs an instance of the class and finds the variable
+	  * 
+	  * @param $name - the name of the variable
+	  * @param $length (optional) - the allowed length of the variable
+	  * @param $method (optional) - the method to use
+	  */	 
+	 public function __construct( $name ){
+		 
+		 if ( ! $length ){ // If no length specified, find the default
+			 $conf = getConfigOption( $name );
+			 $length = $conf[1];
+		 }
+		 if ( ! $length ){ // If still no length, default to 50
+			 $length = 50;
+		 }
+		 
+		 $this->length = $length;		 
+
+		 if ( ! $method ){ // If no method is specified, try all of them
+			 $methods = array( post, get, cookie, fallback );
+			 $i = 0;
+			 while ( $i < count( $methods ) and $this->dirty == null ){
+				 $this->$methods[$i]($name);
+				 $i++;
+			 }
+		 }
+		 else{
+			 $this->$method( $name );
+		 }
+		 
+		 
+	 }
+	 
+	 /**
+	  * Retrieves a variable via post
+	  * @param $name - the name of the variable
+	  */
+	 private function post( $name ){
+		 $this->dirty = $_POST[ $name ];
+	 }
+	 
+	 /**
+	  * Retrieves a variable via get
+	  * @param $name - the name of the variable
+	  */
+	 private function get( $name ){
+		 $this->dirty = $_GET[ $name ];
+	 }
+	 
+	 /**
+	  * Retrieves a variable via a cookie
+	  * @param $name - the name of the variable
+	  */
+	 private function cookie( $name ){
+		 $this->dirty = $_COOKIE[ $name ]; 
+	 }
+	 
+	 /**
+	  * Retrieves a variable via the default
+	  * @param $name - the name of the variable
+	  */
+	 private function fallback( $name ){
+		 $conf = getConfigOption( $name );
+		 $this->dirty = $conf[0];
+	 }
+	 
+ }
 
 /**
  * Built to abstract retrieving config variables, since

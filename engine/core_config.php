@@ -1,12 +1,12 @@
 <?php
-/*
- * Author: Nate Levesque <public@thenaterhood.com>
+/**
+ * Contains configuration settings for the site engine to use
+ * as a php class that can be directly accessed.
+ * 
+ * @author Nate Levesque <public@thenaterhood.com>
  * Language: PHP
  * Filename: core_config.php
  *
- * Description:
- * 	Contains a class to store configuration options with a getter
- * 	so that they can be retrieved arbitrarily.
  */
 
 /**
@@ -16,6 +16,10 @@
  */
 class config{
 	
+	/**
+	 * variables are documented where they are set lower in the code
+	 * and so documenting here as per phpdoc standards appears excessive.
+	 */
 	private static $webcore_root;
 	private static $dynamic_directory;
 	private static $auto_feed_regen;
@@ -28,6 +32,7 @@ class config{
 	private static $site_domain;
 	private static $site_author;
 	private static $tracking_code;
+	private static $friendly_urls;
 	
 	# Variable settings
 	private static $name;
@@ -43,7 +48,7 @@ class config{
 	 */
 	function __construct(){
 		
-		# Sets the root directory for the main site page, template, and php files
+		# Sets the root directory for the main site pages and template
 		$this->webcore_root =  '/var/www/static';
 		
 		# Sets the directory for storing dynamically created files
@@ -74,11 +79,18 @@ class config{
 		
 		# The domain name of the site (note that this can be automatically
 		# determined if needed)
-		$this->site_domain = 'http://192.168.1.103';
+		$this->site_domain = 'http://www.thenaterhood.com';
 		
 		# The owner/author of the website, used in places where an author
 		# is needed, such as the atom feed.
 		$this->site_author = 'Nate Levesque';
+		
+		# This tells the site software whether to use "friendly" urls
+		# rather than dynamic urls, so site.com/page/home rather than
+		# site.com/?id=home. ONLY enable this if your server allows you
+		# to do url rewriting, otherwise it won't work out well. Requires
+		# modifications to .htaccess as currently implemented.
+		$this->friendly_urls = True;
 		
 		# The tracking code that the site should use should be pasted here.
 		# Be careful with quotes, as this is read in as a string.  This
@@ -136,8 +148,8 @@ class config{
 		$this->node = array( '', 10 );
 		
 		$this->track = array( '', 1 );
-		$this->start = array( 0, 5 );
-		$this->end = array( $this->posts_per_page, 5);
+		$this->start = array( '0', 5 );
+		$this->end = array( "$this->posts_per_page", 5);
 		
 	}
 	

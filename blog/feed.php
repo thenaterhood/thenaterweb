@@ -1,7 +1,7 @@
 <?php
 
-include '../static/core_atom.php';
-include '../static/core_blog.php';
+include '../engine/core_atom.php';
+include '../engine/core_blog.php';
 
 $session = new session( array('regen') );
 $config = new config();
