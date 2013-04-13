@@ -123,7 +123,24 @@ class postObj {
 		$r .= "<content type='html'>" . htmlspecialchars( $this->postData['content'] ) . "</content>";
 		$r .= "</entry>";
 		return $r;
-	} 
+	}
+	
+	/**
+	 * Produces the coded output of the item that can be returned
+	 * and displayed or saved in an rss feed
+	 */
+	public function rss_output(){
+		
+		$r = "<item>";
+		$r .= "<title>" . $this->postData['title'] ."</title>";
+		$r .= "<link>" . $this->postData['link'] . "</link>";
+		# Produces a "description" by taking the first 100 characters of the content
+		$r .= "<description>" . substr( htmlspecialchars( $this->postData['content'] ), 0, 100 ) . "...</description>";
+		$r .= "</item>";
+		
+		return $r;
+		
+	}
 	
 	/**
 	* Produces the coded output of the item that can be displayed

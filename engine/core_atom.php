@@ -17,14 +17,11 @@
 class atom_feed {
 	
 	/**
-	 * @var $title - the feed title
-	 * @var $link - a link to the feed
-	 * @var $description - a description or tagline for the feed
-	 * @var $feedstamp - the atom format generation date for the feed
-	 * @var $author - the author publishing the feed
+	 * @var $items - an array of postObj instances
+	 * @var $feedMeta - the feed metadata - location, title, author, datestamps
 	 */
 
-	private $title, $link, $description, $feedstamp, $author;
+	private $feedMeta, $items;
 	
 	/**
 	 * Creates an empty atom feed object with metadata
@@ -36,11 +33,11 @@ class atom_feed {
 	 */
 	public function __construct($title, $link, $description, $feedstamp) {
 
-		$this->title = $title;
-		$this->link = $link;
-		$this->description = $description;
-		$this->feedstamp = $feedstamp;
-		$this->author = $config->site_author;
+		$this->feedMeta['title'] = $title;
+		$this->feedMeta['link'] = $link;
+		$this->feedMeta['description'] = $description;
+		$this->feedMeta['feedstamp'] = $feedstamp;
+		$this->feedMeta['author'] = $config->site_author;
 		$this->items = array();
 
 	}
@@ -71,16 +68,34 @@ class atom_feed {
 xml:lang="en"
 xml:base="'.getConfigOption('site_domain').'/">';
 		$r .= "\n";
-		$r .= '<subtitle type="html">' . $this->description . "</subtitle>\n";
+		$r .= '<subtitle type="html">' . $this->feedMeta['description'] . "</subtitle>\n";
 		$r .= "";
-		$r .= "<id>" . $this->link . "</id>\n";
-		$r .= "<title>" . $this->title . "</title>\n";
-		$r .= "<updated>". $this->feedstamp ."</updated>\n";
-		$r .= "<author><name>".$this->author."</name></author>\n";
+		$r .= "<id>" . $this->feedMeta['link'] . "</id>\n";
+		$r .= "<title>" . $this->feedMeta['title'] . "</title>\n";
+		$r .= "<updated>". $this->feedMeta['feedstamp'] ."</updated>\n";
+		$r .= "<author><name>".$this->feedMeta['author']."</name></author>\n";
 		foreach ($this->items as $item) {
 			$r .= $item->atom_output();
 		}
 		$r .= "</feed>";
+		return $r;
+	}
+	
+	private function rss() {
+		
+		$r ='<?xml version="1.0"?>';
+		$r .= '<rss version = "2.0">\n';
+		$r .= "<channel>";
+		$r .= "<title>" . $this->feedMeta['title'] . "</title>";
+		$r .= "<link>" . $this->feedMeta['link'] . "</link>";
+		$r .= "<description>" . $this->feedMeta['description'] . "</description>";
+		foreach ($this->items as $item){
+			$r .= $item->rss_output();
+		}
+		
+		$r .= "</channel>";
+		$r .= "</rss>";		
+		
 		return $r;
 	}
 
