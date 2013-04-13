@@ -83,7 +83,7 @@ xml:base="'.getConfigOption('site_domain').'/">';
 	
 	private function rss() {
 		
-		$r ='<?xml version="1.0"?>';
+		$r ='<xml version="1.0">';
 		$r .= '<rss version = "2.0">\n';
 		$r .= "<channel>";
 		$r .= "<title>" . $this->feedMeta['title'] . "</title>";
