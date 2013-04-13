@@ -33,6 +33,7 @@ class config{
 	private static $site_author;
 	private static $tracking_code;
 	private static $friendly_urls;
+	private static $feed_type;
 	
 	# Variable settings
 	private static $name;
@@ -91,6 +92,12 @@ class config{
 		# to do url rewriting, otherwise it won't work out well. Requires
 		# modifications to .htaccess as currently implemented.
 		$this->friendly_urls = True;
+		
+		# Which feed format to use, atom or rss. The only valid
+		# values here are either atom or rss. If the value is
+		# not recognized, the site software will default to atom
+		# as it is a superior format
+		$this->feed_type = 'atom';
 		
 		# The tracking code that the site should use should be pasted here.
 		# Be careful with quotes, as this is read in as a string.  This
