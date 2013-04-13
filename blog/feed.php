@@ -1,6 +1,6 @@
 <?php
 
-include '../engine/core_atom.php';
+include '../engine/core_feed.php';
 include '../engine/core_blog.php';
 
 $session = new session( array('regen') );
@@ -29,7 +29,7 @@ else{
 		regenInventory();
 		$feed = generateFeed();
 		$file = fopen("$feedLocation/feed.xml", 'w');
-		fwrite($file, $feed->output());
+		fwrite($file, $feed->output( getConfigOption('feed_type') );
 		fclose($file);
 	}
 	include "$feedLocation/feed.xml";
