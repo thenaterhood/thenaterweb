@@ -29,7 +29,7 @@ else{
 		regenInventory();
 		$feed = generateFeed();
 		$file = fopen("$feedLocation/feed.xml", 'w');
-		fwrite($file, $feed->output( $config->feed_type );
+		fwrite($file, $feed->output( getConfigOption('feed_type') ) );
 		fclose($file);
 	}
 	include "$feedLocation/feed.xml";
