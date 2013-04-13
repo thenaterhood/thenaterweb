@@ -6,7 +6,7 @@
  * 
  * @author Nate Levesque <public@thenaterhood.com>
  * Language: PHP
- * Filename: core_atom.php
+ * Filename: core_feed.php
  * 
  */
 
@@ -14,7 +14,7 @@
  * Defines a data object to contain an atom feed as items
  * are added and the feed is updated then returned
  */
-class atom_feed {
+class feed {
 	
 	/**
 	 * @var $items - an array of postObj instances
@@ -56,13 +56,30 @@ class atom_feed {
 	}
 	
 	/**
+	 * Returns a valid feed with the requested format.
+	 * 
+	 * @param $type - the type of feed to return (atom/rss). Defaults
+	 * to atom (superior) if the type given not recognized.
+	 */
+	public function output( $type ){
+		
+		if ( $type == "rss" ){
+			return $this->rss();
+		}
+		
+		else{
+			
+			return $this->atom();
+		}
+	}
+	/**
 	 * Returns a displayable representation of the feed
-	 * with appropriate code added.  Relies on the postObj 
-	 * atom_output() function to generate code for individidual
+	 * with appropriate code added for an atom feed.  Relies on the postObj 
+	 * class to generate code for individidual
 	 * feed items.
 	 * 
 	 */
-	public function output() {
+	private function atom() {
 
 		$r ='<feed xmlns="http://www.w3.org/2005/Atom"
 xml:lang="en"
@@ -81,6 +98,10 @@ xml:base="'.getConfigOption('site_domain').'/">';
 		return $r;
 	}
 	
+	/**
+	 * Returns a displayable representation of the feed with 
+	 * appropriate code added for RSS format.
+	 */
 	private function rss() {
 		
 		$r ='<?xml version="1.0"?>';
@@ -110,7 +131,7 @@ xml:base="'.getConfigOption('site_domain').'/">';
 function generateFeed(){
 	
 	$posts = getPostList();
-	$atom = new atom_feed("The Philosophy of Nate", "http://blog.thenaterhood.com/", "It's the cyber age, stay in the know.", date(DATE_ATOM) );
+	$atom = new feed("The Philosophy of Nate", "http://blog.thenaterhood.com/", "It's the cyber age, stay in the know.", date(DATE_ATOM) );
 	
 	for ($i = 0; $i < count($posts); $i++){
 		$newitem = new postObj(getConfigOption('post_directory').'/'.$posts[$i]);
