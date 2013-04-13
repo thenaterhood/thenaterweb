@@ -104,7 +104,10 @@ xml:base="'.getConfigOption('site_domain').'/">';
 	 */
 	private function rss() {
 		
-		$r ='<?xml version="1.0"?>';
+		# The code produced is not valid due to the xml tag 
+		# which should have a ? before each <>. This breaks the
+		# php.
+		$r ='<xml version="1.0">';
 		$r .= '<rss version = "2.0">\n';
 		$r .= "<channel>";
 		$r .= "<title>" . $this->feedMeta['title'] . "</title>";
