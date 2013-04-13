@@ -1,11 +1,13 @@
 <?php
-/*
- * Author: Nate Levesque <public@thenaterhood.com>
+/**
+ * Contains classes for constructing an xml sitemap
+ * 
+ * @author Nate Levesque <public@thenaterhood.com>
+ * @copyright Nate Levesque 2013
+ * 
  * Language: PHP
  * Filename: core_sitemap.php
  * 
- * Description:
- * 	Contains classes for constructing an xml sitemap
  */
 
 /**
@@ -15,8 +17,12 @@
 class urlset {
 	
 	/**
+	 * @var $items - an array of url objects
+	 */
+	private $items;
+	
+	/**
 	* Creates an empty sitemap class
-	* 
 	*/
 	public function __construct() {
 		
@@ -60,6 +66,10 @@ class urlset {
  */
 class url {
 
+	/**
+	 * @var $loc - the web address of the page
+	 * @var $lastmod - the most recent modification of the page
+	 */
 	public $loc, $lastmod;
 	
 	/**
@@ -68,9 +78,9 @@ class url {
 	 * @param $link (str): the web address of the item source
 	 * @param $lastmod (str): the item modification date
 	 */
-	public function __construct($loc, $lastmod) {
+	public function __construct($link, $lastmod) {
 
-		$this->loc = $loc;
+		$this->loc = $link;
 		$this->lastmod = $lastmod;
 	 
 	}

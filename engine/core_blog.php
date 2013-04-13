@@ -1,14 +1,17 @@
 <?php
-/*
-* Author: Nate Levesque <public@thenaterhood.com>
-* Language: PHP
-* Filename: core_blog.php
-* 
-* Description:
-*	Contains classes and functions for retrieving and displaying
-*	blog posts and other aspects of the blog platform
-*/
+/**
+ * Contains classes and functions for retrieving, displaying, and
+ * managing blog posts and other aspects of the blog platform
+ * 
+ * @author Nate Levesque <public@thenaterhood.com>
+ * Language: PHP
+ * Filename: core_blog.php
+ * 
+ */
 
+/**
+ * Includes the core_web functions
+ */
 include 'core_web.php';
 
 /**
@@ -23,6 +26,14 @@ include 'core_web.php';
 */
 class postObj {
 
+	/**
+	 * @var $title - the title of the post
+	 * @var $tags - the post tags
+	 * @var $date - the human-readable display date for the post
+	 * @var $datestamp - the atom-form datestamp of the post
+	 * @var $content - the html-coded post content
+	 * @var $link - the web address of the post
+	 */
 	private $title, $tags, $date, $datestamp, $content, $link;
 	
 	/**
@@ -45,7 +56,7 @@ class postObj {
 		$this->date = "";
 		$this->tags = "";
 		$this->datestamp = "";
-		$this->link = 'index.php';
+		$this->link = '/blog';
 		$this->content = '<p>Sorry, the post you were looking for could not be found.  If you think it should be here, try browsing by title.  Otherwise, <a href="blog/index.php">return to blog home.</a></p>'."\n".'<p>Think you were looking for something else? <a href="'.getConfigOption('site_domain').'">visit site home</a>.</p>';
 		
 		if ( $nodefile == 'latest' ){
@@ -62,7 +73,7 @@ class postObj {
 			$this->tags = $json_array['tags'];
 			$this->datestamp = $json_array['datestamp'];
 			$this->content = implode($json_array['content']);
-			$this->link = getConfigOption('site_domain').'/blog/post.php?node='.basename($nodefile, '.json');
+			$this->link = getConfigOption('site_domain').'/blog/read/'.basename($nodefile, '.json').'.htm';
 			
 		}
 		/*
@@ -84,7 +95,7 @@ class postObj {
 				$this->date = rtrim(fgets($file), "\n");
 				$this->tags = rtrim(fgets($file), "\n");
 				$this->datestamp = rtrim(fgets($file), "\n"); 
-				$this->link = getConfigOption('site_domain').'/blog/post.php?node='.basename($nodefile);
+				$this->link = getConfigOption('site_domain').'/blog/read/'.basename($nodefile).'.htm';
 				$contents='';
 			
 				while(!feof($file)){
@@ -240,6 +251,8 @@ function regenInventory(){
 * Returns a random line of a given file.
 * Used mainly for generating random suggestions 
 * for additional blog posts to read.
+* 
+* @param $filename - a filename to pull a line from
 */
 function RandomLine($filename) {
 
@@ -252,9 +265,8 @@ function RandomLine($filename) {
 * posts.  Right now picks them randomly, but in the future might
 * rely on a better algorithm.
 * 
-* Arguments:
-*  $number (int): how many to generate and display
-*  $tag (string): a tag or tags to use for generating suggestions
+* @param $number (int): how many to generate and display
+* @param $tag (string): a tag or tags to use for generating suggestions
 */
 function getSuggestions($number, $tag){
 

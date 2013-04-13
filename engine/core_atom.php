@@ -1,14 +1,13 @@
 <?php
-/*
- * Author: Nate Levesque <public@thenaterhood.com>
+/**
+ * Contains utilities and classes for generating an atom feed. Relies
+ * on the postObj class for retrieving and outputting post data in the
+ * feed. Requires existing instances of the config and session classes.
+ * 
+ * @author Nate Levesque <public@thenaterhood.com>
  * Language: PHP
  * Filename: core_atom.php
  * 
- * Description:
- * 	Contains a class for generating an atom feed. Relies on the postObj
- * 	class for retrieving and outputting post data into the feed.  Not
- * 	intended to be called independently, should be called by a file that
- * 	already has established instances of the config and session classes
  */
 
 /**
@@ -16,6 +15,14 @@
  * are added and the feed is updated then returned
  */
 class atom_feed {
+	
+	/**
+	 * @var $title - the feed title
+	 * @var $link - a link to the feed
+	 * @var $description - a description or tagline for the feed
+	 * @var $feedstamp - the atom format generation date for the feed
+	 * @var $author - the author publishing the feed
+	 */
 
 	private $title, $link, $description, $feedstamp, $author;
 	
@@ -42,7 +49,7 @@ class atom_feed {
 	 * Adds an item to the feed as an object in the object's
 	 * items array
 	 * 
-	 * @param $postObject: a fully initialized instance of the postObj
+	 * @param $postObject - a fully initialized instance of the postObj
 	 *	class.
 	 * 
 	 */
@@ -57,7 +64,6 @@ class atom_feed {
 	 * atom_output() function to generate code for individidual
 	 * feed items.
 	 * 
-	 * @param - unused
 	 */
 	public function output() {
 
@@ -83,7 +89,6 @@ xml:base="'.getConfigOption('site_domain').'/">';
 /**
  * Generates an atom feed and returns it
  * 
- * @param - unused
  * @return $atom (atom_feed): an instance of the atom_feed class
  * 
  */

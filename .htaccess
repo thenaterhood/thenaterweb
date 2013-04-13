@@ -2,16 +2,24 @@
 AddType text/plain sh
 AddType text/plain py
 
+Options -indexes
+
+# SEO friendly pages, if rewriting available (turn on friendly urls in
+# site core_config file for this to work the best).
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule page/([^/]*)$ /index.php?id=$1 [L]
+RewriteRule blog/read/([^/]*)\.htm$ /blog/post.php?node=$1 [L]
+</IfModule>
+
 # Custom error pages
 ErrorDocument 404 /index.php?id=error&type=404
 ErrorDocument 403 /index.php?id=error&type=403
 
-# URL redirection static -> dynamic
-RedirectMatch 301 "projects/$" http://www.thenaterhood.com/?id=projects
-
 # Temporary URL redirection
 RedirectMatch "sitemap.xml$" http://www.thenaterhood.com/sitemap.php
-RedirectMatch "scratchandsniff$" http://www.thenaterhood.com/?id=scratchhere
+RedirectMatch "scratchandsniff$" /?id=scratchhere
+#RedirectMatch "/projects$" /?id=projects
 
 # URL Redirection for The Philosophy of Nate
 RedirectMatch 301 "blog/feeds/posts/default$" http://www.thenaterhood.com/blog/feed.php
