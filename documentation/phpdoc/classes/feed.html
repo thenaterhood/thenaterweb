@@ -3,7 +3,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 <meta charset="utf-8">
-<title>thenaterhood.com » \postObj</title>
+<title>thenaterhood.com » \feed</title>
 <meta name="author" content="Mike van Riel">
 <meta name="description" content="">
 <link href="../css/template.css" rel="stylesheet" media="all">
@@ -53,34 +53,25 @@
 <li class="nav-header">
 <i class="icon-custom icon-method"></i> Methods
                     <ul>
-<li class="method public "><a href="#method___construct" title="__construct :: Reads and parses a post file and creates an instance
-of the class with the post data."><span class="description">Reads and parses a post file and creates an instance
-of the class with the post data.</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#method___construct" title="__construct :: Creates an empty atom feed object with metadata"><span class="description">Creates an empty atom feed object with metadata</span><pre>__construct()</pre></a></li>
 <li class="method public inherited"><a href="#method___get" title="__get :: Retrieves a field from the container, assuming the container
 is an associative array."><span class="description">Retrieves a field from the container, assuming the container
 is an associative array.</span><pre>__get()</pre></a></li>
 <li class="method public inherited"><a href="#method_dump" title="dump :: Returns the contents of the container"><span class="description">Returns the contents of the container</span><pre>dump()</pre></a></li>
-<li class="method public "><a href="#method_list_item_output" title="list_item_output :: Returns a string containing the post title
-and tags, suitable for outputting in an atom feed (maybe)
-or an html list"><span class="description">Returns a string containing the post title
-and tags, suitable for outputting in an atom feed (maybe)
-or an html list</span><pre>list_item_output()</pre></a></li>
-<li class="method public "><a href="#method_output" title="output :: Relies a little on modifications that haven't been
-made yet."><span class="description">Relies a little on modifications that haven't been
-made yet.</span><pre>output()</pre></a></li>
+<li class="method public "><a href="#method_new_item" title="new_item :: Adds an item to the feed as an object in the object's
+items array"><span class="description">Adds an item to the feed as an object in the object's
+items array</span><pre>new_item()</pre></a></li>
+<li class="method public "><a href="#method_output" title="output :: Returns a valid feed with the requested format."><span class="description">Returns a valid feed with the requested format.</span><pre>output()</pre></a></li>
 </ul>
 </li>
 <li class="nav-header private">» Private
                     <ul>
-<li class="method private "><a href="#method_atom" title="atom :: Produces the coded output of the item that can be
-returned and displayed or saved in an atom feed"><span class="description">Produces the coded output of the item that can be
-returned and displayed or saved in an atom feed</span><pre>atom()</pre></a></li>
-<li class="method private "><a href="#method_html" title="html :: Produces the coded output of the item that can be displayed
-on an html page"><span class="description">Produces the coded output of the item that can be displayed
-on an html page</span><pre>html()</pre></a></li>
-<li class="method private "><a href="#method_rss" title="rss :: Produces the coded output of the item that can be returned
-and displayed or saved in an rss feed"><span class="description">Produces the coded output of the item that can be returned
-and displayed or saved in an rss feed</span><pre>rss()</pre></a></li>
+<li class="method private "><a href="#method_atom" title="atom :: Returns a displayable representation of the feed
+with appropriate code added."><span class="description">Returns a displayable representation of the feed
+with appropriate code added.</span><pre>atom()</pre></a></li>
+<li class="method private "><a href="#method_rss" title="rss :: Returns a displayable representation of the feed with
+appropriate code added for RSS format."><span class="description">Returns a displayable representation of the feed with
+appropriate code added for RSS format.</span><pre>rss()</pre></a></li>
 </ul>
 </li>
 <li class="nav-header">
@@ -90,44 +81,46 @@ and displayed or saved in an rss feed</span><pre>rss()</pre></a></li>
 <li class="nav-header protected">» Protected
                     <ul><li class="property protected inherited"><a href="#property_container" title="$container :: "><span class="description"></span><pre>$container</pre></a></li></ul>
 </li>
+<li class="nav-header private">» Private
+                    <ul><li class="property private "><a href="#property_items" title="$items :: "><span class="description"></span><pre>$items</pre></a></li></ul>
+</li>
 </ul>
 </div>
 <div class="span8">
-<a id="\postObj"></a><ul class="breadcrumb">
+<a id="\feed"></a><ul class="breadcrumb">
 <li>
 <a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
 </li>
 <li><a href="../namespaces/global.html">global</a></li>
 <li class="active">
-<span class="divider">\</span><a href="../classes/postObj.html">postObj</a>
+<span class="divider">\</span><a href="../classes/feed.html">feed</a>
 </li>
 </ul>
 <div class="element class">
-<p class="short_description">Contains everything to do with retrieving and outputting
-posts in multiple forms.</p>
+<p class="short_description">Defines a data object to contain an atom feed as items
+are added and the feed is updated then returned</p>
 <div class="details">
-<div class="long_description"><p>Is capable of retrieving posts stored
-in .json format (preferred when available) as well as plaintext
-(file syntax described below in constructor).</p>
-
-<p>Contains functions to output the post data in html format
-for displaying to a page, and atom format for use in generating
-an atom feed.</p></div>
+<div class="long_description"></div>
 <h3>
 <i class="icon-custom icon-method"></i> Methods</h3>
 <a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
-<h2>Reads and parses a post file and creates an instance
-of the class with the post data.</h2>
-<pre>__construct(\nodefile $nodefile) </pre>
+<h2>Creates an empty atom feed object with metadata</h2>
+<pre>__construct($title, $link, $description, $feedstamp) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
-<div class="long_description"><p>Capable of managing
-posts in json and plaintext, but prefers json if
-a json file exists for the requested post.</p></div>
+<div class="long_description"></div>
 <h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$nodefile</h4>
-<code>\nodefile</code><p>(string) - a yyyy.mm.dd string of a nodefile</p>
+<h4>$title</h4><p>(str): a title for the atom feed</p>
+</div>
+<div class="subelement argument">
+<h4>$link</h4><p>(str): the base url for the feed</p>
+</div>
+<div class="subelement argument">
+<h4>$description</h4><p>(str): a description or summary of the feed</p>
+</div>
+<div class="subelement argument">
+<h4>$feedstamp</h4><p>(str): a datestamp for the feed, in standard atom format</p>
 </div>
 </div></div>
 </div>
@@ -162,17 +155,24 @@ is an associative array.</h2>
 </tr></table>
 </div></div>
 </div>
-<a id="method_list_item_output"></a><div class="element clickable method public method_list_item_output" data-toggle="collapse" data-target=".method_list_item_output .collapse">
-<h2>Returns a string containing the post title
-and tags, suitable for outputting in an atom feed (maybe)
-or an html list</h2>
-<pre>list_item_output() </pre>
+<a id="method_new_item"></a><div class="element clickable method public method_new_item" data-toggle="collapse" data-target=".method_new_item .collapse">
+<h2>Adds an item to the feed as an object in the object's
+items array</h2>
+<pre>new_item($postObject) </pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$postObject</h4><ul>
+<li>a fully initialized instance of the postObj
+class.</li>
+</ul>
+</div>
+</div></div>
 </div>
 <a id="method_output"></a><div class="element clickable method public method_output" data-toggle="collapse" data-target=".method_output .collapse">
-<h2>Relies a little on modifications that haven't been
-made yet.</h2>
+<h2>Returns a valid feed with the requested format.</h2>
 <pre>output($type) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
@@ -180,29 +180,24 @@ made yet.</h2>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$type</h4><ul>
-<li>the type of output desired. Depends on the
-facilities offered by the inheriting class.</li>
+<li>the type of feed to return (atom/rss). Defaults
+to atom (superior) if the type given not recognized.</li>
 </ul>
 </div>
 </div></div>
 </div>
 <a id="method_atom"></a><div class="element clickable method private method_atom" data-toggle="collapse" data-target=".method_atom .collapse">
-<h2>Produces the coded output of the item that can be
-returned and displayed or saved in an atom feed</h2>
+<h2>Returns a displayable representation of the feed
+with appropriate code added.</h2>
 <pre>atom() </pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
-</div>
-<a id="method_html"></a><div class="element clickable method private method_html" data-toggle="collapse" data-target=".method_html .collapse">
-<h2>Produces the coded output of the item that can be displayed
-on an html page</h2>
-<pre>html() </pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"><p>Relies on the postObj
+atom_output() function to generate code for individidual
+feed items. Returns ATOM format.</p></div></div></div>
 </div>
 <a id="method_rss"></a><div class="element clickable method private method_rss" data-toggle="collapse" data-target=".method_rss .collapse">
-<h2>Produces the coded output of the item that can be returned
-and displayed or saved in an rss feed</h2>
+<h2>Returns a displayable representation of the feed with
+appropriate code added for RSS format.</h2>
 <pre>rss() </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
@@ -220,6 +215,12 @@ and displayed or saved in an rss feed</h2>
 <td>\dataMonger::$$container</td>
 </tr></table>
 </div></div>
+</div>
+<a id="property_items"> </a><div class="element clickable property private property_items" data-toggle="collapse" data-target=".property_items .collapse">
+<h2></h2>
+<pre>$items : \$items: \$container</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
 </div>
 </div>
