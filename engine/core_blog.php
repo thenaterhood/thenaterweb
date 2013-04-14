@@ -104,17 +104,19 @@ class postObj extends dataMonger{
 	}
 	
 	/**
-	 * @todo - actually write this function
+	 * Relies a little on modifications that haven't been
+	 * made yet.
 	 */
 	public function output( $type ){
-		return '';
+		
+		return $this->$type();
 	}
 	
 	/**
 	* Produces the coded output of the item that can be 
 	* returned and displayed or saved in an atom feed
 	*/
-	public function atom_output() {
+	private function atom() {
 
 		$r = "<entry>";
 		$r .= "<id>" . $this->container['link'] . "</id>";
@@ -130,7 +132,7 @@ class postObj extends dataMonger{
 	 * Produces the coded output of the item that can be returned
 	 * and displayed or saved in an rss feed
 	 */
-	public function rss_output(){
+	private function rss(){
 		
 		$r = "<item>";
 		$r .= "<title>" . $this->container['title'] ."</title>";
@@ -147,7 +149,7 @@ class postObj extends dataMonger{
 	* Produces the coded output of the item that can be displayed
 	* on an html page
 	*/
-	public function page_output() {
+	private function html() {
 		
 		$r = '<h3 class="title"><a href="'.$this->container['link'].'">'.$this->container['title'].'</a></h3>'."\n";
 		$r .= '<h4 class="date">'.$this->container['date'].'</h4>'."\n";
@@ -303,7 +305,7 @@ function getPosts($start, $end){
 	
 	for ($i = $start; $i < count($posts) && $i < $end; $i++){
 		$nextpost = new postObj( getConfigOption('post_directory').'/'.$posts[$i] );
-		echo $nextpost->page_output();
+		echo $nextpost->output( 'html' );
 		echo "<hr />";
 	}
 	if (! $start <= 0) echo "<a href='?start=".($start - getConfigOption('posts_per_page') )."&amp;end=".($end - getConfigOption('posts_per_page') )."'>Newer Posts</a>";
