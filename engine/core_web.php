@@ -58,7 +58,7 @@ include 'core_config.php';
 	  * @param $type - the type of output desired. Depends on the
 	  * facilities offered by the inheriting class.
 	  */
-	 abstract protected function output( $type );
+	 abstract public function output( $type );
 
 	 
  }
