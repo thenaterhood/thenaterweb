@@ -104,8 +104,9 @@ class postObj extends dataMonger{
 	}
 	
 	/**
-	 * Relies a little on modifications that haven't been
-	 * made yet.
+	 * Returns a representation of the post in the format requested
+	 * 
+	 * @param $type - the type of feed
 	 */
 	public function output( $type ){
 		
