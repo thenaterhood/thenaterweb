@@ -11,17 +11,22 @@
  */
 
 /**
+ * Include the main blog functions and classes
+ */
+ include 'core_blog.php';
+ 
+/**
  * Defines a data object to contain an atom feed as items
  * are added and the feed is updated then returned
  */
-class feed {
+class feed extends dataMonger{
 	
 	/**
 	 * @var $items - an array of postObj instances
-	 * @var $feedMeta - the feed metadata - location, title, author, datestamps
+	 * @var $container - the feed metadata - location, title, author, datestamps
 	 */
 
-	private $feedMeta, $items;
+	private $items;
 	
 	/**
 	 * Creates an empty atom feed object with metadata
@@ -33,11 +38,11 @@ class feed {
 	 */
 	public function __construct($title, $link, $description, $feedstamp) {
 
-		$this->feedMeta['title'] = $title;
-		$this->feedMeta['link'] = $link;
-		$this->feedMeta['description'] = $description;
-		$this->feedMeta['feedstamp'] = $feedstamp;
-		$this->feedMeta['author'] = $config->site_author;
+		$this->container['title'] = $title;
+		$this->container['link'] = $link;
+		$this->container['description'] = $description;
+		$this->container['feedstamp'] = $feedstamp;
+		$this->container['author'] = $config->site_author;
 		$this->items = array();
 
 	}
@@ -85,12 +90,12 @@ class feed {
 xml:lang="en"
 xml:base="'.getConfigOption('site_domain').'/">';
 		$r .= "\n";
-		$r .= '<subtitle type="html">' . $this->feedMeta['description'] . "</subtitle>\n";
+		$r .= '<subtitle type="html">' . $this->container['description'] . "</subtitle>\n";
 		$r .= "";
-		$r .= "<id>" . $this->feedMeta['link'] . "</id>\n";
-		$r .= "<title>" . $this->feedMeta['title'] . "</title>\n";
-		$r .= "<updated>". $this->feedMeta['feedstamp'] ."</updated>\n";
-		$r .= "<author><name>".$this->feedMeta['author']."</name></author>\n";
+		$r .= "<id>" . $this->container['link'] . "</id>\n";
+		$r .= "<title>" . $this->container['title'] . "</title>\n";
+		$r .= "<updated>". $this->container['feedstamp'] ."</updated>\n";
+		$r .= "<author><name>".$this->container['author']."</name></author>\n";
 		foreach ($this->items as $item) {
 			$r .= $item->atom_output();
 		}
@@ -111,9 +116,9 @@ xml:base="'.getConfigOption('site_domain').'/">';
 		$r ='<xml version="1.0">';
 		$r .= '<rss version = "2.0">\n';
 		$r .= "<channel>";
-		$r .= "<title>" . $this->feedMeta['title'] . "</title>";
-		$r .= "<link>" . $this->feedMeta['link'] . "</link>";
-		$r .= "<description>" . $this->feedMeta['description'] . "</description>";
+		$r .= "<title>" . $this->container['title'] . "</title>";
+		$r .= "<link>" . $this->container['link'] . "</link>";
+		$r .= "<description>" . $this->container['description'] . "</description>";
 		foreach ($this->items as $item){
 			$r .= $item->rss_output();
 		}
