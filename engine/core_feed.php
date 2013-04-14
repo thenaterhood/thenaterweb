@@ -97,7 +97,7 @@ xml:base="'.getConfigOption('site_domain').'/">';
 		$r .= "<updated>". $this->container['feedstamp'] ."</updated>\n";
 		$r .= "<author><name>".$this->container['author']."</name></author>\n";
 		foreach ($this->items as $item) {
-			$r .= $item->atom_output();
+			$r .= $item->output( 'atom' );
 		}
 		$r .= "</feed>";
 		return $r;
@@ -120,7 +120,7 @@ xml:base="'.getConfigOption('site_domain').'/">';
 		$r .= "<link>" . $this->container['link'] . "</link>";
 		$r .= "<description>" . $this->container['description'] . "</description>";
 		foreach ($this->items as $item){
-			$r .= $item->rss_output();
+			$r .= $item->output( 'rss' );
 		}
 		
 		$r .= "</channel>";
