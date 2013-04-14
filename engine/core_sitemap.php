@@ -87,10 +87,11 @@ class url extends dataMonger{
 	/**
 	 * Produces the coded output of the item that can be 
 	 * returned and displayed or saved
+	 * @param $output - ignored
 	 * 
 	 * @return $item - an xml-encoded representation of the item
 	 */
-	public function output() {
+	public function output( $output ) {
 
 		$item = "<url>\n";
 		$item .= "<loc>" . $this->container['loc'] . "</loc>\n";
