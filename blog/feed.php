@@ -1,7 +1,6 @@
 <?php
 
 include '../engine/core_feed.php';
-include '../engine/core_blog.php';
 
 $session = new session( array('regen') );
 $config = new config();
