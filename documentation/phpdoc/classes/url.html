@@ -54,6 +54,10 @@
 <i class="icon-custom icon-method"></i> Methods
                     <ul>
 <li class="method public "><a href="#method___construct" title="__construct :: Creates the data object to contain the atom feed item."><span class="description">Creates the data object to contain the atom feed item.</span><pre>__construct()</pre></a></li>
+<li class="method public inherited"><a href="#method___get" title="__get :: Retrieves a field from the container, assuming the container
+is an associative array."><span class="description">Retrieves a field from the container, assuming the container
+is an associative array.</span><pre>__get()</pre></a></li>
+<li class="method public inherited"><a href="#method_dump" title="dump :: Returns the contents of the container"><span class="description">Returns the contents of the container</span><pre>dump()</pre></a></li>
 <li class="method public "><a href="#method_output" title="output :: Produces the coded output of the item that can be
 returned and displayed or saved"><span class="description">Produces the coded output of the item that can be
 returned and displayed or saved</span><pre>output()</pre></a></li>
@@ -61,10 +65,10 @@ returned and displayed or saved</span><pre>output()</pre></a></li>
 </li>
 <li class="nav-header">
 <i class="icon-custom icon-property"></i> Properties
-                    <ul>
-<li class="property public "><a href="#property_lastmod" title="$lastmod :: "><span class="description"></span><pre>$lastmod</pre></a></li>
-<li class="property public "><a href="#property_loc" title="$loc :: "><span class="description"></span><pre>$loc</pre></a></li>
-</ul>
+                    <ul></ul>
+</li>
+<li class="nav-header protected">» Protected
+                    <ul><li class="property protected inherited"><a href="#property_container" title="$container :: "><span class="description"></span><pre>$container</pre></a></li></ul>
 </li>
 </ul>
 </div>
@@ -99,6 +103,37 @@ returned and displayed or saved</span><pre>output()</pre></a></li>
 </div>
 </div></div>
 </div>
+<a id="method___get"></a><div class="element clickable method public method___get" data-toggle="collapse" data-target=".method___get .collapse">
+<h2>Retrieves a field from the container, assuming the container
+is an associative array.</h2>
+<pre>__get($name) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\dataMonger::__get()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name</h4><ul>
+<li>the item to retrieve</li>
+</ul>
+</div>
+</div></div>
+</div>
+<a id="method_dump"></a><div class="element clickable method public method_dump" data-toggle="collapse" data-target=".method_dump .collapse">
+<h2>Returns the contents of the container</h2>
+<pre>dump() </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\dataMonger::dump()</td>
+</tr></table>
+</div></div>
+</div>
 <a id="method_output"></a><div class="element clickable method public method_output" data-toggle="collapse" data-target=".method_output .collapse">
 <h2>Produces the coded output of the item that can be
 returned and displayed or saved</h2>
@@ -113,17 +148,17 @@ returned and displayed or saved</h2>
 </div>
 <h3>
 <i class="icon-custom icon-property"></i> Properties</h3>
-<a id="property_lastmod"> </a><div class="element clickable property public property_lastmod" data-toggle="collapse" data-target=".property_lastmod .collapse">
+<a id="property_container"> </a><div class="element clickable property protected property_container" data-toggle="collapse" data-target=".property_container .collapse">
 <h2></h2>
-<pre>$lastmod : \$loc: \$lastmod</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
-</div>
-<a id="property_loc"> </a><div class="element clickable property public property_loc" data-toggle="collapse" data-target=".property_loc .collapse">
-<h2></h2>
-<pre>$loc : \$loc: \$lastmod</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+<pre>$container : \$container</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\dataMonger::$$container</td>
+</tr></table>
+</div></div>
 </div>
 </div>
 </div>
@@ -132,7 +167,7 @@ returned and displayed or saved</h2>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
-            generated on 2013-04-14T03:39:34-04:00.<br></footer></div>
+            generated on 2013-04-14T03:44:28-04:00.<br></footer></div>
 </div>
 </body>
 </html>
