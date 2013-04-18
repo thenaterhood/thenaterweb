@@ -52,6 +52,15 @@ include 'core_config.php';
 	 }
 	 
 	 /**
+	  * Produces a json encoded representation of the data
+	  * contained in the class.
+	  */
+	 public function json(){
+		 
+		 return json_encode( $container );
+	 }
+	 
+	 /**
 	  * Defines an abstract function to deal with outputting 
 	  * the data in different forms
 	  * 
