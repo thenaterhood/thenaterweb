@@ -58,18 +58,7 @@ include 'core_config.php';
 	 public function json(){
 		 
 		 return json_encode( $container );
-	 }
-	 
-	 /**
-	  * Defines an abstract function to deal with outputting 
-	  * the data in different forms
-	  * 
-	  * @param $type - the type of output desired. Depends on the
-	  * facilities offered by the inheriting class.
-	  */
-	 abstract public function output( $type );
-
-	 
+	 }	 
  }
 
 /**
@@ -107,17 +96,35 @@ class session extends dataMonger{
 		$this->container["uri"] = $_SERVER['REQUEST_URI'];
 		$this->container["referrer"] = $_SERVER['HTTP_REFERER'];
 	}
+}
+
+/**
+ * Manages constructing a page of the website.
+ */
+class page extends dataMonger{
 	
-	public function output( $type ){
+	/**
+	 * Constructs the page, using the requested content file as
+	 * the source for the page contents.
+	 * 
+	 * @param $content - a file path to the content to use
+	 */
+	function __construct( $content ){
 		
-		/*
-		 * The session class doesn't need to have an output type
-		 * for the moment
-		 */
-		return '';
+		$this->container['page'] = $content;
+		$this->container['docblock'] = file_get_contents( '/static/html_doctype.html' );
+		$this->container['content'] = file_get_contents( chooseInclude( '/static/page_'.$content.'.html', '../layout_error.html' ) );
+		//$this->container['head'] = file_get_contents( '/static/html_head.html' );
 		
 	}
-
+	
+	function display(){
+		
+		print $this->container['docblock'];
+		print $this->container['head'];
+		//print $this->container['content'];
+		
+	}
 }
 
 /**
@@ -196,6 +203,11 @@ class sanitation{
 		else {
 			return $saferstring;
 		}
+	}
+	
+	private function num(){
+		
+		return (int) $this->dirty;
 	}
 	
 	/**
