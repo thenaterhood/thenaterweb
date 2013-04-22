@@ -28,9 +28,10 @@ setcookie('track',$track,time() + (86400 * 30),"/",$session->domain); // 86400 =
 $page_content_file = "page_$id.html";
 	
 include $config->webcore_root.'/html_doctype.html';
-
-$page->display();
+include $config->webcore_root.'/html_head.html';
 ?>
+
+
 <body>
 <div id="wrapper">
 <?php include chooseInclude( $config->webcore_root.'/template_header.php', 'layout_error.html');?>
