@@ -114,7 +114,7 @@ class page extends dataMonger{
 		$this->container['page'] = $content;
 		$this->container['docblock'] = file_get_contents( '/static/html_doctype.html' );
 		$this->container['content'] = file_get_contents( chooseInclude( '/static/page_'.$content.'.html', '../layout_error.html' ) );
-		//$this->container['head'] = file_get_contents( '/static/html_head.html' );
+		$this->container['head'] = file_get_contents( '/static/html_head.html' );
 		
 	}
 	
