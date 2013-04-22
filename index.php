@@ -4,12 +4,9 @@ include 'engine/core_redirect.php';
 
 $session = new session( array('name', 'track', 'konami', 'id', 'type') );
 $config = new config();
-$page = new page( $session->id );
 
 # Grab variables from the URL. Syntax for this is...
 # name of variable, default value of variable, maxlength of variable
-$first_name = $session->name;
-$track = $session->track;
 $id = $session->id;
 $type = '404';
 
@@ -34,14 +31,18 @@ include $config->webcore_root.'/html_head.html';
 
 <body>
 <div id="wrapper">
+	
 <?php include chooseInclude( $config->webcore_root.'/template_header.php', 'layout_error.html');?>
+
 	<div id="page">
 		<div id="content">
 				<div style="clear: both;">&nbsp;</div>
 				<div class="entry">
+					
 				<?php 
-				include chooseInclude( $config->webcore_root."/$page_content_file", $config->webcore_root.'/template_error.php');
+				include chooseInclude( $config->webcore_root.'/page_'.$session->id.'.html', $config->webcore_root.'/template_error.php');
 				?>
+				
 				</div>
 		</div>
 		<!-- end #content -->
@@ -49,6 +50,8 @@ include $config->webcore_root.'/html_head.html';
 
 	</div>
 </div>
+
 <?php include chooseInclude( $config->webcore_root.'/template_footer.php', 'layout_error.html'); ?>
+
 </body>
 </html>
