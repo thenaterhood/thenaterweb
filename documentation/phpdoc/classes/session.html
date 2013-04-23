@@ -28,7 +28,7 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">27</span></a></li>
+                <span class="label label-info">26</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul></ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
@@ -60,9 +60,9 @@ and sets them to their defaults or from the URL/cookie.</span><pre>__construct()
 is an associative array."><span class="description">Retrieves a field from the container, assuming the container
 is an associative array.</span><pre>__get()</pre></a></li>
 <li class="method public inherited"><a href="#method_dump" title="dump :: Returns the contents of the container"><span class="description">Returns the contents of the container</span><pre>dump()</pre></a></li>
-<li class="method public "><a href="#method_output" title="output :: Defines an abstract function to deal with outputting
-the data in different forms"><span class="description">Defines an abstract function to deal with outputting
-the data in different forms</span><pre>output()</pre></a></li>
+<li class="method public inherited"><a href="#method_json" title="json :: Produces a json encoded representation of the data
+contained in the class."><span class="description">Produces a json encoded representation of the data
+contained in the class.</span><pre>json()</pre></a></li>
 </ul>
 </li>
 <li class="nav-header">
@@ -140,20 +140,17 @@ is an associative array.</h2>
 </tr></table>
 </div></div>
 </div>
-<a id="method_output"></a><div class="element clickable method public method_output" data-toggle="collapse" data-target=".method_output .collapse">
-<h2>Defines an abstract function to deal with outputting
-the data in different forms</h2>
-<pre>output($type) </pre>
-<div class="labels"></div>
+<a id="method_json"></a><div class="element clickable method public method_json" data-toggle="collapse" data-target=".method_json .collapse">
+<h2>Produces a json encoded representation of the data
+contained in the class.</h2>
+<pre>json() </pre>
+<div class="labels"><span class="label">Inherited</span></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$type</h4><ul>
-<li>the type of output desired. Depends on the
-facilities offered by the inheriting class.</li>
-</ul>
-</div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\dataMonger::json()</td>
+</tr></table>
 </div></div>
 </div>
 <h3>
@@ -183,7 +180,7 @@ facilities offered by the inheriting class.</li>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
-            generated on 2013-04-14T03:44:28-04:00.<br></footer></div>
+            generated on 2013-04-22T21:52:16-04:00.<br></footer></div>
 </div>
 </body>
 </html>
