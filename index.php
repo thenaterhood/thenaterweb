@@ -18,8 +18,8 @@ if ( $config->friendly_urls ){
 
 // Checks for cookies and sets them (or refreshes them) if necessary
 
-setcookie('name',$first_name,time() + (86400 * 30),"/",$session->domain); // 86400 = 1 day
-setcookie('track',$track,time() + (86400 * 30),"/",$session->domain); // 86400 = 1 day
+setcookie('name',$session->name,time() + (86400 * 30),"/",$session->domain); // 86400 = 1 day
+setcookie('track',$session->track,time() + (86400 * 30),"/",$session->domain); // 86400 = 1 day
 // Sets page options and variables
 
 $page_content_file = "page_$id.html";
