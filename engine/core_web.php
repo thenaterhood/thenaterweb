@@ -99,35 +99,6 @@ class session extends dataMonger{
 }
 
 /**
- * Manages constructing a page of the website.
- */
-class page extends dataMonger{
-	
-	/**
-	 * Constructs the page, using the requested content file as
-	 * the source for the page contents.
-	 * 
-	 * @param $content - a file path to the content to use
-	 */
-	function __construct( $content ){
-		
-		$this->container['page'] = $content;
-		$this->container['docblock'] = file_get_contents( '/static/html_doctype.html' );
-		$this->container['content'] = file_get_contents( chooseInclude( '/static/page_'.$content.'.html', '../layout_error.html' ) );
-		$this->container['head'] = file_get_contents( '/static/html_head.html' );
-		
-	}
-	
-	function display(){
-		
-		print $this->container['docblock'];
-		print $this->container['head'];
-		//print $this->container['content'];
-		
-	}
-}
-
-/**
  * Manages sanitizing user input.  Currently works only for strings,
  * but adding functions to sanitize other data types is trivial.
  * Retrieving sanitized values from the class involves invoking
