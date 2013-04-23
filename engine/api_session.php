@@ -19,8 +19,6 @@ foreach( $_GET as $key => $value ){
 	$requestedVars[] = $key;
 	
 }
-
 $session = new session( $requestedVars );
-$jsonData = new jsonMaker( $session->dump() );
 
-print $jsonData->output();
+print $session->json();
