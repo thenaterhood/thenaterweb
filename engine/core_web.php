@@ -57,7 +57,7 @@ include 'core_config.php';
 	  */
 	 public function json(){
 		 
-		 return json_encode( $container );
+		 return json_encode( $this->container );
 	 }	 
  }
 
