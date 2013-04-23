@@ -19,5 +19,6 @@ foreach( $_GET as $key => $value ){
 	$requestedVars[] = $key;
 	
 }
+$session = new session( $requestedVars );
 
 print $session->json();
