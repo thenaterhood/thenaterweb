@@ -17,19 +17,64 @@
 include 'core_config.php';
 
 /**
+ * Provides an abstract class to define a standard way
+ * of managing data for the classes that are managing
+ * things like session data, posts, etc.
+ * 
+ * @since 4/13/2013
+ */
+ abstract class dataMonger{
+	 
+	 /**
+	  * @var $container - a container for data, preferrably assoc array
+	  */
+	 protected $container;
+	 
+	 /**
+	  * Returns the contents of the container
+	  */
+	 public function dump(){
+		 
+		 return $this->container;
+		 
+	 }
+	 
+	 /**
+	  * Retrieves a field from the container, assuming the container
+	  * is an associative array.
+	  * 
+	  * @param $name - the item to retrieve
+	  */	 
+	 public function __get( $name ){
+		 
+		 return $this->container[$name];
+		 
+	 }
+	 
+	 /**
+	  * Produces a json encoded representation of the data
+	  * contained in the class.
+	  */
+	 public function json(){
+		 
+		 return json_encode( $this->container );
+	 }	 
+ }
+
+/**
  * Provides a common interface for picking up variables from the
  * user in a clean way, so that internal variables for pulling
  * pages and otherwise can be managed more easily and sanitation
  * settings are more easily applied site-wide.
  * 
  */
-class session{
+class session extends dataMonger{
 	
 	/**
 	 * @var $request (array) - the variables to be contained
 	 * @var $varDefs (assoc. array) - the variables and assignments
 	 */
-	private $request, $varDefs;
+	private $varDefs;
 	
 	/**
 	 * Iterates through all the variables requested in $request
@@ -43,39 +88,13 @@ class session{
 		foreach( $request as $name ){
 
 			$varGetter = new varGetter( $name );				// Retrieve the variable
-			$this->varDefs[$name] = $varGetter->str;			// Store the variable in the session
+			$this->container[$name] = $varGetter->str;			// Store the variable in the session
 			unset( $varGetter );								// Destroy the varGetter object
 		}
 		
-		$this->varDefs["domain"] = $_SERVER['HTTP_HOST'];
-		$this->varDefs["uri"] = $_SERVER['REQUEST_URI'];
-		$this->varDefs["referrer"] = $_SERVER['HTTP_REFERER'];
-	}
-	
-	/**
-	 * Retrieves a value from the associative array.
-	 * 
-	 * @param $field (str) - the name of a variable to retrieve
-	 * 
-	 * @return (str) - the value of the variable or '' if nonexistant
-	 * 
-	 */
-	public function __get($field){
-
-		return $this->varDefs[$field];
-	}
-	
-
-	
-	/**
-	 * Dumps the contained session data as an associative array
-	 * 
-	 * @return - the session data
-	 */
-	public function dump(){
-		
-		return $this->varDefs;
-		
+		$this->container["domain"] = $_SERVER['HTTP_HOST'];
+		$this->container["uri"] = $_SERVER['REQUEST_URI'];
+		$this->container["referrer"] = $_SERVER['HTTP_REFERER'];
 	}
 }
 
@@ -155,6 +174,11 @@ class sanitation{
 		else {
 			return $saferstring;
 		}
+	}
+	
+	private function num(){
+		
+		return (int) $this->dirty;
 	}
 	
 	/**

@@ -24,17 +24,7 @@ include 'core_web.php';
 * for displaying to a page, and atom format for use in generating
 * an atom feed.
 */
-class postObj {
-
-	/**
-	 * @var $title - the title of the post
-	 * @var $tags - the post tags
-	 * @var $date - the human-readable display date for the post
-	 * @var $datestamp - the atom-form datestamp of the post
-	 * @var $content - the html-coded post content
-	 * @var $link - the web address of the post
-	 */
-	private $title, $tags, $date, $datestamp, $content, $link;
+class postObj extends dataMonger{
 	
 	/**
 	 * Reads and parses a post file and creates an instance
@@ -52,12 +42,12 @@ class postObj {
 		 * doesn't contain all of the expected fields in a typical way.
 		 */
 		
-		$this->title = "Oops! Post Not Found!";
-		$this->date = "";
-		$this->tags = "";
-		$this->datestamp = "";
-		$this->link = '/blog';
-		$this->content = '<p>Sorry, the post you were looking for could not be found.  If you think it should be here, try browsing by title.  Otherwise, <a href="blog/index.php">return to blog home.</a></p>'."\n".'<p>Think you were looking for something else? <a href="'.getConfigOption('site_domain').'">visit site home</a>.</p>';
+		$this->container['title'] = "Oops! Post Not Found!";
+		$this->container['date'] = "";
+		$this->container['tags'] = "";
+		$this->container['datestamp'] = "";
+		$this->container['link'] = '/blog';
+		$this->container['content'] = '<p>Sorry, the post you were looking for could not be found.  If you think it should be here, try browsing by title.  Otherwise, <a href="blog/index.php">return to blog home.</a></p>'."\n".'<p>Think you were looking for something else? <a href="'.getConfigOption('site_domain').'">visit site home</a>.</p>';
 		
 		if ( $nodefile == 'latest' ){
 			$nodes = getPostList();
@@ -66,14 +56,16 @@ class postObj {
 			
 		if (file_exists("$nodefile.json")){
 			$jsoncontents = file_get_contents("$nodefile.json");
-			$json_array = json_decode($jsoncontents, True);
 			
-			$this->title = $json_array['title'];
-			$this->date = $json_array['date'];
-			$this->tags = $json_array['tags'];
-			$this->datestamp = $json_array['datestamp'];
-			$this->content = implode($json_array['content']);
-			$this->link = getConfigOption('site_domain').'/blog/read/'.basename($nodefile, '.json').'.htm';
+			// Directly read data into the class
+			$this->container = json_decode($jsoncontents, True);
+			
+			// Reformat and add data that the class relies on
+			
+			// Implode the array of lines for the content into a string
+			$this->container['content'] = implode( $this->container['content'] );
+			// Add the web url for the post
+			$this->container['link'] = getConfigOption('site_domain').'/blog/read/'.basename($nodefile, '.json').'.htm';
 			
 		}
 		/*
@@ -90,19 +82,21 @@ class postObj {
 		 */
 		else{
 			if ( file_exists($nodefile) ){
+				
 				$file = fopen($nodefile, 'r');
-				$this->title = rtrim(fgets($file), "\n");
-				$this->date = rtrim(fgets($file), "\n");
-				$this->tags = rtrim(fgets($file), "\n");
-				$this->datestamp = rtrim(fgets($file), "\n"); 
-				$this->link = getConfigOption('site_domain').'/blog/read/'.basename($nodefile).'.htm';
+				
+				$this->container['title'] = rtrim(fgets($file), "\n");
+				$this->container['date'] = rtrim(fgets($file), "\n");
+				$this->container['tags'] = rtrim(fgets($file), "\n");
+				$this->container['datestamp'] = rtrim(fgets($file), "\n"); 
+				$this->container['link'] = getConfigOption('site_domain').'/blog/read/'.basename($nodefile).'.htm';
 				$contents='';
 			
 				while(!feof($file)){
 					$contents .= "<p>".rtrim(fgets($file), "\n"). "</p>\n";
 				}
 			
-				$this->content = $contents;
+				$this->container['content'] = $contents;
 			
 				fclose($file);
 			}
@@ -110,32 +104,59 @@ class postObj {
 	}
 	
 	/**
+	 * Returns a representation of the post in the format requested
+	 * 
+	 * @param $type - the type of feed
+	 */
+	public function output( $type ){
+		
+		return $this->$type();
+	}
+	
+	/**
 	* Produces the coded output of the item that can be 
 	* returned and displayed or saved in an atom feed
 	*/
-	public function atom_output() {
+	private function atom() {
 
 		$r = "<entry>";
-		$r .= "<id>" . $this->link . "</id>";
-		$r .= '<link href="'.$this->link.'" />';
-		$r .= '<updated>'.$this->datestamp.'</updated>';
-		$r .= "<title>" . $this->title . "</title>";
-		$r .= "<content type='html'>" . htmlspecialchars( $this->content ) . "</content>";
+		$r .= "<id>" . $this->container['link'] . "</id>";
+		$r .= '<link href="'.$this->container['link'].'" />';
+		$r .= '<updated>'.$this->container['datestamp'].'</updated>';
+		$r .= "<title>" . $this->container['title'] . "</title>";
+		$r .= "<content type='html'>" . htmlspecialchars( $this->container['content'] ) . "</content>";
 		$r .= "</entry>";
 		return $r;
-	} 
+	}
+	
+	/**
+	 * Produces the coded output of the item that can be returned
+	 * and displayed or saved in an rss feed
+	 */
+	private function rss(){
+		
+		$r = "<item>";
+		$r .= "<title>" . $this->container['title'] ."</title>";
+		$r .= "<link>" . $this->container['link'] . "</link>";
+		# Produces a "description" by taking the first 100 characters of the content
+		$r .= "<description>" . substr( htmlspecialchars( $this->container['content'] ), 0, 100 ) . "...</description>";
+		$r .= "</item>";
+		
+		return $r;
+		
+	}
 	
 	/**
 	* Produces the coded output of the item that can be displayed
 	* on an html page
 	*/
-	public function page_output() {
+	private function html() {
 		
-		$r = '<h3 class="title"><a href="'.$this->link.'">'.$this->title.'</a></h3>'."\n";
-		$r .= '<h4 class="date">'.$this->date.'</h4>'."\n";
-		$r .= $this->content;
-		if ( $this->datestamp != ""){
-			$r .= "<h5 class='tags'>Tags: ".$this->tags."</h5>\n";
+		$r = '<h3 class="title"><a href="'.$this->container['link'].'">'.$this->container['title'].'</a></h3>'."\n";
+		$r .= '<h4 class="date">'.$this->container['date'].'</h4>'."\n";
+		$r .= $this->container['content'];
+		if ( $this->container['datestamp'] != ""){
+			$r .= "<h5 class='tags'>Tags: ".$this->container['tags']."</h5>\n";
 		}
 		return $r;
 	}
@@ -147,18 +168,9 @@ class postObj {
 	 */
 	public function list_item_output(){
 
-		 $r = '<a href="'. $this->link .'">' . $this->title . '</a><i> - '. $this->tags .'</i>';
+		 $r = '<a href="'. $this->container['link'] .'">' . $this->container['title'] . '</a><i> - '. $this->container['tags'] .'</i>';
 		 return $r;
 	 }
-	
-	/**
-	 * Retrieves and returns the requested field
-	 * 
-	 * @param $field (str) - the name of the field to return
-	 */
-	public function __get($field){ 
-		return $this->$field; 
-	}
  }
  
 /**
@@ -294,7 +306,7 @@ function getPosts($start, $end){
 	
 	for ($i = $start; $i < count($posts) && $i < $end; $i++){
 		$nextpost = new postObj( getConfigOption('post_directory').'/'.$posts[$i] );
-		echo $nextpost->page_output();
+		echo $nextpost->output( 'html' );
 		echo "<hr />";
 	}
 	if (! $start <= 0) echo "<a href='?start=".($start - getConfigOption('posts_per_page') )."&amp;end=".($end - getConfigOption('posts_per_page') )."'>Newer Posts</a>";

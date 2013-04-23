@@ -14,6 +14,9 @@ function getTags(){
      * Iterate through the list of posts and their tags in the inventory
      * and add all the tags to an array and return the array.
      */
+    if ( ! file_exists( getConfigOption('dynamic_directory').'/inventory.html' ) ){
+		return array();
+	}
     $file = fopen(getConfigOption('dynamic_directory').'/inventory.html', 'r');
     $tags = array();
     while(!feof($file)){

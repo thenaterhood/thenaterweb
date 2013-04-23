@@ -11,6 +11,11 @@
  */
 
 /**
+ * Include classes and functions from core_web
+ */
+ include 'core_web.php';
+ 
+/**
  * Defines a data object to contain an atom feed as items
  * are added and the feed is updated then returned
  */
@@ -64,14 +69,8 @@ class urlset {
 /**
  * Creates a class to contain an item in the sitemap
  */
-class url {
+class url extends dataMonger{
 
-	/**
-	 * @var $loc - the web address of the page
-	 * @var $lastmod - the most recent modification of the page
-	 */
-	public $loc, $lastmod;
-	
 	/**
 	 * Creates the data object to contain the atom feed item.
 	 * 
@@ -80,22 +79,23 @@ class url {
 	 */
 	public function __construct($link, $lastmod) {
 
-		$this->loc = $link;
-		$this->lastmod = $lastmod;
+		$this->container['loc'] = $link;
+		$this->container['lastmod'] = $lastmod;
 	 
 	}
 	
 	/**
 	 * Produces the coded output of the item that can be 
 	 * returned and displayed or saved
+	 * @param $output - ignored
 	 * 
 	 * @return $item - an xml-encoded representation of the item
 	 */
-	public function output() {
+	public function output( $output ) {
 
 		$item = "<url>\n";
-		$item .= "<loc>" . $this->loc . "</loc>\n";
-		$item .= '<lastmod>'.$this->lastmod."</lastmod>\n";
+		$item .= "<loc>" . $this->container['loc'] . "</loc>\n";
+		$item .= '<lastmod>'.$this->container['lastmod']."</lastmod>\n";
 		$item .= "</url>\n";
 		return $item;
 	}
