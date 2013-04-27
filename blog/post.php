@@ -61,7 +61,7 @@ else {
 					$displaypost = new article( 'latest' );
 				}
 					
-				print $displaypost->page_output();
+				print $displaypost->output( 'html' );
 
 				if ( True ){
 					/*
