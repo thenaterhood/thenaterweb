@@ -14,7 +14,7 @@ include 'core_json.php';
 
 
 $session = new session( array( "node", "element" ) );
-$postData = new postObj( $session->node );
+$postData = new article( $session->node );
 
 $element = $session->element;
 $filledData = array();

@@ -1,7 +1,7 @@
 <?php
 /**
  * Contains utilities and classes for generating an atom feed. Relies
- * on the postObj class for retrieving and outputting post data in the
+ * on the article class for retrieving and outputting post data in the
  * feed. Requires existing instances of the config and session classes.
  * 
  * @author Nate Levesque <public@thenaterhood.com>
@@ -22,7 +22,7 @@
 class feed extends dataMonger{
 	
 	/**
-	 * @var $items - an array of postObj instances
+	 * @var $items - an array of article instances
 	 * @var $container - the feed metadata - location, title, author, datestamps
 	 */
 
@@ -51,13 +51,13 @@ class feed extends dataMonger{
 	 * Adds an item to the feed as an object in the object's
 	 * items array
 	 * 
-	 * @param $postObject - a fully initialized instance of the postObj
+	 * @param $articleect - a fully initialized instance of the article
 	 *	class.
 	 * 
 	 */
-	public function new_item($postObject) {
+	public function new_item($articleect) {
 
-		array_push($this->items, $postObject);
+		array_push($this->items, $articleect);
 	}
 	
 	/**
@@ -79,7 +79,7 @@ class feed extends dataMonger{
 	}
 	/**
 	 * Returns a displayable representation of the feed
-	 * with appropriate code added.  Relies on the postObj 
+	 * with appropriate code added.  Relies on the article 
 	 * atom_output() function to generate code for individidual
 	 * feed items. Returns ATOM format.
 	 * 
@@ -143,7 +143,7 @@ function generateFeed(){
 	$atom = new feed("The Philosophy of Nate", "http://blog.thenaterhood.com/", "It's the cyber age, stay in the know.", date(DATE_ATOM) );
 	
 	for ($i = 0; $i < count($posts); $i++){
-		$newitem = new postObj(getConfigOption('post_directory').'/'.$posts[$i]);
+		$newitem = new article(getConfigOption('post_directory').'/'.$posts[$i]);
 		$atom->new_item($newitem);
 	}
 	return $atom;

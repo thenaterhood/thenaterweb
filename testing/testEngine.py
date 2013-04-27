@@ -47,8 +47,8 @@ class testWebEngine(unittest.TestCase):
 		decodedData = getData( url+"api_session.php?name=te$%@!st&konami=pride" )
 		self.assertEqual( decodedData["name"], "test" )
 		
-	def test_postObj_missing(self):
-		# Test that the postObj class can return data and deal with missing posts
+	def test_article_missing(self):
+		# Test that the article class can return data and deal with missing posts
 		decodedData = getData( url+"api_post.php?node=test&element=title" )
 		self.assertEqual( decodedData["title"], "Oops! Post Not Found!" )
 

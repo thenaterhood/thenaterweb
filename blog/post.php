@@ -55,10 +55,10 @@ else {
 				<?php 
 				if ( $session->node ){
 					
-					$displaypost = new postObj( $config->post_directory.'/'.$session->node );
+					$displaypost = new article( $config->post_directory.'/'.$session->node );
 				}
 				else {
-					$displaypost = new postObj( 'latest' );
+					$displaypost = new article( 'latest' );
 				}
 					
 				print $displaypost->page_output();

@@ -24,7 +24,7 @@ include 'core_web.php';
 * for displaying to a page, and atom format for use in generating
 * an atom feed.
 */
-class postObj extends dataMonger{
+class article extends dataMonger{
 	
 	/**
 	 * Reads and parses a post file and creates an instance
@@ -249,7 +249,7 @@ function regenInventory(){
 	
 	foreach( $posts as $input ){
 		
-		$postData = new postObj("$postDir/$input");
+		$postData = new article("$postDir/$input");
 
 		$item = '<li>'. $postData->list_item_output() .'</li>'."\n";
 		fwrite($inventory, $item);
@@ -305,7 +305,7 @@ function getPosts($start, $end){
 	$posts = getPostList();
 	
 	for ($i = $start; $i < count($posts) && $i < $end; $i++){
-		$nextpost = new postObj( getConfigOption('post_directory').'/'.$posts[$i] );
+		$nextpost = new article( getConfigOption('post_directory').'/'.$posts[$i] );
 		echo $nextpost->output( 'html' );
 		echo "<hr />";
 	}
