@@ -259,7 +259,7 @@ class varGetter extends sanitation{
 		 $this->length = $length;		 
 
 		 if ( ! $method ){ // If no method is specified, try all of them
-			 $methods = array( post, get, cookie, fallback );
+			 $methods = array( 'post', 'get', 'cookie', 'fallback' );
 			 $i = 0;
 			 while ( $i < count( $methods ) and $this->dirty == null ){
 				 $this->$methods[$i]($name);
