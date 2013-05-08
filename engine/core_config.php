@@ -136,7 +136,7 @@ class config{
 		
 		$this->container['track'] = array( '', 1 );
 		$this->container['start'] = array( '0', 5 );
-		$this->container['end'] = array( $this->"posts_per_page", 5);
+		$this->container['end'] = array( "$this->container['posts_per_page']", 5);
 		
 	}
 	
