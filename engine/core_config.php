@@ -26,6 +26,8 @@ class config{
 	 * Sets the configuration options en-masse.
 	 */
 	function __construct(){
+		# Sets up the empty array
+		$this->container = array();
 		
 		# Sets the root directory for the main site pages and template
 		$this->container['webcore_root'] =  '/var/www/static';
@@ -136,6 +138,7 @@ class config{
 		$this->container['start'] = array( '0', 5 );
 		$this->container['end'] = array( $this->container['posts_per_page'], 5);
 		
+		print $this->container;
 	}
 	
 	/**
