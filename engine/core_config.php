@@ -121,7 +121,7 @@ class config{
 		# UNLESS YOU ARE ABSOLUTELY SURE WHAT YOU ARE DOING.
 		
 		# Setting for the maximum length and default value of visitor's name
-		$this->container['name'] = array( $this->default_visitor_name, 42 );
+		$this->container['name'] = array( $this->container['default_visitor_name'], 42 );
 		
 		# Settings for default and max values of the page id
 		$this->container['id'] = array( 'home', 18);
@@ -134,7 +134,7 @@ class config{
 		
 		$this->container['track'] = array( '', 1 );
 		$this->container['start'] = array( '0', 5 );
-		$this->container['end'] = array( "$this->posts_per_page", 5);
+		$this->container['end'] = array( $this->container['posts_per_page'], 5);
 		
 	}
 	
