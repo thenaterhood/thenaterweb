@@ -98,7 +98,7 @@ class config{
 		
 		# All the files that should be ignored when dynamically looking
 		# at directories
-		$this->['hidden_files'] = array(
+		$this->container['hidden_files'] = array(
 			".",
 			"..",
 			"index.php",
