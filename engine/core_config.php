@@ -17,8 +17,9 @@
 class config{
 	
 	/**
-	 * variables are documented where they are set lower in the code
-	 * and so documenting here as per phpdoc standards appears excessive.
+	 * variables are documented where they are set lower in the code.
+	 * @var $container provides a clean way of storing an expanding
+	 * mass of variables.
 	 */
 	private static $container;
 	
