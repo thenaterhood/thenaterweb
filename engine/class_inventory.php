@@ -110,7 +110,7 @@ class inventory{
 	 * legacy functions
 	 */
 	public function getFile(){
-		return this->inventoryFile;
+		return $this->inventoryFile;
 	}
 
 }
