@@ -14,7 +14,7 @@ class inventory{
 	public function __construct( $directory ){
 
 		$this->directory = $directory;
-		$this->inventoryFile = getConfigOption('dynamic_directory').str_replace('/', '_', $directory);
+		$this->inventoryFile = getConfigOption('dynamic_directory').'/'.str_replace('/', '_', $directory);
 
 	}
 
@@ -103,6 +103,14 @@ class inventory{
 	
 		fclose($inventory);
 		$this->current = True;
+	}
+
+	/**
+	 * A function to return the inventory file. For supporting
+	 * legacy functions
+	 */
+	public function getFile(){
+		return this->inventoryFile;
 	}
 
 }

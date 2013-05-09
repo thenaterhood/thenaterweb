@@ -17,7 +17,8 @@ function getTags(){
     if ( ! file_exists( getConfigOption('dynamic_directory').'/inventory.html' ) ){
 		return array();
 	}
-    $file = fopen(getConfigOption('dynamic_directory').'/inventory.html', 'r');
+    $inventory = new inventory( getConfigOption('post_directory') );
+    $file = fopen( $inventory->getFile(), 'r');
     $tags = array();
     while(!feof($file)){
         $line = fgets($file);
@@ -40,7 +41,8 @@ function getByTag($tag){
      * Arguments:
      *  $tag (str): the tag to retrieve
      */
-    $file = fopen(getConfigOption('dynamic_directory').'/inventory.html', 'r');
+    $inventory = new inventory( getConfigOption('post_directory') );
+    $file = fopen( $inventory->getFile(), 'r');
     
     while(!feof($file)){
         $line = fgets($file);
