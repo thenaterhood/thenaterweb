@@ -1,5 +1,4 @@
 <?php
-include_once '../../engine/class_inventory.php';
 /*
  * Author: Nate Levesque <public@thenaterhood.com>
  * Language: PHP
@@ -15,9 +14,7 @@ function getTags(){
      * Iterate through the list of posts and their tags in the inventory
      * and add all the tags to an array and return the array.
      */
-    if ( ! file_exists( getConfigOption('dynamic_directory').'/inventory.html' ) ){
-		return array();
-	}
+
     $inventory = new inventory( getConfigOption('post_directory') );
     $file = fopen( $inventory->getFile(), 'r');
     $tags = array();
