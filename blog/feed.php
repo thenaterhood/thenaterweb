@@ -1,7 +1,7 @@
 <?php
 
 include '../engine/core_feed.php';
-include '../engine/class_inventory.php';
+include_once '../engine/class_inventory.php';
 
 $session = new session( array('regen') );
 $config = new config();
