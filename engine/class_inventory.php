@@ -1,4 +1,5 @@
 <?php
+include_once 'core_web.php';
 
 class inventory{
 
