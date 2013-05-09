@@ -1,0 +1,34 @@
+Software Design Methodology
+============================
+
+Class Organization
+-----------------------
+
+Classes are organized into their own individual files, one class per 
+file which keeps things easier to edit and read. The classes are included
+into the core_ files, which define frameworks for specific parts of the site.
+The core_ files are what sections of the site should include, rather than
+including each necessary class directly. This is an artifact from the original
+design of the software but one that for the moment remains logical.
+The include_once function ensures that everything can import everything it
+logically needs without breaking the php, which allows the classes to be
+somewhat more standalone.
+
+File Organization
+------------------------
+
+The core_ files are used for creating groups of imported classes. These files
+may also include various other helper functions that are not contained in any
+particular class. They may also import each other in any area where it makes
+a logical amount of sense to include a group of imports, such as the blog
+including the web framework.
+
+Files named using api_* are primarily for testing purposes but may also be used
+to export data to other applications when necessary. They are simple, for
+now pretty quick and dirty ways of pulling data from the class and outputting
+it to the requester in json format. 
+
+Brief breakdown:
+	class_* files store a single class, the name of which follows the underscore
+	core_* files define groups of imports for part of the web platform
+	api_* files are test and external access files
