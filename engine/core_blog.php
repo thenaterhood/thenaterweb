@@ -12,9 +12,8 @@
 /**
  * Includes the core_web functions
  */
-include 'class_session.php';
-include 'class_article.php';
-include 'core_config.php';
+include_once 'core_web.php';
+include_once 'class_article.php';
 
  
 /**
@@ -159,19 +158,4 @@ function getPosts($start, $end){
 
 }
 
-/**
- * Built to abstract retrieving config variables, since
- * they're now contained in a class this is just for legacy
- * support until everything else gets moved off
- * of using this function
- * 
- * @param $key - the name of a config key to retrieve
- * 
- * @return - the value of the config key
- */
-function getConfigOption($key){
-	
-	$CONFIG = new config();
-	return $CONFIG->$key;
-}
 ?>
