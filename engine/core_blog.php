@@ -55,55 +55,6 @@ function getPostList(){
 }
 
 /**
-* Checks the number of files in the current directory and
-* compares it to how many are listed in the current inventory.
-* If the number doesn't match, it returns False.
-*/
-function checkInventory(){
-
-	
-	if ( ! file_exists($config->dynamic_directory.'/inventory.html') ){
-		return False;
-	}
-	
-	$existing = count( getPostList() );
-
-	$inventory = $config->dynamic_directory.'/inventory.html';
-	$recorded = count(file($inventory));
-	if ( $recorded == $existing ){
-		return True;
-	}
-	
-	return False;
-	
-}
-
-/**
- * Regenerates the blog inventory file
- */
-function regenInventory(){
-
-	$postDir = getConfigOption('post_directory');
-	$inventory = fopen(getConfigOption('dynamic_directory').'/inventory.html', 'w');
-	
-	$avoid = getConfigOption('hidden_files');
-	$handler = opendir('./');
-	
-	$posts = getPostList();
-	
-	foreach( $posts as $input ){
-		
-		$postData = new article("$postDir/$input");
-
-		$item = '<li>'. $postData->list_item_output() .'</li>'."\n";
-		fwrite($inventory, $item);
-
-	}
-	
-	fclose($inventory);
-}
-
-/**
 * Returns a random line of a given file.
 * Used mainly for generating random suggestions 
 * for additional blog posts to read.
@@ -146,7 +97,8 @@ function getSuggestions($number, $tag){
  */
 function getPosts($start, $end){
 
-	$posts = getPostList();
+	$inventory = new inventory( getConfigOption('post_directory') );
+	$posts = $inventory->getFileList();
 	
 	for ($i = $start; $i < count($posts) && $i < $end; $i++){
 		$nextpost = new article( getConfigOption('post_directory').'/'.$posts[$i] );
