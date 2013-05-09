@@ -16,44 +16,6 @@ include_once 'core_web.php';
 include_once 'class_article.php';
 include_once 'class_inventory.php';
 
- 
-/**
-* Creates a list of files in the working directory, sorts
-* and reverses the list, and returns it.  Intended for working
-* with blog posts stored as text files with date-coded filenames
-*/
-function getPostList(){
-
-	
-	# Grabs the post directory configured in the root configuration
-	$postDir = getConfigOption('post_directory');
-
-	$avoid = getConfigOption('hidden_files');
-	$posts = array();
-	$handler = opendir($postDir);
-	$i = 0;
-	while ($file = readdir($handler)){
-	// if file isn't this directory or its parent, or itself, add it to the results
-	// We check if it's there already because we're migrating from plaintext to json
-	// so there may be duplicates.
-	if (  !in_array($file, $avoid) and !in_array($file, $posts) and !in_array(substr($file, 0, -5), $posts) ){
-		if ( strpos($file,"json") ){
-			$posts[] = substr($file, 0, -5);
-		}
-		else{
-			$posts[] = $file;
-		}
-			$i++;
-	}
-
-}
-	
-	sort($posts);
-	$posts = array_reverse($posts);
-	
-	return $posts;
-}
-
 /**
 * Returns a random line of a given file.
 * Used mainly for generating random suggestions 
