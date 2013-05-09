@@ -5,7 +5,8 @@
  */
 echo '<br />'; 
 echo '<ul>';
-include $config->dynamic_directory.'/inventory.html';
+$inventory = new inventory( getConfigOption('post_directory') );
+include $inventory->getFile();
 echo '</ul>';
 
 ?>
