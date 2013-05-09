@@ -14,7 +14,7 @@
 /**
  * Include the config file
  */
-include 'core_config.php';
+include 'class_config.php';
 include 'class_varGetter.php';
 include 'class_session.php';
 
