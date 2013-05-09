@@ -14,6 +14,7 @@
  */
 include_once 'core_web.php';
 include_once 'class_article.php';
+include_once 'class_inventory.php';
 
  
 /**
