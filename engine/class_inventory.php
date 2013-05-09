@@ -23,7 +23,7 @@ class inventory{
 	* and reverses the list, and returns it.  Intended for working
 	* with blog posts stored as text files with date-coded filenames
 	*/
-	private function getFileList(){
+	public function getFileList(){
 		$avoid = getConfigOption('hidden_files');
 		$contents = array();
 
