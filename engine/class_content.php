@@ -29,24 +29,24 @@ class content extends dataMonger{
 		 * doesn't contain all of the expected fields in a typical way.
 		 */
 		$this->container['title'] = $pageid;
-		$this->container['type'] = null;
-			
-		if (file_exists( getConfigOption('webcore_root')."/page_$pageid.html" )){
+		$this->container['pagecontent'] = getConfigOption('webcore_root').'/template_error.php';
+		$this->container['type'] = 'php';
 
-			$this->container['pagecontent'] = getConfigOption('webcore_root')."/page_$pageid.html";
+		$filename = getConfigOption('webcore_root')."/page_$pageid";
+			
+		if ( file_exists( $filename.'.html' ) ){
+
+			$this->container['pagecontent'] = $filename.'.html';
 			$this->container['type'] = 'html';
 
-			
-			// Implode the array of lines for the content into a string
-			//$this->container['content'] = implode( $this->container['content'] );
 		}
-		else if ( file_exists( getConfigOption('webcore_root')."/page_$pageid.php")){
+		else if ( file_exists($filename.'.php') ){
 
-			$this->container['pagecontent'] = getConfigOption('webcore_root')."/page_$pageid.php";
+			$this->container['pagecontent'] = $filename.'.php';
 			$this->container['type'] = 'php';
 		}
-		else if ( file_exists( getConfigOption('webcore_root')."/page_$pageid.pre")){
-			$this->container['pagecontent'] = getConfigOption('webcore_root')."/page_$pageid.pre";
+		else if ( file_exists( $filename.'.pre' ) ){
+			$this->container['pagecontent'] = $filename.'.pre';
 			$this->container['type'] = 'pre';
 		}
 
@@ -86,12 +86,6 @@ class content extends dataMonger{
 		print '<pre>';
 		include $this->container['pagecontent'];
 		print '</pre>';
-
-	}
-
-	public function nonexistant(){
-
-		return is_null($this->container['type']);
 
 	}
 
