@@ -84,7 +84,7 @@ class content extends dataMonger{
 	private function pre(){
 
 		print '<pre>';
-		include $this->container['pagecontet'];
+		include $this->container['pagecontent'];
 		print '</pre>';
 
 	}
