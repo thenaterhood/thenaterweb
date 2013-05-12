@@ -64,7 +64,7 @@ class content extends dataMonger{
 
 	public function display(){
 
-		$type = $this->container['type']();
+		$type = $this->container['type'];
 
 		$this->$type();
 	}
