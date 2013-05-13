@@ -29,20 +29,23 @@ class content extends dataMonger{
 		 * doesn't contain all of the expected fields in a typical way.
 		 */
 		$this->container['title'] = $pageid;
-		$this->container['contentfile'] = getConfigOption('webcore_root').'/template_error';
+		$this->container['contentfile'] = getConfigOption('webcore_root').'/template_error.php';
 		$this->container['type'] = 'php';
 		$this->container['session'] = $session;
 
 		$filename = getConfigOption('webcore_root')."/page_$pageid";
 			
 		if ( file_exists( $filename.'.html' ) ){
+			$this->container['contentfile'] = $filename.'.html';
 			$this->container['type'] = 'html';
 
 		}
 		else if ( file_exists($filename.'.php') ){
+			$this->container['contentfile'] = $filename.'.php';
 			$this->container['type'] = 'php';
 		}
 		else if ( file_exists( $filename.'.pre' ) ){
+			$this->container['contentfile'] = $filename.'.pre';
 			$this->container['type'] = 'pre';
 		}
 
@@ -74,20 +77,20 @@ class content extends dataMonger{
 	private function php(){
 
 		$session = $this->container['session'];
-		include $this->container['contentfile'].'.'.$this->container['type'];
+		include $this->container['contentfile'];
 
 	}
 
 	private function html(){
 		$session = $this->container['session'];
-		include $this->container['contentfile'].'.'.$this->container['type'];
+		include $this->container['contentfile'];
 
 	}
 
 	private function pre(){
 
 		print '<pre>';
-		include $this->container['contentfile'].'.'.$this->container['type'];
+		include $this->container['contentfile'];
 		print '</pre>';
 
 	}
