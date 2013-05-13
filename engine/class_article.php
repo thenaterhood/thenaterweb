@@ -37,7 +37,7 @@ class article extends dataMonger{
 		$this->container['link'] = '/blog';
 		$this->container['content'] = '<p>Sorry, the post you were looking for could not be found.  If you think it should be here, try browsing by title.  Otherwise, <a href="blog/index.php">return to blog home.</a></p>'."\n".'<p>Think you were looking for something else? <a href="'.getConfigOption('site_domain').'">visit site home</a>.</p>';
 		
-		if ( $nodefile == 'latest' ){
+		if ( strpos( $nodefile, 'latest' ) ){
 			$inventory = new inventory( getConfigOption('post_directory') );
 			$nodes = $inventory->getFileList();
 			$nodefile = getConfigOption('post_directory').'/'.$nodes[0];

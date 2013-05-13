@@ -22,7 +22,7 @@
 		echo '</ul>';
 		echo '<p><a href="index.php">Back to Blog Home</a></p>';
 	}
-	if ( $displaypost->datestamp and $session->node){
+	if ( $displaypost->datestamp and $session->node != 'latest'){
 		echo "
 	<!-- BEGIN DISQUS CODE -->
 	<div id='disqus_thread'></div>
