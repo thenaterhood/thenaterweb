@@ -39,7 +39,7 @@ class article extends dataMonger{
 		
 		if ( $nodefile == 'latest' ){
 			$inventory = new inventory( getConfigOption('post_directory') );
-			$nodes = $inventory->getPostList();
+			$nodes = $inventory->getFileList();
 			$nodefile = getConfigOption('post_directory').'/'.$nodes[0];
 		}
 			
