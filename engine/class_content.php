@@ -104,7 +104,7 @@ class content extends dataMonger{
 
 		// 
 		print '<pre>';
-		print file_get_contents( $this->container['contentfile'] );
+		print htmlspecialchars( file_get_contents( $this->container['contentfile'] ) );
 		print '</pre>';
 
 	}
