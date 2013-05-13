@@ -1,6 +1,7 @@
 <?php
 
 include_once 'class_dataMonger.php';
+include_once 'class_inventory.php';
 /**
 * Contains everything to do with retrieving and outputting
 * posts in multiple forms.  Is capable of retrieving posts stored
@@ -37,7 +38,8 @@ class article extends dataMonger{
 		$this->container['content'] = '<p>Sorry, the post you were looking for could not be found.  If you think it should be here, try browsing by title.  Otherwise, <a href="blog/index.php">return to blog home.</a></p>'."\n".'<p>Think you were looking for something else? <a href="'.getConfigOption('site_domain').'">visit site home</a>.</p>';
 		
 		if ( $nodefile == 'latest' ){
-			$nodes = getPostList();
+			$inventory = new inventory( getConfigOption('post_directory') );
+			$nodes = $inventory->getPostList();
 			$nodefile = getConfigOption('post_directory').'/'.$nodes[0];
 		}
 			
