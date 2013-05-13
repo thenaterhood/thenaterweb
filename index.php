@@ -41,7 +41,7 @@ include $config->webcore_root.'/html_head.html';
 					
 				<?php 
 				//include chooseInclude( $config->webcore_root.'/page_'.$session->id.'.html', $config->webcore_root.'/template_error.php');
-				$content = new content( $session->id );
+				$content = new content( $session->id, &$session );
 				$content->display();
 				?>
 				
