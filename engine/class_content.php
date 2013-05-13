@@ -25,12 +25,16 @@ class content extends dataMonger{
 		$this->container['type'] = 'php';
 		$this->container['session'] = $session;
 
+		// Types supported by the class, in order of precedence
 		$supportedTypes = array( 'php', 'html', 'pre');
 
+		// Put together the main part of the filename
 		$filename = getConfigOption('webcore_root')."/page_$pageid";
 
+		// Search for the file in order of precedence
 		for( $i = 0; $i < count( $supportedTypes ); ++$i ){
 
+			// If the file exists, update the class with it and break
 			if ( file_exists( $filename.'.'.$supportedTypes[$i] ) ){
 				$this->container['contentfile'] = $filename.'.'.$supportedTypes[$i];
 				$this->container['type'] = $supportedTypes[$i];
@@ -47,9 +51,9 @@ class content extends dataMonger{
 	 * 
 	 * @param $type - the type of feed
 	 */
-	public function output(){
+	public function dump(){
 		
-		return $this->container['type']();
+		return $this->container;
 	}
 
 
@@ -59,10 +63,9 @@ class content extends dataMonger{
 	 * for non-formatted formats that will not contain
 	 * php data.
 	 */
-	public function display(){
+	public function output(){
 
 		$type = $this->container['type'];
-
 		$this->$type();
 	}
 
