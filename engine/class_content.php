@@ -2,32 +2,24 @@
 
 include_once 'class_dataMonger.php';
 /**
-* Contains everything to do with retrieving and outputting
-* posts in multiple forms.  Is capable of retrieving posts stored
-* in .json format (preferred when available) as well as plaintext
-* (file syntax described below in constructor).
-* 
-* Contains functions to output the post data in html format
-* for displaying to a page, and atom format for use in generating
-* an atom feed.
+* Manages retrieving and displaying page content
+* in various forms.
+*
+* @since 5/12/2013
 */
 class content extends dataMonger{
 	
 	/**
-	 * Reads and parses a post file and creates an instance
-	 * of the class with the post data. Capable of managing
-	 * posts in json and plaintext, but prefers json if
-	 * a json file exists for the requested post.
+	 * Constructs an instance of the class given the id of
+	 * a page and a session instance
 	 * 
-	 * @param nodefile (string) - a yyyy.mm.dd string of a nodefile
+	 * @param $pageid - the page id to search for
+	 * @param $session - an instance of the session class
 	 */
 	public function __construct($pageid, $session){
 
-		/* Handles the case where the post file does not exist
-		 * at all by pre-setting all the fields to a failure state.
-		 * This also safely handles any case where the data in a post
-		 * doesn't contain all of the expected fields in a typical way.
-		 */
+		// Sets up the default case where the file could not be found
+
 		$this->container['title'] = $pageid;
 		$this->container['contentfile'] = getConfigOption('webcore_root').'/template_error.php';
 		$this->container['type'] = 'php';
@@ -39,23 +31,17 @@ class content extends dataMonger{
 			$this->container['contentfile'] = $filename.'.html';
 			$this->container['type'] = 'html';
 
-		}
-		else if ( file_exists($filename.'.php') ){
+		} else if ( file_exists($filename.'.php') ){
 			$this->container['contentfile'] = $filename.'.php';
 			$this->container['type'] = 'php';
-		}
-		else if ( file_exists( $filename.'.pre' ) ){
+
+		} else if ( file_exists( $filename.'.pre' ) ){
 			$this->container['contentfile'] = $filename.'.pre';
 			$this->container['type'] = 'pre';
 		}
 
 	}
 
-	private function parseFile(){
-
-
-
-	}
 	
 	/**
 	 * Returns a representation of the post in the format requested
@@ -67,6 +53,13 @@ class content extends dataMonger{
 		return $this->container['type']();
 	}
 
+
+	/**
+	 * Displays the content by including it in the page
+	 * for php/html formats and by printing it
+	 * for non-formatted formats that will not contain
+	 * php data.
+	 */
 	public function display(){
 
 		$type = $this->container['type'];
@@ -74,23 +67,45 @@ class content extends dataMonger{
 		$this->$type();
 	}
 
+	/**
+	 * Sets up a session object for the requested php page to use
+	 * then includes the php page.
+	 */
 	private function php(){
 
+		// Included to support legacy pages which rely
+		// on access to the session
 		$session = $this->container['session'];
+
 		include $this->container['contentfile'];
 
 	}
 
+	/**
+	 * Sets up a session object for the requested page to use
+	 * in case the html contains php data, then includes
+	 * the page.
+	 */
 	private function html(){
+
+		// Included to support legacy pages which rely
+		// on access to the session
 		$session = $this->container['session'];
+
 		include $this->container['contentfile'];
 
 	}
 
+	/**
+	 * Displays preformatted text by adding <pre>
+	 * tags around the data then printing the
+	 * contents of the preformatted file
+	 */
 	private function pre(){
 
+		// 
 		print '<pre>';
-		include $this->container['contentfile'];
+		print file_get_contents( $this->container['contentfile'] );
 		print '</pre>';
 
 	}
