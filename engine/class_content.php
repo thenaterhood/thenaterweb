@@ -29,7 +29,7 @@ class content extends dataMonger{
 		 * doesn't contain all of the expected fields in a typical way.
 		 */
 		$this->container['title'] = $pageid;
-		$this->container['contentfile'] = getConfigOption('webcore_root').'/template_error.php';
+		$this->container['contentfile'] = getConfigOption('webcore_root').'/template_error';
 		$this->container['type'] = 'php';
 		$this->container['session'] = $session;
 
@@ -74,20 +74,20 @@ class content extends dataMonger{
 	private function php(){
 
 		$session = $this->container['session'];
-		include $this->container['contentfile'];
+		include $this->container['contentfile'].'.'.$this->container['type'];
 
 	}
 
 	private function html(){
 		$session = $this->container['session'];
-		include $this->container['contentfile'];
+		include $this->container['contentfile'].'.'.$this->container['type'];
 
 	}
 
 	private function pre(){
 
 		print '<pre>';
-		include $this->container['contentfile'];
+		include $this->container['contentfile'].'.'.$this->container['type'];
 		print '</pre>';
 
 	}
