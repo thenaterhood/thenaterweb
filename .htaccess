@@ -9,7 +9,7 @@ Options -indexes
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteRule page/([^/]*)$ /index.php?id=$1 [L]
-RewriteRule blog/read/([^/]*)\.htm$ /blog/post.php?node=$1 [L]
+RewriteRule blog/read/([^/]*)\.htm$ /blog/index.php?id=post&node=$1 [L]
 </IfModule>
 
 # Custom error pages
