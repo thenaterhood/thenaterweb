@@ -29,7 +29,7 @@ class content extends dataMonger{
 		$supportedTypes = array( 'php', 'html', 'pre');
 
 		// Put together the main part of the filename
-		$filename = getConfigOption('webcore_root')."/page_$pageid";
+		$filename = "static/page_$pageid";
 
 		// Search for the file in order of precedence
 		for( $i = 0; $i < count( $supportedTypes ); ++$i ){
