@@ -2,7 +2,7 @@
 include '../engine/core_blog.php';
 
 
-$session = new session( array('name', 'track', 'konami', 'start', 'end', 'id', 'test', 'tag') );
+$session = new session( array('name', 'track', 'konami', 'start', 'end', 'id', 'test', 'tag', 'node') );
 $config = new config();
 
 # For compatibility with current header
