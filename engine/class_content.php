@@ -29,7 +29,7 @@ class content extends dataMonger{
 
 		$filename = getConfigOption('webcore_root')."/page_$pageid";
 
-		for( i = 0; i < count( $supportedTypes ); ++i ){
+		for( $i = 0; $i < count( $supportedTypes ); ++$i ){
 
 			if ( file_exists( $filename.'.'.$supportedTypes[$i] ) ){
 				$this->container['contentfile'] = $filename.'.'.$supportedTypes[$i];
