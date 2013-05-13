@@ -25,19 +25,18 @@ class content extends dataMonger{
 		$this->container['type'] = 'php';
 		$this->container['session'] = $session;
 
+		$supportedTypes = array( 'php', 'html', 'pre');
+
 		$filename = getConfigOption('webcore_root')."/page_$pageid";
-			
-		if ( file_exists( $filename.'.html' ) ){
-			$this->container['contentfile'] = $filename.'.html';
-			$this->container['type'] = 'html';
 
-		} else if ( file_exists($filename.'.php') ){
-			$this->container['contentfile'] = $filename.'.php';
-			$this->container['type'] = 'php';
+		for( i = 0; i < count( $supportedTypes ); ++i ){
 
-		} else if ( file_exists( $filename.'.pre' ) ){
-			$this->container['contentfile'] = $filename.'.pre';
-			$this->container['type'] = 'pre';
+			if ( file_exists( $filename.'.'.$supportedTypes[$i] ) ){
+				$this->container['contentfile'] = $filename.'.'.$supportedTypes[$i];
+				$this->container['type'] = $supportedTypes[$i];
+				break;
+			}
+
 		}
 
 	}
