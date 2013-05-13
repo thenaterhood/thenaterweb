@@ -1,7 +1,7 @@
 <?php 
 				if ( $session->node ){
 					
-					$displaypost = new article( $config->post_directory.'/'.$session->node );
+					$displaypost = new article( 'entries/'.$session->node );
 				}
 				else {
 					$displaypost = new article( 'latest' );
