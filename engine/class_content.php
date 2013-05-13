@@ -21,7 +21,7 @@ class content extends dataMonger{
 	 * 
 	 * @param nodefile (string) - a yyyy.mm.dd string of a nodefile
 	 */
-	public function __construct($pageid){
+	public function __construct($pageid, $session){
 
 		/* Handles the case where the post file does not exist
 		 * at all by pre-setting all the fields to a failure state.
@@ -29,26 +29,28 @@ class content extends dataMonger{
 		 * doesn't contain all of the expected fields in a typical way.
 		 */
 		$this->container['title'] = $pageid;
-		$this->container['pagecontent'] = getConfigOption('webcore_root').'/template_error.php';
+		$this->container['contentfile'] = getConfigOption('webcore_root').'/template_error.php';
 		$this->container['type'] = 'php';
+		$this->container['session'] = $session;
 
 		$filename = getConfigOption('webcore_root')."/page_$pageid";
 			
 		if ( file_exists( $filename.'.html' ) ){
-
-			$this->container['pagecontent'] = $filename.'.html';
 			$this->container['type'] = 'html';
 
 		}
 		else if ( file_exists($filename.'.php') ){
-
-			$this->container['pagecontent'] = $filename.'.php';
 			$this->container['type'] = 'php';
 		}
 		else if ( file_exists( $filename.'.pre' ) ){
-			$this->container['pagecontent'] = $filename.'.pre';
 			$this->container['type'] = 'pre';
 		}
+
+	}
+
+	private function parseFile(){
+
+
 
 	}
 	
@@ -71,20 +73,21 @@ class content extends dataMonger{
 
 	private function php(){
 
-		include $this->container['pagecontent'];
+		$session = $this->container['session'];
+		include $this->container['contentfile'];
 
 	}
 
 	private function html(){
-
-		include $this->container['pagecontent'];
+		$session = $this->container['session'];
+		include $this->container['contentfile'];
 
 	}
 
 	private function pre(){
 
 		print '<pre>';
-		include $this->container['pagecontent'];
+		include $this->container['contentfile'];
 		print '</pre>';
 
 	}
