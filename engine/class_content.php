@@ -1,5 +1,16 @@
 <?php
+/**
+ * Provides a more powerful method of retrieving and
+ * displaying content so that forms of pages that
+ * are not in php/html can be discovered and displayed
+ * properly.
+ *
+ * @author Nate Levesque <public@thenaterhood.com>
+ */
 
+/**
+ * Include the inherited dataMonger class
+ */
 include_once 'class_dataMonger.php';
 /**
 * Manages retrieving and displaying page content

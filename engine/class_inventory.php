@@ -1,12 +1,45 @@
 <?php
+/**
+ * Provides a self-sufficient file with the inventory
+ * class, which abstracts access to a data file containing
+ * an index of posts or articles in a directory.
+ */
+
+/**
+ * Includes the necessary facilities for managing
+ * the inventory
+ */
 include_once 'core_web.php';
 include_once 'class_article.php';
 
+/**
+ * Provides a database-like means of accessing an inventory
+ * of posts or articles in a directory for efficiently searching
+ * for things by certain criteria, as well as maintaining
+ * and updating the data. Stored in json format currently, but
+ * due to being abstracted out, could be modified to store
+ * the data in other formats.
+ *
+ * @since 5/13/2013
+ * @author Nate Levesque <public@thenaterhood.com>
+ */
 class inventory{
 
+	/**
+	 * @var $directory - the directory inventory we want
+	 */
 	private $directory;
+	/**
+	 * @var $current - whether the inventory appears to be up to date
+	 */
 	private $current = null;
+	/**
+	 * @var $inventoryFile - the file where the inventory is stored (autogen)
+	 */
 	private $inventoryFile;
+	/**
+	 * @var $inventoryData - the parsed inventory data that the class accesses
+	 */
 	private $inventoryData;
 
 	/**

@@ -1,14 +1,14 @@
 <?php
-/*
-* Author: Nate Levesque <public@thenaterhood.com>
-* Language: PHP
-* Filename: api_post.php
+/**
 * 
-* Description:
-* 	Contains functions for testing and externally accessing data from
-*	blog posts.
+* Contains functions for testing and externally accessing data from
+* blog posts.
+* @author Nate Levesque <public@thenaterhood.com>
 */
 
+/**
+ * Includes the necessary facilities
+ */
 include 'core_blog.php';
 include 'core_json.php';
 

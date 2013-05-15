@@ -1,9 +1,18 @@
 <?php
+/**
+ * Provides a resource for storing a representation of a page
+ * on a website with the location and modification date with
+ * the facilities to return it in xml format. Mainly for use in
+ * a sitemap.
+ */
 
+/**
+ * Includes the inherited class
+ */
 include_once 'class_dataMonger.php';
 
 /**
- * Creates a class to contain an item in the sitemap
+ * Represents a url object to store a sitemap url block
  */
 class url extends dataMonger{
 

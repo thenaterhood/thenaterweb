@@ -1,4 +1,9 @@
 <?php
+/**
+ * Provides a means of searching for and retrieving
+ * variables.
+ * @author Nate Levesque <public@thenaterhood.com>
+ */
 
 /**
  * Include the sanitation class
@@ -15,8 +20,6 @@ class varGetter extends sanitation{
 	  * Constructs an instance of the class and finds the variable
 	  * 
 	  * @param $name - the name of the variable
-	  * @param $length (optional) - the allowed length of the variable
-	  * @param $method (optional) - the method to use
 	  */	 
 	 public function __construct( $name ){
 		 

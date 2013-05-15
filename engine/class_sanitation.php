@@ -1,5 +1,13 @@
 <?php
 /**
+ * Provides resources for sanitizing user input, including removing
+ * garbage characters, truncating strings to fit in their location, 
+ * and providing various outputs in an html safe form if requested.
+ * @author Nate Levesque <public@thenaterhood.com>
+ */
+
+
+/**
  * Manages sanitizing user input.  Currently works only for strings,
  * but adding functions to sanitize other data types is trivial.
  * Retrieving sanitized values from the class involves invoking
@@ -77,6 +85,9 @@ class sanitation{
 		}
 	}
 	
+	/**
+	 * Returns an integer created from the data
+	 */
 	private function num(){
 		
 		return (int) $this->dirty;
