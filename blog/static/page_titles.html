@@ -8,7 +8,7 @@ echo '<ul>';
 $inventory = new inventory( getConfigOption('post_directory') );
 $titles = $inventory->selectField( 'title' );
 foreach ($titles as $item) {
-	$title = $inventory->select( 'title', $item );
+	$title = $inventory->select( 'title', $item )[0];
 	print '<li><a href="'.$title->link.'">'.$title->title.'</a>';
 	# code...
 }
