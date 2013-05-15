@@ -1,0 +1,375 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>thenaterhood.com</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta><link rel="stylesheet" href="css/black-tie/jquery-ui-1.8.2.custom.css" type="text/css"></link><link rel="stylesheet" href="css/jquery.treeview.css" type="text/css"></link><link rel="stylesheet" href="css/default.css" type="text/css"></link><script type="text/javascript" src="js/jquery-1.4.2.min.js"></script><script type="text/javascript" src="js/jquery-ui-1.8.2.custom.min.js"></script><script type="text/javascript" src="js/jquery.cookie.js"></script><script type="text/javascript" src="js/jquery.treeview.js"></script></head><body><script type="text/javascript">
+          $(document).ready(function()
+          {
+            $(".filetree").treeview({
+              animated: "fast",
+              collapsed: true,
+              persist: "cookie"
+            });
+          });
+
+          function jq_escape(myid)
+          {
+            return '#' + myid.replace(/(#|\$|:|\.|\(|\))/g, '\\$1');
+          }
+
+          function applySearchHash()
+          {
+            hashes = document.location.hash.substr(1, document.location.hash.length);
+            if (hashes != "")
+            {
+              hashes = hashes.split('/');
+              $.each(hashes, function(index, hash)
+              {
+                node = $(jq_escape(hash));
+                switch (node[0].nodeName)
+                {
+                  case 'DIV':
+                    tabs = node.parents('.tabs');
+                    $(tabs[0]).tabs('select', '#' + hash)
+                    break;
+                  case 'A':
+                    window.scrollTo(0, node.offset().top);
+                    break;
+                }
+              });
+            }
+          }
+
+          jQuery(function()
+          {
+            jQuery(".tabs").tabs();
+            applySearchHash();
+          });
+        </script><div id="maincontainer"><div id="header"><h1>thenaterhood.com<img src="images/top-stopper.png"></img></h1></div><ul xmlns="" id="menu">
+<li><a href="graph.html">Class diagram</a></li>
+<li><a href="markers.html">TODO / Markers</a></li>
+<li><a href="parse_markers.html">Errors</a></li>
+</ul>
+<div id="content_container"><div xmlns="" id="content">
+<h1>class_redirect.php</h1>
+<div class="file_menu">
+<a href="#classes">Classes</a> |</div>
+<div class="properties">
+<h1>Properties</h1>
+<label class="property-key">author</label><div class="property-value"></div>
+</div>
+<h2>Description</h2>Provides a class for managing redirecting a page.<br><br><p>The class accepts a destination and origin and
+allows for a redirect to be applied at any time,
+providing an advantage over using only PHP's
+builtin redirect resources.</p><br><a name="classes"></a><h2>Classes</h2>
+<div id="redirect" class="class">
+<h3>redirect</h3>
+<div class="properties">
+<h1>Properties</h1>
+<label class="property-key">Extends</label><div class="property-value">
+         </div>
+<label class="property-key">Implements</label><div class="property-value"> 
+      </div>
+<label class="property-key">Abstract</label><div class="property-value">No 
+      </div>
+<label class="property-key">Final</label><div class="property-value">No 
+      </div>
+</div>
+<h4>Description</h4>
+<em>Provides a class for storing and applying
+a redirect to another area of a website.</em><br><br><div id="methods_redirect">
+<h4>Methods</h4>
+<a style="font-style: italic;" href="#redirect::__construct()">__construct</a>,
+      <a style="font-style: italic;" href="#redirect::apply()">apply</a>,
+      <a style="font-style: italic;" href="#redirect::apply_301()">apply_301</a>,
+      <a style="font-style: italic;" href="#redirect::apply_302()">apply_302</a>,
+      <a style="font-style: italic;" href="#redirect::view()">view</a>,
+      <div class="method">
+<a id="redirect::__construct()"></a><h3>__construct<span class="nb-faded-text">(
+          
+             
+            $origin,
+          
+             
+            $destination,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">n/a</span>
+</h3>
+<h4>Description</h4>
+<em>Produces an instance of the class</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>$origin</td>
+<td style="white-space: normal;">n/a</td>
+<td><ul>
+<li>the url accessed originally</li>
+</ul>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>$destination</td>
+<td style="white-space: normal;">n/a</td>
+<td><ul>
+<li>the url to redirect to</li>
+</ul>
+</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>n/a</td>
+<td>n/a</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="redirect::apply()"></a><h3>apply<span class="nb-faded-text">(
+          
+             
+            $type,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">n/a</span>
+</h3>
+<h4>Description</h4>
+<em>Applies the redirect to the page</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody><tr>
+<td>$type</td>
+<td style="white-space: normal;">n/a</td>
+<td><ul>
+<li>the type of redirect to use</li>
+</ul>
+</td>
+<td></td>
+</tr></tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>n/a</td>
+<td>n/a</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="redirect::apply_301()"></a><h3>apply_301<span class="nb-faded-text">(
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">n/a</span>
+</h3>
+<h4>Description</h4>
+<em>Performs a 301 (permanent) redirect</em><br><h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>n/a</td>
+<td>n/a</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="redirect::apply_302()"></a><h3>apply_302<span class="nb-faded-text">(
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">n/a</span>
+</h3>
+<h4>Description</h4>
+<em>Performs a 302 (temporary) redirect</em><br><h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>n/a</td>
+<td>n/a</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="redirect::view()"></a><h3>view<span class="nb-faded-text">(
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">n/a</span>
+</h3>
+<h4>Description</h4>
+<em>Provides a simple text output to check if the class
+was initiated correctly</em><br><h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>n/a</td>
+<td>n/a</td>
+</tr></tbody>
+</table>
+</div>
+</div>
+<div id="properties_redirect">
+<h4>Properties</h4>
+<a href="#redirect::%24destination">$destination</a>,
+      <a href="#redirect::%24origin">$origin</a>,
+      <div class="method">
+<a id="redirect::$destination"></a><h3>
+<span class="nb-faded-text">\$origin 
+          private 
+          </span>$destination
+          =
+          </h3>
+<em><ul>
+<li>the page to redirect from</li>
+</ul>
+</em><br><small></small><br><br>
+</div>
+<div class="method">
+<a id="redirect::$origin"></a><h3>
+<span class="nb-faded-text">\$origin 
+          private 
+          </span>$origin
+          =
+          </h3>
+<em><ul>
+<li>the page to redirect from</li>
+</ul>
+</em><br><small></small><br><br>
+</div>
+</div>
+<div style="clear: both"></div>
+</div>
+</div>
+<small xmlns="" class="footer">Documentation was generated by <a href="http://www.phpdoc.org">phpDocumentor 2.0.0a12</a>.</small></div><div id="index"><div class="padder"><script xmlns="" type="text/javascript">
+      $(function() {
+
+        var is_chrome = /chrome/.test( navigator.userAgent.toLowerCase() );
+        var is_local = /file:\/\//.test(document.location.href);
+        if (is_chrome && is_local)
+        {
+          // search is disabled on chrome with local files due to http://code.google.com/p/chromium/issues/detail?id=40787
+          return;
+        }
+
+        $("#search_box").show();
+        var search_index = {};
+        $.ajax({
+          url: "search_index.xml",
+          dataType: ($.browser.msie) ? "text" : "xml",
+          error: function(data) {
+            alert('An error occurred using the search data');
+          },
+          success: function( data ) {
+            var xml;
+            if (typeof data == "string") {
+              xml = new ActiveXObject("Microsoft.XMLDOM");
+              xml.async = false;
+              xml.loadXML(data);
+            } else {
+              xml = data;
+            }
+
+            search_index = $("node", xml).map(function() {
+              type = $("type", this).text();
+              return {
+                value: $("value", this).text(),
+                label: '<img src="images/icons/'+type+'.png" align="absmiddle">'+$("value", this).text(),
+                id: $("id", this).text(),
+              };
+            }).get();
+
+            $("#search_box").autocomplete({
+              source: search_index,
+              select: function(event, ui) {
+                // redirect to the documentation
+                if ((parent) && (parent.content))
+                {
+                  parent.content.document.location = ''+ui.item.id;
+                }
+                else
+                {
+                  jQuery(document).location = ''+ui.item.id;
+                }
+                applySearchHash();
+              }
+            });
+          }
+        });
+      });
+    </script><input id="search_box"></input><div class="section">
+<h1>Namespaces</h1>
+<ul id="namespaces-" class="filetree"><li class="closed">
+<span class="folder">global</span><ul>
+<li><span class="class"><a href="class_article.html#article">article</a><br><small>Contains everything to do with retrieving and outputting
+posts in multiple forms.</small></span></li>
+<li><span class="class"><a href="class_condRedirect.html#condRedirect">condRedirect</a><br><small>Manages conditionally redirecting pages based
+on the requested uri and a given uri to redirect from.</small></span></li>
+<li><span class="class"><a href="class_config.html#config">config</a><br><small>Defines a class to hold variables for configuration
+options.</small></span></li>
+<li><span class="class"><a href="class_content.html#content">content</a><br><small>Manages retrieving and displaying page content
+in various forms.</small></span></li>
+<li><span class="class"><a href="class_dataMonger.html#dataMonger">dataMonger</a><br><small>Provides an abstract class to define a standard way
+of managing data for the classes that are managing
+things like session data, posts, etc.</small></span></li>
+<li><span class="class"><a href="class_feed.html#feed">feed</a><br><small>Defines a data object to contain an atom feed as items
+are added and the feed is updated then returned</small></span></li>
+<li><span class="class"><a href="class_inventory.html#inventory">inventory</a><br><small>Provides a database-like means of accessing an inventory
+of posts or articles in a directory for efficiently searching
+for things by certain criteria, as well as maintaining
+and updating the data.</small></span></li>
+<li><span class="class"><a href="core_json.html#jsonMaker">jsonMaker</a><br><small>Constructs an array of json data from an associative array</small></span></li>
+<li><span class="class"><a href="class_redirect.html#redirect">redirect</a><br><small>Provides a class for storing and applying
+a redirect to another area of a website.</small></span></li>
+<li><span class="class"><a href="class_sanitation.html#sanitation">sanitation</a><br><small>Manages sanitizing user input.</small></span></li>
+<li><span class="class"><a href="class_session.html#session">session</a><br><small>Provides a common interface for picking up variables from the
+user in a clean way, so that internal variables for pulling
+pages and otherwise can be managed more easily and sanitation
+settings are more easily applied site-wide.</small></span></li>
+<li><span class="class"><a href="class_url.html#url">url</a><br><small>Represents a url object to store a sitemap url block</small></span></li>
+<li><span class="class"><a href="class_urlset.html#urlset">urlset</a><br><small>Defines a data object to contain an xml sitemap.</small></span></li>
+<li><span class="class"><a href="class_varGetter.html#varGetter">varGetter</a><br><small>Provides an interface for retrieving variables using a specific
+method or by searching through each method to find a variable.</small></span></li>
+</ul>
+</li></ul>
+</div><div class="section">
+<h1>Packages</h1>
+<ul id="packages-" class="deadtree"><li class="closed">
+<span class="folder">Default</span><ul id="packages_Default" class="filetree"></ul>
+</li></ul>
+</div>
+</div></div><div id="footer"><div class="padder"></div></div></div></body></html>

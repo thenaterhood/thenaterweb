@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>thenaterhood.com</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta><link rel="stylesheet" href="../css/template.css" type="text/css"></link><script type="text/javascript" src="../js/jquery-1.4.2.min.js"></script><script type="text/javascript" src="../js/jquery.tools.min.js"></script><script type="text/javascript" src="../js/jquery-ui-1.8.2.custom.min.js"></script><script type="text/javascript" src="../js/template.js"></script></head><body><div id="content"><h1 class="file">class_condRedirect.php</h1><div id="file-nav-box"><div id="file-nav-options">
+              Show:
+              <img src="../images/icons/visibility_public.png" alt="Public" id="show-public"></img><img src="../images/icons/visibility_protected.png" alt="Protected" id="show-protected"></img><img src="../images/icons/visibility_private.png" alt="Private" id="show-private"></img><span class="attribute" id="show-inherited">inherited</span></div><div id="file-nav-container"><ul id="file-nav"><li><a href="#classes"><img src="../images/icons/class.png" alt="Class" height="14"></img>
+                          Classes
+                      </a><ul><li><a href="#\condRedirect">\condRedirect</a></li></ul></li></ul><div style="clear: left;"></div></div><div id="file-nav-tab">
+              Table of Contents
+          </div></div><a name="top" class="anchor"></a><div id="file-description"><div class="short-description">Provides a means of redirecting a page conditionally
+based on whether the destination is where the user
+currently is or not.</div><div class="long-description"></div></div><dl class="file-info"><dt>Author</dt><dd><a href="mailto:public@thenaterhood.com">Nate Levesque</a>
+         
+    </dd></dl><a name="classes" class="anchor"></a><a id="\condRedirect" class="anchor"></a><h2 class="class">\condRedirect<div class="to-top"><a href="#top">jump to top</a></div></h2><div class="class"><small class="package"><b>Package: </b>Default</small><div class="short-description">Manages conditionally redirecting pages based
+on the requested uri and a given uri to redirect from.</div><div class="long-description"><p>Checks to see if the uri requested by the user contains
+the uri to redirect from, and prepares to perform the
+redirect if so.</p>
+
+<p>Relies on the redirect class to manage the actual redirecting,
+this class is primarly an interface to it that deals with the
+conditional aspect.</p></div><dl class="class-info"><dt>Parent(s)</dt><dd><a href="../files/class_redirect.html#\redirect">\redirect</a></dd></dl><h3>Properties</h3><div><a id="\condRedirect::$apply" class="anchor"></a><div class="property private"><a href="#" class="gripper"><img src="../images/icons/arrow_right.png" alt="&gt;"></img><img src="../images/icons/arrow_down.png" alt="V" style="display: none;"></img></a><code class="title"><img src="../images/icons/property.png" alt="Property"></img><img src="../images/icons/visibility_private.png" style="margin-right: 5px" alt="private"></img>\$apply <span class="highlight">$apply</span></code><div class="description"><div class="short-description"><ul>
+<li>whether or not the redirect needs to occur</li>
+</ul>
+</div></div><div class="code-tabs"><div class="long-description"></div><strong>Details</strong><dl class="property-info"><dt>Type</dt><dd>\$apply</dd></dl></div><div class="clear"></div></div><a id="\condRedirect::$destination" class="anchor"></a><div class="property private inherited_from "><a href="#" class="gripper"><img src="../images/icons/arrow_right.png" alt="&gt;"></img><img src="../images/icons/arrow_down.png" alt="V" style="display: none;"></img></a><code class="title"><img src="../images/icons/property.png" alt="Property"></img><img src="../images/icons/visibility_private.png" style="margin-right: 5px" alt="private"></img>\$origin\$destination <span class="highlight">$destination</span></code><div class="description"><span class="attribute">inherited</span><div class="short-description"><ul>
+<li>the page to redirect from</li>
+</ul>
+</div><div class="short-description"><ul>
+<li>the destination to redirect to</li>
+</ul>
+</div><small class="inherited_from">Inherited from:
+                        <a href="../files/class_redirect.html#\redirect::$$destination">\redirect::$$destination</a></small></div><div class="code-tabs"><div class="long-description"></div><strong>Details</strong><dl class="property-info"><dt>Type</dt><dd>\$origin | \$destination</dd><dt>Inherited_from</dt><dd><a href="../files/
+                         class_redirect.html#\redirect::$$destination">\redirect::$$destination</a>
+         
+    </dd></dl></div><div class="clear"></div></div><a id="\condRedirect::$origin" class="anchor"></a><div class="property private inherited_from "><a href="#" class="gripper"><img src="../images/icons/arrow_right.png" alt="&gt;"></img><img src="../images/icons/arrow_down.png" alt="V" style="display: none;"></img></a><code class="title"><img src="../images/icons/property.png" alt="Property"></img><img src="../images/icons/visibility_private.png" style="margin-right: 5px" alt="private"></img>\$origin\$destination <span class="highlight">$origin</span></code><div class="description"><span class="attribute">inherited</span><div class="short-description"><ul>
+<li>the page to redirect from</li>
+</ul>
+</div><div class="short-description"><ul>
+<li>the destination to redirect to</li>
+</ul>
+</div><small class="inherited_from">Inherited from:
+                        <a href="../files/class_redirect.html#\redirect::$$origin">\redirect::$$origin</a></small></div><div class="code-tabs"><div class="long-description"></div><strong>Details</strong><dl class="property-info"><dt>Type</dt><dd>\$origin | \$destination</dd><dt>Inherited_from</dt><dd><a href="../files/
+                         class_redirect.html#\redirect::$$origin">\redirect::$$origin</a>
+         
+    </dd></dl></div><div class="clear"></div></div></div><h3>Methods</h3><div><a id="\condRedirect::__construct()" class="anchor"></a><div class="method public"><a href="#" class="gripper"><img src="../images/icons/arrow_right.png"></img><img src="../images/icons/arrow_down.png" style="display: none;"></img></a><code class="title"><img src="../images/icons/method.png" alt="method" title="method"></img><img src="../images/icons/visibility_public.png" style="margin-right: 5px" alt="public"></img><span class="highlight">__construct</span><span class="nb-faded-text">( $origin,  $destination,  $uri)</span> : void</code><div class="description"><p class="short_description">Creates an instance of the conditional redirect class
+and decides whether the redirect will be performed</p></div><div class="code-tabs"><div class="long-description"></div><strong>Parameters</strong><table class="argument-info"><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tr><th>$origin</th><td></td><td><em><ul>
+<li>a chosen uri to redirect from</li>
+</ul>
+</em></td></tr><tr><th>$destination</th><td></td><td><em><ul>
+<li>a uri to redirect to</li>
+</ul>
+</em></td></tr><tr><th>$uri</th><td></td><td><em><ul>
+<li>the uri requested by the user</li>
+</ul>
+</em></td></tr></table></div><div class="clear"></div></div><a id="\condRedirect::apply()" class="anchor"></a><div class="method public"><a href="#" class="gripper"><img src="../images/icons/arrow_right.png"></img><img src="../images/icons/arrow_down.png" style="display: none;"></img></a><code class="title"><img src="../images/icons/method.png" alt="method" title="method"></img><img src="../images/icons/visibility_public.png" style="margin-right: 5px" alt="public"></img><span class="highlight">apply</span><span class="nb-faded-text">( $type)</span> : void</code><div class="description"><p class="short_description">Applies the redirect to the page if the redirect should happen</p></div><div class="code-tabs"><div class="long-description"></div><strong>Parameters</strong><table class="argument-info"><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tr><th>$type</th><td></td><td><em><ul>
+<li>the type of redirect to apply</li>
+</ul>
+</em></td></tr></table></div><div class="clear"></div></div><a id="\condRedirect::apply_301()" class="anchor"></a><div class="method private inherited_from "><a href="#" class="gripper"><img src="../images/icons/arrow_right.png"></img><img src="../images/icons/arrow_down.png" style="display: none;"></img></a><code class="title"><img src="../images/icons/method.png" alt="method" title="method"></img><img src="../images/icons/visibility_private.png" style="margin-right: 5px" alt="private"></img><span class="highlight">apply_301</span><span class="nb-faded-text">()</span> : void</code><div class="description"><span class="attribute">inherited</span><p class="short_description">Performs a 301 (permanent) redirect</p><small class="inherited_from">Inherited from:
+                    <a href="../files/class_redirect.html#\redirect::apply_301()">\redirect::apply_301()</a></small></div><div class="code-tabs"><div class="long-description"></div></div><div class="clear"></div></div><a id="\condRedirect::apply_302()" class="anchor"></a><div class="method private inherited_from "><a href="#" class="gripper"><img src="../images/icons/arrow_right.png"></img><img src="../images/icons/arrow_down.png" style="display: none;"></img></a><code class="title"><img src="../images/icons/method.png" alt="method" title="method"></img><img src="../images/icons/visibility_private.png" style="margin-right: 5px" alt="private"></img><span class="highlight">apply_302</span><span class="nb-faded-text">()</span> : void</code><div class="description"><span class="attribute">inherited</span><p class="short_description">Performs a 302 (temporary) redirect</p><small class="inherited_from">Inherited from:
+                    <a href="../files/class_redirect.html#\redirect::apply_302()">\redirect::apply_302()</a></small></div><div class="code-tabs"><div class="long-description"></div></div><div class="clear"></div></div><a id="\condRedirect::view()" class="anchor"></a><div class="method public inherited_from "><a href="#" class="gripper"><img src="../images/icons/arrow_right.png"></img><img src="../images/icons/arrow_down.png" style="display: none;"></img></a><code class="title"><img src="../images/icons/method.png" alt="method" title="method"></img><img src="../images/icons/visibility_public.png" style="margin-right: 5px" alt="public"></img><span class="highlight">view</span><span class="nb-faded-text">()</span> : void</code><div class="description"><span class="attribute">inherited</span><p class="short_description">Provides a simple text output to check if the class
+was initiated correctly</p><small class="inherited_from">Inherited from:
+                    <a href="../files/class_redirect.html#\redirect::view()">\redirect::view()</a></small></div><div class="code-tabs"><div class="long-description"></div></div><div class="clear"></div></div></div></div></div><small class="footer">
+            Documentation was generated by
+            <a href="http://phpdoc.org">phpDocumentor
+                2.0.0a12</a>.
+        </small></body></html>

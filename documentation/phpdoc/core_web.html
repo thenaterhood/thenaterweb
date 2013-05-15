@@ -1,0 +1,299 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>thenaterhood.com</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta><link rel="stylesheet" href="css/black-tie/jquery-ui-1.8.2.custom.css" type="text/css"></link><link rel="stylesheet" href="css/jquery.treeview.css" type="text/css"></link><link rel="stylesheet" href="css/default.css" type="text/css"></link><script type="text/javascript" src="js/jquery-1.4.2.min.js"></script><script type="text/javascript" src="js/jquery-ui-1.8.2.custom.min.js"></script><script type="text/javascript" src="js/jquery.cookie.js"></script><script type="text/javascript" src="js/jquery.treeview.js"></script></head><body><script type="text/javascript">
+          $(document).ready(function()
+          {
+            $(".filetree").treeview({
+              animated: "fast",
+              collapsed: true,
+              persist: "cookie"
+            });
+          });
+
+          function jq_escape(myid)
+          {
+            return '#' + myid.replace(/(#|\$|:|\.|\(|\))/g, '\\$1');
+          }
+
+          function applySearchHash()
+          {
+            hashes = document.location.hash.substr(1, document.location.hash.length);
+            if (hashes != "")
+            {
+              hashes = hashes.split('/');
+              $.each(hashes, function(index, hash)
+              {
+                node = $(jq_escape(hash));
+                switch (node[0].nodeName)
+                {
+                  case 'DIV':
+                    tabs = node.parents('.tabs');
+                    $(tabs[0]).tabs('select', '#' + hash)
+                    break;
+                  case 'A':
+                    window.scrollTo(0, node.offset().top);
+                    break;
+                }
+              });
+            }
+          }
+
+          jQuery(function()
+          {
+            jQuery(".tabs").tabs();
+            applySearchHash();
+          });
+        </script><div id="maincontainer"><div id="header"><h1>thenaterhood.com<img src="images/top-stopper.png"></img></h1></div><ul xmlns="" id="menu">
+<li><a href="graph.html">Class diagram</a></li>
+<li><a href="markers.html">TODO / Markers</a></li>
+<li><a href="parse_markers.html">Errors</a></li>
+</ul>
+<div id="content_container"><div xmlns="" id="content">
+<h1>core_web.php</h1>
+<div class="file_menu">
+<a href="#includes">Includes</a> |<a href="#functions">Functions</a> |</div>
+<div class="properties">
+<h1>Properties</h1>
+<label class="property-key">author</label><div class="property-value"></div>
+<label class="property-key">copyright</label><div class="property-value"></div>
+</div>
+<h2>Description</h2>Contains functions for basic web capabilities such as reading
+variables from the URL (safely), setting/getting cookies and config
+options.<br><br><a name="includes"></a><h2>Includes</h2>class_config.php <span class="nb-faded-text">(Include)</span><br>class_varGetter.php <span class="nb-faded-text">(Include)</span><br>class_session.php <span class="nb-faded-text">(Include)</span><br>class_content.php <span class="nb-faded-text">(Include)</span><br><a name="functions"></a><h2>Functions</h2>
+<div class="method">
+<a id="::chooseInclude()"></a><h3>chooseInclude<span class="nb-faded-text">(
+          
+             
+            $preferred,
+          
+             
+            $secondary,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">\$page</span>
+</h3>
+<h4>Description</h4>
+<em>Checks to see if the preferred file exists, and if it does
+returns it, otherwise it returns the secondary file, which ideally
+should be a file (like an error page) that is guaranteed to exist.</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>$preferred</td>
+<td style="white-space: normal;">n/a</td>
+<td><p>(string): the preferred page to include</p>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>$secondary</td>
+<td style="white-space: normal;">n/a</td>
+<td><p>(string): the secondary, emergency page to include</p>
+</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>\$page</td>
+<td>(string): the page that should be included</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="::randomGreeting()"></a><h3>randomGreeting<span class="nb-faded-text">(
+          
+             
+            $first_name,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">\-</span>
+</h3>
+<h4>Description</h4>
+<em>Displays a string with a random greeting and the string
+the function was called with.</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody><tr>
+<td>$first_name</td>
+<td style="white-space: normal;">n/a</td>
+<td><p>(str): a string, preferably a name</p>
+</td>
+<td></td>
+</tr></tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>\-</td>
+<td>a string with a personal greeting</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="::getConfigOption()"></a><h3>getConfigOption<span class="nb-faded-text">(
+          
+             
+            $key,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">\-</span>
+</h3>
+<h4>Description</h4>
+<em>Built to abstract retrieving config variables, since
+they're now contained in a class this is just for legacy
+support until everything else gets moved off
+of using this function</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody><tr>
+<td>$key</td>
+<td style="white-space: normal;">n/a</td>
+<td><ul>
+<li>the name of a config key to retrieve</li>
+</ul>
+</td>
+<td></td>
+</tr></tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>\-</td>
+<td>the value of the config key</td>
+</tr></tbody>
+</table>
+</div>
+</div>
+<small xmlns="" class="footer">Documentation was generated by <a href="http://www.phpdoc.org">phpDocumentor 2.0.0a12</a>.</small></div><div id="index"><div class="padder"><script xmlns="" type="text/javascript">
+      $(function() {
+
+        var is_chrome = /chrome/.test( navigator.userAgent.toLowerCase() );
+        var is_local = /file:\/\//.test(document.location.href);
+        if (is_chrome && is_local)
+        {
+          // search is disabled on chrome with local files due to http://code.google.com/p/chromium/issues/detail?id=40787
+          return;
+        }
+
+        $("#search_box").show();
+        var search_index = {};
+        $.ajax({
+          url: "search_index.xml",
+          dataType: ($.browser.msie) ? "text" : "xml",
+          error: function(data) {
+            alert('An error occurred using the search data');
+          },
+          success: function( data ) {
+            var xml;
+            if (typeof data == "string") {
+              xml = new ActiveXObject("Microsoft.XMLDOM");
+              xml.async = false;
+              xml.loadXML(data);
+            } else {
+              xml = data;
+            }
+
+            search_index = $("node", xml).map(function() {
+              type = $("type", this).text();
+              return {
+                value: $("value", this).text(),
+                label: '<img src="images/icons/'+type+'.png" align="absmiddle">'+$("value", this).text(),
+                id: $("id", this).text(),
+              };
+            }).get();
+
+            $("#search_box").autocomplete({
+              source: search_index,
+              select: function(event, ui) {
+                // redirect to the documentation
+                if ((parent) && (parent.content))
+                {
+                  parent.content.document.location = ''+ui.item.id;
+                }
+                else
+                {
+                  jQuery(document).location = ''+ui.item.id;
+                }
+                applySearchHash();
+              }
+            });
+          }
+        });
+      });
+    </script><input id="search_box"></input><div class="section">
+<h1>Namespaces</h1>
+<ul id="namespaces-" class="filetree"><li class="closed">
+<span class="folder">global</span><ul>
+<li><span class="class"><a href="class_article.html#article">article</a><br><small>Contains everything to do with retrieving and outputting
+posts in multiple forms.</small></span></li>
+<li><span class="class"><a href="class_condRedirect.html#condRedirect">condRedirect</a><br><small>Manages conditionally redirecting pages based
+on the requested uri and a given uri to redirect from.</small></span></li>
+<li><span class="class"><a href="class_config.html#config">config</a><br><small>Defines a class to hold variables for configuration
+options.</small></span></li>
+<li><span class="class"><a href="class_content.html#content">content</a><br><small>Manages retrieving and displaying page content
+in various forms.</small></span></li>
+<li><span class="class"><a href="class_dataMonger.html#dataMonger">dataMonger</a><br><small>Provides an abstract class to define a standard way
+of managing data for the classes that are managing
+things like session data, posts, etc.</small></span></li>
+<li><span class="class"><a href="class_feed.html#feed">feed</a><br><small>Defines a data object to contain an atom feed as items
+are added and the feed is updated then returned</small></span></li>
+<li><span class="class"><a href="class_inventory.html#inventory">inventory</a><br><small>Provides a database-like means of accessing an inventory
+of posts or articles in a directory for efficiently searching
+for things by certain criteria, as well as maintaining
+and updating the data.</small></span></li>
+<li><span class="class"><a href="core_json.html#jsonMaker">jsonMaker</a><br><small>Constructs an array of json data from an associative array</small></span></li>
+<li><span class="class"><a href="class_redirect.html#redirect">redirect</a><br><small>Provides a class for storing and applying
+a redirect to another area of a website.</small></span></li>
+<li><span class="class"><a href="class_sanitation.html#sanitation">sanitation</a><br><small>Manages sanitizing user input.</small></span></li>
+<li><span class="class"><a href="class_session.html#session">session</a><br><small>Provides a common interface for picking up variables from the
+user in a clean way, so that internal variables for pulling
+pages and otherwise can be managed more easily and sanitation
+settings are more easily applied site-wide.</small></span></li>
+<li><span class="class"><a href="class_url.html#url">url</a><br><small>Represents a url object to store a sitemap url block</small></span></li>
+<li><span class="class"><a href="class_urlset.html#urlset">urlset</a><br><small>Defines a data object to contain an xml sitemap.</small></span></li>
+<li><span class="class"><a href="class_varGetter.html#varGetter">varGetter</a><br><small>Provides an interface for retrieving variables using a specific
+method or by searching through each method to find a variable.</small></span></li>
+</ul>
+</li></ul>
+</div><div class="section">
+<h1>Packages</h1>
+<ul id="packages-" class="deadtree"><li class="closed">
+<span class="folder">Default</span><ul id="packages_Default" class="filetree"></ul>
+</li></ul>
+</div>
+</div></div><div id="footer"><div class="padder"></div></div></div></body></html>
