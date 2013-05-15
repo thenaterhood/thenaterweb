@@ -1,5 +1,16 @@
 <?php
+/**
+ * Provides a consistent interface for
+ * accessing posts or articles with multiple methods
+ * of displaying and managing the contained data.
+ *
+ * @author Nate Levesque <public@thenaterhood.com>
+ */
 
+
+/**
+ * Includes the inherited dataMonger class
+ */
 include_once 'class_dataMonger.php';
 /**
 * Contains everything to do with retrieving and outputting

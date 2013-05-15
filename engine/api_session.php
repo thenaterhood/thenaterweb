@@ -1,14 +1,13 @@
 <?php
-/*
-* Author: Nate Levesque <public@thenaterhood.com>
-* Language: PHP
-* Filename: api_session.php
-* 
-* Description:
-* 	Contains functions for testing and externally accessing the session
-* 	class for retrieving session data.
+/**
+* Contains functions for testing and externally accessing the session
+* class for retrieving session data.
+* @author Nate Levesque <public@thenaterhood.com>
 */
 
+/**
+ * Includes the necessary facilities
+ */
 include 'core_web.php';
 include 'core_json.php';
 

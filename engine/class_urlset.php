@@ -1,9 +1,17 @@
 <?php
-
-include_once 'class_url.php';
 /**
- * Defines a data object to contain an atom feed as items
- * are added and the feed is updated then returned
+ * Provides a class for creating and containing
+ * a sitemap with the ability to export it as xml data.
+ * @author Nate Levesque <public@thenaterhood.com>
+ */
+
+/**
+ * Include the required url class to use internally
+ */
+include_once 'class_url.php';
+
+/**
+ * Defines a data object to contain an xml sitemap.
  */
 class urlset {
 	

@@ -1,13 +1,13 @@
 <?php
-/*
-* Author: Nate Levesque <public@thenaterhood.com>
-* Language: PHP
-* Filename: api_inventory.php
+/**
 * 
-* Description:
-* 	Contains functions for testing the functionality of the inventory class
+* Contains functions for testing the functionality of the inventory class
+* @author Nate Levesque <public@thenaterhood.com>
 */
 
+/**
+ * Includes the necessary facilities
+ */
 include_once 'core_web.php';
 include_once 'core_json.php';
 include_once 'class_inventory.php';

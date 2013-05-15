@@ -1,6 +1,14 @@
 <?php
+/**
+ * Provides a resource for building an rss or
+ * atom feed.
+ */
 
+/**
+ * Include the inherited dataMonger class
+ */
 include_once 'class_dataMonger.php';
+
 /**
  * Defines a data object to contain an atom feed as items
  * are added and the feed is updated then returned

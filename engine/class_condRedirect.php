@@ -1,6 +1,17 @@
 <?php
+/**
+ * Provides a means of redirecting a page conditionally
+ * based on whether the destination is where the user
+ * currently is or not.
+ * @author Nate Levesque <public@thenaterhood.com>
+ */
+
+/**
+ * Include the extended redirect class
+ */
 
 include_once 'class_redirect.php';
+
 /**
  * Manages conditionally redirecting pages based
  * on the requested uri and a given uri to redirect from.

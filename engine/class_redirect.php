@@ -1,6 +1,17 @@
 <?php
 /**
- * Provides a class for redirecting pages
+ * Provides a class for managing redirecting a page.
+ * The class accepts a destination and origin and
+ * allows for a redirect to be applied at any time, 
+ * providing an advantage over using only PHP's 
+ * builtin redirect resources.
+ *
+ * @author Nate Levesque <public@thenaterhood.com>
+ */
+
+/**
+ * Provides a class for storing and applying
+ * a redirect to another area of a website.
  * 
  */
 class redirect{

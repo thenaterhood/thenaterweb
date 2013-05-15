@@ -1,5 +1,12 @@
 <?php
 /**
+ * Provides an abstract class for objects to inherit in
+ * order to provide a few base functions and a container for
+ * contained data.
+ * @author Nate Levesque <public@thenaterhood.com>
+ */
+
+/**
  * Provides an abstract class to define a standard way
  * of managing data for the classes that are managing
  * things like session data, posts, etc.
