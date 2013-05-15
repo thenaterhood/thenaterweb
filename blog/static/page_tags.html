@@ -16,7 +16,7 @@ function getTags(){
      */
 
     $inventory = new inventory( getConfigOption('post_directory') );
-    $inventory->selectField( 'tags') ;
+    return $inventory->selectField( 'tags') ;
 }
 function getByTag($tag){
     /*

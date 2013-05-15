@@ -122,7 +122,7 @@ class inventory{
 
 			$current = $this->inventoryData[$i];
 
-			$currentField = explode( ', ', $current[$field] );
+			$currentField = explode( ', ', $current->$field );
 
 			foreach ($currentField as $item) {
 				if ( ! in_array($item, $fieldContents) )
