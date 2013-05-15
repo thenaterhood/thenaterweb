@@ -15,6 +15,7 @@
  */
  include 'core_blog.php';
  include 'class_feed.php';
+ include 'class_inventory.php';
 
 /**
  * Generates an atom feed and returns it
@@ -24,7 +25,8 @@
  */
 function generateFeed(){
 	
-	$posts = getPostList();
+	$inventory = new inventory( 'entries/' );
+	$posts = $inventory->getFileList();
 	$atom = new feed("The Philosophy of Nate", "http://blog.thenaterhood.com/", "It's the cyber age, stay in the know.", date(DATE_ATOM) );
 	
 	for ($i = 0; $i < count($posts); $i++){
