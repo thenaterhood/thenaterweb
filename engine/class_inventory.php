@@ -118,13 +118,13 @@ class inventory{
 
 		$fieldContents = array();
 
-		for( $i = 0; $i < count( $this->inventory); ++$i ){
+		for( $i = 0; $i < count( $this->inventory ); ++$i ){
 
 			$current = $this->inventory[$i];
 
-			$field = explode( ', ', $current[$field] );
+			$currentField = explode( ', ', $current[$field] );
 
-			foreach ($field as $item) {
+			foreach ($currentField as $item) {
 				if ( ! in_array($item, $fieldContents) )
 					$fieldContents[] = $item;
 			}
