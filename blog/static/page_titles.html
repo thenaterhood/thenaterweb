@@ -1,0 +1,17 @@
+<?php
+/* Provides a nice filename (read: ID) for displaying the
+ * inventory.  Simply includes the inventory file after adding
+ * appropriate list tags for the html
+ */
+echo '<br />'; 
+echo '<ul>';
+$inventory = new inventory( getConfigOption('post_directory') );
+$titles = $inventory->selectField( 'title' );
+foreach ($titles as $item) {
+	$title = $inventory->select( 'title', $item )[0];
+	print '<li><a href="'.$title->link.'">'.$title->title.'</a>';
+	# code...
+}
+echo '</ul>';
+
+?>

@@ -1,14 +1,14 @@
 <?php
-/*
-* Author: Nate Levesque <public@thenaterhood.com>
-* Language: PHP
-* Filename: api_saneString.php
-* 
-* Description:
-* 	Contains functions for testing and externally accessing the sanitation
-*	class so its functioning can be verified and used externally.
+/**
+* Contains functions for testing and externally accessing the sanitation
+* class so its functioning can be verified and used externally.
+* @author Nate Levesque <public@thenaterhood.com>
+*
 */
 
+/**
+ * Includes the necessary facilities
+ */
 include 'core_web.php';
 include 'core_json.php';
 

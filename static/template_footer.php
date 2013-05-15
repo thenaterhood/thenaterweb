@@ -1,7 +1,7 @@
 <div id="footer">
 		<div style="text-align:center;padding-top:20px;">
 		<p>Copyright 2012-2013 Nate Levesque. All rights reserved.</p>
-		<p>DNS powered by <a href="http://freedns.afraid.org/">Free DNS</a>.</p>
+		<p>DNS powered by <a href="http://freedns.afraid.org/">Free DNS</a>. Powered by Gnat Web Engine v1.6</p>
 		<ul class='footerurl' style='padding-top:6px;margin-left:-33px;'>
 		<li class='footerurl'>{</li>
 		<li class='footerurl'><a href="/sitemap.xml">View Sitemap</a></li>

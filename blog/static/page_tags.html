@@ -9,48 +9,10 @@
  * 	to be called standalone and should be included in another file
  * 	that already has established config and session instances.
  */
-function getTags(){
-    /*
-     * Iterate through the list of posts and their tags in the inventory
-     * and add all the tags to an array and return the array.
-     */
-    if ( ! file_exists( getConfigOption('dynamic_directory').'/inventory.html' ) ){
-		return array();
-	}
-    $file = fopen(getConfigOption('dynamic_directory').'/inventory.html', 'r');
-    $tags = array();
-    while(!feof($file)){
-        $line = fgets($file);
-        $start = strpos($line, ' - ') + 3;
-        $end = -10;
-        $rawtags = split(', ', substr($line, $start, $end));
-        foreach( $rawtags as $item ){
-            if ( ! in_array($item, $tags) ){
-               $tags[]=$item; 
-           }
-        }
-    }    
-    return $tags;
-}
-function getByTag($tag){
-    /*
-     * Iterate through the inventory and echo each item that contains
-     * the requested tag.
-     * 
-     * Arguments:
-     *  $tag (str): the tag to retrieve
-     */
-    $file = fopen(getConfigOption('dynamic_directory').'/inventory.html', 'r');
-    
-    while(!feof($file)){
-        $line = fgets($file);
-            if (strpos($line, $tag) ){
-        	echo $line;
-    	}
-    }
-}
 
 $tag = $session->tag;
+$inventory = new inventory( getConfigOption('post_directory') );
+
 
 if ( $tag ){
 	/*
@@ -67,7 +29,7 @@ if ( !$tag ){
      * Check if a tag was requested, otherwise list the available
      * tags.
      */
-    $tags = getTags();
+    $tags = $inventory->selectField( 'tags' );
     sort($tags);
     
     foreach( $tags as $item ){
@@ -79,7 +41,11 @@ else{
      * If a tag was requested, call getByTag to print all posts
      * with the tag.
      */
-    getByTag($tag);
+    $matching = $inventory->select( 'tags', $tag );
+
+    foreach ($matching as $item) {
+        print '<li><a href="'.$item->link.'">'.$item->title.'</a></li>';
+    }
 
 }
 
