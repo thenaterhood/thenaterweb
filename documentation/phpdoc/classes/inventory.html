@@ -28,7 +28,7 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">21</span></a></li>
+                <span class="label label-info">1</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul></ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
@@ -57,13 +57,18 @@
 <li class="method public "><a href="#method_current" title="current :: Checks the number of files in the current directory and
 compares it to how many are listed in the current inventory."><span class="description">Checks the number of files in the current directory and
 compares it to how many are listed in the current inventory.</span><pre>current()</pre></a></li>
-<li class="method public "><a href="#method_regen" title="regen :: Regenerates the blog inventory file"><span class="description">Regenerates the blog inventory file</span><pre>regen()</pre></a></li>
-</ul>
-</li>
-<li class="nav-header private">» Private
-                    <ul><li class="method private "><a href="#method_getFileList" title="getFileList :: Creates a list of files in the working directory, sorts
+<li class="method public "><a href="#method_getFile" title="getFile :: A function to return the inventory file."><span class="description">A function to return the inventory file.</span><pre>getFile()</pre></a></li>
+<li class="method public "><a href="#method_getFileList" title="getFileList :: Creates a list of files in the working directory, sorts
 and reverses the list, and returns it."><span class="description">Creates a list of files in the working directory, sorts
-and reverses the list, and returns it.</span><pre>getFileList()</pre></a></li></ul>
+and reverses the list, and returns it.</span><pre>getFileList()</pre></a></li>
+<li class="method public "><a href="#method_regen" title="regen :: Regenerates the blog inventory file"><span class="description">Regenerates the blog inventory file</span><pre>regen()</pre></a></li>
+<li class="method public "><a href="#method_select" title="select :: Returns all the inventory items that match a
+requested value in the requested field"><span class="description">Returns all the inventory items that match a
+requested value in the requested field</span><pre>select()</pre></a></li>
+<li class="method public "><a href="#method_selectField" title="selectField :: Returns an array containing the data from a
+particular field, with repeats filtered out"><span class="description">Returns an array containing the data from a
+particular field, with repeats filtered out</span><pre>selectField()</pre></a></li>
+</ul>
 </li>
 <li class="nav-header">
 <i class="icon-custom icon-property"></i> Properties
@@ -73,6 +78,7 @@ and reverses the list, and returns it.</span><pre>getFileList()</pre></a></li></
                     <ul>
 <li class="property private "><a href="#property_current" title="$current :: "><span class="description"></span><pre>$current</pre></a></li>
 <li class="property private "><a href="#property_directory" title="$directory :: "><span class="description"></span><pre>$directory</pre></a></li>
+<li class="property private "><a href="#property_inventoryData" title="$inventoryData :: "><span class="description"></span><pre>$inventoryData</pre></a></li>
 <li class="property private "><a href="#property_inventoryFile" title="$inventoryFile :: "><span class="description"></span><pre>$inventoryFile</pre></a></li>
 </ul>
 </li>
@@ -88,7 +94,25 @@ and reverses the list, and returns it.</span><pre>getFileList()</pre></a></li></
 <span class="divider">\</span><a href="../classes/inventory.html">inventory</a>
 </li>
 </ul>
-<div class="element class"><div class="details">
+<div class="element class">
+<p class="short_description">Provides a database-like means of accessing an inventory
+of posts or articles in a directory for efficiently searching
+for things by certain criteria, as well as maintaining
+and updating the data.</p>
+<div class="details">
+<div class="long_description"><p>Stored in json format currently, but
+due to being abstracted out, could be modified to store
+the data in other formats.</p></div>
+<table class="table table-bordered">
+<tr>
+<th>since</th>
+<td>5/13/2013</td>
+</tr>
+<tr>
+<th>author</th>
+<td><a href="mailto:public@thenaterhood.com">Nate Levesque</a></td>
+</tr>
+</table>
 <h3>
 <i class="icon-custom icon-method"></i> Methods</h3>
 <a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
@@ -112,13 +136,14 @@ compares it to how many are listed in the current inventory.</h2>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description"><div class="long_description"><p>If the number doesn't match, it returns False.</p></div></div></div>
 </div>
-<a id="method_regen"></a><div class="element clickable method public method_regen" data-toggle="collapse" data-target=".method_regen .collapse">
-<h2>Regenerates the blog inventory file</h2>
-<pre>regen() </pre>
+<a id="method_getFile"></a><div class="element clickable method public method_getFile" data-toggle="collapse" data-target=".method_getFile .collapse">
+<h2>A function to return the inventory file.</h2>
+<pre>getFile() </pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"><p>For supporting
+legacy functions</p></div></div></div>
 </div>
-<a id="method_getFileList"></a><div class="element clickable method private method_getFileList" data-toggle="collapse" data-target=".method_getFileList .collapse">
+<a id="method_getFileList"></a><div class="element clickable method public method_getFileList" data-toggle="collapse" data-target=".method_getFileList .collapse">
 <h2>Creates a list of files in the working directory, sorts
 and reverses the list, and returns it.</h2>
 <pre>getFileList() </pre>
@@ -126,33 +151,84 @@ and reverses the list, and returns it.</h2>
 <div class="row collapse"><div class="detail-description"><div class="long_description"><p>Intended for working
 with blog posts stored as text files with date-coded filenames</p></div></div></div>
 </div>
+<a id="method_regen"></a><div class="element clickable method public method_regen" data-toggle="collapse" data-target=".method_regen .collapse">
+<h2>Regenerates the blog inventory file</h2>
+<pre>regen() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_select"></a><div class="element clickable method public method_select" data-toggle="collapse" data-target=".method_select .collapse">
+<h2>Returns all the inventory items that match a
+requested value in the requested field</h2>
+<pre>select($field, $value) : \$matching</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$field</h4><ul>
+<li>the field to search in</li>
+</ul>
+</div>
+<div class="subelement argument">
+<h4>$value</h4><ul>
+<li>the value to search for</li>
+</ul>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\$matching</code>- all the matching items in the inventory</div>
+</div></div>
+</div>
+<a id="method_selectField"></a><div class="element clickable method public method_selectField" data-toggle="collapse" data-target=".method_selectField .collapse">
+<h2>Returns an array containing the data from a
+particular field, with repeats filtered out</h2>
+<pre>selectField($field) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$field</h4><ul>
+<li>the name of the field to access</li>
+</ul>
+</div>
+</div></div>
+</div>
 <h3>
 <i class="icon-custom icon-property"></i> Properties</h3>
 <a id="property_current"> </a><div class="element clickable property private property_current" data-toggle="collapse" data-target=".property_current .collapse">
 <h2></h2>
-<pre>$current </pre>
+<pre>$current : \$current</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
 <a id="property_directory"> </a><div class="element clickable property private property_directory" data-toggle="collapse" data-target=".property_directory .collapse">
 <h2></h2>
-<pre>$directory </pre>
+<pre>$directory : \$directory</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_inventoryData"> </a><div class="element clickable property private property_inventoryData" data-toggle="collapse" data-target=".property_inventoryData .collapse">
+<h2></h2>
+<pre>$inventoryData : \$inventoryData</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
 <a id="property_inventoryFile"> </a><div class="element clickable property private property_inventoryFile" data-toggle="collapse" data-target=".property_inventoryFile .collapse">
 <h2></h2>
-<pre>$inventoryFile </pre>
+<pre>$inventoryFile : \$inventoryFile</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
-</div></div>
+</div>
+</div>
 </div>
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
-            generated on 2013-05-08T23:37:48-04:00.<br></footer></div>
+            generated on 2013-05-15T14:35:29-04:00.<br></footer></div>
 </div>
 </body>
 </html>
