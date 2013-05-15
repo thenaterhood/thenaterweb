@@ -112,8 +112,28 @@ class inventory{
 
 	public function select( $field, $value ){
 
+		$matching = array();
+
+		for ( $i = 0; $i < count( $this->inventoryData ); ++$i ){
+
+			$current = $this->inventoryData[$i];
+			$currentData = explode( ', ', $current->$field );
+
+			if ( in_array($value, $currentData ){
+				$matching[] = $current;
+			}
+		}
+
+		return $matching;
+
 	}
 
+	/**
+	 * Returns an array containing the data from a 
+	 * particular field, with repeats filtered out
+	 *
+	 * @param $field - the name of the field to access
+	 */
 	public function selectField( $field ){
 
 		$fieldContents = array();
