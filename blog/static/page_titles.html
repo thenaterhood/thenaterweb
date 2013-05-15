@@ -6,7 +6,11 @@
 echo '<br />'; 
 echo '<ul>';
 $inventory = new inventory( getConfigOption('post_directory') );
-include $inventory->getFile();
+$titles = $inventory->selectField( 'title' );
+foreach ($title as $item) {
+	print '<li><a href="'.$item->link.'">'.$item->title.'</a>';
+	# code...
+}
 echo '</ul>';
 
 ?>
