@@ -110,6 +110,15 @@ class inventory{
 		$this->current = True;
 	}
 
+	/**
+	 * Returns all the inventory items that match a
+	 * requested value in the requested field
+	 *
+	 * @param $field - the field to search in
+	 * @param $value - the value to search for
+	 *
+	 * @return $matching - all the matching items in the inventory
+	 */
 	public function select( $field, $value ){
 
 		$matching = array();
