@@ -1,7 +1,6 @@
 <?php
 
 include_once 'class_dataMonger.php';
-include_once 'class_inventory.php';
 /**
 * Contains everything to do with retrieving and outputting
 * posts in multiple forms.  Is capable of retrieving posts stored
@@ -36,12 +35,6 @@ class article extends dataMonger{
 		$this->container['datestamp'] = "";
 		$this->container['link'] = '/blog';
 		$this->container['content'] = '<p>Sorry, the post you were looking for could not be found.  If you think it should be here, try browsing by title.  Otherwise, <a href="blog/index.php">return to blog home.</a></p>'."\n".'<p>Think you were looking for something else? <a href="'.getConfigOption('site_domain').'">visit site home</a>.</p>';
-		
-		if ( strpos( $nodefile, 'latest' ) ){
-			$inventory = new inventory( getConfigOption('post_directory') );
-			$nodes = $inventory->getFileList();
-			$nodefile = getConfigOption('post_directory').'/'.$nodes[0];
-		}
 			
 		if (file_exists("$nodefile.json")){
 			$jsoncontents = file_get_contents("$nodefile.json");
@@ -148,6 +141,19 @@ class article extends dataMonger{
 			$r .= "<h5 class='tags'>Tags: ".$this->container['tags']."</h5>\n";
 		}
 		return $r;
+	}
+
+	public function getMeta(){
+
+		$meta = array();
+		$meta['tags'] = $container['tags'];
+		$meta['title'] = $container['title'];
+		$meta['link'] = $container['link'];
+		$meta['datestamp'] = $container['datestamp'];
+		$meta['author'] = $container['author'];
+
+		return $meta;
+
 	}
 
 	/**
