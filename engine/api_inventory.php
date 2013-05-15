@@ -18,7 +18,7 @@ $session = new session( array( "place", "element" ) );
 
 $inventory = new inventory( getConfigOption('post_directory') );
 
-$matching = $inventory->select( 'title', "Lovin' Those Facebook Likes" );
+$matching = $inventory->select( 'title', "Lovin' those Facebook Likes" );
 
 $filledData['title'] = $matching[0]->title;
 $filledData['tags'] = $matching[0]->tags;
