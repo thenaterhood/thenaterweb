@@ -52,6 +52,12 @@ class testWebEngine(unittest.TestCase):
 		decodedData = getData( url+"api_post.php?node=test&element=title" )
 		self.assertEqual( decodedData["title"], "Oops! Post Not Found!" )
 
+	def test_inventory_retrieve(self):
+		# Test that an item can be retrieved from the inventory with the proper data
+		decodedData = getData( url+"api_inventory.php")
+		self.assertEqual( decodedData["title"], "Lovin' Those Facebook Likes")
+		self.assertEqual( decodedData["tags"], "facebook, privacy, social networking")
+
 def getData( address ):
 	page = urlopen( address ).read().decode('utf-8')
 	return json.loads(page)
