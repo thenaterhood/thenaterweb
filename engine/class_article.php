@@ -146,11 +146,11 @@ class article extends dataMonger{
 	public function getMeta(){
 
 		$meta = array();
-		$meta['tags'] = $container['tags'];
-		$meta['title'] = $container['title'];
-		$meta['link'] = $container['link'];
-		$meta['datestamp'] = $container['datestamp'];
-		$meta['author'] = $container['author'];
+		$meta['tags'] = $this->container['tags'];
+		$meta['title'] = $this->$container['title'];
+		$meta['link'] = $this->$container['link'];
+		$meta['datestamp'] = $this->$container['datestamp'];
+		$meta['author'] = $this->$container['author'];
 
 		return $meta;
 
