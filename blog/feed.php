@@ -1,11 +1,13 @@
 <?php
 
 include '../engine/core_feed.php';
+include_once '../engine/class_inventory.php';
 
 $session = new session( array('regen') );
 $config = new config();
+$inventory = new inventory( getConfigOption('post_directory') );
 
-$feedIsCurrent = checkInventory();
+$feedIsCurrent = $inventory->current();
 $autoRegen = getConfigOption('auto_feed_regen');
 $feedLocation = getConfigOption('dynamic_directory');
 $saveFeed = getConfigOption('save_dynamics');
@@ -25,7 +27,7 @@ else{
 	* then return the feed file
 	*/
 	if ( $session->regen || ! $feedIsCurrent || ! file_exists("$feedLocation/feed.xml") ){
-		regenInventory();
+		$inventory->regen();
 		$feed = generateFeed();
 		$file = fopen("$feedLocation/feed.xml", 'w');
 		fwrite($file, $feed->output( getConfigOption('feed_type') ) );

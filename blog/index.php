@@ -2,7 +2,7 @@
 include '../engine/core_blog.php';
 
 
-$session = new session( array('name', 'track', 'konami', 'start', 'end', 'id', 'test', 'tag') );
+$session = new session( array('name', 'track', 'konami', 'start', 'end', 'id', 'test', 'tag', 'node') );
 $config = new config();
 
 # For compatibility with current header
@@ -23,7 +23,12 @@ include $config->webcore_root.'/html_head.html';
 				
 				<div class="entry">
 					
-					<?php include chooseInclude( 'static/page_'.$session->id.'.html', $config->webcore_root.'template_error.html' ); ?>
+					<?php 
+
+					$content = new content( $session->id, $session );
+					$content->output();
+					//include chooseInclude( 'static/page_'.$session->id.'.html', $config->webcore_root.'template_error.html' ); 
+					?>
 					
 				</div>
 		</div>

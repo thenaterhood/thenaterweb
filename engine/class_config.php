@@ -17,93 +17,74 @@
 class config{
 	
 	/**
-	 * variables are documented where they are set lower in the code
-	 * and so documenting here as per phpdoc standards appears excessive.
+	 * variables are documented where they are set lower in the code.
+	 * @var $container provides a clean way of storing an expanding
+	 * mass of variables.
 	 */
-	private static $webcore_root;
-	private static $dynamic_directory;
-	private static $auto_feed_regen;
-	private static $auto_file_regen;
-	private static $save_dynamics;
-	private static $post_directory;
-	private static $default_visitor_name;
-	private static $hidden_files;
-	private static $posts_per_page;
-	private static $site_domain;
-	private static $site_author;
-	private static $tracking_code;
-	private static $friendly_urls;
-	private static $feed_type;
-	
-	# Variable settings
-	private static $name;
-	private static $id;
-	private static $konami;
-	private static $node;
-	private static $track;
-	private static $start;
-	private static $end;
+	private static $container;
 	
 	/**
 	 * Sets the configuration options en-masse.
 	 */
 	function __construct(){
+		# Sets up the empty array
+		$this->container = array();
 		
 		# Sets the root directory for the main site pages and template
-		$this->webcore_root =  '/var/www/static';
+		$this->container['webcore_root'] =  '/var/www/static';
 		
 		# Sets the directory for storing dynamically created files
-		$this->dynamic_directory =  '/var/www/dynamic';
+		$this->container['dynamic_directory'] =  '/var/www/dynamic';
 		
 		# Whether or not the blog feed should regenerate automatically
-		$this->auto_feed_regen = True;
+		$this->container['auto_feed_regen'] = True;
 		
 		# Whether or not other dynamic files (such as sitemap) should
 		# regenerate automatically
-		$this->auto_file_regen = False;
+		$this->container['auto_file_regen'] = False;
 		
 		# Whether to save the dynamic files when they are generated.
 		# If this is turned off and no dynamic files have been 
 		# generated and saved already, regardless of the settings
 		# for automatically regenerating files the software will
 		# dynamically create the file requested.
-		$this->save_dynamics = True;
+		$this->container['save_dynamics'] = True;
 		
 		# The directory that blog posts are stored in
-		$this->post_directory = '/var/www/blog/entries';
+		$this->container['post_directory'] = '/var/www/blog/entries';
 		
 		# The default name for visitors who haven't introduced themselves
-		$this->default_visitor_name = 'Guest';
+		$this->container['default_visitor_name'] = 'Guest';
 		
 		# How many posts should be displayed per each blog page
-		$this->posts_per_page = 4;
+		$this->container['posts_per_page'] = 4;
 		
 		# The domain name of the site (note that this can be automatically
 		# determined if needed)
-		$this->site_domain = 'http://www.thenaterhood.com';
+		$this->container['site_domain'] = 'http://www.thenaterhood.com';
 		
 		# The owner/author of the website, used in places where an author
 		# is needed, such as the atom feed.
-		$this->site_author = 'Nate Levesque';
+		$this->container['site_author'] = 'Nate Levesque';
 		
 		# This tells the site software whether to use "friendly" urls
 		# rather than dynamic urls, so site.com/page/home rather than
 		# site.com/?id=home. ONLY enable this if your server allows you
 		# to do url rewriting, otherwise it won't work out well. Requires
 		# modifications to .htaccess as currently implemented.
-		$this->friendly_urls = True;
+		$this->container['friendly_urls'] = True;
 
 		# Sets which feed format to use when generating feeds. Valid
 		# options are 'atom' and 'rss'. Anything other than those will
 		# cause the site to default to atom, which is the superior 
 		# format.
-		$this->feed_type = 'atom';
+		$this->container['feed_type'] = 'atom';
 		
 		# The tracking code that the site should use should be pasted here.
 		# Be careful with quotes, as this is read in as a string.  This
 		# can also be used to add any other code to the page as well,
 		# it is inserted right before the closing </head> tag.
-		$this->tracking_code = "<script type='text/javascript'>
+		$this->container['tracking_code'] = "<script type='text/javascript'>
 
 		var _gaq = _gaq || [];
 		_gaq.push(['_setAccount', 'UA-5020962-1']);
@@ -120,7 +101,7 @@ class config{
 		
 		# All the files that should be ignored when dynamically looking
 		# at directories
-		$this->hidden_files = array(
+		$this->container['hidden_files'] = array(
 			".",
 			"..",
 			"index.php",
@@ -143,20 +124,20 @@ class config{
 		# UNLESS YOU ARE ABSOLUTELY SURE WHAT YOU ARE DOING.
 		
 		# Setting for the maximum length and default value of visitor's name
-		$this->name = array( $this->default_visitor_name, 42 );
+		$this->container['name'] = array( $this->container['default_visitor_name'], 42 );
 		
 		# Settings for default and max values of the page id
-		$this->id = array( 'home', 18);
+		$this->container['id'] = array( 'home', 18);
 		
 		# Easter egg variable settings
-		$this->konami = array( '', 0);
+		$this->container['konami'] = array( '', 0);
 		
 		# Node (post) variable settings
-		$this->node = array( '', 10 );
+		$this->container['node'] = array( '', 10 );
 		
-		$this->track = array( '', 1 );
-		$this->start = array( '0', 5 );
-		$this->end = array( "$this->posts_per_page", 5);
+		$this->container['track'] = array( '', 1 );
+		$this->container['start'] = array( '0', 5 );
+		$this->container['end'] = array( "$this->container['posts_per_page']", 5);
 		
 	}
 	
@@ -169,7 +150,7 @@ class config{
 	 */
 	function __get($setting){
 
-		return $this->$setting;
+		return $this->container[$setting];
 	}
 
    
