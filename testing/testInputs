@@ -1,0 +1,12 @@
+logfile testing_results
+address http://192.168.1.103/
+page index.php
+page blog
+page blog/post.php
+page sitemap.php
+var id
+var start
+var end
+var name
+var node
+var tag
