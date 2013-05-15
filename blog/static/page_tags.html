@@ -16,8 +16,10 @@ function getTags(){
      */
 
     $inventory = new inventory( getConfigOption('post_directory') );
-    return $inventory->selectField( 'tags') ;
+    return $inventory->selectField( 'tags' ) ;
+
 }
+
 function getByTag($tag){
     /*
      * Iterate through the inventory and echo each item that contains
@@ -27,13 +29,12 @@ function getByTag($tag){
      *  $tag (str): the tag to retrieve
      */
     $inventory = new inventory( getConfigOption('post_directory') );
-    $file = fopen( $inventory->getFile(), 'r');
-    
-    while(!feof($file)){
-        $line = fgets($file);
-            if (strpos($line, $tag) ){
-        	echo $line;
-    	}
+
+    $matching = $inventory->select( 'tags', $tag );
+
+    foreach ($matching as $item) {
+
+        print '<li><a href="'.$item->link.'">'.$item->title.'</a></li>';
     }
 }
 
