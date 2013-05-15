@@ -70,7 +70,7 @@ class inventory{
 
 			if ( file_exists( $this->inventoryFile ) ){
 
-				$recorded = count(file($this->inventoryFile));
+				$recorded = count( $this->inventoryData );
 				$existing = count( $this->getFileList() );
 
 				if ( $recorded == $existing ){
@@ -99,9 +99,12 @@ class inventory{
 		$inventoryItems = array();
 	
 		foreach( $files as $input ){
+
+			if ( ! in_array($input, $avoid) ){ 
 		
-			$postData = new article("$this->directory/$input");
-			$inventoryItems[] = $postData->getMeta();
+				$postData = new article("$this->directory/$input");
+				$inventoryItems[] = $postData->getMeta();
+			}
 		}
 	
 		fwrite( $inventory, json_encode($inventoryItems) );
