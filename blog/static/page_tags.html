@@ -16,20 +16,7 @@ function getTags(){
      */
 
     $inventory = new inventory( getConfigOption('post_directory') );
-    $file = fopen( $inventory->getFile(), 'r');
-    $tags = array();
-    while(!feof($file)){
-        $line = fgets($file);
-        $start = strpos($line, ' - ') + 3;
-        $end = -10;
-        $rawtags = split(', ', substr($line, $start, $end));
-        foreach( $rawtags as $item ){
-            if ( ! in_array($item, $tags) ){
-               $tags[]=$item; 
-           }
-        }
-    }    
-    return $tags;
+    $inventory->selectField( 'tags') ;
 }
 function getByTag($tag){
     /*
