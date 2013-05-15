@@ -7,7 +7,7 @@ class inventory{
 	private $directory;
 	private $current = null;
 	private $inventoryFile;
-	private $inventory;
+	private $inventoryData;
 
 	/**
 	 * Constructs an instance of the class
@@ -18,7 +18,7 @@ class inventory{
 		$this->directory = $directory;
 		$this->inventoryFile = getConfigOption('dynamic_directory').'/'.str_replace('/', '_', $directory);
 
-		$this->inventory = json_decode( file_get_contents($this->inventoryFile, True) );
+		$this->inventoryData = json_decode( file_get_contents($this->inventoryFile, True) );
 
 	}
 
@@ -118,9 +118,9 @@ class inventory{
 
 		$fieldContents = array();
 
-		for( $i = 0; $i < count( $this->inventory ); ++$i ){
+		for( $i = 0; $i < count( $this->inventoryData ); ++$i ){
 
-			$current = $this->inventory[$i];
+			$current = $this->inventoryData[$i];
 
 			$currentField = explode( ', ', $current[$field] );
 
