@@ -58,6 +58,11 @@ class testWebEngine(unittest.TestCase):
 		self.assertEqual( decodedData["title"], "Lovin' those Facebook Likes")
 		self.assertEqual( decodedData["tags"], "facebook, privacy, social networking")
 
+	def test_redirect(self):
+		# Test that a redirect can be correctly initialized
+		decodedData = urlopen( url+"api_redirect.php?from=origin&to=destination").read().decode('utf-8')
+		self.assertEqual( decodedData, "origin to destination")
+
 def getData( address ):
 	page = urlopen( address ).read().decode('utf-8')
 	return json.loads(page)

@@ -27,7 +27,7 @@ class redirect{
 	 * was initiated correctly
 	 * 
 	 */
-	public function test(){
+	public function view(){
 		print $this->origin." to ".$this->destination;
 	}
 	
