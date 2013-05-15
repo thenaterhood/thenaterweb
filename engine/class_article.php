@@ -143,14 +143,19 @@ class article extends dataMonger{
 		return $r;
 	}
 
+	/**
+	 * Returns the article metadata - tags, title, link, date, and author
+	 * as an associative array.
+	 * @return $meta - the metadata array
+	 */
 	public function getMeta(){
 
 		$meta = array();
 		$meta['tags'] = $this->container['tags'];
-		$meta['title'] = $this->$container['title'];
-		$meta['link'] = $this->$container['link'];
-		$meta['datestamp'] = $this->$container['datestamp'];
-		$meta['author'] = $this->$container['author'];
+		$meta['title'] = $this->container['title'];
+		$meta['link'] = $this->container['link'];
+		$meta['datestamp'] = $this->container['datestamp'];
+		$meta['author'] = $this->container['author'];
 
 		return $meta;
 
