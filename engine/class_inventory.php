@@ -119,7 +119,7 @@ class inventory{
 			$current = $this->inventoryData[$i];
 			$currentData = explode( ', ', $current->$field );
 
-			if ( in_array($value, $currentData ){
+			if ( in_array($value, $currentData) ){
 				$matching[] = $current;
 			}
 		}
