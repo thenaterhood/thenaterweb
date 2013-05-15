@@ -90,17 +90,20 @@ class inventory{
 		$inventory = fopen( $this->inventoryFile, 'w');
 	
 		$avoid = getConfigOption('hidden_files');
-	
+		
 		$files = $this->getFileList();
+
+		$inventoryItems = array();
 	
 		foreach( $files as $input ){
 		
 			$postData = new article("$this->directory/$input");
 
-			$postMeta = $postData->getMeta();
-			fwrite( $inventory, json_encode($postMeta) );
+			$inventoryItems[] = $postData->getMeta();
 		}
 	
+		fwrite( $inventory, json_encode($inventoryItems) );
+
 		fclose($inventory);
 		$this->current = True;
 	}
