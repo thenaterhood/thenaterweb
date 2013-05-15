@@ -28,7 +28,7 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">21</span></a></li>
+                <span class="label label-info">1</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul></ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
@@ -81,13 +81,6 @@ for additional blog posts to read.</p></div>
 </ul>
 </div>
 </div></div>
-</div>
-<a id="function_checkInventory"></a><div class="element clickable function  function_checkInventory" data-toggle="collapse" data-target=".function_checkInventory .collapse">
-<h2>Checks the number of files in the current directory and
-compares it to how many are listed in the current inventory.</h2>
-<pre>checkInventory() </pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><div class="long_description"><p>If the number doesn't match, it returns False.</p></div></div></div>
 </div>
 <a id="function_chooseInclude"></a><div class="element clickable function  function_chooseInclude" data-toggle="collapse" data-target=".function_chooseInclude .collapse">
 <h2>Checks to see if the preferred file exists, and if it does
@@ -162,14 +155,6 @@ of using this function</h2>
 <code>\-</code>the value of the config key</div>
 </div></div>
 </div>
-<a id="function_getPostList"></a><div class="element clickable function  function_getPostList" data-toggle="collapse" data-target=".function_getPostList .collapse">
-<h2>Creates a list of files in the working directory, sorts
-and reverses the list, and returns it.</h2>
-<pre>getPostList() </pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><div class="long_description"><p>Intended for working
-with blog posts stored as text files with date-coded filenames</p></div></div></div>
-</div>
 <a id="function_getPosts"></a><div class="element clickable function  function_getPosts" data-toggle="collapse" data-target=".function_getPosts .collapse">
 <h2>Lists the files in a directory and returns an array of them
 out to the given length section</h2>
@@ -222,12 +207,6 @@ the function was called with.</h2>
 <code>\-</code>a string with a personal greeting</div>
 </div></div>
 </div>
-<a id="function_regenInventory"></a><div class="element clickable function  function_regenInventory" data-toggle="collapse" data-target=".function_regenInventory .collapse">
-<h2>Regenerates the blog inventory file</h2>
-<pre>regenInventory() </pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
-</div>
 <h3>
 <i class="icon-custom icon-class"></i> Classes and interfaces</h3>
 <div id="article" class="element ajax clickable class">
@@ -254,6 +233,14 @@ options.</p>
 <div class="details collapse"></div>
 <a href="../classes/config.html" class="more">« More »</a>
 </div>
+<div id="content" class="element ajax clickable class">
+<h1>content<a href="../classes/content.html">¶</a>
+</h1>
+<p class="short_description">Manages retrieving and displaying page content
+in various forms.</p>
+<div class="details collapse"></div>
+<a href="../classes/content.html" class="more">« More »</a>
+</div>
 <div id="dataMonger" class="element ajax clickable class">
 <h1>dataMonger<a href="../classes/dataMonger.html">¶</a>
 </h1>
@@ -274,7 +261,10 @@ are added and the feed is updated then returned</p>
 <div id="inventory" class="element ajax clickable class">
 <h1>inventory<a href="../classes/inventory.html">¶</a>
 </h1>
-<p class="short_description"></p>
+<p class="short_description">Provides a database-like means of accessing an inventory
+of posts or articles in a directory for efficiently searching
+for things by certain criteria, as well as maintaining
+and updating the data.</p>
 <div class="details collapse"></div>
 <a href="../classes/inventory.html" class="more">« More »</a>
 </div>
@@ -288,7 +278,8 @@ are added and the feed is updated then returned</p>
 <div id="redirect" class="element ajax clickable class">
 <h1>redirect<a href="../classes/redirect.html">¶</a>
 </h1>
-<p class="short_description">Provides a class for redirecting pages</p>
+<p class="short_description">Provides a class for storing and applying
+a redirect to another area of a website.</p>
 <div class="details collapse"></div>
 <a href="../classes/redirect.html" class="more">« More »</a>
 </div>
@@ -312,15 +303,14 @@ settings are more easily applied site-wide.</p>
 <div id="url" class="element ajax clickable class">
 <h1>url<a href="../classes/url.html">¶</a>
 </h1>
-<p class="short_description">Creates a class to contain an item in the sitemap</p>
+<p class="short_description">Represents a url object to store a sitemap url block</p>
 <div class="details collapse"></div>
 <a href="../classes/url.html" class="more">« More »</a>
 </div>
 <div id="urlset" class="element ajax clickable class">
 <h1>urlset<a href="../classes/urlset.html">¶</a>
 </h1>
-<p class="short_description">Defines a data object to contain an atom feed as items
-are added and the feed is updated then returned</p>
+<p class="short_description">Defines a data object to contain an xml sitemap.</p>
 <div class="details collapse"></div>
 <a href="../classes/urlset.html" class="more">« More »</a>
 </div>
@@ -338,7 +328,7 @@ method or by searching through each method to find a variable.</p>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
-            generated on 2013-05-08T23:37:48-04:00.<br></footer></div>
+            generated on 2013-05-15T14:35:29-04:00.<br></footer></div>
 </div>
 </body>
 </html>
