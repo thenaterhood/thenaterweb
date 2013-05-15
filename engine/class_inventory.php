@@ -1,5 +1,6 @@
 <?php
 include_once 'core_web.php';
+include_once 'class_article.php';
 
 class inventory{
 
@@ -96,13 +97,16 @@ class inventory{
 		
 			$postData = new article("$this->directory/$input");
 
-			$item = '<li>'. $postData->list_item_output() .'</li>'."\n";
-			fwrite($inventory, $item);
-
+			$postMeta = $postData->getMeta();
+			fwrite( $inventory, json_encode($postMeta) );
 		}
 	
 		fclose($inventory);
 		$this->current = True;
+	}
+
+	public function select( $field, $value ){
+
 	}
 
 	/**
