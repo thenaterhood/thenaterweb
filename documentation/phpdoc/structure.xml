@@ -1520,14 +1520,14 @@ out to the given length section</description>
     <docblock line="2">
       <description>Provides a class for creating and containing
 a sitemap with the ability to export it as xml data.</description>
-      <long-description></long-description>
+      <long-description/>
       <tag line="2" name="author" description="Nate Levesque &lt;public@thenaterhood.com&gt;"/>
     </docblock>
     <include line="11" type="Include Once" package="Default">
       <name>class_url.php</name>
       <docblock line="8">
         <description>Include the required url class to use internally</description>
-        <long-description></long-description>
+        <long-description/>
       </docblock>
     </include>
     <class final="false" abstract="false" namespace="global" line="16" package="Default">
@@ -1536,14 +1536,14 @@ a sitemap with the ability to export it as xml data.</description>
       <full_name>\urlset</full_name>
       <docblock line="13">
         <description>Defines a data object to contain an xml sitemap.</description>
-        <long-description></long-description>
+        <long-description/>
       </docblock>
       <property final="false" static="false" visibility="private" line="21" namespace="global" package="Default">
         <name>$items</name>
-        <default></default>
+        <default/>
         <docblock line="18">
-          <description></description>
-          <long-description></long-description>
+          <description/>
+          <long-description/>
           <tag line="18" name="var" description="- an array of url objects" type="\$items">
             <type by_reference="false">\$items</type>
           </tag>
@@ -1554,7 +1554,7 @@ a sitemap with the ability to export it as xml data.</description>
         <full_name>__construct</full_name>
         <docblock line="23">
           <description>Creates an empty sitemap class</description>
-          <long-description></long-description>
+          <long-description/>
         </docblock>
       </method>
       <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="38" package="Default">
@@ -1563,18 +1563,18 @@ a sitemap with the ability to export it as xml data.</description>
         <docblock line="31">
           <description>Adds an item to the feed as an object in the object's
 items array</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="31" name="param" description="(str): the web address of the item's source" type="\" variable="$loc"/>
           <tag line="31" name="param" description="(str): the modification date of the item" type="\" variable="$lastmod"/>
         </docblock>
         <argument line="38">
           <name>$loc</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
         <argument line="38">
           <name>$lastmod</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -1584,7 +1584,7 @@ items array</description>
         <docblock line="43">
           <description>Returns a displayable representation of the sitemap
 with appropriate code added.</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="43" name="return" description="(string) - an xml encoded output of the class" type="\$r">
             <type by_reference="false">\$r</type>
           </tag>
