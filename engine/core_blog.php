@@ -39,9 +39,14 @@ function RandomLine($filename) {
 */
 function getSuggestions($number, $tag){
 
+		$inventory = new inventory( getConfigOption('post_directory') );
+
+		$pool = $inventory->selectField( 'title' );
+
 		$i = 0;
 		while ($i < $number){
-			echo RandomLine(getConfigOption('dynamic_directory')."/inventory.html");
+			$post = $inventory->select( 'title', $pool[array_rand($pool)] );
+			print '<li><a href="'.$post[0]->link.'">'.$post[0]->title.'</a></li>';
 			$i++;
 		}
 		
