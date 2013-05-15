@@ -7,6 +7,7 @@ class inventory{
 	private $directory;
 	private $current = null;
 	private $inventoryFile;
+	private $inventory;
 
 	/**
 	 * Constructs an instance of the class
@@ -16,6 +17,8 @@ class inventory{
 
 		$this->directory = $directory;
 		$this->inventoryFile = getConfigOption('dynamic_directory').'/'.str_replace('/', '_', $directory);
+
+		$this->inventory = json_decode( file_get_contents($this->inventoryFile, True) );
 
 	}
 
@@ -98,7 +101,6 @@ class inventory{
 		foreach( $files as $input ){
 		
 			$postData = new article("$this->directory/$input");
-
 			$inventoryItems[] = $postData->getMeta();
 		}
 	
@@ -112,6 +114,26 @@ class inventory{
 
 	}
 
+	public function selectField( $field ){
+
+		$fieldContents = array();
+
+		for( $i = 0; $i < count( $this->inventory); ++$i ){
+
+			$current = $this->inventory[$i];
+
+			$field = explode( ', ', $current[$field] );
+
+			foreach ($field as $item) {
+				if ( ! in_array($item, $fieldContents) )
+					$fieldContents[] = $item;
+			}
+
+		}
+
+		return $fieldContents;
+
+	}
 	/**
 	 * A function to return the inventory file. For supporting
 	 * legacy functions
