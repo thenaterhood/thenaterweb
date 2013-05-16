@@ -25,7 +25,7 @@
  */
 function generateFeed(){
 	
-	$inventory = new inventory( 'entries/' );
+	$inventory = new inventory( getConfigOption('post_directory') );
 	$posts = $inventory->getFileList();
 	$atom = new feed("The Philosophy of Nate", "http://blog.thenaterhood.com/", "It's the cyber age, stay in the know.", date(DATE_ATOM) );
 	
