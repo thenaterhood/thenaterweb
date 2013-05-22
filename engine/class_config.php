@@ -61,7 +61,7 @@ class config{
 		
 		# The domain name of the site (note that this can be automatically
 		# determined if needed)
-		$this->container['site_domain'] = 'http://www.thenaterhood.com';
+		$this->container['site_domain'] = 'http://gatekeeper.thenaterhood.com';
 		
 		# The owner/author of the website, used in places where an author
 		# is needed, such as the atom feed.
@@ -133,11 +133,11 @@ class config{
 		$this->container['konami'] = array( '', 0);
 		
 		# Node (post) variable settings
-		$this->container['node'] = array( '', 10 );
+		$this->container['node'] = array( '', 30 );
 		
 		$this->container['track'] = array( '', 1 );
 		$this->container['start'] = array( '0', 5 );
-		$this->container['end'] = array( "$this->container['posts_per_page']", 5);
+		$this->container['end'] = array( "$this->posts_per_page", 5);
 		
 	}
 	
