@@ -62,13 +62,13 @@ function getSuggestions($number, $tag){
  * @return $posts (array) - an array of post objects
  * 
  */
-function getPosts($start, $end){
+function getPosts( $bloguri, $post_directory, $start, $end){
 
-	$inventory = new inventory( getConfigOption('post_directory') );
+	$inventory = new inventory( $post_directory, $bloguri );
 	$posts = $inventory->getFileList();
 	
 	for ($i = $start; $i < count($posts) && $i < $end; $i++){
-		$nextpost = new article( getConfigOption('post_directory').'/'.$posts[$i] );
+		$nextpost = new article( $post_directory.'/'.$posts[$i], $bloguri );
 		echo $nextpost->output( 'html' );
 		echo "<hr />";
 	}
