@@ -41,13 +41,17 @@ class inventory{
 	 * @var $inventoryData - the parsed inventory data that the class accesses
 	 */
 	private $inventoryData;
+	/**
+	 * @var $bloguri - the uri that returns the requested pages
+	 */
+	private $bloguri;
 
 	/**
 	 * Constructs an instance of the class
 	 * @param $directory - the directory of which the inventory is of
 	 */
-	public function __construct( $directory ){
-
+	public function __construct( $directory, $bloguri ){
+		$this->bloguri = $bloguri;
 		$this->directory = $directory;
 		$this->inventoryFile = getConfigOption('dynamic_directory').'/'.str_replace('/', '_', $directory);
 
@@ -130,13 +134,15 @@ class inventory{
 		$files = $this->getFileList();
 
 		$inventoryItems = array();
+		$filesInArray = array();
 	
 		foreach( $files as $input ){
 
-			if ( ! in_array($input, $avoid) ){ 
+			if ( ! in_array($input, $avoid) && ! in_array($input, $filesInArray) ){ 
 		
-				$postData = new article("$this->directory/$input");
+				$postData = new article("$this->directory/$input", $this->bloguri );
 				$inventoryItems[] = $postData->getMeta();
+				$filesInArray[] = $input;
 			}
 		}
 	
@@ -162,8 +168,12 @@ class inventory{
 		for ( $i = 0; $i < count( $this->inventoryData ); ++$i ){
 
 			$current = $this->inventoryData[$i];
-			$currentData = explode( ', ', $current->$field );
-
+			if ( ! is_array( $current->$field ) ){
+				$currentData = explode( ', ', $current->$field );
+			}
+			else{
+				$currentData = $current->$field;
+			}
 			if ( in_array($value, $currentData) ){
 				$matching[] = $current;
 			}
@@ -186,8 +196,12 @@ class inventory{
 		for( $i = 0; $i < count( $this->inventoryData ); ++$i ){
 
 			$current = $this->inventoryData[$i];
-
-			$currentField = explode( ', ', $current->$field );
+			if ( ! is_array( $current->$field ) ){
+				$currentField = explode( ', ', $current->$field );
+			}
+			else{
+				$currentField = $current->$field;
+			}
 
 			foreach ($currentField as $item) {
 				if ( ! in_array($item, $fieldContents) )
@@ -198,6 +212,13 @@ class inventory{
 
 		return $fieldContents;
 
+	}
+
+	/**
+	 * Returns all the fields in the inventory
+	 */
+	public function selectAll(){
+		return $this->inventoryData;
 	}
 	/**
 	 * A function to return the inventory file. For supporting
