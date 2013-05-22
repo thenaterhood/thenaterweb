@@ -5,7 +5,7 @@ include_once '../engine/class_inventory.php';
 
 $session = new session( array('regen') );
 $config = new config();
-$inventory = new inventory( getConfigOption('post_directory') );
+$inventory = new inventory( getConfigOption('post_directory'), 'blog' );
 
 $feedIsCurrent = $inventory->current();
 $autoRegen = getConfigOption('auto_feed_regen');
@@ -28,7 +28,7 @@ else{
 	*/
 	if ( $session->regen || ! $feedIsCurrent || ! file_exists("$feedLocation/feed.xml") ){
 		$inventory->regen();
-		$feed = generateFeed();
+		$feed = generateFeed( 'blog' );
 		$file = fopen("$feedLocation/feed.xml", 'w');
 		fwrite($file, $feed->output( getConfigOption('feed_type') ) );
 		fclose($file);
