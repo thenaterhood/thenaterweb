@@ -23,14 +23,14 @@
  * @return $atom (atom_feed): an instance of the atom_feed class
  * 
  */
-function generateFeed(){
+function generateFeed( $bloguri ){
 	
-	$inventory = new inventory( getConfigOption('post_directory') );
+	$inventory = new inventory( getConfigOption('post_directory'), $bloguri );
 	$posts = $inventory->getFileList();
 	$atom = new feed("The Philosophy of Nate", "http://blog.thenaterhood.com/", "It's the cyber age, stay in the know.", date(DATE_ATOM) );
 	
 	for ($i = 0; $i < count($posts); $i++){
-		$newitem = new article(getConfigOption('post_directory').'/'.$posts[$i]);
+		$newitem = new article(getConfigOption('post_directory').'/'.$posts[$i], $bloguri );
 		$atom->new_item($newitem);
 	}
 	return $atom;
