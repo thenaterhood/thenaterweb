@@ -69,7 +69,7 @@ class sanitation{
 		}
 		
 		#Santize input so that it's text so we don't have XSS problems
-		$safestring = preg_replace('/[^a-zA-Z0-9\s.]/', '', $this->dirty);
+		$safestring = preg_replace('/[^a-zA-Z0-9\s.:-]/', '', $this->dirty);
 	
 		$saferstring = htmlspecialchars($safestring, ENT_QUOTES);
 		
