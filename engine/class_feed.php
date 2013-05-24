@@ -51,7 +51,7 @@ class feed extends dataMonger{
 
 	private function retrieve(){
 
-		$rawJson = json_decode( getConfigOption('dynamic_directory')."/FEED-$bloguri.json" );
+		$rawJson = json_decode( getConfigOption('dynamic_directory')."/FEED-$bloguri.json", True );
 
 		$this->container['title'] = $rawJson['title'];
 		$this->container['link'] = $rawJson['link'];
@@ -80,7 +80,7 @@ class feed extends dataMonger{
 		$saveData['items'] = $saveItems;
 
 		$file = fopen($this->cacheFile, 'w');
-		fwrite($file, $this->saveData );
+		fwrite($file, json_encode($this->saveData) );
 		fclose($file);
 
 	}
