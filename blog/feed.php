@@ -28,7 +28,7 @@ else{
 	*/
 	if ( $session->regen || ! $feedIsCurrent || ! file_exists("$feedLocation/feed.xml") ){
 		$inventory->regen();
-		$feed = generateFeed( 'blog' );
+		$feed = generateFeed( 'blog', 'The Philosophy of Nate', "It's the cyber age. Stay in the know." );
 		$file = fopen("$feedLocation/feed.xml", 'w');
 		fwrite($file, $feed->output( getConfigOption('feed_type') ) );
 		fclose($file);
