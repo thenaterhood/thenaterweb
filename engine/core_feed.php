@@ -47,7 +47,7 @@ function generateFeed( $bloguri, $feedTitle, $feedCatchline, $forceRegen ){
 		*/
 		if ( $forceRegen || ! $inventory->current() || ! $atom->exists() ){
 			$inventory->regen();
-			$atom->reset( $feedTitle, $feedCatchline,  date(DATE_ATOM) );
+			$atom->reset( $feedTitle, getConfigOption('site_domain').$bloguri, $feedCatchline,  date(DATE_ATOM) );
 
 			for ($i = 0; $i < count($posts); $i++){
 				$newitem = new article(getConfigOption('post_directory').'/'.$posts[$i], $bloguri );
