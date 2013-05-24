@@ -112,7 +112,7 @@ class feed extends dataMonger{
 	 */
 	public function new_item($articleect) {
 
-		if ( count( $this->items) < 200 ){}
+		if ( count( $this->items) < 200 ){
 
 			array_push($this->items, $articleect);
 		}
