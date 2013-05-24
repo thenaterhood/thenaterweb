@@ -8,6 +8,8 @@
  * Include the inherited dataMonger class
  */
 include_once 'class_dataMonger.php';
+include_once 'class_article.php';
+include_once 'class_mappedArticle.php';
 
 /**
  * Defines a data object to contain an atom feed as items
@@ -21,6 +23,7 @@ class feed extends dataMonger{
 	 */
 
 	private $items;
+	private $cacheFile;
 	
 	/**
 	 * Creates an empty atom feed object with metadata
@@ -30,7 +33,64 @@ class feed extends dataMonger{
 	 * @param $description (str): a description or summary of the feed
 	 * @param $feedstamp (str): a datestamp for the feed, in standard atom format
 	 */
-	public function __construct($title, $link, $description, $feedstamp) {
+	public function __construct( $bloguri ) {
+
+		$this->cacheFile = getConfigOption('dynamic_directory')."/feed-$bloguri.json";
+
+		if ( $this->exists() ){
+
+			$this->retrieve();
+
+		}
+
+		else{
+			$this->reset( "", "", "", "" );
+		}
+
+	}
+
+	private function retrieve(){
+
+		$rawJson = json_decode( getConfigOption('dynamic_directory')."/FEED-$bloguri.json" );
+
+		$this->container['title'] = $rawJson['title'];
+		$this->container['link'] = $rawJson['link'];
+		$this->container['description'] = $rawJson['description'];
+		$this->container['feedstamp'] = $rawJson['feedstamp'];
+		$this->container['author'] = $rawJson['author'];
+
+		foreach ($rawJson['items'] as $item) {
+			
+			$this->items[] = new mappedArticle( $item );
+
+		}
+
+	}
+
+	public function save(){
+
+		$saveData = $this->container;
+		$saveItems = array();
+
+		foreach ($this->items as $item ) {
+
+			$saveItems[] = $item->dump();
+		}
+
+		$saveData['items'] = $saveItems;
+
+		$file = fopen($this->cacheFile, 'w');
+		fwrite($file, $this->saveData );
+		fclose($file);
+
+	}
+
+	public function exists(){
+
+		return file_exists( getConfigOption('dynamic_directory')."/FEED-$bloguri.json" );
+	}
+
+	public function reset($title, $link, $description, $feedstamp){
 
 		$this->container['title'] = $title;
 		$this->container['link'] = $link;
@@ -38,6 +98,7 @@ class feed extends dataMonger{
 		$this->container['feedstamp'] = $feedstamp;
 		$this->container['author'] = $config->site_author;
 		$this->items = array();
+
 
 	}
 
@@ -122,6 +183,8 @@ xml:base="'.getConfigOption('site_domain').'/">';
 		
 		return $r;
 	}
+
+
 
 }
 ?>
