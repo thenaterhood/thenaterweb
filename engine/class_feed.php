@@ -80,7 +80,7 @@ class feed extends dataMonger{
 		$saveData['items'] = $saveItems;
 
 		$file = fopen($this->cacheFile, 'w');
-		fwrite($file, json_encode($this->saveData) );
+		fwrite($file, json_encode($saveData) );
 		fclose($file);
 
 	}
