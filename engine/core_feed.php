@@ -26,7 +26,7 @@
 function generateFeed( $bloguri, $feedTitle, $feedCatchline, $forceRegen, $postDirectory ){
 
 	
-	$inventory = new inventory( getConfigOption('dynamic_directory'), $bloguri );
+	$inventory = new inventory( $postDirectory, $bloguri );
 	$posts = $inventory->getFileList();
 
 	$atom = new feed( $bloguri );
