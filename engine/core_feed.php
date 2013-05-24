@@ -26,7 +26,7 @@
 function generateFeed( $bloguri, $feedTitle, $feedCatchline, $forceRegen ){
 
 	
-	$inventory = new inventory( getConfigOption('post_directory'), $bloguri );
+	$inventory = new inventory( getConfigOption('dynamic_directory'), $bloguri );
 	$posts = $inventory->getFileList();
 
 	$atom = new feed( $bloguri );
@@ -50,7 +50,7 @@ function generateFeed( $bloguri, $feedTitle, $feedCatchline, $forceRegen ){
 			$atom->reset( $feedTitle, getConfigOption('site_domain')."/$bloguri", $feedCatchline,  date(DATE_ATOM) );
 
 			for ($i = 0; $i < count($posts); $i++){
-				$newitem = new article(getConfigOption('post_directory').'/'.$posts[$i], $bloguri );
+				$newitem = new article( getConfigOption('post_directory').'/../'."$bloguri/$posts[$i]", $bloguri );
 				$atom->new_item($newitem);
 			}
 
