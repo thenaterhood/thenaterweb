@@ -23,7 +23,7 @@
  * @return $atom (atom_feed): an instance of the atom_feed class
  * 
  */
-function generateFeed( $bloguri, $feedTitle, $feedCatchline, $forceRegen ){
+function generateFeed( $bloguri, $feedTitle, $feedCatchline, $forceRegen, $postDirectory ){
 
 	
 	$inventory = new inventory( getConfigOption('dynamic_directory'), $bloguri );
@@ -50,7 +50,7 @@ function generateFeed( $bloguri, $feedTitle, $feedCatchline, $forceRegen ){
 			$atom->reset( $feedTitle, getConfigOption('site_domain')."/$bloguri", $feedCatchline,  date(DATE_ATOM) );
 
 			for ($i = 0; $i < count($posts); $i++){
-				$newitem = new article( getConfigOption('post_directory').'/../'."$bloguri/$posts[$i]", $bloguri );
+				$newitem = new article( "$postDirectory/$posts[$i]", $bloguri );
 				$atom->new_item($newitem);
 			}
 

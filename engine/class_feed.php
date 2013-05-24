@@ -87,7 +87,7 @@ class feed extends dataMonger{
 
 	public function exists(){
 
-		return file_exists( getConfigOption('dynamic_directory')."/FEED-$bloguri.json" );
+		return file_exists( getConfigOption('dynamic_directory')."/feed-$bloguri.json" );
 	}
 
 	public function reset($title, $link, $description, $feedstamp){
