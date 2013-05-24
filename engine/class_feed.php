@@ -51,7 +51,7 @@ class feed extends dataMonger{
 
 	private function retrieve(){
 
-		$rawJson = json_decode( getConfigOption('dynamic_directory')."/FEED-$bloguri.json", True );
+		$rawJson = json_decode( getConfigOption('dynamic_directory')."/feed-$bloguri.json", True );
 
 		$this->container['title'] = $rawJson['title'];
 		$this->container['link'] = $rawJson['link'];
