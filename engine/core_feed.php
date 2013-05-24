@@ -57,6 +57,8 @@ function generateFeed( $bloguri, $feedTitle, $feedCatchline, $forceRegen ){
 			$atom->save();
 		}
 
+	}
+
 	return $atom;
 }
 
