@@ -51,7 +51,7 @@ class feed extends dataMonger{
 
 	private function retrieve(){
 
-		$rawJson = json_decode( "$this->cacheFile.json", True );
+		$rawJson = json_decode( file_get_contents("$this->cacheFile.json"), True );
 
 		$this->container['title'] = $rawJson['title'];
 		$this->container['link'] = $rawJson['link'];
