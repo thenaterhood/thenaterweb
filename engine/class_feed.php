@@ -35,7 +35,7 @@ class feed extends dataMonger{
 	 */
 	public function __construct( $bloguri ) {
 
-		$this->cacheFile = getConfigOption('dynamic_directory')."/feed-$bloguri.json";
+		$this->cacheFile = getConfigOption('dynamic_directory')."/feed-$bloguri";
 
 		if ( $this->exists() ){
 
@@ -51,7 +51,7 @@ class feed extends dataMonger{
 
 	private function retrieve(){
 
-		$rawJson = json_decode( getConfigOption('dynamic_directory')."/feed-$bloguri.json", True );
+		$rawJson = json_decode( "$this->cacheFile.json", True );
 
 		$this->container['title'] = $rawJson['title'];
 		$this->container['link'] = $rawJson['link'];
@@ -79,15 +79,29 @@ class feed extends dataMonger{
 
 		$saveData['items'] = $saveItems;
 
-		$file = fopen($this->cacheFile, 'w');
+		$file = fopen("$this->cacheFile.json", 'w');
 		fwrite($file, json_encode($saveData) );
 		fclose($file);
 
 	}
 
+	private function cache( $xml ){
+
+		$file = fopen( "$this->cacheFile.xml", 'w' );
+
+		fwrite( $file, $xml );
+		fclose($file);
+
+	}
+
+	private function getCache(){
+
+		return file_get_contents("$this->cacheFile.xml");
+	}
+
 	public function exists(){
 
-		return file_exists( getConfigOption('dynamic_directory')."/feed-$bloguri.json" );
+		return file_exists( "$this->cacheFile.json" );
 	}
 
 	public function reset($title, $link, $description, $feedstamp){
