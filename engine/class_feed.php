@@ -158,7 +158,8 @@ class feed extends dataMonger{
 	 */
 	private function atom() {
 
-		$r ='<feed xmlns="http://www.w3.org/2005/Atom"
+		$r = '<?xml version="1.0" encoding="UTF-8"?>';
+		$r .='<feed xmlns="http://www.w3.org/2005/Atom"
 xml:lang="en"
 xml:base="'.getConfigOption('site_domain').'/">';
 		$r .= "\n";
