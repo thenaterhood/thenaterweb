@@ -122,7 +122,7 @@ class article extends dataMonger{
 		# statically, then urlencode the rest of the url. Otherwise, the feed does not 
 		# validate.
 		$r .= "<id>http://" . urlencode( substr($this->container['link'], 7) ) . "</id>";
-		$r .= '<link href="'.$this->container['link'].'" />';
+		$r .= '<link href="'. urlencode( $this->container['link'] ) .'" />';
 		$r .= '<updated>'.$this->container['datestamp'].'</updated>';
 		$r .= "<title>" . $this->container['title'] . "</title>";
 		$r .= "<content type='html'>" . htmlspecialchars( $this->container['content'] ) . "</content>";
