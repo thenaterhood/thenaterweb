@@ -53,7 +53,7 @@ class inventory{
 	public function __construct( $directory, $bloguri ){
 		$this->bloguri = $bloguri;
 		$this->directory = $directory;
-		$this->inventoryFile = getConfigOption('dynamic_directory').'/INVENTORY-'.str_replace('/', '_', $directory).'.json';
+		$this->inventoryFile = getConfigOption('dynamic_directory').'/'.str_replace('/', '_', $directory).'.inventory.json';
 
 		$this->inventoryData = json_decode( file_get_contents($this->inventoryFile, True) );
 
