@@ -37,9 +37,9 @@ function RandomLine($filename) {
 * @param $number (int): how many to generate and display
 * @param $tag (string): a tag or tags to use for generating suggestions
 */
-function getSuggestions($number, $tag){
+function getSuggestions($number, $tag, $post_directory){
 
-		$inventory = new inventory( getConfigOption('post_directory') );
+		$inventory = new inventory( $post_directory );
 
 		$pool = $inventory->selectField( 'title' );
 
