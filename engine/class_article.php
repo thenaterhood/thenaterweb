@@ -125,7 +125,7 @@ class article extends dataMonger{
 		$r .= '<link href="'. urlencode( $this->container['link'] ) .'" />';
 		$r .= '<updated>'.$this->container['datestamp'].'</updated>';
 		$r .= "<title>" . $this->container['title'] . "</title>";
-		$r .= "<content type='html'>" . htmlspecialchars( $this->container['content'] ) . "</content>";
+		$r .= "<content type='html'>" . htmlspecialchars( $this->container['content'], ENT_QUOTES ) . "</content>";
 		$r .= "</entry>";
 		return $r;
 	}
@@ -140,7 +140,7 @@ class article extends dataMonger{
 		$r .= "<title>" . $this->container['title'] ."</title>";
 		$r .= "<link>" . $this->container['link'] . "</link>";
 		# Produces a "description" by taking the first 100 characters of the content
-		$r .= "<description>" . substr( htmlspecialchars( $this->container['content'] ), 0, 100 ) . "...</description>";
+		$r .= "<description>" . substr( htmlspecialchars( $this->container['content'], ENT_QUOTES ), 0, 100 ) . "...</description>";
 		$r .= "</item>";
 		
 		return $r;
