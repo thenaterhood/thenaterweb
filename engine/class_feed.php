@@ -35,7 +35,7 @@ class feed extends dataMonger{
 	 */
 	public function __construct( $bloguri ) {
 
-		$this->cacheFile = getConfigOption('dynamic_directory')."/feed-$bloguri";
+		$this->cacheFile = getConfigOption('dynamic_directory')."/$bloguri.feed";
 
 		if ( $this->exists() ){
 
