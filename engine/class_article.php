@@ -118,7 +118,10 @@ class article extends dataMonger{
 	private function atom() {
 
 		$r = "<entry>";
-		$r .= "<id>" . $this->container['link'] . "</id>";
+		# In order to make the feed validate, we pull the http out of the id and append it
+		# statically, then urlencode the rest of the url. Otherwise, the feed does not 
+		# validate.
+		$r .= "<id>http://" . urlencode( substr($this->container['link'], 7) ) . "</id>";
 		$r .= '<link href="'.$this->container['link'].'" />';
 		$r .= '<updated>'.$this->container['datestamp'].'</updated>';
 		$r .= "<title>" . $this->container['title'] . "</title>";
