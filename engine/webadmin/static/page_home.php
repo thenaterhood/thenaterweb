@@ -1,12 +1,10 @@
-<?php
 
-	print "Welcome! Administering to the site at ".getConfigOption('site_domain');
-	print '<ul>
-	<li><a href="newpost.php">Create a new Post or Article</a></li>
-	<li><a href="editpost.php">Edit an existing post or article</a></li>
-	<li><a href="newblog.php">Create a new blog or article collection</a></li>
-	<li><a href="editblog.php">Edit an existing blog or article configuration</a></li>
-	<li><a href="editconf.php">Modify engine configuration</a></li>
-	</ul>';
-
-?>
+<h1>Gnat Web Administration Panel</h1>
+<h3>Administering <?php print getConfigOption('site_domain'); ?></h3>
+<ul>
+<li><a href="?id=newpost">Create a new Post or Article</a></li>
+<li><a href="?id=editpost">Edit an existing post or article</a></li>
+<li><a href="?id=newblog">Create a new blog or article collection</a></li>
+<li><a href="?id=editblog">Edit an existing blog or article configuration</a></li>
+<li><a href="?id=editconf">Modify engine configuration</a></li>
+</ul>
