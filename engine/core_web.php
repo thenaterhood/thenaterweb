@@ -29,7 +29,7 @@ include 'class_content.php';
 * 
 * 
 */
-function chooseInclude($preferred, $secondary){
+function getContent($preferred, $secondary){
 
 	// Set up a default state, using the secondary.
 	// Note that the secondary will not currently be searched
@@ -62,23 +62,40 @@ function chooseInclude($preferred, $secondary){
 	}
 	else{
 		if ( file_exists( $preferred ) ){
-			$type = substr( $preferred, strpos( $preferred, '.') );
+			$type = substr( $preferred, strpos( $preferred, '.')+1 );
 			$file = $preferred;
 		}
 	}
 
+	$r = array();
+	$r['include'] = $file;
     // If the file may contain php, then simply include the file
 	if ( $type == "php" || $type == "html" ){
-		include $file;
+
+		$r['pre'] = "";
+		$r['post'] = "";
+		$r['sanitize'] = False;
+
+		return $r;
 	}
 
 	// If the file is of type pre (preformatted), insert the
 	// tags and sterilize the contents
 	else if ( $type == "pre" ){
-		print '<pre>';
-		print htmlspecialchars( file_get_contents( $file ) );
-		print '</pre>';
+
+		$r['pre'] = '<pre>';
+		$r['post'] = '</pre>';
+		$r['sanitize'] = True;
+		
+		return $r;
 	}
+}
+
+function chooseInclude( $preferred, $secondary ){
+
+	$contentInstructions = getContent( $preferred, $secondary );
+	return $contentInstructions->file;
+
 }
 
 /**
