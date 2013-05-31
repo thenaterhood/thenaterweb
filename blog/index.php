@@ -25,22 +25,22 @@ include $config->webcore_root.'/html_head.html';
 				
 				<div class="entry">
 					
-					<?php 
-					$include = getContent( $config->webcore_root.'/page_'.$session->id, $config->webcore_root.'/template_error.php');
+				<?php 
+				$include = getContent( $config->webcore_root.'/page_'.$session->id, $config->webcore_root.'/template_error.php');
 
-					print $include->pre;
+				print $include['pre'];
 
-					if ( !$include->sanitize ){
-						include $include->file;
-					}
-					else{
-						print htmlspecialchars( file_get_contents($include->file) );
-					}
+				if ( !$include['sanitize'] ){
+					include $include['file'];
+				}
+				else{
+					print htmlspecialchars( file_get_contents($include['file']) );
+				}
 
-					print $include->post;
-					//$content = new content( $session->id, $session );
-					//$content->output();
-					?>
+				print $include['post'];
+				//$content = new content( $session->id, $session );
+				//$content->output();
+				?>
 					
 				</div>
 		</div>
