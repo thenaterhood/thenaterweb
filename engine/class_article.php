@@ -32,7 +32,7 @@ class article extends dataMonger{
 	 * 
 	 * @param nodefile (string) - a yyyy.mm.dd string of a nodefile
 	 */
-	public function __construct($nodefile){
+	public function __construct($nodefile, $bloguri){
 
 		/* Handles the case where the post file does not exist
 		 * at all by pre-setting all the fields to a failure state.
@@ -44,7 +44,7 @@ class article extends dataMonger{
 		$this->container['date'] = "";
 		$this->container['tags'] = "";
 		$this->container['datestamp'] = "";
-		$this->container['link'] = '/blog';
+		$this->container['link'] = '/'.$bloguri;
 		$this->container['content'] = '<p>Sorry, the post you were looking for could not be found.  If you think it should be here, try browsing by title.  Otherwise, <a href="blog/index.php">return to blog home.</a></p>'."\n".'<p>Think you were looking for something else? <a href="'.getConfigOption('site_domain').'">visit site home</a>.</p>';
 			
 		if (file_exists("$nodefile.json")){
@@ -56,9 +56,14 @@ class article extends dataMonger{
 			// Reformat and add data that the class relies on
 			
 			// Implode the array of lines for the content into a string
-			$this->container['content'] = implode( $this->container['content'] );
+			if ( is_array( $this->container['content'] ) )
+				$this->container['content'] = implode( $this->container['content'] );
+
 			// Add the web url for the post
-			$this->container['link'] = getConfigOption('site_domain').'/blog/read/'.basename($nodefile, '.json').'.htm';
+			if ( is_array( $this->container['tags'] ) )
+				$this->container['tags'] = implode( ', ', $this->container['tags'] );
+
+			$this->container['link'] = getConfigOption('site_domain').'/'.$bloguri.'/index.php?id=post&node='.basename($nodefile, '.json');
 			
 		}
 		/*
@@ -113,11 +118,14 @@ class article extends dataMonger{
 	private function atom() {
 
 		$r = "<entry>";
-		$r .= "<id>" . $this->container['link'] . "</id>";
-		$r .= '<link href="'.$this->container['link'].'" />';
+		# In order to make the feed validate, we pull the http out of the id and append it
+		# statically, then urlencode the rest of the url. Otherwise, the feed does not 
+		# validate.
+		$r .= "<id>http://" . urlencode( substr($this->container['link'], 7) ) . "</id>";
+		$r .= '<link href="'. urlencode( $this->container['link'] ) .'" />';
 		$r .= '<updated>'.$this->container['datestamp'].'</updated>';
 		$r .= "<title>" . $this->container['title'] . "</title>";
-		$r .= "<content type='html'>" . htmlspecialchars( $this->container['content'] ) . "</content>";
+		$r .= "<content type='html'>" . htmlspecialchars( $this->container['content'], ENT_QUOTES ) . "</content>";
 		$r .= "</entry>";
 		return $r;
 	}
@@ -132,7 +140,7 @@ class article extends dataMonger{
 		$r .= "<title>" . $this->container['title'] ."</title>";
 		$r .= "<link>" . $this->container['link'] . "</link>";
 		# Produces a "description" by taking the first 100 characters of the content
-		$r .= "<description>" . substr( htmlspecialchars( $this->container['content'] ), 0, 100 ) . "...</description>";
+		$r .= "<description>" . substr( htmlspecialchars( $this->container['content'], ENT_QUOTES ), 0, 100 ) . "...</description>";
 		$r .= "</item>";
 		
 		return $r;

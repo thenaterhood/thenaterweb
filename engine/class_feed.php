@@ -8,6 +8,8 @@
  * Include the inherited dataMonger class
  */
 include_once 'class_dataMonger.php';
+include_once 'class_article.php';
+include_once 'class_mappedArticle.php';
 
 /**
  * Defines a data object to contain an atom feed as items
@@ -21,6 +23,7 @@ class feed extends dataMonger{
 	 */
 
 	private $items;
+	private $cacheFile;
 	
 	/**
 	 * Creates an empty atom feed object with metadata
@@ -30,14 +33,86 @@ class feed extends dataMonger{
 	 * @param $description (str): a description or summary of the feed
 	 * @param $feedstamp (str): a datestamp for the feed, in standard atom format
 	 */
-	public function __construct($title, $link, $description, $feedstamp) {
+	public function __construct( $bloguri ) {
+
+		$this->cacheFile = getConfigOption('dynamic_directory')."/$bloguri.feed";
+
+		if ( $this->exists() ){
+
+			$this->retrieve();
+
+		}
+
+		else{
+			$this->reset( "", "", "", "" );
+		}
+
+	}
+
+	private function retrieve(){
+
+		$rawJson = json_decode( file_get_contents("$this->cacheFile.json"), True );
+
+		$this->container['title'] = $rawJson['title'];
+		$this->container['link'] = $rawJson['link'];
+		$this->container['description'] = $rawJson['description'];
+		$this->container['feedstamp'] = $rawJson['feedstamp'];
+		$this->container['author'] = $rawJson['author'];
+
+		foreach ($rawJson['items'] as $item) {
+			
+			$this->items[] = new mappedArticle( $item );
+
+		}
+
+	}
+
+	public function save(){
+
+		$saveData = $this->container;
+		$saveItems = array();
+
+		foreach ($this->items as $item ) {
+
+			$saveItems[] = $item->dump();
+		}
+
+		$saveData['items'] = $saveItems;
+
+		$file = fopen("$this->cacheFile.json", 'w');
+		fwrite($file, json_encode($saveData) );
+		fclose($file);
+
+	}
+
+	private function cache( $xml ){
+
+		$file = fopen( "$this->cacheFile.xml", 'w' );
+
+		fwrite( $file, $xml );
+		fclose($file);
+
+	}
+
+	private function getCache(){
+
+		return file_get_contents("$this->cacheFile.xml");
+	}
+
+	public function exists(){
+
+		return file_exists( "$this->cacheFile.json" );
+	}
+
+	public function reset($title, $link, $description, $feedstamp){
 
 		$this->container['title'] = $title;
 		$this->container['link'] = $link;
 		$this->container['description'] = $description;
 		$this->container['feedstamp'] = $feedstamp;
-		$this->container['author'] = $config->site_author;
+		$this->container['author'] = getConfigOption('site_author');
 		$this->items = array();
+
 
 	}
 
@@ -51,7 +126,10 @@ class feed extends dataMonger{
 	 */
 	public function new_item($articleect) {
 
-		array_push($this->items, $articleect);
+		if ( count( $this->items) < 200 ){
+
+			array_push($this->items, $articleect);
+		}
 	}
 	
 	/**
@@ -80,7 +158,8 @@ class feed extends dataMonger{
 	 */
 	private function atom() {
 
-		$r ='<feed xmlns="http://www.w3.org/2005/Atom"
+		$r = '<?xml version="1.0" encoding="UTF-8"?>';
+		$r .='<feed xmlns="http://www.w3.org/2005/Atom"
 xml:lang="en"
 xml:base="'.getConfigOption('site_domain').'/">';
 		$r .= "\n";
@@ -90,6 +169,7 @@ xml:base="'.getConfigOption('site_domain').'/">';
 		$r .= "<title>" . $this->container['title'] . "</title>\n";
 		$r .= "<updated>". $this->container['feedstamp'] ."</updated>\n";
 		$r .= "<author><name>".$this->container['author']."</name></author>\n";
+		$r .= '<atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="self" type="application/atom+xml" href="'.$this->container['link'].'/feed.php" />';
 		foreach ($this->items as $item) {
 			$r .= $item->output( 'atom' );
 		}
@@ -122,6 +202,8 @@ xml:base="'.getConfigOption('site_domain').'/">';
 		
 		return $r;
 	}
+
+
 
 }
 ?>
