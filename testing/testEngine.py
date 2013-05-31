@@ -29,7 +29,7 @@ class testWebEngine(unittest.TestCase):
 		
 	def test_sanitizeMessy(self):
 		# Test the ability to remove non-alphanumberic characters
-		decodedData = getData( url+"api_saneString.php?testvar=:)just*test$*@(*%" )
+		decodedData = getData( url+"api_saneString.php?testvar=)just*test$*@(*%" )
 		self.assertEqual( decodedData["testvar"], "justtest" )
 		
 	def test_sessionDomain(self):
