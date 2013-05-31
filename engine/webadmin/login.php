@@ -7,7 +7,7 @@ $session = new session( array( 'user', 'pass', 'id', 'active' ) );
 
 $auth = new webAdmAuth( $session->user, $session->pass, $session->active );
 
-if ( $auth->active ){
+if ( $auth->isAuthenticated() ){
 	print "You are logged in.";
 }
 else{
