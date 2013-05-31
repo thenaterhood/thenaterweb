@@ -34,7 +34,7 @@ function chooseInclude($preferred, $secondary){
 	// Set up a default state, using the secondary.
 	// Note that the secondary will not currently be searched
 	// for, so must include an extension. It is assumed
-	// it will be includable
+	// it will be includable and will exist. If not, woe is you.
 	$file = $secondary;
 	$type = 'php';
 
@@ -44,8 +44,6 @@ function chooseInclude($preferred, $secondary){
 
 		// Types supported by the class, in order of precedence
 		$supportedTypes = array( 'php', 'html', 'pre' );
-
-		// Put together the main part of the filename
 
 		// Search for the file in order of precedence
 		$i = -1;
@@ -65,7 +63,7 @@ function chooseInclude($preferred, $secondary){
 	else{
 		if ( file_exists( $preferred ) ){
 			$type = substr( $preferred, strpos( $preferred, '.') );
-			$file = $preferred.'.'.$type;
+			$file = $preferred;
 		}
 	}
 
