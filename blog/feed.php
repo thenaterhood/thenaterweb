@@ -1,11 +1,13 @@
 <?php
 
 include '../engine/core_feed.php';
+include 'class_blogdef.php';
 
 $session = new session( array('regen') );
 $config = new config();
+$blogdef = new blogdef();
 
-$feed = generateFeed( 'blog', 'The Philosophy of Nate', "It's the cyber age; stay in the know", $session->regen, '/var/www/blog/entries' );
+$feed = generateFeed( $blogdef->id, $blogdef->title, $blogdef->catchline, $session->regen, $blogdef->post_directory );
 print $feed->output( $config->feed_type );
 
 ?>
