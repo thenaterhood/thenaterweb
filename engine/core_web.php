@@ -27,16 +27,59 @@ include 'class_content.php';
 * @param $preferred (string): the preferred page to include
 * @param $secondary (string): the secondary, emergency page to include
 * 
-* @return $page (string): the page that should be included
 * 
 */
 function chooseInclude($preferred, $secondary){
-	
-	if (file_exists("$preferred")){
-		return "$preferred";
+
+	// Set up a default state, using the secondary.
+	// Note that the secondary will not currently be searched
+	// for, so must include an extension. It is assumed
+	// it will be includable
+	$file = $secondary;
+	$type = 'php';
+
+	// If no file extension was given, initiate a search
+	// for the file
+	if ( !strpos( $preferred, '.' ) ){
+
+		// Types supported by the class, in order of precedence
+		$supportedTypes = array( 'php', 'html', 'pre' );
+
+		// Put together the main part of the filename
+
+		// Search for the file in order of precedence
+		$i = -1;
+		while ( $i < count($supportedTypes) && !file_exists($preferred.'.'.$supportedTypes[$i]) ){
+
+			++$i;
+
+			// If the file exists, update the class with it and break
+			if ( file_exists( $preferred.'.'.$supportedTypes[$i] ) ){
+				$file = $preferred.'.'.$supportedTypes[$i];
+				$type = $supportedTypes[$i];
+			}
+
+		}
+
 	}
 	else{
-		return "$secondary";
+		if ( file_exists( $preferred ) ){
+			$type = substr( $preferred, strpos( $preferred, '.') );
+			$file = $preferred.'.'.$type;
+		}
+	}
+
+    // If the file may contain php, then simply include the file
+	if ( $type == "php" || $type == "html" ){
+		include $file;
+	}
+
+	// If the file is of type pre (preformatted), insert the
+	// tags and sterilize the contents
+	else if ( $type == "pre" ){
+		print '<pre>';
+		print htmlspecialchars( file_get_contents( $file ) );
+		print '</pre>';
 	}
 }
 
