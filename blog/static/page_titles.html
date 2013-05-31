@@ -5,7 +5,7 @@
  */
 echo '<br />'; 
 echo '<ul>';
-$inventory = new inventory( getConfigOption('post_directory') );
+$inventory = new inventory( $blogdef->post_directory );
 $titles = $inventory->selectField( 'title' );
 foreach ($titles as $item) {
 	$select = $inventory->select( 'title', $item );

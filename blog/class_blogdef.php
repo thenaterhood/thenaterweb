@@ -38,9 +38,8 @@ class blogdef{
 		# If it's elsewhere, the full path is necessary.
 		$this->container['post_directory'] = '/var/www/blog/entries';
 
-		# Configure the identity of the blog for use internally
-		# when saving files. This can be anything you want, providing
-		# that it is unique on this website.
+		# Configure the identity of the blog for use when generating
+		# urls to the blog and saving files. This is publicly visible.
 		$this->container['id'] = 'blog';
 
 		# Configure the title of the blog. This is publically visible
