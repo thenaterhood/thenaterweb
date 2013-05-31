@@ -22,7 +22,7 @@ class webAdmAuth extends dataMonger{
 
 	}
 
-	public function isAuthorized(){
+	public function isAuthenticated(){
 
 		return $this->container['active'];
 
