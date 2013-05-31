@@ -68,7 +68,7 @@ function getContent($preferred, $secondary){
 	}
 
 	$r = array();
-	$r['include'] = $file;
+	$r['file'] = $file;
     // If the file may contain php, then simply include the file
 	if ( $type == "php" || $type == "html" ){
 
@@ -76,7 +76,6 @@ function getContent($preferred, $secondary){
 		$r['post'] = "";
 		$r['sanitize'] = False;
 
-		return $r;
 	}
 
 	// If the file is of type pre (preformatted), insert the
@@ -87,14 +86,15 @@ function getContent($preferred, $secondary){
 		$r['post'] = '</pre>';
 		$r['sanitize'] = True;
 		
-		return $r;
 	}
+
+	return $r;
 }
 
 function chooseInclude( $preferred, $secondary ){
 
 	$contentInstructions = getContent( $preferred, $secondary );
-	return $contentInstructions->file;
+	return $contentInstructions['file'];
 
 }
 
