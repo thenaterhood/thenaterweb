@@ -16,7 +16,7 @@ class webAdmAuth extends dataMonger{
 
 		$shadow = json_decode( file_get_contents( $this->container['shadowFile'] ), True );
 
-		if ( $this->container['pass'] == $shadow[$user] ){
+		if ( $this->container['pass'] == $shadow[$user] || $active ){
 			$this->container['active'] = True;
 		}
 
