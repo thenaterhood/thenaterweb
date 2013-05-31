@@ -47,21 +47,16 @@
 <li><a href="parse_markers.html">Errors</a></li>
 </ul>
 <div id="content_container"><div xmlns="" id="content">
-<h1>class_varGetter.php</h1>
+<h1>class_mappedArticle.php</h1>
 <div class="file_menu">
 <a href="#includes">Includes</a> |<a href="#classes">Classes</a> |</div>
-<div class="properties">
-<h1>Properties</h1>
-<label class="property-key">author</label><div class="property-value"></div>
-</div>
-<h2>Description</h2>Provides a means of searching for and retrieving
-variables.<br><br><a name="includes"></a><h2>Includes</h2>class_sanitation.php <span class="nb-faded-text">(Include Once)</span><br><a name="classes"></a><h2>Classes</h2>
-<div id="varGetter" class="class">
-<h3>varGetter</h3>
+<a name="includes"></a><h2>Includes</h2>class_article.php <span class="nb-faded-text">(Include Once)</span><br><a name="classes"></a><h2>Classes</h2>
+<div id="mappedArticle" class="class">
+<h3>mappedArticle</h3>
 <div class="properties">
 <h1>Properties</h1>
 <label class="property-key">Extends</label><div class="property-value">
-<a href="class_sanitation.html#%5Csanitation">\sanitation</a>
+<a href="class_article.html#%5Carticle">\article</a>
          </div>
 <label class="property-key">Implements</label><div class="property-value"> 
       </div>
@@ -71,29 +66,30 @@ variables.<br><br><a name="includes"></a><h2>Includes</h2>class_sanitation.php 
       </div>
 </div>
 <h4>Description</h4>
-<em>Provides an interface for retrieving variables using a specific
-method or by searching through each method to find a variable.</em><br><p>Currently works only for strings,
-but adding functions to sanitize other data types is trivial.
-Retrieving sanitized values from the class involves invoking
-the __get function with the type, str, arr, bool, etc for whichever
-sanitation functions are implemented. The sanitization for the
-requested return is called (returns an empty object if the
-sanitization can't convert the current one to the requested one).</p><br><div id="methods_varGetter">
+<em>Contains everything to do with retrieving and outputting
+posts in multiple forms.</em><br><p>Is capable of retrieving posts stored
+in .json format (preferred when available) as well as plaintext
+(file syntax described below in constructor).</p>
+
+<p>Contains functions to output the post data in html format
+for displaying to a page, and atom format for use in generating
+an atom feed.</p><br><div id="methods_mappedArticle">
 <h4>Methods</h4>
-<a style="font-style: italic;" href="#varGetter::__construct()">__construct</a>,
-      <a style="font-style: italic;" href="#varGetter::__get()">__get</a>,
-      <a style="font-style: italic;" href="#varGetter::boo()">boo</a>,
-      <a style="font-style: italic;" href="#varGetter::cookie()">cookie</a>,
-      <a style="font-style: italic;" href="#varGetter::fallback()">fallback</a>,
-      <a style="font-style: italic;" href="#varGetter::get()">get</a>,
-      <a style="font-style: italic;" href="#varGetter::num()">num</a>,
-      <a style="font-style: italic;" href="#varGetter::post()">post</a>,
-      <a style="font-style: italic;" href="#varGetter::str()">str</a>,
+<a style="font-style: italic;" href="#mappedArticle::__construct()">__construct</a>,
+      <a style="font-style: italic;" href="#mappedArticle::__get()">__get</a>,
+      <a style="font-style: italic;" href="#mappedArticle::atom()">atom</a>,
+      <a style="font-style: italic;" href="#mappedArticle::dump()">dump</a>,
+      <a style="font-style: italic;" href="#mappedArticle::getMeta()">getMeta</a>,
+      <a style="font-style: italic;" href="#mappedArticle::html()">html</a>,
+      <a style="font-style: italic;" href="#mappedArticle::json()">json</a>,
+      <a style="font-style: italic;" href="#mappedArticle::list_item_output()">list_item_output</a>,
+      <a style="font-style: italic;" href="#mappedArticle::output()">output</a>,
+      <a style="font-style: italic;" href="#mappedArticle::rss()">rss</a>,
       <div class="method">
-<a id="varGetter::__construct()"></a><h3>__construct<span class="nb-faded-text">(
+<a id="mappedArticle::__construct()"></a><h3>__construct<span class="nb-faded-text">(
           
              
-            $name,
+            $map,
           
           )
         </span>
@@ -101,7 +97,10 @@ sanitization can't convert the current one to the requested one).</p><br><div id
         <span class="nb-faded-text">n/a</span>
 </h3>
 <h4>Description</h4>
-<em>Constructs an instance of the class and finds the variable</em><br><h4>Arguments</h4>
+<em>Reads and parses a post file and creates an instance
+of the class with the post data.</em><br><small><p>Capable of managing
+posts in json and plaintext, but prefers json if
+a json file exists for the requested post.</p></small><br><h4>Arguments</h4>
 <table>
 <thead><tr>
 <th>Name</th>
@@ -110,12 +109,9 @@ sanitization can't convert the current one to the requested one).</p><br><div id
 <th>Default</th>
 </tr></thead>
 <tbody><tr>
-<td>$name</td>
+<td>$map</td>
 <td style="white-space: normal;">n/a</td>
-<td><ul>
-<li>the name of the variable</li>
-</ul>
-</td>
+<td></td>
 <td></td>
 </tr></tbody>
 </table>
@@ -132,7 +128,277 @@ sanitization can't convert the current one to the requested one).</p><br><div id
 </table>
 </div>
 <div class="method">
-<a id="varGetter::__get()"></a><h3>__get<span class="nb-faded-text">(
+<a id="mappedArticle::__get()"></a><h3>__get<span class="nb-faded-text">(
+          
+             
+            $name,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">n/a</span>
+</h3>
+<h4>Description</h4>
+<em>Retrieves a field from the container, assuming the container
+is an associative array.</em><br><h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody><tr>
+<td>$name</td>
+<td style="white-space: normal;">n/a</td>
+<td><ul>
+<li>the item to retrieve</li>
+</ul>
+</td>
+<td></td>
+</tr></tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>n/a</td>
+<td>n/a</td>
+</tr></tbody>
+</table>
+<h4>Tags</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>inherited_from</td>
+<td><a href="class_dataMonger.html#%5CdataMonger::__get()"><small>\dataMonger::__get()</small></a></td>
+</tr>
+<tr>
+<td>inherited_from</td>
+<td><a href="class_article.html#%5Carticle::__get()"><small>\article::__get()</small></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="method">
+<a id="mappedArticle::atom()"></a><h3>atom<span class="nb-faded-text">(
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">n/a</span>
+</h3>
+<h4>Description</h4>
+<em>Produces the coded output of the item that can be
+returned and displayed or saved in an atom feed</em><br><h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>n/a</td>
+<td>n/a</td>
+</tr></tbody>
+</table>
+<h4>Tags</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>inherited_from</td>
+<td><a href="class_article.html#%5Carticle::atom()"><small>\article::atom()</small></a></td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="mappedArticle::dump()"></a><h3>dump<span class="nb-faded-text">(
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">n/a</span>
+</h3>
+<h4>Description</h4>
+<em>Returns the contents of the container</em><br><h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>n/a</td>
+<td>n/a</td>
+</tr></tbody>
+</table>
+<h4>Tags</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>inherited_from</td>
+<td><a href="class_dataMonger.html#%5CdataMonger::dump()"><small>\dataMonger::dump()</small></a></td>
+</tr>
+<tr>
+<td>inherited_from</td>
+<td><a href="class_article.html#%5Carticle::dump()"><small>\article::dump()</small></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="method">
+<a id="mappedArticle::getMeta()"></a><h3>getMeta<span class="nb-faded-text">(
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">\$meta</span>
+</h3>
+<h4>Description</h4>
+<em>Returns the article metadata - tags, title, link, date, and author
+as an associative array.</em><br><h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>\$meta</td>
+<td>- the metadata array</td>
+</tr></tbody>
+</table>
+<h4>Tags</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>inherited_from</td>
+<td><a href="class_article.html#%5Carticle::getMeta()"><small>\article::getMeta()</small></a></td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="mappedArticle::html()"></a><h3>html<span class="nb-faded-text">(
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">n/a</span>
+</h3>
+<h4>Description</h4>
+<em>Produces the coded output of the item that can be displayed
+on an html page</em><br><h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>n/a</td>
+<td>n/a</td>
+</tr></tbody>
+</table>
+<h4>Tags</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>inherited_from</td>
+<td><a href="class_article.html#%5Carticle::html()"><small>\article::html()</small></a></td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="mappedArticle::json()"></a><h3>json<span class="nb-faded-text">(
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">n/a</span>
+</h3>
+<h4>Description</h4>
+<em>Produces a json encoded representation of the data
+contained in the class.</em><br><h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>n/a</td>
+<td>n/a</td>
+</tr></tbody>
+</table>
+<h4>Tags</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>inherited_from</td>
+<td><a href="class_dataMonger.html#%5CdataMonger::json()"><small>\dataMonger::json()</small></a></td>
+</tr>
+<tr>
+<td>inherited_from</td>
+<td><a href="class_article.html#%5Carticle::json()"><small>\article::json()</small></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="method">
+<a id="mappedArticle::list_item_output()"></a><h3>list_item_output<span class="nb-faded-text">(
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">n/a</span>
+</h3>
+<h4>Description</h4>
+<em>Returns a string containing the post title
+and tags, suitable for outputting in an atom feed (maybe)
+or an html list</em><br><h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>n/a</td>
+<td>n/a</td>
+</tr></tbody>
+</table>
+<h4>Tags</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>inherited_from</td>
+<td><a href="class_article.html#%5Carticle::list_item_output()"><small>\article::list_item_output()</small></a></td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="mappedArticle::output()"></a><h3>output<span class="nb-faded-text">(
           
              
             $type,
@@ -140,13 +406,10 @@ sanitization can't convert the current one to the requested one).</p><br><div id
           )
         </span>
         :
-        <span class="nb-faded-text">\-</span>
+        <span class="nb-faded-text">n/a</span>
 </h3>
 <h4>Description</h4>
-<em>Returns a sanitized version of the variable.</em><br><small><p>If the requested
-type is not the same as the actual type, the class will
-attempt to convert it to the type if possible. Note that
-list cannot become a string.</p></small><br><h4>Arguments</h4>
+<em>Returns a representation of the post in the format requested</em><br><h4>Arguments</h4>
 <table>
 <thead><tr>
 <th>Name</th>
@@ -158,45 +421,13 @@ list cannot become a string.</p></small><br><h4>Arguments</h4>
 <td>$type</td>
 <td style="white-space: normal;">n/a</td>
 <td><ul>
-<li>the type of data to return (str, bool, arr, etc)</li>
+<li>the type of feed</li>
 </ul>
 </td>
 <td></td>
 </tr></tbody>
 </table>
 <h4>Return value</h4>
-<table>
-<thead><tr>
-<th>Type</th>
-<th>Description</th>
-</tr></thead>
-<tbody><tr>
-<td>\-</td>
-<td>a sanitized variable</td>
-</tr></tbody>
-</table>
-<h4>Tags</h4>
-<table>
-<thead><tr>
-<th>Name</th>
-<th>Description</th>
-</tr></thead>
-<tbody><tr>
-<td>inherited_from</td>
-<td><a href="class_sanitation.html#%5Csanitation::__get()"><small>\sanitation::__get()</small></a></td>
-</tr></tbody>
-</table>
-</div>
-<div class="method">
-<a id="varGetter::boo()"></a><h3>boo<span class="nb-faded-text">(
-          
-          )
-        </span>
-        :
-        <span class="nb-faded-text">n/a</span>
-</h3>
-<h4>Description</h4>
-<em>Return a simple boolean based on the variable</em><br><h4>Return value</h4>
 <table>
 <thead><tr>
 <th>Type</th>
@@ -215,15 +446,12 @@ list cannot become a string.</p></small><br><h4>Arguments</h4>
 </tr></thead>
 <tbody><tr>
 <td>inherited_from</td>
-<td><a href="class_sanitation.html#%5Csanitation::boo()"><small>\sanitation::boo()</small></a></td>
+<td><a href="class_article.html#%5Carticle::output()"><small>\article::output()</small></a></td>
 </tr></tbody>
 </table>
 </div>
 <div class="method">
-<a id="varGetter::cookie()"></a><h3>cookie<span class="nb-faded-text">(
-          
-             
-            $name,
+<a id="mappedArticle::rss()"></a><h3>rss<span class="nb-faded-text">(
           
           )
         </span>
@@ -231,130 +459,8 @@ list cannot become a string.</p></small><br><h4>Arguments</h4>
         <span class="nb-faded-text">n/a</span>
 </h3>
 <h4>Description</h4>
-<em>Retrieves a variable via a cookie</em><br><h4>Arguments</h4>
-<table>
-<thead><tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-<th>Default</th>
-</tr></thead>
-<tbody><tr>
-<td>$name</td>
-<td style="white-space: normal;">n/a</td>
-<td><ul>
-<li>the name of the variable</li>
-</ul>
-</td>
-<td></td>
-</tr></tbody>
-</table>
-<h4>Return value</h4>
-<table>
-<thead><tr>
-<th>Type</th>
-<th>Description</th>
-</tr></thead>
-<tbody><tr>
-<td>n/a</td>
-<td>n/a</td>
-</tr></tbody>
-</table>
-</div>
-<div class="method">
-<a id="varGetter::fallback()"></a><h3>fallback<span class="nb-faded-text">(
-          
-             
-            $name,
-          
-          )
-        </span>
-        :
-        <span class="nb-faded-text">n/a</span>
-</h3>
-<h4>Description</h4>
-<em>Retrieves a variable via the default</em><br><h4>Arguments</h4>
-<table>
-<thead><tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-<th>Default</th>
-</tr></thead>
-<tbody><tr>
-<td>$name</td>
-<td style="white-space: normal;">n/a</td>
-<td><ul>
-<li>the name of the variable</li>
-</ul>
-</td>
-<td></td>
-</tr></tbody>
-</table>
-<h4>Return value</h4>
-<table>
-<thead><tr>
-<th>Type</th>
-<th>Description</th>
-</tr></thead>
-<tbody><tr>
-<td>n/a</td>
-<td>n/a</td>
-</tr></tbody>
-</table>
-</div>
-<div class="method">
-<a id="varGetter::get()"></a><h3>get<span class="nb-faded-text">(
-          
-             
-            $name,
-          
-          )
-        </span>
-        :
-        <span class="nb-faded-text">n/a</span>
-</h3>
-<h4>Description</h4>
-<em>Retrieves a variable via get</em><br><h4>Arguments</h4>
-<table>
-<thead><tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-<th>Default</th>
-</tr></thead>
-<tbody><tr>
-<td>$name</td>
-<td style="white-space: normal;">n/a</td>
-<td><ul>
-<li>the name of the variable</li>
-</ul>
-</td>
-<td></td>
-</tr></tbody>
-</table>
-<h4>Return value</h4>
-<table>
-<thead><tr>
-<th>Type</th>
-<th>Description</th>
-</tr></thead>
-<tbody><tr>
-<td>n/a</td>
-<td>n/a</td>
-</tr></tbody>
-</table>
-</div>
-<div class="method">
-<a id="varGetter::num()"></a><h3>num<span class="nb-faded-text">(
-          
-          )
-        </span>
-        :
-        <span class="nb-faded-text">n/a</span>
-</h3>
-<h4>Description</h4>
-<em>Returns an integer created from the data</em><br><h4>Return value</h4>
+<em>Produces the coded output of the item that can be returned
+and displayed or saved in an rss feed</em><br><h4>Return value</h4>
 <table>
 <thead><tr>
 <th>Type</th>
@@ -373,109 +479,24 @@ list cannot become a string.</p></small><br><h4>Arguments</h4>
 </tr></thead>
 <tbody><tr>
 <td>inherited_from</td>
-<td><a href="class_sanitation.html#%5Csanitation::num()"><small>\sanitation::num()</small></a></td>
-</tr></tbody>
-</table>
-</div>
-<div class="method">
-<a id="varGetter::post()"></a><h3>post<span class="nb-faded-text">(
-          
-             
-            $name,
-          
-          )
-        </span>
-        :
-        <span class="nb-faded-text">n/a</span>
-</h3>
-<h4>Description</h4>
-<em>Retrieves a variable via post</em><br><h4>Arguments</h4>
-<table>
-<thead><tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-<th>Default</th>
-</tr></thead>
-<tbody><tr>
-<td>$name</td>
-<td style="white-space: normal;">n/a</td>
-<td><ul>
-<li>the name of the variable</li>
-</ul>
-</td>
-<td></td>
-</tr></tbody>
-</table>
-<h4>Return value</h4>
-<table>
-<thead><tr>
-<th>Type</th>
-<th>Description</th>
-</tr></thead>
-<tbody><tr>
-<td>n/a</td>
-<td>n/a</td>
-</tr></tbody>
-</table>
-</div>
-<div class="method">
-<a id="varGetter::str()"></a><h3>str<span class="nb-faded-text">(
-          
-          )
-        </span>
-        :
-        <span class="nb-faded-text">n/a</span>
-</h3>
-<h4>Description</h4>
-<em>Verify that a string is made of html-safe characters and
-short enough to fit where it belongs.</em><br><small><p>Basically some simple
-input sanitizing for nonsecure things.</p></small><br><h4>Return value</h4>
-<table>
-<thead><tr>
-<th>Type</th>
-<th>Description</th>
-</tr></thead>
-<tbody><tr>
-<td>n/a</td>
-<td>n/a</td>
-</tr></tbody>
-</table>
-<h4>Tags</h4>
-<table>
-<thead><tr>
-<th>Name</th>
-<th>Description</th>
-</tr></thead>
-<tbody><tr>
-<td>inherited_from</td>
-<td><a href="class_sanitation.html#%5Csanitation::str()"><small>\sanitation::str()</small></a></td>
+<td><a href="class_article.html#%5Carticle::rss()"><small>\article::rss()</small></a></td>
 </tr></tbody>
 </table>
 </div>
 </div>
-<div id="properties_varGetter">
+<div id="properties_mappedArticle">
 <h4>Properties</h4>
-<a href="#varGetter::%24dirty">$dirty</a>,
-      <a href="#varGetter::%24length">$length</a>,
+<a href="#mappedArticle::%24container">$container</a>,
       <div class="method">
-<a id="varGetter::$dirty"></a><h3>
-<span class="nb-faded-text">\$dirty 
+<a id="mappedArticle::$container"></a><h3>
+<span class="nb-faded-text">\$container 
           protected 
-          </span>$dirty
+          </span>$container
           =
           </h3>
-<em><p>(str) - the string retrieved</p>
-</em><br><small></small><br><br>
-</div>
-<div class="method">
-<a id="varGetter::$length"></a><h3>
-<span class="nb-faded-text">\$dirty 
-          protected 
-          </span>$length
-          =
-          </h3>
-<em><p>(str) - the string retrieved</p>
+<em><ul>
+<li>a container for data, preferrably assoc array</li>
+</ul>
 </em><br><small></small><br><br>
 </div>
 </div>

@@ -59,7 +59,7 @@
 variables from the URL (safely), setting/getting cookies and config
 options.<br><br><a name="includes"></a><h2>Includes</h2>class_config.php <span class="nb-faded-text">(Include)</span><br>class_varGetter.php <span class="nb-faded-text">(Include)</span><br>class_session.php <span class="nb-faded-text">(Include)</span><br>class_content.php <span class="nb-faded-text">(Include)</span><br><a name="functions"></a><h2>Functions</h2>
 <div class="method">
-<a id="::chooseInclude()"></a><h3>chooseInclude<span class="nb-faded-text">(
+<a id="::getContent()"></a><h3>getContent<span class="nb-faded-text">(
           
              
             $preferred,
@@ -70,7 +70,7 @@ options.<br><br><a name="includes"></a><h2>Includes</h2>class_config.php <span 
           )
         </span>
         :
-        <span class="nb-faded-text">\$page</span>
+        <span class="nb-faded-text">n/a</span>
 </h3>
 <h4>Description</h4>
 <em>Checks to see if the preferred file exists, and if it does
@@ -107,8 +107,57 @@ should be a file (like an error page) that is guaranteed to exist.</em><br><h4>A
 <th>Description</th>
 </tr></thead>
 <tbody><tr>
-<td>\$page</td>
-<td>(string): the page that should be included</td>
+<td>n/a</td>
+<td>n/a</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="::chooseInclude()"></a><h3>chooseInclude<span class="nb-faded-text">(
+          
+             
+            $preferred,
+          
+             
+            $secondary,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">n/a</span>
+</h3>
+<h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>$preferred</td>
+<td style="white-space: normal;">n/a</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>$secondary</td>
+<td style="white-space: normal;">n/a</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>n/a</td>
+<td>n/a</td>
 </tr></tbody>
 </table>
 </div>
@@ -265,8 +314,6 @@ posts in multiple forms.</small></span></li>
 on the requested uri and a given uri to redirect from.</small></span></li>
 <li><span class="class"><a href="class_config.html#config">config</a><br><small>Defines a class to hold variables for configuration
 options.</small></span></li>
-<li><span class="class"><a href="class_content.html#content">content</a><br><small>Manages retrieving and displaying page content
-in various forms.</small></span></li>
 <li><span class="class"><a href="class_dataMonger.html#dataMonger">dataMonger</a><br><small>Provides an abstract class to define a standard way
 of managing data for the classes that are managing
 things like session data, posts, etc.</small></span></li>
@@ -277,6 +324,8 @@ of posts or articles in a directory for efficiently searching
 for things by certain criteria, as well as maintaining
 and updating the data.</small></span></li>
 <li><span class="class"><a href="core_json.html#jsonMaker">jsonMaker</a><br><small>Constructs an array of json data from an associative array</small></span></li>
+<li><span class="class"><a href="class_mappedArticle.html#mappedArticle">mappedArticle</a><br><small>Contains everything to do with retrieving and outputting
+posts in multiple forms.</small></span></li>
 <li><span class="class"><a href="class_redirect.html#redirect">redirect</a><br><small>Provides a class for storing and applying
 a redirect to another area of a website.</small></span></li>
 <li><span class="class"><a href="class_sanitation.html#sanitation">sanitation</a><br><small>Manages sanitizing user input.</small></span></li>

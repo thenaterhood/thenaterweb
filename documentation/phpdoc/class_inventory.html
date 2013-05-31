@@ -88,12 +88,16 @@ the data in other formats.</p><br><div id="methods_inventory">
       <a style="font-style: italic;" href="#inventory::getFileList()">getFileList</a>,
       <a style="font-style: italic;" href="#inventory::regen()">regen</a>,
       <a style="font-style: italic;" href="#inventory::select()">select</a>,
+      <a style="font-style: italic;" href="#inventory::selectAll()">selectAll</a>,
       <a style="font-style: italic;" href="#inventory::selectField()">selectField</a>,
       <div class="method">
 <a id="inventory::__construct()"></a><h3>__construct<span class="nb-faded-text">(
           
              
             $directory,
+          
+             
+            $bloguri,
           
           )
         </span>
@@ -109,7 +113,8 @@ the data in other formats.</p><br><div id="methods_inventory">
 <th>Description</th>
 <th>Default</th>
 </tr></thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>$directory</td>
 <td style="white-space: normal;">n/a</td>
 <td><ul>
@@ -117,7 +122,14 @@ the data in other formats.</p><br><div id="methods_inventory">
 </ul>
 </td>
 <td></td>
-</tr></tbody>
+</tr>
+<tr>
+<td>$bloguri</td>
+<td style="white-space: normal;">n/a</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
 </table>
 <h4>Return value</h4>
 <table>
@@ -277,6 +289,27 @@ requested value in the requested field</em><br><h4>Arguments</h4>
 </table>
 </div>
 <div class="method">
+<a id="inventory::selectAll()"></a><h3>selectAll<span class="nb-faded-text">(
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">n/a</span>
+</h3>
+<h4>Description</h4>
+<em>Returns all the fields in the inventory</em><br><h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>n/a</td>
+<td>n/a</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
 <a id="inventory::selectField()"></a><h3>selectField<span class="nb-faded-text">(
           
              
@@ -322,11 +355,24 @@ particular field, with repeats filtered out</em><br><h4>Arguments</h4>
 </div>
 <div id="properties_inventory">
 <h4>Properties</h4>
-<a href="#inventory::%24current">$current</a>,
+<a href="#inventory::%24bloguri">$bloguri</a>,
+      <a href="#inventory::%24current">$current</a>,
       <a href="#inventory::%24directory">$directory</a>,
       <a href="#inventory::%24inventoryData">$inventoryData</a>,
       <a href="#inventory::%24inventoryFile">$inventoryFile</a>,
       <div class="method">
+<a id="inventory::$bloguri"></a><h3>
+<span class="nb-faded-text">\$bloguri 
+          private 
+          </span>$bloguri
+          =
+          </h3>
+<em><ul>
+<li>the uri that returns the requested pages</li>
+</ul>
+</em><br><small></small><br><br>
+</div>
+<div class="method">
 <a id="inventory::$current"></a><h3>
 <span class="nb-faded-text">\$current 
           private 
@@ -444,8 +490,6 @@ posts in multiple forms.</small></span></li>
 on the requested uri and a given uri to redirect from.</small></span></li>
 <li><span class="class"><a href="class_config.html#config">config</a><br><small>Defines a class to hold variables for configuration
 options.</small></span></li>
-<li><span class="class"><a href="class_content.html#content">content</a><br><small>Manages retrieving and displaying page content
-in various forms.</small></span></li>
 <li><span class="class"><a href="class_dataMonger.html#dataMonger">dataMonger</a><br><small>Provides an abstract class to define a standard way
 of managing data for the classes that are managing
 things like session data, posts, etc.</small></span></li>
@@ -456,6 +500,8 @@ of posts or articles in a directory for efficiently searching
 for things by certain criteria, as well as maintaining
 and updating the data.</small></span></li>
 <li><span class="class"><a href="core_json.html#jsonMaker">jsonMaker</a><br><small>Constructs an array of json data from an associative array</small></span></li>
+<li><span class="class"><a href="class_mappedArticle.html#mappedArticle">mappedArticle</a><br><small>Contains everything to do with retrieving and outputting
+posts in multiple forms.</small></span></li>
 <li><span class="class"><a href="class_redirect.html#redirect">redirect</a><br><small>Provides a class for storing and applying
 a redirect to another area of a website.</small></span></li>
 <li><span class="class"><a href="class_sanitation.html#sanitation">sanitation</a><br><small>Manages sanitizing user input.</small></span></li>

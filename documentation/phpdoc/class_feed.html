@@ -51,7 +51,7 @@
 <div class="file_menu">
 <a href="#includes">Includes</a> |<a href="#classes">Classes</a> |</div>
 <h2>Description</h2>Provides a resource for building an rss or
-atom feed.<br><br><a name="includes"></a><h2>Includes</h2>class_dataMonger.php <span class="nb-faded-text">(Include Once)</span><br><a name="classes"></a><h2>Classes</h2>
+atom feed.<br><br><a name="includes"></a><h2>Includes</h2>class_dataMonger.php <span class="nb-faded-text">(Include Once)</span><br>class_article.php <span class="nb-faded-text">(Include Once)</span><br>class_mappedArticle.php <span class="nb-faded-text">(Include Once)</span><br><a name="classes"></a><h2>Classes</h2>
 <div id="feed" class="class">
 <h3>feed</h3>
 <div class="properties">
@@ -73,25 +73,22 @@ are added and the feed is updated then returned</em><br><br><div id="methods_fee
 <a style="font-style: italic;" href="#feed::__construct()">__construct</a>,
       <a style="font-style: italic;" href="#feed::__get()">__get</a>,
       <a style="font-style: italic;" href="#feed::atom()">atom</a>,
+      <a style="font-style: italic;" href="#feed::cache()">cache</a>,
       <a style="font-style: italic;" href="#feed::dump()">dump</a>,
+      <a style="font-style: italic;" href="#feed::exists()">exists</a>,
+      <a style="font-style: italic;" href="#feed::getCache()">getCache</a>,
       <a style="font-style: italic;" href="#feed::json()">json</a>,
       <a style="font-style: italic;" href="#feed::new_item()">new_item</a>,
       <a style="font-style: italic;" href="#feed::output()">output</a>,
+      <a style="font-style: italic;" href="#feed::reset()">reset</a>,
+      <a style="font-style: italic;" href="#feed::retrieve()">retrieve</a>,
       <a style="font-style: italic;" href="#feed::rss()">rss</a>,
+      <a style="font-style: italic;" href="#feed::save()">save</a>,
       <div class="method">
 <a id="feed::__construct()"></a><h3>__construct<span class="nb-faded-text">(
           
              
-            $title,
-          
-             
-            $link,
-          
-             
-            $description,
-          
-             
-            $feedstamp,
+            $bloguri,
           
           )
         </span>
@@ -107,36 +104,12 @@ are added and the feed is updated then returned</em><br><br><div id="methods_fee
 <th>Description</th>
 <th>Default</th>
 </tr></thead>
-<tbody>
-<tr>
-<td>$title</td>
+<tbody><tr>
+<td>$bloguri</td>
 <td style="white-space: normal;">n/a</td>
-<td><p>(str): a title for the atom feed</p>
-</td>
 <td></td>
-</tr>
-<tr>
-<td>$link</td>
-<td style="white-space: normal;">n/a</td>
-<td><p>(str): the base url for the feed</p>
-</td>
 <td></td>
-</tr>
-<tr>
-<td>$description</td>
-<td style="white-space: normal;">n/a</td>
-<td><p>(str): a description or summary of the feed</p>
-</td>
-<td></td>
-</tr>
-<tr>
-<td>$feedstamp</td>
-<td style="white-space: normal;">n/a</td>
-<td><p>(str): a datestamp for the feed, in standard atom format</p>
-</td>
-<td></td>
-</tr>
-</tbody>
+</tr></tbody>
 </table>
 <h4>Return value</h4>
 <table>
@@ -229,6 +202,44 @@ feed items. Returns ATOM format.</p></small><br><h4>Return value</h4>
 </table>
 </div>
 <div class="method">
+<a id="feed::cache()"></a><h3>cache<span class="nb-faded-text">(
+          
+             
+            $xml,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">n/a</span>
+</h3>
+<h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody><tr>
+<td>$xml</td>
+<td style="white-space: normal;">n/a</td>
+<td></td>
+<td></td>
+</tr></tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>n/a</td>
+<td>n/a</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
 <a id="feed::dump()"></a><h3>dump<span class="nb-faded-text">(
           
           )
@@ -257,6 +268,46 @@ feed items. Returns ATOM format.</p></small><br><h4>Return value</h4>
 <tbody><tr>
 <td>inherited_from</td>
 <td><a href="class_dataMonger.html#%5CdataMonger::dump()"><small>\dataMonger::dump()</small></a></td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="feed::exists()"></a><h3>exists<span class="nb-faded-text">(
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">n/a</span>
+</h3>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>n/a</td>
+<td>n/a</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="feed::getCache()"></a><h3>getCache<span class="nb-faded-text">(
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">n/a</span>
+</h3>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>n/a</td>
+<td>n/a</td>
 </tr></tbody>
 </table>
 </div>
@@ -381,6 +432,93 @@ to atom (superior) if the type given not recognized.</li>
 </table>
 </div>
 <div class="method">
+<a id="feed::reset()"></a><h3>reset<span class="nb-faded-text">(
+          
+             
+            $title,
+          
+             
+            $link,
+          
+             
+            $description,
+          
+             
+            $feedstamp,
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">n/a</span>
+</h3>
+<h4>Arguments</h4>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>$title</td>
+<td style="white-space: normal;">n/a</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>$link</td>
+<td style="white-space: normal;">n/a</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>$description</td>
+<td style="white-space: normal;">n/a</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>$feedstamp</td>
+<td style="white-space: normal;">n/a</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>n/a</td>
+<td>n/a</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
+<a id="feed::retrieve()"></a><h3>retrieve<span class="nb-faded-text">(
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">n/a</span>
+</h3>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>n/a</td>
+<td>n/a</td>
+</tr></tbody>
+</table>
+</div>
+<div class="method">
 <a id="feed::rss()"></a><h3>rss<span class="nb-faded-text">(
           
           )
@@ -402,12 +540,42 @@ appropriate code added for RSS format.</em><br><h4>Return value</h4>
 </tr></tbody>
 </table>
 </div>
+<div class="method">
+<a id="feed::save()"></a><h3>save<span class="nb-faded-text">(
+          
+          )
+        </span>
+        :
+        <span class="nb-faded-text">n/a</span>
+</h3>
+<h4>Return value</h4>
+<table>
+<thead><tr>
+<th>Type</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>n/a</td>
+<td>n/a</td>
+</tr></tbody>
+</table>
+</div>
 </div>
 <div id="properties_feed">
 <h4>Properties</h4>
-<a href="#feed::%24container">$container</a>,
+<a href="#feed::%24cacheFile">$cacheFile</a>,
+      <a href="#feed::%24container">$container</a>,
       <a href="#feed::%24items">$items</a>,
       <div class="method">
+<a id="feed::$cacheFile"></a><h3>
+<span class="nb-faded-text"> 
+          private 
+          </span>$cacheFile
+          =
+          </h3>
+<em></em><br>
+</div>
+<div class="method">
 <a id="feed::$container"></a><h3>
 <span class="nb-faded-text">\$container 
           protected 
@@ -501,8 +669,6 @@ posts in multiple forms.</small></span></li>
 on the requested uri and a given uri to redirect from.</small></span></li>
 <li><span class="class"><a href="class_config.html#config">config</a><br><small>Defines a class to hold variables for configuration
 options.</small></span></li>
-<li><span class="class"><a href="class_content.html#content">content</a><br><small>Manages retrieving and displaying page content
-in various forms.</small></span></li>
 <li><span class="class"><a href="class_dataMonger.html#dataMonger">dataMonger</a><br><small>Provides an abstract class to define a standard way
 of managing data for the classes that are managing
 things like session data, posts, etc.</small></span></li>
@@ -513,6 +679,8 @@ of posts or articles in a directory for efficiently searching
 for things by certain criteria, as well as maintaining
 and updating the data.</small></span></li>
 <li><span class="class"><a href="core_json.html#jsonMaker">jsonMaker</a><br><small>Constructs an array of json data from an associative array</small></span></li>
+<li><span class="class"><a href="class_mappedArticle.html#mappedArticle">mappedArticle</a><br><small>Contains everything to do with retrieving and outputting
+posts in multiple forms.</small></span></li>
 <li><span class="class"><a href="class_redirect.html#redirect">redirect</a><br><small>Provides a class for storing and applying
 a redirect to another area of a website.</small></span></li>
 <li><span class="class"><a href="class_sanitation.html#sanitation">sanitation</a><br><small>Manages sanitizing user input.</small></span></li>
