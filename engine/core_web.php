@@ -27,17 +27,75 @@ include 'class_content.php';
 * @param $preferred (string): the preferred page to include
 * @param $secondary (string): the secondary, emergency page to include
 * 
-* @return $page (string): the page that should be included
 * 
 */
-function chooseInclude($preferred, $secondary){
-	
-	if (file_exists("$preferred")){
-		return "$preferred";
+function getContent($preferred, $secondary){
+
+	// Set up a default state, using the secondary.
+	// Note that the secondary will not currently be searched
+	// for, so must include an extension. It is assumed
+	// it will be includable and will exist. If not, woe is you.
+	$file = $secondary;
+	$type = 'php';
+
+	// If no file extension was given, initiate a search
+	// for the file
+	if ( !strpos( $preferred, '.' ) ){
+
+		// Types supported by the class, in order of precedence
+		$supportedTypes = array( 'php', 'html', 'pre' );
+
+		// Search for the file in order of precedence
+		$i = -1;
+		while ( $i < count($supportedTypes) && !file_exists($preferred.'.'.$supportedTypes[$i]) ){
+
+			++$i;
+
+			// If the file exists, update the class with it and break
+			if ( file_exists( $preferred.'.'.$supportedTypes[$i] ) ){
+				$file = $preferred.'.'.$supportedTypes[$i];
+				$type = $supportedTypes[$i];
+			}
+
+		}
+
 	}
 	else{
-		return "$secondary";
+		if ( file_exists( $preferred ) ){
+			$type = substr( $preferred, strpos( $preferred, '.')+1 );
+			$file = $preferred;
+		}
 	}
+
+	$r = array();
+	$r['file'] = $file;
+    // If the file may contain php, then simply include the file
+	if ( $type == "php" || $type == "html" ){
+
+		$r['pre'] = "";
+		$r['post'] = "";
+		$r['sanitize'] = False;
+
+	}
+
+	// If the file is of type pre (preformatted), insert the
+	// tags and sterilize the contents
+	else if ( $type == "pre" ){
+
+		$r['pre'] = '<pre>';
+		$r['post'] = '</pre>';
+		$r['sanitize'] = True;
+		
+	}
+
+	return $r;
+}
+
+function chooseInclude( $preferred, $secondary ){
+
+	$contentInstructions = getContent( $preferred, $secondary );
+	return $contentInstructions['file'];
+
 }
 
 /**

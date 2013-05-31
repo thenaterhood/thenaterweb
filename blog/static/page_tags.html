@@ -11,7 +11,7 @@
  */
 
 $tag = $session->tag;
-$inventory = new inventory( getConfigOption('post_directory') );
+$inventory = new inventory( $blogdef->post_directory );
 
 
 if ( $tag ){

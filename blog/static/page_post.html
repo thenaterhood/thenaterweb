@@ -1,6 +1,6 @@
 <?php 
 		
-	$displaypost = new article( 'entries/'.$session->node );
+	$displaypost = new article( $blogdef->post_directory.$session->node, $blogdef->id );
 		
 	print $displaypost->output( 'html' );
 
@@ -13,9 +13,9 @@
 		 */
 		echo '<h5>You might also be interested in:</h5>';
 		echo '<ul>';
-		getSuggestions(3, $displaypost->tags);
+		getSuggestions(3, $displaypost->tags, $blogdef->post_directory);
 		echo '</ul>';
-		echo '<p><a href="/blog/index.php">Back to Blog Home</a></p>';
+		echo '<p><a href="/'.$blogdef->id.'/index.php">Back to Blog Home</a></p>';
 	}
 	if ( $displaypost->datestamp and $session->node != 'latest'){
 		echo "

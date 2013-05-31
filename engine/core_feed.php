@@ -23,16 +23,42 @@
  * @return $atom (atom_feed): an instance of the atom_feed class
  * 
  */
-function generateFeed(){
+function generateFeed( $bloguri, $feedTitle, $feedCatchline, $forceRegen, $postDirectory ){
+
 	
-	$inventory = new inventory( getConfigOption('post_directory') );
+	$inventory = new inventory( $postDirectory, $bloguri );
 	$posts = $inventory->getFileList();
-	$atom = new feed("The Philosophy of Nate", "http://blog.thenaterhood.com/", "It's the cyber age, stay in the know.", date(DATE_ATOM) );
-	
-	for ($i = 0; $i < count($posts); $i++){
-		$newitem = new article(getConfigOption('post_directory').'/'.$posts[$i]);
-		$atom->new_item($newitem);
+
+	$atom = new feed( $bloguri );
+
+	if ( ! getConfigOption('auto_feed_regen') && ! $forceRegen && $atom->exists() ){
+		/*
+		* If the inventory matches the existing number of items in the
+		* directory, return the static feed file
+		*/
+		return $atom;
 	}
+
+	else{
+		/*
+		* If the inventory doesn't match the existing number of items in
+		* the directory, regenerate the inventory and the feed file
+		* then return the feed file
+		*/
+		if ( $forceRegen || ! $inventory->current() || ! $atom->exists() ){
+			$inventory->regen();
+			$atom->reset( $feedTitle, getConfigOption('site_domain')."/$bloguri", $feedCatchline,  date(DATE_ATOM) );
+
+			for ($i = 0; $i < count($posts); $i++){
+				$newitem = new article( "$postDirectory/$posts[$i]", $bloguri );
+				$atom->new_item($newitem);
+			}
+
+			$atom->save();
+		}
+
+	}
+
 	return $atom;
 }
 

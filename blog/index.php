@@ -1,12 +1,14 @@
 <?php 
 include '../engine/core_blog.php';
+include 'class_blogdef.php';
 
 
 $session = new session( array('name', 'track', 'konami', 'start', 'end', 'id', 'test', 'tag', 'node') );
 $config = new config();
+$blogdef = new blogdef();
 
 # For compatibility with current header
-$id = 'blog';
+$id = $blogdef->id;
 
 include $config->webcore_root.'/html_doctype.html';
 include $config->webcore_root.'/html_head.html';
@@ -23,12 +25,22 @@ include $config->webcore_root.'/html_head.html';
 				
 				<div class="entry">
 					
-					<?php 
+				<?php 
+				$include = getContent( 'static/page_'.$session->id, $config->webcore_root.'/template_error.php');
 
-					$content = new content( $session->id, $session );
-					$content->output();
-					//include chooseInclude( 'static/page_'.$session->id.'.html', $config->webcore_root.'template_error.html' ); 
-					?>
+				print $include['pre'];
+
+				if ( !$include['sanitize'] ){
+					include $include['file'];
+				}
+				else{
+					print htmlspecialchars( file_get_contents($include['file']) );
+				}
+
+				print $include['post'];
+				//$content = new content( $session->id, $session );
+				//$content->output();
+				?>
 					
 				</div>
 		</div>
