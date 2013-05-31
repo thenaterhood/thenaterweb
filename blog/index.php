@@ -26,7 +26,7 @@ include $config->webcore_root.'/html_head.html';
 				<div class="entry">
 					
 				<?php 
-				$include = getContent( $config->webcore_root.'/page_'.$session->id, $config->webcore_root.'/template_error.php');
+				$include = getContent( 'static/page_'.$session->id, $config->webcore_root.'/template_error.php');
 
 				print $include['pre'];
 
