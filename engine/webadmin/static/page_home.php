@@ -1,5 +1,4 @@
 <?php
-include '../core_web.php';
 
 	print "Welcome! Administering to the site at ".getConfigOption('site_domain');
 	print '<ul>
