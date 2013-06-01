@@ -5,15 +5,16 @@ if ( $_POST['blogid'] ){
 
 	$localpath = '../../'.$_POST['blogid'];
 
+	mkdir( $localpath );
+
 	$writetest = fopen( $localpath.'/writetest.txt', 'w');
 	fclose($writetest);
-	
+
 	if ( is_writable( $localpath.'/writetest.txt') ){
 
 		$config = file_get_contents('templates/newblog/class_blogdef.php');
 		$lines = count( explode( "\n", $config) )+4;
 
-		mkdir( $localpath );
 		mkdir( $localpath.'/entries' );
 		mkdir( $localpath.'/static' );
 
