@@ -23,6 +23,7 @@ if ( $_POST['blogid'] ){
 		copy( 'templates/newblog/static/page_tags.html', $localpath.'/static/page_tags.html' );
 		copy( 'templates/newblog/static/page_post.html', $localpath.'/static/page_post.html' );
 		copy( 'templates/newblog/static/template_blognav.php', $localpath.'/static/template_blognav.php' );
+		copy( 'templates/newblog/class_blogdef.php', $localpath.'/class_blogdef.php' );
 
 		copy( 'templates/newblog/feed.php', $localpath.'/feed.php' );
 		copy( 'templates/newblog/index.php', $localpath.'/index.php' );
