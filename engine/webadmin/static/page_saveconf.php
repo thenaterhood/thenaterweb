@@ -1,8 +1,9 @@
 <?php
 
 $updatedConf = $_POST['content'];
+$confFile = $_POST['rcfile'];
 
-$confClass = fopen( '../class_config.php', 'w' );
+$confClass = fopen( $confFile, 'w' );
 fwrite( $confClass, $updatedConf );
 fclose( $confClass );
 
