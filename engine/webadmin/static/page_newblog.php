@@ -27,9 +27,6 @@ if ( $_POST['blogid'] ){
 		copy( 'templates/newblog/feed.php', $localpath.'/feed.php' );
 		copy( 'templates/newblog/index.php', $localpath.'/index.php' );
 
-		if ( ! is_writable('../../'.$_POST['blogid'].'/class_blogdef.php') )
-			print '<p>Warning: Gnat cannot write to the configuration file selected, settings cannot be saved.</p>';
-
 		print '<form action="index.php?id=saveconf" method="post">
 			<input type="hidden" name="rcfile" value="../../'.$_POST['blogid'].'/class_blogdef.php"/>
 			<br />
