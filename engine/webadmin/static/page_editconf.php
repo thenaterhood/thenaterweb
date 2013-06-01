@@ -5,7 +5,7 @@
 <?php
 
 $config = file_get_contents('../class_config.php');
-$lines = count( explode( "\n", $config) );
+$lines = count( explode( "\n", $config) )+4;
 
 // Generate the input area, with the right height
 print '<textarea name="content" rows="'.$lines.'" cols="100" >'.$config.'</textarea>';
