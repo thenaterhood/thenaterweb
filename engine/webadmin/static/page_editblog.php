@@ -7,6 +7,9 @@ if ( $_POST['blogid'] ){
 	$config = file_get_contents('../../'.$_POST['blogid'].'/class_blogdef.php');
 	$lines = count( explode( "\n", $config) )+4;
 
+	if ( ! is_writable('../../'.$_POST['blogid'].'/class_blogdef.php') )
+		print '<p>Warning: Gnat cannot write to the configuration file selected, settings cannot be saved.</p>';
+
 	print '<form action="index.php?id=saveconf" method="post">
 		<input type="hidden" name="rcfile" value="../../'.$_POST['blogid'].'/class_blogdef.php"/>
 		<br />
