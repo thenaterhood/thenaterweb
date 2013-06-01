@@ -5,10 +5,10 @@
 <?php
 
 $config = file_get_contents('../class_config.php');
-$lines = count( explode($config) );
+$lines = count( explode( "\n", $config) );
 
 // Generate the input area, with the right height
-print '<textarea name="content" rows="'.print $lines.'" cols="100" >.'print $config.'</textarea>'
+print '<textarea name="content" rows="'.$lines.'" cols="100" >'.$config.'</textarea>';
 ?>
 <br />
 <input type="submit" value="Save and Apply" />
