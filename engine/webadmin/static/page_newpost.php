@@ -1,4 +1,4 @@
-<h1>Edit An Article</h1>
+<h1>Create An Article</h1>
 
 <?php
 
@@ -9,6 +9,5 @@
 	<input type="submit" value="Continue" />
 	</form>';
 
-}
 
 ?>
