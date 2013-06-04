@@ -28,8 +28,15 @@
 	else{
 		print '<h1>Post could not be saved</h1>';
 		print '<p>The post could not be saved, likely because Gnat does not have write access to the location. 
-		Click the continue button to be taken back to the post editor so that you can copy and paste your post 
-		somewhere else to save it until the problem can be fixed.</p>';
+		Your post is displayed below so that you can copy and paste it elsewhere until the problem gets fixed.</p>';
+
+		print htmlspecialchars( $_POST['title'] );
+		print '<br />';
+		print htmlspecialchars( $_POST['date'] );
+		print '<br />';
+		print htmlspecialchars( $_POST['tags'] );
+		print '<br />';
+		print htmlspecialchars( $_POST['content'] );
 	}
 
 
