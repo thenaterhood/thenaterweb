@@ -25,7 +25,7 @@ function retrievePost( $postFile ){
 
 }
 
-if ( $_POST['blogid'] || $_GET['blogid'] ){
+if ( $session->blogid ){
 
 	if ( $_GET['postid'] || $_POST['isnew'] ){
 
@@ -34,7 +34,7 @@ if ( $_POST['blogid'] || $_GET['blogid'] ){
 		print'<form name="create" action="index.php?id=savepost" method="post">
 		Title: <input type="text" name="title" value="'.$postData['title'].'" /><br />
 		Tags: <input type="text" name="tags" value="'.$postData['tags'].'" /><br />
-		Blog: <input type="text" name="blog" value="'.$_GET['blogid'].'" /><br />
+		Blog: <input type="text" name="blog" value="'.$session->blogid.'" /><br />
 		Write your post: <br /><textarea name="content" rows="100" cols="100" >'.$postData['content'].'</textarea><br />
 		<input type="hidden" name="file" value="'.$_GET['postid'].'" />
 		<input type="submit" value="Create" />
