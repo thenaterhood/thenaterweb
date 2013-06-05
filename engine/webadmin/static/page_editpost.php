@@ -25,15 +25,29 @@ if ( $_POST['blogid'] || $_GET['blogid'] ){
 
 	else if ( $_GET['postid'] ){
 
+		$jsonData = file_get_contents( '../../'.$_GET['blogid'].'/entries/'.$_GET['postid'] );
+		$decodedData = json_decode($jsonData, True);
+
+		print'<form name="create" action="index.php?id=savepost" method="post">
+		Title: <input type="text" name="title" value="'.$decodedData->title.'" /><br />
+		Tags: <input type="text" name="tags" value="'.$decodedData->tags.'" /><br />
+		Blog: <input type="text" name="blog" value="'.$_GET['blogid'].'" /><br />
+		Write your post: <br /><textarea name="content" rows="100" cols="100" >'.$decodedData->content.'</textarea><br />
+		<input type="hidden" name="file" value="'.$_GET['postid'].'" />
+		<input type="submit" value="Create" />
+
+		</form>'
+
 
 	}
 
 	else{
 
-		include '../class_inventory.php';
+		$handler = opendir('../../'.$_POST['blogid'].'/entries');
 
-
-
+		while( $file = readdir( $handler ) ){
+			print '<p><a href="?id=editpost&blogid='.$_POST['blogid'].'&postid='.$file.'">'.$file.'</a></p>';
+		}
 
 	}
 
@@ -48,13 +62,3 @@ else{
 }
 
 ?>
-
-<form name="create" action="index.php?id=savepost" method="post">
-Title: <input type="text" name="title" value="<?php print $_POST['title']; ?>" /><br />
-Tags: <input type="text" name="tags" value="<?php print $_POST['tags']; ?>" /><br />
-Blog: <input type="text" name="blog" value="<?php print $_POST['blogid']; ?>" /><br />
-Write your post: <br /><textarea name="content" rows="100" cols="100" ><?php print $_POST['content']; ?></textarea><br />
-<input type="hidden" name="file" value="new" />
-<input type="submit" value="Create" />
-
-</form>
