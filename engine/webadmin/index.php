@@ -2,7 +2,7 @@
 include '../core_web.php';
 
 
-$session = new session( array('name', 'track', 'konami', 'start', 'end', 'id', 'test', 'tag', 'node') );
+$session = new session( array('name', 'track', 'konami', 'start', 'end', 'id', 'test', 'tag', 'node', 'blogid') );
 $config = new config();
 
 # For compatibility with current header
