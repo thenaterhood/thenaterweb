@@ -9,7 +9,7 @@
 
 	else{
 		$postFname = $_POST['file'];
-		$nodename = substr($postFname, 0, strpos($postFname, '.json')-1 );
+		$nodename = substr($postFname, 0, strpos($postFname, '.json') );
 	}
 
 
