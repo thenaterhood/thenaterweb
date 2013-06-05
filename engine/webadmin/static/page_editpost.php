@@ -3,6 +3,13 @@
 
 <?php
 
+/**
+ *
+ * Retrieves a post json file into an array
+ * or returns an empty array if it does not exist
+ * @param $postFile - the file to retrieve
+ * @return $postData - the retrieved data
+ */
 function retrievePost( $postFile ){
 
 	if ( file_exists($postFile) ){
@@ -32,10 +39,14 @@ if ( $session->blogid ){
 		$postData = retrievePost( '../../'.$_GET['blogid'].'/entries/'.$_GET['postid'] );
 
 		print'<form name="create" action="index.php?id=savepost" method="post">
-		Title: <input type="text" name="title" value="'.$postData['title'].'" /><br />
-		Tags: <input type="text" name="tags" value="'.$postData['tags'].'" /><br />
-		Blog: <input type="text" name="blog" value="'.$session->blogid.'" /><br />
-		Write your post: <br /><textarea name="content" rows="100" cols="100" >'.$postData['content'].'</textarea><br />
+		Title: <br />
+		<textarea name="title" rows="1" cols="100">'.$postData['title'].'</textarea><br />
+		Tags - comma separated: <br />
+		<textarea name="tags" rows="1" cols="100">'.$postData['tags'].'</textarea><br />
+		Blog: <br />
+		<textarea name="blog" rows="1" cols="100">'.$session->blogid.'</textarea><br />
+		Write your post - <strong>full html required</strong>: <br />
+		<textarea name="content" rows="50" cols="100" >'.$postData['content'].'</textarea><br />
 		<input type="hidden" name="file" value="'.$_GET['postid'].'" />
 		<input type="submit" value="Create" />
 
