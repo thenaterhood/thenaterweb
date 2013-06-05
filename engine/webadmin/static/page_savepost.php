@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * Encodes and saves an article into the 
+ * appropriate location. Just a basic script,
+ * nothing too fancy.
+ *
+ * @since 06/05/2013
+ */
 	$postpath = '../../'.$_POST['blog'].'/entries';
 
 	if ( $_POST['file'] == '' ){
@@ -37,8 +43,8 @@
 	else{
 		print '<h1>Post could not be saved</h1>';
 		print '<p>The post could not be saved, likely because Gnat does not have write access to the location. 
-		Your post is displayed below as entered so that you can copy and paste it elsewhere until the problem gets fixed.</p>';
-
+		Your post is displayed below as entered so that you can copy and paste it elsewhere until the problem gets fixed.</p>
+		<hr />';
 		print '<h1>'.htmlspecialchars( $_POST['title'] ).'</h1>';
 		print '<p>'.htmlspecialchars( $_POST['date'] ).'</p>';
 		print '<p>'.htmlspecialchars( $_POST['tags'] ).'</p>';
@@ -47,3 +53,4 @@
 
 
 ?>
+<p><a href="index.php">Back to webadmin panel</a></p>
