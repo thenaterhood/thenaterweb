@@ -2,7 +2,16 @@
 
 	$postpath = '../../'.$_POST['blog'].'/entries';
 
-	$postFname = date("Y.m.d").'.json';
+	if ( !isset($_POST['file'] ) ){
+		$postFname = date("Y.m.d").'.json';
+		$nodename = date("Y.m.d");
+	}
+
+	else{
+		$postFname = $_POST['file'];
+		$nodename = substr($postFname, 0, strpos($postFname, '.json')-1 );
+	}
+
 
 	$postData = array();
 
@@ -19,7 +28,7 @@
 	fwrite($jsonFile, $postJsonData);
 	fclose($jsonFile);
 
-	$postURL = getConfigOption('site_domain').'/'.$_POST['blog'].'/index.php?id=post&node='.date("Y.m.d");
+	$postURL = getConfigOption('site_domain').'/'.$_POST['blog'].'/index.php?id=post&node='.$nodename;
 
 	if ( is_writeable( $postpath.'/'.$postFname ) ){
 		print '<h1>Post Saved</h1>';
@@ -28,15 +37,12 @@
 	else{
 		print '<h1>Post could not be saved</h1>';
 		print '<p>The post could not be saved, likely because Gnat does not have write access to the location. 
-		Your post is displayed below so that you can copy and paste it elsewhere until the problem gets fixed.</p>';
+		Your post is displayed below as entered so that you can copy and paste it elsewhere until the problem gets fixed.</p>';
 
-		print htmlspecialchars( $_POST['title'] );
-		print '<br />';
-		print htmlspecialchars( $_POST['date'] );
-		print '<br />';
-		print htmlspecialchars( $_POST['tags'] );
-		print '<br />';
-		print htmlspecialchars( $_POST['content'] );
+		print '<h1>'.htmlspecialchars( $_POST['title'] ).'</h1>';
+		print '<p>'.htmlspecialchars( $_POST['date'] ).'</p>';
+		print '<p>'.htmlspecialchars( $_POST['tags'] ).'</p>';
+		print '<p>'.htmlspecialchars( $_POST['content'] ).'</p>';
 	}
 
 
