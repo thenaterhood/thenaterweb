@@ -50,9 +50,11 @@ if ( $_POST['blogid'] || $_GET['blogid'] ){
 	else{
 
 		$handler = opendir('../../'.$_POST['blogid'].'/entries');
+		$avoid = getConfigOption('hidden_files');
 
 		while( $file = readdir( $handler ) ){
-			print '<p><a href="?id=editpost&blogid='.$_POST['blogid'].'&postid='.$file.'">'.$file.'</a></p>';
+			if ( $file != '..' && $file != '.' )
+				print '<p><a href="?id=editpost&blogid='.$_POST['blogid'].'&postid='.$file.'">'.$file.'</a></p>';
 		}
 
 	}
