@@ -28,6 +28,12 @@ if ( $_POST['blogid'] || $_GET['blogid'] ){
 		$jsonData = file_get_contents( '../../'.$_GET['blogid'].'/entries/'.$_GET['postid'] );
 		$decodedData = json_decode($jsonData, True);
 
+		if ( is_array( $decodedData['tags'] ) )
+			$decodedData['tags'] = implode(', ', $decodedData['tags'] );
+
+		if ( is_array( $decodedData['content'] ) )
+			$decodedData['content'] = implode( $decodedData['content'] );
+
 		print'<form name="create" action="index.php?id=savepost" method="post">
 		Title: <input type="text" name="title" value="'.$decodedData['title'].'" /><br />
 		Tags: <input type="text" name="tags" value="'.$decodedData['tags'].'" /><br />
