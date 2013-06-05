@@ -29,10 +29,10 @@ if ( $_POST['blogid'] || $_GET['blogid'] ){
 		$decodedData = json_decode($jsonData, True);
 
 		print'<form name="create" action="index.php?id=savepost" method="post">
-		Title: <input type="text" name="title" value="'.$decodedData->title.'" /><br />
-		Tags: <input type="text" name="tags" value="'.$decodedData->tags.'" /><br />
+		Title: <input type="text" name="title" value="'.$decodedData['title'].'" /><br />
+		Tags: <input type="text" name="tags" value="'.$decodedData['tags'].'" /><br />
 		Blog: <input type="text" name="blog" value="'.$_GET['blogid'].'" /><br />
-		Write your post: <br /><textarea name="content" rows="100" cols="100" >'.$decodedData->content.'</textarea><br />
+		Write your post: <br /><textarea name="content" rows="100" cols="100" >'.$decodedData['content'].'</textarea><br />
 		<input type="hidden" name="file" value="'.$_GET['postid'].'" />
 		<input type="submit" value="Create" />
 
