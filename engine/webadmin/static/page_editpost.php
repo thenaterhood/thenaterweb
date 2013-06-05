@@ -10,6 +10,7 @@ if ( $_POST['blogid'] || $_GET['blogid'] ){
 		print '<form name="create" action="index.php?id=savepost" method="post">
 		Title: <input type="text" name="title" /><br />
 		Tags: <input type="text" name="tags" /><br />
+		Visible Date: <input type="text" name="date" /><br />
 		Blog: <input type="text" name="blog" value="'.$_POST['blogid'].'"/><br />
 		Write your post: <br /><textarea name="content" rows="100" cols="100" ></textarea><br />
 		<input type="hidden" name="file" value="" />
