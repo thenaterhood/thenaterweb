@@ -36,7 +36,7 @@ if ( $_POST['blogid'] || $_GET['blogid'] ){
 		<input type="hidden" name="file" value="'.$_GET['postid'].'" />
 		<input type="submit" value="Create" />
 
-		</form>'
+		</form>';
 
 
 	}
