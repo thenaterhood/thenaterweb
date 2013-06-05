@@ -2,7 +2,7 @@
 
 	$postpath = '../../'.$_POST['blog'].'/entries';
 
-	if ( !isset($_POST['file'] && $_POST['file'] != '' ) ){
+	if ( !isset($_POST['file'] || $_POST['file'] == '' ) ){
 		$postFname = date("Y.m.d").'.json';
 		$nodename = date("Y.m.d");
 	}
