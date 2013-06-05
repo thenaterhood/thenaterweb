@@ -3,42 +3,39 @@
 
 <?php
 
-if ( $_POST['blogid'] || $_GET['blogid'] ){
+function retrievePost( $postFile ){
 
-	if ( $_POST['isnew'] ){
+	if ( file_exists($postFile) ){
 
-		print '<form name="create" action="index.php?id=savepost" method="post">
-		Title: <input type="text" name="title" /><br />
-		Tags: <input type="text" name="tags" /><br />
-		Visible Date: <input type="text" name="date" /><br />
-		Blog: <input type="text" name="blog" value="'.$_POST['blogid'].'"/><br />
-		Write your post: <br /><textarea name="content" rows="100" cols="100" ></textarea><br />
-		<input type="hidden" name="file" value="" />
-		<input type="hidden" name="isnew" value="True" />
-		<input type="submit" value="Create" />
+		$postData = json_decode( file_get_contents($postFile), True );
 
-		</form>';
+		if ( is_array( $postData['tags'] ) )
+			$postData['tags'] = implode(', ', $postData['tags'] );
 
-
+		if ( is_array( $postData['content'] ) )
+			$postData['content'] = implode( $postData['content'] );
 
 	}
 
-	else if ( $_GET['postid'] ){
+	else{
+		$postData = array();
+	}
 
-		$jsonData = file_get_contents( '../../'.$_GET['blogid'].'/entries/'.$_GET['postid'] );
-		$decodedData = json_decode($jsonData, True);
+	return $postData;
 
-		if ( is_array( $decodedData['tags'] ) )
-			$decodedData['tags'] = implode(', ', $decodedData['tags'] );
+}
 
-		if ( is_array( $decodedData['content'] ) )
-			$decodedData['content'] = implode( $decodedData['content'] );
+if ( $_POST['blogid'] || $_GET['blogid'] ){
+
+	if ( $_GET['postid'] || $_POST['isnew'] ){
+
+		$postData = retrievePost( '../../'.$_GET['blogid'].'/entries/'.$_GET['postid'] );
 
 		print'<form name="create" action="index.php?id=savepost" method="post">
-		Title: <input type="text" name="title" value="'.$decodedData['title'].'" /><br />
-		Tags: <input type="text" name="tags" value="'.$decodedData['tags'].'" /><br />
+		Title: <input type="text" name="title" value="'.$postData['title'].'" /><br />
+		Tags: <input type="text" name="tags" value="'.$postData['tags'].'" /><br />
 		Blog: <input type="text" name="blog" value="'.$_GET['blogid'].'" /><br />
-		Write your post: <br /><textarea name="content" rows="100" cols="100" >'.$decodedData['content'].'</textarea><br />
+		Write your post: <br /><textarea name="content" rows="100" cols="100" >'.$postData['content'].'</textarea><br />
 		<input type="hidden" name="file" value="'.$_GET['postid'].'" />
 		<input type="submit" value="Create" />
 
