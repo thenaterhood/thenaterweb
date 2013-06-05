@@ -30,3 +30,4 @@ else{
 
 
 ?>
+<p><a href="index.php">Back to webadmin panel (discarding changes)</a></p>
