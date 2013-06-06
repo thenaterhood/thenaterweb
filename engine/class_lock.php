@@ -55,7 +55,7 @@ class lock{
 	 * Returns whether or not the file has been locked
 	 * @return - boolean True if a lock exists
 	 */
-	public function isSet(){
+	public function isLocked(){
 
 		return $this->hasLock;
 
@@ -66,7 +66,7 @@ class lock{
 	 * Note that for this to be effective, everything must
 	 * actually observe locks.
 	 */
-	public function set(){
+	public function lock(){
 
 		$handle = fopen($this->lockfile, 'w');
 		fwrite( $handle, time() );
@@ -79,7 +79,7 @@ class lock{
 	/**
 	 * Removes a lock on a file
 	 */
-	public function unset(){
+	public function unlock(){
 
 		unlink($this->lockfile);
 
