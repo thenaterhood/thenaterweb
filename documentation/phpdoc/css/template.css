@@ -1,39 +1,31 @@
-@import url('sen.full.min.css');
-@import url('jquery-ui.css');
-@import url('phpdoc/jquery-ui-1.8.16.custom.css');
-@import url('jquery.treeview.css');
-@import url('navigation.css');
-@import url('api-content.css');
-@import url('default.css');
+@import url('abstract.css');
 
-#page
-{
-  background: white;
+a {
+    color: #504cc9;
 }
 
-#db-header, #db-menu
-{
-  height: 1px;
-  background: black;
-  padding: 0px;
+sidebar-logo {
+    vertical-align: bottom;
 }
 
-#db-header *, #db-menu * {
-    display: none !important;
+#db-header {
+    padding-bottom: 0px;
 }
 
-table#overview th
-{
-  text-align: left;
+#db-header h1 {
+    margin-bottom: 0px;
 }
 
-table#overview td
-{
-  border: none;
+td#db-menu {
+    font-size: 0.8em;
+    border-bottom: 1px solid silver;
 }
 
-td#sidebar
-{
-  width: 200px;
-  padding: 0px;
+td#db-menu ul {
+    display: block;
+}
+
+td#db-menu li {
+    float: right;
+    padding-right: 10px;
 }
