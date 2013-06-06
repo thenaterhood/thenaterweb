@@ -10,6 +10,7 @@
 include_once 'class_dataMonger.php';
 include_once 'class_article.php';
 include_once 'class_mappedArticle.php';
+include_once 'class_lock.php';
 
 /**
  * Defines a data object to contain an atom feed as items
@@ -69,19 +70,30 @@ class feed extends dataMonger{
 
 	public function save(){
 
-		$saveData = $this->container;
-		$saveItems = array();
+		// Acquire an instance of a lock
+		$lock = new lock( "$this->cacheFile.json" );
 
-		foreach ($this->items as $item ) {
+		if ( !$lock->isLocked() ){
 
-			$saveItems[] = $item->dump();
+			$lock->lock();
+
+			$saveData = $this->container;
+			$saveItems = array();
+
+			foreach ($this->items as $item ) {
+
+				$saveItems[] = $item->dump();
+			}
+
+			$saveData['items'] = $saveItems;
+
+			$file = fopen("$this->cacheFile.json", 'w');
+			fwrite($file, json_encode($saveData) );
+			fclose($file);
+
+			$lock->unlock();
+
 		}
-
-		$saveData['items'] = $saveItems;
-
-		$file = fopen("$this->cacheFile.json", 'w');
-		fwrite($file, json_encode($saveData) );
-		fclose($file);
 
 	}
 
