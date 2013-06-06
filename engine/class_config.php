@@ -150,7 +150,10 @@ class config{
 	 */
 	function __get($setting){
 
-		return $this->container[$setting];
+		if ( in_array($setting, $this->container) )
+			return $this->container[$setting];
+		else
+			return NULL;
 	}
 
    
