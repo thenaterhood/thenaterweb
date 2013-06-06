@@ -28,15 +28,24 @@ class url extends dataMonger{
 		$this->container['lastmod'] = $lastmod;
 	 
 	}
+
+	/**
+	 * Produces output in the requested format, defaulting to xml
+	 * @param $output - ignored
+	 */
+	public function output( $type='xml' ){
+
+		return $this->$type();
+
+	}
 	
 	/**
 	 * Produces the coded output of the item that can be 
 	 * returned and displayed or saved
-	 * @param $output - ignored
 	 * 
 	 * @return $item - an xml-encoded representation of the item
 	 */
-	public function output( $output ) {
+	private function xml() {
 
 		$item = "<url>\n";
 		$item .= "<loc>" . $this->container['loc'] . "</loc>\n";
