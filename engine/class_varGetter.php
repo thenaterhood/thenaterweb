@@ -21,7 +21,7 @@ class varGetter extends sanitation{
 	  * 
 	  * @param $name - the name of the variable
 	  */	 
-	 public function __construct( $name ){
+	 public function __construct( $name, $length=NULL, $method=NULL ){
 		 
 		 if ( ! $length ){ // If no length specified, find the default
 			 $conf = getConfigOption( $name );
@@ -53,7 +53,9 @@ class varGetter extends sanitation{
 	  * @param $name - the name of the variable
 	  */
 	 private function post( $name ){
-		 $this->dirty = $_POST[ $name ];
+
+	 	if ( array_key_exists($name, $_POST) )
+			$this->dirty = $_POST[ $name ];
 	 }
 	 
 	 /**
@@ -61,7 +63,8 @@ class varGetter extends sanitation{
 	  * @param $name - the name of the variable
 	  */
 	 private function get( $name ){
-		 $this->dirty = $_GET[ $name ];
+	 	if ( array_key_exists($name, $_GET) )
+			$this->dirty = $_GET[ $name ];
 	 }
 	 
 	 /**
@@ -69,7 +72,8 @@ class varGetter extends sanitation{
 	  * @param $name - the name of the variable
 	  */
 	 private function cookie( $name ){
-		 $this->dirty = $_COOKIE[ $name ]; 
+	 	if ( array_key_exists( $name, $_COOKIE) )
+			$this->dirty = $_COOKIE[ $name ]; 
 	 }
 	 
 	 /**
