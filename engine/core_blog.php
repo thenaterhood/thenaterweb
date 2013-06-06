@@ -39,7 +39,7 @@ function RandomLine($filename) {
 */
 function getSuggestions($number, $tag, $post_directory){
 
-		$inventory = new inventory( $post_directory );
+		$inventory = new inventory( $post_directory, NULL );
 
 		$pool = $inventory->selectField( 'title' );
 
