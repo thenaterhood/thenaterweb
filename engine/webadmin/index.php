@@ -18,9 +18,7 @@ include $config->webcore_root.'/html_head.html';
 	<div id="page">
 		<div id="content">
 				<div style="clear: both;">&nbsp;</div>
-				
-				<?php include chooseInclude( 'static/template_blognav.php', '../layout_error.html'); ?>
-				
+								
 				<div class="entry">
 					
 				<?php 
