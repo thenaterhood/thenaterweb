@@ -46,7 +46,7 @@ class session extends dataMonger{
 		$this->container["domain"] = $_SERVER['HTTP_HOST'];
 		$this->container["uri"] = $_SERVER['REQUEST_URI'];
 
-		if isset( $_SERVER['HTTP_REFERER'] )
+		if ( isset( $_SERVER['HTTP_REFERER'] ) )
 			$this->container["referer"] = $_SERVER['HTTP_REFERER'];
 		else
 			$this->container["referer"] = "-";
