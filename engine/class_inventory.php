@@ -153,15 +153,15 @@ class inventory{
 		// Check if locked, and if not, set the lock
 		// and rewrite the file with the new inventory.
 		// Otherwise, update the live instance only
-		if ( !$lock->isSet() ){
+		if ( !$lock->isLocked() ){
 
-			$lock->set();
+			$lock->lock();
 
 			$inventory = fopen( $this->inventoryFile, 'w');
 			fwrite( $inventory, json_encode($inventoryItems) );
 			fclose($inventory);
 
-			$lock->unset();
+			$lock->unlock();
 
 		}
 
