@@ -54,7 +54,7 @@ class varGetter extends sanitation{
 	  */
 	 private function post( $name ){
 
-	 	if ( array_keys($name, $_POST) )
+	 	if ( array_key_exists($name, $_POST) )
 			$this->dirty = $_POST[ $name ];
 	 }
 	 
@@ -63,7 +63,7 @@ class varGetter extends sanitation{
 	  * @param $name - the name of the variable
 	  */
 	 private function get( $name ){
-	 	if ( array_keys($name, $_GET) )
+	 	if ( array_key_exists($name, $_GET) )
 			$this->dirty = $_GET[ $name ];
 	 }
 	 
