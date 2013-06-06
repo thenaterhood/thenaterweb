@@ -34,8 +34,10 @@
 	$lock = new lock( $postFile );
 
 	$postURL = getConfigOption('site_domain').'/'.$_POST['blog'].'/index.php?id=post&node='.$nodename;
+	$writetest = fopen( $postpath.'/writetest.txt', 'w' );
+	fclose( $writetest );
 
-	if ( is_writeable( $postFile ) && !$lock->isLocked() ){
+	if ( is_writeable( $postpath.'/writetest.txt' ) && !$lock->isLocked() ){
 
 		$lock->lock();
 
@@ -44,6 +46,8 @@
 		fclose($jsonFile);
 
 		$lock->unlock();
+
+		unlink( $postpath.'/writetest.txt');
 
 		print '<h1>Post Saved</h1>';
 		print '<p>View this post at <a href="'.$postURL.'">'.$postURL.'</a></p>';
@@ -58,6 +62,7 @@
 		print '<p>'.htmlspecialchars( $_POST['tags'] ).'</p>';
 		print '<p>'.htmlspecialchars( $_POST['content'] ).'</p>';
 	}
+
 
 
 ?>
