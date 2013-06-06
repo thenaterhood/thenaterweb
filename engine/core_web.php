@@ -48,7 +48,7 @@ function getContent($preferred, $secondary){
 
 		// Search for the file in order of precedence
 		$i = 0;
-		while ( $i < count($supportedTypes) && !file_exists( $contentFile ){
+		while ( $i < count($supportedTypes) && !file_exists( $contentFile ) ){
 
 			// If the file exists, update the class with it and break
 			if ( file_exists( $preferred.'.'.$supportedTypes[$i] ) ){
