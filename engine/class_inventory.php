@@ -127,7 +127,6 @@ class inventory{
 	 */
 	public function regen(){
 
-		$inventory = fopen( $this->inventoryFile, 'w');
 	
 		$avoid = getConfigOption('hidden_files');
 		
@@ -146,9 +145,26 @@ class inventory{
 			}
 		}
 	
-		fwrite( $inventory, json_encode($inventoryItems) );
+		$this->inventoryData = $inventoryItems;
 
-		fclose($inventory);
+		// Create an instance of a lock
+		$lock = new lock( $this->inventoryFile );
+
+		// Check if locked, and if not, set the lock
+		// and rewrite the file with the new inventory.
+		// Otherwise, update the live instance only
+		if ( !$lock->isSet() ){
+
+			$lock->set();
+
+			$inventory = fopen( $this->inventoryFile, 'w');
+			fwrite( $inventory, json_encode($inventoryItems) );
+			fclose($inventory);
+
+			$lock->unset();
+
+		}
+
 		$this->current = True;
 	}
 
