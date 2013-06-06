@@ -4,7 +4,7 @@ include 'engine/core_sitemap.php';
 $session = new session( array('regen') );
 $config = new config();
 
-if ( $session->auto_file_regen || $session->regen ){
+if ( $config->auto_file_regen || $session->regen ){
 	/*
 	* Decides whether or not to regenerate the sitemap, and saves
 	* the generated sitemap if the config option is set.
