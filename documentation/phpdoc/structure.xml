@@ -86,7 +86,7 @@ initialized with in order to verify it can be initialized correctly.&lt;/p&gt;</
       <description>Provides resources for sanitizing user input, including removing
 garbage characters, truncating strings to fit in their location,
 and providing various outputs in an html safe form if requested.</description>
-      <long-description></long-description>
+      <long-description/>
       <tag line="2" name="author" description="Nate Levesque &lt;public@thenaterhood.com&gt;"/>
     </docblock>
     <class final="false" abstract="false" namespace="global" line="19" package="Default">
@@ -105,10 +105,10 @@ sanitization can't convert the current one to the requested one).&lt;/p&gt;</lon
       </docblock>
       <property final="false" static="false" visibility="protected" line="25" namespace="global" package="Default">
         <name>$dirty</name>
-        <default></default>
+        <default/>
         <docblock line="21">
-          <description></description>
-          <long-description></long-description>
+          <description/>
+          <long-description/>
           <tag line="21" name="var" description="(str) - the string retrieved" type="\$dirty">
             <type by_reference="false">\$dirty</type>
           </tag>
@@ -119,10 +119,10 @@ sanitization can't convert the current one to the requested one).&lt;/p&gt;</lon
       </property>
       <property final="false" static="false" visibility="protected" line="25" namespace="global" package="Default">
         <name>$length</name>
-        <default></default>
+        <default/>
         <docblock line="21">
-          <description></description>
-          <long-description></long-description>
+          <description/>
+          <long-description/>
           <tag line="21" name="var" description="(str) - the string retrieved" type="\$dirty">
             <type by_reference="false">\$dirty</type>
           </tag>
@@ -138,18 +138,18 @@ sanitization can't convert the current one to the requested one).&lt;/p&gt;</lon
           <description>Constructs an instance of the class
 containing the original variable and the sanitized
 variable</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="27" name="param" description="(str) - the raw variable contents" type="\" variable="$rawVar"/>
           <tag line="27" name="param" description="(int) - a maximum length for the variable" type="\" variable="$length"/>
         </docblock>
         <argument line="36">
           <name>$rawVar</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
         <argument line="36">
           <name>$length</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -169,7 +169,7 @@ list cannot become a string.&lt;/p&gt;</long-description>
         </docblock>
         <argument line="54">
           <name>$type</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -188,7 +188,7 @@ input sanitizing for nonsecure things.&lt;/p&gt;</long-description>
         <full_name>num</full_name>
         <docblock line="88">
           <description>Returns an integer created from the data</description>
-          <long-description></long-description>
+          <long-description/>
         </docblock>
       </method>
       <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="99" package="Default">
@@ -196,7 +196,7 @@ input sanitizing for nonsecure things.&lt;/p&gt;</long-description>
         <full_name>boo</full_name>
         <docblock line="96">
           <description>Return a simple boolean based on the variable</description>
-          <long-description></long-description>
+          <long-description/>
         </docblock>
       </method>
     </class>
@@ -233,7 +233,7 @@ feed. Requires existing instances of the config and session classes.&lt;/p&gt;</
       <name>core_blog.php</name>
       <docblock line="13">
         <description>Include the main blog functions and classes</description>
-        <long-description></long-description>
+        <long-description/>
       </docblock>
     </include>
     <include line="17" type="Include" package="Default">
@@ -247,34 +247,34 @@ feed. Requires existing instances of the config and session classes.&lt;/p&gt;</
       <full_name>\generateFeed</full_name>
       <docblock line="20">
         <description>Generates an atom feed and returns it</description>
-        <long-description></long-description>
+        <long-description/>
         <tag line="20" name="return" description="(atom_feed): an instance of the atom_feed class" type="\$atom">
           <type by_reference="false">\$atom</type>
         </tag>
       </docblock>
       <argument line="26">
         <name>$bloguri</name>
-        <default></default>
+        <default/>
         <type/>
       </argument>
       <argument line="26">
         <name>$feedTitle</name>
-        <default></default>
+        <default/>
         <type/>
       </argument>
       <argument line="26">
         <name>$feedCatchline</name>
-        <default></default>
+        <default/>
         <type/>
       </argument>
       <argument line="26">
         <name>$forceRegen</name>
-        <default></default>
+        <default/>
         <type/>
       </argument>
       <argument line="26">
         <name>$postDirectory</name>
-        <default></default>
+        <default/>
         <type/>
       </argument>
     </function>
@@ -496,12 +496,12 @@ which correspond to each other</description>
       </argument>
     </function>
   </file>
-  <file path="core_web.php" hash="0447919d65ff631efbcedc02f9d22906" package="Default">
+  <file path="core_web.php" hash="f0de874d0ac5426f4dd78b03af8d4334" package="Default">
     <docblock line="2">
       <description>Contains functions for basic web capabilities such as reading
 variables from the URL (safely), setting/getting cookies and config
 options.</description>
-      <long-description></long-description>
+      <long-description/>
       <tag line="2" name="author" description="Nate Levesque &lt;public@thenaterhood.com&gt;"/>
       <tag line="2" name="copyright" description="Nate Levesque 2013&#10;Language: PHP&#10;Filename: core_web.php"/>
     </docblock>
@@ -509,7 +509,7 @@ options.</description>
       <name>class_config.php</name>
       <docblock line="14">
         <description>Include the config file</description>
-        <long-description></long-description>
+        <long-description/>
       </docblock>
     </include>
     <include line="18" type="Include" package="Default">
@@ -521,82 +521,85 @@ options.</description>
     <include line="20" type="Include" package="Default">
       <name>class_content.php</name>
     </include>
-    <function namespace="global" line="32" package="Default">
+    <include line="21" type="Include" package="Default">
+      <name>class_lock.php</name>
+    </include>
+    <function namespace="global" line="33" package="Default">
       <name>getContent</name>
       <full_name>\getContent</full_name>
-      <docblock line="22">
+      <docblock line="23">
         <description>Checks to see if the preferred file exists, and if it does
 returns it, otherwise it returns the secondary file, which ideally
 should be a file (like an error page) that is guaranteed to exist.</description>
-        <long-description></long-description>
-        <tag line="22" name="param" description="(string): the preferred page to include" type="\global\" variable="$preferred"/>
-        <tag line="22" name="param" description="(string): the secondary, emergency page to include" type="\global\" variable="$secondary"/>
+        <long-description/>
+        <tag line="23" name="param" description="(string): the preferred page to include" type="\global\" variable="$preferred"/>
+        <tag line="23" name="param" description="(string): the secondary, emergency page to include" type="\global\" variable="$secondary"/>
       </docblock>
-      <argument line="32">
+      <argument line="33">
         <name>$preferred</name>
-        <default></default>
+        <default/>
         <type/>
       </argument>
-      <argument line="32">
+      <argument line="33">
         <name>$secondary</name>
-        <default></default>
+        <default/>
         <type/>
       </argument>
     </function>
-    <function namespace="global" line="94" package="Default">
+    <function namespace="global" line="95" package="Default">
       <name>chooseInclude</name>
       <full_name>\chooseInclude</full_name>
-      <argument line="94">
+      <argument line="95">
         <name>$preferred</name>
-        <default></default>
+        <default/>
         <type/>
       </argument>
-      <argument line="94">
+      <argument line="95">
         <name>$secondary</name>
-        <default></default>
+        <default/>
         <type/>
       </argument>
     </function>
-    <function namespace="global" line="109" package="Default">
+    <function namespace="global" line="110" package="Default">
       <name>randomGreeting</name>
       <full_name>\randomGreeting</full_name>
-      <docblock line="101">
+      <docblock line="102">
         <description>Displays a string with a random greeting and the string
 the function was called with.</description>
-        <long-description></long-description>
-        <tag line="101" name="param" description="(str): a string, preferably a name" type="\global\" variable="$first_name"/>
-        <tag line="101" name="return" description="a string with a personal greeting" type="\-">
+        <long-description/>
+        <tag line="102" name="param" description="(str): a string, preferably a name" type="\global\" variable="$first_name"/>
+        <tag line="102" name="return" description="a string with a personal greeting" type="\-">
           <type by_reference="false">\-</type>
         </tag>
       </docblock>
-      <argument line="109">
+      <argument line="110">
         <name>$first_name</name>
-        <default></default>
+        <default/>
         <type/>
       </argument>
     </function>
-    <function namespace="global" line="126" package="Default">
+    <function namespace="global" line="127" package="Default">
       <name>getConfigOption</name>
       <full_name>\getConfigOption</full_name>
-      <docblock line="116">
+      <docblock line="117">
         <description>Built to abstract retrieving config variables, since
 they're now contained in a class this is just for legacy
 support until everything else gets moved off
 of using this function</description>
-        <long-description></long-description>
-        <tag line="116" name="param" description="- the name of a config key to retrieve" type="\global\" variable="$key"/>
-        <tag line="116" name="return" description="the value of the config key" type="\-">
+        <long-description/>
+        <tag line="117" name="param" description="- the name of a config key to retrieve" type="\global\" variable="$key"/>
+        <tag line="117" name="return" description="the value of the config key" type="\-">
           <type by_reference="false">\-</type>
         </tag>
       </docblock>
-      <argument line="126">
+      <argument line="127">
         <name>$key</name>
-        <default></default>
+        <default/>
         <type/>
       </argument>
     </function>
     <parse_markers>
-      <error line="94" code="50009">No DocBlock was found for function \chooseInclude()</error>
+      <error line="95" code="50009">No DocBlock was found for function \chooseInclude()</error>
     </parse_markers>
   </file>
   <file path="class_mappedArticle.php" hash="c3f3d6c150139798bb2a640db2e4da76" package="Default">
@@ -612,7 +615,7 @@ of using this function</description>
         <full_name>__construct</full_name>
         <argument line="7">
           <name>$map</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -735,17 +738,17 @@ php's builtin json_encode function</description>
       </method>
     </class>
   </file>
-  <file path="class_feed.php" hash="faf58ebbbb02719010191149b96b756c" package="Default">
+  <file path="class_feed.php" hash="dc34d3610d4c0d80eeca424f580dcf6c" package="Default">
     <docblock line="2">
       <description>Provides a resource for building an rss or
 atom feed.</description>
-      <long-description></long-description>
+      <long-description/>
     </docblock>
     <include line="10" type="Include Once" package="Default">
       <name>class_dataMonger.php</name>
       <docblock line="7">
         <description>Include the inherited dataMonger class</description>
-        <long-description></long-description>
+        <long-description/>
       </docblock>
     </include>
     <include line="11" type="Include Once" package="Default">
@@ -754,132 +757,135 @@ atom feed.</description>
     <include line="12" type="Include Once" package="Default">
       <name>class_mappedArticle.php</name>
     </include>
-    <class final="false" abstract="false" namespace="global" line="18" package="Default">
+    <include line="13" type="Include Once" package="Default">
+      <name>class_lock.php</name>
+    </include>
+    <class final="false" abstract="false" namespace="global" line="19" package="Default">
       <extends>\dataMonger</extends>
       <name>feed</name>
       <full_name>\feed</full_name>
-      <docblock line="14">
+      <docblock line="15">
         <description>Defines a data object to contain an atom feed as items
 are added and the feed is updated then returned</description>
-        <long-description></long-description>
+        <long-description/>
       </docblock>
-      <property final="false" static="false" visibility="private" line="25" namespace="global" package="Default">
+      <property final="false" static="false" visibility="private" line="26" namespace="global" package="Default">
         <name>$items</name>
-        <default></default>
-        <docblock line="20">
-          <description></description>
-          <long-description></long-description>
-          <tag line="20" name="var" description="- an array of article instances" type="\$items">
+        <default/>
+        <docblock line="21">
+          <description/>
+          <long-description/>
+          <tag line="21" name="var" description="- an array of article instances" type="\$items">
             <type by_reference="false">\$items</type>
           </tag>
-          <tag line="20" name="var" description="- the feed metadata - location, title, author, datestamps" type="\$container">
+          <tag line="21" name="var" description="- the feed metadata - location, title, author, datestamps" type="\$container">
             <type by_reference="false">\$container</type>
           </tag>
         </docblock>
       </property>
-      <property final="false" static="false" visibility="private" line="26" namespace="global" package="Default">
+      <property final="false" static="false" visibility="private" line="27" namespace="global" package="Default">
         <name>$cacheFile</name>
-        <default></default>
+        <default/>
       </property>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="36" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="37" package="Default">
         <name>__construct</name>
         <full_name>__construct</full_name>
-        <docblock line="28">
+        <docblock line="29">
           <description>Creates an empty atom feed object with metadata</description>
-          <long-description></long-description>
-          <tag line="28" name="param" description="(str): a title for the atom feed" type="\" variable="$title"/>
-          <tag line="28" name="param" description="(str): the base url for the feed" type="\" variable="$link"/>
-          <tag line="28" name="param" description="(str): a description or summary of the feed" type="\" variable="$description"/>
-          <tag line="28" name="param" description="(str): a datestamp for the feed, in standard atom format" type="\" variable="$feedstamp"/>
+          <long-description/>
+          <tag line="29" name="param" description="(str): a title for the atom feed" type="\" variable="$title"/>
+          <tag line="29" name="param" description="(str): the base url for the feed" type="\" variable="$link"/>
+          <tag line="29" name="param" description="(str): a description or summary of the feed" type="\" variable="$description"/>
+          <tag line="29" name="param" description="(str): a datestamp for the feed, in standard atom format" type="\" variable="$feedstamp"/>
         </docblock>
-        <argument line="36">
+        <argument line="37">
           <name>$bloguri</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="52" package="Default">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="53" package="Default">
         <name>retrieve</name>
         <full_name>retrieve</full_name>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="70" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="71" package="Default">
         <name>save</name>
         <full_name>save</full_name>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="88" package="Default">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="100" package="Default">
         <name>cache</name>
         <full_name>cache</full_name>
-        <argument line="88">
+        <argument line="100">
           <name>$xml</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="97" package="Default">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="109" package="Default">
         <name>getCache</name>
         <full_name>getCache</full_name>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="102" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="114" package="Default">
         <name>exists</name>
         <full_name>exists</full_name>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="107" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="119" package="Default">
         <name>reset</name>
         <full_name>reset</full_name>
-        <argument line="107">
+        <argument line="119">
           <name>$title</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
-        <argument line="107">
+        <argument line="119">
           <name>$link</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
-        <argument line="107">
+        <argument line="119">
           <name>$description</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
-        <argument line="107">
+        <argument line="119">
           <name>$feedstamp</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="127" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="139" package="Default">
         <name>new_item</name>
         <full_name>new_item</full_name>
-        <docblock line="119">
+        <docblock line="131">
           <description>Adds an item to the feed as an object in the object's
 items array</description>
-          <long-description></long-description>
-          <tag line="119" name="param" description="- a fully initialized instance of the article&#10;class." type="\" variable="$articleect"/>
+          <long-description/>
+          <tag line="131" name="param" description="- a fully initialized instance of the article&#10;class." type="\" variable="$articleect"/>
         </docblock>
-        <argument line="127">
+        <argument line="139">
           <name>$articleect</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="141" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="153" package="Default">
         <name>output</name>
         <full_name>output</full_name>
-        <docblock line="135">
+        <docblock line="147">
           <description>Returns a valid feed with the requested format.</description>
-          <long-description></long-description>
-          <tag line="135" name="param" description="- the type of feed to return (atom/rss). Defaults&#10;to atom (superior) if the type given not recognized." type="\" variable="$type"/>
+          <long-description/>
+          <tag line="147" name="param" description="- the type of feed to return (atom/rss). Defaults&#10;to atom (superior) if the type given not recognized." type="\" variable="$type"/>
         </docblock>
-        <argument line="141">
+        <argument line="153">
           <name>$type</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="159" package="Default">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="171" package="Default">
         <name>atom</name>
         <full_name>atom</full_name>
-        <docblock line="152">
+        <docblock line="164">
           <description>Returns a displayable representation of the feed
 with appropriate code added.</description>
           <long-description>&lt;p&gt;Relies on the article
@@ -887,30 +893,220 @@ atom_output() function to generate code for individidual
 feed items. Returns ATOM format.&lt;/p&gt;</long-description>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="184" package="Default">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="196" package="Default">
         <name>rss</name>
         <full_name>rss</full_name>
-        <docblock line="180">
+        <docblock line="192">
           <description>Returns a displayable representation of the feed with
 appropriate code added for RSS format.</description>
-          <long-description></long-description>
+          <long-description/>
         </docblock>
       </method>
     </class>
     <parse_markers>
-      <error line="26" code="50018">No DocBlock was found for property $cacheFile</error>
-      <error line="28" code="50014">Name of argument $bloguri does not match with the DocBlock's name $title in __construct()</error>
-      <notice line="28" code="50013">Parameter $title could not be found in __construct()</notice>
-      <notice line="28" code="50013">Parameter $link could not be found in __construct()</notice>
-      <notice line="28" code="50013">Parameter $description could not be found in __construct()</notice>
-      <notice line="28" code="50013">Parameter $feedstamp could not be found in __construct()</notice>
-      <error line="52" code="50010">No DocBlock was found for method retrieve()</error>
-      <error line="70" code="50010">No DocBlock was found for method save()</error>
-      <error line="88" code="50010">No DocBlock was found for method cache()</error>
-      <error line="97" code="50010">No DocBlock was found for method getCache()</error>
-      <error line="102" code="50010">No DocBlock was found for method exists()</error>
-      <error line="107" code="50010">No DocBlock was found for method reset()</error>
+      <error line="27" code="50018">No DocBlock was found for property $cacheFile</error>
+      <error line="29" code="50014">Name of argument $bloguri does not match with the DocBlock's name $title in __construct()</error>
+      <notice line="29" code="50013">Parameter $title could not be found in __construct()</notice>
+      <notice line="29" code="50013">Parameter $link could not be found in __construct()</notice>
+      <notice line="29" code="50013">Parameter $description could not be found in __construct()</notice>
+      <notice line="29" code="50013">Parameter $feedstamp could not be found in __construct()</notice>
+      <error line="53" code="50010">No DocBlock was found for method retrieve()</error>
+      <error line="71" code="50010">No DocBlock was found for method save()</error>
+      <error line="100" code="50010">No DocBlock was found for method cache()</error>
+      <error line="109" code="50010">No DocBlock was found for method getCache()</error>
+      <error line="114" code="50010">No DocBlock was found for method exists()</error>
+      <error line="119" code="50010">No DocBlock was found for method reset()</error>
     </parse_markers>
+  </file>
+  <file path="webadmin/index.php" hash="6cc073cb6775d9b7fd5bac12062599bf" package="Default">
+    <include line="2" type="Include" package="Default">
+      <name>../core_web.php</name>
+    </include>
+    <include line="11" type="Include" package="Default">
+      <name/>
+    </include>
+    <include line="12" type="Include" package="Default">
+      <name/>
+    </include>
+    <include line="17" type="Include" package="Default">
+      <name/>
+    </include>
+    <include line="22" type="Include" package="Default">
+      <name/>
+    </include>
+    <include line="32" type="Include" package="Default">
+      <name/>
+    </include>
+    <include line="49" type="Include" package="Default">
+      <name/>
+    </include>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file webadmin/index.php</error>
+    </parse_markers>
+  </file>
+  <file path="webadmin/static/page_editpost.php" hash="2af0c0e535f9bdd7f1151cc45dc4a377" package="Default">
+    <function namespace="global" line="13" package="Default">
+      <name>retrievePost</name>
+      <full_name>\retrievePost</full_name>
+      <docblock line="6">
+        <description>Retrieves a post json file into an array
+or returns an empty array if it does not exist</description>
+        <long-description/>
+        <tag line="6" name="param" description="- the file to retrieve" type="\global\" variable="$postFile"/>
+        <tag line="6" name="return" description="- the retrieved data" type="\$postData">
+          <type by_reference="false">\$postData</type>
+        </tag>
+      </docblock>
+      <argument line="13">
+        <name>$postFile</name>
+        <default/>
+        <type/>
+      </argument>
+    </function>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file webadmin/static/page_editpost.php</error>
+    </parse_markers>
+  </file>
+  <file path="webadmin/static/page_saveconf.php" hash="df6f7c9b930bf75725ca940a18abea42" package="Default">
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file webadmin/static/page_saveconf.php</error>
+    </parse_markers>
+  </file>
+  <file path="webadmin/static/page_newpost.php" hash="9a32e6a986568bf99da08bedb32b8f54" package="Default">
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file webadmin/static/page_newpost.php</error>
+    </parse_markers>
+  </file>
+  <file path="webadmin/static/page_savepost.php" hash="b83129bf99ca69b7073c721eb8527b07" package="Default">
+    <docblock line="2">
+      <description>Encodes and saves an article into the
+appropriate location.</description>
+      <long-description>&lt;p&gt;Just a basic script,
+nothing too fancy.&lt;/p&gt;</long-description>
+      <tag line="2" name="since" description="06/05/2013"/>
+    </docblock>
+  </file>
+  <file path="webadmin/static/page_newblog.php" hash="157d7b7170641bd88b370beaf9001844" package="Default">
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file webadmin/static/page_newblog.php</error>
+    </parse_markers>
+  </file>
+  <file path="webadmin/static/page_home.php" hash="c5ecabf5a59ce11695beb3772ec691d9" package="Default">
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file webadmin/static/page_home.php</error>
+    </parse_markers>
+  </file>
+  <file path="webadmin/static/page_editblog.php" hash="8cd342481b75c98c487162fb5f7c75d8" package="Default">
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file webadmin/static/page_editblog.php</error>
+    </parse_markers>
+  </file>
+  <file path="webadmin/static/page_editconf.php" hash="ce91a9af646ebbe177e8455b23e40e8d" package="Default">
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file webadmin/static/page_editconf.php</error>
+    </parse_markers>
+  </file>
+  <file path="webadmin/templates/newblog/index.php" hash="7b6225b132706a394622e0aa957e6855" package="Default">
+    <include line="2" type="Include" package="Default">
+      <name>../engine/core_blog.php</name>
+    </include>
+    <include line="3" type="Include" package="Default">
+      <name>class_blogdef.php</name>
+    </include>
+    <include line="13" type="Include" package="Default">
+      <name/>
+    </include>
+    <include line="14" type="Include" package="Default">
+      <name/>
+    </include>
+    <include line="19" type="Include" package="Default">
+      <name/>
+    </include>
+    <include line="24" type="Include" package="Default">
+      <name/>
+    </include>
+    <include line="34" type="Include" package="Default">
+      <name/>
+    </include>
+    <include line="51" type="Include" package="Default">
+      <name/>
+    </include>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file webadmin/templates/newblog/index.php</error>
+    </parse_markers>
+  </file>
+  <file path="webadmin/templates/newblog/static/template_blognav.php" hash="43475636e0745bc9def0996884dbefe1" package="Default">
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file webadmin/templates/newblog/static/template_blognav.php</error>
+    </parse_markers>
+  </file>
+  <file path="webadmin/templates/newblog/feed.php" hash="a9acfa143de2fa0414b63f2e35b5915e" package="Default">
+    <include line="3" type="Include" package="Default">
+      <name>../engine/core_feed.php</name>
+    </include>
+    <include line="4" type="Include" package="Default">
+      <name>class_blogdef.php</name>
+    </include>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file webadmin/templates/newblog/feed.php</error>
+    </parse_markers>
+  </file>
+  <file path="webadmin/templates/newblog/class_blogdef.php" hash="662299f3456d5739371cd5e6c2af1e53" package="Default">
+    <docblock line="3">
+      <description>Defines the blog that is stored in the current directory.</description>
+      <long-description>&lt;p&gt;This is a configuration file for the contained blog, that all
+of the blog scripts pull from. It provides a unified place for
+configuring the data needed for the blog platform.&lt;/p&gt;</long-description>
+    </docblock>
+    <class final="false" abstract="false" namespace="global" line="17" package="Default">
+      <extends/>
+      <name>blogdef</name>
+      <full_name>\blogdef</full_name>
+      <docblock line="12">
+        <description>Defines a class that contains the blog data</description>
+        <long-description/>
+        <tag line="12" name="author" description="Nate Levesque &lt;public@thenaterhood.com&gt;"/>
+        <tag line="12" name="since" description="05/31/2013"/>
+      </docblock>
+      <property final="false" static="false" visibility="private" line="22" namespace="global" package="Default">
+        <name>$container</name>
+        <default/>
+        <docblock line="19">
+          <description/>
+          <long-description/>
+          <tag line="19" name="var" description="- provides a container to store the data" type="\$container">
+            <type by_reference="false">\$container</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="29" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="24">
+          <description>Constructs an instance of the class.</description>
+          <long-description>&lt;p&gt;All blog data is defined in this
+section. Due to the fact that the container is a map, adding information
+is straightforward.&lt;/p&gt;</long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="61" package="Default">
+        <name>__get</name>
+        <full_name>__get</full_name>
+        <docblock line="55">
+          <description>Returns the requested value from the class</description>
+          <long-description/>
+          <tag line="55" name="param" description="- the name of the value" type="\" variable="$key"/>
+          <tag line="55" name="return" description="the value associated with the key" type="\-">
+            <type by_reference="false">\-</type>
+          </tag>
+        </docblock>
+        <argument line="61">
+          <name>$key</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+    </class>
   </file>
   <file path="class_dataMonger.php" hash="6aa2e8e3d3c0d3e6af026c25155ff318" package="Default">
     <docblock line="2">
@@ -999,14 +1195,14 @@ class for retrieving session data.</description>
       <description>Provides a consistent interface for
 accessing posts or articles with multiple methods
 of displaying and managing the contained data.</description>
-      <long-description></long-description>
+      <long-description/>
       <tag line="2" name="author" description="Nate Levesque &lt;public@thenaterhood.com&gt;"/>
     </docblock>
     <include line="14" type="Include Once" package="Default">
       <name>class_dataMonger.php</name>
       <docblock line="11">
         <description>Includes the inherited dataMonger class</description>
-        <long-description></long-description>
+        <long-description/>
       </docblock>
     </include>
     <class final="false" abstract="false" namespace="global" line="25" package="Default">
@@ -1039,12 +1235,12 @@ a json file exists for the requested post.&lt;/p&gt;</long-description>
         </docblock>
         <argument line="35">
           <name>$nodefile</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
         <argument line="35">
           <name>$bloguri</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -1053,12 +1249,12 @@ a json file exists for the requested post.&lt;/p&gt;</long-description>
         <full_name>output</full_name>
         <docblock line="104">
           <description>Returns a representation of the post in the format requested</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="104" name="param" description="- the type of feed" type="\" variable="$type"/>
         </docblock>
         <argument line="109">
           <name>$type</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -1068,7 +1264,7 @@ a json file exists for the requested post.&lt;/p&gt;</long-description>
         <docblock line="114">
           <description>Produces the coded output of the item that can be
 returned and displayed or saved in an atom feed</description>
-          <long-description></long-description>
+          <long-description/>
         </docblock>
       </method>
       <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="137" package="Default">
@@ -1077,7 +1273,7 @@ returned and displayed or saved in an atom feed</description>
         <docblock line="133">
           <description>Produces the coded output of the item that can be returned
 and displayed or saved in an rss feed</description>
-          <long-description></long-description>
+          <long-description/>
         </docblock>
       </method>
       <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="154" package="Default">
@@ -1086,7 +1282,7 @@ and displayed or saved in an rss feed</description>
         <docblock line="150">
           <description>Produces the coded output of the item that can be displayed
 on an html page</description>
-          <long-description></long-description>
+          <long-description/>
         </docblock>
       </method>
       <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="170" package="Default">
@@ -1095,7 +1291,7 @@ on an html page</description>
         <docblock line="165">
           <description>Returns the article metadata - tags, title, link, date, and author
 as an associative array.</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="165" name="return" description="- the metadata array" type="\$meta">
             <type by_reference="false">\$meta</type>
           </tag>
@@ -1108,7 +1304,7 @@ as an associative array.</description>
           <description>Returns a string containing the post title
 and tags, suitable for outputting in an atom feed (maybe)
 or an html list</description>
-          <long-description></long-description>
+          <long-description/>
         </docblock>
       </method>
     </class>
@@ -1116,19 +1312,19 @@ or an html list</description>
       <error line="27" code="50015">Argument $bloguri is missing from the Docblock of __construct()</error>
     </parse_markers>
   </file>
-  <file path="class_inventory.php" hash="ead1eebdd9c137f6dfbf94d5902b54a8" package="Default">
+  <file path="class_inventory.php" hash="6329160c21113159fa496afa6844c501" package="Default">
     <docblock line="2">
       <description>Provides a self-sufficient file with the inventory
 class, which abstracts access to a data file containing
 an index of posts or articles in a directory.</description>
-      <long-description></long-description>
+      <long-description/>
     </docblock>
     <include line="12" type="Include Once" package="Default">
       <name>core_web.php</name>
       <docblock line="8">
         <description>Includes the necessary facilities for managing
 the inventory</description>
-        <long-description></long-description>
+        <long-description/>
       </docblock>
     </include>
     <include line="13" type="Include Once" package="Default">
@@ -1151,10 +1347,10 @@ the data in other formats.&lt;/p&gt;</long-description>
       </docblock>
       <property final="false" static="false" visibility="private" line="31" namespace="global" package="Default">
         <name>$directory</name>
-        <default></default>
+        <default/>
         <docblock line="28">
-          <description></description>
-          <long-description></long-description>
+          <description/>
+          <long-description/>
           <tag line="28" name="var" description="- the directory inventory we want" type="\$directory">
             <type by_reference="false">\$directory</type>
           </tag>
@@ -1164,8 +1360,8 @@ the data in other formats.&lt;/p&gt;</long-description>
         <name>$current</name>
         <default>null</default>
         <docblock line="32">
-          <description></description>
-          <long-description></long-description>
+          <description/>
+          <long-description/>
           <tag line="32" name="var" description="- whether the inventory appears to be up to date" type="\$current">
             <type by_reference="false">\$current</type>
           </tag>
@@ -1173,10 +1369,10 @@ the data in other formats.&lt;/p&gt;</long-description>
       </property>
       <property final="false" static="false" visibility="private" line="39" namespace="global" package="Default">
         <name>$inventoryFile</name>
-        <default></default>
+        <default/>
         <docblock line="36">
-          <description></description>
-          <long-description></long-description>
+          <description/>
+          <long-description/>
           <tag line="36" name="var" description="- the file where the inventory is stored (autogen)" type="\$inventoryFile">
             <type by_reference="false">\$inventoryFile</type>
           </tag>
@@ -1184,10 +1380,10 @@ the data in other formats.&lt;/p&gt;</long-description>
       </property>
       <property final="false" static="false" visibility="private" line="43" namespace="global" package="Default">
         <name>$inventoryData</name>
-        <default></default>
+        <default/>
         <docblock line="40">
-          <description></description>
-          <long-description></long-description>
+          <description/>
+          <long-description/>
           <tag line="40" name="var" description="- the parsed inventory data that the class accesses" type="\$inventoryData">
             <type by_reference="false">\$inventoryData</type>
           </tag>
@@ -1195,10 +1391,10 @@ the data in other formats.&lt;/p&gt;</long-description>
       </property>
       <property final="false" static="false" visibility="private" line="47" namespace="global" package="Default">
         <name>$bloguri</name>
-        <default></default>
+        <default/>
         <docblock line="44">
-          <description></description>
-          <long-description></long-description>
+          <description/>
+          <long-description/>
           <tag line="44" name="var" description="- the uri that returns the requested pages" type="\$bloguri">
             <type by_reference="false">\$bloguri</type>
           </tag>
@@ -1209,17 +1405,17 @@ the data in other formats.&lt;/p&gt;</long-description>
         <full_name>__construct</full_name>
         <docblock line="49">
           <description>Constructs an instance of the class</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="49" name="param" description="- the directory of which the inventory is of" type="\" variable="$directory"/>
         </docblock>
         <argument line="53">
           <name>$directory</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
         <argument line="53">
           <name>$bloguri</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -1247,60 +1443,60 @@ compares it to how many are listed in the current inventory.</description>
         <full_name>regen</full_name>
         <docblock line="125">
           <description>Regenerates the blog inventory file</description>
-          <long-description></long-description>
+          <long-description/>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="164" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="180" package="Default">
         <name>select</name>
         <full_name>select</full_name>
-        <docblock line="155">
+        <docblock line="171">
           <description>Returns all the inventory items that match a
 requested value in the requested field</description>
-          <long-description></long-description>
-          <tag line="155" name="param" description="- the field to search in" type="\" variable="$field"/>
-          <tag line="155" name="param" description="- the value to search for" type="\" variable="$value"/>
-          <tag line="155" name="return" description="- all the matching items in the inventory" type="\$matching">
+          <long-description/>
+          <tag line="171" name="param" description="- the field to search in" type="\" variable="$field"/>
+          <tag line="171" name="param" description="- the value to search for" type="\" variable="$value"/>
+          <tag line="171" name="return" description="- all the matching items in the inventory" type="\$matching">
             <type by_reference="false">\$matching</type>
           </tag>
         </docblock>
-        <argument line="164">
+        <argument line="180">
           <name>$field</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
-        <argument line="164">
+        <argument line="180">
           <name>$value</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="192" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="208" package="Default">
         <name>selectField</name>
         <full_name>selectField</full_name>
-        <docblock line="186">
+        <docblock line="202">
           <description>Returns an array containing the data from a
 particular field, with repeats filtered out</description>
-          <long-description></long-description>
-          <tag line="186" name="param" description="- the name of the field to access" type="\" variable="$field"/>
+          <long-description/>
+          <tag line="202" name="param" description="- the name of the field to access" type="\" variable="$field"/>
         </docblock>
-        <argument line="192">
+        <argument line="208">
           <name>$field</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="220" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="236" package="Default">
         <name>selectAll</name>
         <full_name>selectAll</full_name>
-        <docblock line="217">
+        <docblock line="233">
           <description>Returns all the fields in the inventory</description>
-          <long-description></long-description>
+          <long-description/>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="227" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="243" package="Default">
         <name>getFile</name>
         <full_name>getFile</full_name>
-        <docblock line="223">
+        <docblock line="239">
           <description>A function to return the inventory file.</description>
           <long-description>&lt;p&gt;For supporting
 legacy functions&lt;/p&gt;</long-description>
@@ -1494,14 +1690,14 @@ method or by searching through each method to find a variable.</description>
     <docblock line="2">
       <description>Contains classes and functions for retrieving, displaying, and
 managing blog posts and other aspects of the blog platform</description>
-      <long-description></long-description>
+      <long-description/>
       <tag line="2" name="author" description="Nate Levesque &lt;public@thenaterhood.com&gt;&#10;Language: PHP&#10;Filename: core_blog.php"/>
     </docblock>
     <include line="15" type="Include Once" package="Default">
       <name>core_web.php</name>
       <docblock line="12">
         <description>Includes the core_web functions</description>
-        <long-description></long-description>
+        <long-description/>
       </docblock>
     </include>
     <include line="16" type="Include Once" package="Default">
@@ -1521,7 +1717,7 @@ for additional blog posts to read.&lt;/p&gt;</long-description>
       </docblock>
       <argument line="26">
         <name>$filename</name>
-        <default></default>
+        <default/>
         <type/>
       </argument>
     </function>
@@ -1538,17 +1734,17 @@ rely on a better algorithm.&lt;/p&gt;</long-description>
       </docblock>
       <argument line="40">
         <name>$number</name>
-        <default></default>
+        <default/>
         <type/>
       </argument>
       <argument line="40">
         <name>$tag</name>
-        <default></default>
+        <default/>
         <type/>
       </argument>
       <argument line="40">
         <name>$post_directory</name>
-        <default></default>
+        <default/>
         <type/>
       </argument>
     </function>
@@ -1558,7 +1754,7 @@ rely on a better algorithm.&lt;/p&gt;</long-description>
       <docblock line="55">
         <description>Lists the files in a directory and returns an array of them
 out to the given length section</description>
-        <long-description></long-description>
+        <long-description/>
         <tag line="55" name="param" description="(int) - a starting index for the files" type="\global\" variable="$start"/>
         <tag line="55" name="param" description="(int) - an ending index for the files" type="\global\" variable="$end"/>
         <tag line="55" name="return" description="(array) - an array of post objects" type="\$posts">
@@ -1567,22 +1763,22 @@ out to the given length section</description>
       </docblock>
       <argument line="65">
         <name>$bloguri</name>
-        <default></default>
+        <default/>
         <type/>
       </argument>
       <argument line="65">
         <name>$post_directory</name>
-        <default></default>
+        <default/>
         <type/>
       </argument>
       <argument line="65">
         <name>$start</name>
-        <default></default>
+        <default/>
         <type/>
       </argument>
       <argument line="65">
         <name>$end</name>
-        <default></default>
+        <default/>
         <type/>
       </argument>
     </function>
@@ -1670,11 +1866,110 @@ with appropriate code added.</description>
       </method>
     </class>
   </file>
+  <file path="class_lock.php" hash="2da0711880665692ec48a1cc3174fbcb" package="Default">
+    <docblock line="2">
+      <description>Contains a class that deals with managing file locks</description>
+      <long-description/>
+    </docblock>
+    <include line="9" type="Include Once" package="Default">
+      <name>class_config.php</name>
+      <docblock line="6">
+        <description>Include the config class so we can retrieve the dynamic directory</description>
+        <long-description/>
+      </docblock>
+    </include>
+    <class final="false" abstract="false" namespace="global" line="16" package="Default">
+      <extends/>
+      <name>lock</name>
+      <full_name>\lock</full_name>
+      <docblock line="11">
+        <description>Defines a class to manage locks for files</description>
+        <long-description/>
+        <tag line="11" name="since" description="06/05/2013"/>
+        <tag line="11" name="author" description="Nate Levesque &lt;public@thenaterhood.com&gt;"/>
+      </docblock>
+      <property final="false" static="false" visibility="private" line="21" namespace="global" package="Default">
+        <name>$file</name>
+        <default/>
+        <docblock line="18">
+          <description/>
+          <long-description/>
+          <tag line="18" name="var" description="- the file to be locked" type="\$file">
+            <type by_reference="false">\$file</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="25" namespace="global" package="Default">
+        <name>$lockfile</name>
+        <default/>
+        <docblock line="22">
+          <description/>
+          <long-description/>
+          <tag line="22" name="var" description="- the lockfile" type="\$lockfile">
+            <type by_reference="false">\$lockfile</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="29" namespace="global" package="Default">
+        <name>$hasLock</name>
+        <default/>
+        <docblock line="26">
+          <description/>
+          <long-description/>
+          <tag line="26" name="var" description="- whether the file has a lock on it" type="\$hasLock">
+            <type by_reference="false">\$hasLock</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="35" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="31">
+          <description>Constructs and instance of the lock class</description>
+          <long-description/>
+          <tag line="31" name="param" description="- the file (full path) to create a lock for" type="\" variable="$file"/>
+        </docblock>
+        <argument line="35">
+          <name>$file</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="58" package="Default">
+        <name>isLocked</name>
+        <full_name>isLocked</full_name>
+        <docblock line="54">
+          <description>Returns whether or not the file has been locked</description>
+          <long-description/>
+          <tag line="54" name="return" description="boolean True if a lock exists" type="\-">
+            <type by_reference="false">\-</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="69" package="Default">
+        <name>lock</name>
+        <full_name>lock</full_name>
+        <docblock line="64">
+          <description>Creates a lock for the file in the dynamic directory.</description>
+          <long-description>&lt;p&gt;Note that for this to be effective, everything must
+actually observe locks.&lt;/p&gt;</long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="82" package="Default">
+        <name>unlock</name>
+        <full_name>unlock</full_name>
+        <docblock line="79">
+          <description>Removes a lock on a file</description>
+          <long-description/>
+        </docblock>
+      </method>
+    </class>
+  </file>
   <file path="class_config.php" hash="a1eabf07b14fa8a687f1bb33a1b46ee4" package="Default">
     <docblock line="2">
       <description>Contains configuration settings for the site engine to use
 as a php class that can be directly accessed.</description>
-      <long-description></long-description>
+      <long-description/>
       <tag line="2" name="author" description="Nate Levesque &lt;public@thenaterhood.com&gt;&#10;Language: PHP&#10;Filename: core_config.php"/>
     </docblock>
     <class final="false" abstract="false" namespace="global" line="17" package="Default">
@@ -1689,10 +1984,10 @@ to keep things fairly clean.&lt;/p&gt;</long-description>
       </docblock>
       <property final="false" static="true" visibility="private" line="24" namespace="global" package="Default">
         <name>$container</name>
-        <default></default>
+        <default/>
         <docblock line="19">
           <description>variables are documented where they are set lower in the code.</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="19" name="var" description="provides a clean way of storing an expanding mass of variables." type="\$container">
             <type by_reference="false">\$container</type>
           </tag>
@@ -1703,7 +1998,7 @@ to keep things fairly clean.&lt;/p&gt;</long-description>
         <full_name>__construct</full_name>
         <docblock line="26">
           <description>Sets the configuration options en-masse.</description>
-          <long-description></long-description>
+          <long-description/>
         </docblock>
       </method>
       <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="151" package="Default">
@@ -1711,7 +2006,7 @@ to keep things fairly clean.&lt;/p&gt;</long-description>
         <full_name>__get</full_name>
         <docblock line="144">
           <description>Returns the value of the requested config key</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="144" name="param" description="- the name of the key" type="\" variable="$setting"/>
           <tag line="144" name="return" description="the value the key is associated with" type="\-">
             <type by_reference="false">\-</type>
@@ -1719,7 +2014,7 @@ to keep things fairly clean.&lt;/p&gt;</long-description>
         </docblock>
         <argument line="151">
           <name>$setting</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
