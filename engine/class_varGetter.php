@@ -53,7 +53,9 @@ class varGetter extends sanitation{
 	  * @param $name - the name of the variable
 	  */
 	 private function post( $name ){
-		 $this->dirty = $_POST[ $name ];
+
+	 	if ( isset( $_POST[ $name ] ) )
+			$this->dirty = $_POST[ $name ];
 	 }
 	 
 	 /**
@@ -61,7 +63,8 @@ class varGetter extends sanitation{
 	  * @param $name - the name of the variable
 	  */
 	 private function get( $name ){
-		 $this->dirty = $_GET[ $name ];
+	 	if ( isset( $_GET[ $name ] ) )
+			$this->dirty = $_GET[ $name ];
 	 }
 	 
 	 /**
@@ -69,7 +72,8 @@ class varGetter extends sanitation{
 	  * @param $name - the name of the variable
 	  */
 	 private function cookie( $name ){
-		 $this->dirty = $_COOKIE[ $name ]; 
+	 	if ( isset( $_COOKIE[ $name ] ) )
+			$this->dirty = $_COOKIE[ $name ]; 
 	 }
 	 
 	 /**
