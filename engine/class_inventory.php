@@ -50,7 +50,7 @@ class inventory{
 	 * Constructs an instance of the class
 	 * @param $directory - the directory of which the inventory is of
 	 */
-	public function __construct( $directory, $bloguri ){
+	public function __construct( $directory, $bloguri=NULL ){
 		$this->bloguri = $bloguri;
 		$this->directory = $directory;
 		$this->inventoryFile = getConfigOption('dynamic_directory').'/'.str_replace('/', '_', $directory).'.inventory.json';
