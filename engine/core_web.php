@@ -44,7 +44,7 @@ function getContent($preferred, $secondary){
 
 		// Types supported by the class, in order of precedence
 		$supportedTypes = array( 'php', 'html', 'pre' );
-		$contentFile = NULL;
+		$contentFile = 'NULL';
 
 		// Search for the file in order of precedence
 		$i = 0;
