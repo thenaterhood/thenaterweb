@@ -1,6 +1,6 @@
 <?php 
 		
-	$displaypost = new article( 'entries/'.$session->node, $blogdef->id );
+	$displaypost = new article( $blogdef->post_directory.$session->node, $blogdef->id );
 		
 	print $displaypost->output( 'html' );
 
