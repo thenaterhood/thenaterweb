@@ -57,7 +57,7 @@ class lock{
 	 */
 	public function isSet(){
 
-		return $this->hasLock
+		return $this->hasLock;
 
 	}
 
