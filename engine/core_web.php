@@ -18,6 +18,7 @@ include 'class_config.php';
 include 'class_varGetter.php';
 include 'class_session.php';
 include 'class_content.php';
+include 'class_lock.php';
 
 /**
 * Checks to see if the preferred file exists, and if it does
