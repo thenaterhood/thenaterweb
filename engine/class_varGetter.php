@@ -21,7 +21,7 @@ class varGetter extends sanitation{
 	  * 
 	  * @param $name - the name of the variable
 	  */	 
-	 public function __construct( $name, $length=NULL ){
+	 public function __construct( $name, $length=NULL, $method=NULL ){
 		 
 		 if ( ! $length ){ // If no length specified, find the default
 			 $conf = getConfigOption( $name );
