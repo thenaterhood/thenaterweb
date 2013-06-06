@@ -37,7 +37,7 @@ class lock{
 		$this->file = $file;
 
 		$config = new config();
-		$this->lockfile = $config->dynamic_directory.str_replace('/', '_', $file).'.lock';
+		$this->lockfile = $config->dynamic_directory.'/'.$file.'.lock';
 		unset( $config );
 
 		if ( file_exists($this->lockfile) ){
