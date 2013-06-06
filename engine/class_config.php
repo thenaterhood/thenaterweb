@@ -21,12 +21,12 @@ class config{
 	 * @var $container provides a clean way of storing an expanding
 	 * mass of variables.
 	 */
-	private static $container;
+	private $container;
 	
 	/**
 	 * Sets the configuration options en-masse.
 	 */
-	function __construct(){
+	public function __construct(){
 		# Sets up the empty array
 		$this->container = array();
 		
@@ -148,7 +148,7 @@ class config{
 	 * 
 	 * @return - the value the key is associated with
 	 */
-	function __get($setting){
+	public function __get($setting){
 
 		if ( array_key_exists($setting, $this->container) )
 			return $this->container[$setting];
