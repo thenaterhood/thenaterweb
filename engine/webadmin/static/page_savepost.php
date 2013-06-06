@@ -29,14 +29,22 @@
 	$postData['updated'] = date(DATE_ATOM);
 
 	$postJsonData = json_encode($postData);
+	$postFile = $postpath.'/'.$postFname;
 
-	$jsonFile = fopen($postpath.'/'.$postFname, 'w');
-	fwrite($jsonFile, $postJsonData);
-	fclose($jsonFile);
+	$lock = new lock( $postFile );
 
 	$postURL = getConfigOption('site_domain').'/'.$_POST['blog'].'/index.php?id=post&node='.$nodename;
 
-	if ( is_writeable( $postpath.'/'.$postFname ) ){
+	if ( is_writeable( $postFile ) && !$lock->isLocked() ){
+
+		$lock->lock();
+
+		$jsonFile = fopen($postpath.'/'.$postFname, 'w');
+		fwrite($jsonFile, $postJsonData);
+		fclose($jsonFile);
+
+		$lock->unlock();
+
 		print '<h1>Post Saved</h1>';
 		print '<p>View this post at <a href="'.$postURL.'">'.$postURL.'</a></p>';
 	}
