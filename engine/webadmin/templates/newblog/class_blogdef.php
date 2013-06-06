@@ -50,6 +50,13 @@ class blogdef{
 		# and is used in the feed.
 		$this->container['catchline'] = $catchline;
 
+		# Set the location of the feed. If you are using the builtin
+		# feed provided by gnat, then enter http://thisdomain.com/yourblog/feed.php
+		# If you have burned your feed or are using another provider, give
+		# them the above url and enter the url of the feed that your
+		# provider gives you here.
+		$this->container['feedurl'] = $feedurl;
+
 	}
 
 	/**
