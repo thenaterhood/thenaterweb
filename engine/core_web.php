@@ -46,16 +46,16 @@ function getContent($preferred, $secondary){
 		$supportedTypes = array( 'php', 'html', 'pre' );
 
 		// Search for the file in order of precedence
-		$i = -1;
+		$i = 0;
 		while ( $i < count($supportedTypes) && !file_exists($preferred.'.'.$supportedTypes[$i]) ){
-
-			++$i;
 
 			// If the file exists, update the class with it and break
 			if ( file_exists( $preferred.'.'.$supportedTypes[$i] ) ){
 				$file = $preferred.'.'.$supportedTypes[$i];
 				$type = $supportedTypes[$i];
 			}
+
+			++$i;
 
 		}
 
