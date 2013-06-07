@@ -1,7 +1,9 @@
 <h1>Edit Blog Configuration</h1>
 <p><strong>WARNING:</strong> proper PHP syntax must be observed, or your edits will crash blog! These tools are very primitive and will not validate your settings or your input.</p>
 <?php
-
+/**
+ * Edits an existing blog configuration
+ */
 if ( isset( $_POST['blogid'] ) || isset( $_GET['blogid'] ) ){
 
 	$config = file_get_contents('../../'.$_POST['blogid'].'/class_blogdef.php');
