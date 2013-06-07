@@ -6,6 +6,8 @@
  */
 if ( isset( $_POST['blogid'] ) ){
 
+	include '../../class_redirect.php';
+
 	$localpath = '../../'.$_POST['blogid'];
 
 	mkdir( $localpath );
