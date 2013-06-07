@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * Creates a new blog on the site by copying over
+ * the template and redirecting to set up the config
+ * @author Nate Levesque <public@thenaterhood.com>
+ */
 if ( isset( $_POST['blogid'] ) ){
 
 	$localpath = '../../'.$_POST['blogid'];
