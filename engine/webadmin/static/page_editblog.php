@@ -4,16 +4,16 @@
 /**
  * Edits an existing blog configuration
  */
-if ( isset( $_POST['blogid'] ) || isset( $_GET['blogid'] ) ){
+if ( $session->blogid ){
 
-	$config = file_get_contents('../../'.$_POST['blogid'].'/class_blogdef.php');
+	$config = file_get_contents('../../'.$session->blogid.'/class_blogdef.php');
 	$lines = count( explode( "\n", $config) )+4;
 
-	if ( ! is_writable('../../'.$_POST['blogid'].'/class_blogdef.php') )
+	if ( ! is_writable('../../'.$session->blogid.'/class_blogdef.php') )
 		print '<p>Warning: Gnat cannot write to the configuration file selected, settings cannot be saved.</p>';
 
 	print '<form action="index.php?id=saveconf" method="post">
-		<input type="hidden" name="rcfile" value="../../'.$_POST['blogid'].'/class_blogdef.php"/>
+		<input type="hidden" name="rcfile" value="../../'.$session->blogid.'/class_blogdef.php"/>
 		<br />
 		<textarea name="content" rows="'.$lines.'" cols="100" >'.$config.'</textarea>
 		<br />
