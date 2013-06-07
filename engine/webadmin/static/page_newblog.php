@@ -1,7 +1,7 @@
 <h1>Create New Blog</h1>
 <?php
 
-if ( $_POST['blogid'] ){
+if ( isset( $_POST['blogid'] ) ){
 
 	$localpath = '../../'.$_POST['blogid'];
 

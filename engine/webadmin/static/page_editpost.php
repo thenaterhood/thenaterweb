@@ -34,7 +34,7 @@ function retrievePost( $postFile ){
 
 if ( $session->blogid ){
 
-	if ( $_GET['postid'] || $_POST['isnew'] ){
+	if ( isset( $_GET['postid'] ) || isset( $_POST['isnew'] ) ){
 
 		$postData = retrievePost( '../../'.$_GET['blogid'].'/entries/'.$_GET['postid'] );
 
