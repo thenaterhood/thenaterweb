@@ -23,6 +23,8 @@ include_once 'class_dataMonger.php';
 * an atom feed.
 */
 class article extends dataMonger{
+
+	private $blogurl;
 	
 	/**
 	 * Reads and parses a post file and creates an instance
@@ -39,7 +41,7 @@ class article extends dataMonger{
 		 * This also safely handles any case where the data in a post
 		 * doesn't contain all of the expected fields in a typical way.
 		 */
-		
+		$this->blogurl = $bloguri;
 		$this->container['title'] = "Oops! Post Not Found!";
 		$this->container['date'] = "";
 		$this->container['tags'] = "";
@@ -122,7 +124,8 @@ class article extends dataMonger{
 		# statically, then urlencode the rest of the url. Otherwise, the feed does not 
 		# validate.
 		$r .= "<id>http://" . urlencode( substr($this->container['link'], 7) ) . "</id>";
-		$r .= '<link href="'. urlencode( $this->container['link'] ) .'" />';
+		$url = explode( '/', $this->container['link'] );
+		$r .= '<link href="'.$url[3].'/'.htmlspecialchars($url[4]).'" />';
 		$r .= '<updated>'.$this->container['datestamp'].'</updated>';
 		$r .= "<title>" . $this->container['title'] . "</title>";
 		$r .= "<content type='html'>" . htmlspecialchars( $this->container['content'], ENT_QUOTES ) . "</content>";
