@@ -61,8 +61,8 @@ class inventory{
 
 		$jsonData = json_decode( file_get_contents($this->inventoryFile, True) );
 
-		$this->inventoryData = $jsonData['inventory'];
-		$this->containedFiles = $jsonData['files'];
+		$this->inventoryData = $jsonData->inventory;
+		$this->containedFiles = $jsonData->files;
 
 	}
 
