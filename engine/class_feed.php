@@ -25,6 +25,7 @@ class feed extends dataMonger{
 
 	private $items;
 	private $cacheFile;
+	private $containedItems;
 	
 	/**
 	 * Creates an empty atom feed object with metadata
@@ -54,13 +55,16 @@ class feed extends dataMonger{
 
 		$rawJson = json_decode( file_get_contents("$this->cacheFile.json"), True );
 
-		$this->container['title'] = $rawJson['title'];
-		$this->container['link'] = $rawJson['link'];
-		$this->container['description'] = $rawJson['description'];
-		$this->container['feedstamp'] = $rawJson['feedstamp'];
-		$this->container['author'] = $rawJson['author'];
+		$feedData = $rawJson->feedData;
+		$this->containedItems = $rawJson->items;
 
-		foreach ($rawJson['items'] as $item) {
+		$this->container['title'] = $feedData['title'];
+		$this->container['link'] = $feedData['link'];
+		$this->container['description'] = $feedData['description'];
+		$this->container['feedstamp'] = $feedData['feedstamp'];
+		$this->container['author'] = $feedData['author'];
+
+		foreach ($feedData['items'] as $item) {
 			
 			$this->items[] = new mappedArticle( $item );
 
@@ -77,7 +81,7 @@ class feed extends dataMonger{
 
 			$lock->lock();
 
-			$saveData = $this->container;
+			$feedData = $this->container;
 			$saveItems = array();
 
 			foreach ($this->items as $item ) {
@@ -85,7 +89,10 @@ class feed extends dataMonger{
 				$saveItems[] = $item->dump();
 			}
 
-			$saveData['items'] = $saveItems;
+			$feedData['items'] = $saveItems;
+
+			$dataMap['feed'] = $feedData;
+			$dataMap['items'] = $this->containedItems;
 
 			$file = fopen("$this->cacheFile.json", 'w');
 			fwrite($file, json_encode($saveData) );
@@ -124,7 +131,14 @@ class feed extends dataMonger{
 		$this->container['feedstamp'] = $feedstamp;
 		$this->container['author'] = getConfigOption('site_author');
 		$this->items = array();
+		$this->containedItems = array();
 
+
+	}
+
+	public function inFeed( $node ){
+
+		return in_array($node, $this->containedItems);
 
 	}
 
@@ -136,11 +150,22 @@ class feed extends dataMonger{
 	 *	class.
 	 * 
 	 */
-	public function new_item($articleect) {
+	public function new_item($article) {
 
 		if ( count( $this->items) < 200 ){
 
-			array_push($this->items, $articleect);
+			array_push($this->items, $article);
+			$this->containedItems[] = $article->nodeid;
+			sort( $this->containedItems );
+		}
+		else{
+
+			sort( $this->containedItems );
+			$this->containedItems[ count($this->containedItems) -1 ] = $article->nodeid;
+			unset( $this->items[ count($this->items) -1 ] );
+			$this->items = array_values($this->items);
+			array_push( $this->items, $article);
+
 		}
 	}
 	

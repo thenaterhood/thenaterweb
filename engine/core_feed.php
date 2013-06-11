@@ -39,24 +39,35 @@ function generateFeed( $bloguri, $feedTitle, $feedCatchline, $forceRegen, $postD
 		return $atom;
 	}
 
-	else{
+	else if ( $forceRegen || ! $atom->exists() ){
 		/*
 		* If the inventory doesn't match the existing number of items in
 		* the directory, regenerate the inventory and the feed file
 		* then return the feed file
 		*/
-		if ( $forceRegen || ! $inventory->current() || ! $atom->exists() ){
-			$inventory->regen();
-			$atom->reset( $feedTitle, getConfigOption('site_domain')."/$bloguri", $feedCatchline,  date(DATE_ATOM) );
+		$inventory->regen();
+		$atom->reset( $feedTitle, getConfigOption('site_domain')."/$bloguri", $feedCatchline,  date(DATE_ATOM) );
 
-			for ($i = 0; $i < count($posts); $i++){
-				$newitem = new article( "$postDirectory/$posts[$i]", $bloguri );
-				$atom->new_item($newitem);
-			}
-
-			$atom->save();
+		for ($i = 0; $i < count($posts); $i++){
+			$newitem = new article( "$postDirectory/$posts[$i]", $bloguri );
+			$atom->new_item($newitem);
 		}
 
+		$atom->save();
+
+	}
+
+	else{
+		$inventory->update();
+
+		for ( $i = 0; $i < count($posts); $i++){
+			if ( !$atom->inFeed( $posts[$i] ) ){
+				$newitem = new article( "$postDirectory/$posts[$i]", $bloguri);
+				$atom->new_item($newitem);
+			}
+		}
+
+		$atom->save();
 	}
 
 	return $atom;

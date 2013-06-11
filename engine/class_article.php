@@ -66,6 +66,7 @@ class article extends dataMonger{
 				$this->container['tags'] = implode( ', ', $this->container['tags'] );
 
 			$this->container['link'] = getConfigOption('site_domain').'/'.$bloguri.'/index.php?id=post&node='.basename($nodefile, '.json');
+			$this->container['nodeid'] = basename($nodefile, '.json');
 			
 		}
 		/*
