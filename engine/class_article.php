@@ -58,11 +58,11 @@ class article extends dataMonger{
 			// Reformat and add data that the class relies on
 			
 			// Implode the array of lines for the content into a string
-			if ( is_array( $this->container['content'] ) )
+			if ( array_key_exists( 'content', $this->container ) && is_array( $this->container['content'] ) )
 				$this->container['content'] = implode( $this->container['content'] );
 
 			// Add the web url for the post
-			if ( is_array( $this->container['tags'] ) )
+			if ( array_key_exists( 'tags', $this->container ) && is_array( $this->container['tags'] ) )
 				$this->container['tags'] = implode( ', ', $this->container['tags'] );
 
 			$this->container['link'] = getConfigOption('site_domain').'/'.$bloguri.'/index.php?id=post&node='.basename($nodefile, '.json');
@@ -111,6 +111,10 @@ class article extends dataMonger{
 	public function output( $type ){
 		
 		return $this->$type();
+	}
+
+	private function get( $field ){
+
 	}
 	
 	/**
@@ -190,7 +194,7 @@ class article extends dataMonger{
 	 */
 	public function list_item_output(){
 
-		 $r = '<a href="'. $this->container['link'] .'">' . $this->container['title'] . '</a><i> - '. $this->container['tags'] .'</i>';
+		 $r = '<a href="'. $this->link .'">' . $this->container['title'] . '</a><i> - '. $this->container['tags'] .'</i>';
 		 return $r;
 	 }
  }
