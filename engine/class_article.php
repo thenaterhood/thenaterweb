@@ -127,12 +127,12 @@ class article extends dataMonger{
 		# In order to make the feed validate, we pull the http out of the id and append it
 		# statically, then urlencode the rest of the url. Otherwise, the feed does not 
 		# validate.
-		$r .= "<id>http://" . urlencode( substr($this->container['link'], 7) ) . "</id>";
-		$url = explode( '/', $this->container['link'] );
+		$r .= "<id>http://" . urlencode( substr($this->link, 7) ) . "</id>";
+		$url = explode( '/', $this->link );
 		$r .= '<link href="'.$url[3].'/'.htmlspecialchars($url[4]).'" />';
-		$r .= '<updated>'.$this->container['datestamp'].'</updated>';
-		$r .= "<title>" . $this->container['title'] . "</title>";
-		$r .= "<content type='html'>" . htmlspecialchars( $this->container['content'], ENT_QUOTES ) . "</content>";
+		$r .= '<updated>'.$this->datestamp.'</updated>';
+		$r .= "<title>" . $this->title . "</title>";
+		$r .= "<content type='html'>" . htmlspecialchars( $this->content, ENT_QUOTES ) . "</content>";
 		$r .= "</entry>";
 		return $r;
 	}
@@ -144,10 +144,10 @@ class article extends dataMonger{
 	private function rss(){
 		
 		$r = "<item>";
-		$r .= "<title>" . $this->container['title'] ."</title>";
-		$r .= "<link>" . $this->container['link'] . "</link>";
+		$r .= "<title>" . $this->title ."</title>";
+		$r .= "<link>" . $this->link . "</link>";
 		# Produces a "description" by taking the first 100 characters of the content
-		$r .= "<description>" . substr( htmlspecialchars( $this->container['content'], ENT_QUOTES ), 0, 100 ) . "...</description>";
+		$r .= "<description>" . substr( htmlspecialchars( $this->content, ENT_QUOTES ), 0, 100 ) . "...</description>";
 		$r .= "</item>";
 		
 		return $r;
@@ -160,11 +160,11 @@ class article extends dataMonger{
 	*/
 	private function html() {
 		
-		$r = '<h3 class="title"><a href="'.$this->container['link'].'">'.$this->container['title'].'</a></h3>'."\n";
-		$r .= '<h4 class="date">'.$this->container['date'].'</h4>'."\n";
-		$r .= $this->container['content'];
-		if ( $this->container['datestamp'] != ""){
-			$r .= "<h5 class='tags'>Tags: ".$this->container['tags']."</h5>\n";
+		$r = '<h3 class="title"><a href="'.$this->link.'">'.$this->title.'</a></h3>'."\n";
+		$r .= '<h4 class="date">'.$this->date.'</h4>'."\n";
+		$r .= $this->content;
+		if ( $this->datestamp != ""){
+			$r .= "<h5 class='tags'>Tags: ".$this->tags."</h5>\n";
 		}
 		return $r;
 	}
@@ -177,11 +177,11 @@ class article extends dataMonger{
 	public function getMeta(){
 
 		$meta = array();
-		$meta['tags'] = $this->container['tags'];
-		$meta['title'] = $this->container['title'];
-		$meta['link'] = $this->container['link'];
-		$meta['datestamp'] = $this->container['datestamp'];
-		$meta['author'] = $this->container['author'];
+		$meta['tags'] = $this->tags;
+		$meta['title'] = $this->title;
+		$meta['link'] = $this->link;
+		$meta['datestamp'] = $this->datestamp;
+		$meta['author'] = $this->author;
 
 		return $meta;
 
@@ -194,7 +194,7 @@ class article extends dataMonger{
 	 */
 	public function list_item_output(){
 
-		 $r = '<a href="'. $this->link .'">' . $this->container['title'] . '</a><i> - '. $this->container['tags'] .'</i>';
+		 $r = '<a href="'. $this->link .'">' . $this->title . '</a><i> - '. $this->tags .'</i>';
 		 return $r;
 	 }
  }
