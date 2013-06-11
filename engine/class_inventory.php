@@ -45,6 +45,10 @@ class inventory{
 	 * @var $bloguri - the uri that returns the requested pages
 	 */
 	private $bloguri;
+	/**
+	 * @var $containedFiles - the files already contained in the inventory
+	 */
+	private $containedFiles;
 
 	/**
 	 * Constructs an instance of the class
@@ -55,7 +59,10 @@ class inventory{
 		$this->directory = $directory;
 		$this->inventoryFile = getConfigOption('dynamic_directory').'/'.str_replace('/', '_', $directory).'.inventory.json';
 
-		$this->inventoryData = json_decode( file_get_contents($this->inventoryFile, True) );
+		$jsonData = json_decode( file_get_contents($this->inventoryFile, True) );
+
+		$this->inventoryData = $jsonData['inventory'];
+		$this->containedFiles = $jsonData['files'];
 
 	}
 
@@ -122,6 +129,34 @@ class inventory{
 
 	}
 
+	public function update(){
+
+		$avoid = getConfigOption('hidden_files');
+
+		$files = $this->getFileList();
+
+		$inventoryItems = $this->inventoryData;
+		$filesInArray = $this->containedFiles;
+
+		foreach ($files as $input) {
+
+			if ( !in_array( $input, $avoid) && !in_array($input, $filesInArray) ){
+
+				$postData = new article("$this->directory/$input", $this->bloguri );
+				$inventoryItems[] = $postData->getMeta();
+				$filesInArray[] = $input;
+			}
+			# code...
+		}
+
+		$this->inventoryData = $inventoryItems;
+		$this->containedFiles = $filesInArray;
+		$this->current = True;
+
+		$this->write();
+
+	}
+
 	/**
 	 * Regenerates the blog inventory file
 	 */
@@ -146,7 +181,18 @@ class inventory{
 		}
 	
 		$this->inventoryData = $inventoryItems;
+		$this->containedFiles = $filesInArray;
 
+		$this->current = True;
+
+		$this->write();
+	}
+
+	/**
+	 * Writes the inventory data out to the file
+	 * @since 06/11/2013
+	 */
+	private function write(){
 		// Create an instance of a lock
 		$lock = new lock( $this->inventoryFile );
 
@@ -158,14 +204,17 @@ class inventory{
 			$lock->lock();
 
 			$inventory = fopen( $this->inventoryFile, 'w');
-			fwrite( $inventory, json_encode($inventoryItems) );
+
+			$dataMap = array();
+			$dataMap['inventory'] = $this->inventoryData;
+			$dataMap['files'] = $this->containedFiles;
+
+			fwrite( $inventory, json_encode($dataMap) );
 			fclose($inventory);
 
 			$lock->unlock();
 
 		}
-
-		$this->current = True;
 	}
 
 	/**
