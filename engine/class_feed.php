@@ -95,7 +95,7 @@ class feed extends dataMonger{
 			$dataMap['items'] = $this->containedItems;
 
 			$file = fopen("$this->cacheFile.json", 'w');
-			fwrite($file, json_encode($saveData) );
+			fwrite($file, json_encode($dataMap) );
 			fclose($file);
 
 			$lock->unlock();
