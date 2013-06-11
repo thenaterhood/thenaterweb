@@ -37,7 +37,10 @@
 	  */	 
 	 public function __get( $name ){
 		 
-		 return $this->container[$name];
+		 if ( array_key_exists($name, $this->container ) )
+		 	return $this->container[$name];
+		 else
+		 	return null;
 		 
 	 }
 	 
