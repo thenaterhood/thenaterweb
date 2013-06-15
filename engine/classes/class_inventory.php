@@ -9,7 +9,7 @@
  * Includes the necessary facilities for managing
  * the inventory
  */
-include_once 'core_web.php';
+include_once '../lib/core_web.php';
 include_once 'class_article.php';
 
 /**

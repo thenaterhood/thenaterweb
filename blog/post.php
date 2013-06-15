@@ -1,6 +1,6 @@
 <?php 
-include '../engine/core_blog.php';
-include '../engine/core_redirect.php';
+include '../engine/lib/core_blog.php';
+include '../engine/lib/core_redirect.php';
 
 
 $session = new session( array('name', 'track', 'konami', 'node') );

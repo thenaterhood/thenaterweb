@@ -13,9 +13,9 @@
 /**
  * Include the main blog functions and classes
  */
- include 'core_blog.php';
- include 'class_feed.php';
- include_once 'class_inventory.php';
+ include_once 'core_blog.php';
+ include_once '../classes/class_feed.php';
+ include_once '../classes/class_inventory.php';
 
 /**
  * Generates an atom feed and returns it

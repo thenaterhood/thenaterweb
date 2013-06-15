@@ -13,8 +13,8 @@
  * Includes the core_web functions
  */
 include_once 'core_web.php';
-include_once 'class_article.php';
-include_once 'class_inventory.php';
+include_once '../classes/class_article.php';
+include_once '../classes/class_inventory.php';
 
 /**
 * Returns a random line of a given file.
