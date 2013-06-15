@@ -8,7 +8,7 @@
 /**
  * Include the required url class to use internally
  */
-include_once 'class_url.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/engine/classes/class_url.php';
 
 /**
  * Defines a data object to contain an xml sitemap.

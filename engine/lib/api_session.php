@@ -8,8 +8,8 @@
 /**
  * Includes the necessary facilities
  */
-include 'core_web.php';
-include 'core_json.php';
+include $_SERVER['DOCUMENT_ROOT'].'/engine/lib/core_web.php';
+include $_SERVER['DOCUMENT_ROOT'].'/engine/lib/core_json.php';
 
 
 $requestedVars = array();

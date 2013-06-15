@@ -9,8 +9,8 @@
 /**
  * Include the dataMonger abstract class
  */
-include_once 'class_dataMonger.php';
-include_once 'class_varGetter.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/engine/classes/class_dataMonger.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/engine/classes/class_varGetter.php';
 
 /**
  * Provides a common interface for picking up variables from the

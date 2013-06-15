@@ -9,8 +9,8 @@
  * Includes the necessary facilities for managing
  * the inventory
  */
-include_once '../lib/core_web.php';
-include_once 'class_article.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/engine/lib/core_web.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/engine/classes/class_article.php';
 
 /**
  * Provides a database-like means of accessing an inventory
