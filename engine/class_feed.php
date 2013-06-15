@@ -143,6 +143,11 @@ class feed extends dataMonger{
 
 	}
 
+	public function feedItems(){
+
+		return $this->containedItems;
+	}
+
 	/**
 	 * Adds an item to the feed as an object in the object's
 	 * items array
