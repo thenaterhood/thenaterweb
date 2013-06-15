@@ -11,7 +11,7 @@ import json
 from urllib.request import urlopen
 
 domain = "192.168.1.103"
-url = "http://192.168.1.103/engine/"
+url = "http://192.168.1.103/engine/lib/"
 
 
 class testWebEngine(unittest.TestCase):
