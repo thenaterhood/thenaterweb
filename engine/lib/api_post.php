@@ -9,8 +9,8 @@
 /**
  * Includes the necessary facilities
  */
-include 'core_blog.php';
-include 'core_json.php';
+include $_SERVER['DOCUMENT_ROOT'].'/engine/lib/core_blog.php';
+include $_SERVER['DOCUMENT_ROOT'].'/engine/lib/core_json.php';
 
 
 $session = new session( array( "node", "element" ) );

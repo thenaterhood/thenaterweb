@@ -13,8 +13,8 @@
 /**
  * Include classes and functions from core_web
  */
- include 'core_web.php';
- include '../classes/class_urlset.php';
+ include $_SERVER['DOCUMENT_ROOT'].'/engine/lib/core_web.php';
+ include $_SERVER['DOCUMENT_ROOT'].'/engine/classes/class_urlset.php';
 
 /**
  * Generates a sitemap given a list of local and web paths

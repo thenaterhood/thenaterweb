@@ -6,7 +6,7 @@
 /**
  * Include the config class so we can retrieve the dynamic directory
  */
-include_once "class_config.php";
+include_once $_SERVER['DOCUMENT_ROOT'].'/engine/config/class_config.php';
 
 /**
  * Defines a class to manage locks for files

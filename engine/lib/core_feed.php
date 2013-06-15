@@ -13,9 +13,9 @@
 /**
  * Include the main blog functions and classes
  */
- include_once 'core_blog.php';
- include_once '../classes/class_feed.php';
- include_once '../classes/class_inventory.php';
+ include_once $_SERVER['DOCUMENT_ROOT'].'/engine/lib/core_blog.php';
+ include_once $_SERVER['DOCUMENT_ROOT'].'/engine/classes/class_feed.php';
+ include_once $_SERVER['DOCUMENT_ROOT'].'/engine/classes/class_inventory.php';
 
 /**
  * Generates an atom feed and returns it

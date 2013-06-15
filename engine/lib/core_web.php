@@ -14,10 +14,10 @@
 /**
  * Include the config file
  */
-include '../config/class_config.php';
-include '../classes/class_varGetter.php';
-include '../classes/class_session.php';
-include '../classes/class_lock.php';
+include $_SERVER['DOCUMENT_ROOT'].'/engine/config/class_config.php';
+include $_SERVER['DOCUMENT_ROOT'].'/engine/classes/class_varGetter.php';
+include $_SERVER['DOCUMENT_ROOT'].'/engine/classes/class_session.php';
+include $_SERVER['DOCUMENT_ROOT'].'/engine/classes/class_lock.php';
 
 /**
 * Checks to see if the preferred file exists, and if it does

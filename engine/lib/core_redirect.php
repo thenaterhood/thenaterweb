@@ -14,5 +14,5 @@
 /**
  * Includes both redirect classes, once
  */
-include_once '../classes/class_redirect.php';
-include_once '../classes/class_condRedirect.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/engine/classes/class_redirect.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/engine/classes/class_condRedirect.php';
