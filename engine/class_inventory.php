@@ -45,10 +45,6 @@ class inventory{
 	 * @var $bloguri - the uri that returns the requested pages
 	 */
 	private $bloguri;
-	/**
-	 * @var $containedFiles - the files already contained in the inventory
-	 */
-	private $containedFiles;
 
 	/**
 	 * Constructs an instance of the class
@@ -62,7 +58,6 @@ class inventory{
 		$jsonData = json_decode( file_get_contents($this->inventoryFile, True) );
 
 		$this->inventoryData = $jsonData->inventory;
-		$this->containedFiles = $jsonData->files;
 
 	}
 
@@ -131,28 +126,31 @@ class inventory{
 
 	public function update(){
 
-		$files = $this->getFileList();
+		if ( !$this->current() ){
 
-		$inventoryItems = $this->inventoryData;
+			$files = $this->getFileList();
 
-		$added = array_diff_key($inventoryItems, $filesInArray);
-		$removed = array_diff_key($filesInArray, $inventoryItems);
+			$inventoryItems = $this->inventoryData;
 
-		foreach ( $removed as $input ){
-			unset( $inventoryItems[$input] );
+			$added = array_diff_key($inventoryItems, $filesInArray);
+			$removed = array_diff_key($filesInArray, $inventoryItems);
+
+			foreach ( $removed as $input ){
+				unset( $inventoryItems[$input] );
+			}
+
+			foreach ($added as $input) {
+
+					$postData = new article("$this->directory/$input", $this->bloguri );
+					$inventoryItems[$input] = $postData->getMeta();
+				# code...
+			}
+
+			$this->inventoryData = $inventoryItems;
+			$this->current = True;
+
+			$this->write();
 		}
-
-		foreach ($added as $input) {
-
-				$postData = new article("$this->directory/$input", $this->bloguri );
-				$inventoryItems[$input] = $postData->getMeta();
-			# code...
-		}
-
-		$this->inventoryData = $inventoryItems;
-		$this->current = True;
-
-		$this->write();
 
 	}
 
@@ -203,7 +201,6 @@ class inventory{
 
 			$dataMap = array();
 			$dataMap['inventory'] = $this->inventoryData;
-			$dataMap['files'] = $this->containedFiles;
 
 			fwrite( $inventory, json_encode($dataMap) );
 			fclose($inventory);

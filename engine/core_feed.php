@@ -58,13 +58,26 @@ function generateFeed( $bloguri, $feedTitle, $feedCatchline, $forceRegen, $postD
 	}
 
 	else{
+
 		$inventory->update();
 
-		for ( $i = 0; $i < count($posts); $i++){
-			if ( !$atom->inFeed( $posts[$i] ) ){
-				$newitem = new article( "$postDirectory/$posts[$i]", $bloguri);
-				$atom->new_item($newitem);
-			}
+		$feedItems = $atom->feedItems();
+
+		$newestItems = array_slice($posts, 0, 200);
+
+
+		$added = array_diff_key($newestItems, $feedItems);
+		$removed = array_diff_key($feedItems, $newestItems);
+
+		
+		//foreach ( $removed as $input ){
+		//	unset( $inventoryItems[$input] );
+		//}
+
+		foreach ($added as $input) {
+
+			$postData = new article("$postDirectory/$input", $this->bloguri );
+			$atom->new_item($newitem);
 		}
 
 		$atom->save();
