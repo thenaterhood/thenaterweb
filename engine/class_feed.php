@@ -10,6 +10,7 @@
 include_once 'class_dataMonger.php';
 include_once 'class_article.php';
 include_once 'class_mappedArticle.php';
+include_once 'class_stdClassArticle.php';
 include_once 'class_lock.php';
 
 /**
@@ -53,7 +54,7 @@ class feed extends dataMonger{
 
 	private function retrieve(){
 
-		$rawJson = json_decode( file_get_contents("$this->cacheFile.json"), True );
+		$rawJson = json_decode( file_get_contents("$this->cacheFile.json", True) );
 
 		$feedData = $rawJson->feedData;
 		$this->containedItems = $rawJson->items;
@@ -66,7 +67,7 @@ class feed extends dataMonger{
 
 		foreach ($feedData['items'] as $item) {
 			
-			$this->items[] = new mappedArticle( $item );
+			$this->items[] = new stdClassArticle( $item );
 
 		}
 
