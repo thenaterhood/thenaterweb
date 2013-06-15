@@ -14,7 +14,7 @@
  * Include classes and functions from core_web
  */
  include 'core_web.php';
- include 'class_urlset.php';
+ include '../classes/class_urlset.php';
 
 /**
  * Generates a sitemap given a list of local and web paths

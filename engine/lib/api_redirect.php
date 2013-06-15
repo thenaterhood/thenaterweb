@@ -11,7 +11,7 @@
  * Includes the necessary facilities
  */
 include_once 'core_web.php';
-include_once 'class_redirect.php';
+include_once '../classes/class_redirect.php';
 
 $session = new session( array( "from", "to" ) );
 $redirect = new redirect( $session->from, $session->to );
