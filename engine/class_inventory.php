@@ -131,26 +131,25 @@ class inventory{
 
 	public function update(){
 
-		$avoid = getConfigOption('hidden_files');
-
 		$files = $this->getFileList();
 
 		$inventoryItems = $this->inventoryData;
-		$filesInArray = $this->containedFiles;
 
-		foreach ($files as $input) {
+		$added = array_diff_key($inventoryItems, $filesInArray);
+		$removed = array_diff_key($filesInArray, $inventoryItems);
 
-			if ( !in_array( $input, $avoid) && !in_array($input, $filesInArray) ){
+		foreach ( $removed as $input ){
+			unset( $inventoryItems[$input] );
+		}
+
+		foreach ($added as $input) {
 
 				$postData = new article("$this->directory/$input", $this->bloguri );
-				$inventoryItems[] = $postData->getMeta();
-				$filesInArray[] = $input;
-			}
+				$inventoryItems[$input] = $postData->getMeta();
 			# code...
 		}
 
 		$this->inventoryData = $inventoryItems;
-		$this->containedFiles = $filesInArray;
 		$this->current = True;
 
 		$this->write();
@@ -168,20 +167,17 @@ class inventory{
 		$files = $this->getFileList();
 
 		$inventoryItems = array();
-		$filesInArray = array();
 	
 		foreach( $files as $input ){
 
-			if ( ! in_array($input, $avoid) && ! in_array($input, $filesInArray) ){ 
+			if ( ! in_array($input, $avoid) && ! array_key_exists($input, $inventoryItems) ){ 
 		
 				$postData = new article("$this->directory/$input", $this->bloguri );
-				$inventoryItems[] = $postData->getMeta();
-				$filesInArray[] = $input;
+				$inventoryItems[$input] = $postData->getMeta();
 			}
 		}
 	
 		$this->inventoryData = $inventoryItems;
-		$this->containedFiles = $filesInArray;
 
 		$this->current = True;
 
@@ -230,15 +226,15 @@ class inventory{
 
 		$matching = array();
 
-		for ( $i = 0; $i < count( $this->inventoryData ); ++$i ){
+		foreach ($this->inventoryData as $current) {
 
-			$current = $this->inventoryData[$i];
 			if ( ! is_array( $current->$field ) ){
 				$currentData = explode( ', ', $current->$field );
 			}
 			else{
 				$currentData = $current->$field;
 			}
+
 			if ( in_array($value, $currentData) ){
 				$matching[] = $current;
 			}
@@ -258,9 +254,8 @@ class inventory{
 
 		$fieldContents = array();
 
-		for( $i = 0; $i < count( $this->inventoryData ); ++$i ){
+		foreach ($this->inventoryData as $current ) {
 
-			$current = $this->inventoryData[$i];
 			if ( ! is_array( $current->$field ) ){
 				$currentField = explode( ', ', $current->$field );
 			}
