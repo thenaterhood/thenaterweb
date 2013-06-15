@@ -56,16 +56,16 @@ class feed extends dataMonger{
 
 		$rawJson = json_decode( file_get_contents("$this->cacheFile.json", True) );
 
-		$feedData = $rawJson->feedData;
+		$feedData = $rawJson->feed;
 		$this->containedItems = $rawJson->items;
 
-		$this->container['title'] = $feedData['title'];
-		$this->container['link'] = $feedData['link'];
-		$this->container['description'] = $feedData['description'];
-		$this->container['feedstamp'] = $feedData['feedstamp'];
-		$this->container['author'] = $feedData['author'];
+		$this->container['title'] = $feedData->title;
+		$this->container['link'] = $feedData->link;
+		$this->container['description'] = $feedData->description;
+		$this->container['feedstamp'] = $feedData->feedstamp;
+		$this->container['author'] = $feedData->author;
 
-		foreach ($feedData['items'] as $item) {
+		foreach ($feedData->items as $item) {
 			
 			$this->items[] = new stdClassArticle( $item );
 
