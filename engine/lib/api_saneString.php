@@ -9,8 +9,8 @@
 /**
  * Includes the necessary facilities
  */
-include $_SERVER['DOCUMENT_ROOT'].'/engine/lib/core_web.php';
-include $_SERVER['DOCUMENT_ROOT'].'/engine/lib/core_json.php';
+include GNAT_ROOT.'/engine/lib/core_web.php';
+include GNAT_ROOT.'/engine/lib/core_json.php';
 
 
 $requestedVars = array();

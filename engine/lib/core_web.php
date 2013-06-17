@@ -14,10 +14,10 @@
 /**
  * Include the config file
  */
-include $_SERVER['DOCUMENT_ROOT'].'/engine/config/class_config.php';
-include $_SERVER['DOCUMENT_ROOT'].'/engine/classes/class_varGetter.php';
-include $_SERVER['DOCUMENT_ROOT'].'/engine/classes/class_session.php';
-include $_SERVER['DOCUMENT_ROOT'].'/engine/classes/class_lock.php';
+include GNAT_ROOT.'/engine/config/class_config.php';
+include GNAT_ROOT.'/engine/classes/class_varGetter.php';
+include GNAT_ROOT.'/engine/classes/class_session.php';
+include GNAT_ROOT.'/engine/classes/class_lock.php';
 
 /**
 * Checks to see if the preferred file exists, and if it does
