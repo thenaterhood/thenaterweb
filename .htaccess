@@ -2,6 +2,10 @@
 AddType text/plain sh
 AddType text/plain py
 
+# Prepend a config file for paths. This needs to be configured
+# to point to the right location.
+php_value auto_prepend_file "/var/www/engine/config/prepend.php"
+
 Options -indexes
 
 # SEO friendly pages, if rewriting available (turn on friendly urls in

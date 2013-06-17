@@ -10,8 +10,8 @@
 /**
  * Includes the necessary facilities
  */
-include_once $_SERVER['DOCUMENT_ROOT'].'/engine/lib/core_web.php';
-include_once $_SERVER['DOCUMENT_ROOT'].'/engine/classes/class_redirect.php';
+include_once GNAT_ROOT.'/engine/lib/core_web.php';
+include_once GNAT_ROOT.'/engine/classes/class_redirect.php';
 
 $session = new session( array( "from", "to" ) );
 $redirect = new redirect( $session->from, $session->to );
