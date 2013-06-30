@@ -55,9 +55,9 @@ class inventory{
 		$this->directory = $directory;
 		$this->inventoryFile = getConfigOption('dynamic_directory').'/'.str_replace('/', '_', $directory).'.inventory.json';
 
-		$jsonData = json_decode( file_get_contents($this->inventoryFile, True) );
+		$jsonData = json_decode( file_get_contents($this->inventoryFile, True), True );
 
-		$this->inventoryData = $jsonData->inventory;
+		$this->inventoryData = $jsonData;
 
 	}
 
@@ -132,8 +132,8 @@ class inventory{
 
 			$inventoryItems = $this->inventoryData;
 
-			$added = array_diff_key($inventoryItems, $filesInArray);
-			$removed = array_diff_key($filesInArray, $inventoryItems);
+			$added = array_diff_key($inventoryItems, $files);
+			$removed = array_diff_key($files, $inventoryItems);
 
 			foreach ( $removed as $input ){
 				unset( $inventoryItems[$input] );
@@ -142,7 +142,7 @@ class inventory{
 			foreach ($added as $input) {
 
 					$postData = new article("$this->directory/$input", $this->bloguri );
-					$inventoryItems[$input] = $postData->getMeta();
+					$inventoryItems["$input"] = $postData->getMeta();
 				# code...
 			}
 
