@@ -1,6 +1,6 @@
 <?php 
-include 'engine/core_web.php';
-include 'engine/core_redirect.php';
+include GNAT_ROOT.'/lib/core_web.php';
+include GNAT_ROOT.'/lib/core_redirect.php';
 
 $session = new session( array('name', 'track', 'konami', 'id', 'type') );
 $config = new config();

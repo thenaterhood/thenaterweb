@@ -10,7 +10,7 @@
  * Include the extended redirect class
  */
 
-include_once 'class_redirect.php';
+include_once GNAT_ROOT.'/classes/class_redirect.php';
 
 /**
  * Manages conditionally redirecting pages based

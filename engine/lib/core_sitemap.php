@@ -13,8 +13,8 @@
 /**
  * Include classes and functions from core_web
  */
- include 'core_web.php';
- include 'class_urlset.php';
+ include GNAT_ROOT.'/lib/core_web.php';
+ include GNAT_ROOT.'/classes/class_urlset.php';
 
 /**
  * Generates a sitemap given a list of local and web paths

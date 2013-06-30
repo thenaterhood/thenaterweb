@@ -12,9 +12,9 @@
 /**
  * Includes the core_web functions
  */
-include_once 'core_web.php';
-include_once 'class_article.php';
-include_once 'class_inventory.php';
+include_once GNAT_ROOT.'/lib/core_web.php';
+include_once GNAT_ROOT.'/classes/class_article.php';
+include_once GNAT_ROOT.'/classes/class_inventory.php';
 
 /**
 * Returns a random line of a given file.

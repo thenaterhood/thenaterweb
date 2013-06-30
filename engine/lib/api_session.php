@@ -8,8 +8,8 @@
 /**
  * Includes the necessary facilities
  */
-include 'core_web.php';
-include 'core_json.php';
+include GNAT_ROOT.'/lib/core_web.php';
+include GNAT_ROOT.'/lib/core_json.php';
 
 
 $requestedVars = array();

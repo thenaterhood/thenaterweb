@@ -1,5 +1,5 @@
 <?php
-include 'engine/core_sitemap.php';
+include 'engine/lib/core_sitemap.php';
 
 $session = new session( array('regen') );
 $config = new config();

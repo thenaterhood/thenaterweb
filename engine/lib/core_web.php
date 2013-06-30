@@ -14,10 +14,10 @@
 /**
  * Include the config file
  */
-include 'class_config.php';
-include 'class_varGetter.php';
-include 'class_session.php';
-include 'class_lock.php';
+include GNAT_ROOT.'/config/class_config.php';
+include GNAT_ROOT.'/classes/class_varGetter.php';
+include GNAT_ROOT.'/classes/class_session.php';
+include GNAT_ROOT.'/classes/class_lock.php';
 
 /**
 * Checks to see if the preferred file exists, and if it does

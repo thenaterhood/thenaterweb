@@ -11,7 +11,7 @@
 /**
  * Includes the inherited dataMonger class
  */
-include_once 'class_dataMonger.php';
+include_once GNAT_ROOT.'/classes/class_dataMonger.php';
 /**
 * Contains everything to do with retrieving and outputting
 * posts in multiple forms.  Is capable of retrieving posts stored
@@ -23,6 +23,8 @@ include_once 'class_dataMonger.php';
 * an atom feed.
 */
 class article extends dataMonger{
+
+	private $blogurl;
 	
 	/**
 	 * Reads and parses a post file and creates an instance
@@ -39,7 +41,7 @@ class article extends dataMonger{
 		 * This also safely handles any case where the data in a post
 		 * doesn't contain all of the expected fields in a typical way.
 		 */
-		
+		$this->blogurl = $bloguri;
 		$this->container['title'] = "Oops! Post Not Found!";
 		$this->container['date'] = "";
 		$this->container['tags'] = "";
@@ -52,18 +54,22 @@ class article extends dataMonger{
 			
 			// Directly read data into the class
 			$this->container = json_decode($jsoncontents, True);
+
+			// Parse the atom datestamp into english
+			$this->container['date'] = date( "F j, Y, g:i a (T)", strtotime($this->container['datestamp']) );
 			
 			// Reformat and add data that the class relies on
 			
 			// Implode the array of lines for the content into a string
-			if ( is_array( $this->container['content'] ) )
+			if ( array_key_exists( 'content', $this->container ) && is_array( $this->container['content'] ) )
 				$this->container['content'] = implode( $this->container['content'] );
 
 			// Add the web url for the post
-			if ( is_array( $this->container['tags'] ) )
+			if ( array_key_exists( 'tags', $this->container ) && is_array( $this->container['tags'] ) )
 				$this->container['tags'] = implode( ', ', $this->container['tags'] );
 
 			$this->container['link'] = getConfigOption('site_domain').'/'.$bloguri.'/index.php?id=post&node='.basename($nodefile, '.json');
+			$this->container['nodeid'] = basename($nodefile, '.json');
 			
 		}
 		/*
@@ -110,6 +116,10 @@ class article extends dataMonger{
 		
 		return $this->$type();
 	}
+
+	private function get( $field ){
+
+	}
 	
 	/**
 	* Produces the coded output of the item that can be 
@@ -121,11 +131,11 @@ class article extends dataMonger{
 		# In order to make the feed validate, we pull the http out of the id and append it
 		# statically, then urlencode the rest of the url. Otherwise, the feed does not 
 		# validate.
-		$r .= "<id>http://" . urlencode( substr($this->container['link'], 7) ) . "</id>";
-		$r .= '<link href="'. urlencode( $this->container['link'] ) .'" />';
-		$r .= '<updated>'.$this->container['datestamp'].'</updated>';
-		$r .= "<title>" . $this->container['title'] . "</title>";
-		$r .= "<content type='html'>" . htmlspecialchars( $this->container['content'], ENT_QUOTES ) . "</content>";
+		$r .= "<id>http://" . urlencode( substr($this->link, 7) ) . "</id>";
+		$r .= '<link href="http://'. htmlspecialchars( substr($this->container['link'], 7) ) .'" />';
+		$r .= '<updated>'.$this->datestamp.'</updated>';
+		$r .= "<title>" . $this->title . "</title>";
+		$r .= "<content type='html'>" . htmlspecialchars( $this->content, ENT_QUOTES ) . "</content>";
 		$r .= "</entry>";
 		return $r;
 	}
@@ -137,10 +147,10 @@ class article extends dataMonger{
 	private function rss(){
 		
 		$r = "<item>";
-		$r .= "<title>" . $this->container['title'] ."</title>";
-		$r .= "<link>" . $this->container['link'] . "</link>";
+		$r .= "<title>" . $this->title ."</title>";
+		$r .= "<link>" . $this->link . "</link>";
 		# Produces a "description" by taking the first 100 characters of the content
-		$r .= "<description>" . substr( htmlspecialchars( $this->container['content'], ENT_QUOTES ), 0, 100 ) . "...</description>";
+		$r .= "<description>" . substr( htmlspecialchars( $this->content, ENT_QUOTES ), 0, 100 ) . "...</description>";
 		$r .= "</item>";
 		
 		return $r;
@@ -153,11 +163,11 @@ class article extends dataMonger{
 	*/
 	private function html() {
 		
-		$r = '<h3 class="title"><a href="'.$this->container['link'].'">'.$this->container['title'].'</a></h3>'."\n";
-		$r .= '<h4 class="date">'.$this->container['date'].'</h4>'."\n";
-		$r .= $this->container['content'];
-		if ( $this->container['datestamp'] != ""){
-			$r .= "<h5 class='tags'>Tags: ".$this->container['tags']."</h5>\n";
+		$r = '<h3 class="title"><a href="'.$this->link.'">'.$this->title.'</a></h3>'."\n";
+		$r .= '<h4 class="date">'.$this->date.'</h4>'."\n";
+		$r .= $this->content;
+		if ( $this->datestamp != ""){
+			$r .= "<h5 class='tags'>Tags: ".$this->tags."</h5>\n";
 		}
 		return $r;
 	}
@@ -170,11 +180,11 @@ class article extends dataMonger{
 	public function getMeta(){
 
 		$meta = array();
-		$meta['tags'] = $this->container['tags'];
-		$meta['title'] = $this->container['title'];
-		$meta['link'] = $this->container['link'];
-		$meta['datestamp'] = $this->container['datestamp'];
-		$meta['author'] = $this->container['author'];
+		$meta['tags'] = $this->tags;
+		$meta['title'] = $this->title;
+		$meta['link'] = $this->link;
+		$meta['datestamp'] = $this->datestamp;
+		$meta['author'] = $this->author;
 
 		return $meta;
 
@@ -187,7 +197,7 @@ class article extends dataMonger{
 	 */
 	public function list_item_output(){
 
-		 $r = '<a href="'. $this->container['link'] .'">' . $this->container['title'] . '</a><i> - '. $this->container['tags'] .'</i>';
+		 $r = '<a href="'. $this->link .'">' . $this->title . '</a><i> - '. $this->tags .'</i>';
 		 return $r;
 	 }
  }
