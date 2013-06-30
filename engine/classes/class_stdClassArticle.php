@@ -1,6 +1,6 @@
 <?php
 
-include_once $_SERVER['DOCUMENT_ROOT'].'/engine/classes/class_article.php';
+include_once GNAT_ROOT.'/classes/class_article.php';
 
 class stdClassArticle extends article{
 	

@@ -9,7 +9,7 @@
 /**
  * Includes the inherited class
  */
-include_once $_SERVER['DOCUMENT_ROOT'].'/engine/classes/class_dataMonger.php';
+include_once GNAT_ROOT.'/classes/class_dataMonger.php';
 
 /**
  * Represents a url object to store a sitemap url block
