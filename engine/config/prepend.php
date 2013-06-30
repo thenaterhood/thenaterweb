@@ -6,6 +6,6 @@
  * the Gnat web engine.
  */
 
- define("GNAT_ROOT", "/var/www");
+ define("GNAT_ROOT", "/var/www/engine");
 
  ?>

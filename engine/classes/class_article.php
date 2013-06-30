@@ -11,7 +11,7 @@
 /**
  * Includes the inherited dataMonger class
  */
-include_once $_SERVER['DOCUMENT_ROOT'].'/engine/classes/class_dataMonger.php';
+include_once GNAT_ROOT.'/classes/class_dataMonger.php';
 /**
 * Contains everything to do with retrieving and outputting
 * posts in multiple forms.  Is capable of retrieving posts stored

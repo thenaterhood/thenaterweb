@@ -7,11 +7,11 @@
 /**
  * Include the inherited dataMonger class
  */
-include_once $_SERVER['DOCUMENT_ROOT'].'/engine/classes/class_dataMonger.php';
-include_once $_SERVER['DOCUMENT_ROOT'].'/engine/classes/class_article.php';
-include_once $_SERVER['DOCUMENT_ROOT'].'/engine/classes/class_mappedArticle.php';
-include_once $_SERVER['DOCUMENT_ROOT'].'/engine/classes/class_stdClassArticle.php';
-include_once $_SERVER['DOCUMENT_ROOT'].'/engine/classes/class_lock.php';
+include_once GNAT_ROOT.'/classes/class_dataMonger.php';
+include_once GNAT_ROOT.'/classes/class_article.php';
+include_once GNAT_ROOT.'/classes/class_mappedArticle.php';
+include_once GNAT_ROOT.'/classes/class_stdClassArticle.php';
+include_once GNAT_ROOT.'/classes/class_lock.php';
 
 /**
  * Defines a data object to contain an atom feed as items

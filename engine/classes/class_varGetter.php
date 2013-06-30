@@ -8,7 +8,7 @@
 /**
  * Include the sanitation class
  */
-include_once $_SERVER['DOCUMENT_ROOT'].'/engine/classes/class_sanitation.php';
+include_once GNAT_ROOT.'/classes/class_sanitation.php';
 
 /**
  * Provides an interface for retrieving variables using a specific
