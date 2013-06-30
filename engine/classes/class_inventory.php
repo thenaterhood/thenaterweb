@@ -9,8 +9,8 @@
  * Includes the necessary facilities for managing
  * the inventory
  */
-include_once 'core_web.php';
-include_once 'class_article.php';
+include_once GNAT_ROOT.'/lib/core_web.php';
+include_once GNAT_ROOT.'/classes/class_article.php';
 
 /**
  * Provides a database-like means of accessing an inventory
@@ -55,7 +55,9 @@ class inventory{
 		$this->directory = $directory;
 		$this->inventoryFile = getConfigOption('dynamic_directory').'/'.str_replace('/', '_', $directory).'.inventory.json';
 
-		$this->inventoryData = json_decode( file_get_contents($this->inventoryFile, True) );
+		$jsonData = json_decode( file_get_contents($this->inventoryFile, True) );
+
+		$this->inventoryData = $jsonData->inventory;
 
 	}
 
@@ -122,6 +124,36 @@ class inventory{
 
 	}
 
+	public function update(){
+
+		if ( !$this->current() ){
+
+			$files = $this->getFileList();
+
+			$inventoryItems = $this->inventoryData;
+
+			$added = array_diff_key($inventoryItems, $filesInArray);
+			$removed = array_diff_key($filesInArray, $inventoryItems);
+
+			foreach ( $removed as $input ){
+				unset( $inventoryItems[$input] );
+			}
+
+			foreach ($added as $input) {
+
+					$postData = new article("$this->directory/$input", $this->bloguri );
+					$inventoryItems[$input] = $postData->getMeta();
+				# code...
+			}
+
+			$this->inventoryData = $inventoryItems;
+			$this->current = True;
+
+			$this->write();
+		}
+
+	}
+
 	/**
 	 * Regenerates the blog inventory file
 	 */
@@ -133,20 +165,28 @@ class inventory{
 		$files = $this->getFileList();
 
 		$inventoryItems = array();
-		$filesInArray = array();
 	
 		foreach( $files as $input ){
 
-			if ( ! in_array($input, $avoid) && ! in_array($input, $filesInArray) ){ 
+			if ( ! in_array($input, $avoid) && ! array_key_exists($input, $inventoryItems) ){ 
 		
 				$postData = new article("$this->directory/$input", $this->bloguri );
-				$inventoryItems[] = $postData->getMeta();
-				$filesInArray[] = $input;
+				$inventoryItems[$input] = $postData->getMeta();
 			}
 		}
 	
 		$this->inventoryData = $inventoryItems;
 
+		$this->current = True;
+
+		$this->write();
+	}
+
+	/**
+	 * Writes the inventory data out to the file
+	 * @since 06/11/2013
+	 */
+	private function write(){
 		// Create an instance of a lock
 		$lock = new lock( $this->inventoryFile );
 
@@ -158,14 +198,16 @@ class inventory{
 			$lock->lock();
 
 			$inventory = fopen( $this->inventoryFile, 'w');
-			fwrite( $inventory, json_encode($inventoryItems) );
+
+			$dataMap = array();
+			$dataMap['inventory'] = $this->inventoryData;
+
+			fwrite( $inventory, json_encode($dataMap) );
 			fclose($inventory);
 
 			$lock->unlock();
 
 		}
-
-		$this->current = True;
 	}
 
 	/**
@@ -181,15 +223,15 @@ class inventory{
 
 		$matching = array();
 
-		for ( $i = 0; $i < count( $this->inventoryData ); ++$i ){
+		foreach ($this->inventoryData as $current) {
 
-			$current = $this->inventoryData[$i];
 			if ( ! is_array( $current->$field ) ){
 				$currentData = explode( ', ', $current->$field );
 			}
 			else{
 				$currentData = $current->$field;
 			}
+
 			if ( in_array($value, $currentData) ){
 				$matching[] = $current;
 			}
@@ -209,9 +251,8 @@ class inventory{
 
 		$fieldContents = array();
 
-		for( $i = 0; $i < count( $this->inventoryData ); ++$i ){
+		foreach ($this->inventoryData as $current ) {
 
-			$current = $this->inventoryData[$i];
 			if ( ! is_array( $current->$field ) ){
 				$currentField = explode( ', ', $current->$field );
 			}

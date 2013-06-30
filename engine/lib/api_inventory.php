@@ -8,9 +8,9 @@
 /**
  * Includes the necessary facilities
  */
-include_once 'core_web.php';
-include_once 'core_json.php';
-include_once 'class_inventory.php';
+include_once GNAT_ROOT.'/lib/core_web.php';
+include_once GNAT_ROOT.'/lib/core_json.php';
+include_once GNAT_ROOT.'/classes/class_inventory.php';
 
 // This allows for a place to be set, although it's messy.
 // This api is basically just for testing the inventory functionality

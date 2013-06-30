@@ -1,7 +1,12 @@
-<h1>Create New Blog</h1>
 <?php
+/**
+ * Creates a new blog on the site by copying over
+ * the template and redirecting to set up the config
+ * @author Nate Levesque <public@thenaterhood.com>
+ */
+if ( isset( $_POST['blogid'] ) ){
 
-if ( $_POST['blogid'] ){
+	include GNAT_ROOT.'/classes/class_redirect.php';
 
 	$localpath = '../../'.$_POST['blogid'];
 
@@ -12,6 +17,7 @@ if ( $_POST['blogid'] ){
 
 	if ( is_writable( $localpath.'/writetest.txt') ){
 
+		unlink( $localpath.'/writetest.txt' );
 		$config = file_get_contents('templates/newblog/class_blogdef.php');
 		$lines = count( explode( "\n", $config) )+4;
 
@@ -28,13 +34,8 @@ if ( $_POST['blogid'] ){
 		copy( 'templates/newblog/feed.php', $localpath.'/feed.php' );
 		copy( 'templates/newblog/index.php', $localpath.'/index.php' );
 
-		print '<form action="index.php?id=saveconf" method="post">
-			<input type="hidden" name="rcfile" value="../../'.$_POST['blogid'].'/class_blogdef.php"/>
-			<br />
-			<textarea name="content" rows="'.$lines.'" cols="100" >'.$config.'</textarea>
-			<br />
-			<input type="submit" value="Save and Apply" />
-			</form>';
+		print '<p><a href="index.php?id=editblog&blogid='.$_POST['blogid'].'">Click to continue to configure new blog (required)</a></p>';
+
 	}
 	else{
 		print '<p>Gnat does not have write access to the required locations to create a new blog.</p>';
@@ -42,6 +43,8 @@ if ( $_POST['blogid'] ){
 
 }
 else{
+
+	print '<h1>Create New Blog</h1>';
 
 	print '<form name="create" action="index.php?id=newblog" method="post">
 	Please enter a blog name to edit: <input type="text" name="blogid" />

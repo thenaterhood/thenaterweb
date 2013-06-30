@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * Saves an updated configuration file
+ * @author Nate Levesque <public@thenaterhood.com>
+ * @since 06/04/2013
+ */
 $updatedConf = $_POST['content'];
 $confFile = $_POST['rcfile'];
 
