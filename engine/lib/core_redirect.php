@@ -14,5 +14,5 @@
 /**
  * Includes both redirect classes, once
  */
-include_once GNAT_ROOT.'/engine/classes/class_redirect.php';
-include_once GNAT_ROOT.'/engine/classes/class_condRedirect.php';
+include_once GNAT_ROOT.'/classes/class_redirect.php';
+include_once GNAT_ROOT.'/classes/class_condRedirect.php';
