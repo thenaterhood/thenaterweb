@@ -56,7 +56,7 @@ class article extends dataMonger{
 			$this->container = json_decode($jsoncontents, True);
 
 			// Parse the atom datestamp into english
-			$this->container['date'] = date( "F j, Y, g:i a", strtotime($this->container['datestamp']) );
+			$this->container['date'] = date( "F j, Y, g:i a (T)", strtotime($this->container['datestamp']) );
 			
 			// Reformat and add data that the class relies on
 			
