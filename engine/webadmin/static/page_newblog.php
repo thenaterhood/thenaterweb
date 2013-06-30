@@ -6,7 +6,7 @@
  */
 if ( isset( $_POST['blogid'] ) ){
 
-	include '../classes/class_redirect.php';
+	include GNAT_ROOT.'/classes/class_redirect.php';
 
 	$localpath = '../../'.$_POST['blogid'];
 
@@ -34,8 +34,7 @@ if ( isset( $_POST['blogid'] ) ){
 		copy( 'templates/newblog/feed.php', $localpath.'/feed.php' );
 		copy( 'templates/newblog/index.php', $localpath.'/index.php' );
 
-		$redirect = new redirect( "newblog", "index.php?id=editblog&blogid=".$_POST['blogid'] );
-		$redirect->apply( 302 );
+		print '<p><a href="index.php?id=editblog&blogid='.$_POST['blogid'].'">Click to continue to configure new blog (required)</a></p>';
 
 	}
 	else{

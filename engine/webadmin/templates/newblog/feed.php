@@ -1,6 +1,6 @@
 <?php
 
-include '../engine/lib/core_feed.php';
+include GNAT_ROOT.'/lib/core_feed.php';
 include 'class_blogdef.php';
 
 $session = new session( array('regen') );

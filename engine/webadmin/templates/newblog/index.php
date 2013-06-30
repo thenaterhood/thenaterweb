@@ -1,5 +1,5 @@
 <?php 
-include '../engine/lib/core_blog.php';
+include GNAT_ROOT.'/lib/core_blog.php';
 include 'class_blogdef.php';
 
 
