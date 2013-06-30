@@ -6,11 +6,9 @@
 echo '<br />'; 
 echo '<ul>';
 $inventory = new inventory( $blogdef->post_directory );
-$titles = $inventory->selectField( 'title' );
+$titles = $inventory->selectAll();
 foreach ($titles as $item) {
-	$select = $inventory->select( 'title', $item );
-	$title = $select[0];
-	print '<li><a href="'.$title['link'].'">'.$title['title'].'</a>';
+	print '<li><a href="'.$item['link'].'">'.$item['title'].'</a>';
 	# code...
 }
 echo '</ul>';
