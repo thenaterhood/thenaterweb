@@ -57,7 +57,7 @@ class feed extends dataMonger{
 		$rawJson = json_decode( file_get_contents("$this->cacheFile.json", True) );
 
 		$feedData = $rawJson->feed;
-		$this->containedItems = $rawJson->items;
+		$this->containedItems = $rawJson->contained;
 
 		$this->container['title'] = $feedData->title;
 		$this->container['link'] = $feedData->link;
@@ -93,7 +93,7 @@ class feed extends dataMonger{
 			$feedData['items'] = $saveItems;
 
 			$dataMap['feed'] = $feedData;
-			$dataMap['items'] = $this->containedItems;
+			$dataMap['contained'] = $this->containedItems;
 
 			$file = fopen("$this->cacheFile.json", 'w');
 			fwrite($file, json_encode($dataMap) );
