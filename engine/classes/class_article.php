@@ -54,6 +54,9 @@ class article extends dataMonger{
 			
 			// Directly read data into the class
 			$this->container = json_decode($jsoncontents, True);
+
+			// Parse the atom datestamp into english
+			$this->container['date'] = date( "F j, Y, g:i a", strtotime($this->container['datestamp']) );
 			
 			// Reformat and add data that the class relies on
 			
