@@ -9,8 +9,17 @@
 $postpath = '../../'.$_POST['blog'].'/entries';
 
 if ( $_POST['file'] == '' ){
-	$postFname = date("Y.m.d").'.json';
-	$nodename = date("Y.m.d");
+	$nodeDate = date("Y.m.d");
+	$nodename = $nodeDate.'.0';
+	$postFname = $nodename.'.json';
+
+	$i = 0;
+	while ( file_exists( $postpath.'/'.$postFname ) ){
+		$i++;
+		$nodename = $nodeDate.'.'.$i;
+		$postFname = $nodename.'.json';
+
+	}
 }
 
 else{
