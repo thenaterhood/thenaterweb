@@ -57,7 +57,7 @@ class inventory{
 
 		$jsonData = json_decode( file_get_contents($this->inventoryFile, True), True );
 
-		$this->inventoryData = $jsonData;
+		$this->inventoryData = $jsonData['inventory'];
 
 	}
 
@@ -202,7 +202,7 @@ class inventory{
 			$dataMap = array();
 			$dataMap['inventory'] = $this->inventoryData;
 
-			fwrite( $inventory, json_encode($dataMap) );
+			fwrite( $inventory, json_encode($dataMap, True) );
 			fclose($inventory);
 
 			$lock->unlock();
@@ -225,11 +225,11 @@ class inventory{
 
 		foreach ($this->inventoryData as $current) {
 
-			if ( ! is_array( $current->$field ) ){
-				$currentData = explode( ', ', $current->$field );
+			if ( ! is_array( $current[$field] ) ){
+				$currentData = explode( ', ', $current[$field] );
 			}
 			else{
-				$currentData = $current->$field;
+				$currentData = $current[$field];
 			}
 
 			if ( in_array($value, $currentData) ){
@@ -253,11 +253,11 @@ class inventory{
 
 		foreach ($this->inventoryData as $current ) {
 
-			if ( ! is_array( $current->$field ) ){
-				$currentField = explode( ', ', $current->$field );
+			if ( ! is_array( $current[$field] ) ){
+				$currentField = explode( ', ', $current[$field] );
 			}
 			else{
-				$currentField = $current->$field;
+				$currentField = $current[$field];
 			}
 
 			foreach ($currentField as $item) {
