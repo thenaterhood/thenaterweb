@@ -77,7 +77,7 @@ function generateFeed( $bloguri, $feedTitle, $feedCatchline, $forceRegen, $postD
 		foreach ($added as $input) {
 
 			$postData = new article("$postDirectory/$input", $bloguri );
-			$atom->new_item($newitem);
+			$atom->new_item( $postData );
 		}
 
 		$atom->save();
