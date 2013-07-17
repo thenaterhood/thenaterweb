@@ -126,27 +126,27 @@ class inventory{
 
 	public function update(){
 
-		if ( !$this->current() ){
+		if ( !$this->current() || True ){
 
 			$files = $this->getFileList();
 
 			$inventoryItems = $this->inventoryData;
 
-			$added = array_diff_key($inventoryItems, $files);
-			$removed = array_diff_key($files, $inventoryItems);
+			$added = array_diff( $files, array_keys($inventoryItems) );
+			$removed = array_diff( array_keys($inventoryItems), $files );
+
 
 			foreach ( $removed as $input ){
 				unset( $inventoryItems[$input] );
 			}
 
 			foreach ($added as $input) {
-
-					$postData = new article("$this->directory/$input", $this->bloguri );
-					$inventoryItems["$input"] = $postData->getMeta();
-				# code...
+				$postData = new article("$this->directory/$input", $this->bloguri );
+				$inventoryItems["$input"] = $postData->getMeta();
 			}
 
-			$this->inventoryData = $inventoryItems;
+			sort( $inventoryItems );
+			$this->inventoryData = array_reverse( $inventoryItems );
 			$this->current = True;
 
 			$this->write();
@@ -158,7 +158,6 @@ class inventory{
 	 * Regenerates the blog inventory file
 	 */
 	public function regen(){
-
 	
 		$avoid = getConfigOption('hidden_files');
 		
