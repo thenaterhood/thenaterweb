@@ -161,7 +161,7 @@ class feed extends dataMonger{
 		if ( count( $this->items) < 200 ){
 
 			array_push($this->items, $article);
-			$this->containedItems[] = $article->nodeid;
+			$this->containedItems[] = $article->get('nodeid');
 			sort( $this->containedItems );
 		}
 		else{
@@ -173,6 +173,22 @@ class feed extends dataMonger{
 			array_push( $this->items, $article);
 
 		}
+	}
+
+	public function insert_item( $article ){
+
+		$this->items[0] = $article;
+		$this->items = array_values($this->items);
+
+		$this->containedItems[] = $article->get('nodeid');
+
+		if ( count( $this->items ) > 200 ){
+
+			unset( $this->items[ count( $this->items) - 1] );
+			unset( $this->containedItems[ count( $this->containedItems) -1 ] );
+
+		}
+
 	}
 	
 	/**
