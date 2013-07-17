@@ -66,8 +66,8 @@ function generateFeed( $bloguri, $feedTitle, $feedCatchline, $forceRegen, $postD
 		$newestItems = array_slice($posts, 0, 200);
 
 
-		$added = array_diff_key($newestItems, $feedItems);
-		$removed = array_diff_key($feedItems, $newestItems);
+		$added = array_diff($newestItems, $feedItems);
+		$removed = array_diff($feedItems, $newestItems);
 
 		
 		//foreach ( $removed as $input ){
@@ -75,9 +75,8 @@ function generateFeed( $bloguri, $feedTitle, $feedCatchline, $forceRegen, $postD
 		//}
 
 		foreach ($added as $input) {
-
 			$postData = new article("$postDirectory/$input", $bloguri );
-			$atom->new_item( $postData );
+			$atom->insert_item( $postData );
 		}
 
 		$atom->save();
