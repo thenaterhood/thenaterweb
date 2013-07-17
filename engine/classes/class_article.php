@@ -43,6 +43,7 @@ class article extends dataMonger{
 		 */
 		$this->blogurl = $bloguri;
 		$this->container['title'] = "Oops! Post Not Found!";
+		$this->container['nodeid'] = $nodefile;
 		$this->container['date'] = "";
 		$this->container['tags'] = "";
 		$this->container['datestamp'] = "";
@@ -117,7 +118,14 @@ class article extends dataMonger{
 		return $this->$type();
 	}
 
-	private function get( $field ){
+	public function get( $field ){
+
+		if ( array_key_exists($field, $this->container) ){
+			return $this->container[$field];
+		}
+		else{
+			return "";
+		}
 
 	}
 	
