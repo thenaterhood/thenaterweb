@@ -48,7 +48,7 @@ else{
     $matching = $inventory->select( 'tags', $tag );
 
     foreach ($matching as $item) {
-        print '<li><a href="'.$item['link'].'">'.$item['title'].'</a></li>';
+        print '<li><a href="'.htmlentities( $item['link'] ).'">'.$item['title'].'</a></li>';
     }
 
 }
