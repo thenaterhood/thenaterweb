@@ -145,7 +145,7 @@ class inventory{
 				$inventoryItems["$input"] = $postData->getMeta();
 			}
 
-			sort( $inventoryItems );
+			ksort( $inventoryItems );
 			$this->inventoryData = array_reverse( $inventoryItems );
 			$this->current = True;
 
