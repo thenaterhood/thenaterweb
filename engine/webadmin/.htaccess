@@ -1,4 +1,4 @@
-AuthUserFile /var/www/engine/webadmin/.htpasswd
+AuthUserFile .htpasswd
 AuthType Basic
 AuthName "Admin"
 Require valid-user
