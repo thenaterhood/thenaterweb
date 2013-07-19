@@ -1,6 +1,12 @@
 <?php 
-		
-	$displaypost = new article( $blogdef->post_directory.'/'.$session->node, $blogdef->id );
+	
+	if ( $session->node == "" ){
+		$displaypost = new article( "", $blogdef->id );
+
+	}
+	else{
+		$displaypost = new article( $blogdef->post_directory.'/'.$session->node, $blogdef->id );
+	}
 		
 	print $displaypost->output( 'html' );
 
@@ -40,6 +46,6 @@
 	
 	}
 	else {
-		print "<p>You're viewing the latest available post without comments.  To comment, visit <a href='".$displaypost->link."'>the post's page</a>.</p>";
+		#print "<p>You're viewing the latest available post without comments.  To comment, visit <a href='".$displaypost->link."'>the post's page</a>.</p>";
 	}
 ?>
