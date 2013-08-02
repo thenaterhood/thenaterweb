@@ -1,3 +1,18 @@
+
+@keyframes logo-from-horz {
+	100% {
+		transform : translateX(0);
+		opacity : 1;
+	}
+}
+
+@keyframes logo-from-vert {
+	100% {
+		transform : translateY(0);
+		opacity : 1;
+	}
+} 
+
 body {
 	font-family: 'Source Sans Pro', sans-serif;
 	color: black;
@@ -5,6 +20,10 @@ body {
 	padding: 0;
 	background: #FFFFFF;
 	font-size: 12px;
+}
+
+img {
+	border: 0px;
 }
 
 #upperbar {
@@ -29,10 +48,10 @@ h1, h2, h3 {
 	color: #000000;
 }
 h1 {
-	font-size: 2.4em;
+	font-size: 2em;
 }
 h2 {
-	font-size: 2em;
+	font-size: 2.4em;
 }
 
 h3 {
@@ -49,6 +68,16 @@ a {
 	/* color: #dd7700; */
 	color: #00bfff;
 }
+
+table.introduction{
+	border: 0px;
+	width: 780px;
+	z-index: 2;
+	text-align: left;
+	vertical-align: text-middle;
+
+}
+
 a:hover {
 	text-decoration: none;
 	color: black;
@@ -92,6 +121,13 @@ a:hover {
 	color: black;
 }
 #logo2 {
+	-webkit-animation: logo-from-horz 1s ease forwards;
+	-o-animation: logo-from-horz 1s ease forwards;
+	animation: logo-from-horz 1s ease forwards;
+	-webkit-transform: translateX(-768px);
+	-ms-transform: translateX(-768px);
+	-o-transform: translateX(-768px);
+	transform: translateX(-768px);
 	margin-top: -25px;
 	padding: 0px 0px 0px 0px;
 	float: right;
@@ -115,6 +151,13 @@ a.nav:hover {
 	font-family: Electrolize;
 }
 #catchline {
+	-webkit-animation: logo-from-horz 1s ease forwards;
+	-o-animation: logo-from-horz 1s ease forwards;
+	animation: logo-from-horz 1s ease forwards;
+	-webkit-transform: translateX(-300px);
+	-ms-transform: translateX(-300px);
+	-o-transform: translateX(-300px);
+	transform: translateX(-300px);
 	font-size: 1.7em;
 	margin: 0;
 	padding: 0px 0px 0px 0px;
@@ -122,6 +165,13 @@ a.nav:hover {
 	text-transform: capitalize;
 }
 #logo h1, #logo p {
+	-webkit-animation: logo-from-horz 1s ease forwards;
+	-o-animation: logo-from-horz 1s ease forwards;
+	animation: logo-from-horz 1s ease forwards;
+	-webkit-transform: translateX(-300px);
+	-ms-transform: translateX(-300px);
+	-o-transform: translateX(-300px);
+	transform: translateX(-300px);
 	margin: 0;
 	padding: 0;
 }
@@ -176,6 +226,13 @@ p.date {
 
 /* Content */
 #content {	
+	-webkit-animation: logo-from-vert 1s ease forwards;
+	-o-animation: logo-from-vert 1s ease forwards;
+	animation: logo-from-vert 1s ease forwards;
+	-webkit-transform: translateY(-30px);
+	-ms-transform: translateY(-30px);
+	-o-transform: translateY(-30px);
+	transform: translateY(-30px);
     float: left;
     margin-left: 25px;
     /* width: 660px; */	

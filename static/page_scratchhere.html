@@ -1,11 +1,26 @@
 <h2 class='greeting'> <?php print randomGreeting($session->name); ?>!</h2>
 <div id="greeting_spacer"></div>
 <div style="height:2px;"></div>
-<p>So, you wanted a scratch and sniff feature.  I was totally going to build one too, but I don't know enough interactive web languages to make that happen.  Maybe, maybe in the future it'll happen.  For now, have a picture of Trex trying to make snow angels (credit: <a href='http://trextrying.tumblr.com'>trextrying.tumblr.com</a>).  Now that you're here, why don't you check out the rest of the site ;) ?  If you want to take a look at the shiny new experimental blog platform I'm building, you'll want to go to <a href='/blog'>www.thenaterhood.com/blog</a>, which is NOT the same as the site link, since the new one is still slightly a secret.</p>
-<p>If you're looking to test the new platform, you can introduce yourself to the site with the name "tester" which will flip the navigation link at the top to point to the new platform rather than blogger.  If you want to do that, <a href="/?id=scratchhere&name=tester">click here</a>.  You can change your name later on the privacy page, link at the very top.</p>
-<p>At this point, the majority of the user side of things is up and running.  Comments will be added via disqus once blogger is redirecting (at which point existing comments are going to get migrated over), search is on the way, as well as some other various small fixes.  Constructive criticism is welcome for anything on it, especially if something doesn't work right, and you can Facebook it to me or email me via the address on the <a href='?id=connect'>Connect page</a>.  All the posts that I intend to migrate have been pulled over from blogger at this point and date back to 2009 when I first started my tech blog.</p>
-<p>On the technical side if you're interested, the entire site is built on roughly 1500 (no exact count right now) lines of code of object-oriented PHP.  For now, I'm keeping my code under wraps (at least until I pull all the thenaterhood.com specific things out), though in the future it may show up on github.</p>
-<p>There are easter eggs around. They're well hidden, but they exist. They may not be the most awesome easter eggs, but hey, it's still fun to stumble on them right?</p>
-<div align='center'>
+<p>So, you wanted a scratch and sniff feature.  I was totally going to build one too, but I don't know enough interactive web languages to make that happen.  Maybe, maybe in the future it'll happen.</p>
+<h1>So, what powers this website?</h1>
+<p>The site is powered by a PHP engine called gnat that is developed entirely in-house. Gnat is written entirely in object-oriented PHP and includes a blog platform, web administration system, and basic website engine. As of the time of writing, Gnat is version v1.10.1 (semantic versioning) and contains over 2852 lines of PHP and 14 classes, spread over about 40 PHP files. It is the result of nearly a year of development, which is still continuing.</p>
+<h1>How did Gnat come about?</h1>
+<p>Gnat grew out of an initial interest in learning PHP and web development as I found my basic HTML knowledge was less than adequate of its own accord for building anything larger than a fairly small website. Initially, it was intended to drive the main part of my site while other sections, such as my blog, were hosted on other dedicated services. I found that Blogger was no longer suiting my needs, and I set out on a separate project to build myself a better blog platform, wondering what I could come up with in 2 hours and with no more than 8 functions. I succeeded, although the platform has become much more complex and featureful since then. The beginnings of Gnat were merged with the new blog platform and The Philosophy of Nate was migrated from Blogger to my own platform.</p>
+<p>Gnat is designed around several principles:</p>
+<ul>
+	<li>Simplicity and minimalism</li>
+	<li>Flexibility</li>
+	<li>Thorough documentation</li>
+	<li>Good performance</li>
+</ul>
+<p>Gnat is designed to, as a PHP engine, be as simple to use and integrate into pages as possible. It contains configuration files, which allows for centralized changes to settings and features that can be applied site-wide quickly, and the configuration files - as well as the PHP internals - are documented thoroughly.</p>
+
+<p>Additionally, in order to keep the platform as simple as possible and allow it to work without a database, it does not use a database. Rather, it relies on json or plaintext files to store blog posts and simple html/php files to store pages, all of which it maintains an index of for searching as efficiently as possible. This makes Gnat best suited for running small to medium sized websites, although the engine is capable of managing fairly large amounts of data, which results in degraded performance for initially generating indexes and feeds. Despite this, the test environment on a very underpowered server is capable of generating an index and feed of over 850 blog posts from scratch in under 30 seconds - a task that would ideally be required only once, as these are updated dynamically and not regenerated. Although Gnat does not use a database, managing indexes and feeds is generally abstracted out into two dedicated classes, so modifying the engine to use a database rather than a file should be fairly simple.</p>
+
+<h1>I'm Interested, Where can I Get It?</h1>
+<p>For now, the source of Gnat isn't freely available until I decide on the best licensing for the code. Right now Gnat powers my personal website (which you're on) and my RIT student page. If you're interested in using Gnat or looking at the source, get in touch with me and we can work something out.</p>
+
+<!--<div align='center'>
 <img src='http://m5.paperblog.com/i/13/133800/t-rex-trying-things-L-dopYO5.jpeg' />
 </div>
+-->
