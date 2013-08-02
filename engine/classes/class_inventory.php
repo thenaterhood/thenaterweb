@@ -81,6 +81,39 @@ class inventory extends directoryIndex{
 	}
 
 	/**
+	 * Returns a histogram of values mapped to 
+	 * their occurances for the selected field
+	 *
+	 * @param $field - the name of the field to access
+	 * @since 7/20/13
+	 */
+	public function getFieldStatistics( $field ){
+
+		$fieldContents = array();
+
+		foreach ($this->indexData as $current ) {
+
+			if ( ! is_array( $current[$field] ) ){
+				$currentField = explode( ', ', $current[$field] );
+			}
+			else{
+				$currentField = $current[$field];
+			}
+
+			foreach ($currentField as $item) {
+				if ( ! array_key_exists( $item, $fieldContents) )
+					$fieldContents[$item] = 1;
+				else
+					$fieldContents[$item] = $fieldContents[$item] + 1;
+			}
+
+		}
+
+		return $fieldContents;
+
+	}
+
+	/**
 	 * Returns an array containing the data from a 
 	 * particular field, with repeats filtered out
 	 *
