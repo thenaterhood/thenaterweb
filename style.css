@@ -1,17 +1,55 @@
 
+@-webkit-keyframes logo-from-horz {
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@-o-keyframes logo-from-horz {
+  100% {
+    -o-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
 @keyframes logo-from-horz {
-	100% {
-		transform : translateX(0);
-		opacity : 1;
-	}
+  100% {
+    -webkit-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -o-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes logo-from-vert {
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@-o-keyframes logo-from-vert {
+  100% {
+    -o-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 @keyframes logo-from-vert {
-	100% {
-		transform : translateY(0);
-		opacity : 1;
-	}
-} 
+  100% {
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 
 body {
 	font-family: 'Source Sans Pro', sans-serif;
@@ -39,7 +77,7 @@ img {
 div.sitelinks {
 	position: relative;
 	height: 30px;
-	text-size: 1em;
+	font-size: 1em;
 	background: #FFFFFF;
 }
 h1, h2, h3 {
@@ -74,7 +112,7 @@ table.introduction{
 	width: 780px;
 	z-index: 2;
 	text-align: left;
-	vertical-align: text-middle;
+	vertical-align: middle;
 
 }
 
