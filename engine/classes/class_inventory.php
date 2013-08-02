@@ -28,51 +28,6 @@ class inventory extends directoryIndex{
 
 
 	public function __construct( $directory, $bloguri=NULL ){
-<<<<<<< HEAD
-		$this->bloguri = $bloguri;
-		$this->directory = $directory;
-		$this->inventoryFile = getConfigOption('dynamic_directory').'/'.str_replace('/', '_', $directory).'.inventory.json';
-
-		$jsonData = json_decode( file_get_contents($this->inventoryFile, True), True );
-
-		$this->inventoryData = $jsonData;
-
-	}
-
-	/**
-	* Creates a list of files in the working directory, sorts
-	* and reverses the list, and returns it.  Intended for working
-	* with blog posts stored as text files with date-coded filenames
-	*/
-	public function getFileList(){
-		$avoid = getConfigOption('hidden_files');
-		$contents = array();
-
-		$handler = opendir($this->directory);
-		$i = 0;
-
-		while ($file = readdir($handler)){
-			// if file isn't this directory or its parent, or itself, add it to the results
-			// We check if it's there already because we're migrating from plaintext to json
-			// so there may be duplicates.
-			if (  !in_array($file, $avoid) and !in_array($file, $contents) and !in_array(substr($file, 0, -5), $contents) ){
-				if ( strpos($file,"json") ){
-					$contents[] = substr($file, 0, -5);
-				}
-			else{
-				$contents[] = $file;
-			}
-				$i++;
-			}
-
-		}
-	
-		sort($contents);
-		$contents = array_reverse($contents);
-	
-		return $contents;
-=======
->>>>>>> master
 
 		parent::__construct( $directory, $bloguri, "inventory" );
 
@@ -81,35 +36,7 @@ class inventory extends directoryIndex{
 
 	public function update(){
 
-<<<<<<< HEAD
-		if ( !$this->current() ){
-
-			$files = $this->getFileList();
-
-			$inventoryItems = $this->inventoryData;
-
-			$added = array_diff_key($inventoryItems, $files);
-			$removed = array_diff_key($files, $inventoryItems);
-
-			foreach ( $removed as $input ){
-				unset( $inventoryItems[$input] );
-			}
-
-			foreach ($added as $input) {
-
-					$postData = new article("$this->directory/$input", $this->bloguri );
-					$inventoryItems["$input"] = $postData->getMeta();
-				# code...
-			}
-
-			$this->inventoryData = $inventoryItems;
-			$this->current = True;
-
-			$this->write();
-		}
-=======
 		parent::update( "getMeta" );
->>>>>>> master
 
 	}
 
