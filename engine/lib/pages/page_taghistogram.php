@@ -9,6 +9,7 @@
  * 	to be called standalone and should be included in another file
  * 	that already has established config and session instances.
  */
+include_once GNAT_ROOT.'/lib/core_histogram.php';
 
 $tag = $session->tag;
 $inventory = new inventory( $blogdef->post_directory );
@@ -22,21 +23,33 @@ if ( $tag ){
     print '<p><strong>Browsing tag "'.$tag.'".  </strong><a href="?id=tags">View all tags.</a></p>'."\n";
 
 }
-echo "<ul>";
 
 if ( !$tag ){
     /*
      * Check if a tag was requested, otherwise list the available
      * tags.
      */
-    $tags = $inventory->selectField( 'tags' );
-    sort($tags);
-    
-    foreach( $tags as $item ){
-        echo '<li><a href="index.php?id=tags&amp;tag='.$item.'">'.$item.'</a></li>';
+    echo "<table>";
+
+    $tags = $inventory->getFieldStatistics( 'tags' );
+    ksort($tags);
+    $histogram = generateHistogramNospace( $tags, "&#9646;" );
+    $letter = "";
+    foreach( $histogram as $item => $graph ){
+        if ( substr($item, 0, 1) != $letter ){
+            $letter = substr($item, 0, 1);
+            print '<tr><td><a id="alph_'.$letter.'"></a><strong>'.$letter.'</strong></td></tr>'."\n";
+        }
+        $clean = str_replace($item, " ", '%20');
+        echo '<tr><td><a href="index.php?id=tags&amp;tag='.$clean.'">'.$item.'</a></td>';
+        echo '<td>'.$graph.'<em> '.$tags[$item].' posts</em></td></tr>'."\n";
     }
+
+    echo "</table>";
+
 }
 else{
+    echo "<ul>";
     /*
      * If a tag was requested, call getByTag to print all posts
      * with the tag.
@@ -44,11 +57,12 @@ else{
     $matching = $inventory->select( 'tags', $tag );
 
     foreach ($matching as $item) {
-        print '<li><a href="'.$item->link.'">'.$item->title.'</a></li>';
+        print '<li><a href="'.htmlentities( $item['link'] ).'">'.$item['title'].'</a></li>';
     }
+
+    echo "</ul>";
 
 }
 
-echo "</ul>";
 
 ?>

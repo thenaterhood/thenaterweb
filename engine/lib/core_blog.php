@@ -45,8 +45,9 @@ function getSuggestions($number, $tag, $post_directory){
 
 		$i = 0;
 		while ($i < $number){
-			$post = $inventory->select( 'title', $pool[array_rand($pool)] );
-			print '<li><a href="'.$post[0]->link.'">'.$post[0]->title.'</a></li>';
+			$posts = $inventory->select( 'title', $pool[array_rand($pool)] );
+			$post = $posts[0];
+			print '<li><a href="'.htmlentities( $post['link'] ).'">'.$post['title'].'</a></li>';
 			$i++;
 		}
 		

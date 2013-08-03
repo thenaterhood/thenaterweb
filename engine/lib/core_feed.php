@@ -29,7 +29,7 @@ function generateFeed( $bloguri, $feedTitle, $feedCatchline, $forceRegen, $postD
 	$inventory = new inventory( $postDirectory, $bloguri );
 	$posts = $inventory->getFileList();
 
-	$atom = new feed( $bloguri );
+	$atom = new feed( $postDirectory, $bloguri );
 
 	if ( ! getConfigOption('auto_feed_regen') && ! $forceRegen && $atom->exists() ){
 		/*
@@ -39,7 +39,7 @@ function generateFeed( $bloguri, $feedTitle, $feedCatchline, $forceRegen, $postD
 		return $atom;
 	}
 
-	else if ( $forceRegen || ! $atom->exists() ){
+	else if ( $forceRegen ){
 		/*
 		* If the inventory doesn't match the existing number of items in
 		* the directory, regenerate the inventory and the feed file
@@ -48,39 +48,12 @@ function generateFeed( $bloguri, $feedTitle, $feedCatchline, $forceRegen, $postD
 		$inventory->regen();
 		$atom->reset( $feedTitle, getConfigOption('site_domain')."/$bloguri", $feedCatchline,  date(DATE_ATOM) );
 
-		for ($i = 0; $i < count($posts); $i++){
-			$newitem = new article( "$postDirectory/$posts[$i]", $bloguri );
-			$atom->new_item($newitem);
-		}
-
-		$atom->save();
-
 	}
 
 	else{
 
 		$inventory->update();
-
-		$feedItems = $atom->feedItems();
-
-		$newestItems = array_slice($posts, 0, 200);
-
-
-		$added = array_diff_key($newestItems, $feedItems);
-		$removed = array_diff_key($feedItems, $newestItems);
-
-		
-		//foreach ( $removed as $input ){
-		//	unset( $inventoryItems[$input] );
-		//}
-
-		foreach ($added as $input) {
-
-			$postData = new article("$postDirectory/$input", $bloguri );
-			$atom->new_item($newitem);
-		}
-
-		$atom->save();
+		$atom->update();
 	}
 
 	return $atom;

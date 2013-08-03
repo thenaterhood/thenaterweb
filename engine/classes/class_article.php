@@ -43,11 +43,12 @@ class article extends dataMonger{
 		 */
 		$this->blogurl = $bloguri;
 		$this->container['title'] = "Oops! Post Not Found!";
+		$this->container['nodeid'] = $nodefile;
 		$this->container['date'] = "";
 		$this->container['tags'] = "";
 		$this->container['datestamp'] = "";
 		$this->container['link'] = '/'.$bloguri;
-		$this->container['content'] = '<p>Sorry, the post you were looking for could not be found.  If you think it should be here, try browsing by title.  Otherwise, <a href="blog/index.php">return to blog home.</a></p>'."\n".'<p>Think you were looking for something else? <a href="'.getConfigOption('site_domain').'">visit site home</a>.</p>';
+		$this->container['content'] = '<p>Sorry, the post you were looking for could not be found.  If you think it should be here, try browsing by title.  Otherwise, <a href="/'.$bloguri.'/index.php">return to blog home.</a></p>'."\n".'<p>Think you were looking for something else? <a href="'.getConfigOption('site_domain').'">visit site home</a>.</p>';
 			
 		if (file_exists("$nodefile.json")){
 			$jsoncontents = file_get_contents("$nodefile.json");
@@ -56,7 +57,7 @@ class article extends dataMonger{
 			$this->container = json_decode($jsoncontents, True);
 
 			// Parse the atom datestamp into english
-			$this->container['date'] = date( "F j, Y, g:i a (T)", strtotime($this->container['datestamp']) );
+			$this->container['date'] = date( "F j, Y, g:i a", strtotime($this->container['datestamp']) );
 			
 			// Reformat and add data that the class relies on
 			
@@ -117,7 +118,14 @@ class article extends dataMonger{
 		return $this->$type();
 	}
 
-	private function get( $field ){
+	public function get( $field ){
+
+		if ( array_key_exists($field, $this->container) ){
+			return $this->container[$field];
+		}
+		else{
+			return "";
+		}
 
 	}
 	
