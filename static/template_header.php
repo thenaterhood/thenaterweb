@@ -1,9 +1,10 @@
 	<div id="siteversion">
 	<!-- <p>view in: <a href="m/index.html">mobile</a> standard</p> -->
-	<?php print "<table border='0' width='780'><tr>";
-				if ($session->track == "n") print "<td valign='middle' width='180px'><p>Your visit is not being tracked. </p></td>" ;
+	<?php print "<table class='introduction'><tr>";
+				if ($session->track == "n") print "<td><p>Your visit is not being tracked. </p></td>" ;
 				if ($session->name == getConfigOption('default_visitor_name') ) include "template_introduction.php";
-				print "<td align='left'><p><a href='/?id=privacy'>(privacy information)</a></p></td></tr></table>";
+				print "<td class='introduction'><p><a href='/?id=privacy'>privacy information</a></p></td>";
+				print "</tr></table>";
 	?>
 	</div>
 	<!-- This is the horizontal bar that runs across the top-ish area -->

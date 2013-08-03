@@ -11,7 +11,7 @@
  */
 
 $tag = $session->tag;
-$inventory = new inventory( $blogdef->post_directory, $blogdef->id );
+$inventory = new inventory( $blogdef->post_directory );
 
 
 if ( $tag ){
@@ -19,7 +19,7 @@ if ( $tag ){
 	 * If a tag was requested, display which tag is being browsed
 	 * with a link back to the main page of tags
 	 */
-    print '<p><strong>Browsing tag "'.$tag.'".  </strong><a href="?id=tags">View all tags.</a></p>'."\n";
+    print '<p><strong>Browsing tag "'.$tag.'".  </strong><a href="?id=taghistogram">View all tags.</a></p>'."\n";
 
 }
 echo "<ul>";
@@ -31,9 +31,14 @@ if ( !$tag ){
      */
     $tags = $inventory->selectField( 'tags' );
     sort($tags);
-    
+    $letter = "";
     foreach( $tags as $item ){
-        echo '<li><a href="index.php?id=tags&amp;tag='.$item.'">'.$item.'</a></li>';
+        if ( substr($item, 0, 1) != $letter ){
+            $letter = substr($item, 0, 1);
+            print '<li><a id="alph_'.$letter.'"></a><strong>'.$letter.'</strong></li>'."\n";
+        }
+        $clean = str_replace($item, " ", '%20');
+        echo '<li><a href="index.php?id=tags&amp;tag='.$clean.'">'.$item.'</a></li>'."\n";
     }
 }
 else{
@@ -44,7 +49,7 @@ else{
     $matching = $inventory->select( 'tags', $tag );
 
     foreach ($matching as $item) {
-        print '<li><a href="'.$item->link.'">'.$item->title.'</a></li>';
+        print '<li><a href="'.htmlentities( $item['link'] ).'">'.$item['title'].'</a></li>';
     }
 
 }

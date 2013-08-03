@@ -8,7 +8,7 @@
 							if ( $session->start == 42 ){
 								print "<p style='font-size:2em;'>42! It's the meaning of life, the universe, and everything!</p><br />\n";
 							}
-							getPosts( 'blog', getConfigOption('post_directory'), $session->start,$session->end);
+							getPosts( $blogdef->id, $blogdef->post_directory, $session->start,$session->end);
 						}
 						?>
 					</div>
@@ -17,7 +17,7 @@
 							<?php
 								if ( $session->id != 'tags' ){
 									print '<br /><h5>Looking for something?</h5>';
-									include 'static/page_tags.html';
+									include GNAT_ROOT.'/lib/pages/page_tags.php';
 								}
 							?>					
 					</div>

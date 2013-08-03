@@ -11,6 +11,7 @@
  */
 include_once GNAT_ROOT.'/lib/core_web.php';
 include_once GNAT_ROOT.'/classes/class_article.php';
+include_once GNAT_ROOT.'/classes/class_directoryIndex.php';
 
 /**
  * Provides a database-like means of accessing an inventory
@@ -23,34 +24,11 @@ include_once GNAT_ROOT.'/classes/class_article.php';
  * @since 5/13/2013
  * @author Nate Levesque <public@thenaterhood.com>
  */
-class inventory{
+class inventory extends directoryIndex{
 
-	/**
-	 * @var $directory - the directory inventory we want
-	 */
-	private $directory;
-	/**
-	 * @var $current - whether the inventory appears to be up to date
-	 */
-	private $current = null;
-	/**
-	 * @var $inventoryFile - the file where the inventory is stored (autogen)
-	 */
-	private $inventoryFile;
-	/**
-	 * @var $inventoryData - the parsed inventory data that the class accesses
-	 */
-	private $inventoryData;
-	/**
-	 * @var $bloguri - the uri that returns the requested pages
-	 */
-	private $bloguri;
 
-	/**
-	 * Constructs an instance of the class
-	 * @param $directory - the directory of which the inventory is of
-	 */
 	public function __construct( $directory, $bloguri=NULL ){
+<<<<<<< HEAD
 		$this->bloguri = $bloguri;
 		$this->directory = $directory;
 		$this->inventoryFile = getConfigOption('dynamic_directory').'/'.str_replace('/', '_', $directory).'.inventory.json';
@@ -93,39 +71,17 @@ class inventory{
 		$contents = array_reverse($contents);
 	
 		return $contents;
+=======
+>>>>>>> master
 
-
-	}
-
-	/**
-	* Checks the number of files in the current directory and
-	* compares it to how many are listed in the current inventory.
-	* If the number doesn't match, it returns False.
-	*/
-	public function current(){
-
-		if ( is_null($this->current) ){
-			$this->current = False;
-
-			if ( file_exists( $this->inventoryFile ) ){
-
-				$recorded = count( $this->inventoryData );
-				$existing = count( $this->getFileList() );
-
-				if ( $recorded == $existing ){
-					$this->current = True;
-				}
-
-			}
-
-		}
-
-		return $this->current;
+		parent::__construct( $directory, $bloguri, "inventory" );
 
 	}
+
 
 	public function update(){
 
+<<<<<<< HEAD
 		if ( !$this->current() ){
 
 			$files = $this->getFileList();
@@ -151,6 +107,9 @@ class inventory{
 
 			$this->write();
 		}
+=======
+		parent::update( "getMeta" );
+>>>>>>> master
 
 	}
 
@@ -159,55 +118,8 @@ class inventory{
 	 */
 	public function regen(){
 
-	
-		$avoid = getConfigOption('hidden_files');
-		
-		$files = $this->getFileList();
+		parent::regen( "getMeta", array() );
 
-		$inventoryItems = array();
-	
-		foreach( $files as $input ){
-
-			if ( ! in_array($input, $avoid) && ! array_key_exists($input, $inventoryItems) ){ 
-		
-				$postData = new article("$this->directory/$input", $this->bloguri );
-				$inventoryItems[$input] = $postData->getMeta();
-			}
-		}
-	
-		$this->inventoryData = $inventoryItems;
-
-		$this->current = True;
-
-		$this->write();
-	}
-
-	/**
-	 * Writes the inventory data out to the file
-	 * @since 06/11/2013
-	 */
-	private function write(){
-		// Create an instance of a lock
-		$lock = new lock( $this->inventoryFile );
-
-		// Check if locked, and if not, set the lock
-		// and rewrite the file with the new inventory.
-		// Otherwise, update the live instance only
-		if ( !$lock->isLocked() ){
-
-			$lock->lock();
-
-			$inventory = fopen( $this->inventoryFile, 'w');
-
-			$dataMap = array();
-			$dataMap['inventory'] = $this->inventoryData;
-
-			fwrite( $inventory, json_encode($dataMap) );
-			fclose($inventory);
-
-			$lock->unlock();
-
-		}
 	}
 
 	/**
@@ -223,13 +135,13 @@ class inventory{
 
 		$matching = array();
 
-		foreach ($this->inventoryData as $current) {
+		foreach ($this->indexData as $current) {
 
-			if ( ! is_array( $current->$field ) ){
-				$currentData = explode( ', ', $current->$field );
+			if ( ! is_array( $current[$field] ) ){
+				$currentData = explode( ', ', $current[$field] );
 			}
 			else{
-				$currentData = $current->$field;
+				$currentData = $current[$field];
 			}
 
 			if ( in_array($value, $currentData) ){
@@ -238,6 +150,39 @@ class inventory{
 		}
 
 		return $matching;
+
+	}
+
+	/**
+	 * Returns a histogram of values mapped to 
+	 * their occurances for the selected field
+	 *
+	 * @param $field - the name of the field to access
+	 * @since 7/20/13
+	 */
+	public function getFieldStatistics( $field ){
+
+		$fieldContents = array();
+
+		foreach ($this->indexData as $current ) {
+
+			if ( ! is_array( $current[$field] ) ){
+				$currentField = explode( ', ', $current[$field] );
+			}
+			else{
+				$currentField = $current[$field];
+			}
+
+			foreach ($currentField as $item) {
+				if ( ! array_key_exists( $item, $fieldContents) )
+					$fieldContents[$item] = 1;
+				else
+					$fieldContents[$item] = $fieldContents[$item] + 1;
+			}
+
+		}
+
+		return $fieldContents;
 
 	}
 
@@ -251,13 +196,13 @@ class inventory{
 
 		$fieldContents = array();
 
-		foreach ($this->inventoryData as $current ) {
+		foreach ($this->indexData as $current ) {
 
-			if ( ! is_array( $current->$field ) ){
-				$currentField = explode( ', ', $current->$field );
+			if ( ! is_array( $current[$field] ) ){
+				$currentField = explode( ', ', $current[$field] );
 			}
 			else{
-				$currentField = $current->$field;
+				$currentField = $current[$field];
 			}
 
 			foreach ($currentField as $item) {
@@ -275,7 +220,7 @@ class inventory{
 	 * Returns all the fields in the inventory
 	 */
 	public function selectAll(){
-		return $this->inventoryData;
+		return $this->indexData;
 	}
 	/**
 	 * A function to return the inventory file. For supporting
