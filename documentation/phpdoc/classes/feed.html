@@ -1,251 +1,1047 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-<meta charset="utf-8">
-<title>thenaterhood.com » \feed</title>
-<meta name="author" content="Mike van Riel">
-<meta name="description" content="">
-<link href="../css/template.css" rel="stylesheet" media="all">
-<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
-<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
-<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
-</head>
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+    <meta charset="utf-8"/>
+    <title>    API Documentation &raquo; \feed
+</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+            <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+        <![endif]-->
+        <script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script>
+        <script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script>
+        <script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script>
+        <script src="../js/bootstrap.js" type="text/javascript"></script>
+        <script src="../js/template.js" type="text/javascript"></script>
+        <script src="../js/prettify/prettify.min.js" type="text/javascript"></script>
+    
+            <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+            <link rel="shortcut icon" href="../img/favicon.ico"/>
+        <link rel="apple-touch-icon" href="../img/apple-touch-icon.png"/>
+        <link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png"/>
+        <link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png"/>
+    </head>
 <body>
-<div class="navbar navbar-fixed-top">
-<div class="navbar-inner"><div class="container">
-<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">thenaterhood.com</a><div class="nav-collapse"><ul class="nav">
-<li class="dropdown">
-<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
-                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu"></ul>
-</li>
-<li class="dropdown" id="charts-menu">
-<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
-                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
-</li>
-<li class="dropdown" id="reports-menu">
-<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
-                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
-<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">1</span></a></li>
-<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
-                <ul></ul></a></li>
-<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
-                <span class="label label-info">0</span></a></li>
-</ul>
-</li>
-</ul></div>
-</div></div>
-<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
-</div>
-<div id="___" class="container">
-<noscript><div class="alert alert-warning">
-                            Javascript is disabled; several features are only available
-                            if Javascript is enabled.
-                        </div></noscript>
-<div class="row">
-<div class="span4">
-<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
-<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
-</div>
-<ul class="side-nav nav nav-list">
-<li class="nav-header">
-<i class="icon-custom icon-method"></i> Methods
-                    <ul>
-<li class="method public "><a href="#method___construct" title="__construct :: Creates an empty atom feed object with metadata"><span class="description">Creates an empty atom feed object with metadata</span><pre>__construct()</pre></a></li>
-<li class="method public inherited"><a href="#method___get" title="__get :: Retrieves a field from the container, assuming the container
-is an associative array."><span class="description">Retrieves a field from the container, assuming the container
-is an associative array.</span><pre>__get()</pre></a></li>
-<li class="method public inherited"><a href="#method_dump" title="dump :: Returns the contents of the container"><span class="description">Returns the contents of the container</span><pre>dump()</pre></a></li>
-<li class="method public inherited"><a href="#method_json" title="json :: Produces a json encoded representation of the data
-contained in the class."><span class="description">Produces a json encoded representation of the data
-contained in the class.</span><pre>json()</pre></a></li>
-<li class="method public "><a href="#method_new_item" title="new_item :: Adds an item to the feed as an object in the object's
-items array"><span class="description">Adds an item to the feed as an object in the object's
-items array</span><pre>new_item()</pre></a></li>
-<li class="method public "><a href="#method_output" title="output :: Returns a valid feed with the requested format."><span class="description">Returns a valid feed with the requested format.</span><pre>output()</pre></a></li>
-</ul>
-</li>
-<li class="nav-header private">» Private
-                    <ul>
-<li class="method private "><a href="#method_atom" title="atom :: Returns a displayable representation of the feed
-with appropriate code added."><span class="description">Returns a displayable representation of the feed
-with appropriate code added.</span><pre>atom()</pre></a></li>
-<li class="method private "><a href="#method_rss" title="rss :: Returns a displayable representation of the feed with
-appropriate code added for RSS format."><span class="description">Returns a displayable representation of the feed with
-appropriate code added for RSS format.</span><pre>rss()</pre></a></li>
-</ul>
-</li>
-<li class="nav-header">
-<i class="icon-custom icon-property"></i> Properties
-                    <ul></ul>
-</li>
-<li class="nav-header protected">» Protected
-                    <ul><li class="property protected inherited"><a href="#property_container" title="$container :: "><span class="description"></span><pre>$container</pre></a></li></ul>
-</li>
-<li class="nav-header private">» Private
-                    <ul><li class="property private "><a href="#property_items" title="$items :: "><span class="description"></span><pre>$items</pre></a></li></ul>
-</li>
-</ul>
-</div>
-<div class="span8">
-<a id="\feed"></a><ul class="breadcrumb">
-<li>
-<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
-</li>
-<li><a href="../namespaces/global.html">global</a></li>
-<li class="active">
-<span class="divider">\</span><a href="../classes/feed.html">feed</a>
-</li>
-</ul>
-<div class="element class">
-<p class="short_description">Defines a data object to contain an atom feed as items
+
+        <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    <span class="icon-bar"></span> </a>
+                <a class="brand" href="../index.html">API Documentation</a>
+
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li class="dropdown">
+                            <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                API Documentation <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                                                                            </ul>
+                        </li>
+                        <li class="dropdown" id="charts-menu">
+                            <a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                Charts <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../graph_class.html">
+                                        <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown" id="reports-menu">
+                            <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                Reports <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../errors.html">
+                                        <i class="icon-list-alt"></i>&#160;Errors
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../markers.html">
+                                        <i class="icon-list-alt"></i>&#160;Markers
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../deprecated.html">
+                                        <i class="icon-list-alt"></i>&#160;Deprecated
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="go_to_top">
+            <a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>
+        </div>
+    </div>
+    
+    <div id="___" class="container">
+        <noscript>
+            <div class="alert alert-warning">
+                Javascript is disabled; several features are only available if Javascript is enabled.
+            </div>
+        </noscript>
+
+        
+            <div class="row">
+        <div class="span4">
+                    <span class="btn-group visibility" data-toggle="buttons-checkbox">
+        <button class="btn public active" title="Show public elements">Public</button>
+        <button class="btn protected" title="Show protected elements">Protected</button>
+        <button class="btn private" title="Show private elements">Private</button>
+        <button class="btn inherited active" title="Show inherited elements">Inherited</button>
+    </span>
+    <div class="btn-group view pull-right" data-toggle="buttons-radio">
+        <button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button>
+        <button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+    </div>
+
+        <ul class="side-nav nav nav-list">
+        <li class="nav-header">
+            <i class="icon-custom icon-method"></i> Methods
+            <ul>
+                                                                                    <li class="method public">
+        <a href="#method___construct" title="__construct :: Creates an empty atom feed object with metadata">
+            <span class="description">Creates an empty atom feed object with metadata</span><pre>__construct</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_update" title="update :: ">
+            <span class="description"></span><pre>update</pre>
+        </a>
+    </li>
+
+                                                                                                                                                                <li class="method public">
+        <a href="#method_reset" title="reset :: ">
+            <span class="description"></span><pre>reset</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_output" title="output :: Returns a valid feed with the requested format.">
+            <span class="description">Returns a valid feed with the requested format.</span><pre>output</pre>
+        </a>
+    </li>
+
+                                                                                                                                                                                                                        <li class="method public inherited">
+        <a href="#method_getFileList" title="getFileList :: Creates a list of files in the working directory, sorts
+and reverses the list, and returns it.  Intended for working
+with blog posts stored as text files with date-coded filenames">
+            <span class="description">Creates a list of files in the working directory, sorts
+and reverses the list, and returns it.  Intended for working
+with blog posts stored as text files with date-coded filenames</span><pre>getFileList</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public inherited">
+        <a href="#method_current" title="current :: Checks the number of files in the current directory and
+compares it to how many are listed in the current inventory.">
+            <span class="description">Checks the number of files in the current directory and
+compares it to how many are listed in the current inventory.</span><pre>current</pre>
+        </a>
+    </li>
+
+                                                                                                                                                                                                                        <li class="method public inherited">
+        <a href="#method_regen" title="regen :: Regenerates the blog inventory file">
+            <span class="description">Regenerates the blog inventory file</span><pre>regen</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public inherited">
+        <a href="#method_setMetadata" title="setMetadata :: ">
+            <span class="description"></span><pre>setMetadata</pre>
+        </a>
+    </li>
+
+                                                                                                        </ul>
+        </li>
+        <li class="nav-header protected">» Protected
+            <ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </ul>
+        </li>
+        <li class="nav-header private">» Private
+            <ul>
+                                                                                                                                    <li class="method private">
+                            <a href="#method_loadArticles" title="loadArticles :: ">
+                                <span class="description"></span><pre>loadArticles</pre>
+                            </a>
+                        </li>
+                                                                                                                                                        <li class="method private">
+                            <a href="#method_atom" title="atom :: Returns a displayable representation of the feed
+with appropriate code added.  Relies on the article
+atom_output() function to generate code for individidual
+feed items. Returns ATOM format.">
+                                <span class="description">Returns a displayable representation of the feed
+with appropriate code added.  Relies on the article
+atom_output() function to generate code for individidual
+feed items. Returns ATOM format.</span><pre>atom</pre>
+                            </a>
+                        </li>
+                                                                                <li class="method private">
+                            <a href="#method_rss" title="rss :: Returns a displayable representation of the feed with
+appropriate code added for RSS format.">
+                                <span class="description">Returns a displayable representation of the feed with
+appropriate code added for RSS format.</span><pre>rss</pre>
+                            </a>
+                        </li>
+                                                                                                                                                        <li class="method private inherited">
+                            <a href="#method_get_added_items" title="get_added_items :: ">
+                                <span class="description"></span><pre>get_added_items</pre>
+                            </a>
+                        </li>
+                                                                                <li class="method private inherited">
+                            <a href="#method_get_removed_items" title="get_removed_items :: ">
+                                <span class="description"></span><pre>get_removed_items</pre>
+                            </a>
+                        </li>
+                                                                                                                                                        <li class="method private inherited">
+                            <a href="#method_write" title="write :: Writes the inventory data out to the file">
+                                <span class="description">Writes the inventory data out to the file</span><pre>write</pre>
+                            </a>
+                        </li>
+                                                </ul>
+        </li>
+        <li class="nav-header">
+            <i class="icon-custom icon-constant"></i> Constants
+            <ul>
+                            </ul>
+        </li>
+    </ul>
+
+
+        </div>
+
+        <div class="span8">
+            <div class="element class">
+                <h1>feed</h1>
+                <small style="display: block; text-align: right">
+                                            Extends <a href="../classes/directoryIndex.html">\directoryIndex</a>
+                                                        </small>
+                <p class="short_description">Defines a data object to contain an atom feed as items
 are added and the feed is updated then returned</p>
-<div class="details">
-<div class="long_description"></div>
-<h3>
-<i class="icon-custom icon-method"></i> Methods</h3>
-<a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
-<h2>Creates an empty atom feed object with metadata</h2>
-<pre>__construct($title, $link, $description, $feedstamp) </pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$title</h4><p>(str): a title for the atom feed</p>
+                <div class="details">
+                    <div class="long_description">
+                        
+
+                    </div>
+                    <table class="table table-bordered">
+                                            </table>
+
+                    <h3><i class="icon-custom icon-method"></i> Methods</h3>
+                                                                <a id="method___construct"></a>
+                        <div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
+                            <h2>Creates an empty atom feed object with metadata</h2>
+                            <pre>__construct($directory, $bloguri) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description">
 </div>
-<div class="subelement argument">
-<h4>$link</h4><p>(str): the base url for the feed</p>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$directory</h4>
+                                                <code></code><p>
+</p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$bloguri</h4>
+                                                <code></code><p>
+</p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_update"></a>
+                        <div class="element clickable method public method_update" data-toggle="collapse" data-target=".method_update .collapse">
+                            <h2>update</h2>
+                            <pre>update() </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description">
 </div>
-<div class="subelement argument">
-<h4>$description</h4><p>(str): a description or summary of the feed</p>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_loadArticles"></a>
+                        <div class="element clickable method private method_loadArticles" data-toggle="collapse" data-target=".method_loadArticles .collapse">
+                            <h2>loadArticles</h2>
+                            <pre>loadArticles() </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description">
 </div>
-<div class="subelement argument">
-<h4>$feedstamp</h4><p>(str): a datestamp for the feed, in standard atom format</p>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_reset"></a>
+                        <div class="element clickable method public method_reset" data-toggle="collapse" data-target=".method_reset .collapse">
+                            <h2>reset</h2>
+                            <pre>reset($title, $link, $description, $feedstamp) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description">
 </div>
-</div></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$title</h4>
+                                                <code></code><p>
+</p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$link</h4>
+                                                <code></code><p>
+</p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$description</h4>
+                                                <code></code><p>
+</p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$feedstamp</h4>
+                                                <code></code><p>
+</p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_output"></a>
+                        <div class="element clickable method public method_output" data-toggle="collapse" data-target=".method_output .collapse">
+                            <h2>Returns a valid feed with the requested format.</h2>
+                            <pre>output(mixed $type) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description">
 </div>
-<a id="method___get"></a><div class="element clickable method public method___get" data-toggle="collapse" data-target=".method___get .collapse">
-<h2>Retrieves a field from the container, assuming the container
-is an associative array.</h2>
-<pre>__get($name) </pre>
-<div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<table class="table table-bordered"><tr>
-<th>inherited_from</th>
-<td>\dataMonger::__get()</td>
-</tr></table>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$name</h4><ul>
-<li>the item to retrieve</li>
-</ul>
-</div>
-</div></div>
-</div>
-<a id="method_dump"></a><div class="element clickable method public method_dump" data-toggle="collapse" data-target=".method_dump .collapse">
-<h2>Returns the contents of the container</h2>
-<pre>dump() </pre>
-<div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<table class="table table-bordered"><tr>
-<th>inherited_from</th>
-<td>\dataMonger::dump()</td>
-</tr></table>
-</div></div>
-</div>
-<a id="method_json"></a><div class="element clickable method public method_json" data-toggle="collapse" data-target=".method_json .collapse">
-<h2>Produces a json encoded representation of the data
-contained in the class.</h2>
-<pre>json() </pre>
-<div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<table class="table table-bordered"><tr>
-<th>inherited_from</th>
-<td>\dataMonger::json()</td>
-</tr></table>
-</div></div>
-</div>
-<a id="method_new_item"></a><div class="element clickable method public method_new_item" data-toggle="collapse" data-target=".method_new_item .collapse">
-<h2>Adds an item to the feed as an object in the object's
-items array</h2>
-<pre>new_item($articleect) </pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$articleect</h4><ul>
-<li>a fully initialized instance of the article
-class.</li>
-</ul>
-</div>
-</div></div>
-</div>
-<a id="method_output"></a><div class="element clickable method public method_output" data-toggle="collapse" data-target=".method_output .collapse">
-<h2>Returns a valid feed with the requested format.</h2>
-<pre>output($type) </pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$type</h4><ul>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$type</h4>
+                                                <code>mixed</code><p><ul>
 <li>the type of feed to return (atom/rss). Defaults
 to atom (superior) if the type given not recognized.</li>
 </ul>
-</div>
-</div></div>
-</div>
-<a id="method_atom"></a><div class="element clickable method private method_atom" data-toggle="collapse" data-target=".method_atom .collapse">
-<h2>Returns a displayable representation of the feed
-with appropriate code added.</h2>
-<pre>atom() </pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><div class="long_description"><p>Relies on the article
+</p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_atom"></a>
+                        <div class="element clickable method private method_atom" data-toggle="collapse" data-target=".method_atom .collapse">
+                            <h2>Returns a displayable representation of the feed
+with appropriate code added.  Relies on the article
 atom_output() function to generate code for individidual
-feed items. Returns ATOM format.</p></div></div></div>
+feed items. Returns ATOM format.</h2>
+                            <pre>atom() </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description">
 </div>
-<a id="method_rss"></a><div class="element clickable method private method_rss" data-toggle="collapse" data-target=".method_rss .collapse">
-<h2>Returns a displayable representation of the feed with
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_rss"></a>
+                        <div class="element clickable method private method_rss" data-toggle="collapse" data-target=".method_rss .collapse">
+                            <h2>Returns a displayable representation of the feed with
 appropriate code added for RSS format.</h2>
-<pre>rss() </pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+                            <pre>rss() </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description">
 </div>
-<h3>
-<i class="icon-custom icon-property"></i> Properties</h3>
-<a id="property_container"> </a><div class="element clickable property protected property_container" data-toggle="collapse" data-target=".property_container .collapse">
-<h2></h2>
-<pre>$container : \$container</pre>
-<div class="labels"><span class="label">Inherited</span></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<table class="table table-bordered"><tr>
-<th>inherited_from</th>
-<td>\dataMonger::$$container</td>
-</tr></table>
-</div></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_getFileList"></a>
+                        <div class="element clickable method public method_getFileList inherited" data-toggle="collapse" data-target=".method_getFileList .collapse">
+                            <h2>Creates a list of files in the working directory, sorts
+and reverses the list, and returns it.  Intended for working
+with blog posts stored as text files with date-coded filenames</h2>
+                            <pre>getFileList() </pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description">
 </div>
-<a id="property_items"> </a><div class="element clickable property private property_items" data-toggle="collapse" data-target=".property_items .collapse">
-<h2></h2>
-<pre>$items : \$items: \$container</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_current"></a>
+                        <div class="element clickable method public method_current inherited" data-toggle="collapse" data-target=".method_current .collapse">
+                            <h2>Checks the number of files in the current directory and
+compares it to how many are listed in the current inventory.</h2>
+                            <pre>current() </pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><p>If the number doesn't match, it returns False.</p>
 </div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_get_added_items"></a>
+                        <div class="element clickable method private method_get_added_items inherited" data-toggle="collapse" data-target=".method_get_added_items .collapse">
+                            <h2>get_added_items</h2>
+                            <pre>get_added_items() </pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description">
 </div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_get_removed_items"></a>
+                        <div class="element clickable method private method_get_removed_items inherited" data-toggle="collapse" data-target=".method_get_removed_items .collapse">
+                            <h2>get_removed_items</h2>
+                            <pre>get_removed_items() </pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description">
 </div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_regen"></a>
+                        <div class="element clickable method public method_regen inherited" data-toggle="collapse" data-target=".method_regen .collapse">
+                            <h2>Regenerates the blog inventory file</h2>
+                            <pre>regen($articleDataProvider, $metadata) </pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description">
 </div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$articleDataProvider</h4>
+                                                <code></code><p>
+</p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$metadata</h4>
+                                                <code></code><p>
+</p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_setMetadata"></a>
+                        <div class="element clickable method public method_setMetadata inherited" data-toggle="collapse" data-target=".method_setMetadata .collapse">
+                            <h2>setMetadata</h2>
+                            <pre>setMetadata($metadata) </pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description">
 </div>
-<div class="row"><footer class="span12">
-            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
-            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
-            generated on 2013-05-15T14:35:29-04:00.<br></footer></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$metadata</h4>
+                                                <code></code><p>
+</p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_write"></a>
+                        <div class="element clickable method private method_write inherited" data-toggle="collapse" data-target=".method_write .collapse">
+                            <h2>Writes the inventory data out to the file</h2>
+                            <pre>write() </pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description">
 </div>
-</body>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    since
+                                                </th>
+                                                <td>
+                                                                                                                                                                        06/11/2013
+                                                                                                                
+
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                    </div>
+                            </div>
+                        </div>
+                    
+                    
+                                                                <h3><i class="icon-custom icon-property"></i> Properties</h3>
+                                                    <a id="property_articles"> </a>
+                            <div class="element clickable property private property_articles" data-toggle="collapse" data-target=".property_articles .collapse">
+                                <h2>articles</h2>
+                                <pre>articles</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="property_directory"> </a>
+                            <div class="element clickable property protected property_directory inherited" data-toggle="collapse" data-target=".property_directory .collapse">
+                                <h2>- the directory inventory we want</h2>
+                                <pre>directory</pre>
+                                <div class="labels">
+                                    <span class="label">inherited</span>                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <ul>
+<li>the directory inventory we want</li>
+</ul>
+
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="property_current"> </a>
+                            <div class="element clickable property protected property_current inherited" data-toggle="collapse" data-target=".property_current .collapse">
+                                <h2>- whether the inventory appears to be up to date</h2>
+                                <pre>current</pre>
+                                <div class="labels">
+                                    <span class="label">inherited</span>                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <ul>
+<li>whether the inventory appears to be up to date</li>
+</ul>
+
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="property_inventoryFile"> </a>
+                            <div class="element clickable property protected property_inventoryFile inherited" data-toggle="collapse" data-target=".property_inventoryFile .collapse">
+                                <h2>- the file where the inventory is stored (autogen)</h2>
+                                <pre>inventoryFile</pre>
+                                <div class="labels">
+                                    <span class="label">inherited</span>                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <ul>
+<li>the file where the inventory is stored (autogen)</li>
+</ul>
+
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="property_indexData"> </a>
+                            <div class="element clickable property protected property_indexData inherited" data-toggle="collapse" data-target=".property_indexData .collapse">
+                                <h2>- the parsed inventory data that the class accesses</h2>
+                                <pre>indexData</pre>
+                                <div class="labels">
+                                    <span class="label">inherited</span>                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <ul>
+<li>the parsed inventory data that the class accesses</li>
+</ul>
+
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="property_bloguri"> </a>
+                            <div class="element clickable property protected property_bloguri inherited" data-toggle="collapse" data-target=".property_bloguri .collapse">
+                                <h2>- the uri that returns the requested pages</h2>
+                                <pre>bloguri</pre>
+                                <div class="labels">
+                                    <span class="label">inherited</span>                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <ul>
+<li>the uri that returns the requested pages</li>
+</ul>
+
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="property_metadata"> </a>
+                            <div class="element clickable property protected property_metadata inherited" data-toggle="collapse" data-target=".property_metadata .collapse">
+                                <h2>- additional data to store in the index</h2>
+                                <pre>metadata</pre>
+                                <div class="labels">
+                                    <span class="label">inherited</span>                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <ul>
+<li>additional data to store in the index</li>
+</ul>
+
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                            </div>
+            </div>
+            <a id="\feed"></a>
+            <ul class="breadcrumb">
+                <li><a href="../index.html"><i class="icon-custom icon-class"></i></a></li>
+                    
+    
+    <li><span class="divider">\</span><a href="../namespaces/default.html">\</a></li>
+
+                <li class="active"><span class="divider">\</span><a href="../classes/feed.html">feed</a></li>
+            </ul>
+        </div>
+    </div>
+
+    </div>
+
+        <footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
+            <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
+            generated on Sat, 03 Aug 2013 14:29:50 +0000.<br/>
+    </footer>
+    </body>
 </html>

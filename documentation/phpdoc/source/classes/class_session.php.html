@@ -1,0 +1,99 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+/**
+ * Class file for the dataMonger class
+ * @author Nate Levesque &lt;public@thenaterhood.com
+ * @copyright 2013 Nate Levesque (TheNaterhood)
+ * @since 5/8/2013
+ */
+
+/**
+ * Include the dataMonger abstract class
+ */
+include_once GNAT_ROOT.'/classes/class_dataMonger.php';
+include_once GNAT_ROOT.'/classes/class_varGetter.php';
+
+/**
+ * Provides a common interface for picking up variables from the
+ * user in a clean way, so that internal variables for pulling
+ * pages and otherwise can be managed more easily and sanitation
+ * settings are more easily applied site-wide.
+ * 
+ */
+class session extends dataMonger{
+	
+	/**
+	 * @var $request (array) - the variables to be contained
+	 * @var $varDefs (assoc. array) - the variables and assignments
+	 */
+	private $varDefs;
+	
+	/**
+	 * Iterates through all the variables requested in $request
+	 * and sets them to their defaults or from the URL/cookie.
+	 * 
+	 * @param $request (array) - a list of variables to retrieve
+	 * 
+	 */	
+	public function __construct($request){
+	
+		foreach( $request as $name ){
+
+			$varGetter = new varGetter( $name );				// Retrieve the variable
+			$this-&gt;container[$name] = $varGetter-&gt;str;			// Store the variable in the session
+			unset( $varGetter );								// Destroy the varGetter object
+		}
+		
+		$this-&gt;container[&quot;domain&quot;] = $_SERVER['HTTP_HOST'];
+		$this-&gt;container[&quot;uri&quot;] = $_SERVER['REQUEST_URI'];
+
+		if ( isset( $_SERVER['HTTP_REFERER'] ) )
+			$this-&gt;container[&quot;referer&quot;] = $_SERVER['HTTP_REFERER'];
+		else
+			$this-&gt;container[&quot;referer&quot;] = &quot;-&quot;;
+	}
+}
+?&gt;</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all()
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

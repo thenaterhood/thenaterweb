@@ -76,6 +76,50 @@ and decides whether the redirect will be performed</description>
     </class>
     <source>eJx9VE1v2zAMPdu/gocCTYs0uTf9RA/DgK0dit4DRmZiYbakSXK6YOh/HynFrt2hO9SNw/eeyMenXN262pXL8/MSzuGHt3tdUQCEltAEsFvwVGlPKmqz468d7giUNZWO2hpsmoPwNhioAmvgtaZYkwd+AOswCQUHOkjJUyp0gbywVOc9mdgcpGw9GBsX8v0ddrHm90eMBN9oT+FXR3Dluk2j1R0rsCj52tpqoWx7w5Rl2U/w1aimq/I59DuSqbixfgRQDYaQ8ToD19Yogi+P9y/r56enl8XpMmEo5P/rnrpgl05XwzHf0bARYerExCqX6skYIbAH0pInHiVE7qnzGtBUbOlO78mk92jfW9162yY3HmpSP4PUAhHobbaQ0e9am8Pgq3QUURuZckB+1J2nk50nh56StCO/tb4VhhAHNB8XbGpD/p6p0YwfZhm7KiptciUVUcUOm7Ejc8gt8a4zgT84r1v07BxyRAwvdYu8DVbSkZEYOUPYcHR0rPvWRo4DBierSQvNmlJ97vvK+w9DE3/KoixkgYWEbI8eTtA5Pv1iyG1O4XQ8Q1Sl8azixAp5yY+y4Ob3ktAsshppP3jiQshThYgSMZsXN27/QyyFKXupSKU7OL5LA/RVNw1sqF8Yh0toeSLeJrZwYr3eacNDIajahk+yNaGMr6rwPhKincClfPH/HB5tyncWtp1RSXy9ZgNC9J2Ks77T+eT8eZY/42Wxo4Uk1MTLyymREVMWnK0YnBgc2Rkw0tkwOwLzOWdZtDiRDF7c5NVfw4vvSJZXvPHjbRyRe0ZI3icLYFvkPf0OHi/jUAu17ZoKapYm8+9i4sHR0bf0cfTjKrKpoU98S7XZUaL3Jk06mSYP2Hs2Ja3SiEWiyphvZXl78xdbB/CN</source>
   </file>
+  <file path="classes/interface_extension.php" generated-path="classes.interface_extension.html" hash="3471ba7159389674cb1dfa099eed4115" package="">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+    </docblock>
+    <interface namespace="" line="4" package="">
+      <name>Extension</name>
+      <full_name>\Extension</full_name>
+      <docblock line="4">
+        <description></description>
+        <long-description></long-description>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="7" package="">
+        <name>__construct</name>
+        <full_name>\Extension::__construct()</full_name>
+        <docblock line="7">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0">
+          <name>$session</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="9" package="">
+        <name>getPrefaceCode</name>
+        <full_name>\Extension::getPrefaceCode()</full_name>
+        <docblock line="9">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="11" package="">
+        <name>getPostCode</name>
+        <full_name>\Extension::getPostCode()</full_name>
+        <docblock line="11">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+    </interface>
+    <source>eJyzsS/IKODi4srMK0ktSktMTlVwrShJzSvOzM+rBgpzFpQm5WQmK6SV5iWXAMUU4uOT8/OKS4pKk0s0FFSKU4tBKhU0rbEoTU8tCShKBZnpnJ+SqoFTTX5xCVxBLRcI2NsBADwtMXw=</source>
+  </file>
   <file path="lib/api_inventory.php" generated-path="lib.api_inventory.html" hash="f069a535b93d542db376887a9e861d2b" package="">
     <docblock line="0">
       <description>Contains functions for testing the functionality of the inventory class</description>
@@ -94,7 +138,7 @@ cleaner.</long-description>
     </docblock>
     <source>eJyNkMFqwzAMhu95Ct0KoUseYGXr2KEMRgsl96A4amxwJM9WNvb2s7embLeBjZGt79f/e/cYbKjauq6ghmdhRccJjMeUKIEKzMg4EUzEFFEdTxBKHWl0kYympoCddQnyQphJ8e7iPG3hwzpjIbk5+E9wbPwyUmmZoiyhUHK5DUoCalEhN0vUrMUgailCkcp+kGGgwhhPmJ2UqaXc46JWIhxRCV7pndLbQrALy+Cd2WcFzg/RioyNkfmhIL92W63JX1Z7Qx57C7fa24KwoW/gmqMvF3A4PnX9+XTqmk17bf05+1Whyb+7uf8vZYTH81/yC/PXidA=</source>
   </file>
-  <file path="lib/core_web.php" generated-path="lib.core_web.html" hash="26a69a54e8b175b63c3fa8aeccdf47ac" package="">
+  <file path="lib/core_web.php" generated-path="lib.core_web.html" hash="d05171228453d46a8a005f1d33eee7b8" package="">
     <docblock line="0">
       <description>Contains functions for basic web capabilities such as reading
 variables from the URL (safely), setting/getting cookies and config
@@ -103,16 +147,16 @@ options.</description>
       <tag name="author" description="Nate Levesque" line="0" link="mailto:public@thenaterhood.com"/>
       <tag name="copyright" description="Nate Levesque 2013&#10;Language: PHP&#10;Filename: core_web.php" line="0"/>
     </docblock>
-    <function namespace="" line="32" package="">
+    <function namespace="" line="33" package="">
       <name>getContent</name>
       <full_name>\global\\getContent()</full_name>
-      <docblock line="32">
+      <docblock line="33">
         <description>Checks to see if the preferred file exists, and if it does
 returns it, otherwise it returns the secondary file, which ideally
 should be a file (like an error page) that is guaranteed to exist.</description>
         <long-description></long-description>
-        <tag name="param" description="&lt;p&gt;(string): the preferred page to include&lt;/p&gt;&#10;" line="32" type="" variable="$preferred"/>
-        <tag name="param" description="&lt;p&gt;(string): the secondary, emergency page to include&lt;/p&gt;&#10;" line="32" type="" variable="$secondary"/>
+        <tag name="param" description="&lt;p&gt;(string): the preferred page to include&lt;/p&gt;&#10;" line="33" type="" variable="$preferred"/>
+        <tag name="param" description="&lt;p&gt;(string): the secondary, emergency page to include&lt;/p&gt;&#10;" line="33" type="" variable="$secondary"/>
       </docblock>
       <argument line="0">
         <name>$preferred</name>
@@ -125,10 +169,10 @@ should be a file (like an error page) that is guaranteed to exist.</description>
         <type>mixed</type>
       </argument>
     </function>
-    <function namespace="" line="96" package="">
+    <function namespace="" line="97" package="">
       <name>chooseInclude</name>
       <full_name>\global\\chooseInclude()</full_name>
-      <docblock line="96">
+      <docblock line="97">
         <description></description>
         <long-description></long-description>
       </docblock>
@@ -143,15 +187,15 @@ should be a file (like an error page) that is guaranteed to exist.</description>
         <type/>
       </argument>
     </function>
-    <function namespace="" line="111" package="">
+    <function namespace="" line="112" package="">
       <name>randomGreeting</name>
       <full_name>\global\\randomGreeting()</full_name>
-      <docblock line="111">
+      <docblock line="112">
         <description>Displays a string with a random greeting and the string
 the function was called with.</description>
         <long-description></long-description>
-        <tag name="param" description="&lt;p&gt;(str): a string, preferably a name&lt;/p&gt;&#10;" line="111" type="" variable="$first_name"/>
-        <tag name="return" description="a string with a personal greeting" line="111" type="\-">
+        <tag name="param" description="&lt;p&gt;(str): a string, preferably a name&lt;/p&gt;&#10;" line="112" type="" variable="$first_name"/>
+        <tag name="return" description="a string with a personal greeting" line="112" type="\-">
           <type>\-</type>
         </tag>
       </docblock>
@@ -161,17 +205,17 @@ the function was called with.</description>
         <type>mixed</type>
       </argument>
     </function>
-    <function namespace="" line="128" package="">
+    <function namespace="" line="129" package="">
       <name>getConfigOption</name>
       <full_name>\global\\getConfigOption()</full_name>
-      <docblock line="128">
+      <docblock line="129">
         <description>Built to abstract retrieving config variables, since
 they're now contained in a class this is just for legacy
 support until everything else gets moved off
 of using this function</description>
         <long-description></long-description>
-        <tag name="param" description="&lt;ul&gt;&#10;&lt;li&gt;the name of a config key to retrieve&lt;/li&gt;&#10;&lt;/ul&gt;&#10;" line="128" type="" variable="$key"/>
-        <tag name="return" description="the value of the config key" line="128" type="\-">
+        <tag name="param" description="&lt;ul&gt;&#10;&lt;li&gt;the name of a config key to retrieve&lt;/li&gt;&#10;&lt;/ul&gt;&#10;" line="129" type="" variable="$key"/>
+        <tag name="return" description="the value of the config key" line="129" type="\-">
           <type>\-</type>
         </tag>
       </docblock>
@@ -181,7 +225,7 @@ of using this function</description>
         <type>mixed</type>
       </argument>
     </function>
-    <source>eJyNV1tz00YUfo5/xcHjqW0wNrRvOAm0dBIyk0kYGp4YJrOWju1tZK26u4oRhf/e7+xKsmwCJeOMpd3znfvNxy+LddGbPX7co8ck/69N7pXOHS3LPPHayJOxtFBOJ7TlBSWqUAudaa/ZkSuTNSlHllWq85UwuFdWq0WGy6U1G/JrpvfvLmnk1JKzajwhx96DdraK35QYcye8VJ7iOV/qwMYUQfhUnl+p0q+hxJXyTJd8z+6fkum4KBeZTl5BQo4LuzYmnSZmcxogiSkqq1drf4D69dnz34TgUuWrUq34Bb1981YOznQGPhscJMbyLUydimuiW2a9xkcXeZKVKQe7ora0BDLQ6Pru/Or3m9t319c30+Es0sySTDl3G1+E73D+MLWQsavJ4cpzOIntTyPw5OC2n6bPTHJXEwcDEf81J3eOvEGcmPQyGFpYXrK1nAZbiT9p590kRAwU2lNq2AFs2ZcWGaP9hAyAdqsdy31zIcwcww2pslVgNqHtWiOJdMoqyyowcWtTZiktmFQUN8r0HV5yggrIggJRG4OT8qQdIYhW5Z6hG3QOmk3BBJ9XBW42NNgpP3LeIuPGLw6MEo6Crv3Vwe503ce25xPiDdsV50n1AJvwmfWaUiKkvNQX5360U2vSETP+t9c7ms3oL/ZUFnBAyktVZp6cRxZPqHRSMXsaTAPgyniOPtl38VZnGeXGU1JCVu6zShzrWNlkzWmAorxRlIY2pfON7sHbn6BoyCa6CK5GwpSbGoSYBtZgFiFS8iEhwnGMA10sRTZCbFgYVKaEtoMQ1JOO1XMc+qqQw2GdjCIjoJuMq3WhLbrNSt9zPoFgNCEpblUb1JgTfBCq8gjpOaJHiF1h3Ii6Th9OhzSm4HCB3UC+9LOiMNYjJxZVLHEpExFFxqZsySwlbxJOEXGwPxq0iMjghJS1qhpFQyBl7TeZfAMFeXOBJDEFzqIbhlfvLy+DyTHwYsieET8QroF/JjxRQ1IohJNjtKVSEmxfszH98gs9En63sXxB3FWkcUXt+FZ4U+tlkSrPO58gzn4taSAxX6D/3wk4uHtfSOvyKTw+PdDqw0B/jKIBPvTM/0PnEdYkVAde39RZ9T3o12DxkycDHfwvr197R5w5FoV+ZEyrdCPClQtk2X6KfSftxk+ex0zYad4SzIMaQZOBbbNJqAf2w1DIhx8FsAw2Ev4O4rVRlcwlmeGEFJzITU5ObwqUvu4Mr0591DacUB+IPn350jmR/O3XuSEqSB6LBv3+vDkxzh8cOSWl+TlSnin4c96LRh1oi6aApA7CwJhG4gdjNwpDLx1L2Tm2oaUFpFeruCY4zESsIJ/bMSxhdzFydGiS5Yf0Hx7j6XT4jRHD49nexZ4pN7YMmRVtiUONBnbew2vb5BMsIo7rPWE/+J15EjRqMvYiR6qU9bp10h0T34XPd/IfYNKkCtz+tZnsf2pXZKpy0i7DLIslrAjzM8WmtrLMYSETD4cpEqiADOFqzJMGnGBUcxrwB8N2qa3zt7JHhYmJcdlIm9QDF4OiwqGQ1NDajqffKFawdSZXWava3jCNap/XV6OO6OjbBrRryv03ZptW/Qn133CWmfCg42vo9siUcLR7bri7eFGpftfxrYQPUcCtqDTaHY/p4xTAjmZSIU1EsEz+UWrMdqwMSpqHSsKiZDXfx704bJftPo1+oqXvUwhINUS95GbbFDvCgYpXdXP2a1QWPn/LTJdhkvFKJZVg61ZImBEag/qebQVqyAvFg9RztDH3YGeWy7CIL9utQ+9+FTQ/F5q438GDT0OihNgDpBoD5Aom1pZxi2zDLqh7lZUB1tmrAQxr9cH6hKvr8ONgJFKlCyPYr6+vzi7OEemctzV+1A1VvH96KhAp16Ne7+Vp7z/L9Cn9</source>
+    <source>eJyNV1tz00YUfo5/xcHjqW0wNrRvOAm0dBIyk0kYGp4YJrOWju1tZK26u4oRhf/e7+xKsmwCJeOMpd3znfvNxy+LddGbPX7co8ck/69N7pXOHS3LPPHayJOxtFBOJ7TlBSWqUAudaa/ZkSuTNSlHllWq85UwuFdWq0WGy6U1G/JrpvfvLmnk1JKzajwhx96DdraK35QYcye8VJ7iOV/qwMYUQfhUnl+p0q+hxJXyTJd8z+6fkum4KBeZTl5BQo4LuzYmnSZmcxogiSkqq1drf4D69dnz34TgUuWrUq34Bb1981YOznQGPhscJMbyLUydimuiW2a9xkcXeZKVKQe7ora0BDLQ6Pru/Or3m9t319c30+Es0sySTDl3G1+E73D+MLWQsavJ4cpzOIntTyPw5OC2n6bPTHL3A+JML2bBG/zJc97hHLyBZFlzcufIGwSVSS+DVwrLS7aW0+AY4k/aeTcJ4QWF9pQadgBb9qVFemk/IQOg3WrHct9cCDPH8FmqbBWYTWi71sg4nbLKsgpM3NqUWUoLJhXFjTJ9h5ecoAJSpkCIx+CkPGlHiLhVuWfoBp2DZlMwwedVgZsNDXbKj5y3SM/xiwOjhKOga391sDtd97Ht+YR4w3bFeVI9wCZ8Zr2m7gj1IcXIuR/t1Jp0xIz/7fWOZjP6iz2VBRyQ8lKVmSfnkfITKp2U154G0wC4Mp6jT/ZdvNVZRrnxlJSQlfusEsc6VjZZcxqg6AWoYEOb0vlG9+DtNkHoIrga2VVuahBiGliDWYRIfwgJEY5jHOhiKbIRYsPCoDIltB2EoJ50rJ7j0FeFHA7rZBQZAd1kXK0LbdGaVvqe8wkEo2NJJ1C1QY05wQehhI+QniN6hNgVxo2o6/ThdEhjCg4X2A3kS/MrCmM9cmJRxX4gNSWiyNiULZml5E3CKSIO9keDFhEZnJCyVlWjaAikrP0mk2+gIG8ukCSmwFl0w/Dq/eVlMDkGXgzZM+IHwjXwz4QnakgKhXByjB5WSoLtazamX36hR8LvNpYviLuKNK6oHd8Kb2q9LFLleecTxNmvJQ0k5gsMizsBB3fvC2ldPoXHpwdafRjoj1E0wIee+X/oPMKahOrA65s6q74H/RosfvJkoIP/5fVr74gzx6LQj4xplW5EuHKBLNtPse+k3fjJ85gJO81bgnlQI2gysG02CfXAfhgK+fCjAJbBRsLfQbw2qpIhJgOfkIITucnJ6U2B0tedSdepj9qGE+oD0acvXzonkr/9OjdEBclj0aDfnzcnxvmDI6ekND9HyjMFf8570agDbdEUkNRBGBjTSPxg7EZhQqZjKTvHNrS0gPRqFXcKhwGKfeVzO7Ml7C5Gjg5NsvyQ/sNjPJ0OvzFieDzbu9gz5caWIbOiLXGo0cDOe3htm3yCrcVxvVTsB78zT4JGTcZe5EiVst7NTrpj4rvw+U7+A0yaVIHbvzaT/U/tikxVTtplmGWxhBVhfqZY61aWOWxv4uEwRQIVkCFcjXnSgBOMak4D/mDYLrV1/laWrjAxMS4baZN64GJQVDgUkhpa2/H0G8UKts7kKmtV2xumUe3z+mrUER1924B2Tbn/xmzTqj+h/hvOMhMedHwN3R6ZEo52zw13Fy8q1e86vpXwIQq4FZVGu+MxfZwC2NFMKqSJCDbPP0qN2Y6VQUnzUElYlKzm+7hEh1W0Xb7RT7T0fQoBqYaol9xsm2JHOFDxqm7Ofo3KwudvmekyTDJeqaQSbN0KCTNCY1Dfs61ADXmheJB6jjbmHuzMchm29mW7dejdT4jmt0UT9zt48GlIlBB7gFRjgFzBxNoybpFt2AV1r7IywDpLOIBhBz9Yn3B1HX5JjESqdGEE+/X11dnFOSKd87bGj7qhivdPTwUi5XrU67087f0Hkxo5fw==</source>
   </file>
   <file path="classes/class_sanitation.php" generated-path="classes.class_sanitation.html" hash="2537a96b34c966f0bb8c8400f2604c14" package="">
     <docblock line="0">
@@ -363,6 +407,339 @@ an atom feed.</long-description>
     </class>
     <source>eJwtjcEKgzAQRM/Zr9iDYHuo/YC2iqfeKhTvIaxbDNg1JCsUpP/eoIWBgXkzzLUJYwDwQtMysJ2FGO+PtrfPruur8kyTS4nT7tZF9TRxlTflBWAL8e1C4KHdEfJHWYaE/+oKBsxrEVI/C1pLsySNC+kBizzE4wpgTKGjT6c6Q3VeOOJto/nCfAGymvoHRjo3YQ==</source>
   </file>
+  <file path="lib/extensions/class_evens.php" generated-path="lib.extensions.class_evens.html" hash="bbe538d4cf6b4a2346c270c08da6b9c5" package="">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+    </docblock>
+    <class final="false" abstract="false" namespace="" line="23" package="">
+      <extends/>
+      <implements>\Extension</implements>
+      <name>evenExtension</name>
+      <full_name>\evenExtension</full_name>
+      <docblock line="23">
+        <description></description>
+        <long-description></long-description>
+      </docblock>
+      <property static="false" visibility="private" line="25" namespace="" package="">
+        <name>$session</name>
+        <default></default>
+        <docblock line="25">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="false" visibility="private" line="26" namespace="" package="">
+        <name>$evenBalance</name>
+        <default></default>
+        <docblock line="26">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="false" visibility="private" line="27" namespace="" package="">
+        <name>$pageEvens</name>
+        <default></default>
+        <docblock line="27">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="29" package="">
+        <name>__construct</name>
+        <full_name>\evenExtension::__construct()</full_name>
+        <docblock line="29">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0">
+          <name>$session</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="38" package="">
+        <name>retrieveEvenAccount</name>
+        <full_name>\evenExtension::retrieveEvenAccount()</full_name>
+        <docblock line="38">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="54" package="">
+        <name>getPrefaceCode</name>
+        <full_name>\evenExtension::getPrefaceCode()</full_name>
+        <docblock line="54">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="58" package="">
+        <name>getPostCode</name>
+        <full_name>\evenExtension::getPostCode()</full_name>
+        <docblock line="58">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+    </class>
+    <source>eJx9Vm1v4kYQ/ox/xcSNZGgJcLq2qsrLKVehJF8uV8JVOrUVWuwBr2Lvuus1nBXlv3dmbYO5kEgImfXO7PMyM8vkQxZnnidVmBQRrrQKEW4+XS9Xi/v75SAYhonIc8yHUlk0GxHiCr9ZVLnUakCRwZhiN9CFUBfKdmGLdlXnilYbmWDe7UEPplN4D70nr/PqOYlcD0NtcLXHdZ24c0kH80EwBYV7qH91hTGi7PZ6tCNHG2r9KLEb4A7VvIEW9P1fRiO/b2WKBOAn6P7268+jEfwI70e9vj/0+03uq1mkUyFVbwzDIVS7pvAOIlF6ncwQbfAn2ez+Fm6v72B5O1/MJ8Ns9o/yx+33y1jmQB8B/xUyfAShIoiksSUc5AKrYauEBRvTl0gSvc9how0EiXzEPAB+ZBb0GGGGKpJqCxwXI5AqubRIMquN3BZGWDaAkZzi+FjCTtJODrWMKRNb7EOpC4jFDkGEVu6ExchlPWJjHLTJwNoQLDQDWGoikIt1giBtH8IERb2lUjxnvBEmSKhaGDhttQE2RqcnSSEk1nT0iVUDuGVgm0L1K9XIPQs58yfFNKRClRfnJL/bOFqmUKALC3rj8uYV2VCoSoijCiC25DO7YJDqhh3gIAewjqxEcMF7wbEa1giGYOk0KUHshaG6hlyneEb7z4akDUuQitRMnUO/t9I7jVkeZyRTPbyDtUgEd4Qw9NpSG0RsvGiUpOda+TQrrHMnxhL2kigobVswwBpSMyHYdo+cuFLemdVE5xRoY87IeUgdTGQqqTLJU2df7LBUZarKg0gZhWolEuoNy9CKJGJ5CG9CJ0UFsl4tLKQiGkMHE/y0JA+MHcDXox5MFpWVBknbzLi6dLqQ/sTK5XYcCALhYgA6S3AAn7St4cmqBiLNMhwMryVuQWHpBaRaEW96TEnhftsapyR+ywhL40ytLnKrcMl8X01u8arpp9N2+q44AiqOiYDY4GZKs2d2oyGuSkjMeCfPuohmGE0079nz3Mg9bRKQKTFPSa0cDotPnjvAHd+Ms3FriTN8rAqrvczo58x6zPHFOpEhd1/I9QqrFU2Y3JoipGF+mL89PqpzyeSvZq20PJiLJBkfXx4ndgtR89KgNZLC+fTrsLoxmLPXeW5ROWA5u/3Jc1AYxMPZ2wGq68E/0c/vg78VVSqfLiQG5a6tdqKK2lHziyn4vru1XuH+RjBre/aIBsVJ9lfSv1y8eiXb2GV54zZ8mevNy/HEzLeuSD732es4A5/P1BP9H/hMZU//G/7QEXYdXfK1MIrYj1+P0bltArzGqwuZr7jcui/J9BqbDCHzqdeUSHHqVKDRGsxcp2Wzry8GLnWzP3iZb+A3HVznvDSDYMJjHWQ0dbV1I3fou/tUq6kfDC5XD/PFX/PF38Fi/ueX+cNy9WVxF/w7CH6oUfiQoo01hWfEzmc8E6loIoMtM5z6sYwiqs4K+rFaYSeSghbe+TA8DciLdSrtYQMDAp65HDV0g2UyZMhuvhxkvzTjg1/07XkfZv8DGjpKvg==</source>
+  </file>
+  <file path="classes/class_directoryIndex.php" generated-path="classes.class_directoryIndex.html" hash="aa4ea3f146988453e8c0df21971f49d2" package="">
+    <docblock line="0">
+      <description>Provides a self-sufficient file with the inventory
+class, which abstracts access to a data file containing
+an index of posts or articles in a directory.</description>
+      <long-description></long-description>
+    </docblock>
+    <class final="false" abstract="false" namespace="" line="26" package="">
+      <extends/>
+      <name>directoryIndex</name>
+      <full_name>\directoryIndex</full_name>
+      <docblock line="26">
+        <description>Provides a database-like means of accessing an inventory
+of posts or articles in a directory for efficiently searching
+for things by certain criteria, as well as maintaining
+and updating the data. Stored in json format currently, but
+due to being abstracted out, could be modified to store
+the data in other formats.</description>
+        <long-description></long-description>
+        <tag name="since" description="" line="26"/>
+        <tag name="author" description="Nate Levesque" line="26" link="mailto:public@thenaterhood.com"/>
+      </docblock>
+      <property static="false" visibility="protected" line="31" namespace="" package="">
+        <name>$directory</name>
+        <default></default>
+        <docblock line="31">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" description="&lt;ul&gt;&#10;&lt;li&gt;the directory inventory we want&lt;/li&gt;&#10;&lt;/ul&gt;&#10;" line="31" type="" variable="$directory"/>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" line="35" namespace="" package="">
+        <name>$current</name>
+        <default>null</default>
+        <docblock line="35">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" description="&lt;ul&gt;&#10;&lt;li&gt;whether the inventory appears to be up to date&lt;/li&gt;&#10;&lt;/ul&gt;&#10;" line="35" type="" variable="$current"/>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" line="39" namespace="" package="">
+        <name>$inventoryFile</name>
+        <default></default>
+        <docblock line="39">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" description="&lt;ul&gt;&#10;&lt;li&gt;the file where the inventory is stored (autogen)&lt;/li&gt;&#10;&lt;/ul&gt;&#10;" line="39" type="" variable="$inventoryFile"/>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" line="43" namespace="" package="">
+        <name>$indexData</name>
+        <default></default>
+        <docblock line="43">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" description="&lt;ul&gt;&#10;&lt;li&gt;the parsed inventory data that the class accesses&lt;/li&gt;&#10;&lt;/ul&gt;&#10;" line="43" type="" variable="$indexData"/>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" line="47" namespace="" package="">
+        <name>$bloguri</name>
+        <default></default>
+        <docblock line="47">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" description="&lt;ul&gt;&#10;&lt;li&gt;the uri that returns the requested pages&lt;/li&gt;&#10;&lt;/ul&gt;&#10;" line="47" type="" variable="$bloguri"/>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" line="51" namespace="" package="">
+        <name>$metadata</name>
+        <default></default>
+        <docblock line="51">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" description="&lt;ul&gt;&#10;&lt;li&gt;additional data to store in the index&lt;/li&gt;&#10;&lt;/ul&gt;&#10;" line="51" type="" variable="$metadata"/>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="57" package="">
+        <name>__construct</name>
+        <full_name>\directoryIndex::__construct()</full_name>
+        <docblock line="57">
+          <description>Constructs an instance of the class</description>
+          <long-description></long-description>
+          <tag name="param" description="&lt;ul&gt;&#10;&lt;li&gt;the directory of which the inventory is of&lt;/li&gt;&#10;&lt;/ul&gt;&#10;" line="57" type="" variable="$directory"/>
+        </docblock>
+        <argument line="0">
+          <name>$directory</name>
+          <default></default>
+          <type>mixed</type>
+        </argument>
+        <argument line="0">
+          <name>$bloguri</name>
+          <default>NULL</default>
+          <type/>
+        </argument>
+        <argument line="0">
+          <name>$type</name>
+          <default>"index"</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="74" package="">
+        <name>getFileList</name>
+        <full_name>\directoryIndex::getFileList()</full_name>
+        <docblock line="74">
+          <description>Creates a list of files in the working directory, sorts
+and reverses the list, and returns it.  Intended for working
+with blog posts stored as text files with date-coded filenames</description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="110" package="">
+        <name>current</name>
+        <full_name>\directoryIndex::current()</full_name>
+        <docblock line="110">
+          <description>Checks the number of files in the current directory and
+compares it to how many are listed in the current inventory.</description>
+          <long-description>If the number doesn't match, it returns False.</long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="132" package="">
+        <name>get_added_items</name>
+        <full_name>\directoryIndex::get_added_items()</full_name>
+        <docblock line="132">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="148" package="">
+        <name>get_removed_items</name>
+        <full_name>\directoryIndex::get_removed_items()</full_name>
+        <docblock line="148">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="159" package="">
+        <name>update</name>
+        <full_name>\directoryIndex::update()</full_name>
+        <docblock line="159">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0">
+          <name>$articleDataProvider</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="192" package="">
+        <name>regen</name>
+        <full_name>\directoryIndex::regen()</full_name>
+        <docblock line="192">
+          <description>Regenerates the blog inventory file</description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0">
+          <name>$articleDataProvider</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0">
+          <name>$metadata</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="218" package="">
+        <name>setMetadata</name>
+        <full_name>\directoryIndex::setMetadata()</full_name>
+        <docblock line="218">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0">
+          <name>$metadata</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="226" package="">
+        <name>write</name>
+        <full_name>\directoryIndex::write()</full_name>
+        <docblock line="226">
+          <description>Writes the inventory data out to the file</description>
+          <long-description></long-description>
+          <tag name="since" description="" line="226"/>
+        </docblock>
+      </method>
+    </class>
+    <source>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</source>
+  </file>
+  <file path="lib/core_histogram.php" generated-path="lib.core_histogram.html" hash="d5c086a550fe8a604e2fe27204a7c777" package="">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+    </docblock>
+    <function namespace="" line="6" package="">
+      <name>getMaxLength</name>
+      <full_name>\global\\getMaxLength()</full_name>
+      <docblock line="6">
+        <description></description>
+        <long-description></long-description>
+      </docblock>
+      <argument line="0">
+        <name>$values</name>
+        <default></default>
+        <type/>
+      </argument>
+    </function>
+    <function namespace="" line="20" package="">
+      <name>getMaxOccurances</name>
+      <full_name>\global\\getMaxOccurances()</full_name>
+      <docblock line="20">
+        <description></description>
+        <long-description></long-description>
+      </docblock>
+      <argument line="0">
+        <name>$values</name>
+        <default></default>
+        <type/>
+      </argument>
+    </function>
+    <function namespace="" line="31" package="">
+      <name>generateHistogram</name>
+      <full_name>\global\\generateHistogram()</full_name>
+      <docblock line="31">
+        <description></description>
+        <long-description></long-description>
+      </docblock>
+      <argument line="0">
+        <name>$valuesIn</name>
+        <default></default>
+        <type/>
+      </argument>
+    </function>
+    <function namespace="" line="58" package="">
+      <name>generateHistogramNospace</name>
+      <full_name>\global\\generateHistogramNospace()</full_name>
+      <docblock line="58">
+        <description></description>
+        <long-description></long-description>
+      </docblock>
+      <argument line="0">
+        <name>$valuesIn</name>
+        <default></default>
+        <type/>
+      </argument>
+      <argument line="0">
+        <name>$graphChar</name>
+        <default></default>
+        <type/>
+      </argument>
+    </function>
+    <source>eJztUstOwzAQPNdfsaoqmoRC2gOn9CHEBSQeH4AQclO3ido4ke0gKtR/Z+0mjZPQHhCCC04uyc7OjHdnPMuijPieR0C/PiHLnIcqTjmsmHqg7/eMr1TkQO+NbnImwf0gpNNLygJMYBjgn2UqGA0jqIBUQm/NtjCZml+6sdOJl4iQSmwYd3TVBaxWZAZTZ7fBAVZ3BF/SEUzlglu9aGLXMv8UhrmgPGSydgGjUNW+cwfzufduEbml/Rq5xgYt2xUkaDjnTFDFbmOp0pWgycHOHTfTBzy9qKwiPxWCbh2cjikZe2Gac1VrhDGMXAPQp/RxoCmaW96PzlFzBpVgoxHFoFJrsY4sucOmv8ybljkv4a0FYVWvKFYsMTvieTJn4jAlI4GyorUO0/tsGl8CC0ylYiKWa7lP3qtgGaPK6XrdASw3aSocFHeuhuA1iV3wW2nQj81upn29WNTJ+2d8LrOgP7DHcVEGv7gdMl1W7lqkeoXFdfQNS6ECtyNHdn4yd4+pzGjIrGGjQyxk0U1ExX8U/yaK1QZ+IJG+/3uZbAJPhRLPbPoJlt76Bg==</source>
+  </file>
   <file path="lib/api_post.php" generated-path="lib.api_post.html" hash="5d2af593958503e3119d03362f80270a" package="">
     <docblock line="0">
       <description>Contains functions for testing and externally accessing data from
@@ -371,25 +748,6 @@ blog posts.</description>
       <tag name="author" description="Nate Levesque" line="0" link="mailto:public@thenaterhood.com"/>
     </docblock>
     <source>eJx9kN1OwzAMhe/zFFZVaVvF2gfY6IZAQkiwSWh3CE1e6q6BLCmJC+ztSVj3ww1SLuL4+DvHmc7aphVFlokMwrm1hlEZD3VnJCsbb9YBk2dltoCmAvpmcga13gNKSd7HRoWMUDu7C4yNtltorWefh2qOHTcBsUAmeKRP8h8dwbTtNlrJOTdkQsM11la5tLtSZIX4jQMZPBipu4o8BBUYil7o9lCjVFqxIh9EhVAHFdwvblbr5+VylQ8KrTaFtI7WMUseNhxM/te9eWt6nRCpj1tZA9fB9Qv6agjoHO6HkBhbUXIFCWnakeEERjCaiDSufBf/4TCGjpXUNIQjblzGwSgVaT8apOdu/xZItdKaqp51cB39eX6BE+E1Mo7W4zI9UUQal7oIFMsnfCcXIl04xDytUwF1GhiXtuO24+gqZqX4AcM2tBk=</source>
-  </file>
-  <file path="config/prepend.php" generated-path="config.prepend.html" hash="88bc247042f4b993852c6be88d4a38db" package="">
-    <docblock line="0">
-      <description></description>
-      <long-description></long-description>
-    </docblock>
-    <constant namespace="" line="9" package="">
-      <name>GNAT_ROOT</name>
-      <full_name>\GNAT_ROOT</full_name>
-      <value>"/var/www/engine"</value>
-      <docblock line="9">
-        <description>This file defines a path constant to the root
-of the PHP engine. It is prepended to all PHP
-files. It must be configured prior to running
-the Gnat web engine.</description>
-        <long-description></long-description>
-      </docblock>
-    </constant>
-    <source>eJw1jsEOgjAMQO/7ioaTEuM+QCPxhF6EGO5mSIEl2C1bkd93RT22ee+1x8KPXuk8V5BDM9oIvZ0QOuwtYQQD3vAIT0eRDTGwAx4RgnMsguvXsb7UgDQkYw9XhhTxAT1Sh50YZpoEEUHicYVec2RoUdK9HeaQUB+sCyKEmcjSIILkSzIMC7b/G2mvlfr9uMnK27l53KuqyXaQ6bcJelkW/WWz7SGRxUl9AADHSRk=</source>
   </file>
   <file path="lib/core_json.php" generated-path="lib.core_json.html" hash="e2c5d258a2e58515577399fb9aff1617" package="">
     <docblock line="0">
@@ -589,167 +947,71 @@ was initiated correctly</description>
     </class>
     <source>eJyVVEtP20AQPse/YhQh1SBISnorBOiNA61y4I4m6wle1d7d7sOpVfHfO7u2wXmAWikHZz3fzPeY9fWtKU02PzvL4AxWVjeyIAcIokLnYKMt1KjwWapnsFRIS8LHZwSDzzSLoMeS+moUgoyPaO7BZeilVoCqAG0lt4iPEYFVpbddc3ztCl7DmgCNqSQVgJ6rW/CypnOIIJO4pdncqGhQeWYAuiELwcVzraoWVverTy4B1kFWTOJtgCWngxXkIu1YcYfBl0ziB3qCB2rI/QoE1yasKynufEmsgGypdTETur5hyDz70CrnWWhiWCQhLf9JgndUotLcm7VbQtAbfrultZO+szNN6VoOoD/ZJJvEuZNIukELJ72hF8CdUhSx8euQjdX1qHicRocYn4yBXkfYPJsYK5voSj/ofKfJ1ZgPG1EEEY1QIJXzqARFVX5Yi1TVsTFosd4jH2yVFsc5GvaE96PdARwKiKjjxFN4sAlKpPKnJ6GZlQ3C50fFnLK7kxNfSndx0xNbDhSv3l6NKSz33XjZM2TYDCdrU3E09NuDDt6ElL8oSfwEuW/RFh0bKL1k3wsQ2kZhvRHviGskbfMkgPNSHnZkzKZx2HR2KGCf8bd051ziM17UYbcOE/StoT6J9Mh5j4HB0TuM063I+waJOf/YiuFouYQvny+7N4P1CfPEx/lpDOTlCGJxHLF4Q+yHRJYvbB1DivNyQ5a/c6T86auQHeP767Cro+PUiygJC7L59P7xcTW/nF2mvt/581TEYV3zqp0mQkPtgxYpkK9HY0qlH/FeQO6pNtqibf+T9+KA9z9zeclub/4CZwTpSQ==</source>
   </file>
-  <file path="config/class_config.php" generated-path="config.class_config.html" hash="6b55b2859a62cc84f29c49d213a73ca2" package="">
-    <docblock line="0">
-      <description>Contains configuration settings for the site engine to use
-as a php class that can be directly accessed.</description>
-      <long-description></long-description>
-      <tag name="author" description="Nate Levesque &lt;public@thenaterhood.com&gt;&#10;Language: PHP&#10;Filename: core_config.php" line="0"/>
-    </docblock>
-    <class final="false" abstract="false" namespace="" line="17" package="">
-      <extends/>
-      <name>config</name>
-      <full_name>\config</full_name>
-      <docblock line="17">
-        <description>Defines a class to hold variables for configuration
-options.  All variables are accessible only internally
-to keep things fairly clean.</description>
-        <long-description></long-description>
-      </docblock>
-      <property static="false" visibility="private" line="24" namespace="" package="">
-        <name>$container</name>
-        <default></default>
-        <docblock line="24">
-          <description>variables are documented where they are set lower in the code.</description>
-          <long-description></long-description>
-          <tag name="var" description="&lt;p&gt;provides a clean way of storing an expanding&#10;mass of variables.&lt;/p&gt;" line="24" type="" variable="$container"/>
-        </docblock>
-      </property>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="29" package="">
-        <name>__construct</name>
-        <full_name>\config::__construct()</full_name>
-        <docblock line="29">
-          <description>Sets the configuration options en-masse.</description>
-          <long-description></long-description>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="151" package="">
-        <name>__get</name>
-        <full_name>\config::__get()</full_name>
-        <docblock line="151">
-          <description>Returns the value of the requested config key</description>
-          <long-description></long-description>
-          <tag name="param" description="&lt;ul&gt;&#10;&lt;li&gt;the name of the key&lt;/li&gt;&#10;&lt;/ul&gt;&#10;" line="151" type="" variable="$setting"/>
-          <tag name="return" description="the value the key is associated with" line="151" type="\-">
-            <type>\-</type>
-          </tag>
-        </docblock>
-        <argument line="0">
-          <name>$setting</name>
-          <default></default>
-          <type>mixed</type>
-        </argument>
-      </method>
-    </class>
-    <source>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</source>
-  </file>
-  <file path="classes/class_feed.php" generated-path="classes.class_feed.html" hash="f35e621d6f0fa12c7f905bf474842bf0" package="">
+  <file path="classes/class_feed.php" generated-path="classes.class_feed.html" hash="3d454fa34e59f1671cc43c5d8174c6e2" package="">
     <docblock line="0">
       <description>Provides a resource for building an rss or
 atom feed.</description>
       <long-description></long-description>
     </docblock>
-    <class final="false" abstract="false" namespace="" line="20" package="">
-      <extends>\dataMonger</extends>
+    <class final="false" abstract="false" namespace="" line="21" package="">
+      <extends>\directoryIndex</extends>
       <name>feed</name>
       <full_name>\feed</full_name>
-      <docblock line="20">
+      <docblock line="21">
         <description>Defines a data object to contain an atom feed as items
 are added and the feed is updated then returned</description>
         <long-description></long-description>
       </docblock>
-      <property static="false" visibility="private" line="27" namespace="" package="">
-        <name>$items</name>
+      <property static="false" visibility="private" line="23" namespace="" package="">
+        <name>$articles</name>
         <default></default>
-        <docblock line="27">
-          <description></description>
-          <long-description></long-description>
-          <tag name="var" description="&lt;ul&gt;&#10;&lt;li&gt;an array of article instances&lt;/li&gt;&#10;&lt;/ul&gt;&#10;" line="27" type="" variable="$items"/>
-          <tag name="var" description="&lt;ul&gt;&#10;&lt;li&gt;the feed metadata - location, title, author, datestamps&lt;/li&gt;&#10;&lt;/ul&gt;&#10;" line="27" type="" variable="$container"/>
-        </docblock>
-      </property>
-      <property static="false" visibility="private" line="28" namespace="" package="">
-        <name>$cacheFile</name>
-        <default></default>
-        <docblock line="28">
+        <docblock line="23">
           <description></description>
           <long-description></long-description>
         </docblock>
       </property>
-      <property static="false" visibility="private" line="29" namespace="" package="">
-        <name>$containedItems</name>
-        <default></default>
-        <docblock line="29">
-          <description></description>
-          <long-description></long-description>
-        </docblock>
-      </property>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="39" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="33" package="">
         <name>__construct</name>
         <full_name>\feed::__construct()</full_name>
-        <docblock line="39">
+        <docblock line="33">
           <description>Creates an empty atom feed object with metadata</description>
           <long-description></long-description>
-          <tag name="param" description="&lt;p&gt;(str): a title for the atom feed&lt;/p&gt;&#10;" line="39" type="" variable="$title"/>
-          <tag name="param" description="&lt;p&gt;(str): the base url for the feed&lt;/p&gt;&#10;" line="39" type="" variable="$link"/>
-          <tag name="param" description="&lt;p&gt;(str): a description or summary of the feed&lt;/p&gt;&#10;" line="39" type="" variable="$description"/>
-          <tag name="param" description="&lt;p&gt;(str): a datestamp for the feed, in standard atom format&lt;/p&gt;&#10;" line="39" type="" variable="$feedstamp"/>
+          <tag name="param" description="&lt;p&gt;(str): a title for the atom feed&lt;/p&gt;&#10;" line="33" type="" variable="$title"/>
+          <tag name="param" description="&lt;p&gt;(str): the base url for the feed&lt;/p&gt;&#10;" line="33" type="" variable="$link"/>
+          <tag name="param" description="&lt;p&gt;(str): a description or summary of the feed&lt;/p&gt;&#10;" line="33" type="" variable="$description"/>
+          <tag name="param" description="&lt;p&gt;(str): a datestamp for the feed, in standard atom format&lt;/p&gt;&#10;" line="33" type="" variable="$feedstamp"/>
         </docblock>
+        <argument line="0">
+          <name>$directory</name>
+          <default></default>
+          <type/>
+        </argument>
         <argument line="0">
           <name>$bloguri</name>
           <default></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="55" package="">
-        <name>retrieve</name>
-        <full_name>\feed::retrieve()</full_name>
-        <docblock line="55">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="41" package="">
+        <name>update</name>
+        <full_name>\feed::update()</full_name>
+        <docblock line="41">
           <description></description>
           <long-description></long-description>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="76" package="">
-        <name>save</name>
-        <full_name>\feed::save()</full_name>
-        <docblock line="76">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="46" package="">
+        <name>loadArticles</name>
+        <full_name>\feed::loadArticles()</full_name>
+        <docblock line="46">
           <description></description>
           <long-description></long-description>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="108" package="">
-        <name>cache</name>
-        <full_name>\feed::cache()</full_name>
-        <docblock line="108">
-          <description></description>
-          <long-description></long-description>
-        </docblock>
-        <argument line="0">
-          <name>$xml</name>
-          <default></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="117" package="">
-        <name>getCache</name>
-        <full_name>\feed::getCache()</full_name>
-        <docblock line="117">
-          <description></description>
-          <long-description></long-description>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="122" package="">
-        <name>exists</name>
-        <full_name>\feed::exists()</full_name>
-        <docblock line="122">
-          <description></description>
-          <long-description></long-description>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="127" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="58" package="">
         <name>reset</name>
         <full_name>\feed::reset()</full_name>
-        <docblock line="127">
+        <docblock line="58">
           <description></description>
           <long-description></long-description>
         </docblock>
@@ -774,49 +1036,13 @@ are added and the feed is updated then returned</description>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="140" package="">
-        <name>inFeed</name>
-        <full_name>\feed::inFeed()</full_name>
-        <docblock line="140">
-          <description></description>
-          <long-description></long-description>
-        </docblock>
-        <argument line="0">
-          <name>$node</name>
-          <default></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="146" package="">
-        <name>feedItems</name>
-        <full_name>\feed::feedItems()</full_name>
-        <docblock line="146">
-          <description></description>
-          <long-description></long-description>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="159" package="">
-        <name>new_item</name>
-        <full_name>\feed::new_item()</full_name>
-        <docblock line="159">
-          <description>Adds an item to the feed as an object in the object's
-items array</description>
-          <long-description></long-description>
-          <tag name="param" description="&lt;ul&gt;&#10;&lt;li&gt;a fully initialized instance of the article&#10;class.&lt;/li&gt;&#10;&lt;/ul&gt;&#10;" line="159" type="" variable="$articleect"/>
-        </docblock>
-        <argument line="0">
-          <name>$article</name>
-          <default></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="184" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="79" package="">
         <name>output</name>
         <full_name>\feed::output()</full_name>
-        <docblock line="184">
+        <docblock line="79">
           <description>Returns a valid feed with the requested format.</description>
           <long-description></long-description>
-          <tag name="param" description="&lt;ul&gt;&#10;&lt;li&gt;the type of feed to return (atom/rss). Defaults&#10;to atom (superior) if the type given not recognized.&lt;/li&gt;&#10;&lt;/ul&gt;&#10;" line="184" type="" variable="$type"/>
+          <tag name="param" description="&lt;ul&gt;&#10;&lt;li&gt;the type of feed to return (atom/rss). Defaults&#10;to atom (superior) if the type given not recognized.&lt;/li&gt;&#10;&lt;/ul&gt;&#10;" line="79" type="" variable="$type"/>
         </docblock>
         <argument line="0">
           <name>$type</name>
@@ -824,10 +1050,10 @@ items array</description>
           <type>mixed</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="202" package="">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="97" package="">
         <name>atom</name>
         <full_name>\feed::atom()</full_name>
-        <docblock line="202">
+        <docblock line="97">
           <description>Returns a displayable representation of the feed
 with appropriate code added.  Relies on the article
 atom_output() function to generate code for individidual
@@ -835,17 +1061,24 @@ feed items. Returns ATOM format.</description>
           <long-description></long-description>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="227" package="">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="122" package="">
         <name>rss</name>
         <full_name>\feed::rss()</full_name>
-        <docblock line="227">
+        <docblock line="122">
           <description>Returns a displayable representation of the feed with
 appropriate code added for RSS format.</description>
           <long-description></long-description>
         </docblock>
       </method>
     </class>
-    <source>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</source>
+    <source>eJylV21v2zYQ/mz/ioNmQHaWSGmHAYMjOwtabOiHLkOafWoHgxZpi6tEaiQVNxvy33dHSo7sqK8DnMQi73nueC8PleyyLupxenIyhhP43eg7yYUFBkZY3ZhcwEYbWDey5FJtgSkw1oI2ZM2crmAjBE/wKR13JK9UXjZcgCsESFUII53gwJljr7XaCgN5yaz1EBlMV1qho19/u7pd3Vxf3yZx6k2EDX9Xj9gEg40vvhTHjJN5Kb4OVLG6FvzqW6DW8Rf05ZvApc7ffx2CSyNyp839K8XFhxbbVeGl2EjlK0nZA73+C23Baci1ckwqKuW+gMAsYJUq68tqBDDOaVVxX0VvIi00NXIJv4Z9IFxjlOC+kD6gYCc+OKG4hcPo/h2PR7WRd4iHSVsXezEejUcU7wjdvjACNy3FJara3feia4PfSVdAJRyjE3mM//VzzQyrYOKkKwVMrTOzOR47PFL30hH2ZAeQUqr3HYKs1swKaEy5hz1B4HDkRtZOavXoqr+IQNtUFTP3oDfDHLRgHavqHgMd3S/1PZ/i/AAuK84Mb4+gTcUc0aWY0GZdyhw2jcq979UKi4uUTe6mGGpXgFOYrEu9bYyEGVAhRhiIUG4+/yzgFCIKJILZBeEmrpD2bFlq1g2Infqdh/HTaEK3TGcHHttFiHhT1Z42YNvW2IMPXXgKPLpgeQHTNgpJffWSmhu7d0LtS6cbjUb009p0nfb2T1iAEjs4mO5pgLWHewjnGDgJaqFw09Bgp6FrTg9a4bRX1BDspOtT9MuMYfeUp97y29izxRRXID7aJidhl74dbfZcB5vewpHpPq5guH88MmONK7TxNlvhXmi1kdtrzzeNLSZp1RqEVHXVNGIrVFdMTML+0GTm09kb8BsvGKRId6yUPIy2n2nqdyP+bnAEcCm0eDIw4Pe1gDNv7b/ifHkOFLUgRjClGUnxhpolJICsKZ31FGjix2dqmxovJG1mIDePTFt5h4qmtEOiXG+V/IcuteEh042rGxoXj5xRx+EH2bqlxQIiDCEKe6M2tLYhcSN0wkPAidKKfdMemlLAe9uHoTxyaeuS3bN1SfmrqU1R20OUR9rj84y9bzSOGk1arnkr8wkgZSlRehHntTJMR0g+RbFqzzx7zAImFEsvzJ6KdAsnUuL7g+QNKz04XBx0sST7sK9ur18/qXE6IAHh/EGwJgYbM84uP1Ql3AljcX8RPUvOIxAK3eOrySL64/aXs5+iy2V8EQDJIs58AAhSdhEVztXzNN3tdsnuh0Sbbfr8/PzH9ArdRGO0mZeMaIQKT3QXLKI4GR4Hriu8ROMZXspRzyNE71T0+BRntlmHi4hag2KoSrSHpCvyx2Y6gShLO/DygDTqf88kX0ZDdK1+eB60OWTIAu0gsNMljxxyn7WvActoAN2XmwQJOtsjiqAmy0yxCsNIntB0ckQU3iZLW8hRfqlJnp3P/UXu6zwPK58uN05LuYisKDdRWxgcDZxyPzspMXyPZBEURmyoBz6SXSy+f/3FN68I0tAGx7dUdwMdX1LhAH7lbNlpSkyuY9gLRJcu72bpD95phLn4qLx+mSwESQgzPqgLfqRv3rzpD+vQnHpJg1YHv4PboiVBTt7k4c2RpDWoPm8EiQdFQcPs2BY8bFdIzJotdFNyKNgdBgGXsBaUT/AZzZYJkiPZGjP83hKFR2L2k+CcVCLOnmhEfz7jjP5/abdRU6LnZPBO9Uc4ywumlCiX/2NkDqDULZ+f0mDVx/UkYRg+oBkHmC9ryE/0Iyar1479jhzMEV29uOItn/TqGD+Xy/8AcZV+PA==</source>
+  </file>
+  <file path="lib/pages/page_titles.php" generated-path="lib.pages.page_titles.html" hash="3ebc8ef6f11e70f4218b5f82e2fcbaa1" package="">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+    </docblock>
+    <source>eJyFkc1O5DAQhM/xU9QCkhMECYc97WSCkLjsDYnjarTyxJ2JhWNbtgc0WvHudAKjiNMe3a76qn/a+zAG0VzjKfpXoylBwZmeMBhLTk2EMpLSv/D7scLgI7RJwaqTcQfkkQSuYdwruezjqQaezRTsiUu9Pc4wlqz/CxNqyBShtGbEbFchRB+iUZlgTcrI6pCWqNk85smyqhHUjx6y3Uc0ndzg/D5afomrNWMLR29rZomrvfUHTcNtF3zKf7WJ1C/Kin3ZZMttbrESbrtEliUP1paz5EQqsuBuI7gnUv2I8mxTiX2Zpgr/RGEGlEjHfcqxXKp/pOaZUlZTkLsb3N3gZ4UfHLUQK7YUZ/h/bHOrRcE7cplHtqZrWe3doZP1Qqhl23xV2oa/eSPFu/hmUBgjDdsLWc8b5UlNNpRKfEVa417kDlUtL2boZ3GZUu5mulrBl+i9prquxfv5CM3nFcR9Jz4Agrq7Sw==</source>
   </file>
   <file path="lib/api_saneString.php" generated-path="lib.api_saneString.html" hash="bf5516c7c03427b172f6af77794bac79" package="">
     <docblock line="0">
@@ -904,7 +1137,7 @@ initialized with in order to verify it can be initialized correctly.</long-descr
     </docblock>
     <source>eJx1UdFqwzAMfPdXiFBoGtrkA9qlHQzGYLRj9D04jrJouHZnOwnZ109pm7I97MlIutOdzpvtuTmLLElAJPDmbEcVepAGyAR0tVQItXXQGgoQ0AcyHxAaBIcVOVQBlJbep0x+skw0NoBUoZVaD3fMEj5bH7gMrTMe+kaGy44LFXrpmU0sQFLTN1bQU2i4AdZV6CBY6NBRPQBbUOysxD9oZd0oogc2wYt2sg0NO97LgPCKHfqvFmFzbktNaseyhgeusbZKlT3lIsnEeL6ABF6M0u14/mjOoELvpRuAQyDNeugZlAm6ogprOJvn/eOxeD8cjuk801RmbAaLHsuUU52v/8deTkd/fYspqBtLzHjkyRp4YBs93KoYpHNyiCGqnT1FS4iCjWABi7WY3b/jypjKGKZVq3wkLX/VnOti1Jqwq7wj7OOxt83FD87WtO8=</source>
   </file>
-  <file path="classes/class_article.php" generated-path="classes.class_article.html" hash="5527d3821d4a3c5c854471e064db58c1" package="">
+  <file path="classes/class_article.php" generated-path="classes.class_article.html" hash="bc34567f6d44a6fe2429a5a9f2e3b201" package="">
     <docblock line="0">
       <description>Provides a consistent interface for
 accessing posts or articles with multiple methods
@@ -957,13 +1190,13 @@ a json file exists for the requested post.</description>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="115" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="116" package="">
         <name>output</name>
         <full_name>\article::output()</full_name>
-        <docblock line="115">
+        <docblock line="116">
           <description>Returns a representation of the post in the format requested</description>
           <long-description></long-description>
-          <tag name="param" description="&lt;ul&gt;&#10;&lt;li&gt;the type of feed&lt;/li&gt;&#10;&lt;/ul&gt;&#10;" line="115" type="" variable="$type"/>
+          <tag name="param" description="&lt;ul&gt;&#10;&lt;li&gt;the type of feed&lt;/li&gt;&#10;&lt;/ul&gt;&#10;" line="116" type="" variable="$type"/>
         </docblock>
         <argument line="0">
           <name>$type</name>
@@ -971,10 +1204,10 @@ a json file exists for the requested post.</description>
           <type>mixed</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="120" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="121" package="">
         <name>get</name>
         <full_name>\article::get()</full_name>
-        <docblock line="120">
+        <docblock line="121">
           <description></description>
           <long-description></long-description>
         </docblock>
@@ -984,49 +1217,49 @@ a json file exists for the requested post.</description>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="128" package="">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="136" package="">
         <name>atom</name>
         <full_name>\article::atom()</full_name>
-        <docblock line="128">
+        <docblock line="136">
           <description>Produces the coded output of the item that can be
 returned and displayed or saved in an atom feed</description>
           <long-description></long-description>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="147" package="">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="155" package="">
         <name>rss</name>
         <full_name>\article::rss()</full_name>
-        <docblock line="147">
+        <docblock line="155">
           <description>Produces the coded output of the item that can be returned
 and displayed or saved in an rss feed</description>
           <long-description></long-description>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="164" package="">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="172" package="">
         <name>html</name>
         <full_name>\article::html()</full_name>
-        <docblock line="164">
+        <docblock line="172">
           <description>Produces the coded output of the item that can be displayed
 on an html page</description>
           <long-description></long-description>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="180" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="188" package="">
         <name>getMeta</name>
         <full_name>\article::getMeta()</full_name>
-        <docblock line="180">
+        <docblock line="188">
           <description>Returns the article metadata - tags, title, link, date, and author
 as an associative array.</description>
           <long-description></long-description>
-          <tag name="return" description="- the metadata array" line="180" type="\$meta">
+          <tag name="return" description="- the metadata array" line="188" type="\$meta">
             <type>\$meta</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="198" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="206" package="">
         <name>list_item_output</name>
         <full_name>\article::list_item_output()</full_name>
-        <docblock line="198">
+        <docblock line="206">
           <description>Returns a string containing the post title
 and tags, suitable for outputting in an atom feed (maybe)
 or an html list</description>
@@ -1034,7 +1267,7 @@ or an html list</description>
         </docblock>
       </method>
     </class>
-    <source>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</source>
+    <source>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</source>
   </file>
   <file path="classes/class_varGetter.php" generated-path="classes.class_varGetter.html" hash="b265b7d94b33e77faf6391d55fb14841" package="">
     <docblock line="0">
@@ -1226,18 +1459,18 @@ actually observe locks.</long-description>
     </class>
     <source>eJx1VN9P2zAQfm7+intASoogZUPbS6EwMW2ahEBCvEeucyEWiZ3ZTrsK8b/v/CNtCCBVUe27++67u+98cdXVXbI4Pk7gGG6UtExIAwx4w4wBWzMLJbLGwFbYGlom2ZOQT1CJBqFR/NlQ3CIZAP5I3vQlUhwCV7ISTxHIKNjSFZOg0WqBm+BT7iRrBYdSaORW6Z1HEwGlUJIj/L778Vg83N8/5ukiQC48ZBEOOdFPl8mewU+shMRRBSqQjmyhUtqTd7zh2giX4uz74uzb4uvZl3N/yXpbk9cdswi3xNT87REuun7dCH5NrCUZdK1UmXPVrjzjkMtleEmSmaMyc0gbpuHIt+rUl+v/EqN1YIOlc1sks06LjcvmfZdTAOc6AhmO09jh/l18zcwt2Sh8WyMh6AMXMlGnXCQoCcJOMWPoclQUacRY3XNLkbIEUotlromq2rMLrQ8MOqZZ+74JWdU3DXTM1nPXEK7R5YtUaEYDEd90qHrJrSCGhZt6SJ9F0Lnr+OzI1sKcrvzN5dBHdx9VeAkSt1GS2Xx5iNg3l6KC+XQVVVnsVUnSS3NKW2jsGsYxo/MJpAV9fKp5nuYOKHXAvTTo2MXMc89DVJD5ygv8J4w12ST93NUx27MaRnYJj7p3E529An2wMfgCyYeOv2hJQ82v9HkdTewBba9pqYfpk7alsm9FsEaUI03CtfZBNLK1Ug3S3joiQGXEGYUyPhmT8KSwzMJwItZbyssJyxsvATPSwIGhkB+/FrmPvFMWw0sVgoSJO4ZVRX5igydAa6x3ZKKnq+2N1zkwbnvWNDtQa4N6E1+I/JOanDHWQ2shSy+ZSnUop7MkZWxTr7Fqq4XFDGLACVjRYjaHYOSNMgdjFMonAphOtFUbHK8ug/GTMKHeyxF5Ogj5/E5/HycfROXT0+9q9R+3A+T9</source>
   </file>
-  <file path="classes/class_inventory.php" generated-path="classes.class_inventory.html" hash="c9eb39eb18ecd02fe055ef35edd8ad22" package="">
+  <file path="classes/class_inventory.php" generated-path="classes.class_inventory.html" hash="9f832439080c6b2556dd8685b81b1613" package="">
     <docblock line="0">
       <description>Provides a self-sufficient file with the inventory
 class, which abstracts access to a data file containing
 an index of posts or articles in a directory.</description>
       <long-description></long-description>
     </docblock>
-    <class final="false" abstract="false" namespace="" line="26" package="">
-      <extends/>
+    <class final="false" abstract="false" namespace="" line="27" package="">
+      <extends>\directoryIndex</extends>
       <name>inventory</name>
       <full_name>\inventory</full_name>
-      <docblock line="26">
+      <docblock line="27">
         <description>Provides a database-like means of accessing an inventory
 of posts or articles in a directory for efficiently searching
 for things by certain criteria, as well as maintaining
@@ -1245,66 +1478,20 @@ and updating the data. Stored in json format currently, but
 due to being abstracted out, could be modified to store
 the data in other formats.</description>
         <long-description></long-description>
-        <tag name="since" description="" line="26"/>
-        <tag name="author" description="Nate Levesque" line="26" link="mailto:public@thenaterhood.com"/>
+        <tag name="since" description="" line="27"/>
+        <tag name="author" description="Nate Levesque" line="27" link="mailto:public@thenaterhood.com"/>
       </docblock>
-      <property static="false" visibility="private" line="31" namespace="" package="">
-        <name>$directory</name>
-        <default></default>
-        <docblock line="31">
-          <description></description>
-          <long-description></long-description>
-          <tag name="var" description="&lt;ul&gt;&#10;&lt;li&gt;the directory inventory we want&lt;/li&gt;&#10;&lt;/ul&gt;&#10;" line="31" type="" variable="$directory"/>
-        </docblock>
-      </property>
-      <property static="false" visibility="private" line="35" namespace="" package="">
-        <name>$current</name>
-        <default>null</default>
-        <docblock line="35">
-          <description></description>
-          <long-description></long-description>
-          <tag name="var" description="&lt;ul&gt;&#10;&lt;li&gt;whether the inventory appears to be up to date&lt;/li&gt;&#10;&lt;/ul&gt;&#10;" line="35" type="" variable="$current"/>
-        </docblock>
-      </property>
-      <property static="false" visibility="private" line="39" namespace="" package="">
-        <name>$inventoryFile</name>
-        <default></default>
-        <docblock line="39">
-          <description></description>
-          <long-description></long-description>
-          <tag name="var" description="&lt;ul&gt;&#10;&lt;li&gt;the file where the inventory is stored (autogen)&lt;/li&gt;&#10;&lt;/ul&gt;&#10;" line="39" type="" variable="$inventoryFile"/>
-        </docblock>
-      </property>
-      <property static="false" visibility="private" line="43" namespace="" package="">
-        <name>$inventoryData</name>
-        <default></default>
-        <docblock line="43">
-          <description></description>
-          <long-description></long-description>
-          <tag name="var" description="&lt;ul&gt;&#10;&lt;li&gt;the parsed inventory data that the class accesses&lt;/li&gt;&#10;&lt;/ul&gt;&#10;" line="43" type="" variable="$inventoryData"/>
-        </docblock>
-      </property>
-      <property static="false" visibility="private" line="47" namespace="" package="">
-        <name>$bloguri</name>
-        <default></default>
-        <docblock line="47">
-          <description></description>
-          <long-description></long-description>
-          <tag name="var" description="&lt;ul&gt;&#10;&lt;li&gt;the uri that returns the requested pages&lt;/li&gt;&#10;&lt;/ul&gt;&#10;" line="47" type="" variable="$bloguri"/>
-        </docblock>
-      </property>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="53" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="30" package="">
         <name>__construct</name>
         <full_name>\inventory::__construct()</full_name>
-        <docblock line="53">
-          <description>Constructs an instance of the class</description>
+        <docblock line="30">
+          <description></description>
           <long-description></long-description>
-          <tag name="param" description="&lt;ul&gt;&#10;&lt;li&gt;the directory of which the inventory is of&lt;/li&gt;&#10;&lt;/ul&gt;&#10;" line="53" type="" variable="$directory"/>
         </docblock>
         <argument line="0">
           <name>$directory</name>
           <default></default>
-          <type>mixed</type>
+          <type/>
         </argument>
         <argument line="0">
           <name>$bloguri</name>
@@ -1312,60 +1499,32 @@ the data in other formats.</description>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="69" package="">
-        <name>getFileList</name>
-        <full_name>\inventory::getFileList()</full_name>
-        <docblock line="69">
-          <description>Creates a list of files in the working directory, sorts
-and reverses the list, and returns it.  Intended for working
-with blog posts stored as text files with date-coded filenames</description>
-          <long-description></long-description>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="105" package="">
-        <name>current</name>
-        <full_name>\inventory::current()</full_name>
-        <docblock line="105">
-          <description>Checks the number of files in the current directory and
-compares it to how many are listed in the current inventory.</description>
-          <long-description>If the number doesn't match, it returns False.</long-description>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="127" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="37" package="">
         <name>update</name>
         <full_name>\inventory::update()</full_name>
-        <docblock line="127">
+        <docblock line="37">
           <description></description>
           <long-description></long-description>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="160" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="46" package="">
         <name>regen</name>
         <full_name>\inventory::regen()</full_name>
-        <docblock line="160">
+        <docblock line="46">
           <description>Regenerates the blog inventory file</description>
           <long-description></long-description>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="189" package="">
-        <name>write</name>
-        <full_name>\inventory::write()</full_name>
-        <docblock line="189">
-          <description>Writes the inventory data out to the file</description>
-          <long-description></long-description>
-          <tag name="since" description="" line="189"/>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="222" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="61" package="">
         <name>select</name>
         <full_name>\inventory::select()</full_name>
-        <docblock line="222">
+        <docblock line="61">
           <description>Returns all the inventory items that match a
 requested value in the requested field</description>
           <long-description></long-description>
-          <tag name="param" description="&lt;ul&gt;&#10;&lt;li&gt;the field to search in&lt;/li&gt;&#10;&lt;/ul&gt;&#10;" line="222" type="" variable="$field"/>
-          <tag name="param" description="&lt;ul&gt;&#10;&lt;li&gt;the value to search for&lt;/li&gt;&#10;&lt;/ul&gt;&#10;" line="222" type="" variable="$value"/>
-          <tag name="return" description="- all the matching items in the inventory" line="222" type="\$matching">
+          <tag name="param" description="&lt;ul&gt;&#10;&lt;li&gt;the field to search in&lt;/li&gt;&#10;&lt;/ul&gt;&#10;" line="61" type="" variable="$field"/>
+          <tag name="param" description="&lt;ul&gt;&#10;&lt;li&gt;the value to search for&lt;/li&gt;&#10;&lt;/ul&gt;&#10;" line="61" type="" variable="$value"/>
+          <tag name="return" description="- all the matching items in the inventory" line="61" type="\$matching">
             <type>\$matching</type>
           </tag>
         </docblock>
@@ -1380,14 +1539,15 @@ requested value in the requested field</description>
           <type>mixed</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="250" package="">
-        <name>selectField</name>
-        <full_name>\inventory::selectField()</full_name>
-        <docblock line="250">
-          <description>Returns an array containing the data from a
-particular field, with repeats filtered out</description>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="90" package="">
+        <name>getFieldStatistics</name>
+        <full_name>\inventory::getFieldStatistics()</full_name>
+        <docblock line="90">
+          <description>Returns a histogram of values mapped to
+their occurances for the selected field</description>
           <long-description></long-description>
-          <tag name="param" description="&lt;ul&gt;&#10;&lt;li&gt;the name of the field to access&lt;/li&gt;&#10;&lt;/ul&gt;&#10;" line="250" type="" variable="$field"/>
+          <tag name="param" description="&lt;ul&gt;&#10;&lt;li&gt;the name of the field to access&lt;/li&gt;&#10;&lt;/ul&gt;&#10;" line="90" type="" variable="$field"/>
+          <tag name="since" description="" line="90"/>
         </docblock>
         <argument line="0">
           <name>$field</name>
@@ -1395,27 +1555,42 @@ particular field, with repeats filtered out</description>
           <type>mixed</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="277" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="122" package="">
+        <name>selectField</name>
+        <full_name>\inventory::selectField()</full_name>
+        <docblock line="122">
+          <description>Returns an array containing the data from a
+particular field, with repeats filtered out</description>
+          <long-description></long-description>
+          <tag name="param" description="&lt;ul&gt;&#10;&lt;li&gt;the name of the field to access&lt;/li&gt;&#10;&lt;/ul&gt;&#10;" line="122" type="" variable="$field"/>
+        </docblock>
+        <argument line="0">
+          <name>$field</name>
+          <default></default>
+          <type>mixed</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="149" package="">
         <name>selectAll</name>
         <full_name>\inventory::selectAll()</full_name>
-        <docblock line="277">
+        <docblock line="149">
           <description>Returns all the fields in the inventory</description>
           <long-description></long-description>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="284" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="156" package="">
         <name>getFile</name>
         <full_name>\inventory::getFile()</full_name>
-        <docblock line="284">
+        <docblock line="156">
           <description>A function to return the inventory file. For supporting
 legacy functions</description>
           <long-description></long-description>
         </docblock>
       </method>
     </class>
-    <source>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</source>
+    <source>eJztVlFvGzcMfrZ/BRcYiJ059rJiGNA0aYINHQpk6dB2T0FhyDqerVU+3SRdEmPofx9J3flyrt02y+sAI7F1/MiP5EfqXrwsl2V/enTUhyP4w7tbk2EABQFtfhyqPDfaYBEhNxbhzsQlxCWCKW7p0Pk1o7RVIYzhbmn0EtQ8RK90JB9aYwgQHXnLVFTJhXZFVKYwxYKhqiBXGd6Dy6F0gVDOg/LRaEssTMFQ41FzqAkBpv2G6utC24qpMp0COZTya8iVNtZEQw9ycrVShVrUsbZ5T/sm+Zi5QiP8dn35fvb2zZv3k8OpNfOpdh5ndzifUH0OT/fbSvYY0v9Zzf1xoE2Kr7kWNXZHT7iKcxXw2JqPCCtUReDCpUJTlqmcDzrzDVWVMmHTZrumxiuvl3XN+GHkHwHma9DouXegvYnojRqDCnCH1vL/FT3pdDaDqiTGzItLz+Qn8I5iYsYc/gquYP8rFUFX3kv0McyryPCsQlbOHCWtWlMEdFUck4Yqm9EzWLnM5IaOyTSw56bPojcK4uiHr6MEFhAbXFCtqB8/TU+eTX/84eSZnKkqLinZaxURrvAWw9/E4EVZza3RF+SloAd+6Vw20W51LvKR5rUFB7yPWGQBuu38p9/v95IfyKtCR0N5z2Y0B5RUpeMQBhvAGAZz6xaVN2fXf15dwYjAvV6puDjPn38VNIaDDZsDGJGGep92RZe+4LDrvT6EgwXG3zGq1kGPldijIr3FBRboySyNHYd9kD/PN9tNP4/oGbkVMJ218UhN3qv1cLQrcKw8iV2R1DpjDCTEFZMhEVGLef8IwCO1L7BgbpWtGCC49phUYzM2FfML4qRWMJBTOBbb9J2FJQNBLjqmyW8yTd9bU9Jb69oLdxgIPVbz8SaNzVHKoibZTvDuWtJmRlGAMBw3VFJx2zBnTTm5mD2ihIqoDQc0zuH4XLburzwlNLqDev5GID56JochfAeG1xm72BjcpJgfYMThyLLXPBFXZzQCpXUZqehwzJ/PcaeM+sR/0Abc6WMbVEM2xExR00qJt1EY3xJrCnHz4YHPTXjxt92avbIDqll0C248rVQJywuvLNPqEWNqnfHgNEVStF5CvTux7tc3aa5QK+QIHf2l9Z4waXP9TGuLltcefdA8vWLsu0jLN9DSD41WGo3Ij1/oIqaKhP8iFHiCUoTbU6XSOPmCVtpEOhjOgseNM+i1GQj92Udcz/CeisYlY6sxdItF2Qhqq4Y3YsxCOxEGwvjLhrvPv68dSAodjXbM9wq1SIk8eMtqr8PcuxVJWQClvA1UVnmot4i82nkskS5K3uR026Xr9imC3bu9pBf/y/Krsmx33WPUKPpiwJO0VF9SYvzIy+nS2qHUt4m41bRTDrmJeNnCST01pHvN86vFBF7RRg1VWTrPb5WCtbhQer1xsE91shMt7iZVB2EDIdanz8vz/r+qFCFM</source>
   </file>
-  <file path="lib/core_feed.php" generated-path="lib.core_feed.html" hash="789d492217dbd7ee5bce5b1ea2d6a0d2" package="">
+  <file path="lib/core_feed.php" generated-path="lib.core_feed.html" hash="db8e9aea791e21c35085450079c17ea8" package="">
     <docblock line="0">
       <description>Contains utilities and classes for generating an atom feed. Relies
 on the article class for retrieving and outputting post data in the
@@ -1459,9 +1634,76 @@ feed. Requires existing instances of the config and session classes.</descriptio
         <type/>
       </argument>
     </function>
-    <source>eJytVU1v2zgQPcu/YjYwailNrWCPTZo2SLYfQLYpAt+KQmCkkU2sTLok5TZo+993ZigqdrLYokAPUaThzOO8eY/06cvNajMpDw8ncAgX1gSljYc+6E4HjR6UaaDulPf03loHSzToVNBmSUuggl1Di9jM4QY7ymcUayCsEJQLuu4wVkutw+A0bmNtA7YPmz4I1Mb6AI0KCrQUM0yC/dxrR5vjV+0ll/oLytQUsq1sVFvT6ghJXXpN+w8dzxmH/16pPqyog/cqIFzhFv3nHuF00992un5FIIYW3MraZl7b9RmXXCmz7NUSn8OHtx848Fp3lLamQG0dVtIezy5uUU7SEN+ZuusblNbWNE247ewS2t7UgVrbm6jUESEpqCyRgjfvzxfVzfX1Yj4rO31byl6MwHvNTv4ne8CM/8f2fqFEmy2aYN3dUJcIvYmSixnuFRcepGjviJMO46RjCKaSmPNTeimec3XSLkk3LseJjLNM00p2w9eUk8OUB9E7fQRTLlro0OHwfqFCveq0kW/rarxBqqUPttYlOahmZlB8m0yySTYducILMPgFxu/8QcXRuCkUJ1TIi56K7hGenS0xsDmuyKA5JVGWkI/I7V7nIOu6hRz+IHLhQrx7vWGy+YxcamUclePuZwU8eUJ5O4Q4IOjPzuRA+LxgTllWHtKDzBfnek9vzXMh6Tg6HiHTr2/RsQg64NqnQ8cAzT3xQUmuJNXoMEfdW6LKqSU9dsWm6fwgbth52p8J7rb9/Tvz+JXGG4vezEIk8LP2BYJz9tpP5nmAzMblyB4bjphdyo+47iou2Kx1lg2k6IrCkO/58pG8ntqtGsuXwqyYH5TJFAePPcyXIeaX54u/qvPF9d9F9E3Gt2g+1WSt4xOyIJzSXdSbkEdbFhx7+lTGmk3JfDyewYbDbZzDwb6/y1j6cao/HTzw+siN6iuGyhOmrLLYKcOrLUbrJwt8mzwYWb8RSpGH0H0n4r1IthhDKYc2Qx9SlnJO3VWe7msc6B7B8RH8eXzM6dJK05BkKbPRbVv9g3f5Ls4waHmP6jlc2+1/lo2JVLQDEZtj45akBioyJ8meYJTnm4F+1gZzl1lvojHGUQjKx5j1KQ66LH8M6ka8gcoIVoCMM94+l/wzuS/qI02l6jfoKcH9Q06Rl2eTfwFrxaBR</source>
+    <source>eJyVVF1P20AQfI5/xRZFxI4gfgcaQFBoJUoQynt0sdfJSfaduQ/aqup/7+5d7DggUfUhjr3e2Z3ZnfPFZbttk3w6TWAKN1o5IZUF72QtnUQLQpVQ1MJauq+0gQ0qNMJJtaFXIJxuoEIsZ/CMNeVzFa3AbRGEcbKoMaID1qAzEl8jtgTtXetdKNVq66AUToAMYC7TlX3x0lBz/CltyCV+TqiCQroKjQqtKhlLEksrqf+O8Yzr8O9KeLclBo/CITzgK9oXj3DR+nUtiysqouiF2WpdzgrdzBnyINTGiw2ewdPXJw7cyZrSGgoU2uAq0OPZxRZ50g3xmypqX2Kg1tA0YV3rDVReFY6oHUw04EhQAKw0iYL7x+vl6nmxWM4meS3XeejFFbjX5PyD7F3N+N/T+w+IVK+onDa/drhO0H1ceTDDfuNBB23UG9IkXT/pGIJxSEz5GrhkZ4zudtetrn8dJ9LPsptWZze8o5wUxjwIb+QJjBm0lK7G3f2NcMW2lio8a1PgMxKWHthat+SggpVB9jtJRslo3GuFz6DwB/TP6RvESd8UsnMC8ktLoH2F0/kGHZvjgQyaUhJlBfGxchWZf1A0GckKUvhEYt1N8PKiZfHphFyrw3hWhtVMMjg+pryBQA6EbqfzcEBsmrHG0Sif0oXMGOe8l9vwnGiVHO2PlPLNGg0vRTpsbHcIuUC557zbLCNpi3S4ow8qks6pOV2Gy6dp/SFtWFvqzwKHtD/kWGq0auIi138xDSU454Bp55s3ldmzHDkgzhE1VPdO1nDZoTaveTTaDZ6+TujSA0u+26QluqtS8/dgks2O8m7/R+/ty99BTG+vl19W18vF9yxapBsl+/eAj29D/pDQIMSww6VQ5HKe/AXt4/Ij</source>
   </file>
-  <file path="lib/core_blog.php" generated-path="lib.core_blog.html" hash="2fe1ff6b1a18677a9896bf9069248810" package="">
+  <file path="lib/pages/page_post.php" generated-path="lib.pages.page_post.html" hash="aca81458da234fb0daaeb76babeff133" package="">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+    </docblock>
+    <source>eJyFVW1v2zYQ/mz9iqsWgHJqSwOGfoltBXbsphoCO4udFcUwBLTIWGwlUhEpJ8La/94j5ZckXVEYsK3jvTz38LnT8LzMSvA6XkfcQwAnmmstlOzHUjEOoxH4PnT/8zqdEyZ0mdOmVNrACCR/BFoZkeY8QJ8enKxztWH8vh8LBt2B53W+eR2ea/6r4GOgPb1jouKpUVUTkoiEL/H8WMUWQexlJaSB51X6sapNWZsASGaKnLSQXI+rquZtT9EpfsEpLDP1qEHXmw3XBqtpuFcVKJPxCmwyDUrmDWA0mqCNSeuq4ljUtbTmQm5AYxoJGS1LjimMAv4kEAkIBN4GCYPHGigwarAULcoQlkKm/GjQ8CjyHDMCrY0qKLJE87xp4yljnNnMDlUP8GQH0AVldMtfJHdREX7zNFNAhtm7+JOqoRCbzGCwVrYOUscrDMDMQp4NI3Qig2NMnbePG26WR4aCP3qv+DZ0o3s/vc3us4zRPuXuuYyHFLKK3498e+XPrhg1ICTjTyGK1I8nNP1im5+gA3xQBR9GNB5GpUv2ba/gF6AOVACV7LW634yA5M6BODk4OL7XGb7p92Eyu0zmME2Wf90u4WIxnUG/H+MZE1sQbESwzEOt7wzipowgDDyw5zqtRGnANCUfEcOfTPSZbmlrJegQnYL9XCzm75PL25vxKlnM4e/xTTKeXM2WZzCbJiss/n5xM4Pr8XKVzC8hma8W8GlxewMfZ5Pr8eXMpbAXu6UV7JCg+iojaYFTC0SWmciVVmXWkAFEEVT8oca7YGf4D+lBxfEnpCXnqByTQaPqyoq+LuCQxzuAnS7mZLVHdrX4CKsPyRKukvkRSHBfy9QqI+iC5dIB0w+Iham0LnBSwhSZMnyWc/sUkB0l3YH1Cy1fFvhrxtpTqhuZ4rHB0bXCsTZdWQtOtynPoojA2x+JeAskbI1hqoqIF2vOws/aaS844EJh70DpSbOimzmGBiSz19r95/d/4etX+IXvWrHG+XZDN/zsAtlnAaJ0K6ob2J9h1LZkRSLV7v91zqnGu5B0jVfxJ/a93OlHwVbgmrQLZz8d+16ftXSO9rt9NhKjyWHDpfCIM81g3cC09W5n5VAYQfw0K4E0p1qjxvVDf13lQn75/9RDXVK5d8ahVP02CYnbotgyOsS2tGcJ2I2IHa/ZfPp6uPyBfQ3t3hpORL+1e93HDYFri1TccWJXraWlHV1AzkTu6HOr2MoZVz/s8YYAK7V/6mECjUv40LsfvtwXttfQJ7HNby0E+6Ubt2hCu2l8t2nOY+87aV5M6Q==</source>
+  </file>
+  <file path="lib/pages/page_home.php" generated-path="lib.pages.page_home.html" hash="10b178065fe135f28af436be0a922185" package="">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+    </docblock>
+    <source>eJx1kt9r20AMx5+zv0IxHV4hqdvQMLAvDuvLKIx1jD4OwsUn+446J3On/lrp/76zY7tJt/nBPsmSTvrqI5R5AM/PNa6iR6NYp8vP581T1pA3bMimDmvJ5gGzsibJaY0lZzvpKmPnzlSaU+jCpVLGVoProvXBlpxCdxAGiphRZVH+YdI9Yt3opj+bEj7BiUfvw7Xz3CiYriDWtMMYTl/6oImxRX2vEApN5PF6bx3nzeCkIFuaap4/4rYghxtHxGdxwrhrwjS4QefInYW7Q+lsKI2hJsRCO0hy0eRCgnZYriJjFT61wVF+JYs7YIKrmipoWxOJzEXS5PFQ5bX/Yu3xBcauj2fzLB3DagWXi4PRJo0zliESTb+QuCTLc29+Y7rAXRbnl4spXHPsgTXCDqUNkgOVUJsSZ53z3oZVOR8saRVgOD+zDlHTtkmxbUf7ZaNx5KHbSYX8gzz70OU2zKaw7JUcrQAEb5RxWDC559n7aWZvNlp1+l6Odb9xkQTe+nPv+QvAi2VLzx63jp1/wKhxAO38Y49jCsuQNqJ1xNb/6GJZ+UO6hh3Ee6mEXubfiO5amUty4MPGOznXIgm/xqUfcPn1+5fbzc+bm9uAW222SSMr9N17017WMfeWNuq/zg8l2Yv0BziyBUo=</source>
+  </file>
+  <file path="lib/core_extension.php" generated-path="lib.core_extension.html" hash="c1f7d1eb75ae26d2c3085fc3aaf4923a" package="">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+    </docblock>
+    <function namespace="" line="10" package="">
+      <name>loadExtensions</name>
+      <full_name>\global\\loadExtensions()</full_name>
+      <docblock line="10">
+        <description>Initializes an array of extensions</description>
+        <long-description></long-description>
+        <tag name="since" description="" line="10"/>
+        <tag name="author" description="Nate Levesque" line="10" link="mailto:public@thenaterhood.com"/>
+      </docblock>
+      <argument line="0">
+        <name>$session</name>
+        <default></default>
+        <type/>
+      </argument>
+      <argument line="0">
+        <name>$registered</name>
+        <default></default>
+        <type/>
+      </argument>
+    </function>
+    <function namespace="" line="24" package="">
+      <name>getPreface</name>
+      <full_name>\global\\getPreface()</full_name>
+      <docblock line="24">
+        <description></description>
+        <long-description></long-description>
+      </docblock>
+      <argument line="0">
+        <name>$loaded</name>
+        <default></default>
+        <type/>
+      </argument>
+    </function>
+    <function namespace="" line="35" package="">
+      <name>getPost</name>
+      <full_name>\global\\getPost()</full_name>
+      <docblock line="35">
+        <description></description>
+        <long-description></long-description>
+      </docblock>
+      <argument line="0">
+        <name>$loaded</name>
+        <default></default>
+        <type/>
+      </argument>
+    </function>
+    <source>eJydj19LwzAUxZ+bT3EZhXVDW1TQh81tIiKCbCJ7UxkxvW0DNZlJ6r/hd/dm69YNBcWHkJt7zzn3l/5wXswZk0qUVYozrQTC5fhsOrudTKZxOxFaZTKvrxm+OVRWamVjsrV7jCXdLoMuXCnpJC/lB1rgCrgx/B10Bo3Bq0ZW+vyT5PA4OThadnjlCm1gzB3CNb6gfa4Q+vPqsZRi5ApUNDCF1mks9NOALAnLKiUcRUKpeXqxWRBBaNH6cg9Cg7m05MQUOgvGgtBr6XG6Qos6hB5k2iAXBUTbcm4h3FBDB7x7bb9rJg8UpfB1S9vsh2X6Jx2DrjIKajt1qbnBz9HdGMy4wGit8LBBaJ2RKqcFrdYuZi2qET1bsKWuq9jP9gdN+rlO0X/4J23rXtGOHdbVpPcNVVv3J85GVHPC76CU/X9KNhx8AXf94Es=</source>
+  </file>
+  <file path="lib/core_blog.php" generated-path="lib.core_blog.html" hash="8925b49a477a4fcf0ef9e5a9e6930830" package="">
     <docblock line="0">
       <description>Contains classes and functions for retrieving, displaying, and
 managing blog posts and other aspects of the blog platform</description>
@@ -1544,7 +1786,7 @@ out to the given length section</description>
         <type>mixed</type>
       </argument>
     </function>
-    <source>eJydVlFPGzkQfk5+xTRC7AZC0ucmLJxOau+kCBDXPiEUObvOrq9ee8/2kkYV//1mZp0lQA+1JwGJx/ONZ+b7xmZx0VTNcHZyMoQT+N2aIJTxkGvhvfQgTAGb1uRBWbRurAMng1PyQZlyAoXyjRY7/o6eFKEWRpRogLW2JTTWhy6IDZV0IHwjc7TYDeA6+mgRMHBNaPq9FG2o8KArESQs5YP0/7QSFk271iq/RJjBDVdZW0xzW2cEWQpTtqKUH+DmjxsyfFQa3Wo05NbJFZ0zpTK7I2bDfb1/mly3BdZJ2bDrVq6fCmZf1fmsrMklfLr67fPq9vr68zSZabWe7TEUPZn/t2/sZ/e5Ei6oXMtfAynzIE2wbhdhXMMJ3MrQOuRGgMM+2xq0MpIaLKBUiIAN9mKKjl+8LJAeZfSOiSylkU4E4ioifVuW0ndUI4CcRFEoMgh9SGiwKANRUFT8uWyEEzUcbWLT4QzP7hfo27Rao4kT2zhbD7Gr+x7DLZ+9xL20jzCG78Ph4IgAHs451uHmfDhwXDV0LnfCObFbURVpZxnfo9PjvkWfukqjnKNoPWfkA7fqqcokNkEWCVeMcK55CnCryiqAsVtoVP6VNVPH1undBNZtAGVYSZsWs5NQEwADOIktx1IFrGUINAa6tE6Fqn7RQdPWa9xOlQnjD1DhSThOO2phJEseVnAADKKE1ONgmhKBAmiN7OEHk9V6+ZLyA66f0VHK8NfTVhpTmvAR+Jd6sSqUwylGJY6JpsFRr0zkysgt9Ov0JWACV1+WSxjPGddYqxHyhD/LvNTo+VFJXaSQBBW0TPbuCn3fI/eDbYVSgBQNi33PMJMBRyR5/ihkH42LsPqZZsiAkhnP+yAUg4Pdvb9na4O9DZAstMoWAionN+ejZMo+dwlq7mtyP01GWW/qDkPbYiayBd4VWdJFV6en9OURf4eDx/4mWioeLBIPFudJSQL6vjHtbj/puEXJx1uUL06L4kOiCd9NPc5KGSrwkmnt79aoFx/wCup0xtPKa5KFMoX8xlrpUznESUyjRxnA5RsgBu4HtWMm5cQjui+CG27Xf9PT0F/Rh4q8ITCKiQaydeqVDiexoglnyKr8JVHuA7MCfigiTILeFGIpJafhgMpNWZPd2XNgPea2NSHtYozh+LizUlrkcHrKQj0y8luIMqPc4nvwKjN8A6Kg/N2Run+R6EDmlYU+1lmGImhaUnoVap0c+IwWlYNZNpqT4gZqA+m7vQYWOFNjiF5R2MkF752Ppmn0OiMW8J+DjSqvG2IlTTirVSPdqsGXNxnDeDo6FnUzx1IZSVr5SVySXcktXnzMMw0MZfoqTR6C5/19RyxBzD+BGSQR+JbfG3We/s86fxKXZADXujisFABrpafqIhv+CwCyErY=</source>
+    <source>eJydVlFPGzkQfk5+xTRC7AZC0ucmLJxOau+kCBDXPiEUObvOrq9ee8/2kkYV//1mZp0lQA+1JwGJx/ON55v5xmZx0VTNcHZyMoQT+N2aIJTxkGvhvfQgTAGb1uRBWbRurAMng1PyQZlyAoXyjRY7/o6eFKEWRpRogLW2JTTWhy6IDZV0IHwjc7TYDeA6+mgRMHBNaPq9FG2o8KArESQs5YP0/7QSFk271iq/RJjBDVdZW0xzW2cEWQpTtqKUH+DmjxsyfFQa3Wo05NbJFZ0zJZrdEbPhnu+fJtdtgTwpG3bdyvUTYfZVnc/KmlzCp6vfPq9ur68/T5OZVuvZHkPRk/l/+8Z6dp8r4YLKtfw1kDIP0gTrdhHGHE7gVobWYW8EOKyzrUErI6nAAkqFCNhgLabo+MXLAtujjN5xI0tppBOBehWRvi1L6btWI4CcRFEoMgh92NBgUQaioKj4c9kIJ2o42sSiwxme3S/Qt2m1RhMntnG2HmJV9zWGWz57iXtpH2EM34fDwREBPJxzrMPN+XDgmDV0LnfCObFbEYu0s4zv0elxX6JPHdMo5yhazxn5wKV6YpnEIsgiYcYIZ85TgFtVVgGM3UKj8q+smTqWTu8msG4DKMNK2rSYnYSaABjASSw5UhWwliHQGOjSOhWq+kUFTVuvcTtVJow/QIUn4TjtqISxWfKQwQEwiBJSj4NpSgQKoDV2Dz+4Wa2XL1t+0Otn7Shl+OtpK40pTfgI/Eu1WBXK4RSjEsfUpsFRr0zslZFb6NfpS8AErr4slzCeM66xViPkCX+WeanR86OSukghCSpomezdFfq+x94PthVKAVI0LPY1w0wGHJHk+aOQfTQmYfUzzZABJTOe90EoBge7e3/P1gZrGyBZaJUtBFRObs5HybQKNYoSAyvpI9m7BBX4NcFo02SUJdNo7A6/nyaLmcgWeHdkSXeaOj2lL4/4Oxw89jfTUvGgkZiQrCdlCejryDJw+8nHLSITb1W+SC2KERtP+O4WwDTLUIGX3Ob+ro368QGvpE53PL28JpkoU8hvrJ0+lUOcxDR6lAFcvgFi4H5wu06lnHhE9yS4AXb9Nz0V/ZV9qNAbAmO9aUBbp17pchIZTThDVukviXQfmBXxQ1FhEvTGUJdSchoOiG7KGu3OngPrM7etCWkXYwzHx52V0iKH01MW7pGR30KUHeUW34dXmeGbEAXl747U/YtEBzKvLPSxzjIUQdOS8kmmyYHPaFE5mGWjOSluoDaQvttrYIEzNoboFYWeXPDe+WiaRq8z6gL+s7BR5XVDXUkTzmrVSLdq8CVOxqj/0bGomzlSZSRp5SdxSXYlt3gRcp9pYCjTV2nyEDyv7zvqEsT8E5hBEoFv+b3B8/R/8vxJXJIBXOvikCkAcqWn6yIb/gtyIRhh</source>
   </file>
   <file path="classes/class_url.php" generated-path="classes.class_url.html" hash="752035a42a579e6caf1d80d7fc2f2fc6" package="">
     <docblock line="0">
@@ -1610,6 +1852,13 @@ returned and displayed or saved</description>
       </method>
     </class>
     <source>eJx9U01vGjEQPbO/YoSQFlBY7uUjrXqoekhTRbk1FTL2LLhZ7K0/SFCV/94ZeyGkSXoBrf3ezHtvxvPLdtsW0/G4gDF8d3avFXoQ4NDb6CRCbR34YJ02m3Tc0g2aIIK2BmxNZ63YILPpW8ADrr0OCA86bCFsERorM1YYBTurdK27AyU6HJMZWgupGx00CQiWWoXoDOgA2sDjrmElOxEquBLaNIckLHqkW+YL4LY70Vb0NS2Ojr4a2UR2xPW12aIjlALZCO8TUGfAyhry+uXbp9vVzfX1bVVOEwR9/l+RVnFlzQZdRXmVs1ODm2MgHFp0Ddj1L5SBDXBq+Cws3a4pjvvUONVNZ/gY0CgPzz3+FEWP6/eowWeHlFM2wIizBtLSHCgcvhLB7qBG8sbdqkRNPx9b4cQOBo029zD0wY0+JAINCoRSJN7zGFM+xIQ89pdU4QNN7pydoK+myaxp0WvjutES6mhkulqtSClxowzDpOPiVHME7LU3CFvtJ8vOELofJeVU/oRF1j17G5JLdLD8QUiy/XSWH+20ipICtDG0MS0TG3D4O6LnXchrdQEKaxGbwHtO2dLCvcigY09AbwyNVb1jNcOGMAiHFhclVSlhlCx269zZSPfDEe0Rie29oZY1SqtIX9f5fEZhKwJIYWCNeci5OIH5kSnt20YcmEpPV+yz2G4bjjJSnQnh2ekETe71+nkfex79Or3nZ3syTOzhcYip5gL6c9rq5Z3pz06HFZ/SSJd9qOC9YVeEmTLoX2o576a7LKv/rEHF9A74uvv0TNR5CLO0Lk/F5fIv3QicaQ==</source>
+  </file>
+  <file path="lib/pages/page_taghistogram.php" generated-path="lib.pages.page_taghistogram.html" hash="48316af8852f8a647479545b7d916495" package="">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+    </docblock>
+    <source>eJx1VWFv20YM/Rz9ClbTKjtwpG4YCiyWlbUbuhbo0mIL9iULjLNE6w4536m6s72gyH8feZJsB0uFBJB45DuS75EurlrZRvl5BOfwZuul7S7hWniEj7hD92WLULTblVbVL16ioYNOWltnld2UHPJRmGYrGryEz+8/s+Gd0uS2IYMXjWML//+GrupU65U1l/x99ocwFOWgQ98p3CnTBH8QpobWOu9gp0QwZQAfHBjrQRmP9FcHAG9hhVAJrbEG5ylOaGswADhpt7rmc2Uqva3JQxk6sVRCB2vKsIeQwoPQHYr6AaRwgIRDpTpJAZU1a9X0cOgcJU4YfE+FLqPwPBqwl5ZM8Pv1m5vln58+3WRprtUqr2yHS6mct00nNhn1OJ1HUUIFwQKSAfGipO95lCizo8Js90BnBvdw+J5AstK2qXF9UXJXlrXqsAqeU4KL1BrIhUGnX6MzIvGM6vqwhtA52AvuL1HoqGkzqJVrtXiAvVSVDA7KUY+49avO7h01lsP3yksC0Mrcw0pU90Cdpr7BRlAPWyIN7Lrn9oy7APS0HVEDadGWhfOdNU35lgEHUiFOM84xS2PissgHl0KA7HC9iK9UvWC8uPxbUfHEaM97kYuyyNsyzeJ/TEzlPg4Fvxgr5rtZufycw68SKVv1jeoD93vlkCpzPlQkdkJpIhxHhHDt8NFXhpW0EBcsCyw5BzYmQalE44Gni7JB/06hrv/ywhO+qtwEUvZLmSmOune285MQO1iSgz4IrEGDHY3X+9F2bV0rKuz5dTOIX3738+ufXs/jETDR6GkcKTaOe8uaRCcqOTlFpi4kyiNdUUJCllaOneMn9NNtV8TJJLjN4NUMfpjCi8UB/8T96bXPxM2fuI668F1Z+JoZJ6pjoVu5JEn0OKSKMjA9yOLk4CiVnKNzghm1MN7weHhLKo3CcFa+W3ZISqfeDanFEM8g/f7HV+lJgoHa09x6NSpT4788r6MsX4pNO6eXBWUW7uCM6Z2hOUfRp5f+H7lmt9By8sNNCf0cuNsQe5el/aYrcjp7vsTH6FSF+VGGjxFqh19PT7e6HKKOI/GtVcBrkxTn3z7c0CENeM8UW0NKY3zYBTwqPL5PBiPZCF9JnvCnc+BQ04IatT8bltMwOIM+YXKMHuU5haPKRtlodaQlzaTf0C+LV14hzVYIuk15S6V3MD3h5DYlH43p3UgOwaTPtrPvGK+V6KqM/gOOGxkL</source>
   </file>
   <file path="lib/api_session.php" generated-path="lib.api_session.html" hash="9448b8e99316d2183d4331a560a4ce3b" package="">
     <docblock line="0">
@@ -1688,6 +1937,13 @@ with appropriate code added.</description>
     </class>
     <source>eJx9VNtu2zAMfY6/gjAC5ILGzraXrc2lxYYNA7p26DpgDwMCRWZqDY7kSnLcYOi/j5Sc9PKwhyCQxHN4eEh6tqzLOsnH4wTG8N2anSrQgQBZCedgYyxIi8IrfQdCFyCN9kJpOnK8AKc8bkUNrfIl+BJBrFWl/B68AXyojfWgPAgHD9sKCuFFxrhz0fiSqK+ER7jEHbr7BmFWN+tKyXOi0fRgS2OKTJrtgiB5ctD4VcuqKTAks3jfKIsFNLbqFFPexiEoTQRaVNU+gFUErYyWCF+uLm5XN9fXt9kgDyB08X9FNBnZMTg7ZvuEG6WDISwezPoPSs9JOiPIlFBa50MWskUlRObQw9+kl/SYrceF74SFPsc6mDBWWCv2YDahgsjuODJPerVVO/Ynhp8dacbwkTvCojTgtiazD10IiSmC0cFL2DRaemU0rFak2HnbSD8csSii6/V9qdxkEfXMo5jhiFI9Jk+aL4oipOIorpyN3yCZLsJ1ZwlZwQ/xNAg1QOQNrOEcLaiFFVvoV0bCkASNTgOwxTWIorBIzpEdfMXwgQNnGivxJVY4vzXFczwd1UZJEYot2LdnLAdHX3misV3x85DFnBxp2R4yJ+he1Y0rh899OmEYt+s1Kvr21KUb9I3VYXSUqyuxF+uKR7amGpGGJ0joRHYNZFjYJFHX1tAAcB3S0LSTNVhk/M6/cxu4oW+DBbSNozhOPIqoGVGAaXzd+EOG/4xGDBx2ZRPnfDBbMtMOraOAefomm6aRl1LN05+3nyfv0+WComfdlFO4dvO09L4+zfO2bbOuJJcZe5c7WdLB5d1lPs0+pBFz+uDUC1z7LiDeTqdv8l/fLn8E5ETR7Apa3nRByxlEZnNIf+uUT/SVQiFLeNEnHs+wOnHaO0i4mSwOJTP68YlvlsdyFoH2aHJciMdkufgHgd2hZw==</source>
   </file>
+  <file path="lib/pages/page_tags.php" generated-path="lib.pages.page_tags.html" hash="bd8c5ff00a2281938ce37c665f3465a0" package="">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+    </docblock>
+    <source>eJx1VFFP2zAQfia/4oi6pUWlZXukadjYhIbEJh6mvTCE3OQaW7h2Zrvt0MR/352TlLJBBFLsu/v63ffdJT9rZJNMjxI4go/rIK07hW8iIFzhBv2vNULerBdalR+CREMBJ62tJqVdFVxyJUy9FjWewvWXa764UJrSVnQRRO35hv8/oy+daoKy5pTPB1+FoSoPDoNTuFGmjvkgTAWN9cHDRol4NQG49GBsAGUC0l8VAYKFBUIptMYKfKA6oa3BCOClXeuK48qUel1RhjIUsdSCgyUxbCGkCCC0Q1E9gBQekHCoVS+poLRmqeoWDr0n4oTBv1Oin1D5NEkGRA/mMOjixwWdZ8lAmQ3RtO6BYga3sDsPYbDQtq5weVxwj3eVcljGzNEsSRK1BEph0NGf5IAsOSCWl0uIOsBWsFpkiCcJxlAp32jxAFupShkTlKeOWciFs1tPMnH5VgVJAFqZe1iI8h5IN1IBVoIUacgCsMvWqQPuCehpHAkNWd4UuQ/Omro4Z8DOIkizCXOcZCk5k0+7lFyAdLicp2eqmlNYKh9s7cQqLX4oEoF8at3Mp6LIp02RTdKfJqW2HxMspYU0X+uCz1GFw14GJsTDyc8RfJJILahXJIn2bpVHateH2KbYCKXJU+wRIofu0LY7iHNHNu58Oi48ajLmQqGuhpBxQsYWcbq3LgxjTXcx0BhoKwghTdubpaWRKuWwgyaSAxVw1bfDT2zSrxek3jAGx3AyhncjOJzvAPfSn//OC3WzZ6m9g1qxL2RIKnQj78i4FoO8K6IPnXl7gSdDp1Tdm9QDP+7eBqVGYZhMcHcOaRRL7BmlkI4he/P+JNvjFU3uKbWjokyFvyf0+elmxr8Vq2ZGL3MiFPGZKL0zLFMT/7N65PnRHv+dlNfWhj8YUGM4f/hOQVqGViu+jZ+dvj7uDU8Qj/rzeVmJUErehpdmph+XcbfINNB7IwHDp+p+LEbw5PNz41qVsokMK/qmBhUU+mFbdJPxRme3MNqT6CajHI3Z7b5WvUykU79o027TzorkL+FGyhE=</source>
+  </file>
   <file path="classes/class_dataMonger.php" generated-path="classes.class_dataMonger.html" hash="d665e1eb3c965660588b35c61bc4e065" package="">
     <docblock line="0">
       <description>Provides an abstract class for objects to inherit in
@@ -1750,6 +2006,86 @@ contained in the class.</description>
       </method>
     </class>
     <source>eJyNU81u2kAQPsNTzIEDIAJN01sjkgdIq6rXqkLj3THexN51d8ekqMq7d2YNcQpFioTA7M438/2Mb+/aqh2v5vMxzOFbDDtnKQF6wCJxRMNgakwJyhAhFI9kOAEHcL6i6Fh+FReipajHbd8AEEp6hgITQdl5wy54bWrlwgTP6LzUS0sFHw8sWGRc6tE9dlzJwK/IBA+0o/SrI7htu6J25p4r8nIRqxDs0oRmLZDV+B0ahKClUkYJjcRCB6OFZ9xnCSU06HHr/DbzyIJlUg+VdlwhA0Z6LVMUV/KQoHZPBFKURGdGL6ANidMCiE1WlFUl5w3Bp9X1zerjh+ubTPuUo6K/BL+l+Gc8AvmorBEofIcRJoN9V6dmHidHKilGLOo9SMdghHUUkdpkJd+SEUuM4vfQ7PPJrO/EXfSpN0CKyEvsYtHxfwYNHXMur0mD7Zp2OhP+2nQEMTeDiZiVrtZvZ+ahL+ezo9PMdYsc1RbKGJp/Ry9UWddoWOeUwPXhq3aH7HbUO7Dsbw9uthixgYnHhsRK7eKYGt2ReCDQ68vkThVuNlvi6QE9KHUlTPtZmyfab+i3kyWY5qrFmX6YwUxBowv+/Mi4n9kmqhO9rfVdXV/yT14A25ls32MSruRNsJJ2JNmMJElilnBIU3emxw3vofPD5i8vpqzNz1PW000/cvofybpoLwIQ1nC3/gvHyGTm</source>
+  </file>
+  <file path="config/config_extensions.php" generated-path="config.config_extensions.html" hash="47e09171924472524a87e1d6f1e29ed7" package="">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+    </docblock>
+    <source>eJxtVMtu2zAQvOsr9hYgcCy0BdpDgzwORS9FAhS5B7S4sthQpCKSkdWv7yypyo4RwIBgkTszO7Or69uhG6qqvrys6JKeOhMIP0U9R3XVGsvU+pFG3psQeTRuT3yI7ILxLtBkYkexY2K3N45JIH4cj9XIayVr2s1k+sGPUVBQ1ZNxeIJOeLZSLQD31p5yhM4ni2KmwLa9aryLCly6FLMZyU+OGqtCyFIFovF9n5xpVKY6V6mc/o8KPZZ7djGfS+lyZxVQkDekAq6oKOZ0fjqF48PATcSxP+Pmlbnfwtl3/LtkLMTRoPYMo6wFZqY/Ng48pTXwNEqKwB3MdE56QqNFgibfAnHOSNnDTFVwcUusXaRPBs6mwKckfQpxzaiEIhDGaR4ADmfsDPGQMgx2BtGJMyKQ2gRQBK1Eh0gKJvKm9KJNkS1ohxxO1pFvo/iU9gib2aT8Y0ZgmTejk7Klx82Zeu/WKOWcTJSxQX42IvJ9VwauVzPqXpPBhCqyJkYMeu/xb/LjC10hn1hEaDQBatBhIzqvAzWQhGlcRwejKInCWC3squDsR+WSVWUeLb+xlUNWTbckdbYnA6YMANlBDrlbv/uDwZL6qePc1pyvGgdJypq/slPQKc306oVztiWFZSsWJIEoYEHmeGJEZlpyLADvpSzNhejH3NcM6pGzm6OH78vqzvmiahoQZM0rBNQhi1Y1Zc6PWcgm+GXtA73wECkN8krLpgjLdvkA3AXjUP6t/vy1/vQlv1EJ3o/0IFd/wczwmpiuh7SzprkDpsPB2Hmvt1i/G5TUVQUQm7A7Px/un55/Pz4+bS9qa3b1cfrrvNvPwHNhi8/gxfeqqm5v/gHii7/h</source>
+  </file>
+  <file path="config/prepend.php" generated-path="config.prepend.html" hash="88bc247042f4b993852c6be88d4a38db" package="">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+    </docblock>
+    <constant namespace="" line="9" package="">
+      <name>GNAT_ROOT</name>
+      <full_name>\GNAT_ROOT</full_name>
+      <value>"/var/www/engine"</value>
+      <docblock line="9">
+        <description>This file defines a path constant to the root
+of the PHP engine. It is prepended to all PHP
+files. It must be configured prior to running
+the Gnat web engine.</description>
+        <long-description></long-description>
+      </docblock>
+    </constant>
+    <source>eJw1jsEOgjAMQO/7ioaTEuM+QCPxhF6EGO5mSIEl2C1bkd93RT22ee+1x8KPXuk8V5BDM9oIvZ0QOuwtYQQD3vAIT0eRDTGwAx4RgnMsguvXsb7UgDQkYw9XhhTxAT1Sh50YZpoEEUHicYVec2RoUdK9HeaQUB+sCyKEmcjSIILkSzIMC7b/G2mvlfr9uMnK27l53KuqyXaQ6bcJelkW/WWz7SGRxUl9AADHSRk=</source>
+  </file>
+  <file path="config/class_config.php" generated-path="config.class_config.html" hash="6b55b2859a62cc84f29c49d213a73ca2" package="">
+    <docblock line="0">
+      <description>Contains configuration settings for the site engine to use
+as a php class that can be directly accessed.</description>
+      <long-description></long-description>
+      <tag name="author" description="Nate Levesque &lt;public@thenaterhood.com&gt;&#10;Language: PHP&#10;Filename: core_config.php" line="0"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="" line="17" package="">
+      <extends/>
+      <name>config</name>
+      <full_name>\config</full_name>
+      <docblock line="17">
+        <description>Defines a class to hold variables for configuration
+options.  All variables are accessible only internally
+to keep things fairly clean.</description>
+        <long-description></long-description>
+      </docblock>
+      <property static="false" visibility="private" line="24" namespace="" package="">
+        <name>$container</name>
+        <default></default>
+        <docblock line="24">
+          <description>variables are documented where they are set lower in the code.</description>
+          <long-description></long-description>
+          <tag name="var" description="&lt;p&gt;provides a clean way of storing an expanding&#10;mass of variables.&lt;/p&gt;" line="24" type="" variable="$container"/>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="29" package="">
+        <name>__construct</name>
+        <full_name>\config::__construct()</full_name>
+        <docblock line="29">
+          <description>Sets the configuration options en-masse.</description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="151" package="">
+        <name>__get</name>
+        <full_name>\config::__get()</full_name>
+        <docblock line="151">
+          <description>Returns the value of the requested config key</description>
+          <long-description></long-description>
+          <tag name="param" description="&lt;ul&gt;&#10;&lt;li&gt;the name of the key&lt;/li&gt;&#10;&lt;/ul&gt;&#10;" line="151" type="" variable="$setting"/>
+          <tag name="return" description="the value the key is associated with" line="151" type="\-">
+            <type>\-</type>
+          </tag>
+        </docblock>
+        <argument line="0">
+          <name>$setting</name>
+          <default></default>
+          <type>mixed</type>
+        </argument>
+      </method>
+    </class>
+    <source>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</source>
   </file>
   <package name="global" full_name="global"/>
   <namespace name="global" full_name="global"/>

@@ -1,0 +1,102 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+/**
+ * Provides a resource for storing a representation of a page
+ * on a website with the location and modification date with
+ * the facilities to return it in xml format. Mainly for use in
+ * a sitemap.
+ */
+
+/**
+ * Includes the inherited class
+ */
+include_once GNAT_ROOT.'/classes/class_dataMonger.php';
+
+/**
+ * Represents a url object to store a sitemap url block
+ */
+class url extends dataMonger{
+
+	/**
+	 * Creates the data object to contain the atom feed item.
+	 * 
+	 * @param $link (str): the web address of the item source
+	 * @param $lastmod (str): the item modification date
+	 */
+	public function __construct($link, $lastmod) {
+
+		$this-&gt;container['loc'] = $link;
+		$this-&gt;container['lastmod'] = $lastmod;
+	 
+	}
+
+	/**
+	 * Produces output in the requested format, defaulting to xml
+	 * @param $output - ignored
+	 */
+	public function output( $type='xml' ){
+
+		return $this-&gt;$type();
+
+	}
+	
+	/**
+	 * Produces the coded output of the item that can be 
+	 * returned and displayed or saved
+	 * 
+	 * @return $item - an xml-encoded representation of the item
+	 */
+	private function xml() {
+
+		$item = &quot;&lt;url&gt;\n&quot;;
+		$item .= &quot;&lt;loc&gt;&quot; . $this-&gt;container['loc'] . &quot;&lt;/loc&gt;\n&quot;;
+		$item .= '&lt;lastmod&gt;'.$this-&gt;container['lastmod'].&quot;&lt;/lastmod&gt;\n&quot;;
+		$item .= &quot;&lt;/url&gt;\n&quot;;
+		return $item;
+	}
+
+}
+?&gt;</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all()
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>
