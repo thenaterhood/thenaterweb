@@ -1,0 +1,96 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php 
+	
+	if ( $session-&gt;node == &quot;&quot; ){
+		$displaypost = new article( &quot;&quot;, $blogdef-&gt;id );
+
+	}
+	else{
+		$displaypost = new article( $blogdef-&gt;post_directory.'/'.$session-&gt;node, $blogdef-&gt;id );
+	}
+		
+	print $displaypost-&gt;output( 'html' );
+
+	if ( True ){
+		/*
+		 * Shows suggestions for other posts only if the 
+		 * current post being shown happens to exist- ie, 
+		 * it has a datestamp. Since datestamps will be automatically
+		 * added to posts, all posts will have a datestamp.
+		 */
+		echo '&lt;h5&gt;You might also be interested in:&lt;/h5&gt;';
+		echo '&lt;ul&gt;';
+		getSuggestions(3, $displaypost-&gt;tags, $blogdef-&gt;post_directory);
+		echo '&lt;/ul&gt;';
+		echo '&lt;p&gt;&lt;a href=&quot;/'.$blogdef-&gt;id.'/index.php&quot;&gt;Back to Blog Home&lt;/a&gt;&lt;/p&gt;';
+	}
+	if ( $displaypost-&gt;datestamp and $session-&gt;node != 'latest'){
+		echo &quot;
+	&lt;!-- BEGIN DISQUS CODE --&gt;
+	&lt;div id='disqus_thread'&gt;&lt;/div&gt;
+	&lt;script type='text/javascript'&gt;
+	/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+	var disqus_shortname = 'nphilosophy'; // required: replace example with your forum shortname
+
+	/* * * DON'T EDIT BELOW THIS LINE * * */
+	(function() {
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+	&lt;/script&gt;
+	&lt;noscript&gt;Please enable JavaScript to view the &lt;a href='http://disqus.com/?ref_noscript'&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;
+	&lt;a href='http://disqus.com' class='dsq-brlink'&gt;comments powered by &lt;span class='logo-disqus'&gt;Disqus&lt;/span&gt;&lt;/a&gt;
+
+	&lt;/div&gt;
+	&lt;!-- END DISQUS CODE --&gt;&quot;;
+	
+	}
+	else {
+		#print &quot;&lt;p&gt;You're viewing the latest available post without comments.  To comment, visit &lt;a href='&quot;.$displaypost-&gt;link.&quot;'&gt;the post's page&lt;/a&gt;.&lt;/p&gt;&quot;;
+	}
+?&gt;
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all()
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

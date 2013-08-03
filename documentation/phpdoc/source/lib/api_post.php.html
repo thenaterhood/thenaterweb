@@ -1,0 +1,72 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+/**
+* 
+* Contains functions for testing and externally accessing data from
+* blog posts.
+* @author Nate Levesque &lt;public@thenaterhood.com&gt;
+*/
+
+/**
+ * Includes the necessary facilities
+ */
+include GNAT_ROOT.'/lib/core_blog.php';
+include GNAT_ROOT.'/lib/core_json.php';
+
+
+$session = new session( array( &quot;node&quot;, &quot;element&quot; ) );
+$postData = new article( $session-&gt;node );
+
+$element = $session-&gt;element;
+$filledData = array();
+$filledData[ $element ] = $postData-&gt;$element;
+
+$jsonData = new jsonMaker( $filledData );
+
+print $jsonData-&gt;output();
+
+?&gt;
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all()
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

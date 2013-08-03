@@ -1,0 +1,257 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+/**
+ * Provides a consistent interface for
+ * accessing posts or articles with multiple methods
+ * of displaying and managing the contained data.
+ *
+ * @author Nate Levesque &lt;public@thenaterhood.com&gt;
+ */
+
+
+/**
+ * Includes the inherited dataMonger class
+ */
+include_once GNAT_ROOT.'/classes/class_dataMonger.php';
+/**
+* Contains everything to do with retrieving and outputting
+* posts in multiple forms.  Is capable of retrieving posts stored
+* in .json format (preferred when available) as well as plaintext
+* (file syntax described below in constructor).
+* 
+* Contains functions to output the post data in html format
+* for displaying to a page, and atom format for use in generating
+* an atom feed.
+*/
+class article extends dataMonger{
+
+	private $blogurl;
+	
+	/**
+	 * Reads and parses a post file and creates an instance
+	 * of the class with the post data. Capable of managing
+	 * posts in json and plaintext, but prefers json if
+	 * a json file exists for the requested post.
+	 * 
+	 * @param nodefile (string) - a yyyy.mm.dd string of a nodefile
+	 */
+	public function __construct($nodefile, $bloguri){
+
+		/* Handles the case where the post file does not exist
+		 * at all by pre-setting all the fields to a failure state.
+		 * This also safely handles any case where the data in a post
+		 * doesn't contain all of the expected fields in a typical way.
+		 */
+		$this-&gt;blogurl = $bloguri;
+		$this-&gt;container['title'] = &quot;Oops! Post Not Found!&quot;;
+		$this-&gt;container['nodeid'] = $nodefile;
+		$this-&gt;container['date'] = &quot;&quot;;
+		$this-&gt;container['tags'] = &quot;&quot;;
+		$this-&gt;container['datestamp'] = &quot;&quot;;
+		$this-&gt;container['link'] = '/'.$bloguri;
+		$this-&gt;container['content'] = '&lt;p&gt;Sorry, the post you were looking for could not be found.  If you think it should be here, try browsing by title.  Otherwise, &lt;a href=&quot;/'.$bloguri.'/index.php&quot;&gt;return to blog home.&lt;/a&gt;&lt;/p&gt;'.&quot;\n&quot;.'&lt;p&gt;Think you were looking for something else? &lt;a href=&quot;'.getConfigOption('site_domain').'&quot;&gt;visit site home&lt;/a&gt;.&lt;/p&gt;';
+			
+		if (file_exists(&quot;$nodefile.json&quot;)){
+			$jsoncontents = file_get_contents(&quot;$nodefile.json&quot;);
+			
+			// Directly read data into the class
+			$this-&gt;container = json_decode($jsoncontents, True);
+
+			// Parse the atom datestamp into english
+			$this-&gt;container['date'] = date( &quot;F j, Y, g:i a&quot;, strtotime($this-&gt;container['datestamp']) );
+			
+			// Reformat and add data that the class relies on
+			
+			// Implode the array of lines for the content into a string
+			if ( array_key_exists( 'content', $this-&gt;container ) &amp;&amp; is_array( $this-&gt;container['content'] ) )
+				$this-&gt;container['content'] = implode( $this-&gt;container['content'] );
+
+			// Add the web url for the post
+			if ( array_key_exists( 'tags', $this-&gt;container ) &amp;&amp; is_array( $this-&gt;container['tags'] ) )
+				$this-&gt;container['tags'] = implode( ', ', $this-&gt;container['tags'] );
+
+			$this-&gt;container['link'] = getConfigOption('site_domain').'/'.$bloguri.'/index.php?id=post&amp;node='.basename($nodefile, '.json');
+			$this-&gt;container['nodeid'] = basename($nodefile, '.json');
+			
+		}
+		/*
+		 * This else statement allows the blog platform
+		 * to support using plaintext files for post data, which
+		 * is nasty.  Use json, it's better.  For a plaintext post,
+		 * the syntax is: 
+		 * 
+		 * TITLE
+		 * DISPLAY DATE
+		 * TAGS
+		 * FEED DATESTAMP
+		 * CONTENT
+		 */
+		else{
+			if ( file_exists($nodefile) ){
+				
+				$file = fopen($nodefile, 'r');
+				
+				$this-&gt;container['title'] = rtrim(fgets($file), &quot;\n&quot;);
+				$this-&gt;container['date'] = rtrim(fgets($file), &quot;\n&quot;);
+				$this-&gt;container['tags'] = rtrim(fgets($file), &quot;\n&quot;);
+				$this-&gt;container['datestamp'] = rtrim(fgets($file), &quot;\n&quot;); 
+				$this-&gt;container['link'] = getConfigOption('site_domain').'/blog/read/'.basename($nodefile).'.htm';
+				$contents='';
+			
+				while(!feof($file)){
+					$contents .= &quot;&lt;p&gt;&quot;.rtrim(fgets($file), &quot;\n&quot;). &quot;&lt;/p&gt;\n&quot;;
+				}
+			
+				$this-&gt;container['content'] = $contents;
+			
+				fclose($file);
+			}
+		}
+	}
+	
+	/**
+	 * Returns a representation of the post in the format requested
+	 * 
+	 * @param $type - the type of feed
+	 */
+	public function output( $type ){
+		
+		return $this-&gt;$type();
+	}
+
+	public function get( $field ){
+
+		if ( array_key_exists($field, $this-&gt;container) ){
+			return $this-&gt;container[$field];
+		}
+		else{
+			return &quot;&quot;;
+		}
+
+	}
+	
+	/**
+	* Produces the coded output of the item that can be 
+	* returned and displayed or saved in an atom feed
+	*/
+	private function atom() {
+
+		$r = &quot;&lt;entry&gt;&quot;;
+		# In order to make the feed validate, we pull the http out of the id and append it
+		# statically, then urlencode the rest of the url. Otherwise, the feed does not 
+		# validate.
+		$r .= &quot;&lt;id&gt;http://&quot; . urlencode( substr($this-&gt;link, 7) ) . &quot;&lt;/id&gt;&quot;;
+		$r .= '&lt;link href=&quot;http://'. htmlspecialchars( substr($this-&gt;container['link'], 7) ) .'&quot; /&gt;';
+		$r .= '&lt;updated&gt;'.$this-&gt;datestamp.'&lt;/updated&gt;';
+		$r .= &quot;&lt;title&gt;&quot; . $this-&gt;title . &quot;&lt;/title&gt;&quot;;
+		$r .= &quot;&lt;content type='html'&gt;&quot; . htmlspecialchars( $this-&gt;content, ENT_QUOTES ) . &quot;&lt;/content&gt;&quot;;
+		$r .= &quot;&lt;/entry&gt;&quot;;
+		return $r;
+	}
+	
+	/**
+	 * Produces the coded output of the item that can be returned
+	 * and displayed or saved in an rss feed
+	 */
+	private function rss(){
+		
+		$r = &quot;&lt;item&gt;&quot;;
+		$r .= &quot;&lt;title&gt;&quot; . $this-&gt;title .&quot;&lt;/title&gt;&quot;;
+		$r .= &quot;&lt;link&gt;&quot; . $this-&gt;link . &quot;&lt;/link&gt;&quot;;
+		# Produces a &quot;description&quot; by taking the first 100 characters of the content
+		$r .= &quot;&lt;description&gt;&quot; . substr( htmlspecialchars( $this-&gt;content, ENT_QUOTES ), 0, 100 ) . &quot;...&lt;/description&gt;&quot;;
+		$r .= &quot;&lt;/item&gt;&quot;;
+		
+		return $r;
+		
+	}
+	
+	/**
+	* Produces the coded output of the item that can be displayed
+	* on an html page
+	*/
+	private function html() {
+		
+		$r = '&lt;h3 class=&quot;title&quot;&gt;&lt;a href=&quot;'.$this-&gt;link.'&quot;&gt;'.$this-&gt;title.'&lt;/a&gt;&lt;/h3&gt;'.&quot;\n&quot;;
+		$r .= '&lt;h4 class=&quot;date&quot;&gt;'.$this-&gt;date.'&lt;/h4&gt;'.&quot;\n&quot;;
+		$r .= $this-&gt;content;
+		if ( $this-&gt;datestamp != &quot;&quot;){
+			$r .= &quot;&lt;h5 class='tags'&gt;Tags: &quot;.$this-&gt;tags.&quot;&lt;/h5&gt;\n&quot;;
+		}
+		return $r;
+	}
+
+	/**
+	 * Returns the article metadata - tags, title, link, date, and author
+	 * as an associative array.
+	 * @return $meta - the metadata array
+	 */
+	public function getMeta(){
+
+		$meta = array();
+		$meta['tags'] = $this-&gt;tags;
+		$meta['title'] = $this-&gt;title;
+		$meta['link'] = $this-&gt;link;
+		$meta['datestamp'] = $this-&gt;datestamp;
+		$meta['author'] = $this-&gt;author;
+
+		return $meta;
+
+	}
+
+	/**
+	 * Returns a string containing the post title
+	 * and tags, suitable for outputting in an atom feed (maybe)
+	 * or an html list
+	 */
+	public function list_item_output(){
+
+		 $r = '&lt;a href=&quot;'. $this-&gt;link .'&quot;&gt;' . $this-&gt;title . '&lt;/a&gt;&lt;i&gt; - '. $this-&gt;tags .'&lt;/i&gt;';
+		 return $r;
+	 }
+ }
+ ?&gt;
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all()
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

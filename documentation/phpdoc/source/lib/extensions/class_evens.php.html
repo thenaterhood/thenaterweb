@@ -1,0 +1,116 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+include_once GNAT_ROOT.'/classes/interface_extension.php';
+
+if ( count( get_included_files() ) == 3 ){
+	include_once GNAT_ROOT.'/lib/core_web.php';
+	$session = new session(array());
+	setcookie('evenExtension',&quot;500&quot;,time() + (86400 * 30),&quot;/&quot;,$session-&gt;domain); // 86400 = 1 day
+	print &quot;&lt;p&gt;OH HAI THERE&lt;/p&gt;\n&quot;;
+	print &quot;&lt;p&gt;This is a quick and dirty extension to gnat that allows for 'likes' or 'evens' depending on the website configuration.&lt;/p&gt;&quot;;
+	print &quot;&lt;p&gt;By visiting this page, you have activated the extension for your browser. To disable it, clear your cookies or delete &quot;;
+	print &quot;the cookie from your browser called evenExtension. Have fun, and don't spend too many!&lt;/p&gt;\n&quot;;
+	print &quot;&lt;p&gt;If you run out of evens, you can visit this page again to reset all of your evens, or you can wait to be randomly awarded some.&lt;/p&gt;&quot;;
+	print &quot;&lt;p&gt;Privacy information: your evens for the site and your even balance are stored on a cookie on your computer. They will not&quot;;
+	print &quot; travel between browsers or computers with you. This eliminates the chance that any of your personal data could be stolen due to &quot;;
+	print &quot;an error on my part. Your evens are entirely private and cannot be seen by other people. Note that if you do not visit the site &quot;;
+	print &quot;for a month or more, your evens will expire and you will need to revisit this page to re-activate the extension.&lt;/p&gt;&quot;;
+	print '&lt;p&gt;&lt;a href=&quot;/&quot;&gt;Go home.&lt;/a&gt;&lt;/p&gt;';
+	die();
+
+}
+
+class evenExtension implements Extension{
+
+	private $session;
+	private $evenBalance;
+	private $pageEvens;
+
+	public function __construct( $session ){
+
+		$this-&gt;evenBalance = null;
+		$this-&gt;session = $session;
+		$this-&gt;retrieveEvenAccount();
+
+
+	}
+
+	private function retrieveEvenAccount(){
+
+
+		$evenSession = new session( array(&quot;evenExtension&quot;, &quot;gaveEven&quot;) );
+		if ( $evenSession-&gt;evenExtension != &quot;&quot; ){
+			$this-&gt;evenBalance = $evenSession-&gt;evenExtension;
+
+			if ( $evenSession-&gt;gaveEven != &quot;&quot; ){
+				$this-&gt;evenBalance = $this-&gt;evenBalance - $evenSession-&gt;gaveEven;
+				setcookie('evenExtension',&quot;$this-&gt;evenBalance&quot;,time() + (86400 * 30),&quot;/&quot;,$this-&gt;session-&gt;domain); // 86400 = 1 day
+
+			}
+		}
+
+	}
+
+	public function getPrefaceCode(){
+		return &quot;&quot;;
+	}
+
+	public function getPostCode(){
+
+
+		if ( !is_null($this-&gt;evenBalance) ){
+			$r = &quot;&lt;a name='evenbal'&gt;&lt;/a&gt;&lt;p&gt;Your even balance is &quot;.$this-&gt;evenBalance.&quot;&lt;/p&gt;&quot;;
+			$r = $r.'&lt;form id=&quot;evenGive&quot; action=&quot;'.$_SERVER['REQUEST_URI'].'#evenbal&quot; method=&quot;post&quot;&gt;&lt;p&gt;&lt;input type=&quot;hidden&quot; name=&quot;gaveEven&quot; value=&quot;1&quot; /&gt;&lt;input type=&quot;submit&quot; value=&quot;Give an even&quot;/&gt;&lt;/p&gt;&lt;/form&gt;';
+			return $r;
+		}
+
+	}
+}
+
+
+
+?&gt;</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all()
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

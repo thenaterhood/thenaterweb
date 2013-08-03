@@ -1,0 +1,100 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+/**
+ * Provides an abstract class for objects to inherit in
+ * order to provide a few base functions and a container for
+ * contained data.
+ * @author Nate Levesque &lt;public@thenaterhood.com&gt;
+ */
+
+/**
+ * Provides an abstract class to define a standard way
+ * of managing data for the classes that are managing
+ * things like session data, posts, etc.
+ * 
+ * @since 4/13/2013
+ */
+ abstract class dataMonger{
+	 
+	 /**
+	  * @var $container - a container for data, preferrably assoc array
+	  */
+	 protected $container;
+	 
+	 /**
+	  * Returns the contents of the container
+	  */
+	 public function dump(){
+		 
+		 return $this-&gt;container;
+		 
+	 }
+	 
+	 /**
+	  * Retrieves a field from the container, assuming the container
+	  * is an associative array.
+	  * 
+	  * @param $name - the item to retrieve
+	  */	 
+	 public function __get( $name ){
+		 
+		 if ( array_key_exists($name, $this-&gt;container ) )
+		 	return $this-&gt;container[$name];
+		 else
+		 	return null;
+		 
+	 }
+	 
+	 /**
+	  * Produces a json encoded representation of the data
+	  * contained in the class.
+	  */
+	 public function json(){
+		 
+		 return json_encode( $this-&gt;container );
+	 }	 
+ }
+ ?&gt;</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all()
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>
