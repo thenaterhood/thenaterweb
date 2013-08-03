@@ -18,6 +18,7 @@ include GNAT_ROOT.'/config/class_config.php';
 include GNAT_ROOT.'/classes/class_varGetter.php';
 include GNAT_ROOT.'/classes/class_session.php';
 include GNAT_ROOT.'/classes/class_lock.php';
+include GNAT_ROOT.'/lib/core_extension.php';
 
 /**
 * Checks to see if the preferred file exists, and if it does
