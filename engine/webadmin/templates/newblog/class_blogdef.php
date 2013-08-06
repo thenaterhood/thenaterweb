@@ -57,6 +57,12 @@ class blogdef{
 		# provider gives you here.
 		$this->container['feedurl'] = $feedurl;
 
+		# Any comment code for the post can be placed here, such as Disqus.
+		# Homebrew can also be placed here, though to simplify things, you
+		# would likely want to create an api for your homebrew code. This is
+		# appended at the end of each post page.
+		$this->container['commentCode'] = "";
+
 	}
 
 	/**
