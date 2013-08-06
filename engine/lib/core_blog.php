@@ -37,18 +37,26 @@ function RandomLine($filename) {
 * @param $number (int): how many to generate and display
 * @param $tag (string): a tag or tags to use for generating suggestions
 */
-function getSuggestions($number, $tag, $post_directory){
+function getSuggestions($number, $tags, $post_directory){
+
+		$suggestions = array();
 
 		$inventory = new inventory( $post_directory, NULL );
 
 		$pool = $inventory->selectField( 'title' );
+		$available = count( $pool );
 
 		$i = 0;
-		while ($i < $number){
+		while ($i < $number && $i < $available ){
 			$posts = $inventory->select( 'title', $pool[array_rand($pool)] );
 			$post = $posts[0];
-			print '<li><a href="'.htmlentities( $post['link'] ).'">'.$post['title'].'</a></li>';
-			$i++;
+			$suggest = '<li><a href="'.htmlentities( $post['link'] ).'">'.$post['title'].'</a></li>';
+
+			if ( ! in_array($suggest, $suggestions) ){
+				$suggestions[] = $suggest;
+				echo $suggest;
+				$i++;
+			}
 		}
 		
 	}
