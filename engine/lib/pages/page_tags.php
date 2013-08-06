@@ -37,7 +37,7 @@ if ( !$tag ){
             $letter = substr($item, 0, 1);
             print '<li><a id="alph_'.$letter.'"></a><strong>'.$letter.'</strong></li>'."\n";
         }
-        $clean = str_replace($item, " ", '%20');
+        $clean = str_replace( ' ', '%20', $item );
         echo '<li><a href="index.php?id=tags&amp;tag='.$clean.'">'.$item.'</a></li>'."\n";
     }
 }

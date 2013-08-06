@@ -40,7 +40,7 @@ if ( !$tag ){
             $letter = substr($item, 0, 1);
             print '<tr><td><a id="alph_'.$letter.'"></a><strong>'.$letter.'</strong></td></tr>'."\n";
         }
-        $clean = str_replace($item, " ", '%20');
+        $clean = str_replace( " ", '%20', $item);
         echo '<tr><td><a href="index.php?id=tags&amp;tag='.$clean.'">'.$item.'</a></td>';
         echo '<td>'.$graph.'<em> '.$tags[$item].' posts</em></td></tr>'."\n";
     }
