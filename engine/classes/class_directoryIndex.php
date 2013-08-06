@@ -247,6 +247,14 @@ class directoryIndex{
 
 		}
 	}
+
+	/**
+	 * Returns the total number of items
+	 * in the index.
+	 */
+	public function getCount(){
+		return count($this->indexData);
+	}
 }
 
 ?>
