@@ -1,11 +1,21 @@
 <?php 
 include GNAT_ROOT.'/lib/core_blog.php';
+include GNAT_ROOT.'/lib/core_redirect.php';
 include 'class_blogdef.php';
 
 
 $session = new session( array('name', 'track', 'konami', 'start', 'end', 'id', 'test', 'tag', 'node') );
 $config = new config();
 $blogdef = new blogdef();
+
+# Manage friendly URL cases where supported
+# on the blog system
+if ( $config->friendly_urls ){
+	if ( $session->id == 'post' ){
+		$redirect = new condRedirect( "?id=post", '/'.$blogdef->id.'/read/'.$session->node.'.htm', $session->uri );
+		$redirect->apply( 301 );
+	}
+}
 
 # For compatibility with current header
 $id = $blogdef->id;
