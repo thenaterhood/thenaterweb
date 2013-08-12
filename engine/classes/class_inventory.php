@@ -12,6 +12,7 @@
 include_once GNAT_ROOT.'/lib/core_web.php';
 include_once GNAT_ROOT.'/classes/class_article.php';
 include_once GNAT_ROOT.'/classes/class_directoryIndex.php';
+include_once GNAT_ROOT.'/classes/class_urlset.php';
 
 /**
  * Provides a database-like means of accessing an inventory
@@ -36,6 +37,8 @@ class inventory extends directoryIndex{
 
 	public function update(){
 
+		$this->metadata['updated'] = date(DATE_ATOM);
+
 		parent::update( "getMeta" );
 
 	}
@@ -45,7 +48,10 @@ class inventory extends directoryIndex{
 	 */
 	public function regen(){
 
-		parent::regen( "getMeta", array() );
+		$metadata = array();
+		$metadata['sitemap'] = getConfigOption('site_domain').'/'.$this->bloguri.'/index.php?id=titles';
+		$metadata['updated'] = date(DATE_ATOM);
+		parent::regen( "getMeta", $metadata );
 
 	}
 
@@ -140,6 +146,20 @@ class inventory extends directoryIndex{
 		}
 
 		return $fieldContents;
+
+	}
+
+	public function createSitemap( $begin=0, $end=50000 ){
+
+		$sitemap = new urlset();
+		$iterable = array_values($this->indexData);
+		$i = 0;
+		for ( $i = $range; $i < $end && $i < count( $this->indexData ); $i++ ) {
+			$current = $iterable[$i];
+			$sitemap->new_item( $current['link'], $current['datestamp'] );
+		}
+
+		return $sitemap;
 
 	}
 
