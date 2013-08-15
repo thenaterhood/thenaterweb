@@ -108,12 +108,19 @@ a {
 }
 
 table.introduction{
-	border: 0px;
+	border: 0px solid;
 	width: 780px;
 	z-index: 2;
 	text-align: left;
 	vertical-align: middle;
 
+}
+.introductionBar{
+	width: 120px;
+}
+td.introduction{
+	border: 0px solid;
+	width: 250px;
 }
 
 a:hover {
@@ -166,9 +173,10 @@ a:hover {
 	-ms-transform: translateX(-768px);
 	-o-transform: translateX(-768px);
 	transform: translateX(-768px);
-	margin-top: -25px;
+	margin-top: -10px;
+	margin-left: 0px;
 	padding: 0px 0px 0px 0px;
-	float: right;
+	float: left;
 	color: white;
 	text-transform: capitalize;
 	position: relative;
@@ -180,14 +188,29 @@ a.nav {
 a.nav:hover {
 	text-decoration: underline;
 }
+ul.directory{
+	width: 50em;
+	margin-left: auto;
+	margin-right: auto;
+
+}
+li.directory{
+	float: left;
+	width: 10em;
+
+}
+br.left{
+	clear: left;
+}
 .siteurl {
 	display: inline;
-	list-style-type: none;
-	padding-left: 20px;
+	list-style-type: square;
+	padding-right: 20px;
 	font-size: 1.11em;
 	color: white;
 	font-family: Electrolize;
 }
+
 #catchline {
 	-webkit-animation: logo-from-horz 1s ease forwards;
 	-o-animation: logo-from-horz 1s ease forwards;
@@ -197,9 +220,11 @@ a.nav:hover {
 	-o-transform: translateX(-300px);
 	transform: translateX(-300px);
 	font-size: 1.7em;
-	margin: 0;
+	margin-left: 310px;
+	margin-top: -25px;
 	padding: 0px 0px 0px 0px;
-	color: #00bfff;
+	color: gray;
+	text-align: right;
 	text-transform: capitalize;
 }
 #logo h1, #logo p {
@@ -304,24 +329,42 @@ ul, li {
     margin-left: 0px;
 }
 
+#blogside{
+	width:150px;
+	float:right;
+	position:relative;
+	height: 100%;
+	margin: 5px;
+}
+
+#blogHomeContent{
+	width:570px;
+	position:relative;
+	float:left;
+	margin-right: 0px;
+	padding-right: 10px; 
+	border-right: 0px solid;
+}
+
 
 /* Footer */
 #footer {
-	height: 90px;	
-    margin: 0 auto;	
+    margin: auto auto;	
+    border-top: 3px solid;
     padding: 0px 0 15px 0;
-	background: url(/images/footer_back_shadow.png) repeat-x;
-	background-size: 2px 100px;
+	/*background: url(/images/footer_back_shadow_large.png) top repeat-x;*/
+	background: #e6e6e6;
+	background-size: 2px 300px;
 }
-#footer p {	
+
+p.footer {	
     margin: 0;	
     padding-top: 3px;	
     line-height: normal;	
     font-size: .9em;	
-    text-transform: capitalize;	
-    text-align: center;	
     color: black;
 }
+
 
 ul.footerurl {
 	padding-left: 50px;
