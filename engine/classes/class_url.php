@@ -1,76 +1,68 @@
 <?php
 /**
- * Provides a class for creating and containing
- * a sitemap with the ability to export it as xml data.
- * @author Nate Levesque <public@thenaterhood.com>
+ * Provides a resource for storing a representation of a page
+ * on a website with the location and modification date with
+ * the facilities to return it in xml format. Mainly for use in
+ * a sitemap.
  */
 
 /**
- * Include the required url class to use internally
+ * Includes the inherited class
  */
-include_once GNAT_ROOT.'/classes/class_url.php';
+include_once GNAT_ROOT.'/classes/class_dataMonger.php';
 
 /**
- * Defines a data object to contain an xml sitemap.
+ * Represents a url object to store a sitemap url block
  */
-class urlset {
-	
-	/**
-	 * @var $items - an array of url objects
-	 */
-	private $items;
-	
-	/**
-	* Creates an empty sitemap class
-	*/
-	public function __construct() {
-		
-		$this->items = array();
-	}
+class url extends dataMonger{
 
 	/**
-	 * Adds an item to the feed as an object in the object's
-	 * items array
+	 * Creates the data object to contain the atom feed item.
 	 * 
-	 * @param $loc (str): the web address of the item's source
-	 * @param $lastmod (str): the modification date of the item
+	 * @param $link (str): the web address of the item source
+	 * @param $lastmod (str): the item modification date
 	 */
-	public function new_item($loc, $lastmod) {
+	public function __construct( $link, $lastmod ) {
 
-		array_push($this->items, new url($loc, $lastmod));
+		$this->container['loc'] = $link;
+		$this->container['lastmod'] = $lastmod;
+	 
+	}
+
+	/**
+	 * Produces output in the requested format, defaulting to xml
+	 * @param $output - ignored
+	 */
+	public function output( $type='Xml' ){
+
+		return "";
+
 	}
 	
 	/**
-	* Returns a displayable representation of the sitemap
-	* with appropriate code added.
-	* 
-	* @return $r (string) - an xml encoded output of the class
-	*/
+	 * Produces the coded output of the item that can be 
+	 * returned and displayed or saved
+	 * 
+	 * @return $item - an xml-encoded representation of the item
+	 */
 	public function toXml() {
 
-		$r ='<?xml version="1.0" encoding="UTF-8"?>
-		<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">';
-		$r .= "\n";
-		foreach ($this->items as $item) {
-			$r .= $item->toXml();
-		}
-		$r .= "</urlset>";
-		return $r;
+		$item = "<url>\n";
+		$item .= "<loc>" . htmlentities($this->container['loc'] ). "</loc>\n";
+		$item .= '<lastmod>'.$this->container['lastmod']."</lastmod>\n";
+		$item .= "</url>\n";
+		return $item;
 	}
 
 	public function toHtml(){
 
-		$r = '<ul>'."\n";
+		$html = $html.'<a href="'.htmlentities($this->container['loc']).'">'.$this->container['loc'].'</a>';
 
-		foreach ($this->items as $item) {
-			$r .= '<li>'.$item->toHtml().'</li>'."\n";
-		}
 
-		$r .= "</ul>\n";
-
-		return $r;
-
+		return $html;
 	}
+
+
 
 }
 ?>

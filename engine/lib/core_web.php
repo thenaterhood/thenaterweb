@@ -19,6 +19,41 @@ include GNAT_ROOT.'/classes/class_varGetter.php';
 include GNAT_ROOT.'/classes/class_session.php';
 include GNAT_ROOT.'/classes/class_lock.php';
 include GNAT_ROOT.'/lib/core_extension.php';
+include GNAT_ROOT.'/classes/class_article.php';
+
+/**
+* Checks to see if the preferred file exists, and if it does
+* returns it, otherwise it returns the secondary file, which ideally
+* should be a file (like an error page) that is guaranteed to exist.
+* 
+* @param $preferred (string): the preferred page to include
+* 
+* 
+*/
+function pullContent($preferred, $sectionUri='/', $articleUri='/' ){
+
+	$i = 0;
+	$article = new article( "", $sectionUri, $articleUri );
+
+	while ( $i < count($preferred) && $article->getType() == "none" ){
+
+		if ( !strpos( $preferred[$i], '.' ) ){
+
+			$file = $preferred[$i];
+
+		}
+		else{
+			$file = substr( $preferred[$i], 0, strpos( $preferred[$i], '.')-1);
+		}
+
+		$article = new article( $file, $sectionUri, $articleUri );
+
+		$i++;
+
+	}
+
+	return $article;
+}
 
 /**
 * Checks to see if the preferred file exists, and if it does
@@ -28,7 +63,7 @@ include GNAT_ROOT.'/lib/core_extension.php';
 * @param $preferred (string): the preferred page to include
 * @param $secondary (string): the secondary, emergency page to include
 * 
-* 
+* THIS IS A FUNCTION TO SUPPORT LEGACY INDEX
 */
 function getContent($preferred, $secondary){
 
