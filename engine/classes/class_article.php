@@ -12,6 +12,7 @@
  * Includes the inherited dataMonger class
  */
 include_once GNAT_ROOT.'/classes/class_dataMonger.php';
+include_once GNAT_ROOT.'/lib/core_web.php';
 /**
 * Contains everything to do with retrieving and outputting
 * posts in multiple forms.  Is capable of retrieving posts stored
@@ -25,6 +26,9 @@ include_once GNAT_ROOT.'/classes/class_dataMonger.php';
 class article extends dataMonger{
 
 	private $blogurl;
+	private $usePostFormat;
+	private $type;
+	private $file;
 	
 	/**
 	 * Reads and parses a post file and creates an instance
@@ -34,23 +38,36 @@ class article extends dataMonger{
 	 * 
 	 * @param nodefile (string) - a yyyy.mm.dd string of a nodefile
 	 */
-	public function __construct($nodefile, $bloguri){
+	public function __construct( $nodefile, $bloguri, $articleUri="" ){
 
 		/* Handles the case where the post file does not exist
 		 * at all by pre-setting all the fields to a failure state.
 		 * This also safely handles any case where the data in a post
 		 * doesn't contain all of the expected fields in a typical way.
 		 */
+		$this->usePostFormat = True;
+		$this->type = "none";
+		$extStart = strpos( $nodefile, '.' );
+		$type = substr($nodefile, $extStart+1);
+
 		$this->blogurl = $bloguri;
-		$this->container['title'] = "Oops! Post Not Found!";
+		$this->container['title'] = "Holy 404, Batman!";
 		$this->container['nodeid'] = $nodefile;
 		$this->container['date'] = "";
 		$this->container['tags'] = "";
 		$this->container['datestamp'] = "";
-		$this->container['link'] = '/'.$bloguri;
-		$this->container['content'] = '<p>Sorry, the post you were looking for could not be found.  If you think it should be here, try browsing by title.  Otherwise, <a href="/'.$bloguri.'/index.php">return to blog home.</a></p>'."\n".'<p>Think you were looking for something else? <a href="'.getConfigOption('site_domain').'">visit site home</a>.</p>';
-			
-		if (file_exists("$nodefile.json")){
+		$this->container['link'] = $articleUri;
+		if ( $articleUri == "" )
+			$this->container['link'] = $bloguri;
+
+		$this->container['content'] = '<p>
+		Sorry, seems that you must have taken a wrong turn - the page you tried to visit could not be found!  
+		If you think it should be here, try browing by post title, or looking at the sitemap.  
+		Otherwise, <a href="/">Return home.</a></p>'."\n";
+
+		if ( file_exists("$nodefile.json") ){
+			$this->type = "json";
+			$this->usePostFormat = True;
 			$jsoncontents = file_get_contents("$nodefile.json");
 			
 			// Directly read data into the class
@@ -69,9 +86,39 @@ class article extends dataMonger{
 			if ( array_key_exists( 'tags', $this->container ) && is_array( $this->container['tags'] ) )
 				$this->container['tags'] = implode( ', ', $this->container['tags'] );
 
-			$this->container['link'] = getConfigOption('site_domain').'/'.$bloguri.'/index.php?id=post&node='.basename($nodefile, '.json');
+			if ( $articleUri == "" )
+				$this->container['link'] = 
+					getConfigOption('site_domain').'/'.$bloguri.'/index.php?id=post&node='.basename($nodefile, '.json');
 			$this->container['nodeid'] = basename($nodefile, '.json');
 			
+		} else if ( file_exists( $nodefile.'.html' ) ) {
+			$this->usePostFormat = False;
+			$this->type = "HTML";
+			$this->container['content'] = file_get_contents($nodefile.'.html');
+			$title = explode('/', $nodefile);
+			$this->container['title'] = $title[count($title)-1];
+			$this->container['datestamp'] = date( DATE_ATOM, filemtime($nodefile.'.html') );
+			$this->container['date'] = date( "F j, Y, g:i a", strtotime($this->container['datestamp']) );
+
+		} else if ( file_exists( $nodefile.'.php' ) ) {
+			$this->usePostFormat = False;
+			$this->type = "PHP";
+			$this->file = $nodefile.'.php';
+			$title = explode('/', $nodefile);
+
+			$this->container['title'] = $title[count($title)-1];
+			$this->container['datestamp'] = date( DATE_ATOM, filemtime($nodefile.'.php') );
+			$this->container['date'] = date( "F j, Y, g:i a", strtotime($this->container['datestamp']) );
+
+		} else if ( file_exists( $nodefile.'.pre' ) ){
+			$this->usePostFormat = False;
+			$this->type = "pre";
+			$this->container['content'] = '<pre>'."\n".htmlspecialchars( file_get_contents($nodefile.'.pre') )."\n".'</pre>';
+			$title = explode('/', $nodefile);
+
+			$this->container['title'] = $title[count($title)-1];
+			$this->container['datestamp'] = date( DATE_ATOM, filemtime($nodefile.'.pre') );
+			$this->container['date'] = date( "F j, Y, g:i a", strtotime($this->container['datestamp']) );
 		}
 		/*
 		 * This else statement allows the blog platform
@@ -87,14 +134,13 @@ class article extends dataMonger{
 		 */
 		else{
 			if ( file_exists($nodefile) ){
-				
+				$this->type = "TXT";
 				$file = fopen($nodefile, 'r');
 				
 				$this->container['title'] = rtrim(fgets($file), "\n");
 				$this->container['date'] = rtrim(fgets($file), "\n");
 				$this->container['tags'] = rtrim(fgets($file), "\n");
 				$this->container['datestamp'] = rtrim(fgets($file), "\n"); 
-				$this->container['link'] = getConfigOption('site_domain').'/blog/read/'.basename($nodefile).'.htm';
 				$contents='';
 			
 				while(!feof($file)){
@@ -127,6 +173,10 @@ class article extends dataMonger{
 			return "";
 		}
 
+	}
+
+	public function getType(){
+		return $this->type;
 	}
 	
 	/**
@@ -164,19 +214,34 @@ class article extends dataMonger{
 		return $r;
 		
 	}
+
+	public function toHtml(){
+		return $this->html();
+	}
+
+	public function getFile(){
+		return $this->file;
+	}
 	
 	/**
 	* Produces the coded output of the item that can be displayed
 	* on an html page
 	*/
 	private function html() {
-		
-		$r = '<h3 class="title"><a href="'.$this->link.'">'.$this->title.'</a></h3>'."\n";
-		$r .= '<h4 class="date">'.$this->date.'</h4>'."\n";
-		$r .= $this->content;
-		if ( $this->datestamp != ""){
-			$r .= "<h5 class='tags'>Tags: ".$this->tags."</h5>\n";
+		$r = '';
+		if ( $this->type != "PHP" ){
+			if ( $this->usePostFormat )
+				$r = '<h3 class="title"><a href="'.htmlentities( $this->link ).'">'.$this->title.'</a></h3>'."\n";
+			if ( $this->usePostFormat )
+				$r .= '<h4 class="date">'.$this->date.'</h4>'."\n";
+			$r .= $this->content;
+
+			if ( $this->datestamp != "" && $this->usePostFormat ){
+				$r .= "<h5 class='tags'>Tags: ".$this->tags."</h5>\n";
+			}
+
 		}
+
 		return $r;
 	}
 
@@ -196,6 +261,15 @@ class article extends dataMonger{
 
 		return $meta;
 
+	}
+
+	public function isPhp(){
+		if ( $this->type == "PHP" ){
+			return True;
+		}
+		else{
+			return False;
+		}
 	}
 
 	/**
