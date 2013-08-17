@@ -4,7 +4,7 @@ include GNAT_ROOT.'/lib/core_redirect.php';
 
 $session = new session( array('name', 'track', 'konami', 'id', 'type') );
 $config = new config();
-$registerExtensions = array( "evenExtension" );
+$registerExtensions = array( );
 $extensions = loadExtensions( $session, $registerExtensions );
 
 # Grab variables from the URL. Syntax for this is...
