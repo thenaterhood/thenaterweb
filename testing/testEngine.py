@@ -50,13 +50,13 @@ class testWebEngine(unittest.TestCase):
 	def test_article_missing(self):
 		# Test that the article class can return data and deal with missing posts
 		decodedData = getData( url+"api_post.php?node=test&element=title" )
-		self.assertEqual( decodedData["title"], "Oops! Post Not Found!" )
+		self.assertEqual( decodedData["title"], "Holy 404, Batman!" )
 
 	def test_inventory_retrieve(self):
 		# Test that an item can be retrieved from the inventory with the proper data
-		decodedData = getData( url+"api_inventory.php")
-		self.assertEqual( decodedData["title"], "Lovin' those Facebook Likes")
-		self.assertEqual( decodedData["tags"], "facebook, privacy, social networking")
+		decodedData = getData( url+"api_inventory.php?inventory=test-inventory&field=tags&value=deleteme" )
+		self.assertEqual( decodedData["title"], "Platform Test" )
+		self.assertEqual( decodedData["tags"], "test, deleteme" )
 
 	def test_redirect(self):
 		# Test that a redirect can be correctly initialized
