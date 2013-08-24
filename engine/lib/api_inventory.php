@@ -16,7 +16,7 @@ include_once GNAT_ROOT.'/classes/class_inventory.php';
 // This api is basically just for testing the inventory functionality
 $session = new session( array( "field", "value", "inventory" ) );
 
-$inventory = new inventory( $session->inventory );
+$inventory = new inventory( $session->inventory, "inventory" );
 
 $matching = $inventory->select( $session->field, $session->value );
 
