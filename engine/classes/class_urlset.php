@@ -46,16 +46,30 @@ class urlset {
 	* 
 	* @return $r (string) - an xml encoded output of the class
 	*/
-	public function output() {
+	public function toXml() {
 
-		$r ='<?xml version="1.0" encoding="UTF-8"?>
-		<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">';
+		$r ='<?xml version="1.0" encoding="UTF-8"?>'."\n";
+		$r .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">'."\n";
 		$r .= "\n";
 		foreach ($this->items as $item) {
-			$r .= $item->output();
+			$r .= $item->toXml();
 		}
 		$r .= "</urlset>";
 		return $r;
+	}
+
+	public function toHtml(){
+
+		$r = '<ul>'."\n";
+
+		foreach ($this->items as $item) {
+			$r .= '<li>'.$item->toHtml().'</li>'."\n";
+		}
+
+		$r .= "</ul>\n";
+
+		return $r;
+
 	}
 
 }

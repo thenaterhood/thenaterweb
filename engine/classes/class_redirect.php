@@ -41,6 +41,21 @@ class redirect{
 	public function view(){
 		print $this->origin." to ".$this->destination;
 	}
+
+	/**
+	 * Provides a simple text output to check if the class
+	 * was initiated correctly
+	 * 
+	 */
+	public function toHtml( $showOrigin=false ){
+		$r = "";
+		if ( $showOrigin )
+			$r = $r.$this->origin;
+
+		$r = $r." to <a href='".$this->destination."'>".$this->destination."</a>.";
+
+		return $r;
+	}
 	
 	/**
 	 * Applies the redirect to the page
@@ -75,6 +90,8 @@ class redirect{
 	 */
 	private function apply_302(){
 		
+		header("HTTP/1.1 302 Moved Temporarily");
+
 		header("Location: ".$this->destination);
 		
 	}

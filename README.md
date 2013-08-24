@@ -1,4 +1,4 @@
-1.11.0+63dca
+1.12.0+a5d06
 ^ Current version number above ^
 
 v1.1.0+cdaac
@@ -92,3 +92,10 @@ Unify feed and inventory data management, bugfixes
 - Move indexing (rss/atom and inventory) storage to dedicated class
 - Fix issue with adding and removing items from inventory and feeds
 - Update lib/core_feed.php to interact with new feed system
+
+v1.12.0+a5d06
+
+Improvements to content management and inventories
+
+- All content now loads via the article class
+- Support for json pages and html/txt/php blog posts
