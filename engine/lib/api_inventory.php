@@ -19,12 +19,10 @@ $session = new session( array( "field", "value", "inventory" ) );
 $inventory = new inventory( $session->inventory, "inventory" );
 
 $matching = $inventory->select( $session->field, $session->value );
-
-$filledData['title'] = $matching[0]->title;
-$filledData['tags'] = $matching[0]->tags;
+$article = $matching[0];
 
 
-$jsonData = new jsonMaker( $filledData );
+$jsonData = new jsonMaker( $article);
 
 print $jsonData->output();
 
