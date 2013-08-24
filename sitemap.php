@@ -1,14 +1,19 @@
 <?php
 include 'engine/lib/core_sitemap.php';
 
-$session = new session( array('regen') );
+$session = new session( array('regen', 'type', 'page') );
 $config = new config();
 
 $pageDirectories = array( $config->webcore_root );
 
 $sitemap = createSitemap($pageDirectories, array( $config->site_domain.'/?id=' ), array('page'));
-print $sitemap->output();
 
+if ( $session->type == "html" ){
+	print $sitemap->toHtml();
+}
+else{
+	print $sitemap->toXml();
+}
 // if ( $config->auto_file_regen || $session->regen ){
 // 	/*
 // 	* Decides whether or not to regenerate the sitemap, and saves

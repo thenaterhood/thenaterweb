@@ -22,7 +22,7 @@ class url extends dataMonger{
 	 * @param $link (str): the web address of the item source
 	 * @param $lastmod (str): the item modification date
 	 */
-	public function __construct($link, $lastmod) {
+	public function __construct( $link, $lastmod ) {
 
 		$this->container['loc'] = $link;
 		$this->container['lastmod'] = $lastmod;
@@ -33,9 +33,9 @@ class url extends dataMonger{
 	 * Produces output in the requested format, defaulting to xml
 	 * @param $output - ignored
 	 */
-	public function output( $type='xml' ){
+	public function output( $type='Xml' ){
 
-		return $this->$type();
+		return "";
 
 	}
 	
@@ -45,14 +45,24 @@ class url extends dataMonger{
 	 * 
 	 * @return $item - an xml-encoded representation of the item
 	 */
-	private function xml() {
+	public function toXml() {
 
 		$item = "<url>\n";
-		$item .= "<loc>" . $this->container['loc'] . "</loc>\n";
+		$item .= "<loc>" . htmlentities($this->container['loc'] ). "</loc>\n";
 		$item .= '<lastmod>'.$this->container['lastmod']."</lastmod>\n";
 		$item .= "</url>\n";
 		return $item;
 	}
+
+	public function toHtml(){
+
+		$html = $html.'<a href="'.htmlentities($this->container['loc']).'">'.$this->container['loc'].'</a>';
+
+
+		return $html;
+	}
+
+
 
 }
 ?>
