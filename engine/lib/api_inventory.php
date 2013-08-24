@@ -14,9 +14,9 @@ include_once GNAT_ROOT.'/classes/class_inventory.php';
 
 // This allows for a place to be set, although it's messy.
 // This api is basically just for testing the inventory functionality
-$session = new session( array( "place", "element" ) );
+$session = new session( array( "place", "element", "inventory" ) );
 
-$inventory = new inventory( getConfigOption('post_directory') );
+$inventory = new inventory( $session->inventory );
 
 $matching = $inventory->select( 'title', "Lovin' those Facebook Likes" );
 
