@@ -121,7 +121,7 @@ def main():
     
     initialTime = clock()
     
-    logOut = open(logFile, 'w')
+    #logOut = open(logFile, 'w')
     
     # Tell the user what's going on
     print( "Starting tests.  Expecting " + str( len( testLineup ) ) + " tests to run." )
@@ -130,19 +130,31 @@ def main():
     
     # Run each test in sequence and check the result
     for test in testLineup:
+        messages = ""
         status = runTest( test )
         if ( status == 0 ):
-            logOut.write( "Test completed successfully: " + test + "\n")
+            #logOut.write( "Test completed successfully: " + test + "\n")
+            sys.stdout.write( "." )
             testsComplete += 1
         if ( status == 1 ):
-            logOut.write( "===> POTENTIAL PROBLEM: " + test +"\n")
+            #logOut.write( "===> POTENTIAL PROBLEM: " + test +"\n")
+            messages += "FAIL: " + test +"\n"
+            sys.stdout.write( "F" )
             errorsFound += 1
             testsComplete += 1
         if ( status == -1 ):
-            logOut.write( "Could not retrieve " + test +"\n")
+            #logOut.write( "Could not retrieve " + test +"\n")
+            sys.stdout.write( "E" )
+            messages += "ERROR: could not retrieve " + test + "\n"
+
+        sys.stdout.flush()
+
+    sys.stdout.write( "\n" )
+
+    print( messages )
      
     # Close the log file and get the end time of the test run       
-    logOut.close()
+    #logOut.close()
     endTime = clock()
     
     # Print the results to the console
