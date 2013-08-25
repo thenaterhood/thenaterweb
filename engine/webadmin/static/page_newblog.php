@@ -29,14 +29,14 @@ if ( isset( $_POST['blogid'] ) ){
 		copy( 'templates/newblog/class_blogdef.php', $localpath.'/class_blogdef.php' );
 
 		$feedFile = file_get_contents('templates/newblog/feed.php');
-		$contents = str_replace('<?php', '</php'."\n".'$id="'.$session->blogid.'"'.";\n", $feedFile);
+		$contents = str_replace('<?php', '<?php'."\n".'$id="'.$session->blogid.'"'.";\n", $feedFile);
 
 		$file = fopen( $localpath.'/feed.php', 'w' );
 		fwrite( $file, $contents );
 		fclose( $file );
 
 		$feedFile = file_get_contents('templates/newblog/index.php');
-		$contents = str_replace('<?php', '</php'."\n".'$id="'.$session->blogid.'"'.";\n", $feedFile);
+		$contents = str_replace('<?php', '<?php'."\n".'$id="'.$session->blogid.'"'.";\n", $feedFile);
 
 		$file = fopen( $localpath.'/index.php', 'w' );
 		fwrite( $file, $contents );
