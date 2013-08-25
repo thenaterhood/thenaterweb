@@ -1,5 +1,5 @@
 <?php 
-include GNAT_ROOT.'/lib/core_web.php';
+include GNAT_ROOT.'/lib/core_blog.php';
 
 
 $session = new session( array('name', 'track', 'konami', 'start', 'end', 'id', 'test', 'tag', 'node', 'blogid') );
