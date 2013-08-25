@@ -6,7 +6,7 @@ include 'class_blogdef.php';
 
 $session = new session( array('name', 'track', 'konami', 'start', 'end', 'id', 'test', 'tag', 'node') );
 $config = new config();
-$blogdef = new blogdef();
+$blogdef = getBlogConf( $id );
 
 # Manage friendly URL cases where supported
 # on the blog system
@@ -16,9 +16,6 @@ if ( $config->friendly_urls ){
 		$redirect->apply( 301 );
 	}
 }
-
-# For compatibility with current header
-$id = $blogdef->id;
 
 include $config->webcore_root.'/html_doctype.html';
 include $config->webcore_root.'/html_head.html';

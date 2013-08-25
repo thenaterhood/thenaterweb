@@ -24,15 +24,26 @@ if ( isset( $_POST['blogid'] ) ){
 		mkdir( $localpath.'/entries' );
 		mkdir( $localpath.'/static' );
 
-		copy( 'templates/newblog/static/page_home.html', $localpath.'/static/page_home.html' );
-		copy( 'templates/newblog/static/page_titles.html', $localpath.'/static/page_titles.html' );
-		copy( 'templates/newblog/static/page_tags.html', $localpath.'/static/page_tags.html' );
-		copy( 'templates/newblog/static/page_post.html', $localpath.'/static/page_post.html' );
+
 		copy( 'templates/newblog/static/template_blognav.php', $localpath.'/static/template_blognav.php' );
 		copy( 'templates/newblog/class_blogdef.php', $localpath.'/class_blogdef.php' );
 
-		copy( 'templates/newblog/feed.php', $localpath.'/feed.php' );
-		copy( 'templates/newblog/index.php', $localpath.'/index.php' );
+		$feedFile = file_get_contents('templates/newblog/feed.php');
+		str_replace('<?php', '</php'."\n".'$id='.$session->blogid.";\n", $feedFile);
+
+		$file = fopen( $localpath.'/feed.php' );
+		fwrite( $file, $feedFile );
+		fclose( $file );
+
+		$feedFile = file_get_contents('templates/newblog/index.php');
+		str_replace('<?php', '</php'."\n".'$id='.$session->blogid.";\n", $feedFile);
+
+		$file = fopen( $localpath.'/index.php' );
+		fwrite( $file, $feedFile );
+		fclose( $file );
+
+
+		copy( 'templates/newblog/conf.xml', GNAT_ROOT.'/config/section.d/'.$session->blogid.'.conf.xml' );
 
 		print '<p><a href="index.php?id=editblog&blogid='.$_POST['blogid'].'">Click to continue to configure new blog (required)</a></p>';
 

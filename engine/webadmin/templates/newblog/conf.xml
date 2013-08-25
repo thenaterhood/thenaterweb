@@ -1,0 +1,46 @@
+<blog>
+
+		<!-- 
+		Configure the path to where blog posts or articles
+		are stored for this blog. This can be an absolute path
+		or a relative path. If the post directory is in the same
+		directory as the blog, this can be relative - i.e, just the name.
+		If it's elsewhere, the full path is necessary. -->
+		<post_directory>Post directory</post_directory>
+
+		<!-- 
+		# Configure the identity of the blog for use when generating
+		# urls to the blog and saving files. This is publicly visible.
+		-->
+		<id>Blog Id (the local name for the blog)</id>
+
+		<!-- 
+		# Configure the title of the blog. This is publically visible
+		# and is used to brand the feed and blog pages.
+		-->
+		<title>Blog Title</title>
+
+		<!-- 
+		# Set a catchline for the blog. This is publically visible
+		# and is used in the feed.
+		-->
+		<catchline>Brief description/catchline</catchline>
+
+		<!--
+		# Set the location of the feed. If you are using the builtin
+		# feed provided by gnat, then enter http://thisdomain.com/yourblog/feed.php
+		# If you have burned your feed or are using another provider, give
+		# them the above url and enter the url of the feed that your
+		# provider gives you here.
+		-->
+		<feedurl>Where to direct users for the feed</feedurl>
+
+		<!-- 
+		# Any comment code for the post can be placed here, such as Disqus.
+		# Homebrew can also be placed here, though to simplify things, you
+		# would likely want to create an api for your homebrew code. This is
+		# appended at the end of each post page.
+		-->
+		<commentCode></commentCode>
+
+</blog>
