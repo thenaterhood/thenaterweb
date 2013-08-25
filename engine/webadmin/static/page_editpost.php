@@ -36,7 +36,11 @@ if ( $session->blogid ){
 
 	if ( isset( $_GET['postid'] ) || isset( $_POST['isnew'] ) ){
 
-		$postData = retrievePost( '../../'.$_GET['blogid'].'/entries/'.$_GET['postid'] );
+		print '<h2>'.$session->blogid.'</h2>';
+
+		$blogdef = loadBlogConf( strtolower($session->blogid) );
+
+		$postData = retrievePost( $blogdef->post_directory.$_GET['postid'] );
 
 		print'<form name="create" action="index.php?id=savepost" method="post">
 		Title: <br />
@@ -48,6 +52,7 @@ if ( $session->blogid ){
 		Write your post - <strong>full html required</strong>: <br />
 		<textarea name="content" rows="50" cols="100" >'.$postData['content'].'</textarea><br />
 		<input type="hidden" name="file" value="'.$_GET['postid'].'" />
+		<input type="hidden" name="postpath" value=\''.$blogdef->post_directory.'\'';
 		<input type="submit" value="Create" />
 
 		</form>';
@@ -57,12 +62,13 @@ if ( $session->blogid ){
 
 	else{
 
-		$handler = opendir('../../'.$_POST['blogid'].'/entries');
+		$blogdef = loadBlogConf( strtolower($session->blogid) );
+		$handler = opendir( $blogdef->post_directory );
 		$avoid = getConfigOption('hidden_files');
 
 		while( $file = readdir( $handler ) ){
 			if ( $file != '..' && $file != '.' )
-				print '<p><a href="?id=editpost&blogid='.$_POST['blogid'].'&postid='.$file.'">'.$file.'</a></p>';
+				print '<p><a href="?id=editpost&blogid='.$session->blogid.'&postid='.$file.'">'.$file.'</a></p>';
 		}
 
 	}
