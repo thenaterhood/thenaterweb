@@ -52,7 +52,7 @@ if ( $session->blogid ){
 		Write your post - <strong>full html required</strong>: <br />
 		<textarea name="content" rows="50" cols="100" >'.$postData['content'].'</textarea><br />
 		<input type="hidden" name="file" value="'.$_GET['postid'].'" />
-		<input type="hidden" name="postpath" value=\''.$blogdef->post_directory.'\'';
+		<input type="hidden" name="postpath" value=\''.$blogdef->post_directory.'\' />
 		<input type="submit" value="Create" />
 
 		</form>';
