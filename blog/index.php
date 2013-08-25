@@ -1,14 +1,15 @@
 <?php 
 include GNAT_ROOT.'/lib/core_blog.php';
-include 'class_blogdef.php';
 
 
 $session = new session( array('name', 'track', 'konami', 'start', 'end', 'id', 'test', 'tag', 'node') );
 $config = new config();
-$blogdef = new blogdef();
 
-# For compatibility with current header
-$id = $blogdef->id;
+# Set the ID of the blog here
+$id = "Blog";
+
+$blogdef = loadBlogConf( strtolower($id) );
+
 
 include $config->webcore_root.'/html_doctype.html';
 include $config->webcore_root.'/html_head.html';
