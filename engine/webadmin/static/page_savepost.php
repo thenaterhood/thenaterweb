@@ -6,7 +6,7 @@
 *
 * @since 06/05/2013
 */
-$postpath = '../../'.$_POST['blog'].'/entries';
+$postpath = $_POST['postpath'];
 
 if ( $_POST['file'] == '' ){
 	$nodeDate = date("Y.m.d");
