@@ -31,7 +31,7 @@ else{
 
 		while ($file = readdir($handler)){
 
-			if ( $file != '.' && $file != '..' && !in_array($file, $found)){
+			if ( $file != '.' && $file != '..' && !in_array($file, $found) ){
 				$blogid=substr($file, 0, strpos($file, ".") );
 				$found[] = $file;
 				print '<li><a href="index.php?id=editblog&blogid='.$blogid.'">'.$blogid.'</a></li>'."\n";

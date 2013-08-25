@@ -70,10 +70,18 @@ if ( $session->blogid ){
 }
 else{
 
-	print '<form name="create" action="index.php?id=editpost" method="post">
-	Please enter a blog name to edit a post on: <input type="text" name="blogid" />
-	<input type="submit" value="Continue" />
-	</form>';
+		$found = array();
+		$handler = opendir(GNAT_ROOT.'/config/section.d');
+		print '<ul>';
+
+		while ($file = readdir($handler)){
+
+			if ( $file != '.' && $file != '..' && !in_array($file, $found) ){
+				$blogid=substr($file, 0, strpos($file, ".") );
+				$found[] = $file;
+				print '<li><a href="index.php?id=editpost&blogid='.$blogid.'">'.$blogid.'</a></li>'."\n";
+			}
+		}
 
 }
 

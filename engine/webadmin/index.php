@@ -14,7 +14,7 @@ include $config->webcore_root.'/html_head.html';
 
 <body>
 <div id="wrapper">
-<?php include chooseInclude( $config->webcore_root.'/template_header.php', '../layout_error.html');?>
+<?php include chooseInclude( $config->webcore_root.'/template_header.php', '../../layout_error.html');?>
 	<div id="page">
 		<div id="content">
 				<div style="clear: both;">&nbsp;</div>
@@ -40,6 +40,9 @@ include $config->webcore_root.'/html_head.html';
 	<div style="clear:both;">&nbsp;</div>
 	</div>
 </div>
-<?php include chooseInclude( $config->webcore_root.'/template_footer.php', '../layout_error.html'); ?>
+<?php 
+	$config = new config();
+	include chooseInclude( $config->webcore_root.'/template_footer.php', '../../layout_error.html'); 
+?>
 </body>
 </html>
