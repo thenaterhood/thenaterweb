@@ -6,7 +6,7 @@ include 'class_blogdef.php';
 
 $session = new session( array('name', 'track', 'konami', 'start', 'end', 'id', 'test', 'tag', 'node') );
 $config = new config();
-$blogdef = getBlogConf( $id );
+$blogdef = loadBlogConf( $id );
 
 # Manage friendly URL cases where supported
 # on the blog system
