@@ -4,6 +4,8 @@
 /**
  * Edits an existing blog configuration
  */
+
+
 if ( $session->blogid ){
 
 	$config = file_get_contents('../../'.$session->blogid.'/class_blogdef.php');
@@ -23,11 +25,15 @@ if ( $session->blogid ){
 }
 else{
 
-	print '<form name="create" action="index.php?id=editblog" method="post">
-	Please enter a blog name to edit: <input type="text" name="blogid" />
-	<input type="submit" value="Continue" />
-	</form>';
+		$handler = opendir(GNAT_ROOT.'/config/section.d');
+		print '<ul>';
 
+		while ($file = readdir($handler)){
+
+			$blogid=substr($file, 0, strpos($file, ".")-1 );
+			
+			print '<li><a href="index.php?id=editblog&blogid='.$blogid.'">'.$blogid.'</a></li>'."\n";
+		}
 }
 
 

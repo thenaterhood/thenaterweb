@@ -89,8 +89,21 @@ function getPosts( $bloguri, $post_directory, $start, $end){
 
 function loadBlogConf( $id ){
 
-	$xml = simplexml_load_file( GNAT_ROOT.'/config/section.d/'.$id.'.conf.xml' );
-	return $xml[0];
+	$confFile = GNAT_ROOT.'/config/section.d/'.$id.'.conf.xml';
+	$conf = array();
+	$conf['title'] = "Error";
+	$conf['catchline'] = "";
+	$conf['commentCode'] = "";
+
+
+	if ( file_exists($confFile) ){
+		$xml = simplexml_load_file( GNAT_ROOT.'/config/section.d/'.$id.'.conf.xml' );
+		$conf = $xml[0];
+	}
+
+
+
+	return $conf;
 
 }
 

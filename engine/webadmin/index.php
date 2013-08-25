@@ -22,20 +22,16 @@ include $config->webcore_root.'/html_head.html';
 				<div class="entry">
 					
 				<?php 
-				$include = getContent( 'static/page_'.$session->id, $config->webcore_root.'/template_error.php');
 
-				print $include['pre'];
+				$content = pullContent( array( 'static/page_'.$session->id, 'static/hidden_'.$session->id ) );
 
-				if ( !$include['sanitize'] ){
-					include $include['file'];
+				if ( ! $content->isPhp() ){
+					print $content->toHtml();
 				}
 				else{
-					print htmlspecialchars( file_get_contents($include['file']) );
+					include $content->getFile();
 				}
 
-				print $include['post'];
-				//$content = new content( $session->id, $session );
-				//$content->output();
 				?>
 					
 				</div>
