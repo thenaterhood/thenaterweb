@@ -40,7 +40,7 @@ if ( $session->blogid ){
 
 		$blogdef = loadBlogConf( strtolower($session->blogid) );
 
-		$postData = retrievePost( $blogdef->post_directory.$_GET['postid'] );
+		$postData = retrievePost( $blogdef->post_directory.'/'.$_GET['postid'] );
 
 		print'<form name="create" action="index.php?id=savepost" method="post">
 		Title: <br />
