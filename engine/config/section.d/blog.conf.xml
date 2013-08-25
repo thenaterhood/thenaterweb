@@ -1,0 +1,21 @@
+
+<blog>
+
+	<!-- Configure where the engine should look to
+	find entries for this blog/article collection -->
+	<post_directory>/var/www/blog/entries</post_directory>
+
+	<!-- Configure the id of the blog (this is where the
+	 blog is on the web, i.e example.com/yourblog) -->
+	<id>blog</id>
+
+	<!-- Configure the title of the blog -->
+	<title>The Philosophy of Nate</title>
+
+	<!-- Configure the blog's (brief) description/catchline -->
+	<catchline>It's the cyber age. Stay in the know.</catchline>
+
+	<!-- Insert any comment code (such as disqus) here -->
+	<comment_code></comment_code>
+
+</blog>

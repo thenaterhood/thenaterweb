@@ -87,4 +87,11 @@ function getPosts( $bloguri, $post_directory, $start, $end){
 
 }
 
+function loadBlogConf( $id ){
+
+	$xml = simplexml_load_file( GNAT_ROOT.'/config/section.d/'.$id.'.conf.xml' );
+	return $xml[0];
+
+}
+
 ?>
