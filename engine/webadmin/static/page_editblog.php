@@ -8,14 +8,14 @@
 
 if ( $session->blogid ){
 
-	$config = file_get_contents('../../'.$session->blogid.'/class_blogdef.php');
+	$config = file_get_contents('../config/section.d/'.$session->blogid.'.conf.php');
 	$lines = count( explode( "\n", $config) )+4;
 
-	if ( ! is_writable('../../'.$session->blogid.'/class_blogdef.php') )
+	if ( ! is_writable('../config/section.d/'.$session->blogid.'.conf.php') )
 		print '<p>Warning: Gnat cannot write to the configuration file selected, settings cannot be saved.</p>';
 
 	print '<form action="index.php?id=saveconf" method="post">
-		<input type="hidden" name="rcfile" value="../../'.$session->blogid.'/class_blogdef.php"/>
+		<input type="hidden" name="rcfile" value="../config/section.d/'.$session->blogid.'.conf.php"/>
 		<br />
 		<textarea name="content" rows="'.$lines.'" cols="100" >'.$config.'</textarea>
 		<br />
@@ -30,9 +30,11 @@ else{
 
 		while ($file = readdir($handler)){
 
-			$blogid=substr($file, 0, strpos($file, ".")-1 );
-			
-			print '<li><a href="index.php?id=editblog&blogid='.$blogid.'">'.$blogid.'</a></li>'."\n";
+			if ( $file != '.' && $file != '..' ){
+				$blogid=substr($file, 0, strpos($file, ".") );
+				
+				print '<li><a href="index.php?id=editblog&blogid='.$blogid.'">'.$blogid.'</a></li>'."\n";
+			}
 		}
 }
 
