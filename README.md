@@ -1,4 +1,4 @@
-1.12.0+a5d06
+1.13.0+208ef
 ^ Current version number above ^
 
 v1.1.0+cdaac
@@ -99,3 +99,8 @@ Improvements to content management and inventories
 
 - All content now loads via the article class
 - Support for json pages and html/txt/php blog posts
+
+
+v1.13.0+208ef
+
+Improvements to API, centralizing blog configuration data, improvements to webadmin
