@@ -104,3 +104,7 @@ Improvements to content management and inventories
 v1.13.0+208ef
 
 Improvements to API, centralizing blog configuration data, improvements to webadmin
+
+- Fixes to inventory API
+- Convert blogdef data to xml and move to central location
+- Fix bugs with webadmin and updates for changes to blog configuration
