@@ -46,7 +46,7 @@ include $config->webcore_root.'/html_head.html';
 
 				print getPreface( $extensions );
 
-				$content = pullContent( array( 'static/page_'.$session->id, 'static/hidden_'.$session->id ) );
+				$content = pullContent( array( 'static/page_'.$session->id, 'static/hidden_'.$session->id, GNAT_ROOT.'/lib/pages/page_'.$session->id ) );
 
 				if ( ! $content->isPhp() ){
 					print $content->toHtml();

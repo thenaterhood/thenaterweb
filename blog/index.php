@@ -27,25 +27,20 @@ include $config->webcore_root.'/html_head.html';
 				<div class="entry">
 					
 				<?php 
-				if ( file_exists( 'static/page_'.$session->id.'.html' ) ){
-					$include = getContent( 'static/page_'.$session->id, $config->webcore_root.'/template_error.php');
+
+				//print getPreface( $extensions );
+
+				$content = pullContent( array( 'static/page_'.$session->id, 'static/hidden_'.$session->id, GNAT_ROOT.'/lib/pages/page_'.$session->id ) );
+
+				if ( ! $content->isPhp() ){
+					print $content->toHtml();
 				}
 				else{
-					$include = getContent( GNAT_ROOT.'/lib/pages/page_'.$session->id, $config->webcore_root.'/template_error.php' );
+					include $content->getFile();
 				}
 
-				print $include['pre'];
-
-				if ( !$include['sanitize'] ){
-					include $include['file'];
-				}
-				else{
-					print htmlspecialchars( file_get_contents($include['file']) );
-				}
-
-				print $include['post'];
-				//$content = new content( $session->id, $session );
-				//$content->output();
+				//print getPost( $extensions );
+				
 				?>
 					
 				</div>
