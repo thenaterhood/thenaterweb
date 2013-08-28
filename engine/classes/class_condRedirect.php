@@ -41,9 +41,9 @@ class condRedirect extends redirect{
 	public function __construct( $origin, $destination, $uri ){
 		
 		parent::__construct( $uri, $destination );
-				
-		if ( strpos($uri, $origin) ){
-			$this->apply = True;	
+		if ( is_int( strpos($uri, $origin) ) ){
+
+			$this->apply = True;
 		}	
 	}
 	
