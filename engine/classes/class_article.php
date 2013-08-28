@@ -96,7 +96,9 @@ class article extends dataMonger{
 			$this->type = "HTML";
 			$this->container['content'] = file_get_contents($nodefile.'.html');
 			$title = explode('/', $nodefile);
-			$this->container['title'] = $title[count($title)-1];
+			$title = $title[ count($title)-1 ];
+
+			$this->container['title'] = substr( $title, strpos( $title, '_' )+1 );
 			$this->container['datestamp'] = date( DATE_ATOM, filemtime($nodefile.'.html') );
 			$this->container['date'] = date( "F j, Y, g:i a", strtotime($this->container['datestamp']) );
 
@@ -104,9 +106,10 @@ class article extends dataMonger{
 			$this->usePostFormat = False;
 			$this->type = "PHP";
 			$this->file = $nodefile.'.php';
-			$title = explode('/', $nodefile);
+                        $title = explode('/', $nodefile);
+                        $title = $title[ count($title)-1 ];
+                        $this->container['title'] = substr( $title, strpos( $title, '_' )+1 );
 
-			$this->container['title'] = $title[count($title)-1];
 			$this->container['datestamp'] = date( DATE_ATOM, filemtime($nodefile.'.php') );
 			$this->container['date'] = date( "F j, Y, g:i a", strtotime($this->container['datestamp']) );
 
@@ -114,9 +117,10 @@ class article extends dataMonger{
 			$this->usePostFormat = False;
 			$this->type = "pre";
 			$this->container['content'] = '<pre>'."\n".htmlspecialchars( file_get_contents($nodefile.'.pre') )."\n".'</pre>';
-			$title = explode('/', $nodefile);
+                        $title = explode('/', $nodefile);
+                        $title = $title[ count($title)-1 ];
+                        $this->container['title'] = substr( $title, strpos( $title, '_' )+1 );
 
-			$this->container['title'] = $title[count($title)-1];
 			$this->container['datestamp'] = date( DATE_ATOM, filemtime($nodefile.'.pre') );
 			$this->container['date'] = date( "F j, Y, g:i a", strtotime($this->container['datestamp']) );
 		}
