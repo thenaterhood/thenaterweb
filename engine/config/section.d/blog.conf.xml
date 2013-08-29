@@ -11,6 +11,8 @@
 
 	<!-- Configure the title of the blog -->
 	<title>The Philosophy of Nate</title>
+	
+	<short_title></short_title>
 
 	<!-- Configure the blog's (brief) description/catchline -->
 	<catchline>It's the cyber age. Stay in the know.</catchline>

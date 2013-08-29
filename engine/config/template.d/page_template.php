@@ -15,6 +15,9 @@ $blogdef = loadBlogConf( strtolower( $sectionId ) );
 
 $content = pullContent( array( 'pages/page_'.$session->id, 'pages/hidden_'.$session->id, GNAT_ROOT.'/lib/pages/page_'.$session->id ) );
 
+$htmlTitle = $blogdef->title.' | '.$content->title;
+$visibleTitle = $blogdef->title;
+
 $id = $content->title;
 $tagline = $blogdef->catchline;
 $type = '404';

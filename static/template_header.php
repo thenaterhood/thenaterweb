@@ -11,8 +11,8 @@
 	<div id="upperbar"></div>
 	<div id="header">
 		<div id="logo">
-			<h1><a href='/?id=home'><?php if( $id != "home" ) print "Nate | ".$id; else print "Nate Levesque"; ?></a></h1>
-			<?php if ( $id == "home" ) print "<h2 id='catchline'>Colloquially, TheNaterhood</h2>"; else print "<h2 id='catchline'> &nbsp;".$tagline."</h2>"; ?>
+			<h1><a href='/?id=home'><?php if( $id != "home" ) print "$blogdef->short_title | ".$id; else print $blogdef->title; ?></a></h1>
+			<h2><?php echo $blogdef->catchline; ?></h2>
 		</div> 
 		<div id="logo2">
 			<div class="siteurl">
