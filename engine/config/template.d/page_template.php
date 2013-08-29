@@ -20,8 +20,8 @@ $tagline = $blogdef->catchline;
 $type = '404';
 
 if ( $config->friendly_urls ){
-	$redirect = new condRedirect( substr($config->site_domain, 7).'/?id', "page/".$session->id, substr( $config->site_domain, 7 ).$session->uri );
-	$redirect->apply( 301 );
+        $redirect = new condRedirect( substr($config->site_domain, 7).'/?id', "page/".$session->id, substr( $config->site_domain, 7 ).$session->uri );
+        $redirect->apply( 301 );
 }
 
 
@@ -29,7 +29,7 @@ if ( $config->friendly_urls ){
 
 setcookie('name',$session->name,time() + (86400 * 30),"/",$session->domain); // 86400 = 1 day
 setcookie('track',$session->track,time() + (86400 * 30),"/",$session->domain); // 86400 = 1 day
-	
+
 include $config->webcore_root.'/html_doctype.html';
 include $config->webcore_root.'/html_head.html';
 ?>
@@ -37,39 +37,44 @@ include $config->webcore_root.'/html_head.html';
 
 <body>
 <div id="wrapper">
-	
+
 <?php include chooseInclude( $config->webcore_root.'/template_header.php', 'layout_error.html');?>
 
-	<div id="page">
-		<div id="content">
-				<div style="clear: both;">&nbsp;</div>
-				<div class="entry">
-					
-				<?php 
+        <div id="page">
+                <div id="content">
+                                <div style="clear: both;">&nbsp;</div>
 
-				print getPreface( $extensions );
+                                <?php if ( file_exists( 'static/template_subnav.php' ) ) include 'static/template_subnav.php'; ?>
 
 
-				if ( ! $content->isPhp() ){
-					print $content->toHtml();
-				}
-				else{
-					include $content->getFile();
-				}
+                                <div class="entry">
 
-				print getPost( $extensions );
-				
-				?>
-				
-				</div>
-		</div>
-		<!-- end #content -->
-	<div style="clear:both;">&nbsp;</div>
+                                <?php 
 
-	</div>
+                                print getPreface( $extensions );
+
+
+                                if ( ! $content->isPhp() ){
+                                        print $content->toHtml();
+                                }
+                                else{
+                                        include $content->getFile();
+                                }
+
+                                print getPost( $extensions );
+
+                                ?>
+
+                                </div>
+                </div>
+                <!-- end #content -->
+        <div style="clear:both;">&nbsp;</div>
+
+        </div>
 </div>
 
 <?php include chooseInclude( $config->webcore_root.'/template_footer.php', 'layout_error.html'); ?>
 
 </body>
 </html>
+
