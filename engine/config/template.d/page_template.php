@@ -25,7 +25,7 @@ $type = '404';
 if ( $config->friendly_urls ){
         $redirect = new condRedirect( "?id=post", '/'.$blogdef->id.'/read/'.$session->node.'.htm', $session->uri );
         $redirect->apply( 301 );
-        $redirect = new condRedirect( substr($config->site_domain, 7).'/?id', "page/".$session->id, $session->uri );
+        $redirect = new condRedirect( substr($config->site_domain, 7).'/?id', "page/".$session->id, substr( $config->site_domain, 7 ).$session->uri );
         $redirect->apply( 301 );
 }
 
