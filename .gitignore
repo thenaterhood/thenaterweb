@@ -166,3 +166,4 @@ error_log
 feed.xml
 sitemap.xml
 *.json
+*.lock
