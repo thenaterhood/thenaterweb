@@ -66,6 +66,7 @@ class lock{
         $this->lockTime = $lockContents;
         if ( ( time() - $this->lockTime ) > 120 ){
                 $this->unlock();
+        }
     }
 
 
