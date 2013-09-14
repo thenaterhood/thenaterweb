@@ -28,6 +28,10 @@ class lock{
 	 * @var $hasLock - whether the file has a lock on it
 	 */
 	private $hasLock;
+	/**
+	 * @var $lockTime;
+	 */
+	private $lockTime;
 
 	/**
 	 * Constructs and instance of the lock class
@@ -43,11 +47,26 @@ class lock{
 
 		if ( file_exists($this->lockfile) ){
 			$this->hasLock = True;
+			$this->readExistingLock();
 		} 
 		else{ 
 
 			$this->hasLock = False;
 
+		}
+
+	}
+
+	/**
+	 *
+	 */
+	private function readExistingLock(){
+
+		$lockContents = file_get_contents($this->lockfile);
+		$this->lockTime = $lockContents;
+
+		if ( ( $this->lockTime - time() ) > 120 ){
+			$this->unlock();
 		}
 
 	}
