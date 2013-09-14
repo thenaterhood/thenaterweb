@@ -57,19 +57,17 @@ class lock{
 
 	}
 
-	/**
-	 *
-	 */
-	private function readExistingLock(){
+    /**
+     *
+     */
+    private function readExistingLock(){
 
-		$lockContents = file_get_contents($this->lockfile);
-		$this->lockTime = $lockContents;
+        $lockContents = file_get_contents($this->lockfile);
+        $this->lockTime = $lockContents;
+        if ( ( time() - $this->lockTime ) > 120 ){
+                $this->unlock();
+    }
 
-		if ( ( $this->lockTime - time() ) > 120 ){
-			$this->unlock();
-		}
-
-	}
 
 	/**
 	 * Returns whether or not the file has been locked
