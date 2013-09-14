@@ -87,24 +87,66 @@ function getPosts( $bloguri, $post_directory, $start, $end){
 
 }
 
+/**
+ * Converts a SimpleXMLElement to an associative
+ * array.
+ * @param $xml - a SimpleXMLElement to convert to array
+ * @return $array - an associative array of the SimpleXMLElement data
+ */
+function XmltoArray(SimpleXMLElement $xml) {
+    $array = (array)$xml;
+    
+    foreach ( array_slice($array, 0) as $key => $value ) {
+        if ( $value instanceof SimpleXMLElement ) {
+            $array[$key] = empty($value) ? NULL : XmltoArray($value);
+        }   
+    }   
+    return $array;
+}   
+    
+/**
+ * Converts an array to an stdclass object
+ * @param $d - an associative array
+ * @return $d - an std class object
+ */
+function arrayToObject($d) {
+    if (is_array($d)) {
+        /*
+        * Return array converted to object
+        * Using __FUNCTION__ (Magic constant)
+        * for recursive call 
+        */
+        return (object) array_map(__FUNCTION__, $d);
+    } else {  
+        // Return object
+        return $d;
+    }       
+}       
+
+/**
+ * Loads a section/blog configuration xml file
+ * @param $id - the section id
+ * @return $conf - an stdclass instance with the config data
+ */       
 function loadBlogConf( $id ){
 
-	$confFile = GNAT_ROOT.'/config/section.d/'.$id.'.conf.xml';
-	$conf = array();
-	$conf['title'] = "Error";
-	$conf['catchline'] = "";
-	$conf['commentCode'] = "";
+    $confFile = GNAT_ROOT.'/config/section.d/'.$id.'.conf.xml';
+    $conf = array();
+    $conf['title'] = "Error";
+    $conf['catchline'] = "";
+    $conf['commentCode'] = "";
+    
+    
+    if ( file_exists($confFile) ){
+            $xml = simplexml_load_file( GNAT_ROOT.'/config/section.d/'.$id.'.conf.xml' );
+            $conf = xmltoArray( $xml ); 
+            
+            
+    }
 
-
-	if ( file_exists($confFile) ){
-		$xml = simplexml_load_file( GNAT_ROOT.'/config/section.d/'.$id.'.conf.xml' );
-		$conf = $xml[0];
-	}
-
-
-
-	return $conf;
+    return arrayToObject($conf);
 
 }
+
 
 ?>
