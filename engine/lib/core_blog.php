@@ -81,9 +81,9 @@ function getPosts( $bloguri, $post_directory, $start, $end){
 		echo $nextpost->output( 'html' );
 		echo "<hr />";
 	}
-	if (! $start <= 0) echo "<a href='?start=".($start - getConfigOption('posts_per_page') )."&amp;end=".($end - getConfigOption('posts_per_page') )."'>Newer Posts</a>";
+	if (! $start <= 0) echo "<a href='/".$bloguri.'/id/home/start/'.($start - getConfigOption('posts_per_page') )."/end/".($end - getConfigOption('posts_per_page') )."'>Newer Posts</a>";
 	if (! $start <= 0 and count($posts) != $i ) echo ' / ';
-	if ( count($posts) != $i ) echo "<a href='?start=".($start + getConfigOption('posts_per_page') )."&amp;end=".($end + getConfigOption('posts_per_page') )."'>  Older Posts</a>  ";
+	if ( count($posts) != $i ) echo "<a href='/"$bloguri.'/id/home/start/'.($start + getConfigOption('posts_per_page') )."/end/".($end + getConfigOption('posts_per_page') )."'>  Older Posts</a>  ";
 
 }
 
