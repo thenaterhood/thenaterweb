@@ -2,7 +2,7 @@
 <?php
 	if ( $session->id != 'home' ){
 		include chooseInclude( $session->id, $config->webcore_root.'/template_error.php' );
-		echo '<hr /><p><a href="index.php">Back to Blog home</a></p>';
+		echo '<hr /><p><a href="<?php print "$blogdef->id" ?>">Back to Blog home</a></p>';
 	}
 	else{ 
 		if ( $session->start == 42 ){

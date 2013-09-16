@@ -12,10 +12,16 @@ Options -indexes
 # site core_config file for this to work the best).
 <IfModule mod_rewrite.c>
 RewriteEngine On
-RewriteRule page/([^/]*)$ /index.php?id=$1 [L]
-RewriteRule ([^/]*)/read/([^/]*)\.htm$ /$1/index.php?id=post&node=$2 [L]
-RewriteRule go/([^/]*)$ /e/redir.php?to=$1 [L]
+#RewriteRule page/([^/]*)$ /index.php?url=page/$1 [L]
+RewriteRule ([^/]*)/read/([^/]*)\.htm$ index.php?url=$1/id/post/node/$2 [L]
+#RewriteRule go/([^/]*)$ /e/redir.php?to=$1 [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^(.*)$ /index.php?url=$1 [L,QSA] 
+
 </IfModule>
+
 
 # Custom error pages
 ErrorDocument 404 /index.php?id=error&type=404

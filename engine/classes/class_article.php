@@ -88,7 +88,7 @@ class article extends dataMonger{
 
 			if ( $articleUri == "" )
 				$this->container['link'] = 
-					getConfigOption('site_domain').'/'.$bloguri.'/index.php?id=post&node='.basename($nodefile, '.json');
+					getConfigOption('site_domain').'/?url='.$bloguri.'/read/'.basename($nodefile, '.json').'.htm';
 			$this->container['nodeid'] = basename($nodefile, '.json');
 			
 		} else if ( file_exists( $nodefile.'.html' ) ) {

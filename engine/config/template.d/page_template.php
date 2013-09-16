@@ -12,8 +12,9 @@ $extensions = loadExtensions( $session, $registerExtensions );
 # Grab variables from the URL. Syntax for this is...
 # name of variable, default value of variable, maxlength of variable
 $blogdef = loadBlogConf( strtolower( $sectionId ) );
+$static = $blogdef->static_directory;
 
-$content = pullContent( array( 'pages/page_'.$session->id, 'pages/hidden_'.$session->id, GNAT_ROOT.'/lib/pages/page_'.$session->id ) );
+$content = pullContent( array( $static.'/page_'.$session->id, $static.'/hidden_'.$session->id, GNAT_ROOT.'/lib/pages/page_'.$session->id ) );
 
 $htmlTitle = $blogdef->title.' | '.$content->title;
 $visibleTitle = $blogdef->title;
@@ -23,9 +24,11 @@ $tagline = $blogdef->catchline;
 $type = '404';
 
 if ( $config->friendly_urls ){
+        $redirect = new condRedirect( '/?url', '/'.$_GET['url'], $session->uri );
+        $redirect->apply( 301 );
         $redirect = new condRedirect( "?id=post", '/'.$blogdef->id.'/read/'.$session->node.'.htm', $session->uri );
         $redirect->apply( 301 );
-        $redirect = new condRedirect( substr($config->site_domain, 7).'/?id', "page/".$session->id, substr( $config->site_domain, 7 ).$session->uri );
+        $redirect = new condRedirect( '/?id', "page/".$session->id, substr( $config->site_domain, 7 ).$session->uri );
         $redirect->apply( 301 );
 }
 
@@ -49,7 +52,7 @@ include $config->webcore_root.'/html_head.html';
                 <div id="content">
                                 <div style="clear: both;">&nbsp;</div>
 
-                                <?php if ( file_exists( 'static/template_subnav.php' ) ) include 'static/template_subnav.php'; ?>
+                                <?php if ( file_exists( $static.'/template_subnav.php' ) ) include $static.'/template_subnav.php'; ?>
 
 
                                 <div class="entry">
@@ -82,4 +85,3 @@ include $config->webcore_root.'/html_head.html';
 
 </body>
 </html>
-
