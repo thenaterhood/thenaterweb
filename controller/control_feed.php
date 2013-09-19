@@ -8,11 +8,12 @@ class controller extends controllerBase{
 
 	public function __construct(){
 
-		$configFile = GNAT_ROOT.'/config/section.d/blog.conf.xml';
-		$this->readConfig( $this->configFile );
+		$this->settings['template'] = GNAT_ROOT.'/lib/gen_feed.php';
 
 
 	}
+
+
 
 
 }
