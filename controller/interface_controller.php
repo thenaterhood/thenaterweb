@@ -62,7 +62,7 @@ abstract class controllerBase{
 	}
 
 	public function __get( $field ){
-		return $this->$field;
+		return $this->settings[$field];
 	}
 
 }
