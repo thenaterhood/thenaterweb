@@ -8,7 +8,7 @@ class controller extends controllerBase{
 
 	public function __construct(){
 
-		$feedSession = new $session( array( 'show' ) );
+		$feedSession = new session( array( 'show' ) );
 
 		$configFile = GNAT_ROOT.'/config/section.d/'.$feedSession->show.'.conf.xml';
 		$this->settings['template'] = GNAT_ROOT.'/lib/gen_feed.php';
