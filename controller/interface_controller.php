@@ -21,7 +21,7 @@ abstract class controllerBase{
 	    
 	    
 	    if ( file_exists($confFile) ){
-	            $xml = simplexml_load_file( GNAT_ROOT.'/config/section.d/'.$id.'.conf.xml' );
+	            $xml = simplexml_load_file( file_get_contents( GNAT_ROOT.'/config/section.d/'.$id.'.conf.xml' ) );
 	            $conf = xmltoArray( $xml ); 
 	            
 	            
@@ -41,8 +41,6 @@ abstract class controllerBase{
 
 		$xml = new SimpleXMLElement('<xml/>');
 		$control = $xml->addChild('control');
-
-		#Header('Content-type: text/xml');
 
 		foreach ($this->settings as $key => $value) {
 

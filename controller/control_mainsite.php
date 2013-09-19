@@ -9,7 +9,7 @@ class controller extends controllerBase{
 	public function __construct(){
 
 		$configFile = GNAT_ROOT.'/config/section.d/mainsite.conf.xml';
-		$this->readConfig( $this->configFile );
+		$this->readConfig( $configFile );
 
 
 	}
