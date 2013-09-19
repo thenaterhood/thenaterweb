@@ -1,6 +1,6 @@
 <?php
 
-include_once GNAT_ROOT.'/classes/class_session.php';
+include_once GNAT_ROOT.'/lib/core_web.php';
 
 class urlHandler{
 
