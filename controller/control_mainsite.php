@@ -1,5 +1,5 @@
 <?php
-include_once GNAT_ROOT.'/controller/interface_controller.php';
+include_once 'controller/interface_controller.php';
 
 class controller extends controllerBase{
 
