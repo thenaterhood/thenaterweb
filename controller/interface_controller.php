@@ -21,7 +21,7 @@ abstract class controllerBase{
 	    
 	    
 	    if ( file_exists($confFile) ){
-	            $xml = simplexml_load_file( file_get_contents( GNAT_ROOT.'/config/section.d/'.$id.'.conf.xml' ) );
+	            $xml = simplexml_load_file( file_get_contents( $path );
 	            $conf = xmltoArray( $xml ); 
 	            
 	            
