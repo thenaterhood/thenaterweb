@@ -1,6 +1,6 @@
 <?php
 
-include_once GNAT_ROOT.'/lib/core_web.php';
+include_once GNAT_ROOT.'/lib/core_blog.php';
 
 class urlHandler{
 
