@@ -8,6 +8,7 @@ class controller extends controllerBase{
 
 	public function __construct(){
 
+		$configFile = GNAT_ROOT.'/config/section.d/'.$_GET['controller'].'.conf.xml';
 		$this->settings['template'] = GNAT_ROOT.'/lib/gen_feed.php';
 
 
