@@ -21,7 +21,7 @@ abstract class controllerBase{
 	    
 	    
 	    if ( file_exists($confFile) ){
-	            $xml = simplexml_load_file( file_get_contents( $path ) );
+	            $xml = simplexml_load_file( $path );
 	            $conf = xmltoArray( $xml ); 
 	            
 	            
