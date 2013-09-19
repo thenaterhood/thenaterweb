@@ -1,7 +1,7 @@
 <?php
 #error_reporting(E_ALL);
 #ini_set( 'display_errors','1'); 
-include GNAT_ROOT.'/lib/core_blog.php';
+include_once GNAT_ROOT.'/classes/class_urlHandler.php';
 
 $urlHandler = new urlHandler();
 $sectionId = $urlHandler->getControllerId();
