@@ -11,6 +11,7 @@ class controller extends controllerBase{
 		$feedSession = new session( array( 'show' ) );
 
 		$configFile = GNAT_ROOT.'/config/section.d/'.$feedSession->show.'.conf.xml';
+		$this->readConfig( $configFile );
 		$this->settings['template'] = GNAT_ROOT.'/lib/gen_feed.php';
 
 
