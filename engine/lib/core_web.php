@@ -20,6 +20,7 @@ include GNAT_ROOT.'/classes/class_session.php';
 include GNAT_ROOT.'/classes/class_lock.php';
 include GNAT_ROOT.'/lib/core_extension.php';
 include GNAT_ROOT.'/classes/class_article.php';
+include GNAT_ROOT.'/classes/class_urlHandler.php';
 
 /**
 * Checks to see if the preferred file exists, and if it does
