@@ -196,7 +196,7 @@ class article extends dataMonger{
 		$r .= "<id>http://" . urlencode( substr($this->link, 7) ) . "</id>";
 		$r .= '<link href="http://'. htmlspecialchars( substr($this->container['link'], 7) ) .'" />';
 		$r .= '<updated>'.$this->datestamp.'</updated>';
-		$r .= "<title>" . $this->title . "</title>";
+		$r .= "<title>" . htmlspecialchars( $this->title ) . "</title>";
 		$r .= "<content type='html'>" . htmlspecialchars( $this->content, ENT_QUOTES ) . "</content>";
 		$r .= "</entry>";
 		return $r;
