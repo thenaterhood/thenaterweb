@@ -32,7 +32,7 @@ class urlHandler{
 		$arraySize = count( $requestUri );
 
 
-	    if ( $arraySize ) >= 1 )
+	    if ( $arraySize >= 1 )
 
 			if ( $requestUri[0] != '' )
             	$_GET['controller'] = array_shift( $requestUri );
