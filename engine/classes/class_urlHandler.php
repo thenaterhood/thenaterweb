@@ -29,15 +29,19 @@ class urlHandler{
 
 		$requestUri = array_values( $requestUri );
 
+		$arraySize = count( $requestUri );
 
-	    if ( count( $requestUri ) >= 1 )
-            $_GET['controller'] = array_shift( $requestUri );
 
-        if ( count( $requestUri ) >= 2 )
+	    if ( $arraySize ) >= 1 )
 
-	        $_GET['id'] = array_shift( $requestUri );
+			if ( $requestUri[0] != '' )
+            	$_GET['controller'] = array_shift( $requestUri );
 
-	    if ( count( $requestUri ) > 2 ){
+        if ( $arraySize >= 2 )
+        	if ( $requestUri[0] != '' )
+	        	$_GET['id'] = array_shift( $requestUri );
+
+	    if ( $arraySize > 2 ){
 
 	        $sessionMvc = new session( array( 'controller' ) );
 
