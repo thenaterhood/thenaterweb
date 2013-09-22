@@ -15,7 +15,7 @@ class controller extends controllerBase{
 		$errorSession = new session( array( 'type' ) );
 		$type = $errorSession->type;
 
-		'err'.type();
+		'err'.$type();
 
 
 	}
