@@ -24,20 +24,20 @@ class urlHandler{
 		#unset( $requestUri[0] );
 		#print_r( $requestUri );
 
+		$_GET['id'] = '';
+		$_GET['controller'] = 'page';
+
 		$requestUri = array_values( $requestUri );
 
-		if ( $requestUri[0] == 'page' || $requestUri[0] == '' ){
 
-	        $this->controllerId = 'mainsite';
+	    if ( count( $requestUri ) >= 1 )
+            $_GET['controller'] = array_shift( $requestUri );
 
-            $_GET['id'] = '';
+        if ( count( $requestUri ) >= 2 )
 
-	        if ( count( $requestUri ) > 1 )
-                $_GET['id'] = $requestUri[1];
+	        $_GET['id'] = array_shift( $requestUri );
 
-		} else {
-
-	        $_GET['controller'] = array_shift( $requestUri );
+	    if ( count( $requestUri ) > 2 ){
 
 	        $sessionMvc = new session( array( 'controller' ) );
 
