@@ -13,9 +13,9 @@ class controller extends controllerBase{
 		$this->readConfig( $configFile );
 
 		$errorSession = new session( array( 'type' ) );
-		$type = $errorSession->type;
+		$type = "err".$errorSession->type;
 
-		'err'.$type();
+		$type();
 
 
 	}
