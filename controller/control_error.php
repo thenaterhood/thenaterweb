@@ -15,20 +15,18 @@ class controller extends controllerBase{
 		$errorSession = new session( array( 'type' ) );
 		$type = $errorSession->type;
 
-		$this->type();
+		'err'.type();
 
 
 	}
 
-	private function 404(){
-
-		$this->settings['template'] = GNAT_ROOT.'/lib/pages/hidden_404.php';
+	private function err404(){
+		header('HTTP/1.0 404 Not Found');
 		
 	}
 
-	private function 403(){
-
-		$this->settings['template'] = GNAT_ROOT.'/lib/pages/hidden_403.php';
+	private function err403(){
+		header('HTTP/1.0 403 Forbidden');
 
 	}
 
