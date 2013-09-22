@@ -12,7 +12,7 @@ $extensions = loadExtensions( $session, $registerExtensions );
 # Grab variables from the URL. Syntax for this is...
 # name of variable, default value of variable, maxlength of variable
 $blogdef = loadBlogConf( strtolower( $sectionId ) );
-$static = $blogdef->static_directory;
+$static = $blogdef->page_directory;
 
 $content = pullContent( array( $static.'/page_'.$session->id, $static.'/hidden_'.$session->id, GNAT_ROOT.'/lib/pages/page_'.$session->id ) );
 
