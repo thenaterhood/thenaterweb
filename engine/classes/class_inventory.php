@@ -49,7 +49,7 @@ class inventory extends directoryIndex{
 	public function regen(){
 
 		$metadata = array();
-		$metadata['sitemap'] = getConfigOption('site_domain').'/?url='.$this->bloguri.'/id/titles';
+		$metadata['sitemap'] = getConfigOption('site_domain').'/?url='.$this->bloguri.'/titles';
 		$metadata['updated'] = date(DATE_ATOM);
 		parent::regen( "getMeta", $metadata );
 
