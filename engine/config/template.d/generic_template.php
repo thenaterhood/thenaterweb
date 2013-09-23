@@ -142,7 +142,8 @@ setcookie('track',$session->track,time() + (86400 * 30),"/",$session->domain); /
               <ul class="nav">
                 <li><a href="/">Home</a></li>
                 <li><a href="/page/about">About</a></li>
-                <li><a href="/page/connect">Connect</a></li>                                
+                <li><a href="/page/connect">Connect</a></li>  
+                <li><a href="/page/projects">Projects</a></li>                              
 
                 <?php 
 
