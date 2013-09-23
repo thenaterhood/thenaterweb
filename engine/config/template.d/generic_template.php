@@ -43,7 +43,7 @@ setcookie('track',$session->track,time() + (86400 * 30),"/",$session->domain); /
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title><?php print $content->title; ?></title>
+    <title><?php print $->title; ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -164,7 +164,7 @@ setcookie('track',$session->track,time() + (86400 * 30),"/",$session->domain); /
       <!-- Begin page content -->
       <div class="container">
         <div class="page-header">
-          <h1><?php print $content->title; ?></h1>
+          <h1><?php if( $id != "home" ) print "$blogdef->short_title | ".$id; else print $blogdef->title; ?></h1>
         </div>
                                 <?php 
 
