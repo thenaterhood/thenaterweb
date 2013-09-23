@@ -43,7 +43,6 @@ class urlHandler{
 
 	    if ( $arraySize > 2 ){
 
-	        $sessionMvc = new session( array( 'controller' ) );
 
 	        for( $i = 0; $i < count( $requestUri ); $i+=2 ){
 	                $value = "";
@@ -57,8 +56,12 @@ class urlHandler{
 	                $_GET[$key] = $value;
 	        }
 
-	        $this->controllerId = $sessionMvc->controller;
 		}
+
+		$sessionMvc = new session( array( 'controller' ) );
+	    $this->controllerId = $sessionMvc->controller;
+
+
 
 	}
 
