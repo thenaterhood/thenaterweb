@@ -137,12 +137,12 @@ setcookie('track',$session->track,time() + (86400 * 30),"/",$session->domain); /
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="brand" href="#">Project name</a>
+            <a class="brand" href="/">TheNaterhood</a>
             <div class="nav-collapse collapse">
               <ul class="nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>                                
+                <li><a href="/">Home</a></li>
+                <li><a href="/page/about">About</a></li>
+                <li><a href="/page/connect">Connect</a></li>                                
 
                 <?php 
 
