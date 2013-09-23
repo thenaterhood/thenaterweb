@@ -164,7 +164,7 @@ setcookie('track',$session->track,time() + (86400 * 30),"/",$session->domain); /
       <!-- Begin page content -->
       <div class="container">
         <div class="page-header">
-          <h1><?php if( $id != "home" ) print "$blogdef->short_title | ".$id; else print $blogdef->title; ?></h1>
+          <h1><?php print $blogdef->title; ?></h1>
         </div>
                                 <?php 
 
