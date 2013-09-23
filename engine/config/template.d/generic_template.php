@@ -197,8 +197,9 @@ setcookie('track',$session->track,time() + (86400 * 30),"/",$session->domain); /
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+    <script src="http://code.jquery.com/jquery.js"></script>
+
     <script src="/assets/bootstrap/js/bootstrap.js"></script>
-<script src="http://code.jquery.com/jquery.js"></script>
 
   </body>
 </html>
