@@ -43,7 +43,7 @@ setcookie('track',$session->track,time() + (86400 * 30),"/",$session->domain); /
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title><?php print $content->title; ?></title>
+    <title><?php print $blogdef->title .' | '. $content->title; ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
