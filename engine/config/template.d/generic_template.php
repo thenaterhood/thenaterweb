@@ -149,7 +149,7 @@ setcookie('track',$session->track,time() + (86400 * 30),"/",$session->domain); /
                         if ( file_exists( $static.'/template_dropdown.php' ) ){
 
                                 print '<li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$blogdef->id'<b class="caret"></b></a>
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$blogdef->id.'<b class="caret"></b></a>
                                         <ul class="dropdown-menu">';
                                 include $static.'/template_dropdown.php';
                                 print '
