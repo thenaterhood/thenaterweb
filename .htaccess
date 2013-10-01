@@ -13,8 +13,7 @@ Options -indexes
 <IfModule mod_rewrite.c>
 RewriteEngine On
 #RewriteRule page/([^/]*)$ /index.php?url=page/$1 [L]
-RewriteRule ([^/]*)/read/([^/]*)\.htm$ index.php?url=$1/id/post/node/$2 [L]
-#RewriteRule go/([^/]*)$ /e/redir.php?to=$1 [L]
+RewriteRule ([^/]*)/read/([^/]*)\.htm$ index.php?url=$1/read/node/$2 [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 #RewriteCond %{REQUEST_FILENAME} !-d
 

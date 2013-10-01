@@ -21,7 +21,7 @@
 		echo '<ul>';
 		getSuggestions(3, $displaypost->tags, $blogdef->post_directory);
 		echo '</ul>';
-		echo '<p><a href="/'.$blogdef->id.'/index.php">Back to Blog Home</a></p>';
+		echo '<p><a href="/'.$blogdef->id.'">Back to Blog Home</a></p>';
 	}
 	if ( $displaypost->datestamp and $session->node != 'latest'){
 		echo $blogdef->commentCode;
@@ -31,3 +31,4 @@
 		#print "<p>You're viewing the latest available post without comments.  To comment, visit <a href='".$displaypost->link."'>the post's page</a>.</p>";
 	}
 ?>
+
