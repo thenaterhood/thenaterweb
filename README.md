@@ -1,6 +1,152 @@
 1.13.0+208ef
 ^ Current version number above ^
 
+Thenaterweb
+===================
+Thenaterweb is a PHP MVC framework for small to medium sized websites. 
+It does not require a database of any kind (though will have support 
+in the future). It was originally intended to be a small project devoted 
+specifically to running my website, but has grown and evolved to a point 
+where it may be usable to others as well. Excuse the occasional pages 
+from my site that may be included in commits throughout.
+
+Project Brief
+------------------
+Thenaterweb was originally a small project for learning PHP, with the end 
+goal of writing a simple (...very simple) website that had more power 
+and was easier to manage than a collection of html pages. As it grew in 
+functionality, more sections of the site were migrated into the system 
+to provide functionality for blogs, sitemaps, and MVC functionality. 
+
+It was developed to be relatively simple, flexible, and to have well-
+documented code.
+
+Using Thenaterweb
+===================
+Thenaterweb requires PHP > 5 and write access to a directory (for logs and 
+indexes), as well as the availability of .htaccess or server configurations. 
+Note that the .htaccess requirement may change in the future as the engine 
+design is adapted more to the MVC design (it was originally not MVC).
+
+Setup
+-------------------
+There are several files that need to be adjusted for server setup. 
+.htaccess needs to be set up so that the prepend path points to 
+a prepend file located in engine/config/prepend.php. This file 
+is prepended to all PHP documents at load time and is being used 
+to define a constant for the path to Thenaterweb's engine, though other 
+constants can be added as well.
+
+Additionally, the engine/config/prepend.php file needs to be modified 
+with the actual path to the engine, which should be self-explanatory.
+
+The engine loads controllers for site sections in order to display 
+pages. These are expected to be located in controllers. They contain 
+configuration data for page and post locations as well as various other 
+functionality depending on the controller. Shipped with Thenaterweb are 
+controllers for pages (yoursite.com/page/somePage), a blog 
+(yoursite.com/blog) and a feed (yoursite.com/feed). Paths in these will 
+need to be adjusted to the actual locations of things.
+
+Controllers may read additional configuration files to determine the 
+locations of items. These are located in engine/config/section.d/controller.conf.xml. 
+The XML files there will need to be adjusted so paths point to the correct 
+locations. This is an artifact of the previously non-MVC design of the 
+engine, and may change in the future.
+
+Thenaterweb requires no additional setup for the addition of controllers. 
+Rather, when a location on the site is accessed, i.e yoursite.com/SomeName, 
+Thenaterweb will look in the controllers directory for a file with the name 
+control_SomeName.php. The control classes should extend the controllerBase class 
+from the controller/interface_control.php file. If Thenaterweb doesn't find 
+a file that matches the requested controller, it will display a 404 error page.
+
+You should also take a look at the engine/config/class_config.php file which 
+contains various other settings as well.
+
+The default page template (based on bootstrap) is in 
+engine/config/template.d/page_template.php.
+
+URL Handling
+--------------------
+URLs that point to (existing) files will not be touched by the mod_rewrite 
+rules that Thenaterweb has by default. Directories will for the time being, 
+until more adjustments are made on my end to accomodate the new MVC design.
+
+URLs are handled as key/value pairs after the first two items. So, for example, 
+yoursite.com/blog/read/node/postName maps to:
+
+	controller => blog
+	id => read
+	node => postName
+
+and on down. If you don't have the .htaccess rewrite module or you turn off 
+friendly URLs in the config file, your URLs will look slightly different:
+
+	yoursite.com/?url=blog/read/node/postName
+
+Thenaterweb parses the contents of $_GET['url'] and puts the key/value 
+pairs into the $_GET superglobal for handling by the builtin session data 
+retriever (which will sanitize as well) or your own data handler.
+
+Note that if you manually turn off your server's rewrite module or if it is 
+unavailable, you MUST turn off friendly urls in Thenaterweb's config. Otherwise, 
+Thenaterweb will force a 301 redirect to the "friendly" URL which it expects 
+mod_rewrite to rewrite into a compatible URL which will fail without it.
+
+Blogs and Pages and Controllers, Oh My!
+------------------------
+No lions or tigers or bears though.
+
+Each set of pages or each item that can be accessed on your site after 
+a single slash (yoursite.com/whatever) requires its own controller. Config data 
+for these controllers must be placed in engine/config/section.d/whatever.conf.xml, 
+where it is expected to be by various Thenaterweb builtins such as the feed system.
+
+For blogs, the feed system will load the configuration file from the engine 
+and construct the feed from the posts it finds at the location specified. 
+At the same time, it will produce a summary of posts that can be used via 
+the inventory class to produce lists of tags or titles of posts. 
+
+The engine supports displaying pages stored as preformatted text (.pre), 
+PHP (.php), html (.html), and JSON (.json), if you're using engine builtins. 
+Loading and displaying these is managed by the article class which can output 
+in a variety of formats. The article class will simply include PHP files in 
+the page, but will echo HTML (so no PHP embedded in a .html file will work), 
+parse Json files, and place preformatted text between <pre> tags after sanitizing 
+it.
+
+The JSON format for files contains the following fields, which are parsed as an 
+object:
+
+	title : "Page Title"
+	tags : "page,tags,here"
+	content: "the actual content of the page, in html format"
+	datestamp: "the modification date"
+
+The article class will load these into html and display it.
+
+Engine Data
+-------------------
+The engine is configured (unless you change it) to store various cache-type 
+files in engine/var/dynamic. These follow a few conventions:
+
+	xxx.lock - a mutex for other files. They expire after 30 seconds, the default PHP timeout.
+	xxx.inventory.json - a searchable array of posts on a blog.
+	xxx.feed.json - feed data for a blog.
+
+The names are the path to the file or directory they apply to with 
+any forward slash replaced with an underscore.
+
+These files are maintained by the engine and are updated automatically. Since 
+they depend on the locations of where things are, they may not carry between 
+different configurations. If they get corrupted, they can simply be removed 
+or the engine told to regenerate them (/feed/YourBlog/regen/true will regenerate 
+the feed and the inventory from scratch).
+
+Version Change Summaries (Oldest to Newest)
+==================
+
 v1.1.0+cdaac
 
 Initial stable release
