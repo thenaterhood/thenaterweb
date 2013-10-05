@@ -1,4 +1,5 @@
-1.13.0+208ef
+2.0.0+e473a
+
 ^ Current version number above ^
 
 Thenaterweb
@@ -9,6 +10,11 @@ in the future). It was originally intended to be a small project devoted
 specifically to running my website, but has grown and evolved to a point 
 where it may be usable to others as well. Excuse the occasional pages 
 from my site that may be included in commits throughout.
+
+License
+------------------
+Licensed under the GPLv2. See license.txt for full license text.
+
 
 Project Brief
 ------------------
@@ -254,3 +260,7 @@ Improvements to API, centralizing blog configuration data, improvements to webad
 - Fixes to inventory API
 - Convert blogdef data to xml and move to central location
 - Fix bugs with webadmin and updates for changes to blog configuration
+
+v2.0.0+e473a
+
+Now uses MVC design scheme
