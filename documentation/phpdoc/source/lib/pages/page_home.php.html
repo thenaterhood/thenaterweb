@@ -1,0 +1,70 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;div id=&quot;blogHomeContent&quot;&gt;
+&lt;?php
+	if ( $session-&gt;id != 'home' ){
+		include chooseInclude( $session-&gt;id, $config-&gt;webcore_root.'/template_error.php' );
+		echo '&lt;hr /&gt;&lt;p&gt;&lt;a href=&quot;index.php&quot;&gt;Back to Blog home&lt;/a&gt;&lt;/p&gt;';
+	}
+	else{ 
+		if ( $session-&gt;start == 42 ){
+			print &quot;&lt;p style='font-size:2em;'&gt;42! It's the meaning of life, the universe, and everything!&lt;/p&gt;&lt;br /&gt;\n&quot;;
+		}
+		getPosts( $blogdef-&gt;id, $blogdef-&gt;post_directory, $session-&gt;start,$session-&gt;end);
+	}
+?&gt;
+&lt;/div&gt;
+
+&lt;!-- 
+&lt;div id=&quot;blogside&quot;&gt;
+	&lt;?php
+		if ( $session-&gt;id != 'tags' ){
+			print '&lt;br /&gt;&lt;h5&gt;Looking for something?&lt;/h5&gt;';
+			include GNAT_ROOT.'/lib/pages/page_tags.php';
+		}
+	?&gt;					
+&lt;/div&gt;
+--&gt;
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all()
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

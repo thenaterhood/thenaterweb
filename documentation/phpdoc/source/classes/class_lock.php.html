@@ -1,0 +1,156 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+/**
+ * Contains a class that deals with managing file locks
+ */
+
+/**
+ * Include the config class so we can retrieve the dynamic directory
+ */
+include_once GNAT_ROOT.'/config/class_config.php';
+
+
+/**
+ * Defines a class to manage locks for files
+ * @since 06/05/2013
+ * @author Nate Levesque &lt;public@thenaterhood.com&gt;
+ */
+class lock{
+
+	/**
+	 * @var $file - the file to be locked
+	 */
+	private $file;
+	/**
+	 * @var $lockfile - the lockfile
+	 */
+	private $lockfile;
+	/**
+	 * @var $hasLock - whether the file has a lock on it
+	 */
+	private $hasLock;
+	/**
+	 * @var $lockTime;
+	 */
+	private $lockTime;
+
+	/**
+	 * Constructs and instance of the lock class
+	 * @param $file - the file (full path) to create a lock for
+	 */
+	public function __construct( $file ){
+
+		$this-&gt;file = $file;
+
+		$config = new config();
+		$this-&gt;lockfile = $config-&gt;dynamic_directory.'/'.str_replace('/', '_', $file).'.lock';
+		unset( $config );
+
+		if ( file_exists($this-&gt;lockfile) ){
+			$this-&gt;hasLock = True;
+			$this-&gt;readExistingLock();
+		} 
+		else{ 
+
+			$this-&gt;hasLock = False;
+
+		}
+
+	}
+
+    /**
+     *
+     */
+    private function readExistingLock(){
+
+        $lockContents = file_get_contents($this-&gt;lockfile);
+        $this-&gt;lockTime = $lockContents;
+        if ( ( time() - $this-&gt;lockTime ) &gt; 120 ){
+                $this-&gt;unlock();
+        }
+    }
+
+
+	/**
+	 * Returns whether or not the file has been locked
+	 * @return - boolean True if a lock exists
+	 */
+	public function isLocked(){
+
+		return $this-&gt;hasLock;
+
+	}
+
+	/**
+	 * Creates a lock for the file in the dynamic directory.
+	 * Note that for this to be effective, everything must
+	 * actually observe locks.
+	 */
+	public function lock(){
+
+		$handle = fopen($this-&gt;lockfile, 'w');
+		fwrite( $handle, time() );
+		fclose( $handle );
+
+		$this-&gt;hasLock = True;
+
+	}
+
+	/**
+	 * Removes a lock on a file
+	 */
+	public function unlock(){
+
+		unlink($this-&gt;lockfile);
+
+		$this-&gt;hasLock = False;
+
+
+	}
+
+}
+
+?&gt;</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all()
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>
