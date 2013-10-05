@@ -113,7 +113,7 @@ PHP (.php), html (.html), and JSON (.json), if you're using engine builtins.
 Loading and displaying these is managed by the article class which can output 
 in a variety of formats. The article class will simply include PHP files in 
 the page, but will echo HTML (so no PHP embedded in a .html file will work), 
-parse Json files, and place preformatted text between <pre> tags after sanitizing 
+parse Json files, and place preformatted text between pre tags after sanitizing 
 it.
 
 The JSON format for files contains the following fields, which are parsed as an 
