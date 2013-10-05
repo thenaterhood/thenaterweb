@@ -29,7 +29,10 @@ documented code.
 
 Main development for the framework is on the master branch with 
 stable points tagged with a version number. The master branch is 
-merged into the Production branch at each release tag.
+merged into the Production branch at each release tag. Versious and 
+commits prior to v2.0.0 will probably contain pages and settings from 
+the live version of my website (at those points in time). Newer commits 
+may have some vestiges of that as well.
 
 Using Thenaterweb
 ===================
