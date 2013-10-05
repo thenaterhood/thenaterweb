@@ -27,6 +27,10 @@ to provide functionality for blogs, sitemaps, and MVC functionality.
 It was developed to be relatively simple, flexible, and to have well-
 documented code.
 
+Main development for the framework is on the master branch with 
+stable points tagged with a version number. The master branch is 
+merged into the Production branch at each release tag.
+
 Using Thenaterweb
 ===================
 Thenaterweb requires PHP > 5 and write access to a directory (for logs and 
@@ -131,6 +135,16 @@ object:
 	datestamp: "the modification date"
 
 The article class will load these into html and display it.
+
+The framework has prebuilt pages for showing blog tags, titles, and posts in 
+engine/lib/pages. It will look first in the page directory for the blog/page 
+defined in the conf.xml file for that controller and load it if it exists, 
+and if not will load from the builtin pages. Pages can be added to sites or blogs 
+by adding them to the designated directory for pages for the controller. Blog posts 
+can be stored in a few different formats (though .json is preferred) as with pages 
+in the post directory configured for the blog in the .conf.xml file. Pages are 
+expected to be stored with the filenames page_pageName.html or hidden_pageName.html. 
+Pages prefaced with hidden_ are not shown in the sitemap.
 
 Engine Data
 -------------------
