@@ -6,7 +6,7 @@
  */
 
 
-if ( $session->blogid ){
+if ( $admSession->blogid ){
 
 	$config = file_get_contents('../config/section.d/'.$session->blogid.'.conf.xml');
 	$lines = count( explode( "\n", $config) )+4;
