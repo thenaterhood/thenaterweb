@@ -34,7 +34,7 @@ function retrievePost( $postFile ){
 
 if ( $admSession->blogid ){
 
-	if ( isset( $_GET['postid'] ) || isset( $_POST['isnew'] ) ){
+	if ( isset( $_GET['postid'] ) || isset( $_GET['isnew'] ) ){
 
 		print '<h2>'.$admSession->blogid.'</h2>';
 
