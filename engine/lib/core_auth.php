@@ -53,13 +53,12 @@ while( $pwent = fgets( $passwd, 100 )) {
 		#echo "Now you are Logged In";
 		#exit;
 	} else{
-        die( "Invalid credentials." );
+        Header( "WWW-authenticate: basic realm=\"Realm\"" ); 
+        Header( "HTTP/1.0 401 Unauthorized" ); 
     }
 
 }
 
 // This only has effect of no text was output previously, so 
 //  it is ignored in all cases except authentication error. 
-Header( "HTTP/1.0 401 Unauthorized" ); 
-echo "No Match";
 ?>
