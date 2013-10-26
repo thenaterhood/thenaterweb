@@ -1,4 +1,4 @@
-2.0.0+e473a
+2.0.1+90cea
 
 ^ Current version number above ^
 
@@ -281,3 +281,8 @@ Improvements to API, centralizing blog configuration data, improvements to webad
 v2.0.0+e473a
 
 Now uses MVC design scheme
+
+
+v2.0.1+90cea
+
+Update webadmin panel for compatbility with new changes
