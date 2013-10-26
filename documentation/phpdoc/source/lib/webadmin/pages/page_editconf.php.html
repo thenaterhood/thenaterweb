@@ -1,0 +1,60 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;h1&gt;Edit Engine Configuration&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;WARNING:&lt;/strong&gt; proper PHP syntax must be observed, or your edits will crash the engine and will require fixing from an external tool! These tools are very primitive and will not validate your settings or your input.&lt;/p&gt;
+&lt;form action=&quot;&lt;?php print getConfigOption('site_domain'); ?&gt;/webadmin/saveconf&quot; method=&quot;POST&quot;&gt;
+
+&lt;?php
+
+$config = file_get_contents(GNAT_ROOT.'/config/class_config.php');
+$lines = count( explode( &quot;\n&quot;, $config) )+4;
+
+// Generate the input area, with the right height
+print '&lt;textarea name=&quot;content&quot; rows=&quot;'.$lines.'&quot; cols=&quot;100&quot; &gt;'.$config.'&lt;/textarea&gt;';
+?&gt;
+&lt;input type=&quot;hidden&quot; name=&quot;rcfile&quot; value=&quot;&lt;?php print GNAT_ROOT; ?&gt;/config/class_config.php&quot;/&gt;
+&lt;br /&gt;
+&lt;input type=&quot;submit&quot; value=&quot;Save and Apply&quot; /&gt;
+&lt;/form&gt;</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all()
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

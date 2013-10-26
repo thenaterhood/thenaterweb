@@ -2375,6 +2375,100 @@ contained in the class.</description>
     </parse_markers>
     <source>eJxtVMtu2zAQvPsr9hwkNtoC7SXI49Bb0VN/gBZX1jYUqfARRf36zpKq7Bg1DBgWuTOzM7u6f5yGabc73Nzs6IZ+DZIIX0MjZ3PXi2PqQ6TIJ0mZo/gT8XtmnyT4RLPkgfLAxP4knkkhvp+PTeStki0dF5JxCjErCqpGEo9f0CnPXqsV4Nm5S440hOJQzJTY9Xdd8NmAy7Zilkhh9tQ5k1KVqhBdGMfipTOV6lql8fYfKvQ4Htnneq6l651NQEO+JZNwxWQ1ZwjzJRy/T9xlHIcrbt6Yxz2c/cB/LOIgjiZzYhjlHDAr/blx4BlrgWdR0gQeYab32hMabRIshR6IS0WqHlaqhotbau0qfRY4WxJfkowl5S2jFopCiLc8ARzOuAXiIWWa3AKiC2dUIPUFoAjaqA6VlCTzbevFSpOtaO81nKqj3kbxJe0ZtrJp+f8ZgSVvYotxrcfbK/XBb1HqOUnWsUF+LiPy09AGbjQL6l6LYEINOckZgz4G/JtDfKE75JObCIsmQA06bMQQbKIOkjCN2+hgFDVRGGuV3TScUzS+ONPm0fEbOz1k0w1rUld7MmHKAFAd5FS7DcffGCytnweubS31qnhIMk7+6E5BpzYzmheu2bYU1q1YkRSigSWd45kRmfTkWQE+SlmbSznE2tcC6sjVzRjg+7q6S71oug4EVfMGAXXIojddm/NzFroJYV37RC88ZSqTPrK6KcqyX18AT0k8yr8dPn89fPpSn5gC7yP91Ks/YGZ6LUz3Uzk66Z6A6XEQhxDsHuv3gJLDTj+PD7u/OsWtQw==</source>
   </file>
+  <file path="lib/core_auth.php" generated-path="lib.core_auth.html" hash="f440d3998cd3cc7d9a91ed9e7b1d9d6d" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+    </docblock>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+    </parse_markers>
+    <source>eJydVWFT20YQ/Wz/io2qYmlwZMmA0+IImqakTpumLjFxW/AwQjpZB0Kn3J1jE4b/3t2TwdIU2pl4GGt9evfevtvb5eVhmZXQbvPUgWeOXUZKLRMI4YdUlKxwwPJ6XqarZasLlrTAdV24BWi3gMWZAOt1VBRCA+HBAIVMIOU586yhQa24xuDOqIDzjCvFtGOffzg6/nh0fNoZj8bnr04mo/MTXOnM7tlHLEqYxAym0+nzaKEzVmgeR5rtw0WkeAySRfl1eGYd0/PMwsSG9W2jyWTcCzwfdv0ATgpiEJJ/YckaWCU/YSsNWoBiDDC7hWISMq4VdNBWzPKO8VCzsMzQmQN2ucR88KDSOdOKfpsj6kLg+0AW2u0WrkmCsFWZiwQ3Wft4hChbOtV21x0alFIN1JmNMLP5NJghhDB5xItKInzk5MbTzoyoVJTr0BCe9s1CjjUJQWmJgVNnMcqazIdQX/c6dlTKwO54hoxQF5w4yii+cqzRTh9zu072GmQV1mvwk0AqpGNzUkD5IWB4AL55Pg8hGFCh27D+VMl4mOziAvN1SLYLPorxwgkGeCDcpboR9u6/qA8OkPtxatqxRS8PsQrS8V3Yb5i/9e82Ck/5JrKmu0r3JZXehNvbVP9WC+yCLaEhW1cjcdQYEpIaA1Hfwo5b7cJs7wtQe/ui9rbGNHwQa5o0FvYfgT5hDRmMM3Kvr8vQsiqb0PS51zR5RVXgsA2Divzy/nfQ32SPi1XJzeu9CokahMVsTm0+86rg6j64xAARm3wQW5XNWz8MLggecGsQXh+8QPgt2WdnfZ1wZLDB7jkrYuoxArpd6LtuFwcUgPXqx9c/Hb35efT2l1/f/fb+9/Efxx8mJx+nf/71d3QRJyydZ/zyKr8uRPlJKr34vFzdfPGD/s7u3uDFd99v96w1j9fbrH4Np2X6MotUxpKHWWzZlmdRV+IDw6rZTGRst1t0wk8PVDr5apr4Mxe2trAaTYFwM2xcKuk31Wh8L5ZwIxYQSQbvxHzOEnhb0I1AAM1DrAuwXLHbh0b7upH9r93/M7mr/mzjX68Hk4wrEEV+A+gJWJqyGP8VpVAIMF2/xFWx0OVCQ4nXgYuFym+6oATQbuAacD+fF0KiPeyKKM8hxruCXKuYlRpqNrgogEkppAftw4N/AFEqBtU=</source>
+  </file>
+  <file path="lib/webadmin/pages/page_editpost.php" generated-path="lib.webadmin.pages.page_editpost.html" hash="4134820ea8deac41f8fbc968728ce35a" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+    </docblock>
+    <function namespace="" line="13" package="Default">
+      <name>retrievePost</name>
+      <full_name>\retrievePost()</full_name>
+      <docblock line="13">
+        <description>Retrieves a post json file into an array
+or returns an empty array if it does not exist</description>
+        <long-description></long-description>
+        <tag name="param" description="&lt;ul&gt;&#10;&lt;li&gt;the file to retrieve&lt;/li&gt;&#10;&lt;/ul&gt;&#10;" line="13" type="" variable="$postFile"/>
+        <tag name="return" description="- the retrieved data" line="13" type="\$postData">
+          <type>\$postData</type>
+        </tag>
+      </docblock>
+      <argument line="0">
+        <name>$postFile</name>
+        <default></default>
+        <type>mixed</type>
+      </argument>
+    </function>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+    </parse_markers>
+    <source>eJytVt9v2zYQfrb+iqsQlHaRWOmAvSyysrVr+7YMnYE9JIXBiLTFTSI1koobtPnfd0dKtuPY6YYNkGGL9+P7ePfx6CSvXhfvhPLA4VfjfJ7he5Lkl23VJkn26lUC9MBH6a2Sd9KhX4t+8IczGpaqlqC0N8A1cGv5PfkaC1b6zmpHy7Jp/X00gloCIgmDabTxID8r5ynix5Zb3sAJZX5POc/AVzKmx+S2Bw+uMXX0/Zl73vsOPgIELqJnliw7XXqFNAcbbXC8gzL5kiQj5DQOSItAx4039kl0GG2hZmHbCyFLI2QftZJ+URrtpX4Uewpz2yHEBWUIGMotQhXGW+7XzPOVY58AodBt9NQwA9W0NaGxU8DnQOg3EHpuB0G2ti3OkVhCecCPrJ38sleUCIouwWO/QRiJy4HgCRfNb9I5bMpZcVublRI7TVDOSerP4sO7+TWjcCUC7a9f92zKabmOOwodai2KEFhefVew6QGQKUNdoy2U6oTWhFwi8dpw8Qbf3hq9HIPz1pvarKUdH8gx6Su9u/E9YfWJzwpyWQhlZemNvZ+yDFnt7+piQ5zlS2Mb0LyRs7S0knuZAg/SnaVsigIjfmp11dLSmDnl5UKYhivNJph8LW+RrtKZ43eSAFJopK+MmKXhrUCgufK1/AHyWwsZvedefvYcsXpYT/YUrFm7Wfo6hdLU9OP8PKWK7oiO/NgnKuiQodgknaMi8TiWpmk4OEmH2kvxHCoG/BPQoPTDmNS+ZxCoJUcRDgvlKcbvFisO96azcfadQY5aMXpVLLu6hso3NUrhrw4bLvKsNz1Dqj9WA6/vz3eJweO9b47gYWq50m3nwd+3mLdSQkid9ig0nVK443UnSUZ7Apyy9JsZyLflvhqy3DBMc1TkN+xAQtfdNspvaLzt1Y2O5JmR8MOx3B0u//GMYnTFtailxWjTSo0cjx/OPoLfGZxFM3hy2GJFFlRMx+KhXVf4ghnD9URDgIsIMcCGsTTqh3J0ezEDNp0yePlyd4HFibyZX22Rc6isXP67cy/x/qZdZbEK2RFpZ7H3ZCYKqIBi8zPPUFRZS70YhVY80NTe9mNpOi0ejfpDVf7wy0/zxcerqzmClYF75mQYZFPBQtCw067up3EoJoz3izkkn8QB/6SU+5WMCy+U7m/AYMLrMvAe+hFlpcQMVYlCGpzOT0lWWJxhIZ2mvZKGnV/TDRmsF48aVqv/rWNDl0JTttOI2oIobJre6DSAP8QO4XNZJP0gGL52BBT+wkEk+jyxC7gsNtTS4g0v/6R/XcMKtFzLGsZCuZJbofQKSuzOSrrJoJrkb8yoL6Q=</source>
+  </file>
+  <file path="lib/webadmin/pages/page_editblog.php" generated-path="lib.webadmin.pages.page_editblog.html" hash="aef43809e52cc488248195722e18d572" package="Default">
+    <docblock line="0">
+      <description>Edits an existing blog configuration</description>
+      <long-description></long-description>
+    </docblock>
+    <source>eJylVFFv2zYQfpZ+xYUwIitLpAzoUy0ryIai60tStAGGoh0MWjxbxChSICk7xpD/vqMoewmwtij6YFs633333d13V7W/1m+E9PC70d4apdCGx43cDpZ7aXRVkkda9XXl6H+9rf+8/XD37u7t66qcDNBb01PY+z/egztozx+hG5yHNYJZO7Q7FJdgLBzMYAEpl4O9VAoay10La2W2Z/DQokPwxigH3CLs0B4IV3bSyx0C1yLGaONhx5UU3GMEdOi91Ft3yiB1P/iiKntifdO3fVpeXKRwAW/GzFwDPkoXQsbU0DwvlvzKNE3lBuYw46L7iM6R+aoOrlJA/k+aJrMYAkvYSIWrLfoVWTxq7+Zv724fVh/u7x+KrIxupcMmQBeizIr/wSyyIjgWj53K8gWhK6nREXhjBu3nxLZXRuAc2BfNLmFKnkP+y6sFkRmpnoF0q72Vnq8V/iwHyNMkodZrD1lSCbmDRnHnloyTNjyM31d7bjW1kNXkW60H740Gf+hxyeILOwY1yjhkQPPiV0K6Tp6QWH3uZYduUZUxJmCRDjSN1u5xTTXBoENFpAsI1Y0PviX7i6GNYyjg0ws1NFwHrRAkydBx0mARqJZUT52Fxk0VVhtjO+Bje5YsK2iaUf73fTDNM0d5V8J0XOosp44SM2qg1GUADTwYdOhbI5asN87HjowanBrSSiGQGqJ5R2+2CWxZEPGAIeH3puW+OipWxu5biA8eHz3tDp8yTZpkYM3ehUxRWUVGs6E1W7JX19cMarLHtEVWlUeIl8DPq3HDmnbyxP8jn7bztu/VgU0BZWjq2OanFJXDsDXJbEOCFiRsbi0/zIPWk1lLseHkLIFOiBbSflO944KcJjeoOMlk31JLYT4LnSUk4i8C0hE8H7c2iatCN4vGRNsdnC/hmfAhh/NzOJN6FQlOHpF2HlafMJJZHMOS+kBQR6fryyPwZGAFo5BFDBkRPv9F1MZ/o/VYhZJ1xaG1uPkx+YVDGriUkVCQylEhrH72UpW8rkrKkhXhgozJn9LweaJLd0NHMs75+NP/R2c8nxCJfpvYAm7qEzVW/8abv8elnSzQc40K5nQAGm5FuL0NDWeLLo/0+vpfKSUXoQ==</source>
+  </file>
+  <file path="lib/webadmin/pages/page_savepost.php" generated-path="lib.webadmin.pages.page_savepost.html" hash="5ed6c6e24a668bf13dcf3ce50a826bba" package="Default">
+    <docblock line="0">
+      <description>Encodes and saves an article into the
+appropriate location. Just a basic script,
+nothing too fancy.</description>
+      <long-description></long-description>
+      <tag name="since" description="" line="0"/>
+    </docblock>
+    <source>eJyVVdtO20AQfcZfMY0Qdmhqh1btSy70AlSqqECFVqoqFG3Wm3iLs7vyrhuiin/vzPoSTIGqT7ZnztxnjseHJjNBsr8f7MOx4joVFphKwbJf/g1Y4STPBUjlNLhMAAKZMYU2hWROQK45c1KrGD6V1gGDObOSg+WFNG6AYKVdJtUSnNawYIpv4oCCvbVScQHDN8nwdfJyePAq2E+CXaOtM8xlMIHd2fnZxeWPsBGFV6MgkAuIWs1C5iK8gskEwhD6v4OdXYX5H1FWE0jxEfW+x6s47fVHtU6xFelaXBzGw5CUFOTkrpbeUfvTaoUAREjUDBG6zjAqJkHBZ+JGWmcxoybJOEzC+I63vs8LrZ8/H9HzkSTQRnr9P/O4DW6DQORW/L6fdacp9wq25dy6ItoaDGA4ABShoCOtI2HaIwpUDQSTZOiEFQXbRKjYSn+EXCsnlKMxtCm0stFdpJOuGleLqyUdFI2tA6oEXU9sabuOvOAvP9axlfFAvwxH7y6PZ+8uzz73O8jSkDZ9GFcBP2FP6iZQe2bCH0rUOmkcntBqTB7dBnKH53KNECXWdDnX9ep4wzbc1y+nCFkK90GrhVyeGbqvKLTSiVmqV0zigCrXdf3zXC/DKxRJlYqbGC/6UKYTcrVHSzBBZLMMmOm6QEfUHQyy0Eao7v626tjduBBXYh1SagueaysQujXvNwcp7cxL2TwXTznDc9jbg2e+CS+m0p7iU6SRPxJc2Ers29L3N0fNrntaJfpYZ32WdOULHzBqLQfQGaCHVIW0kCpUFbtU2+j4LtX1U+V4GNKgchCOs4PpOQLhAokzHSf4ScTSaM30m8SRIxNaIH/AHIwZZIVYTHp1JTj2OOxN736NEzYdJ4Zc3TZXfz8g12WeEsvCXHjafij6JRK3eRg9gFxei3yDAs5KK+CjwuRSjfRPsAwx4OsGxrmwFur/wJb4g53vuiwq/1hfKq3J2Uak6DHXa2AWkA1EgQJLpuh9o0vg+HPh2mz878YwiwGkAypynSEYSuVk7iPhzwYXa0UXYZF3b0QaU1OCnXFWQNKplAqPM7fKrRFcspxnrLDRfcaBPrX2ryY9ZVnzkjc0/2FXc9V/2215dWtKhBwcTgM0bXdnTP9vqHw+zRgjOJwmazFn6Uqq3vQ9QyLCUTYSHIESebNwfwDIi4/Q</source>
+  </file>
+  <file path="lib/webadmin/pages/page_editconf.php" generated-path="lib.webadmin.pages.page_editconf.html" hash="210ccd7b3e58d7df7d0016c2bfc6d824" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+    </docblock>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+    </parse_markers>
+    <source>eJx1kk+L2zAQxe/+FFOx4ISGaBd6ahyHUJa0lyTsBnopBMWe2AJbUqVx/nz7jmw3tIWeLM8M7735SVn9kr+WmuDVVNogfLHmrKvOK9LWZJK7SebyLJC3psq/r9+237abz5kcC+C8dehh/3UP4W5I3aDtAsEJwZ4C+guWM7Ae7rbzgOwT4KqbBgqvQg1UI+Dgq0w5dDz+7LRHOOubNhWcvW25CXgj9EY1QNY2H+BQY8D+HEDx9AX9nbPoVpO+/KFmLMFFNbpUhEOIgEQsHB6ptHEdzTPpeNOz9exWxN2XIlu52kVRQ1AhDWR2LjYnadCEx9K2Spt0uoBVLq94UmWrjQzqggUPC2iRalsuxX73fhB5kvSKSfJU9FKw5CUbPLL2kSuEhsJks10fjm+73WGeymFMFo0K4Tj8zFmA/ZKnhqEFVihsZ2jCeFxjS5yA+GHEDEaHKUw/flokiZSwQYM+QojM+5UjNzVjTDRchNdVTVBj/CTD1mlGzD3OgVEtLsUYU4C317AU6XzIMU8FB2m48vL8LCDn+hg3zeRviTxdJCtmPJjT3bFercsSjRjVfRF5iHhhHf7N/4GlR/0fMEKy/MmD/McldCd+Fw/ddzW+kLVzzV304zLefP4LmxIJiA==</source>
+  </file>
+  <file path="lib/webadmin/pages/page_home.php" generated-path="lib.webadmin.pages.page_home.html" hash="358e71f67fd126bd489edba74229ceb7" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+    </docblock>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+    </parse_markers>
+    <source>eJzVkz1PwzAQhmf6K05Z0g7BUsQEaaqqYkTwD5CbXN2T/CXfRW3/PRfoBguoC4v96oZH76OzF93xod+OgSKxYKHooNvkY4asWcCh7FI8kHvNQikuaybB9zEFS7FePcGm74wCFt3k9fAELBeP68orrfnMDQXr8BGm4pe1scwobMRGl0zbntvW2GEmsxnTMAWM0kQ83efo6lXVL+46C8eCh3X1u1bmhHs7Wxml5cRS9buCVhAs6ATedASpwLYIDR47Y7W+8fRniZxZTQZkToWQG8GzNDiSpHJDmRn4ZfOsCWwEPGvJeWv5amRvZIRh7zHw9W74os8j3Fhl75P7QWVIUUryHsscFTcVO/P+hdPcuOpf0kiHC2B0FPG7xVXC6K/5AKqQNnQ=</source>
+  </file>
+  <file path="lib/webadmin/pages/page_saveconf.php" generated-path="lib.webadmin.pages.page_saveconf.html" hash="e78588f7f73a48ef13987de479821539" package="Default">
+    <docblock line="0">
+      <description>Saves an updated configuration file</description>
+      <long-description></long-description>
+      <tag name="author" description="Nate Levesque &amp;lt;public@thenaterhood.com&amp;gt;" line="0"/>
+      <tag name="since" description="" line="0"/>
+    </docblock>
+    <source>eJxVklFP2zAUhZ/rX3FBFW4r1hSG9rCGFFFtTwiQYE8IVa5z01hzbWM7qya0/77rpKXkKZHPOfe7zkm+cLVj2WTCYAJP4g8GEAYaV4qIJUhrKrVpvIjKGqiUxmS7EU2srYd78sAdUuatQchds9ZK3sQaDQm+tracSrst2khQRiLMvmWzq+xydvGVDjM23HOWhIFrGK4eH56eXzhRI5rIX+dsmDb4SdxPspdpkaSyobbyN0kGd5BeR3AMjElXFYxAhdXOqyjWGns6nJ3BSTvhS6HCHT2xHI1h/M7YYH/czkyDBm1uqUUIhKusQ/Np1jnwHU/AQZVIB0xrP4feLVuT1Db0TNAxOmhjjljnlYnA8/qi+LXvZNnrJFVW5hnpfM7+MdQB33uxH95TVWRTZtPPHlIfblc877vb4RqkMMZGkI33VIb+C+3VIFqghtt/4Tvw6fEjTPk0z1y3BlsUjMblAmqP1fVpnv4y6DgbjN0aDy5tMeKBxq5KuxXK8PEcFkVGeFFulTktbgX1S8jDCThhUOeZKBLrP8mu3uQ=</source>
+  </file>
+  <file path="lib/webadmin/pages/page_newpost.php" generated-path="lib.webadmin.pages.page_newpost.html" hash="c072c808f2ca454d0dd41a005e920e80" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+    </docblock>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+    </parse_markers>
+    <source>eJxNkFFrgzAUhZ/1V9xKaRRKsj03Wkof9rbC6Ns2Smyu9UKaSIx0Y+y/L9oKAyF4cs65341sn6u9RxUQdhZ2PtDZoBRRTeW2aztIk2XjBquhBOW9+s6LTZRaZbVBH0XXodXk85fX3fH0djgcORNnZxu6iB7PgZzlmo2ZzpMNwORgKrZJ0+TWkkHIl814lBAZ9NgzVxfFTzQl1EAOffCd63OYvGtgfBzAv66GQQGrFSzInu5wD8cduYDYkSTJsjbuQrrshzo2zZ6n9dz7EDKexcRmSkz598/INV1O4ryAoUoqaD02Zcb4BcN+WvfQjcvmrKeAJ+2uiiwr4mPcsFb6SlagphDHBUG9xZs4+gHFnUww/mDkLKv+/UihKiniQMazD5uNGL9p/NJt9QeK/4U2</source>
+  </file>
   <package name="Default" full_name="Default"/>
   <namespace name="global" full_name="global"/>
   <deprecated count="0"/>

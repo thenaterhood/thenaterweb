@@ -1,0 +1,74 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+/**
+ * Saves an updated configuration file
+ * @author Nate Levesque &lt;public@thenaterhood.com&gt;
+ * @since 06/04/2013
+ */
+$updatedConf = $_POST['content'];
+$confFile = $_POST['rcfile'];
+
+$lock = new lock( $confFile );
+
+if ( is_writable( $confFile ) &amp;&amp; !$lock-&gt;isLocked() ){
+
+	$lock-&gt;lock();
+
+	$confClass = fopen( $confFile, 'w' );
+	fwrite( $confClass, $updatedConf );
+	fclose( $confClass );
+
+	$lock-&gt;unlock();
+
+	print '&lt;h1&gt;Updated Configuration Saved&lt;/h1&gt;';
+}
+else{
+	print '&lt;h1&gt;Error Saving Configuration&lt;/h1&gt;';
+	print '&lt;p&gt;Thenaterweb cannot currently write to the file: '. $confFile.'.&lt;/p&gt;';
+}
+
+?&gt;
+&lt;p&gt;&lt;a href=&quot;&lt;?php print getConfigOption('site_domain'); ?&gt;/webadmin&quot;&gt;Back to webadmin panel&lt;/a&gt;&lt;/p&gt;</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all()
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

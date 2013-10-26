@@ -1,0 +1,94 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;h1&gt;Edit Controller Configuration&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;WARNING:&lt;/strong&gt; proper PHP syntax must be observed, or your edits will crash blog! These tools are very primitive and will not validate your settings or your input.&lt;/p&gt;
+&lt;?php
+/**
+ * Edits an existing blog configuration
+ */
+
+
+if ( $admSession-&gt;blogid ){
+
+	$config = file_get_contents(GNAT_ROOT.'/config/section.d/'.$admSession-&gt;blogid.'.conf.xml');
+	$lines = count( explode( &quot;\n&quot;, $config) )+4;
+
+	if ( ! is_writable(GNAT_ROOT.'/config/section.d/'.$admSession-&gt;blogid.'.conf.xml') )
+		print '	&lt;div class=&quot;alert alert-warning&quot;&gt;
+		&lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;alert&quot;&gt;&amp;times;&lt;/button&gt;
+		Thenaterweb is unable to write to this configuration file. Your settings cannot 
+		be saved.
+		&lt;/div&gt;';
+
+	print '&lt;form action=&quot;'.getConfigOption('site_domain').'/webadmin/saveconf&quot; method=&quot;post&quot;&gt;
+		&lt;input type=&quot;hidden&quot; name=&quot;rcfile&quot; value=&quot;'.GNAT_ROOT.'/config/section.d/'.$session-&gt;blogid.'.conf.xml&quot;/&gt;
+		&lt;br /&gt;
+		&lt;textarea name=&quot;content&quot; rows=&quot;'.$lines.'&quot; cols=&quot;400&quot; &gt;'.$config.'&lt;/textarea&gt;
+		&lt;br /&gt;
+		&lt;input type=&quot;submit&quot; value=&quot;Save and Apply&quot; /&gt;
+		&lt;/form&gt;';
+
+}
+else{
+
+		$found = array();
+		$handler = opendir(GNAT_ROOT.'/config/section.d');
+		print '&lt;ul&gt;';
+
+		while ($file = readdir($handler)){
+
+			if ( strpos( $file, '.conf.xml' ) &amp;&amp; !in_array($file, $found) ){
+				$blogid=substr($file, 0, strpos($file, &quot;.&quot;) );
+				$found[] = $file;
+				print '&lt;li&gt;&lt;a href=&quot;'.getConfigOption('site_domain').'/webadmin/editblog/blogid/'.$blogid.'&quot;&gt;'.$blogid.'&lt;/a&gt;&lt;/li&gt;'.&quot;\n&quot;;
+			}
+		}
+}
+
+
+?&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;p&gt;&lt;a href=&quot;&lt;?php print getConfigOption('site_domain'); ?&gt;/webadmin&quot;&gt;Back to webadmin panel (discarding changes)&lt;/a&gt;&lt;/p&gt;</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all()
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>
