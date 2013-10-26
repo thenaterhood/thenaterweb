@@ -23,8 +23,8 @@ if ( is_writable( $confFile ) && !$lock->isLocked() ){
 }
 else{
 	print '<h1>Error Saving Configuration</h1>';
-	print '<p>Gnat cannot currently write to the file: '. $confFile.'.</p>';
+	print '<p>Thenaterweb cannot currently write to the file: '. $confFile.'.</p>';
 }
 
 ?>
-<p><a href="index.php">Back to webadmin panel</a></p>
+<p><a href="<?php print GNAT_ROOT; ?>/webadmin">Back to webadmin panel</a></p>

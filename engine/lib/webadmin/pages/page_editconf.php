@@ -1,16 +1,16 @@
 <h1>Edit Engine Configuration</h1>
 <p><strong>WARNING:</strong> proper PHP syntax must be observed, or your edits will crash the engine and will require fixing from an external tool! These tools are very primitive and will not validate your settings or your input.</p>
-<form action="index.php?id=saveconf" method="POST">
+<form action="<?php print GNAT_ROOT; ?>/webadmin/saveconf" method="POST">
 
 <?php
 
-$config = file_get_contents('../config/class_config.php');
+$config = file_get_contents(GNAT_ROOT.'/config/class_config.php');
 $lines = count( explode( "\n", $config) )+4;
 
 // Generate the input area, with the right height
 print '<textarea name="content" rows="'.$lines.'" cols="100" >'.$config.'</textarea>';
 ?>
-<input type="hidden" name="rcfile" value="../config/class_config.php"/>
+<input type="hidden" name="rcfile" value="<?php print GNAT_ROOT; ?>/config/class_config.php"/>
 <br />
 <input type="submit" value="Save and Apply" />
 </form>
