@@ -1,7 +1,16 @@
 <h1>Create An Article</h1>
+<?php 
+	$found = array();
+	$handler = opendir(GNAT_ROOT.'/config/section.d');
+	print '<ul>';
 
-<form name="create" action="index.php?id=editpost" method="post">
-Please enter a blog name to edit: <input type="text" name="blogid" />
-<input type="hidden" name="isnew" value="True" />
-<input type="submit" value="Continue" />
-</form>'
+	while ($file = readdir($handler)){
+
+		if ( strpos( $file, '.conf.xml' ) && !in_array($file, $found) ){
+			$blogid=substr($file, 0, strpos($file, ".") );
+			$found[] = $file;
+			print '<li><a href="'.getConfigOption('site_domain').'/webadmin/editpost/isnew/True/blogid/'.$blogid.'">'.$blogid.'</a></li>'."\n";
+		}
+	}
+
+?>
