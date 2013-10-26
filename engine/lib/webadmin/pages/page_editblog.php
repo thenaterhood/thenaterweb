@@ -31,10 +31,10 @@ else{
 
 		while ($file = readdir($handler)){
 
-			if ( $file != '.' && $file != '..' && !in_array($file, $found) ){
+			if ( strpos( $file, '.conf.xml' ) && !in_array($file, $found) ){
 				$blogid=substr($file, 0, strpos($file, ".") );
 				$found[] = $file;
-				print '<li><a href="index.php?id=editblog&blogid='.$blogid.'">'.$blogid.'</a></li>'."\n";
+				print '<li><a href="'.getConfigOption('site_domain').'/webadmin/editblog/blogid/'.$blogid.'">'.$blogid.'</a></li>'."\n";
 			}
 		}
 }
@@ -43,4 +43,4 @@ else{
 ?>
 <br />
 <br />
-<p><a href="index.php">Back to webadmin panel (discarding changes)</a></p>
+<p><a href="<?php print getConfigOption('site_domain'); ?>/webadmin">Back to webadmin panel (discarding changes)</a></p>

@@ -1,5 +1,4 @@
 
-<h1>Gnat Administration Panel</h1>
 <h4>Administering <?php print getConfigOption('site_domain'); ?></h4>
 <ul>
 <li><a href="<?php print getConfigOption('site_domain'); ?>/webadmin/newpost">Create a new Post or Article</a></li>
