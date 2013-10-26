@@ -52,7 +52,9 @@ while( $pwent = fgets( $passwd, 100 )) {
 	if (($_SERVER['PHP_AUTH_USER'] == $part[0]) && ($hashedpasswd == $part[1])){
 		#echo "Now you are Logged In";
 		#exit;
-	}
+	} else{
+        die( "Invalid credentials." );
+    }
 
 }
 
