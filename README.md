@@ -1,4 +1,4 @@
-2.0.0+e473a
+2.0.1+90cea
 
 ^ Current version number above ^
 
@@ -26,6 +26,13 @@ to provide functionality for blogs, sitemaps, and MVC functionality.
 
 It was developed to be relatively simple, flexible, and to have well-
 documented code.
+
+Main development for the framework is on the master branch with 
+stable points tagged with a version number. The master branch is 
+merged into the Production branch at each release tag. Versious and 
+commits prior to v2.0.0 will probably contain pages and settings from 
+the live version of my website (at those points in time). Newer commits 
+may have some vestiges of that as well.
 
 Using Thenaterweb
 ===================
@@ -131,6 +138,16 @@ object:
 	datestamp: "the modification date"
 
 The article class will load these into html and display it.
+
+The framework has prebuilt pages for showing blog tags, titles, and posts in 
+engine/lib/pages. It will look first in the page directory for the blog/page 
+defined in the conf.xml file for that controller and load it if it exists, 
+and if not will load from the builtin pages. Pages can be added to sites or blogs 
+by adding them to the designated directory for pages for the controller. Blog posts 
+can be stored in a few different formats (though .json is preferred) as with pages 
+in the post directory configured for the blog in the .conf.xml file. Pages are 
+expected to be stored with the filenames page_pageName.html or hidden_pageName.html. 
+Pages prefaced with hidden_ are not shown in the sitemap.
 
 Engine Data
 -------------------
@@ -264,3 +281,8 @@ Improvements to API, centralizing blog configuration data, improvements to webad
 v2.0.0+e473a
 
 Now uses MVC design scheme
+
+
+v2.0.1+90cea
+
+Update webadmin panel for compatbility with new changes
