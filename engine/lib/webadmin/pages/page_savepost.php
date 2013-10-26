@@ -75,4 +75,4 @@ else{
 
 
 ?>
-<p><a href="index.php">Back to webadmin panel</a></p>
+<p><a href="<?php print getConfigOption('site_domain'); ?>/webadmin">Back to webadmin panel</a></p>
