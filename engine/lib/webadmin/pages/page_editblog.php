@@ -8,14 +8,14 @@
 
 if ( $admSession->blogid ){
 
-	$config = file_get_contents('../config/section.d/'.$session->blogid.'.conf.xml');
+	$config = file_get_contents(GNAT_ROOT.'/config/section.d/'.$session->blogid.'.conf.xml');
 	$lines = count( explode( "\n", $config) )+4;
 
-	if ( ! is_writable('../config/section.d/'.$session->blogid.'.conf.xml') )
+	if ( ! is_writable(GNAT_ROOT.'/config/section.d/'.$session->blogid.'.conf.xml') )
 		print '<p>Warning: Gnat cannot write to the configuration file selected, settings cannot be saved.</p>';
 
-	print '<form action="index.php?id=saveconf" method="post">
-		<input type="hidden" name="rcfile" value="../config/section.d/'.$session->blogid.'.conf.xml"/>
+	print '<form action="'.getConfigOption('site_domain').'/webadmin/saveconf" method="post">
+		<input type="hidden" name="rcfile" value="'.GNAT_ROOT.'/config/section.d/'.$session->blogid.'.conf.xml"/>
 		<br />
 		<textarea name="content" rows="'.$lines.'" cols="100" >'.$config.'</textarea>
 		<br />
