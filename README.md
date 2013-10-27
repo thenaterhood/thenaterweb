@@ -43,15 +43,12 @@ design is adapted more to the MVC design (it was originally not MVC).
 
 Setup
 -------------------
-There are several files that need to be adjusted for server setup. 
-.htaccess needs to be set up so that the prepend path points to 
-a prepend file located in engine/config/prepend.php. This file 
-is prepended to all PHP documents at load time and is being used 
-to define a constant for the path to Thenaterweb's engine, though other 
-constants can be added as well.
-
-Additionally, the engine/config/prepend.php file needs to be modified 
-with the actual path to the engine, which should be self-explanatory.
+Assuming that the basic setup works, there is no need to adjust the 
+prepend.php or .htaccess prepend path. However, if the engine is going to 
+be stored anywhere other than the web root, the two need to be adjusted. 
+Note that putting the engine somewhere other than the web root is untested 
+at this point. In any case, the engine/config/class_config.php file also 
+needs to be adjusted, otherwise generated URLs will be incorrect.
 
 The engine loads controllers for site sections in order to display 
 pages. These are expected to be located in controllers. They contain 
