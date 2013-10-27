@@ -4,7 +4,7 @@ AddType text/plain py
 
 # Prepend a config file for paths. This needs to be configured
 # to point to the right location.
-php_value auto_prepend_file "/home/natelev/www/engine/config/prepend.php"
+php_value auto_prepend_file "engine/config/prepend.php"
 
 Options -indexes
 
