@@ -67,10 +67,10 @@ class urlHandler{
 
 	private function selectController(){
 
-		$this->controller = "controller/control_".$this->controllerId.".php";
+		$this->controller = "controller/".$this->controllerId."/main.php";
 
 		if ( ! file_exists($this->controller) ){
-			$this->controller = "controller/control_error.php";
+			$this->controller = "controller/error/main.php";
 			$this->controllerId = "Error404";
 		}
 
