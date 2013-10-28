@@ -1,5 +1,4 @@
 <?php
-include_once 'controller/interface_controller.php';
 
 class controller extends controllerBase{
 
