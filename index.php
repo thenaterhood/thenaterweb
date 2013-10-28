@@ -17,6 +17,8 @@ include_once GNAT_ROOT.'/lib/interface_controller.php';
 $urlHandler = new urlHandler();
 $sectionId = $urlHandler->getControllerId();
 
+define("CONTROLLER_ROOT", "controller/".$sectionId );
+
 include $urlHandler->getController();
 
 
