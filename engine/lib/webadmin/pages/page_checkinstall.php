@@ -11,15 +11,13 @@ print '<ul>';
 
 while ($file = readdir($handler)){
 
-	if ( $file != '.' && $file != '..' && !in_array($file, $found) ){
+	if ( strpos( $file, '.conf.xml' ) && !in_array($file, $found) ){
 		$blogid=substr($file, 0, strpos($file, ".") );
 		$found[] = $file;
 		print '<li><a href="'.getConfigOption('site_domain').'/webadmin/editblog/blogid/'.$blogid.'">'.$blogid.'</a></li>'."\n";
 	}
 }
 print '</ul>';
-print '<br />';
-print '<br />';
 print '<br />';
 
 $writetest = fopen( GNAT_ROOT.'/var/dynamic/writetest.txt', 'w');
@@ -33,7 +31,7 @@ if ( is_writable( GNAT_ROOT.'/var/dynamic/writetest.txt') ){
 }else{
 
 	echo '<h4><font color="red">PROBLEM: Dynamic storage is not writeable.</font></h4>';
-	echo '<p>The dynamic directory is engine/var/dynamic. Thenaterweb needs write access to this directory.</p>';
+	echo '<p>The dynamic directory is '.getConfigOption('dynamic_directory').'. Thenaterweb needs write access to this directory.</p>';
 
 }
 

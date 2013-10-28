@@ -34,7 +34,7 @@ class config{
 		$this->container['webcore_root'] =  '/var/www/static';
 		
 		# Sets the directory for storing dynamically created files
-		$this->container['dynamic_directory'] =  '/var/www/engine/var/dynamic';
+		$this->container['dynamic_directory'] =  'engine/var/dynamic';
 		
 		# Whether or not the blog feed should regenerate automatically
 		$this->container['auto_feed_regen'] = True;
