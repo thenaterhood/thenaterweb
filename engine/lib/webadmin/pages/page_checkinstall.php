@@ -18,6 +18,9 @@ while ($file = readdir($handler)){
 	}
 }
 print '</ul>';
+print '<br />';
+print '<br />';
+print '<br />';
 
 $writetest = fopen( GNAT_ROOT.'/var/dynamic/writetest.txt', 'w');
 fclose($writetest);
@@ -31,6 +34,18 @@ if ( is_writable( GNAT_ROOT.'/var/dynamic/writetest.txt') ){
 
 	echo '<h4><font color="red">PROBLEM: Dynamic storage is not writeable.</font></h4>';
 	echo '<p>The dynamic directory is engine/var/dynamic. Thenaterweb needs write access to this directory.</p>';
+
+}
+
+# Check if log directory is writeable
+if ( is_writable( GNAT_ROOT.'/var/dynamiclog/writetest.txt') ){
+
+	unlink( GNAT_ROOT.'/var/dynamiclog/writetest.txt' );
+	echo '<h4><font color="green">OK: Log storage is writeable.</font></h4>';
+}else{
+
+	echo '<h4><font color="red">PROBLEM: Log storage is not writeable.</font></h4>';
+	echo '<p>The log directory is engine/var/log. Thenaterweb needs write access to this directory.</p>';
 
 }
 
