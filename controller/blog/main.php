@@ -8,7 +8,7 @@ class controller extends controllerBase{
 	public function __construct(){
 
 		$configFile = CONTROLLER_ROOT.'/blog.conf.xml';
-		$this->readConfig( $this->configFile );
+		$this->readConfig( $configFile );
 
 
 	}
