@@ -20,13 +20,13 @@ while ($file = readdir($handler)){
 print '</ul>';
 print '<br />';
 
-$writetest = fopen( GNAT_ROOT.'/var/dynamic/writetest.txt', 'w');
+$writetest = fopen( getConfigOption('dynamic_directory').'/writetest.txt', 'w');
 fclose($writetest);
 
 # Check if dynamic directory is writeable
-if ( is_writable( GNAT_ROOT.'/var/dynamic/writetest.txt') ){
+if ( is_writable( getConfigOption('dynamic_directory').'/writetest.txt') ){
 
-	unlink( GNAT_ROOT.'/var/dynamic/writetest.txt' );
+	unlink( getConfigOption('dynamic_directory').'/writetest.txt' );
 	echo '<h4><font color="green">OK: Dynamic storage is writeable.</font></h4>';
 }else{
 
@@ -36,9 +36,9 @@ if ( is_writable( GNAT_ROOT.'/var/dynamic/writetest.txt') ){
 }
 
 # Check if log directory is writeable
-if ( is_writable( GNAT_ROOT.'/var/dynamiclog/writetest.txt') ){
+if ( is_writable( GNAT_ROOT.'/var/log/writetest.txt') ){
 
-	unlink( GNAT_ROOT.'/var/dynamiclog/writetest.txt' );
+	unlink( GNAT_ROOT.'/var/log/writetest.txt' );
 	echo '<h4><font color="green">OK: Log storage is writeable.</font></h4>';
 }else{
 
