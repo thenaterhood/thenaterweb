@@ -8,7 +8,7 @@ class controller extends controllerBase{
 	public function __construct(){
 
 		
-		$configFile = GNAT_ROOT.'/config/section.d/error.conf.xml';
+		$configFile = CONTROLLER_ROOT.'/error.conf.xml';
 		$this->readConfig( $configFile );
 
 		$errorSession = new session( array( 'type' ) );

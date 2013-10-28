@@ -3,21 +3,21 @@
 
 	<!-- Configure where the engine should look to
 	find entries for this blog/article collection -->
-	<post_directory>/var/www/controller/error/pages</post_directory>
+	<post_directory>/var/www/engine/lib/webadmin/pages</post_directory>
 
-	<static_directory>/var/www/controller/error/pages</static_directory>
+	<page_directory>/var/www/engine/lib/webadmin/pages</page_directory>
 
 	<!-- Configure the id of the blog (this is where the
 	 blog is on the web, i.e example.com/yourblog) -->
-	<id>home</id>
+	<id>webadmin</id>
 
 	<!-- Configure the title of the blog -->
-	<title>Nate Levesque</title>
+	<title>Web Administration Panel</title>
 
-	<short_title>Nate</short_title>
+	<short_title>Webadmin</short_title>
 
 	<!-- Configure the blog's (brief) description/catchline -->
-	<catchline>Colloquially, TheNaterhood.</catchline>
+	<catchline></catchline>
 
 	<!-- Insert any comment code (such as disqus) here -->
 	<comment_code></comment_code>
