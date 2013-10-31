@@ -2,7 +2,7 @@
 #error_reporting(E_ALL);
 #ini_set( 'display_errors','1'); 
 define("GNAT_ROOT", "engine");
-define("ENGINE_BUILTINS", array('feed') );
+$ENGINE_BUILTINS = array( 'feeds' );
 
 
 # These include the core utilities that Thenaterweb requires.
