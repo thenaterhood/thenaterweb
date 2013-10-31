@@ -8,7 +8,6 @@ Options -indexes
 # site core_config file for this to work the best).
 <IfModule mod_rewrite.c>
 RewriteEngine On
-#RewriteRule page/([^/]*)$ /index.php?url=page/$1 [L]
 RewriteRule ([^/]*)/read/([^/]*)\.htm$ index.php?url=$1/read/node/$2 [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 #RewriteCond %{REQUEST_FILENAME} !-d

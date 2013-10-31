@@ -1,26 +1,61 @@
 <?php
+/**
+ * Contains functionality for handling and 
+ * routing URLs
+ *
+ * @author Nate Levesque <public@thenaterhood.com>
+ *
+ */
 
+/**
+ * Include the main blog functionality
+ */
 include_once GNAT_ROOT.'/lib/core_blog.php';
 
+/**
+ * A class for managing URL related data
+ */
 class urlHandler{
 
 	private $url;
+	private $urlArray;
 	private $controller;
 	private $controllerId;
 
-
+	/**
+	 *
+	 */
 	public function __construct(){
 
 		$this->url = $_GET['url'];
+		$this->urlArray = explode( '/', $this->url );
+
 		$this->parseUrl();
 		$this->selectController();
 
 
 	}
 
+	/**
+	 * Reparses the stored url data after removing 
+	 * the first element from it
+	 */
+	public function reparseUrl(){
+
+		unset( $this->urlArray[0] );
+		$this->urlArray = array_values($this->urlArray);
+
+		$this->parseUrl();
+
+	}
+
+	/**
+	 * Parses a URL directly and adds the 
+	 * variables to the GET array.
+	 */
 	private function parseUrl(){
 
-		$requestUri = explode( '/', $this->url );
+		$requestUri = $this->urlArray;
 		#unset( $requestUri[0] );
 		#print_r( $requestUri );
 
@@ -65,6 +100,11 @@ class urlHandler{
 
 	}
 
+	/**
+	 * Locates the controller for the url requested 
+	 * or defaults to the error controller if it doesn't 
+	 * exist.
+	 */
 	private function selectController(){
 
 		$this->controller = "controller/".$this->controllerId."/main.php";
@@ -78,10 +118,18 @@ class urlHandler{
 
 	}
 
+	/**
+	 * Returns the selected controller
+	 * @return the name of the controller file
+	 */
 	public function getController(){
 		return $this->controller;
 	}
 
+	/**
+	 * Returns the controller ID 
+	 * @return the name of the controller
+	 */
 	public function getControllerId(){
 		return $this->controllerId;
 	}
