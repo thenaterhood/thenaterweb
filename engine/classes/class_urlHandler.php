@@ -46,6 +46,7 @@ class urlHandler{
 		$this->urlArray = array_values($this->urlArray);
 
 		$this->parseUrl();
+		$this->selectController();
 
 	}
 
