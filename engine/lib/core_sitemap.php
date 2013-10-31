@@ -36,7 +36,7 @@ function createSitemap($includePath, $webpath){
 
 			if ( !in_array( $file, getConfigOption('hidden_files') ) and substr($file, 0, 6) != 'hidden_' ){
 				$pageName = explode(".", substr($file,strpos($file, '_')+1) );
-				$last_modified = filemtime("$path/$file");
+				$last_modified = filemtime("$includePath/$file");
 				$sitemap->new_item("$webpath/$pageName[0]", date(DATE_ATOM, $last_modified));
 			}
 	} 
