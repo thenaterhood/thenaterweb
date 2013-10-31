@@ -22,7 +22,7 @@ $sectionId = $urlHandler->getControllerId();
 # Manage builtin features such as feeds and sitemaps 
 # rather than using the selected controller to perform 
 # these tasks.
-if ( in_array($sectionId, ENGINE_BUILTINS) ){
+if ( in_array($sectionId, $ENGINE_BUILTINS) ){
 
 	$feature = $sectionId;
 	$useBuiltin = true;
