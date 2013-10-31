@@ -8,8 +8,11 @@
 	<page_directory>/var/www/site-data/pages</page_directory>
 
 	<!-- Configure the id of the blog (this is where the
-	 blog is on the web, i.e example.com/yourblog) -->
-	<id>home</id>
+	 blog is on the web, i.e example.com/yourblog).
+	 If you intend to use the builtin feed or sitemap
+	 generator, you MUST make this the same name as the 
+	 associated controller or generated urls will be wrong -->
+	<id>page</id>
 
 	<!-- Configure the title of the blog -->
 	<title>Nate Levesque</title>
