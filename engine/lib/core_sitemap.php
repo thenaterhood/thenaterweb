@@ -26,43 +26,21 @@
  * 
  * @return $sitemap (sitemap): an xml sitemap
  */
-function createSitemap($includePaths, $webpath, $delimeters){
+function createSitemap($includePath, $webpath){
 
 	$sitemap = new urlset();
+
 	
-	for ($i = 0; $i < count($includePaths); $i++){
-		$path = $includePaths[$i];
-		$dir = opendir("$path");
-		$search = $delimeters[$i];
-		while ( $file = readdir($dir) ) {
+	$dir = opendir("$includePath");
+	while ( $file = readdir($dir) ) {
 
-				if ( strpos($file, $search) === 0 and !in_array( $file, getConfigOption('hidden_files') ) ){
-					$pageName = explode(".", substr($file,strpos($file, '_')+1) );
-					$last_modified = filemtime("$path/$file");
-					$sitemap->new_item("$webpath[$i]$pageName[0]", date(DATE_ATOM, $last_modified));
-				}
-		} 
-	}
-
-	/*
-
-	$varDirectory = opendir( GNAT_ROOT.'/var/dynamic' );
-	while ( $file = readdir( $varDirectory ) ){
-		if ( strpos( $file, "inventory.json" ) ){
-			$inventoryData = json_decode( file_get_contents(GNAT_ROOT.'/var/dynamic/'.$file, True), True );
-			$meta = $inventoryData['metadata'];
-			$lastmod = $meta['updated'];
-			$sitemapUrl = $meta['sitemap'];
-			if ( ! is_null($sitemapUrl) && ! is_null($lastmod ) ){
-				$sitemap->new_item( $sitemapUrl, $lastmod );
+			if ( !in_array( $file, getConfigOption('hidden_files') ) and substr($file, 0, 6) != 'hidden_' ){
+				$pageName = explode(".", substr($file,strpos($file, '_')+1) );
+				$last_modified = filemtime("$path/$file");
+				$sitemap->new_item("$webpath/$pageName[0]", date(DATE_ATOM, $last_modified));
 			}
-		}
-	}
-	*/
+	} 
 
-
-
-	
 	return $sitemap;	
 }
 
