@@ -6,7 +6,7 @@ $config = new config();
 
 $pageDirectories = array( $config->webcore_root );
 
-$sitemap = createSitemap($blogdef->page_directory, $config->site_domain.'/'.$blogdef->id ;
+$sitemap = createSitemap($blogdef->page_directory, $config->site_domain.'/'.$blogdef->id );
 
 if ( $session->type == "html" ){
 	print $sitemap->toHtml();
