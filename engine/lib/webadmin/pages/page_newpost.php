@@ -4,13 +4,11 @@
 	$handler = opendir(GNAT_ROOT.'/config/section.d');
 	print '<ul>';
 
-	while ($file = readdir($handler)){
+	$controllers = getControllers();
 
-		if ( strpos( $file, '.conf.xml' ) && !in_array($file, $found) ){
-			$blogid=substr($file, 0, strpos($file, ".") );
-			$found[] = $file;
+	foreach ($controllers as $blogid) {
+
 			print '<li><a href="'.getConfigOption('site_domain').'/webadmin/editpost/isnew/True/blogid/'.$blogid.'">'.$blogid.'</a></li>'."\n";
-		}
 	}
 
 ?>
