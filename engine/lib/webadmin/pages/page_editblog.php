@@ -18,7 +18,7 @@ if ( $admSession->blogid ){
 		be saved.
 		</div>';
 
-	if ( file_exists($config) ){
+	if ( file_exists($configFile) ){
 		$config = file_get_contents($configFile);
 		$lines = count( explode( "\n", $config) )+4;
 
