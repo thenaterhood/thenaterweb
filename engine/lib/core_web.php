@@ -155,11 +155,11 @@ function randomGreeting($first_name){
 function getControllers(){
 
 	$found = array();
-	$handler = opendir( 'controllers' );
+	$handler = opendir( 'controller' );
 
 	while ($file = readdir($handler)){
 
-		if ( $file != '.' && $file != '..' && !in_array($file, $found) ){
+		if ( $file != '.' && $file != '..' && is_dir($file) && !in_array($file, $found) ){
 			$blogid=substr($file, 0, strpos($file, ".") );
 			$found[] = $file;
 		}
