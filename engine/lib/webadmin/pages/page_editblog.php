@@ -8,10 +8,10 @@
 
 if ( $admSession->blogid ){
 
-	$config = file_get_contents('controller/'.$admSession->blogid.'conf.xml');
+	$config = file_get_contents('controller/'.$admSession->blogid.'/conf.xml');
 	$lines = count( explode( "\n", $config) )+4;
 
-	if ( ! is_writable(GNAT_ROOT.'/config/section.d/'.$admSession->blogid.'.conf.xml') )
+	if ( ! is_writable('controller/'.$admSession->blogid.'/conf.xml') )
 		print '	<div class="alert alert-warning">
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
 		Thenaterweb is unable to write to this configuration file. Your settings cannot 
@@ -19,7 +19,7 @@ if ( $admSession->blogid ){
 		</div>';
 
 	print '<form action="'.getConfigOption('site_domain').'/webadmin/saveconf" method="post">
-		<input type="hidden" name="rcfile" value="'.GNAT_ROOT.'/config/section.d/'.$session->blogid.'.conf.xml"/>
+		<input type="hidden" name="rcfile" value="controller/'.$admSession->blogid.'/conf.xml"/>
 		<br />
 		<textarea name="content" rows="'.$lines.'" cols="400" >'.$config.'</textarea>
 		<br />
