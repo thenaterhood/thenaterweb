@@ -130,12 +130,8 @@ function arrayToObject($d) {
  */       
 function loadBlogConf( $id ){
 
-	include 'controller/'.$id.'/main.php';
 
-	define( "CONTROLLER_ROOT", 'controller/'.$id );
-	$control = new controller();
-
-    $confFile = $control->configFile;
+    $confFile = 'controller/'.$id.'/conf.xml';
     $conf = array();
     $conf['title'] = "Error";
     $conf['catchline'] = "";
