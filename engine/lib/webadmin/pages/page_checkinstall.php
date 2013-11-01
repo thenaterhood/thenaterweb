@@ -9,13 +9,10 @@ $found = array();
 $handler = opendir(GNAT_ROOT.'/config/section.d');
 print '<ul>';
 
-while ($file = readdir($handler)){
+$controllers = getControllers();
 
-	if ( strpos( $file, '.conf.xml' ) && !in_array($file, $found) ){
-		$blogid=substr($file, 0, strpos($file, ".") );
-		$found[] = $file;
-		print '<li><a href="'.getConfigOption('site_domain').'/webadmin/editblog/blogid/'.$blogid.'">'.$blogid.'</a></li>'."\n";
-	}
+foreach ($controllers as $blogid) {
+	print '<li><a href="'.getConfigOption('site_domain').'/webadmin/editblog/blogid/'.$blogid.'">'.$blogid.'</a></li>'."\n";
 }
 print '</ul>';
 print '<br />';
