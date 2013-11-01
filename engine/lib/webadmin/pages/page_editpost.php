@@ -76,18 +76,15 @@ if ( $admSession->blogid ){
 }
 else{
 
-		$found = array();
-		$handler = opendir(GNAT_ROOT.'/config/section.d');
-		print '<ul>';
+		$controllers = getControllers();
 
-		while ($file = readdir($handler)){
+		echo '<ul>';
+		foreach ($controllers as $blogid) {
 
-			if ( $file != '.' && $file != '..' && !in_array($file, $found) ){
-				$blogid=substr($file, 0, strpos($file, ".") );
-				$found[] = $file;
-				print '<li><a href="'.getConfigOption('site_domain').'/webadmin/editpost/blogid/'.$blogid.'">'.$blogid.'</a></li>'."\n";
-			}
+			print '<li><a href="'.getConfigOption('site_domain').'/webadmin/editpost/blogid/'.$blogid.'">'.$blogid.'</a></li>'."\n";
 		}
+
+		echo '</ul>';
 
 }
 

@@ -29,18 +29,17 @@ if ( $admSession->blogid ){
 }
 else{
 
-		$found = array();
-		$handler = opendir(GNAT_ROOT.'/config/section.d');
+		$controllers = getControllers();
+
 		print '<ul>';
 
-		while ($file = readdir($handler)){
+		foreach ($controllers as $blogid) {
 
-			if ( strpos( $file, '.conf.xml' ) && !in_array($file, $found) ){
-				$blogid=substr($file, 0, strpos($file, ".") );
-				$found[] = $file;
+
 				print '<li><a href="'.getConfigOption('site_domain').'/webadmin/editblog/blogid/'.$blogid.'">'.$blogid.'</a></li>'."\n";
-			}
 		}
+
+		echo '</ul>';
 }
 
 

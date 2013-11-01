@@ -152,6 +152,23 @@ function randomGreeting($first_name){
 	
 }
 
+function getControllers(){
+
+	$found = array();
+	$handler = opendir( 'controllers' );
+
+	while ($file = readdir($handler)){
+
+		if ( $file != '.' && $file != '..' && !in_array($file, $found) ){
+			$blogid=substr($file, 0, strpos($file, ".") );
+			$found[] = $file;
+		}
+	}
+
+	return $found;
+
+}
+
 /**
  * Built to abstract retrieving config variables, since
  * they're now contained in a class this is just for legacy
