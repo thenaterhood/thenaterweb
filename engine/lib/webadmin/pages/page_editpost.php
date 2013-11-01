@@ -65,10 +65,20 @@ if ( $admSession->blogid ){
 		$blogdef = loadBlogConf( strtolower($admSession->blogid) );
 		$handler = opendir( $blogdef->post_directory );
 		$avoid = getConfigOption('hidden_files');
+		$postCount = 0;
 
 		while( $file = readdir( $handler ) ){
 			if ( $file != '..' && $file != '.' )
+				$postCount++;
 				print '<p><a href="'.getConfigOption('site_domain').'/webadmin/editpost/blogid/'.$admSession->blogid.'/postid/'.$file.'">'.$file.'</a></p>';
+		}
+
+		if ( $postCount == 0 ){
+			print '	<div class="alert alert-danger">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+			Thenaterweb could not find the configuration file for this application and 
+			does not know where to find its editable posts.
+			</div>';
 		}
 
 	}
