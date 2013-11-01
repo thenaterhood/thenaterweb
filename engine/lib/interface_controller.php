@@ -28,6 +28,7 @@ abstract class controllerBase{
 	    }
 
 	    $this->settings = (array) arrayToObject($conf);
+	    $this->settings['configFile'] = $path;
 
 	    if ( !array_key_exists( 'template', $this->settings ) )
 	    	$this->settings['template'] = GNAT_ROOT.'/config/template.d/generic_template.php';

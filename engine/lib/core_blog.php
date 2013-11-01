@@ -130,7 +130,12 @@ function arrayToObject($d) {
  */       
 function loadBlogConf( $id ){
 
-    $confFile = GNAT_ROOT.'/config/section.d/'.$id.'.conf.xml';
+	include 'controller/'.$id.'/main.php';
+
+	define( "CONTROLLER_ROOT", 'controller/'.$id )
+	$control = new controller();
+
+    $confFile = $control->configFile;
     $conf = array();
     $conf['title'] = "Error";
     $conf['catchline'] = "";
@@ -138,7 +143,7 @@ function loadBlogConf( $id ){
     
     
     if ( file_exists($confFile) ){
-            $xml = simplexml_load_file( GNAT_ROOT.'/config/section.d/'.$id.'.conf.xml' );
+            $xml = simplexml_load_file( $confFile );
             $conf = xmltoArray( $xml ); 
             
             
