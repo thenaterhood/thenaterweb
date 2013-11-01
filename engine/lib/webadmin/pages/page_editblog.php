@@ -8,7 +8,7 @@
 
 if ( $admSession->blogid ){
 
-	$config = file_get_contents(GNAT_ROOT.'/config/section.d/'.$admSession->blogid.'.conf.xml');
+	$config = file_get_contents('controller/'.$admSession->blogid.'conf.xml');
 	$lines = count( explode( "\n", $config) )+4;
 
 	if ( ! is_writable(GNAT_ROOT.'/config/section.d/'.$admSession->blogid.'.conf.xml') )
