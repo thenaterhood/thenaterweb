@@ -159,7 +159,7 @@ function getControllers(){
 
 	while ($file = readdir($handler)){
 
-		if ( $file != '.' && $file != '..' && is_dir($file) && !in_array($file, $found) ){
+		if ( $file != '.' && $file != '..' && !in_array($file, $found) && file_exists( 'controller/'.$file.'/main.php')){
 			$blogid=substr($file, 0, strpos($file, ".") );
 			$found[] = $file;
 		}
