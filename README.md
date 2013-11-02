@@ -11,6 +11,10 @@ specifically to running my website, but has grown and evolved to a point
 where it may be usable to others as well. Excuse the occasional pages 
 from my site that may be included in commits throughout.
 
+For information about developing applications that run on Thenaterweb, 
+see the DEVELOPING.md file and phpdoc documentation in the documentation 
+folder.
+
 License
 ------------------
 Licensed under the GPLv2. See license.txt for full license text.
