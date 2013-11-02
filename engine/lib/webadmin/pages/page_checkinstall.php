@@ -6,7 +6,6 @@
 echo '<h3>Controllers known to Thenaterweb</h3>';
 
 $found = array();
-$handler = opendir(GNAT_ROOT.'/config/section.d');
 print '<ul>';
 
 $controllers = getControllers();

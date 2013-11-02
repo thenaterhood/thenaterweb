@@ -1,7 +1,6 @@
 <h1>Create An Article</h1>
 <?php 
 	$found = array();
-	$handler = opendir(GNAT_ROOT.'/config/section.d');
 	print '<ul>';
 
 	$controllers = getControllers();
