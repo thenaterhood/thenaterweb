@@ -5,7 +5,7 @@ Thenaterweb comes with a web administration interface,
 blog, and basic page system out of the box. These can be 
 used as examples of how developing on the framework works.
 
-Development Crash Cource
+Development Crash Course
 -------------------------
 
 All applications that run on top of Thenaterweb are expected 
