@@ -7,10 +7,22 @@ abstract class controllerBase{
 	protected $settings;
 	protected $configuration;
 
+	/**
+	 * Returns a map containing all of the controller 
+	 * settings.
+	 *
+	 * @return a map of the class settings
+	 */
 	public function getConfigurables(){
 		return $this->settings;
 	}
 
+	/**
+	 * Reads an XML configuration file and sets the 
+	 * class settings field
+	 * 
+	 * @param $path - the path to the config file
+	 */
 	public function readConfig( $path ){
 
 		$confFile = $path;
@@ -36,6 +48,11 @@ abstract class controllerBase{
 	}
 
 
+	/**
+	 * Saves an xml configuration file. This is untested!
+	 *
+	 * @param $path - the path to the file to save
+	 */
 	public function saveConfig( $path ){
 
 		$confFile = fopen( $path, 'w' );
@@ -56,10 +73,23 @@ abstract class controllerBase{
 
 	}
 
+	/**
+	 * Allows the class settings to be overwritten en-masse 
+	 * externally by providing a new map.
+	 *
+	 * @param $map - the new settings array to use
+	 */
 	public function setConfig( $map ){
 		$this->settings = $map;
 	}
 
+	/**
+	 * Returns requested fields from the settings 
+	 * array.
+	 *
+	 * @param $field - the name of the item to return
+	 * @return the item
+	 */
 	public function __get( $field ){
 		return $this->settings[$field];
 	}
