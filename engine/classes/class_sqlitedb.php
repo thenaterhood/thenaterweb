@@ -195,7 +195,7 @@ class SqliteDb implements database{
 
 		foreach ($values as $key => $value) {
 
-			$queryString += ' ' . ":$key,";
+			$queryString .= ' ' . ":$key,";
 		}
 
 		$queryString = substr($queryString, 0, count($queryString)-1 ) . ' )';
@@ -216,7 +216,7 @@ class SqliteDb implements database{
 
 		foreach ($columns as $name => $type ) {
 
-			$queryString += ' ' . $name . ' ' . $type . ',';
+			$queryString .= ' ' . $name . ' ' . $type . ',';
 
 		}
 
