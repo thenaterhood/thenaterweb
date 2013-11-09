@@ -135,14 +135,17 @@ class JsonDb implements database{
 
 	private function runRemove( $queryObject ){
 
-		foreach ($this->dbData as $rowid => $row ) {
+		if ( $queryObject->column == 'id' ){
+			unset( $this->dbData[$rowid] );
+		} else{ 
 
-			if ( $queryObject->column = 'id' ){
-				unset( $this->dbData[$rowid] );
-			} elseif ( in_array( $row[ $queryObject->column ], $queryObject->values ) ){
-				unset( $this->dbData[$rowid] );
+			foreach ($this->dbData as $rowid => $row ) {
+				
+				if ( in_array( $row[ $queryObject->column ], $queryObject->values ) ){
+					unset( $this->dbData[$rowid] );
+				}
+
 			}
-
 		}
 
 		$this->metadata['last_updated'] = date(DATE_ATOM);
