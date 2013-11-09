@@ -66,23 +66,7 @@ class inventory extends directoryIndex{
 	 */
 	public function select( $field, $value ){
 
-		$matching = array();
-
-		foreach ($this->indexData as $current) {
-
-			if ( ! is_array( $current[$field] ) ){
-				$currentData = explode( ', ', $current[$field] );
-			}
-			else{
-				$currentData = $current[$field];
-			}
-
-			if ( in_array($value, $currentData) ){
-				$matching[] = $current;
-			}
-		}
-
-		return $matching;
+		return $this->db->selectSome( $field, $value, 'main' );
 
 	}
 
@@ -97,7 +81,7 @@ class inventory extends directoryIndex{
 
 		$fieldContents = array();
 
-		foreach ($this->indexData as $current ) {
+		foreach ($this->db->query( 'SELECT '. $field .' FROM main' ) as $current ) {
 
 			if ( ! is_array( $current[$field] ) ){
 				$currentField = explode( ', ', $current[$field] );
@@ -127,39 +111,7 @@ class inventory extends directoryIndex{
 	 */
 	public function selectField( $field ){
 
-		$fieldContents = array();
-
-		foreach ($this->indexData as $current ) {
-
-			if ( ! is_array( $current[$field] ) ){
-				$currentField = explode( ', ', $current[$field] );
-			}
-			else{
-				$currentField = $current[$field];
-			}
-
-			foreach ($currentField as $item) {
-				if ( ! in_array($item, $fieldContents) )
-					$fieldContents[] = $item;
-			}
-
-		}
-
-		return $fieldContents;
-
-	}
-
-	public function createSitemap( $begin=0, $end=50000 ){
-
-		$sitemap = new urlset();
-		$iterable = array_values($this->indexData);
-		$i = 0;
-		for ( $i = $range; $i < $end && $i < count( $this->indexData ); $i++ ) {
-			$current = $iterable[$i];
-			$sitemap->new_item( $current['link'], $current['datestamp'] );
-		}
-
-		return $sitemap;
+		return $this->db->query( 'SELECT '. $field . 'FROM main', array() );
 
 	}
 
@@ -167,7 +119,7 @@ class inventory extends directoryIndex{
 	 * Returns all the fields in the inventory
 	 */
 	public function selectAll(){
-		return $this->indexData;
+		return $this->db->selectTable( 'main' );
 	}
 	/**
 	 * A function to return the inventory file. For supporting

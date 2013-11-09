@@ -68,6 +68,8 @@ class article extends dataMonger{
 		if ( file_exists("$nodefile.json") ){
 			$this->type = "json";
 			$this->usePostFormat = True;
+			$this->container['file'] = $nodefile.'.json';
+
 			$jsoncontents = file_get_contents("$nodefile.json");
 			
 			// Directly read data into the class
@@ -92,6 +94,7 @@ class article extends dataMonger{
 			$this->container['nodeid'] = basename($nodefile, '.json');
 			
 		} else if ( file_exists( $nodefile.'.html' ) ) {
+			$this->container['file'] = $nodefile.'.html';
 			$this->usePostFormat = False;
 			$this->type = "HTML";
 			$this->container['content'] = file_get_contents($nodefile.'.html');
@@ -105,7 +108,7 @@ class article extends dataMonger{
 		} else if ( file_exists( $nodefile.'.php' ) ) {
 			$this->usePostFormat = False;
 			$this->type = "PHP";
-			$this->file = $nodefile.'.php';
+			$this->container['file'] = $nodefile.'.php';
                         $title = explode('/', $nodefile);
                         $title = $title[ count($title)-1 ];
                         $this->container['title'] = substr( $title, strpos( $title, '_' )+1 );
@@ -115,6 +118,8 @@ class article extends dataMonger{
 
 		} else if ( file_exists( $nodefile.'.pre' ) ){
 			$this->usePostFormat = False;
+			$this->container['file'] = $nodefile.'.pre';
+
 			$this->type = "pre";
 			$this->container['content'] = '<pre>'."\n".htmlspecialchars( file_get_contents($nodefile.'.pre') )."\n".'</pre>';
                         $title = explode('/', $nodefile);
@@ -139,6 +144,8 @@ class article extends dataMonger{
 		else{
 			if ( file_exists($nodefile) ){
 				$this->type = "TXT";
+				$this->container['file'] = $nodefile.'.txt';
+
 				$file = fopen($nodefile, 'r');
 				
 				$this->container['title'] = rtrim(fgets($file), "\n");
@@ -224,7 +231,7 @@ class article extends dataMonger{
 	}
 
 	public function getFile(){
-		return $this->file;
+		return $this->container['file'];
 	}
 	
 	/**
@@ -262,6 +269,7 @@ class article extends dataMonger{
 		$meta['link'] = $this->link;
 		$meta['datestamp'] = $this->datestamp;
 		$meta['author'] = $this->author;
+		$meta['file'] = $this->container['file'];
 
 		return $meta;
 

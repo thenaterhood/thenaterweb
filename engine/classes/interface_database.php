@@ -14,6 +14,16 @@ interface database{
 
 	public function selectColumn( $column, $table );
 
+	public function selectSome( $column, $value, $table );
+
+	public function getRowCount( $table );
+
+	public function selectTable( $table );
+
+	public function dropTable( $table );
+
+	public function exists( $column, $value, $table );
+
 	#public function fieldStatistics();
 
 }

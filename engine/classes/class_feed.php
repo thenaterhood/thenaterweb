@@ -45,7 +45,7 @@ class feed extends directoryIndex{
 
 	private function loadArticles(){
 
-		foreach ($this->indexData as $item) {
+		foreach ($this->db->selectTable( 'main' ) as $item) {
 			
 			$this->articles[] = new mappedArticle( $item );
 

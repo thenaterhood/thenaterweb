@@ -37,14 +37,16 @@ class Query{
 			# select x from table
 			$this->column = $queryArray[1];
 			$this->table = $queryArray[3];
+
 		} elseif ( $this->type == 'insert' ){
 			# insert into table values (x,x,x)
 			$this->table = $queryArray[2];
 			$this->values = $values;
 		} elseif ( $this->type == 'delete' ){
-			# delete x from table where id=?
+			# delete x from table where id ?
 			$this->table = $queryArray[3];
-			$this->column = $queryArray[5];
+			$colvals = explode( '=', $queryArray[5] );
+			$this->column = $colvals[0];
 			$this->values = $values;
 		}
 
@@ -246,6 +248,48 @@ class JsonDb implements database{
 
 	}
 
+	public function exists( $column, $value, $table ){
+
+		return count($this->selectSome( $column, $value, $table ) ) > 0;
+
+	}
+
+	public function selectSome( $column, $value, $table ){
+
+		$matching = array();
+
+		foreach ($this->dbData as $current) {
+
+			if ( ! is_array( $current[$field] ) ){
+				$currentData = explode( ', ', $current[$field] );
+			}
+			else{
+				$currentData = $current[$field];
+			}
+
+			if ( in_array($value, $currentData) ){
+				$matching[] = $current;
+			}
+		}
+
+		return $matching;
+
+	}
+
+	public function selectTable( $table ){
+
+		return $this->dbData;
+	}
+
+	public function getRowCount( $table ){
+		return count( $this->dbData );
+	}
+
+	public function dropTable( $table ){
+
+		$this->dbData = array();
+		$this->metadata['last_updated'] = date( DATE_ATOM );
+	}
 
 	public function commit(){
 
