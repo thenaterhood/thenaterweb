@@ -199,7 +199,7 @@ class SqliteDb implements database{
 		$nextRowId = $this->getRowCount( $table ) + 1;
 
 
-		$queryString = 'INSERT INTO ' . $table . ' VALUES ('. $nextRowId ', ';
+		$queryString = 'INSERT INTO ' . $table . ' VALUES ('. $nextRowId .', ';
 
 		foreach ($values as $key => $value) {
 
