@@ -77,6 +77,7 @@ class JsonDb implements database{
 	public function __construct( $db ){
 
 		$this->db = $db;
+		$this->open();
 
 	}
 

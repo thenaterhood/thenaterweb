@@ -69,7 +69,7 @@ class directoryIndex{
 		$this->db = new JsonDb( $this->inventoryFile );
 
 		if ( file_exists($this->inventoryFile.'.extradata') )
-			$metadata = json_decode( file_get_contents($inventoryFile.'.extradata', True), True );
+			$metadata = json_decode( file_get_contents($this->inventoryFile.'.extradata', True), True );
 		else
 			$metadata = array();
 
