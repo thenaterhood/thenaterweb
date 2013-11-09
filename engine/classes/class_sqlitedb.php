@@ -116,7 +116,7 @@ class SqliteDb implements database{
 
 	}
 
-	private function resultToArray( $result ){
+	private function resultToArray( $queryResult ){
 
 		$resultArray = array();
 
