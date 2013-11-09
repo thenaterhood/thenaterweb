@@ -158,8 +158,8 @@ class directoryIndex{
 		$files = $this->getFileList();
 
 		foreach( $this->db->selectTable( 'main' ) as $key => $value ){
-			if ( ! in_array($key, $files) )
-				$removed[] = $key;
+			if ( ! in_array($value['nodeid'], $files) )
+				$removed[] = $value['nodeid'];
 		}
 		return $removed;
 	}
