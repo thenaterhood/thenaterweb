@@ -122,7 +122,7 @@ class JsonDb implements database{
 		$query = new stdClass();
 		$query->values = $values;
 
-		$this->runSelect( $query );
+		$this->runInsert( $query );
 
 	}
 

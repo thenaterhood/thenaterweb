@@ -208,7 +208,7 @@ class directoryIndex{
 		
 				$postData = new article("$this->directory/$input", $this->bloguri );
 				$inventoryItems[$input] = "exists";
-				$this->db->insert( $postData->$articleDataProvider() );
+				$this->db->insert( 'main', $postData->$articleDataProvider() );
 			}
 		}
 	
