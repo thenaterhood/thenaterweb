@@ -163,7 +163,7 @@ class SqliteDb implements database{
 	 */
 	public function dropTable( $table ){
 
-		$sql = 'DROP TABLE ' . $table;
+		$sql = 'DROP TABLE IF EXISTS ' . $table;
 		$this->sqldb->query( $sql );
 
 	}
