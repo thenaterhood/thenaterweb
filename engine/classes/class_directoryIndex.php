@@ -178,7 +178,7 @@ class directoryIndex{
 			foreach ($added as $input) {
 
 					$postData = new article("$this->directory/$input", $this->bloguri );
-					$this->db->query( 'INSERT INTO main VALUES', $postData->$articleDataProvider() );
+					$this->db->insert( 'main', $postData->$articleDataProvider() );
 			}
 
 			$this->current = True;
@@ -208,7 +208,7 @@ class directoryIndex{
 		
 				$postData = new article("$this->directory/$input", $this->bloguri );
 				$inventoryItems[$input] = "exists";
-				$this->db->query( 'INSERT INTO main VALUES', $postData->$articleDataProvider() );
+				$this->db->insert( $postData->$articleDataProvider() );
 			}
 		}
 	
