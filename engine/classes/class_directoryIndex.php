@@ -213,6 +213,7 @@ class directoryIndex{
 		}
 	
 		$this->metadata = $metadata;
+		$this->db->setSortColumn( 'nodeid' );
 
 		$this->current = True;
 
