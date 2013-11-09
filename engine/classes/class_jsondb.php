@@ -108,7 +108,7 @@ class JsonDb implements database{
 			case 'insert':
 				return $this->runInsert( $queryObject );
 
-			case 'remove':
+			case 'delete':
 				return $this->runRemove( $queryObject );
 			
 			default:
