@@ -144,7 +144,7 @@ class directoryIndex{
 
 		foreach( $files as $item ){
 
-			if ( $this->db->exists( 'nodeid', $item, 'main' ) )
+			if ( ! $this->db->exists( 'nodeid', $item, 'main' ) )
 				$added[] = $item;
 
 		}
