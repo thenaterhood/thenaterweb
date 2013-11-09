@@ -156,7 +156,7 @@ class JsonDb implements database{
 	private function reorganize(){
 
 		// Sort the multidimensional array
-	    array_sort_by_column($this->dbData, $this->metadata['sortField'], SORT_DESC );
+	    $this->array_sort_by_column($this->dbData, $this->metadata['sortField'], SORT_DESC );
 
 	}
 
