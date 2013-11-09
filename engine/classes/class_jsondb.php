@@ -117,6 +117,15 @@ class JsonDb implements database{
 
 	}
 
+	public function insert( $table, $values ){
+
+		$query = new stdClass();
+		$query->values = $values;
+
+		$this->runSelect( $query );
+
+	}
+
 	private function runSelect( $queryObject ){
 
 		return $this->selectColumn( $queryObject->column, '' );

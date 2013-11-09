@@ -24,6 +24,8 @@ interface database{
 
 	public function exists( $column, $value, $table );
 
+	public function insert( $table, $values );
+
 	#public function fieldStatistics();
 
 }
