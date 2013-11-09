@@ -261,11 +261,11 @@ class JsonDb implements database{
 
 		foreach ($this->dbData as $current) {
 
-			if ( ! is_array( $current[$field] ) ){
-				$currentData = explode( ', ', $current[$field] );
+			if ( ! is_array( $current[$column] ) ){
+				$currentData = explode( ', ', $current[$column] );
 			}
 			else{
-				$currentData = $current[$field];
+				$currentData = $current[$column];
 			}
 
 			if ( in_array($value, $currentData) ){
