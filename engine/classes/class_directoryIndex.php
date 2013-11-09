@@ -199,8 +199,6 @@ class directoryIndex{
 		$files = $this->getFileList();
 
 		$inventoryItems = array();
-
-		$this->db->dropTable( 'main' );
 	
 		foreach( $files as $input ){
 

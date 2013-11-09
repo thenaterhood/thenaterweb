@@ -356,6 +356,15 @@ class JsonDb implements database{
 		$this->write();
 	}
 
+	public function createTable( $table, $columns ){
+
+		// Currently not supported by 
+		// database architecture.
+
+
+
+	}
+
 }
 
 

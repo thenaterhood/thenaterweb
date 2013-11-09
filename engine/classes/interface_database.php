@@ -99,6 +99,8 @@ interface database{
 	 */
 	public function insert( $table, $values );
 
+	public function createTable( $name, $columns );
+
 }
 
 ?>

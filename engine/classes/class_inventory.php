@@ -48,6 +48,18 @@ class inventory extends directoryIndex{
 	 */
 	public function regen(){
 
+		$dbCols = array();
+		$dbCols['tags'] = 'Text';
+		$dbCols['nodeid'] = 'Text';
+		$dbCols['title'] = 'Text';
+		$dbCols['link'] = 'Text';
+		$dbCols['datestamp'] = 'Text';
+		$dbCols['author'] = 'Text';
+		$dbCols['file'] = 'Text';
+
+		$this->db->dropTable( 'main' );
+		$this->db->createTable( 'main', $dbCols )
+
 		$metadata = array();
 		$metadata['sitemap'] = getConfigOption('site_domain').'/?url='.$this->bloguri.'/titles';
 		$metadata['updated'] = date(DATE_ATOM);

@@ -210,6 +210,22 @@ class SqliteDb implements database{
 
 	}
 
+	public function createTable( $table, $columns ){
+
+		$queryString = 'CREATE TABLE ' . $table . ' ( id INTEGER PRIMARY KEY,';
+
+		foreach ($columns as $name => $type ) {
+
+			$queryString += ' ' . $name . ' ' . $type . ',';
+
+		}
+
+		$queryString = substr($queryString, 0, count( $queryString) - 1 ) . ' )';
+
+		$this->sqldb->query( $queryString );
+
+	}
+
 }
 
 
