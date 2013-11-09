@@ -243,6 +243,7 @@ class JsonDb implements database{
 
 			foreach ($currentField as $item) {
 				if ( ! in_array($item, $fieldContents) )
+					$item['id'] = $rowid;
 					$fieldContents[] = $item;
 			}
 
@@ -272,6 +273,7 @@ class JsonDb implements database{
 			}
 
 			if ( in_array($value, $currentData) ){
+				$current['id'] = $rowid;
 				$matching[] = $current;
 			}
 		}

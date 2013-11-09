@@ -265,6 +265,7 @@ class article extends dataMonger{
 
 		$meta = array();
 		$meta['tags'] = $this->tags;
+		$meta['nodeid'] = $this->container['nodeid'];
 		$meta['title'] = $this->title;
 		$meta['link'] = $this->link;
 		$meta['datestamp'] = $this->datestamp;
