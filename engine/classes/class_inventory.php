@@ -83,11 +83,11 @@ class inventory extends directoryIndex{
 
 		foreach ($this->db->query( 'SELECT '. $field .' FROM main' ) as $current ) {
 
-			if ( ! is_array( $current[$field] ) ){
-				$currentField = explode( ', ', $current[$field] );
+			if ( ! is_array( $current ) ){
+				$currentField = explode( ', ', $current );
 			}
 			else{
-				$currentField = $current[$field];
+				$currentField = $current;
 			}
 
 			foreach ($currentField as $item) {
@@ -111,7 +111,7 @@ class inventory extends directoryIndex{
 	 */
 	public function selectField( $field ){
 
-		return $this->db->query( 'SELECT '. $field . ' FROM main', array() );
+		return array_unique( $this->db->query( 'SELECT '. $field . ' FROM main', array() ) );
 
 	}
 
