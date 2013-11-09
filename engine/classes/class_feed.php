@@ -70,7 +70,7 @@ class feed extends directoryIndex{
 		$dbCols['nodeid'] = 'Text';
 
 		$this->db->dropTable( 'main' );
-		$this->db->createTable( 'main', $dbCols )
+		$this->db->createTable( 'main', $dbCols );
 
 		$metadata = array();
 		$metadata['title'] = $title;
