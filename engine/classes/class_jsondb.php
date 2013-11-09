@@ -228,7 +228,7 @@ class JsonDb implements database{
 
 		$fieldContents = array();
 
-		foreach ( $this->dbData as $current ) {
+		foreach ( $this->dbData as $rowid => $current ) {
 
 			if ( ! is_array( $current[$column] ) ){
 				$currentField = explode( ', ', $current[$column] );
