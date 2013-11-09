@@ -270,7 +270,7 @@ class article extends dataMonger{
 		$meta['link'] = $this->link;
 		$meta['datestamp'] = $this->datestamp;
 		$meta['author'] = $this->author;
-		$meta['file'] = $this->container['file'];
+		$meta['file'] = $this->file;
 
 		return $meta;
 

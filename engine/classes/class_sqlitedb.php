@@ -6,12 +6,17 @@ class SqliteDb implements database{
 
 	private $dbFile;
 	private $sqldb;
+	private $nextrowid;
 
 	public function __construct( $db ){
 
 		$this->dbFile = $db;
 		$this->open();
 
+
+	}
+
+	public function setSortColumn( $name ){
 
 	}
 
@@ -136,9 +141,9 @@ class SqliteDb implements database{
 	 */
 	public function getRowCount( $table ){
 
-		$queryResult = $this->sqldb->query( 'SELECT * FROM '. $table );
+		$queryResult = $this->sqldb->querySingle( 'SELECT COUNT(*) FROM '. $table );
 
-		return $queryResult->numRows();
+		return $queryResult;
 
 	}
 
@@ -191,16 +196,19 @@ class SqliteDb implements database{
 	 */
 	public function insert( $table, $values ){
 
-		$queryString = 'INSERT INTO ' . $table . 'VALUES (';
+		$nextRowId = $this->getRowCount( $table ) + 1;
+
+
+		$queryString = 'INSERT INTO ' . $table . ' VALUES ('. $nextRowId ', ';
 
 		foreach ($values as $key => $value) {
 
 			$queryString = $queryString . ' ' . ":$key,";
 		}
 
-		$queryString = substr($queryString, 0, count($queryString)-1 ) . ' )';
+		$queryString = substr($queryString, 0, count($queryString)-2 ) . ' )';
 
-		$sql = $this->db->prepare( $queryString );
+		$sql = $this->sqldb->prepare( $queryString );
 
 		foreach ($values as $key => $value) {
 			$sql->bindValue( ":$key", $value );
@@ -212,7 +220,7 @@ class SqliteDb implements database{
 
 	public function createTable( $table, $columns ){
 
-		$queryString = 'CREATE TABLE ' . $table . ' ( id INTEGER PRIMARY KEY,';
+		$queryString = 'CREATE TABLE ' . $table . ' ( id INTEGER PRIMARY KEY AUTOINCREMENT,';
 
 		foreach ($columns as $name => $type ) {
 
@@ -220,7 +228,7 @@ class SqliteDb implements database{
 
 		}
 
-		$queryString = substr($queryString, 0, count( $queryString) - 1 ) . ' )';
+		$queryString = substr($queryString, 0, count( $queryString) - 2 ) . ' )';
 
 		$this->sqldb->query( $queryString );
 
