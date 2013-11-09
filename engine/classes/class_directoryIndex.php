@@ -66,9 +66,9 @@ class directoryIndex{
 		$this->directory = $directory;
 		$this->inventoryFile = getConfigOption('dynamic_directory').'/'.str_replace('/', '_', $directory).'.'.$type.'.json';
 
-		$db = new JsonDb( $this->inventoryFile );
+		$this->db = new JsonDb( $this->inventoryFile );
 
-		if ( file_exists($inventoryFile.'.extradata') )
+		if ( file_exists($this->inventoryFile.'.extradata') )
 			$metadata = json_decode( file_get_contents($inventoryFile.'.extradata', True), True );
 		else
 			$metadata = array();
