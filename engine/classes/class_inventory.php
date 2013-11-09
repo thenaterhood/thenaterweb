@@ -58,7 +58,7 @@ class inventory extends directoryIndex{
 		$dbCols['file'] = 'Text';
 
 		$this->db->dropTable( 'main' );
-		$this->db->createTable( 'main', $dbCols )
+		$this->db->createTable( 'main', $dbCols );
 
 		$metadata = array();
 		$metadata['sitemap'] = getConfigOption('site_domain').'/?url='.$this->bloguri.'/titles';
