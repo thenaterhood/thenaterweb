@@ -69,11 +69,28 @@ class Query{
 class JsonDb implements database{
 
 
+	/**
+	 * The database filename to use.
+	 * This class uses a single-json file
+	 * for a database with one table.
+	 */
 	private $db;
 
+	/**
+	 * The associated database data
+	 */
 	protected $metadata;
+	/**
+	 * The data contained in the database
+	 */
 	protected $dbData;
 
+
+	/**
+	 * Creates an instance of the class and opens 
+	 * a "connection" to the database.
+	 * @param $db - the name of the database file
+	 */
 	public function __construct( $db ){
 
 		$this->db = $db;
@@ -82,6 +99,10 @@ class JsonDb implements database{
 	}
 
 
+	/**
+	 * Provides a function for running prebuilt 
+	 * query strings. Not implemented in this class.
+	 */
 	public function quickQuery( $queryString ){
 
 	}
@@ -126,12 +147,22 @@ class JsonDb implements database{
 
 	}
 
+	/**
+	 * Runs a select query on the database.
+	 * @param $queryObject - an instance of the Query
+	 * class containing the data for the query.
+	 */
 	private function runSelect( $queryObject ){
 
 		return $this->selectColumn( $queryObject->column, '' );
 
 	}
 
+	/**
+	 * Runs an insert query on the database.
+	 * @param $queryObject - an instance of the Query class 
+	 * containing the data for the query
+	 */
 	private function runInsert( $queryObject ){
 
 		$this->dbData[] = $queryObject->values;
@@ -142,6 +173,11 @@ class JsonDb implements database{
 
 	}
 
+	/**
+	 * Runs a delete query on the database.
+	 * @param $queryObject - an instance of the Query class 
+	 * containing the data for the query
+	 */
 	private function runRemove( $queryObject ){
 
 		if ( $queryObject->column == 'id' ){
@@ -161,7 +197,9 @@ class JsonDb implements database{
 
 	}
 
-
+	/**
+	 * Re-sorts the database
+	 */
 	private function reorganize(){
 
 		// Sort the multidimensional array
@@ -172,6 +210,10 @@ class JsonDb implements database{
 	/**
 	 * Provides a sort function for organizing the database 
 	 * according to a particular column.
+	 * @param $arr - the multidimensional array to sort
+	 * @param $col - the subfield to sort by
+	 * @param $dir - the direction to sort in (ascending/descending)
+	 *
 	 */
 	function array_sort_by_column(&$arr, $col, $dir = SORT_ASC) {
 
