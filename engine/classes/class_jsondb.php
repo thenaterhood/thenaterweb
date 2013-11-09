@@ -298,8 +298,7 @@ class JsonDb implements database{
 			}
 
 			foreach ($currentField as $item) {
-				if ( ! in_array($item, $fieldContents) )
-					$fieldContents[] = $item;
+				$fieldContents[] = $item;
 			}
 
 		}
