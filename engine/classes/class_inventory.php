@@ -111,7 +111,7 @@ class inventory extends directoryIndex{
 	 */
 	public function selectField( $field ){
 
-		return $this->db->query( 'SELECT '. $field . 'FROM main', array() );
+		return $this->db->query( 'SELECT '. $field . ' FROM main', array() );
 
 	}
 
