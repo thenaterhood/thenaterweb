@@ -11,7 +11,7 @@
  */
 include_once GNAT_ROOT.'/lib/core_web.php';
 include_once GNAT_ROOT.'/classes/class_article.php';
-include_once GNAT_ROOT.'/classes/class_jsondb.php';
+include_once GNAT_ROOT.'/classes/class_sqlitedb.php';
 
 /**
  * Provides a database-like means of accessing an inventory
@@ -66,7 +66,7 @@ class directoryIndex{
 		$this->directory = $directory;
 		$this->inventoryFile = getConfigOption('dynamic_directory').'/'.str_replace('/', '_', $directory).'.'.$type.'.json';
 
-		$this->db = new JsonDb( $this->inventoryFile );
+		$this->db = new SqliteDb( $this->inventoryFile . '.db' );
 
 		if ( file_exists($this->inventoryFile.'.extradata') )
 			$this->metadata = json_decode( file_get_contents($this->inventoryFile.'.extradata', True), True );
