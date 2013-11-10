@@ -1,0 +1,133 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+/**
+ * Provides a means of searching for and retrieving
+ * variables.
+ * @author Nate Levesque &lt;public@thenaterhood.com&gt;
+ */
+
+/**
+ * Include the sanitation class
+ */
+include_once GNAT_ROOT.'/classes/class_sanitation.php';
+
+/**
+ * Provides an interface for retrieving variables using a specific
+ * method or by searching through each method to find a variable.
+ */
+class varGetter extends sanitation{
+	 
+	 /**
+	  * Constructs an instance of the class and finds the variable
+	  * 
+	  * @param $name - the name of the variable
+	  */	 
+	 public function __construct( $name, $method=NULL, $length=NULL){
+		 
+		 if ( ! $length ){ // If no length specified, find the default
+			 $conf = getConfigOption( $name );
+			 $length = $conf[1];
+		 }
+		 if ( ! $length ){ // If still no length, default to 50
+			 $length = 50;
+		 }
+		 
+		 $this-&gt;length = $length;		 
+
+		 if ( ! $method ){ // If no method is specified, try all of them
+			 $methods = array( 'post', 'get', 'cookie', 'fallback' );
+			 $i = 0;
+			 while ( $i &lt; count( $methods ) and $this-&gt;dirty == null ){
+				 $this-&gt;$methods[$i]($name);
+				 $i++;
+			 }
+		 }
+		 else{
+			 $this-&gt;$method( $name );
+		 }
+		 
+		 
+	 }
+	 
+	 /**
+	  * Retrieves a variable via post
+	  * @param $name - the name of the variable
+	  */
+	 private function post( $name ){
+
+	 	if ( array_key_exists($name, $_POST) )
+			$this-&gt;dirty = $_POST[ $name ];
+	 }
+	 
+	 /**
+	  * Retrieves a variable via get
+	  * @param $name - the name of the variable
+	  */
+	 private function get( $name ){
+	 	if ( array_key_exists($name, $_GET) )
+			$this-&gt;dirty = $_GET[ $name ];
+	 }
+	 
+	 /**
+	  * Retrieves a variable via a cookie
+	  * @param $name - the name of the variable
+	  */
+	 private function cookie( $name ){
+	 	if ( array_key_exists( $name, $_COOKIE) )
+			$this-&gt;dirty = $_COOKIE[ $name ]; 
+	 }
+	 
+	 /**
+	  * Retrieves a variable via the default
+	  * @param $name - the name of the variable
+	  */
+	 private function fallback( $name ){
+		 $conf = getConfigOption( $name );
+		 $this-&gt;dirty = $conf[0];
+	 }
+	 
+ }
+ ?&gt;</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all()
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

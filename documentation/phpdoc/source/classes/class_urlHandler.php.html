@@ -1,0 +1,184 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+/**
+ * Contains functionality for handling and 
+ * routing URLs
+ *
+ * @author Nate Levesque &lt;public@thenaterhood.com&gt;
+ *
+ */
+
+/**
+ * Include the main blog functionality
+ */
+include_once GNAT_ROOT.'/lib/core_blog.php';
+
+/**
+ * A class for managing URL related data
+ */
+class urlHandler{
+
+	private $url;
+	private $urlArray;
+	private $controller;
+	private $controllerId;
+
+	/**
+	 *
+	 */
+	public function __construct(){
+
+		$this-&gt;url = $_GET['url'];
+		$this-&gt;urlArray = explode( '/', $this-&gt;url );
+
+		$this-&gt;parseUrl();
+		$this-&gt;selectController();
+
+
+	}
+
+	/**
+	 * Reparses the stored url data after removing 
+	 * the first element from it
+	 */
+	public function reparseUrl(){
+
+		unset( $this-&gt;urlArray[0] );
+		$this-&gt;urlArray = array_values($this-&gt;urlArray);
+
+		$this-&gt;parseUrl();
+		$this-&gt;selectController();
+
+	}
+
+	/**
+	 * Parses a URL directly and adds the 
+	 * variables to the GET array.
+	 */
+	private function parseUrl(){
+
+		$requestUri = $this-&gt;urlArray;
+		#unset( $requestUri[0] );
+		#print_r( $requestUri );
+
+		$_GET['id'] = '';
+		$_GET['controller'] = 'page';
+
+		$requestUri = array_values( $requestUri );
+
+		$arraySize = count( $requestUri );
+
+
+	    if ( $arraySize &gt;= 1 )
+
+			if ( $requestUri[0] != '' )
+            	$_GET['controller'] = array_shift( $requestUri );
+
+        if ( $arraySize &gt;= 2 )
+        	if ( $requestUri[0] != '' )
+	        	$_GET['id'] = array_shift( $requestUri );
+
+	    if ( $arraySize &gt; 2 ){
+
+
+	        for( $i = 0; $i &lt; count( $requestUri ); $i+=2 ){
+	                $value = &quot;&quot;;
+	                $key = $requestUri[$i];
+	                if ( $i+1 &lt; count( $requestUri ) ){
+                        $j = $i + 1;
+                        $value = $requestUri[$j];
+	 
+	                }
+
+	                $_GET[$key] = $value;
+	        }
+
+		}
+
+		$sessionMvc = new session( array( 'controller' ) );
+	    $this-&gt;controllerId = $sessionMvc-&gt;controller;
+
+
+
+	}
+
+	/**
+	 * Locates the controller for the url requested 
+	 * or defaults to the error controller if it doesn't 
+	 * exist.
+	 */
+	private function selectController(){
+
+		$this-&gt;controller = &quot;controller/&quot;.$this-&gt;controllerId.&quot;/main.php&quot;;
+
+		if ( ! file_exists($this-&gt;controller) ){
+			$this-&gt;controller = &quot;controller/error/main.php&quot;;
+		}
+
+
+
+	}
+
+	/**
+	 * Returns the selected controller
+	 * @return the name of the controller file
+	 */
+	public function getController(){
+		return $this-&gt;controller;
+	}
+
+	/**
+	 * Returns the controller ID 
+	 * @return the name of the controller
+	 */
+	public function getControllerId(){
+		return $this-&gt;controllerId;
+	}
+	
+
+}
+
+?&gt;</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all()
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

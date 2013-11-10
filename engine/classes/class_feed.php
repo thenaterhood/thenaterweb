@@ -34,18 +34,20 @@ class feed extends directoryIndex{
 
 		parent::__construct( $directory, $bloguri, "feed" );
 
-		$this->loadArticles();
 
 	}
 
 	public function update(){
+
+		$this->loadArticles();
+
 
 		parent::update( "dump" );
 	}
 
 	private function loadArticles(){
 
-		foreach ($this->indexData as $item) {
+		foreach ($this->db->selectTable( 'main' ) as $item) {
 			
 			$this->articles[] = new mappedArticle( $item );
 
@@ -56,6 +58,19 @@ class feed extends directoryIndex{
 
 
 	public function reset($title, $link, $description, $feedstamp){
+
+		$dbCols = array();
+		$dbCols['content'] = 'Text';
+		$dbCols['title'] = 'Text';
+		$dbCols['date'] = 'Text';
+		$dbCols['tags'] = 'Text';
+		$dbCols['datestamp'] = 'Text';
+		$dbCols['updated'] = 'Text';
+		$dbCols['link'] = 'Text';
+		$dbCols['nodeid'] = 'Text';
+
+		$this->db->dropTable( 'main' );
+		$this->db->createTable( 'main', $dbCols );
 
 		$metadata = array();
 		$metadata['title'] = $title;
@@ -77,6 +92,7 @@ class feed extends directoryIndex{
 	 * to atom (superior) if the type given not recognized.
 	 */
 	public function output( $type ){
+
 		
 		if ( $type == "rss" ){
 			return $this->rss();
@@ -95,6 +111,9 @@ class feed extends directoryIndex{
 	 * 
 	 */
 	private function atom() {
+
+		$this->loadArticles();
+
 
 		$r = '<?xml version="1.0" encoding="UTF-8"?>';
 		$r .='<feed xmlns="http://www.w3.org/2005/Atom"
@@ -124,6 +143,9 @@ xml:base="'.getConfigOption('site_domain').'/">';
 		# The code produced is not valid due to the xml tag 
 		# which should have a ? before each <>. This breaks the
 		# php.
+
+		$this->loadArticles();
+
 		
 		$r ='<xml version="1.0">';
 		$r .= '<rss version = "2.0">\n';

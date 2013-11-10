@@ -1,0 +1,91 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;h1&gt;Installation Details&lt;/h1&gt;
+
+&lt;?php
+
+
+echo '&lt;h3&gt;Controllers known to Thenaterweb&lt;/h3&gt;';
+
+$found = array();
+print '&lt;ul&gt;';
+
+$controllers = getControllers();
+
+foreach ($controllers as $blogid) {
+	print '&lt;li&gt;&lt;a href=&quot;'.getConfigOption('site_domain').'/webadmin/editblog/blogid/'.$blogid.'&quot;&gt;'.$blogid.'&lt;/a&gt;&lt;/li&gt;'.&quot;\n&quot;;
+}
+print '&lt;/ul&gt;';
+print '&lt;br /&gt;';
+
+$writetest = fopen( getConfigOption('dynamic_directory').'/writetest.txt', 'w');
+fclose($writetest);
+
+# Check if dynamic directory is writeable
+if ( is_writable( getConfigOption('dynamic_directory').'/writetest.txt') ){
+
+	unlink( getConfigOption('dynamic_directory').'/writetest.txt' );
+	echo '&lt;h4&gt;&lt;font color=&quot;green&quot;&gt;OK: Dynamic storage is writeable.&lt;/font&gt;&lt;/h4&gt;';
+}else{
+
+	echo '&lt;h4&gt;&lt;font color=&quot;red&quot;&gt;PROBLEM: Dynamic storage is not writeable.&lt;/font&gt;&lt;/h4&gt;';
+	echo '&lt;p&gt;The dynamic directory is '.getConfigOption('dynamic_directory').'. Thenaterweb needs write access to this directory.&lt;/p&gt;';
+
+}
+
+# Check if log directory is writeable
+if ( is_writable( GNAT_ROOT.'/var/log/writetest.txt') ){
+
+	unlink( GNAT_ROOT.'/var/log/writetest.txt' );
+	echo '&lt;h4&gt;&lt;font color=&quot;green&quot;&gt;OK: Log storage is writeable.&lt;/font&gt;&lt;/h4&gt;';
+}else{
+
+	echo '&lt;h4&gt;&lt;font color=&quot;red&quot;&gt;PROBLEM: Log storage is not writeable.&lt;/font&gt;&lt;/h4&gt;';
+	echo '&lt;p&gt;The log directory is engine/var/log. Thenaterweb needs write access to this directory.&lt;/p&gt;';
+
+}
+
+
+?&gt;</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all()
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

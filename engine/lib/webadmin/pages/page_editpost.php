@@ -65,10 +65,20 @@ if ( $admSession->blogid ){
 		$blogdef = loadBlogConf( strtolower($admSession->blogid) );
 		$handler = opendir( $blogdef->post_directory );
 		$avoid = getConfigOption('hidden_files');
+		$postCount = 0;
 
 		while( $file = readdir( $handler ) ){
 			if ( $file != '..' && $file != '.' )
+				$postCount++;
 				print '<p><a href="'.getConfigOption('site_domain').'/webadmin/editpost/blogid/'.$admSession->blogid.'/postid/'.$file.'">'.$file.'</a></p>';
+		}
+
+		if ( $postCount == 0 ){
+			print '	<div class="alert alert-danger">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+			Thenaterweb could not find the configuration file for this application and 
+			does not know where to find its editable posts.
+			</div>';
 		}
 
 	}
@@ -76,18 +86,15 @@ if ( $admSession->blogid ){
 }
 else{
 
-		$found = array();
-		$handler = opendir(GNAT_ROOT.'/config/section.d');
-		print '<ul>';
+		$controllers = getControllers();
 
-		while ($file = readdir($handler)){
+		echo '<ul>';
+		foreach ($controllers as $blogid) {
 
-			if ( $file != '.' && $file != '..' && !in_array($file, $found) ){
-				$blogid=substr($file, 0, strpos($file, ".") );
-				$found[] = $file;
-				print '<li><a href="'.getConfigOption('site_domain').'/webadmin/editpost/blogid/'.$blogid.'">'.$blogid.'</a></li>'."\n";
-			}
+			print '<li><a href="'.getConfigOption('site_domain').'/webadmin/editpost/blogid/'.$blogid.'">'.$blogid.'</a></li>'."\n";
 		}
+
+		echo '</ul>';
 
 }
 

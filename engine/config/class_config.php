@@ -34,7 +34,7 @@ class config{
 		$this->container['webcore_root'] =  '/var/www/static';
 		
 		# Sets the directory for storing dynamically created files
-		$this->container['dynamic_directory'] =  '/var/www/engine/var/dynamic';
+		$this->container['dynamic_directory'] =  'engine/var/dynamic';
 		
 		# Whether or not the blog feed should regenerate automatically
 		$this->container['auto_feed_regen'] = True;
@@ -42,6 +42,17 @@ class config{
 		# Whether or not other dynamic files (such as sitemap) should
 		# regenerate automatically
 		$this->container['auto_file_regen'] = False;
+
+		# What type of database for the engine to use for its storage.
+		# The database must exist already (except with jsondb and sqlite)
+		# Thenaterweb will create the necessary tables for storing data 
+		# and will manage them. 
+		# Valid options are 'sqlite' and 'jsondb'. Use jsondb if you 
+		# do not have have access to a 'real' database. Jsondb is a 
+		# homebrew, rudimentary database solution build with Thenaterweb 
+		# in PHP using Json files. It is NOT intended for a large 
+		# amount of data.
+		$this->container['engine_storage_db'] = 'sqlite';
 		
 		# Whether to save the dynamic files when they are generated.
 		# If this is turned off and no dynamic files have been 
@@ -84,20 +95,7 @@ class config{
 		# Be careful with quotes, as this is read in as a string.  This
 		# can also be used to add any other code to the page as well,
 		# it is inserted right before the closing </head> tag.
-		$this->container['tracking_code'] = "<script type='text/javascript'>
-
-		var _gaq = _gaq || [];
-		_gaq.push(['_setAccount', 'UA-5020962-1']);
-		_gaq.push(['_setDomainName', 'www.thenaterhood.com']);
-		_gaq.push(['_trackPageview']);
-		
-		(function() {
-		  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		})();
-		
-		</script>";
+		$this->container['tracking_code'] = "";
 		
 		# All the files that should be ignored when dynamically looking
 		# at directories
@@ -108,15 +106,9 @@ class config{
 			"error_log",
 			"post.php",
 			"feed.php",
-			"feed.xml",
-			"inventory.html",
 			"tags",
 			"posts",
 			".htaccess",
-			"page_scratchhere.html",
-			"page_quack.html",
-			"page_rit.html",
-			"page_seth.html",
 			);
 			
 		# The following are default settings and lengths for variables

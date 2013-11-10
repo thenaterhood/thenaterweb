@@ -8,39 +8,52 @@
 
 if ( $admSession->blogid ){
 
-	$config = file_get_contents(GNAT_ROOT.'/config/section.d/'.$admSession->blogid.'.conf.xml');
-	$lines = count( explode( "\n", $config) )+4;
+	$configFile = 'controller/'.$admSession->blogid.'/conf.xml';
 
-	if ( ! is_writable(GNAT_ROOT.'/config/section.d/'.$admSession->blogid.'.conf.xml') )
+
+	if ( ! is_writable($configFile) )
 		print '	<div class="alert alert-warning">
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
 		Thenaterweb is unable to write to this configuration file. Your settings cannot 
 		be saved.
 		</div>';
 
-	print '<form action="'.getConfigOption('site_domain').'/webadmin/saveconf" method="post">
-		<input type="hidden" name="rcfile" value="'.GNAT_ROOT.'/config/section.d/'.$session->blogid.'.conf.xml"/>
-		<br />
-		<textarea name="content" rows="'.$lines.'" cols="400" >'.$config.'</textarea>
-		<br />
-		<input type="submit" value="Save and Apply" />
-		</form>';
+	if ( file_exists($configFile) ){
+		$config = file_get_contents($configFile);
+		$lines = count( explode( "\n", $config) )+4;
+
+
+		print '<form action="'.getConfigOption('site_domain').'/webadmin/saveconf" method="post">
+			<input type="hidden" name="rcfile" value="'.$configFile.'"/>
+			<br />
+			<textarea name="content" rows="'.$lines.'" cols="400" >'.$config.'</textarea>
+			<br />
+			<input type="submit" value="Save and Apply" />
+			</form>';
+	} else{
+
+		print '	<div class="alert alert-danger">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		Thenaterweb could not find the configuration file. The application may not be 
+		configured to allow Thenaterweb to modify it.
+		</div>';
+
+	}
 
 }
 else{
 
-		$found = array();
-		$handler = opendir(GNAT_ROOT.'/config/section.d');
+		$controllers = getControllers();
+
 		print '<ul>';
 
-		while ($file = readdir($handler)){
+		foreach ($controllers as $blogid) {
 
-			if ( strpos( $file, '.conf.xml' ) && !in_array($file, $found) ){
-				$blogid=substr($file, 0, strpos($file, ".") );
-				$found[] = $file;
+
 				print '<li><a href="'.getConfigOption('site_domain').'/webadmin/editblog/blogid/'.$blogid.'">'.$blogid.'</a></li>'."\n";
-			}
 		}
+
+		echo '</ul>';
 }
 
 

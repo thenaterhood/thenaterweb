@@ -1,0 +1,406 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+include_once GNAT_ROOT.'/classes/interface_database.php';
+include_once GNAT_ROOT.'/classes/class_lock.php';
+
+/**
+ * A very rudimentary class for dealing with queries
+ * to the json database. Supports the most basic of 
+ * select, inserts, and removes. This is intended to 
+ * provide very basic facilities for working with 
+ * a simple database stored in a json file. This is NOT 
+ * for use with huge amounts of data or often-updated 
+ * data.
+ */
+class Query{
+
+	private $type;
+	private $table;
+	private $column;
+	private $rawQuery;
+	private $values;
+
+	public function __construct( $queryString, $values ){
+
+		$this-&gt;parseQuery( $queryString, $values );
+
+
+	}
+
+	private function parseQuery( $queryString, $values ){
+
+		$queryArray = explode(' ', $queryString );
+
+		$this-&gt;type = strtolower( $queryArray[0] );
+
+		if ( $this-&gt;type == 'select' ){
+			# select x from table
+			$this-&gt;column = $queryArray[1];
+			$this-&gt;table = $queryArray[3];
+
+		} elseif ( $this-&gt;type == 'insert' ){
+			# insert into table values (x,x,x)
+			$this-&gt;table = $queryArray[2];
+			$this-&gt;values = $values;
+		} elseif ( $this-&gt;type == 'delete' ){
+			# delete x from table where id ?
+			$this-&gt;table = $queryArray[3];
+			$colvals = explode( '=', $queryArray[5] );
+			$this-&gt;column = $colvals[0];
+			$this-&gt;values = $values;
+		}
+
+
+	}
+
+	public function __get( $name ){
+		return $this-&gt;$name;
+	}
+
+}
+
+
+/**
+ * A very rudimentary database implementation stored 
+ * as a json file. This is NOT to be used as anything other
+ * than a very simple cache and does not support huge amounts 
+ * of data or threading.
+ */
+class JsonDb implements database{
+
+
+	/**
+	 * The database filename to use.
+	 * This class uses a single-json file
+	 * for a database with one table.
+	 */
+	private $db;
+
+	/**
+	 * The associated database data
+	 */
+	protected $metadata;
+	/**
+	 * The data contained in the database
+	 */
+	protected $dbData;
+
+
+	/**
+	 * Creates an instance of the class and opens 
+	 * a &quot;connection&quot; to the database.
+	 * @param $db - the name of the database file
+	 */
+	public function __construct( $db ){
+
+		$this-&gt;db = $db;
+		$this-&gt;open();
+
+	}
+
+
+	/**
+	 * Provides a function for running prebuilt 
+	 * query strings. Not implemented in this class.
+	 */
+	public function quickQuery( $queryString ){
+
+	}
+
+	/**
+	 * Sets the column to organize the database by. 
+	 * By default, this is the integer key that is assigned 
+	 * to values as they are inserted. Otherwise, the database 
+	 * will be sorted according to this column.
+	 */
+	public function setSortColumn( $column ){
+		$this-&gt;metadata['sortField'] = $column;
+	}
+
+
+	public function query( $queryString, $values ){
+
+		$queryObject = new Query( $queryString, $values );
+
+		switch ($queryObject-&gt;type) {
+			case 'select':
+				return $this-&gt;runSelect( $queryObject );
+
+			case 'insert':
+				return $this-&gt;runInsert( $queryObject );
+
+			case 'delete':
+				return $this-&gt;runRemove( $queryObject );
+			
+			default:
+				break;
+		}
+
+	}
+
+	public function insert( $table, $values ){
+
+		$query = new stdClass();
+		$query-&gt;values = $values;
+
+		$this-&gt;runInsert( $query );
+
+	}
+
+	/**
+	 * Runs a select query on the database.
+	 * @param $queryObject - an instance of the Query
+	 * class containing the data for the query.
+	 */
+	private function runSelect( $queryObject ){
+
+		return $this-&gt;selectColumn( $queryObject-&gt;column, '' );
+
+	}
+
+	/**
+	 * Runs an insert query on the database.
+	 * @param $queryObject - an instance of the Query class 
+	 * containing the data for the query
+	 */
+	private function runInsert( $queryObject ){
+
+		$this-&gt;dbData[] = $queryObject-&gt;values;
+		$this-&gt;reorganize();
+		$this-&gt;metadata['last_updated'] = date(DATE_ATOM);
+
+
+
+	}
+
+	/**
+	 * Runs a delete query on the database.
+	 * @param $queryObject - an instance of the Query class 
+	 * containing the data for the query
+	 */
+	private function runRemove( $queryObject ){
+
+		if ( $queryObject-&gt;column == 'id' ){
+			unset( $this-&gt;dbData[$rowid] );
+		} else{ 
+
+			foreach ($this-&gt;dbData as $rowid =&gt; $row ) {
+				
+				if ( in_array( $row[ $queryObject-&gt;column ], $queryObject-&gt;values ) ){
+					unset( $this-&gt;dbData[$rowid] );
+				}
+
+			}
+		}
+
+		$this-&gt;metadata['last_updated'] = date(DATE_ATOM);
+
+	}
+
+	/**
+	 * Re-sorts the database
+	 */
+	private function reorganize(){
+
+		// Sort the multidimensional array
+	    $this-&gt;array_sort_by_column($this-&gt;dbData, $this-&gt;metadata['sortField'], SORT_DESC );
+
+	}
+
+	/**
+	 * Provides a sort function for organizing the database 
+	 * according to a particular column.
+	 * @param $arr - the multidimensional array to sort
+	 * @param $col - the subfield to sort by
+	 * @param $dir - the direction to sort in (ascending/descending)
+	 *
+	 */
+	private function array_sort_by_column(&amp;$arr, $col, $dir = SORT_ASC) {
+
+	    $sort_col = array();
+	    foreach ($arr as $key=&gt; $row) {
+	        $sort_col[$key] = $row[$col];
+	    }
+
+	    array_multisort($sort_col, $dir, $arr);
+	}
+
+	public function close(){
+
+		unset($this-&gt;metadata);
+		unset($this-&gt;dbData);
+	}
+
+	public function open(){
+
+		if ( file_exists($this-&gt;db) ){
+
+			$jsonData = json_decode( file_get_contents($this-&gt;db, True), True );
+			$this-&gt;metadata = $jsonData['metadata'];
+			$this-&gt;dbData = $jsonData['data'];
+		} else {
+			$this-&gt;metadata = array();
+			$this-&gt;dbData = array();
+			$this-&gt;metadata['sortField'] = 'primary_key';
+			$this-&gt;metadata['last_updated'] = date(DATE_ATOM);
+		}
+
+	}
+
+	/**
+	 * Writes the inventory data out to the file
+	 * @since 06/11/2013
+	 */
+	private function write(){
+		// Create an instance of a lock
+		$lock = new lock( $this-&gt;db );
+
+		// Check if locked, and if not, set the lock
+		// and rewrite the file with the new inventory.
+		// Otherwise, update the live instance only
+		if ( !$lock-&gt;isLocked() ){
+
+			$lock-&gt;lock();
+
+			$inventory = fopen( $this-&gt;db, 'w');
+
+			$dataMap = array();
+			$dataMap['data'] = $this-&gt;dbData;
+			$dataMap['metadata'] = $this-&gt;metadata;
+
+			fwrite( $inventory, json_encode($dataMap, True) );
+			fclose( $inventory );
+
+			$lock-&gt;unlock();
+
+		}
+	}
+
+
+	/**
+	 * Returns an array containing the data from a 
+	 * particular field, with repeats filtered out
+	 *
+	 * @param $column - the name of the field to access
+	 * @param $table - ignored here
+	 */
+	public function selectColumn( $column, $table ){
+
+		$fieldContents = array();
+
+		foreach ( $this-&gt;dbData as $rowid =&gt; $current ) {
+
+			$fieldContents[] = $current[$column];
+
+		}
+
+		return $fieldContents;
+
+	}
+
+	public function exists( $column, $value, $table ){
+
+		return count($this-&gt;selectSome( $column, $value, $table ) ) &gt; 0;
+
+	}
+
+	public function selectSome( $column, $value, $table ){
+
+		$matching = array();
+
+		foreach ($this-&gt;dbData as $current) {
+
+			if ( ! is_array( $current[$column] ) ){
+				$currentData = explode( ', ', $current[$column] );
+			}
+			else{
+				$currentData = $current[$column];
+			}
+
+			if ( in_array($value, $currentData) ){
+				$current['id'] = $rowid;
+				$matching[] = $current;
+			}
+		}
+
+		return $matching;
+
+	}
+
+	public function selectTable( $table ){
+
+		return $this-&gt;dbData;
+	}
+
+	public function getRowCount( $table ){
+		return count( $this-&gt;dbData );
+	}
+
+	public function dropTable( $table ){
+
+		$this-&gt;dbData = array();
+		$this-&gt;metadata['last_updated'] = date( DATE_ATOM );
+	}
+
+	public function commit(){
+
+		$this-&gt;write();
+	}
+
+	public function createTable( $table, $columns ){
+
+		// Currently not supported by 
+		// database architecture.
+
+
+
+	}
+
+}
+
+
+?&gt;</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all()
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,149 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">
+&lt;h1&gt;Edit a Post&lt;/h1&gt;
+
+&lt;?php
+
+/**
+ *
+ * Retrieves a post json file into an array
+ * or returns an empty array if it does not exist
+ * @param $postFile - the file to retrieve
+ * @return $postData - the retrieved data
+ */
+function retrievePost( $postFile ){
+
+	if ( file_exists($postFile) ){
+
+		$postData = json_decode( file_get_contents($postFile), True );
+
+		if ( is_array( $postData['tags'] ) )
+			$postData['tags'] = implode(', ', $postData['tags'] );
+
+		if ( is_array( $postData['content'] ) )
+			$postData['content'] = implode( $postData['content'] );
+
+	}
+
+	else{
+		$postData = array();
+	}
+
+	return $postData;
+
+}
+
+if ( $admSession-&gt;blogid ){
+
+	if ( isset( $_GET['postid'] ) || isset( $_GET['isnew'] ) ){
+
+		print '&lt;h2&gt;'.$admSession-&gt;blogid.'&lt;/h2&gt;';
+
+		$blogdef = loadBlogConf( strtolower($admSession-&gt;blogid) );
+
+		$postData = retrievePost( $blogdef-&gt;post_directory.'/'.$_GET['postid'] );
+
+		print'&lt;form name=&quot;create&quot; action=&quot;'.getConfigOption('site_domain').'/webadmin/savepost&quot; method=&quot;post&quot;&gt;
+		Title: &lt;br /&gt;
+		&lt;textarea name=&quot;title&quot; rows=&quot;1&quot; cols=&quot;100&quot;&gt;'.$postData['title'].'&lt;/textarea&gt;&lt;br /&gt;
+		Tags - comma separated: &lt;br /&gt;
+		&lt;textarea name=&quot;tags&quot; rows=&quot;1&quot; cols=&quot;100&quot;&gt;'.$postData['tags'].'&lt;/textarea&gt;&lt;br /&gt;
+		Blog: &lt;br /&gt;
+		&lt;textarea name=&quot;blog&quot; rows=&quot;1&quot; cols=&quot;100&quot;&gt;'.$admSession-&gt;blogid.'&lt;/textarea&gt;&lt;br /&gt;
+		Write your post - &lt;strong&gt;full html required&lt;/strong&gt;: &lt;br /&gt;
+		&lt;textarea name=&quot;content&quot; rows=&quot;50&quot; cols=&quot;100&quot; &gt;'.$postData['content'].'&lt;/textarea&gt;&lt;br /&gt;
+		&lt;input type=&quot;hidden&quot; name=&quot;file&quot; value=&quot;'.$_GET['postid'].'&quot; /&gt;
+		&lt;input type=&quot;hidden&quot; name=&quot;postpath&quot; value=\''.$blogdef-&gt;post_directory.'\' /&gt;
+		&lt;input type=&quot;submit&quot; value=&quot;Create&quot; /&gt;
+
+		&lt;/form&gt;';
+
+
+	}
+
+	else{
+
+		$blogdef = loadBlogConf( strtolower($admSession-&gt;blogid) );
+		$handler = opendir( $blogdef-&gt;post_directory );
+		$avoid = getConfigOption('hidden_files');
+		$postCount = 0;
+
+		while( $file = readdir( $handler ) ){
+			if ( $file != '..' &amp;&amp; $file != '.' )
+				$postCount++;
+				print '&lt;p&gt;&lt;a href=&quot;'.getConfigOption('site_domain').'/webadmin/editpost/blogid/'.$admSession-&gt;blogid.'/postid/'.$file.'&quot;&gt;'.$file.'&lt;/a&gt;&lt;/p&gt;';
+		}
+
+		if ( $postCount == 0 ){
+			print '	&lt;div class=&quot;alert alert-danger&quot;&gt;
+			&lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;alert&quot;&gt;&amp;times;&lt;/button&gt;
+			Thenaterweb could not find the configuration file for this application and 
+			does not know where to find its editable posts.
+			&lt;/div&gt;';
+		}
+
+	}
+
+}
+else{
+
+		$controllers = getControllers();
+
+		echo '&lt;ul&gt;';
+		foreach ($controllers as $blogid) {
+
+			print '&lt;li&gt;&lt;a href=&quot;'.getConfigOption('site_domain').'/webadmin/editpost/blogid/'.$blogid.'&quot;&gt;'.$blogid.'&lt;/a&gt;&lt;/li&gt;'.&quot;\n&quot;;
+		}
+
+		echo '&lt;/ul&gt;';
+
+}
+
+?&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;p&gt;&lt;a href=&quot;&lt;?php print getConfigOption('site_domain'); ?&gt;/webadmin&quot;&gt;Back to webadmin panel (discarding changes)&lt;/a&gt;&lt;/p&gt;
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all()
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,107 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../../../../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../../../../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../../../../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../../../../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../../../../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;h1&gt;Edit Controller Configuration&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;WARNING:&lt;/strong&gt; proper PHP syntax must be observed, or your edits will crash blog! These tools are very primitive and will not validate your settings or your input.&lt;/p&gt;
+&lt;?php
+/**
+ * Edits an existing blog configuration
+ */
+
+
+if ( $admSession-&gt;blogid ){
+
+	$configFile = 'controller/'.$admSession-&gt;blogid.'/conf.xml';
+
+
+	if ( ! is_writable($configFile) )
+		print '	&lt;div class=&quot;alert alert-warning&quot;&gt;
+		&lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;alert&quot;&gt;&amp;times;&lt;/button&gt;
+		Thenaterweb is unable to write to this configuration file. Your settings cannot 
+		be saved.
+		&lt;/div&gt;';
+
+	if ( file_exists($configFile) ){
+		$config = file_get_contents($configFile);
+		$lines = count( explode( &quot;\n&quot;, $config) )+4;
+
+
+		print '&lt;form action=&quot;'.getConfigOption('site_domain').'/webadmin/saveconf&quot; method=&quot;post&quot;&gt;
+			&lt;input type=&quot;hidden&quot; name=&quot;rcfile&quot; value=&quot;'.$configFile.'&quot;/&gt;
+			&lt;br /&gt;
+			&lt;textarea name=&quot;content&quot; rows=&quot;'.$lines.'&quot; cols=&quot;400&quot; &gt;'.$config.'&lt;/textarea&gt;
+			&lt;br /&gt;
+			&lt;input type=&quot;submit&quot; value=&quot;Save and Apply&quot; /&gt;
+			&lt;/form&gt;';
+	} else{
+
+		print '	&lt;div class=&quot;alert alert-danger&quot;&gt;
+		&lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;alert&quot;&gt;&amp;times;&lt;/button&gt;
+		Thenaterweb could not find the configuration file. The application may not be 
+		configured to allow Thenaterweb to modify it.
+		&lt;/div&gt;';
+
+	}
+
+}
+else{
+
+		$controllers = getControllers();
+
+		print '&lt;ul&gt;';
+
+		foreach ($controllers as $blogid) {
+
+
+				print '&lt;li&gt;&lt;a href=&quot;'.getConfigOption('site_domain').'/webadmin/editblog/blogid/'.$blogid.'&quot;&gt;'.$blogid.'&lt;/a&gt;&lt;/li&gt;'.&quot;\n&quot;;
+		}
+
+		echo '&lt;/ul&gt;';
+}
+
+
+?&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;p&gt;&lt;a href=&quot;&lt;?php print getConfigOption('site_domain'); ?&gt;/webadmin&quot;&gt;Back to webadmin panel (discarding changes)&lt;/a&gt;&lt;/p&gt;</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all()
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

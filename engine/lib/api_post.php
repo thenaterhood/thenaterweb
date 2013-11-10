@@ -9,8 +9,8 @@
 /**
  * Includes the necessary facilities
  */
-include GNAT_ROOT.'/lib/core_blog.php';
-include GNAT_ROOT.'/lib/core_json.php';
+include 'core_blog.php';
+include 'core_json.php';
 
 
 $session = new session( array( "node", "element" ) );
