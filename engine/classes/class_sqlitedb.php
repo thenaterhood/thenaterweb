@@ -7,6 +7,7 @@ class SqliteDb implements database{
 	private $dbFile;
 	private $sqldb;
 	private $nextrowid;
+	private $sortColumn;
 
 	public function __construct( $db ){
 
@@ -17,6 +18,8 @@ class SqliteDb implements database{
 	}
 
 	public function setSortColumn( $name ){
+
+		$this->sortColumn = $name;
 
 	}
 
@@ -145,6 +148,36 @@ class SqliteDb implements database{
 
 		return $resultArray;
 
+	}
+
+	/**
+	 * Re-sorts the database
+	 */
+	private function reorganizeResults( $resultArray ){
+
+		// Sort the multidimensional array
+	    $this->array_sort_by_column($resultArray, $this->sortColumn, SORT_DESC );
+
+	    return $resultArray;
+
+	}
+
+	/**
+	 * Provides a sort function for organizing the database 
+	 * according to a particular column.
+	 * @param $arr - the multidimensional array to sort
+	 * @param $col - the subfield to sort by
+	 * @param $dir - the direction to sort in (ascending/descending)
+	 *
+	 */
+	private function array_sort_by_column(&$arr, $col, $dir = SORT_ASC) {
+
+	    $sort_col = array();
+	    foreach ($arr as $key=> $row) {
+	        $sort_col[$key] = $row[$col];
+	    }
+
+	    array_multisort($sort_col, $dir, $arr);
 	}
 
 	/**
