@@ -95,20 +95,7 @@ class config{
 		# Be careful with quotes, as this is read in as a string.  This
 		# can also be used to add any other code to the page as well,
 		# it is inserted right before the closing </head> tag.
-		$this->container['tracking_code'] = "<script type='text/javascript'>
-
-		var _gaq = _gaq || [];
-		_gaq.push(['_setAccount', 'UA-5020962-1']);
-		_gaq.push(['_setDomainName', 'www.thenaterhood.com']);
-		_gaq.push(['_trackPageview']);
-		
-		(function() {
-		  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		})();
-		
-		</script>";
+		$this->container['tracking_code'] = "";
 		
 		# All the files that should be ignored when dynamically looking
 		# at directories
