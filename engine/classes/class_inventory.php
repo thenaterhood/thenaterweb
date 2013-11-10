@@ -125,7 +125,6 @@ class inventory extends directoryIndex{
 
         $fieldContents = array();
         $fieldData = $this->db->selectColumn( $field, 'main' );                         
-        print_r( $fieldData );
         foreach( $fieldData as $index => $current) {
                 if ( ! is_array( $current ) ){
                                                                                         
