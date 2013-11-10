@@ -215,7 +215,7 @@ class JsonDb implements database{
 	 * @param $dir - the direction to sort in (ascending/descending)
 	 *
 	 */
-	function array_sort_by_column(&$arr, $col, $dir = SORT_ASC) {
+	private function array_sort_by_column(&$arr, $col, $dir = SORT_ASC) {
 
 	    $sort_col = array();
 	    foreach ($arr as $key=> $row) {
