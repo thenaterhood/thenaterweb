@@ -42,6 +42,17 @@ class config{
 		# Whether or not other dynamic files (such as sitemap) should
 		# regenerate automatically
 		$this->container['auto_file_regen'] = False;
+
+		# What type of database for the engine to use for its storage.
+		# The database must exist already (except with jsondb and sqlite)
+		# Thenaterweb will create the necessary tables for storing data 
+		# and will manage them. 
+		# Valid options are 'sqlite' and 'jsondb'. Use jsondb if you 
+		# do not have have access to a 'real' database. Jsondb is a 
+		# homebrew, rudimentary database solution build with Thenaterweb 
+		# in PHP using Json files. It is NOT intended for a large 
+		# amount of data.
+		$this->container['engine_storage_db'] = 'sqlite';
 		
 		# Whether to save the dynamic files when they are generated.
 		# If this is turned off and no dynamic files have been 

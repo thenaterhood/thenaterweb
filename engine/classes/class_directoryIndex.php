@@ -12,6 +12,7 @@
 include_once GNAT_ROOT.'/lib/core_web.php';
 include_once GNAT_ROOT.'/classes/class_article.php';
 include_once GNAT_ROOT.'/classes/class_sqlitedb.php';
+include_once GNAT_ROOT.'/classes/class_databaseFactory.php';
 
 /**
  * Provides a database-like means of accessing an inventory
@@ -64,9 +65,9 @@ class directoryIndex{
 
 		$this->bloguri = $bloguri;
 		$this->directory = $directory;
-		$this->inventoryFile = getConfigOption('dynamic_directory').'/'.str_replace('/', '_', $directory).'.'.$type.'.json';
+		$this->inventoryFile = getConfigOption('dynamic_directory').'/'.str_replace('/', '_', $directory).'.'.$type;
 
-		$this->db = new SqliteDb( $this->inventoryFile . '.db' );
+		$this->db = DatabaseFactory::create( getConfigOption( 'engine_storage_db' ), $this->inventoryFile );
 
 		if ( file_exists($this->inventoryFile.'.extradata') )
 			$this->metadata = json_decode( file_get_contents($this->inventoryFile.'.extradata', True), True );
