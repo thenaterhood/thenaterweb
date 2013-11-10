@@ -12,6 +12,7 @@ class SqliteDb implements database{
 	public function __construct( $db ){
 
 		$this->dbFile = $db;
+		$this->sortColumn = '';
 		$this->open();
 
 
@@ -146,7 +147,13 @@ class SqliteDb implements database{
 			$resultArray[] = $result;
 		}
 
-		return $resultArray;
+		if ( $this->sortColumn == '' ){
+
+			return $resultArray;
+
+		} else {
+			return $this->reorganizeResults( $resultArray );
+		}
 
 	}
 
