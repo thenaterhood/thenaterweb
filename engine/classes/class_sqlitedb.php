@@ -108,7 +108,6 @@ class SqliteDb implements database{
         foreach( $rows as $row ){
                 foreach( $row as $values ){
                         $columnValues[] = $values;
-                        print_r( $values );
                 }
         }
         return $columnValues;
