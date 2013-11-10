@@ -119,15 +119,9 @@ class config{
 			"error_log",
 			"post.php",
 			"feed.php",
-			"feed.xml",
-			"inventory.html",
 			"tags",
 			"posts",
 			".htaccess",
-			"page_scratchhere.html",
-			"page_quack.html",
-			"page_rit.html",
-			"page_seth.html",
 			);
 			
 		# The following are default settings and lengths for variables
