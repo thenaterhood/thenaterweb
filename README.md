@@ -1,4 +1,4 @@
-2.0.1+90cea
+2.1.0+f9659
 
 ^ Current version number above ^
 
@@ -287,3 +287,7 @@ Now uses MVC design scheme
 v2.0.1+90cea
 
 Update webadmin panel for compatbility with new changes
+
+v2.1.0+f9659
+
+Improve database support
