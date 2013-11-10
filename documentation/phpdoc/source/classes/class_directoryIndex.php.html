@@ -47,6 +47,8 @@
  */
 include_once GNAT_ROOT.'/lib/core_web.php';
 include_once GNAT_ROOT.'/classes/class_article.php';
+include_once GNAT_ROOT.'/classes/class_sqlitedb.php';
+include_once GNAT_ROOT.'/classes/class_databaseFactory.php';
 
 /**
  * Provides a database-like means of accessing an inventory
@@ -85,20 +87,29 @@ class directoryIndex{
 	 * @var $metadata - additional data to store in the index
 	 */
 	protected $metadata;
+	/**
+	 *
+	 */
+	protected $db;
 
 	/**
 	 * Constructs an instance of the class
 	 * @param $directory - the directory of which the inventory is of
 	 */
 	public function __construct( $directory, $bloguri=NULL, $type=&quot;index&quot;  ){
+
+
 		$this-&gt;bloguri = $bloguri;
 		$this-&gt;directory = $directory;
-		$this-&gt;inventoryFile = getConfigOption('dynamic_directory').'/'.str_replace('/', '_', $directory).'.'.$type.'.json';
+		$this-&gt;inventoryFile = getConfigOption('dynamic_directory').'/'.str_replace('/', '_', $directory).'.'.$type;
 
-		$jsonData = json_decode( file_get_contents($this-&gt;inventoryFile, True), True );
+		$this-&gt;db = DatabaseFactory::create( getConfigOption( 'engine_storage_db' ), $this-&gt;inventoryFile );
 
-		$this-&gt;indexData = $jsonData['inventory'];
-		$this-&gt;metadata = $jsonData['metadata'];
+		if ( file_exists($this-&gt;inventoryFile.'.extradata') )
+			$this-&gt;metadata = json_decode( file_get_contents($this-&gt;inventoryFile.'.extradata', True), True );
+		else
+			$this-&gt;metadata = array();
+
 
 	}
 
@@ -148,16 +159,14 @@ class directoryIndex{
 		if ( is_null($this-&gt;current) ){
 			$this-&gt;current = False;
 
-			if ( file_exists( $this-&gt;inventoryFile ) ){
 
-				$recorded = count( $this-&gt;indexData );
-				$existing = count( $this-&gt;getFileList() );
+			$recorded = $this-&gt;db-&gt;getRowCount( 'main' );
+			$existing = count( $this-&gt;getFileList() );
 
-				if ( $recorded == $existing ){
-					$this-&gt;current = True;
-				}
-
+			if ( $recorded == $existing ){
+				$this-&gt;current = True;
 			}
+
 
 		}
 
@@ -172,7 +181,7 @@ class directoryIndex{
 
 		foreach( $files as $item ){
 
-			if ( ! array_key_exists($item, $this-&gt;indexData) )
+			if ( ! $this-&gt;db-&gt;exists( 'nodeid', $item, 'main' ) )
 				$added[] = $item;
 
 		}
@@ -185,9 +194,9 @@ class directoryIndex{
 		$removed = array();
 		$files = $this-&gt;getFileList();
 
-		foreach( $this-&gt;indexData as $key =&gt; $value ){
-			if ( ! in_array($key, $files) )
-				$removed[] = $key;
+		foreach( $this-&gt;db-&gt;selectTable( 'main' ) as $key =&gt; $value ){
+			if ( ! in_array($value['nodeid'], $files) )
+				$removed[] = $value['nodeid'];
 		}
 		return $removed;
 	}
@@ -196,25 +205,19 @@ class directoryIndex{
 
 		if ( !$this-&gt;current() ){
 
-			$files = $this-&gt;getFileList();
-
-			$inventoryItems = $this-&gt;indexData;
-
-			$added = $this-&gt;get_added_items($inventoryItems, $files);
-			$removed = $this-&gt;get_removed_items($files, $inventoryItems);
+			$added = $this-&gt;get_added_items();
+			$removed = $this-&gt;get_removed_items();
 
 			foreach ( $removed as $input ){
-				unset( $inventoryItems[$input] );
+				$this-&gt;db-&gt;query( 'DELETE * FROM main WHERE nodeid=?', array( $input ) );
 			}
 
 			foreach ($added as $input) {
 
 					$postData = new article(&quot;$this-&gt;directory/$input&quot;, $this-&gt;bloguri );
-					$inventoryItems[&quot;$input&quot;] = $postData-&gt;$articleDataProvider();
+					$this-&gt;db-&gt;insert( 'main', $postData-&gt;$articleDataProvider() );
 			}
 
-			krsort( $inventoryItems );
-			$this-&gt;indexData = $inventoryItems;
 			$this-&gt;current = True;
 
 			$this-&gt;write();
@@ -239,20 +242,17 @@ class directoryIndex{
 			if ( ! in_array($input, $avoid) &amp;&amp; ! array_key_exists($input, $inventoryItems) ){ 
 		
 				$postData = new article(&quot;$this-&gt;directory/$input&quot;, $this-&gt;bloguri );
-				$inventoryItems[$input] = $postData-&gt;$articleDataProvider();
+				$inventoryItems[$input] = &quot;exists&quot;;
+				$this-&gt;db-&gt;insert( 'main', $postData-&gt;$articleDataProvider() );
 			}
 		}
 	
-		$this-&gt;indexData = $inventoryItems;
 		$this-&gt;metadata = $metadata;
+		$this-&gt;db-&gt;setSortColumn( 'nodeid' );
 
 		$this-&gt;current = True;
 
 		$this-&gt;write();
-	}
-
-	public function setMetadata( $metadata ){
-		$this-&gt;metadata = $metadata;
 	}
 
 	/**
@@ -260,8 +260,8 @@ class directoryIndex{
 	 * @since 06/11/2013
 	 */
 	private function write(){
-		// Create an instance of a lock
-		$lock = new lock( $this-&gt;inventoryFile );
+
+		$lock = new lock( $this-&gt;inventoryFile.'.extradata' );
 
 		// Check if locked, and if not, set the lock
 		// and rewrite the file with the new inventory.
@@ -270,18 +270,18 @@ class directoryIndex{
 
 			$lock-&gt;lock();
 
-			$inventory = fopen( $this-&gt;inventoryFile, 'w');
+			$inventory = fopen( $this-&gt;inventoryFile.'.extradata', 'w');
 
-			$dataMap = array();
-			$dataMap['inventory'] = $this-&gt;indexData;
-			$dataMap['metadata'] = $this-&gt;metadata;
-
-			fwrite( $inventory, json_encode($dataMap, True) );
-			fclose($inventory);
+			fwrite( $inventory, json_encode($this-&gt;metadata, True) );
+			fclose( $inventory );
 
 			$lock-&gt;unlock();
 
 		}
+
+		$this-&gt;db-&gt;commit();
+
+
 	}
 }
 

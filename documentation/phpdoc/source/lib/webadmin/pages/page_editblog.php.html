@@ -44,39 +44,52 @@
 
 if ( $admSession-&gt;blogid ){
 
-	$config = file_get_contents(GNAT_ROOT.'/config/section.d/'.$admSession-&gt;blogid.'.conf.xml');
-	$lines = count( explode( &quot;\n&quot;, $config) )+4;
+	$configFile = 'controller/'.$admSession-&gt;blogid.'/conf.xml';
 
-	if ( ! is_writable(GNAT_ROOT.'/config/section.d/'.$admSession-&gt;blogid.'.conf.xml') )
+
+	if ( ! is_writable($configFile) )
 		print '	&lt;div class=&quot;alert alert-warning&quot;&gt;
 		&lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;alert&quot;&gt;&amp;times;&lt;/button&gt;
 		Thenaterweb is unable to write to this configuration file. Your settings cannot 
 		be saved.
 		&lt;/div&gt;';
 
-	print '&lt;form action=&quot;'.getConfigOption('site_domain').'/webadmin/saveconf&quot; method=&quot;post&quot;&gt;
-		&lt;input type=&quot;hidden&quot; name=&quot;rcfile&quot; value=&quot;'.GNAT_ROOT.'/config/section.d/'.$session-&gt;blogid.'.conf.xml&quot;/&gt;
-		&lt;br /&gt;
-		&lt;textarea name=&quot;content&quot; rows=&quot;'.$lines.'&quot; cols=&quot;400&quot; &gt;'.$config.'&lt;/textarea&gt;
-		&lt;br /&gt;
-		&lt;input type=&quot;submit&quot; value=&quot;Save and Apply&quot; /&gt;
-		&lt;/form&gt;';
+	if ( file_exists($configFile) ){
+		$config = file_get_contents($configFile);
+		$lines = count( explode( &quot;\n&quot;, $config) )+4;
+
+
+		print '&lt;form action=&quot;'.getConfigOption('site_domain').'/webadmin/saveconf&quot; method=&quot;post&quot;&gt;
+			&lt;input type=&quot;hidden&quot; name=&quot;rcfile&quot; value=&quot;'.$configFile.'&quot;/&gt;
+			&lt;br /&gt;
+			&lt;textarea name=&quot;content&quot; rows=&quot;'.$lines.'&quot; cols=&quot;400&quot; &gt;'.$config.'&lt;/textarea&gt;
+			&lt;br /&gt;
+			&lt;input type=&quot;submit&quot; value=&quot;Save and Apply&quot; /&gt;
+			&lt;/form&gt;';
+	} else{
+
+		print '	&lt;div class=&quot;alert alert-danger&quot;&gt;
+		&lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;alert&quot;&gt;&amp;times;&lt;/button&gt;
+		Thenaterweb could not find the configuration file. The application may not be 
+		configured to allow Thenaterweb to modify it.
+		&lt;/div&gt;';
+
+	}
 
 }
 else{
 
-		$found = array();
-		$handler = opendir(GNAT_ROOT.'/config/section.d');
+		$controllers = getControllers();
+
 		print '&lt;ul&gt;';
 
-		while ($file = readdir($handler)){
+		foreach ($controllers as $blogid) {
 
-			if ( strpos( $file, '.conf.xml' ) &amp;&amp; !in_array($file, $found) ){
-				$blogid=substr($file, 0, strpos($file, &quot;.&quot;) );
-				$found[] = $file;
+
 				print '&lt;li&gt;&lt;a href=&quot;'.getConfigOption('site_domain').'/webadmin/editblog/blogid/'.$blogid.'&quot;&gt;'.$blogid.'&lt;/a&gt;&lt;/li&gt;'.&quot;\n&quot;;
-			}
 		}
+
+		echo '&lt;/ul&gt;';
 }
 
 

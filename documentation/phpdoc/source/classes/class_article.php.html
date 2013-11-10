@@ -104,6 +104,8 @@ class article extends dataMonger{
 		if ( file_exists(&quot;$nodefile.json&quot;) ){
 			$this-&gt;type = &quot;json&quot;;
 			$this-&gt;usePostFormat = True;
+			$this-&gt;container['file'] = $nodefile.'.json';
+
 			$jsoncontents = file_get_contents(&quot;$nodefile.json&quot;);
 			
 			// Directly read data into the class
@@ -128,6 +130,7 @@ class article extends dataMonger{
 			$this-&gt;container['nodeid'] = basename($nodefile, '.json');
 			
 		} else if ( file_exists( $nodefile.'.html' ) ) {
+			$this-&gt;container['file'] = $nodefile.'.html';
 			$this-&gt;usePostFormat = False;
 			$this-&gt;type = &quot;HTML&quot;;
 			$this-&gt;container['content'] = file_get_contents($nodefile.'.html');
@@ -141,7 +144,7 @@ class article extends dataMonger{
 		} else if ( file_exists( $nodefile.'.php' ) ) {
 			$this-&gt;usePostFormat = False;
 			$this-&gt;type = &quot;PHP&quot;;
-			$this-&gt;file = $nodefile.'.php';
+			$this-&gt;container['file'] = $nodefile.'.php';
                         $title = explode('/', $nodefile);
                         $title = $title[ count($title)-1 ];
                         $this-&gt;container['title'] = substr( $title, strpos( $title, '_' )+1 );
@@ -151,6 +154,8 @@ class article extends dataMonger{
 
 		} else if ( file_exists( $nodefile.'.pre' ) ){
 			$this-&gt;usePostFormat = False;
+			$this-&gt;container['file'] = $nodefile.'.pre';
+
 			$this-&gt;type = &quot;pre&quot;;
 			$this-&gt;container['content'] = '&lt;pre&gt;'.&quot;\n&quot;.htmlspecialchars( file_get_contents($nodefile.'.pre') ).&quot;\n&quot;.'&lt;/pre&gt;';
                         $title = explode('/', $nodefile);
@@ -175,6 +180,8 @@ class article extends dataMonger{
 		else{
 			if ( file_exists($nodefile) ){
 				$this-&gt;type = &quot;TXT&quot;;
+				$this-&gt;container['file'] = $nodefile.'.txt';
+
 				$file = fopen($nodefile, 'r');
 				
 				$this-&gt;container['title'] = rtrim(fgets($file), &quot;\n&quot;);
@@ -260,7 +267,7 @@ class article extends dataMonger{
 	}
 
 	public function getFile(){
-		return $this-&gt;file;
+		return $this-&gt;container['file'];
 	}
 	
 	/**
@@ -294,10 +301,12 @@ class article extends dataMonger{
 
 		$meta = array();
 		$meta['tags'] = $this-&gt;tags;
+		$meta['nodeid'] = $this-&gt;container['nodeid'];
 		$meta['title'] = $this-&gt;title;
 		$meta['link'] = $this-&gt;link;
 		$meta['datestamp'] = $this-&gt;datestamp;
 		$meta['author'] = $this-&gt;author;
+		$meta['file'] = $this-&gt;file;
 
 		return $meta;
 

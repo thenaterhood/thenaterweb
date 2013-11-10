@@ -37,16 +37,13 @@
         <pre class="brush: php">&lt;h1&gt;Create An Article&lt;/h1&gt;
 &lt;?php 
 	$found = array();
-	$handler = opendir(GNAT_ROOT.'/config/section.d');
 	print '&lt;ul&gt;';
 
-	while ($file = readdir($handler)){
+	$controllers = getControllers();
 
-		if ( strpos( $file, '.conf.xml' ) &amp;&amp; !in_array($file, $found) ){
-			$blogid=substr($file, 0, strpos($file, &quot;.&quot;) );
-			$found[] = $file;
+	foreach ($controllers as $blogid) {
+
 			print '&lt;li&gt;&lt;a href=&quot;'.getConfigOption('site_domain').'/webadmin/editpost/isnew/True/blogid/'.$blogid.'&quot;&gt;'.$blogid.'&lt;/a&gt;&lt;/li&gt;'.&quot;\n&quot;;
-		}
 	}
 
 ?&gt;</pre>

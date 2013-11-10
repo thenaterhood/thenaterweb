@@ -35,28 +35,64 @@
     </head>
     <body>
         <pre class="brush: php">&lt;?php
+/**
+ * Contains functionality for handling and 
+ * routing URLs
+ *
+ * @author Nate Levesque &lt;public@thenaterhood.com&gt;
+ *
+ */
 
+/**
+ * Include the main blog functionality
+ */
 include_once GNAT_ROOT.'/lib/core_blog.php';
 
+/**
+ * A class for managing URL related data
+ */
 class urlHandler{
 
 	private $url;
+	private $urlArray;
 	private $controller;
 	private $controllerId;
 
-
+	/**
+	 *
+	 */
 	public function __construct(){
 
 		$this-&gt;url = $_GET['url'];
+		$this-&gt;urlArray = explode( '/', $this-&gt;url );
+
 		$this-&gt;parseUrl();
 		$this-&gt;selectController();
 
 
 	}
 
+	/**
+	 * Reparses the stored url data after removing 
+	 * the first element from it
+	 */
+	public function reparseUrl(){
+
+		unset( $this-&gt;urlArray[0] );
+		$this-&gt;urlArray = array_values($this-&gt;urlArray);
+
+		$this-&gt;parseUrl();
+		$this-&gt;selectController();
+
+	}
+
+	/**
+	 * Parses a URL directly and adds the 
+	 * variables to the GET array.
+	 */
 	private function parseUrl(){
 
-		$requestUri = explode( '/', $this-&gt;url );
+		$requestUri = $this-&gt;urlArray;
 		#unset( $requestUri[0] );
 		#print_r( $requestUri );
 
@@ -101,23 +137,35 @@ class urlHandler{
 
 	}
 
+	/**
+	 * Locates the controller for the url requested 
+	 * or defaults to the error controller if it doesn't 
+	 * exist.
+	 */
 	private function selectController(){
 
-		$this-&gt;controller = &quot;controller/control_&quot;.$this-&gt;controllerId.&quot;.php&quot;;
+		$this-&gt;controller = &quot;controller/&quot;.$this-&gt;controllerId.&quot;/main.php&quot;;
 
 		if ( ! file_exists($this-&gt;controller) ){
-			$this-&gt;controller = &quot;controller/control_error.php&quot;;
-			$this-&gt;controllerId = &quot;Error404&quot;;
+			$this-&gt;controller = &quot;controller/error/main.php&quot;;
 		}
 
 
 
 	}
 
+	/**
+	 * Returns the selected controller
+	 * @return the name of the controller file
+	 */
 	public function getController(){
 		return $this-&gt;controller;
 	}
 
+	/**
+	 * Returns the controller ID 
+	 * @return the name of the controller
+	 */
 	public function getControllerId(){
 		return $this-&gt;controllerId;
 	}

@@ -84,6 +84,18 @@ class inventory extends directoryIndex{
 	 */
 	public function regen(){
 
+		$dbCols = array();
+		$dbCols['tags'] = 'Text';
+		$dbCols['nodeid'] = 'Text';
+		$dbCols['title'] = 'Text';
+		$dbCols['link'] = 'Text';
+		$dbCols['datestamp'] = 'Text';
+		$dbCols['author'] = 'Text';
+		$dbCols['file'] = 'Text';
+
+		$this-&gt;db-&gt;dropTable( 'main' );
+		$this-&gt;db-&gt;createTable( 'main', $dbCols );
+
 		$metadata = array();
 		$metadata['sitemap'] = getConfigOption('site_domain').'/?url='.$this-&gt;bloguri.'/titles';
 		$metadata['updated'] = date(DATE_ATOM);
@@ -102,23 +114,7 @@ class inventory extends directoryIndex{
 	 */
 	public function select( $field, $value ){
 
-		$matching = array();
-
-		foreach ($this-&gt;indexData as $current) {
-
-			if ( ! is_array( $current[$field] ) ){
-				$currentData = explode( ', ', $current[$field] );
-			}
-			else{
-				$currentData = $current[$field];
-			}
-
-			if ( in_array($value, $currentData) ){
-				$matching[] = $current;
-			}
-		}
-
-		return $matching;
+		return $this-&gt;db-&gt;selectSome( $field, $value, 'main' );
 
 	}
 
@@ -133,13 +129,13 @@ class inventory extends directoryIndex{
 
 		$fieldContents = array();
 
-		foreach ($this-&gt;indexData as $current ) {
+		foreach ($this-&gt;selectField( $field ) as $current ) {
 
-			if ( ! is_array( $current[$field] ) ){
-				$currentField = explode( ', ', $current[$field] );
+			if ( ! is_array( $current ) ){
+				$currentField = explode( ', ', $current );
 			}
 			else{
-				$currentField = $current[$field];
+				$currentField = $current;
 			}
 
 			foreach ($currentField as $item) {
@@ -163,39 +159,23 @@ class inventory extends directoryIndex{
 	 */
 	public function selectField( $field ){
 
-		$fieldContents = array();
+        $fieldContents = array();
+        $fieldData = $this-&gt;db-&gt;selectColumn( $field, 'main' );                         
+        foreach( $fieldData as $index =&gt; $current) {
+                if ( ! is_array( $current ) ){
+                                                                                        
+                        $currentField = explode( ', ', $current );
+                } else {                                                                
+                        $currentField = $current;
+                }
+                foreach ( $currentField as $item ) {                                    
+                        $fieldContents[] = $item;
+                }       
+        }       
+        return $fieldContents; 
 
-		foreach ($this-&gt;indexData as $current ) {
 
-			if ( ! is_array( $current[$field] ) ){
-				$currentField = explode( ', ', $current[$field] );
-			}
-			else{
-				$currentField = $current[$field];
-			}
-
-			foreach ($currentField as $item) {
-				if ( ! in_array($item, $fieldContents) )
-					$fieldContents[] = $item;
-			}
-
-		}
-
-		return $fieldContents;
-
-	}
-
-	public function createSitemap( $begin=0, $end=50000 ){
-
-		$sitemap = new urlset();
-		$iterable = array_values($this-&gt;indexData);
-		$i = 0;
-		for ( $i = $range; $i &lt; $end &amp;&amp; $i &lt; count( $this-&gt;indexData ); $i++ ) {
-			$current = $iterable[$i];
-			$sitemap-&gt;new_item( $current['link'], $current['datestamp'] );
-		}
-
-		return $sitemap;
+		#return array_unique( $this-&gt;db-&gt;query( 'SELECT '. $field . ' FROM main', array() ) );
 
 	}
 
@@ -203,7 +183,7 @@ class inventory extends directoryIndex{
 	 * Returns all the fields in the inventory
 	 */
 	public function selectAll(){
-		return $this-&gt;indexData;
+		return $this-&gt;db-&gt;selectTable( 'main' );
 	}
 	/**
 	 * A function to return the inventory file. For supporting

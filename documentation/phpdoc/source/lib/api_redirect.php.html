@@ -46,8 +46,8 @@
 /**
  * Includes the necessary facilities
  */
-include_once GNAT_ROOT.'/lib/core_web.php';
-include_once GNAT_ROOT.'/classes/class_redirect.php';
+include_once 'core_web.php';
+include_once '../classes/class_redirect.php';
 
 $session = new session( array( &quot;from&quot;, &quot;to&quot; ) );
 $redirect = new redirect( $session-&gt;from, $session-&gt;to );

@@ -65,7 +65,7 @@ if ( !$tag ){
      * Check if a tag was requested, otherwise list the available
      * tags.
      */
-    $tags = $inventory-&gt;selectField( 'tags' );
+    $tags = array_unique( $inventory-&gt;selectField( 'tags' ) );
     sort($tags);
     $letter = &quot;&quot;;
     foreach( $tags as $item ){
