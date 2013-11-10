@@ -132,7 +132,6 @@ class inventory extends directoryIndex{
                 } else {                                                                
                         $currentField = $current;
                 }
-                print_r( $currentField );
                 foreach ( $currentField as $item ) {                                    
                         $fieldContents[] = $item;
                 }       
