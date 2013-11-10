@@ -97,9 +97,23 @@ class SqliteDb implements database{
 		$sql = $this->sqldb->prepare( 'SELECT ' . $column . ' FROM ' . $table );
 		$result = $sql->execute();
 
-		return $this->resultToArray( $result );
+		return $this->valueArray( $result );
 
 	}
+
+    private function valueArray( $queryResult ){
+
+        $rows = $this->resultToArray( $queryResult );
+        $columnValues = array();
+        foreach( $rows as $row ){
+                foreach( $row as $values ){
+                        $columnValues[] = $values;
+                        print_r( $values );
+                }
+        }
+        return $columnValues;
+	}
+
 
 	/**
 	 * Selects items that have a column matching the given 

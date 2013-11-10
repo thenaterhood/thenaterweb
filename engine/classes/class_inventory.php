@@ -93,7 +93,7 @@ class inventory extends directoryIndex{
 
 		$fieldContents = array();
 
-		foreach ($this->db->query( 'SELECT '. $field .' FROM main' ) as $current ) {
+		foreach ($this->selectField( $field ) as $current ) {
 
 			if ( ! is_array( $current ) ){
 				$currentField = explode( ', ', $current );
@@ -123,7 +123,25 @@ class inventory extends directoryIndex{
 	 */
 	public function selectField( $field ){
 
-		return array_unique( $this->db->query( 'SELECT '. $field . ' FROM main', array() ) );
+        $fieldContents = array();
+        $fieldData = $this->db->selectColumn( $field, 'main' );                         
+        print_r( $fieldData );
+        foreach( $fieldData as $index => $current) {
+                if ( ! is_array( $current ) ){
+                                                                                        
+                        $currentField = explode( ', ', $current );
+                } else {                                                                
+                        $currentField = $current;
+                }
+                print_r( $currentField );
+                foreach ( $currentField as $item ) {                                    
+                        $fieldContents[] = $item;
+                }       
+        }       
+        return $fieldContents; 
+
+
+		#return array_unique( $this->db->query( 'SELECT '. $field . ' FROM main', array() ) );
 
 	}
 

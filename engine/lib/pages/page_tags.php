@@ -29,7 +29,7 @@ if ( !$tag ){
      * Check if a tag was requested, otherwise list the available
      * tags.
      */
-    $tags = $inventory->selectField( 'tags' );
+    $tags = array_unique( $inventory->selectField( 'tags' ) );
     sort($tags);
     $letter = "";
     foreach( $tags as $item ){
