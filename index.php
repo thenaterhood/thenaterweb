@@ -2,16 +2,43 @@
 #error_reporting(E_ALL);
 #ini_set( 'display_errors','1'); 
 define("GNAT_ROOT", "engine");
-$ENGINE_BUILTINS = array( 'feeds', 'sitemaps' );
 
 
-# These include the core utilities that Thenaterweb requires.
-# core_blog imports all of the various utilities in one shot.
+/**
+ * These include the core utilities that Thenaterweb requires.
+ * core_blog imports all of the various utilities in one shot.
+ */
 include_once GNAT_ROOT.'/lib/core_blog.php';
 
-# This includes the base controller that all controllers must 
-# extend in order to properly work.
+/**
+ * This includes the base controller that all controllers must 
+ * extend in order to properly work.
+ */
 include_once GNAT_ROOT.'/lib/interface_controller.php';
+
+/**
+ * Include the redirect mechanism
+ */
+include_once GNAT_ROOT.'/lib/core_redirect.php';
+
+/**
+ * Set up the main variables for Thenaterweb's 
+ * operation
+ */
+$_ENGINE_BUILTINS = array( 'feeds', 'sitemaps' );
+$CONFIG = new config();
+
+
+/**
+ * Manage redirects to "friendly" URLs if the configuration
+ * option is set.
+ */
+if ( $CONFIG->friendly_urls ){
+    $redirect = new condRedirect( '/?url', '/'.$_GET['url'], substr( $config->site_domain, 7 ).$session->uri );
+    $redirect->apply( 301 );
+    $redirect = new condRedirect( "?id=post", '/'.$blogdef->id.'/read/'.$session->node.'.htm', $session->uri );
+    $redirect->apply( 301 );
+}
 
 # Initialize the URL handler and use it to include 
 # the relevant controller from controllers.
@@ -22,7 +49,7 @@ $sectionId = $urlHandler->getControllerId();
 # Manage builtin features such as feeds and sitemaps 
 # rather than using the selected controller to perform 
 # these tasks.
-if ( in_array($sectionId, $ENGINE_BUILTINS) ){
+if ( in_array($sectionId, $_ENGINE_BUILTINS) ){
 
 	$feature = $sectionId;
 	$useBuiltin = true;

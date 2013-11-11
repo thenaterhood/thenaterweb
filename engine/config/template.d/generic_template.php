@@ -5,7 +5,9 @@ include_once GNAT_ROOT.'/lib/core_blog.php';
 include_once GNAT_ROOT.'/lib/core_redirect.php';
 
 $session = new session( array('name', 'track', 'konami', 'id', 'tag', 'type', 'node', 'start', 'end') );
-$config = new config();
+# compatibility
+$config = $CONFIG;
+
 $registerExtensions = array( );
 $extensions = loadExtensions( $session, $registerExtensions );
 
@@ -21,16 +23,6 @@ $visibleTitle = $blogdef->title;
 $id = $content->title;
 $tagline = $blogdef->catchline;
 $type = '404';
-
-if ( $config->friendly_urls ){
-        $redirect = new condRedirect( '/?url', '/'.$_GET['url'], substr( $config->site_domain, 7 ).$session->uri );
-        $redirect->apply( 301 );
-        $redirect = new condRedirect( "?id=post", '/'.$blogdef->id.'/read/'.$session->node.'.htm', $session->uri );
-        $redirect->apply( 301 );
-        $redirect = new condRedirect( '/?id', "page/".$session->id, substr( $config->site_domain, 7 ).$session->uri );
-        $redirect->apply( 301 );
-}
-
 
 // Checks for cookies and sets them (or refreshes them) if necessary
 
