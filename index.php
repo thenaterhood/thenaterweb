@@ -27,6 +27,7 @@ include_once GNAT_ROOT.'/lib/core_redirect.php';
  */
 $_ENGINE_BUILTINS = array( 'feeds', 'sitemaps' );
 $CONFIG = new config();
+$NWSESSION = new session( array() );
 
 
 /**
@@ -34,9 +35,9 @@ $CONFIG = new config();
  * option is set.
  */
 if ( $CONFIG->friendly_urls ){
-    $redirect = new condRedirect( '/?url', '/'.$_GET['url'], substr( $config->site_domain, 7 ).$session->uri );
+    $redirect = new condRedirect( '/?url', '/'.$_GET['url'], substr( $CONFIG->site_domain, 7 ).$NWSESSION->uri );
     $redirect->apply( 301 );
-    $redirect = new condRedirect( "?id=post", '/'.$blogdef->id.'/read/'.$session->node.'.htm', $session->uri );
+    $redirect = new condRedirect( "?id=post", '/'.$blogdef->id.'/read/'.$NWSESSION->node.'.htm', $NWSESSION->uri );
     $redirect->apply( 301 );
 }
 
