@@ -37,8 +37,6 @@ $NWSESSION = new session( array() );
 if ( $CONFIG->friendly_urls ){
     $redirect = new condRedirect( '/?url', '/'.$_GET['url'], substr( $CONFIG->site_domain, 7 ).$NWSESSION->uri );
     $redirect->apply( 301 );
-    $redirect = new condRedirect( "?id=post", '/'.$blogdef->id.'/read/'.$NWSESSION->node.'.htm', $NWSESSION->uri );
-    $redirect->apply( 301 );
 }
 
 # Initialize the URL handler and use it to include 
