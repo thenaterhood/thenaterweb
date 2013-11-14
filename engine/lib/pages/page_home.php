@@ -1,10 +1,5 @@
 <div id="blogHomeContent">
 <?php
-	if ( $session->id != 'home' ){
-		include chooseInclude( $session->id, $config->webcore_root.'/template_error.php' );
-		echo '<hr /><p><a href="index.php">Back to Blog home</a></p>';
-	}
-	else{ 
 		if ( $session->start == 42 ){
 			print "<p style='font-size:2em;'>42! It's the meaning of life, the universe, and everything!</p><br />\n";
 		}
