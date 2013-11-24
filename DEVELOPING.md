@@ -16,7 +16,12 @@ called main.php which contains a controller class extending
 controllerBase. Configuration files should be kept in the same 
 directory. Thenaterweb's main index file includes the majority 
 of Thenaterweb's software as well as controllerBase, so your 
-main.php file does not need to do any of this.
+main.php file does not need to do any of this. The constructor 
+of your application's main class should set up some data and 
+otherwise initialize the class. If your application has a config 
+file, it should be set here and the reader for it should load it. 
+A configuration file is not required, but allows for management 
+of your application's settings via the webadmin panel.
 
 All in all, the structure of an application should look like:
 
@@ -29,8 +34,8 @@ All in all, the structure of an application should look like:
           |
           + YourApp
              |
-             + main.php (with class controller extending controllerBase)
-             + conf.xml
+             + main.php (with class YourApp extending controllerBase)
+             + conf.xml (named as you wish, if you use a config file)
              + other files
 
 In this case, the URL to access the main (front) page would be:
@@ -63,7 +68,7 @@ Template loading example:
 		|
 		+ search controllers for YourApp
 		+ include YourApp/main.php
-		+ initialize YourApp/main.php controller() class
+		+ initialize YourApp/main.php YourApp() class
 		+ include $controller->template 
 
 Naming the application's configuration file conf.xml (or simply not 
