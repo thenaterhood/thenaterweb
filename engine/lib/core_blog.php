@@ -131,8 +131,8 @@ function arrayToObject($d) {
 function loadBlogConf( $id ){
 
 
-	include_once 'controller/'.$admSession->blogid.'/main.php';
-	$blogController = new $admSession->blogid();
+	include_once 'controller/'.$id.'/main.php';
+	$blogController = new $id();
 	$confFile = $blogController->configFile;
 
     $conf = array();
