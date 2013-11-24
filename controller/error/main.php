@@ -8,7 +8,7 @@ class error extends controllerBase{
 	public function __construct(){
 
 		
-		$configFile = CONTROLLER_ROOT.'/error.conf.xml';
+		$configFile = ERROR_ROOT.'/error.conf.xml';
 		$this->readConfig( $configFile );
 
 		$errorSession = new session( array( 'type' ) );

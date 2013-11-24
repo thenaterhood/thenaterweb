@@ -132,6 +132,7 @@ function loadBlogConf( $id ){
 
 
 	include_once 'controller/'.$id.'/main.php';
+	define( strtoupper($id).'_ROOT', 'controller/'.$id );
 	$blogController = new $id();
 	$confFile = $blogController->configFile;
 

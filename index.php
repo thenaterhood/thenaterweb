@@ -59,7 +59,7 @@ if ( in_array($controller, $_ENGINE_BUILTINS) ){
 }
 
 
-define("CONTROLLER_ROOT", "controller/".$controller );
+define(strtoupper($controller).'_ROOT', "controller/".$controller );
 
 include $urlHandler->getController();
 

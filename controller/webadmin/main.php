@@ -10,7 +10,7 @@ class webadmin extends controllerBase{
 
 	public function __construct(){
 
-		$configFile = CONTROLLER_ROOT.'/webadmin.conf.xml';
+		$configFile = WEBADMIN_ROOT.'/webadmin.conf.xml';
 		$this->readConfig( $configFile );
 
 

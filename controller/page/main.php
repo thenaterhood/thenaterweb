@@ -7,7 +7,7 @@ class page extends controllerBase{
 
 	public function __construct(){
 
-		$configFile = CONTROLLER_ROOT.'/mainsite.conf.xml';
+		$configFile = PAGE_ROOT.'/mainsite.conf.xml';
 		$this->readConfig( $configFile );
 
 
