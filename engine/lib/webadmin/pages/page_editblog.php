@@ -9,7 +9,7 @@
 if ( $admSession->blogid ){
 
 	include_once 'controller/'.$admSession->blogid.'/main.php';
-	$blogController = new $admSession->blogid()
+	$blogController = new $admSession->blogid();
 	$configFile = $blogController->configFile;
 
 

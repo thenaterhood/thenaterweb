@@ -132,7 +132,7 @@ function loadBlogConf( $id ){
 
 
 	include_once 'controller/'.$admSession->blogid.'/main.php';
-	$blogController = new $admSession->blogid()
+	$blogController = new $admSession->blogid();
 	$confFile = $blogController->configFile;
 
     $conf = array();
