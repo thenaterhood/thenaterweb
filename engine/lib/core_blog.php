@@ -131,7 +131,10 @@ function arrayToObject($d) {
 function loadBlogConf( $id ){
 
 
-    $confFile = 'controller/'.$id.'/conf.xml';
+	include_once 'controller/'.$admSession->blogid.'/main.php';
+	$blogController = new $admSession->blogid()
+	$confFile = $blogController->configFile;
+
     $conf = array();
     $conf['title'] = "Error";
     $conf['catchline'] = "";

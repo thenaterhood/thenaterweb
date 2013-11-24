@@ -8,7 +8,9 @@
 
 if ( $admSession->blogid ){
 
-	$configFile = 'controller/'.$admSession->blogid.'/conf.xml';
+	include_once 'controller/'.$admSession->blogid.'/main.php';
+	$blogController = new $admSession->blogid()
+	$configFile = $blogController->configFile;
 
 
 	if ( ! is_writable($configFile) )
