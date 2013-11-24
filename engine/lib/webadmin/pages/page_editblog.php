@@ -9,7 +9,7 @@
 if ( $admSession->blogid ){
 
 	include_once 'controller/'.$admSession->blogid.'/main.php';
-	define( strtoupper($admSession->blogid).'_ROOT', 'controller/'.$id );
+	define( strtoupper($admSession->blogid).'_ROOT', 'controller/'.$admSession->blogid );
 
 	$blogController = new $admSession->blogid();
 	$configFile = $blogController->configFile;
