@@ -186,7 +186,7 @@ setcookie('track',$session->track,time() + (86400 * 30),"/",$session->domain); /
 
     <div id="footer">
       <div class="container">
-        <p class="muted credit">Template based on <a href="http://getbootstrap.com">Bootstrap</a>. Copyright 2012-2013 Nate Levesque (TheNaterhood). <a href="/sitemap.php">View sitemap</a>.</p>
+        <p class="muted credit">Template based on <a href="http://getbootstrap.com">Bootstrap</a>. Copyright 2012-2013 Nate Levesque (TheNaterhood). <a href="/sitemaps/page">View sitemap</a>.</p>
       </div>
     </div>
 
