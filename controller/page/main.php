@@ -1,6 +1,6 @@
 <?php
 
-class controller extends controllerBase{
+class page extends controllerBase{
 
 	private $id;
 	private $configFile;

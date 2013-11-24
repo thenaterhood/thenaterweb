@@ -43,29 +43,29 @@ if ( $CONFIG->friendly_urls ){
 # the relevant controller from controllers.
 $useBuiltin = false;
 $urlHandler = new urlHandler();
-$sectionId = $urlHandler->getControllerId();
+$controller = $urlHandler->getControllerId();
 
 # Manage builtin features such as feeds and sitemaps 
 # rather than using the selected controller to perform 
 # these tasks.
-if ( in_array($sectionId, $_ENGINE_BUILTINS) ){
+if ( in_array($controller, $_ENGINE_BUILTINS) ){
 
-	$feature = $sectionId;
+	$feature = $controller;
 	$useBuiltin = true;
 	$urlHandler->reparseUrl();
-	$sectionId = $urlHandler->getControllerId();
+	$controller = $urlHandler->getControllerId();
 
 
 }
 
 
-define("CONTROLLER_ROOT", "controller/".$sectionId );
+define("CONTROLLER_ROOT", "controller/".$controller );
 
 include $urlHandler->getController();
 
 
 # Initialize the controller
-$blogdef = new controller();
+$blogdef = new $controller();
 
 # Display what the controller has defined as an output
 # file. This may be a PHP script or a flat file. If the 

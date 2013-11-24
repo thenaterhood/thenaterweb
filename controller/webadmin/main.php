@@ -3,7 +3,7 @@ include GNAT_ROOT.'/lib/core_auth.php';
 
 $admSession = new session( array( 'blogid', 'postid', 'isnew' ) );
 
-class controller extends controllerBase{
+class webadmin extends controllerBase{
 
 	private $id;
 	private $configFile;
