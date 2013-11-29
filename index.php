@@ -1,7 +1,13 @@
 <?php
-#error_reporting(E_ALL);
-#ini_set( 'display_errors','1'); 
+
 define("GNAT_ROOT", "engine");
+define("DEBUG", False);
+
+if ( DEBUG ){
+	error_reporting(E_ALL);
+	ini_set( 'display_errors','1'); 
+
+}
 
 
 /**
@@ -79,6 +85,7 @@ if ( $useBuiltin ){
 
 } else{
 
+	$pageData = $blogdef->pageData;
 	include $blogdef->template;
 
 }

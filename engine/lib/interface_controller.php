@@ -6,6 +6,15 @@ abstract class controllerBase{
 
 	protected $settings;
 	protected $configuration;
+	protected $pageData;
+
+	public function __construct(){
+
+		$this->pageData = array();
+
+
+
+	}
 
 	/**
 	 * Returns a map containing all of the controller 
