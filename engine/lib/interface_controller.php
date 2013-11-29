@@ -103,6 +103,10 @@ abstract class controllerBase{
 		return $this->settings[$field];
 	}
 
+	public function getPageData(){
+		return $this->pageData;
+	}
+
 }
 
 ?>

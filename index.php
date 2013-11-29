@@ -85,7 +85,7 @@ if ( $useBuiltin ){
 
 } else{
 
-	$pageData = $blogdef->pageData;
+	$pageData = $blogdef->getPageData();
 	include $blogdef->template;
 
 }
