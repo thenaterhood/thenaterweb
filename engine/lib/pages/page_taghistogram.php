@@ -11,7 +11,7 @@
  */
 include_once GNAT_ROOT.'/lib/core_histogram.php';
 
-$tag = $session->tag;
+$tag = $pageData['session']->tag;
 $inventory = new inventory( $blogdef->post_directory );
 
 

@@ -10,7 +10,7 @@
  * 	that already has established config and session instances.
  */
 
-$tag = $session->tag;
+$tag = $pageData['session']->tag;
 $inventory = new inventory( $blogdef->post_directory );
 
 

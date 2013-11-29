@@ -1,11 +1,11 @@
 <?php 
 	
-	if ( $session->node == "" ){
+	if ( $pageData['session']->node == "" ){
 		$displaypost = new article( "", $blogdef->id );
 
 	}
 	else{
-		$displaypost = new article( $blogdef->post_directory.'/'.$session->node, $blogdef->id );
+		$displaypost = new article( $blogdef->post_directory.'/'.$pageData['session']->node, $blogdef->id );
 	}
 		
 	print $displaypost->output( 'html' );
