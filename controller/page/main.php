@@ -18,7 +18,8 @@ class page extends controllerBase{
 
 		$this->pageData['session'] = $session;
 		$this->pageData['static'] = $this->page_directory;
-		$this->pageData['content'] = pullContent( array( $this->page_directory.'/page_'.$session->id, $this->page_directory.'/hidden_'.$session->id, GNAT_ROOT.'/lib/pages/page_'.$session->id ) );
+		$content = pullContent( array( $this->page_directory.'/page_'.$session->id, $this->page_directory.'/hidden_'.$session->id, GNAT_ROOT.'/lib/pages/page_'.$session->id ) );
+		$this->pageData['content'] = $content;
 		$this->pageData['id'] = $content->title;
 		$this->pageData['title'] = $this->title;
 		$this->pageData['tagline'] = $this->catchline;
