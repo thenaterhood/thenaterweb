@@ -20,7 +20,7 @@ class webadmin extends controllerBase{
 
 		$this->pageData['session'] = $session;
 		$this->pageData['static'] = $this->page_directory;
-		$this->pageData['content'] = pullContent( array( $static.'/page_'.$session->id, $static.'/hidden_'.$session->id, GNAT_ROOT.'/lib/pages/page_'.$session->id ) );
+		$this->pageData['content'] = pullContent( array( $this->page_directory.'/page_'.$session->id, $this->page_directory.'/hidden_'.$session->id, GNAT_ROOT.'/lib/pages/page_'.$session->id ) );
 		$this->pageData['id'] = $content->title;
 		$this->pageData['title'] = $this->title;
 		$this->pageData['tagline'] = $this->catchline;
