@@ -12,7 +12,7 @@ class error extends controllerBase{
 		$configFile = ERROR_ROOT.'/error.conf.xml';
 		$this->readConfig( $configFile );
 
-		$session = new session( array('name', 'track', 'konami', 'id', 'tag', 'type', 'node', 'start', 'end') );
+		$session = new session( array('name', 'track', 'konami', 'id') );
 
 
 		$this->pageData['session'] = $session;

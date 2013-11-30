@@ -13,7 +13,7 @@ class page extends controllerBase{
 		$configFile = PAGE_ROOT.'/mainsite.conf.xml';
 		$this->readConfig( $configFile );
 
-		$session = new session( array('name', 'track', 'konami', 'id', 'tag', 'type', 'node', 'start', 'end') );
+		$session = new session( array('name', 'track', 'konami', 'id') );
 
 
 		$this->pageData['session'] = $session;
