@@ -9,15 +9,15 @@
 
 	<!-- Configure the id of the blog (this is where the
 	 blog is on the web, i.e example.com/yourblog) -->
-	<id>home</id>
+	<id>error</id>
 
 	<!-- Configure the title of the blog -->
-	<title>Nate Levesque</title>
+	<title>Error</title>
 
-	<short_title>Nate</short_title>
+	<short_title>Error</short_title>
 
 	<!-- Configure the blog's (brief) description/catchline -->
-	<catchline>Colloquially, TheNaterhood.</catchline>
+	<catchline></catchline>
 
 	<!-- Insert any comment code (such as disqus) here -->
 	<comment_code></comment_code>
