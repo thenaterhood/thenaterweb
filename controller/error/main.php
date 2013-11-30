@@ -25,9 +25,9 @@ class error extends controllerBase{
 		$this->pageData['appid'] = $this->id;
 
 
-		$errorSession = new session( array( 'type' ) );
+		$errorSession = new session( array( 'id' ) );
 		$type = "err404";
-		if ( $errorSession->type != '' )
+		if ( $errorSession->id != '' )
 			$type = "err".$errorSession->type;
 		
 		$this->$type();
@@ -36,13 +36,11 @@ class error extends controllerBase{
 	}
 
 	private function err404(){
-		$_GET['id'] = '404';
 		header('HTTP/1.0 404 Not Found');
 		
 	}
 
 	private function err403(){
-		$_GET['id'] = '403';
 		header('HTTP/1.0 403 Forbidden');
 
 	}

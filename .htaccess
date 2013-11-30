@@ -18,8 +18,8 @@ RewriteRule ^(.*)$ /index.php?url=$1/ [L,QSA]
 
 
 # Custom error pages
-ErrorDocument 404 /index.php?id=error&type=404
-ErrorDocument 403 /index.php?id=error&type=403
+ErrorDocument 404 /index.php?url=error/404
+ErrorDocument 403 /index.php?url=error/403
 
 # Compression
 # compress text, html, javascript, css, xml:
