@@ -21,6 +21,7 @@ include GNAT_ROOT.'/classes/class_lock.php';
 include GNAT_ROOT.'/lib/core_extension.php';
 include GNAT_ROOT.'/classes/class_article.php';
 include GNAT_ROOT.'/classes/class_urlHandler.php';
+include GNAT_ROOT.'/lib/core_database.php';
 
 /**
 * Checks to see if the preferred file exists, and if it does
@@ -31,7 +32,7 @@ include GNAT_ROOT.'/classes/class_urlHandler.php';
 * 
 * 
 */
-function pullContent($preferred, $sectionUri='/', $articleUri='/' ){
+function pullContent( $preferred, $sectionUri='/', $articleUri='/' ){
 
 	if ( ! is_array($preferred ) ){
 		$to = array();

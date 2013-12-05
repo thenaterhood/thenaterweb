@@ -38,7 +38,7 @@ class article extends dataMonger{
 	 * 
 	 * @param nodefile (string) - a yyyy.mm.dd string of a nodefile
 	 */
-	public function __construct( $nodefile, $bloguri, $articleUri="" ){
+	public function __construct( $nodefile, $bloguri, $articleUri="", $from_db=$CONFIG->use_db ){
 
 		/* Handles the case where the post file does not exist
 		 * at all by pre-setting all the fields to a failure state.
@@ -53,6 +53,7 @@ class article extends dataMonger{
 		$this->blogurl = $bloguri;
 		$this->container['title'] = "Holy 404, Batman!";
 		$this->container['nodeid'] = $nodefile;
+		$this->container['blog_tab'] = str_replace('/', '_', $bloguri);
 		$this->container['date'] = "";
 		$this->container['tags'] = "";
 		$this->container['datestamp'] = "";
@@ -64,6 +65,40 @@ class article extends dataMonger{
 		Sorry, seems that you must have taken a wrong turn - the page you tried to visit could not be found!  
 		If you think it should be here, try browing by post title, or looking at the sitemap.  
 		Otherwise, <a href="/">Return home.</a></p>'."\n";
+
+		# Handle retrieving from a database, if the option is set
+		# then fall back on searching for the file if the 
+		# item could not be found.
+
+		if ( $from_db ){
+
+			$this->retrieveFromDb( $nodefile );
+
+		} else {
+
+			$this->retrieveFromFile( $nodefile );
+
+		}
+
+
+
+	}
+
+	private function retrieveFromDb( $nodefile ){
+
+		Database::initialize();
+		
+		$nodeData = Database::select( $this->container['blog_tab'], 'title,date,tags,datestamp,content,type',
+			 array( 'where' => array( 'id' => $nodefile ), 'singleRow' => 'true' ) );
+
+
+		foreach ($nodeData as $key => $value) {
+			$this->container[ $key ] = $value;
+		}
+
+	}
+
+	private function retrieveFromFile( $nodefile ){
 
 		if ( file_exists("$nodefile.json") ){
 			$this->type = "json";
