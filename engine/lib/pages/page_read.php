@@ -1,6 +1,6 @@
 <?php 
 	
-	$displaypost = pullContent( $blogdef->post_directory.'/'.$pageData['session']->node, $blogdef->id );
+	$displaypost = pullPost( $blogdef->post_directory.'/'.$pageData['session']->node, $blogdef->id );
 		
 	print $displaypost->output( 'html' );
 

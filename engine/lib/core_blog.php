@@ -29,6 +29,31 @@ function RandomLine($filename) {
 	return $lines[array_rand($lines)] ;
 }
 
+function pullPost( $nodePath ){
+
+	if ( ! is_array($preferred ) ){
+		$to = array();
+		$to[] = $preferred;
+		$preferred = $to;
+	}
+
+	$i = 0;
+	$article = new article( "", $sectionUri, $articleUri );
+
+	while ( $i < count($preferred) && $article->getType() == "none" ){
+
+
+		$article = new article( $preferred[$i], $sectionUri, $articleUri );
+
+		$i++;
+
+	}
+
+	return $article;
+
+
+}
+
 /**
 * Generates and displays a list of additional 'suggested' blog
 * posts.  Right now picks them randomly, but in the future might
