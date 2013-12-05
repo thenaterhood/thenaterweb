@@ -29,7 +29,7 @@ function RandomLine($filename) {
 	return $lines[array_rand($lines)] ;
 }
 
-function pullPost( $preferred ){
+function pullPost( $preferred, $sectionUri='/' ){
 
 	if ( ! is_array($preferred ) ){
 		$to = array();
@@ -43,7 +43,7 @@ function pullPost( $preferred ){
 	while ( $i < count($preferred) && $article->getType() == "none" ){
 
 
-		$article = new article( $preferred[$i], $sectionUri, $articleUri );
+		$article = new article( $preferred[$i], $sectionUri );
 
 		$i++;
 
