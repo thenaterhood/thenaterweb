@@ -71,7 +71,7 @@ class article extends dataMonger{
 		# item could not be found.
 
 		if ( $from_db == 'auto '){
-			$from_db = getConfigOption( 'use_db' ) );
+			$from_db = getConfigOption( 'use_db' );
 		}
 
 		if ( $from_db ){
