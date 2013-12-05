@@ -76,11 +76,11 @@ class article extends dataMonger{
 
 		if ( $from_db ){
 
-			$this->retrieveFromDb( $nodefile );
+			$this->retrieveFromDb( $nodefile, $bloguri, $articleUri );
 
 		} else {
 
-			$this->retrieveFromFile( $nodefile );
+			$this->retrieveFromFile( $nodefile, $bloguri, $articleUri );
 
 		}
 
@@ -88,7 +88,7 @@ class article extends dataMonger{
 
 	}
 
-	private function retrieveFromDb( $nodefile ){
+	private function retrieveFromDb( $nodefile, $bloguri, $articleUri ){
 
 		Database::initialize();
 		
@@ -101,12 +101,12 @@ class article extends dataMonger{
 			}
 		} else {
 			# Attempt to retrieve from file as a fallback
-			$this->retrieveFromFile( $nodefile );
+			$this->retrieveFromFile( $nodefile, $bloguri, $articleUri );
 		}
 
 	}
 
-	private function retrieveFromFile( $nodefile ){
+	private function retrieveFromFile( $nodefile, $bloguri, $articleUri ){
 
 		if ( file_exists("$nodefile.json") ){
 			$this->type = "json";
