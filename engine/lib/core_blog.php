@@ -29,7 +29,7 @@ function RandomLine($filename) {
 	return $lines[array_rand($lines)] ;
 }
 
-function pullPost( $nodePath ){
+function pullPost( $preferred ){
 
 	if ( ! is_array($preferred ) ){
 		$to = array();
