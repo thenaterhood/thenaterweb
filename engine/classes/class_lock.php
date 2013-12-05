@@ -6,7 +6,7 @@
 /**
  * Include the config class so we can retrieve the dynamic directory
  */
-include_once GNAT_ROOT.'/config/class_config.php';
+include_once 'settings.php';
 
 
 /**

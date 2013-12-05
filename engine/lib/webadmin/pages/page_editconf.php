@@ -4,13 +4,13 @@
 
 <?php
 
-$config = file_get_contents(GNAT_ROOT.'/config/class_config.php');
+$config = file_get_contents('settings.php');
 $lines = count( explode( "\n", $config) )+4;
 
 // Generate the input area, with the right height
 print '<textarea name="content" rows="'.$lines.'" cols="100" >'.$config.'</textarea>';
 ?>
-<input type="hidden" name="rcfile" value="<?php print GNAT_ROOT; ?>/config/class_config.php"/>
+<input type="hidden" name="rcfile" value="settings.php"/>
 <br />
 <input type="submit" value="Save and Apply" />
 </form>

@@ -29,9 +29,16 @@ class config{
 	public function __construct(){
 		# Sets up the empty array
 		$this->container = array();
-		
-		# Sets the root directory for the main site pages and template
-		$this->container['webcore_root'] =  '/var/www/static';
+
+		# Configure the storage backend for the engine. Supported 
+		# databases are anything supported by the PDO drivers.
+		# Best supported by thenaterweb: sqlite, mysql, pgsql. 
+		$this->container['engine_storage_db'] = 'sqlite';
+		$this->container['db_user'] = '';
+		$this->container['db_password'] = '';
+		$this->container['db_host'] = 'localhost';
+		$this->container['db_name'] = 'site-data/naterweb_database.db';
+		$this->container['db_error_level'] = 1;
 		
 		# Sets the directory for storing dynamically created files
 		$this->container['dynamic_directory'] =  'engine/var/dynamic';
@@ -42,17 +49,6 @@ class config{
 		# Whether or not other dynamic files (such as sitemap) should
 		# regenerate automatically
 		$this->container['auto_file_regen'] = False;
-
-		# What type of database for the engine to use for its storage.
-		# The database must exist already (except with jsondb and sqlite)
-		# Thenaterweb will create the necessary tables for storing data 
-		# and will manage them. 
-		# Valid options are 'sqlite' and 'jsondb'. Use jsondb if you 
-		# do not have have access to a 'real' database. Jsondb is a 
-		# homebrew, rudimentary database solution build with Thenaterweb 
-		# in PHP using Json files. It is NOT intended for a large 
-		# amount of data.
-		$this->container['engine_storage_db'] = 'sqlite';
 		
 		# Whether to save the dynamic files when they are generated.
 		# If this is turned off and no dynamic files have been 
@@ -60,9 +56,6 @@ class config{
 		# for automatically regenerating files the software will
 		# dynamically create the file requested.
 		$this->container['save_dynamics'] = True;
-		
-		# The directory that blog posts are stored in
-		$this->container['post_directory'] = '/var/www/blog/entries';
 		
 		# The default name for visitors who haven't introduced themselves
 		$this->container['default_visitor_name'] = 'Guest';

@@ -14,7 +14,7 @@
 /**
  * Include the config file
  */
-include GNAT_ROOT.'/config/class_config.php';
+include 'settings.php';
 include GNAT_ROOT.'/classes/class_varGetter.php';
 include GNAT_ROOT.'/classes/class_session.php';
 include GNAT_ROOT.'/classes/class_lock.php';
