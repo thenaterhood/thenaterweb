@@ -38,7 +38,7 @@ class article extends dataMonger{
 	 * 
 	 * @param nodefile (string) - a yyyy.mm.dd string of a nodefile
 	 */
-	public function __construct( $nodefile, $bloguri, $articleUri="", $from_db=$CONFIG->use_db ){
+	public function __construct( $nodefile, $bloguri, $articleUri="", $from_db='auto' ){
 
 		/* Handles the case where the post file does not exist
 		 * at all by pre-setting all the fields to a failure state.
@@ -70,6 +70,10 @@ class article extends dataMonger{
 		# then fall back on searching for the file if the 
 		# item could not be found.
 
+		if ( $from_db == 'auto '){
+			$from_db = $CONFIG->use_db;
+		}
+		
 		if ( $from_db ){
 
 			$this->retrieveFromDb( $nodefile );
