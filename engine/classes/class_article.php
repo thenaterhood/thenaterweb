@@ -175,7 +175,7 @@ class article extends dataMonger{
 		return $this->$type();
 	}
 
-	public function get( $field ){
+	public function __get( $field ){
 
 		if ( array_key_exists($field, $this->container) ){
 			return $this->container[$field];
