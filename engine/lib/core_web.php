@@ -41,7 +41,7 @@ function pullContent( $preferred, $sectionUri='/', $articleUri='/' ){
 	}
 
 	$i = 0;
-	$article = new article( "", $sectionUri, $articleUri );
+	$article = new article( "", $sectionUri, $articleUri, False );
 
 	while ( $i < count($preferred) && $article->getType() == "none" ){
 
@@ -54,7 +54,7 @@ function pullContent( $preferred, $sectionUri='/', $articleUri='/' ){
 			$file = substr( $preferred[$i], 0, strpos( $preferred[$i], '.')-1);
 		}
 
-		$article = new article( $file, $sectionUri, $articleUri );
+		$article = new article( $file, $sectionUri, $articleUri, False );
 
 		$i++;
 
