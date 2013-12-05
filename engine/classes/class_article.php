@@ -71,9 +71,9 @@ class article extends dataMonger{
 		# item could not be found.
 
 		if ( $from_db == 'auto '){
-			$from_db = $CONFIG->use_db;
+			$from_db = getConfigOption( 'use_db' ) );
 		}
-		
+
 		if ( $from_db ){
 
 			$this->retrieveFromDb( $nodefile );

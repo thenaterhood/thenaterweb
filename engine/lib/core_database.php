@@ -4,12 +4,12 @@
  * and miscellaneous functions into a single includable
  * file.
  */
-DEFINE ('DB_TYPE', $CONFIG->engine_storage_db);
-DEFINE ('DB_USER', $CONFIG->db_user);
-DEFINE ('DB_PASSWORD', $CONFIG->db_password);
-DEFINE ('DB_HOST', $CONFIG->db_host);
-DEFINE ('DB_NAME', $CONFIG->db_name);
-DEFINE ('ERROR_LEVEL', $CONFIG->db_error_level);
+DEFINE ('DB_TYPE', getConfigOption( 'engine_storage_db' ) );
+DEFINE ('DB_USER', getConfigOption( 'db_user' ) );
+DEFINE ('DB_PASSWORD', getConfigOption( 'db_password' ) );
+DEFINE ('DB_HOST', getConfigOption( 'db_host' ) );
+DEFINE ('DB_NAME', getConfigOption( 'db_name' ) );
+DEFINE ('ERROR_LEVEL', getConfigOption( 'db_error_level' ) );
 
 include_once GNAT_ROOT.'/lib/extern/php-database/Database.php';
 include_once GNAT_ROOT.'/lib/extern/php-database/ErrorStack.php';
