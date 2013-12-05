@@ -17,7 +17,7 @@
 		echo '</ul>';
 		echo '<p><a href="/'.$blogdef->id.'">Back to Blog Home</a></p>';
 	}
-	if ( $displaypost->datestamp and $session->node != 'latest'){
+	if ( $displaypost->datestamp and $pageData['session']->node != 'latest'){
 		echo $blogdef->commentCode;
 	
 	}
