@@ -33,6 +33,12 @@ include GNAT_ROOT.'/classes/class_urlHandler.php';
 */
 function pullContent($preferred, $sectionUri='/', $articleUri='/' ){
 
+	if ( ! is_array($preferred ) ){
+		$to = array();
+		$to[] = $preferred;
+		$preferred = $to;
+	}
+
 	$i = 0;
 	$article = new article( "", $sectionUri, $articleUri );
 
