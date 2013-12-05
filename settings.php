@@ -30,6 +30,7 @@ class config{
 		# Sets up the empty array
 		$this->container = array();
 
+		
 		# Configure the storage backend for the engine. Supported 
 		# databases are anything supported by the PDO drivers.
 		# Best supported by thenaterweb: sqlite, mysql, pgsql. 
@@ -38,6 +39,9 @@ class config{
 		$this->container['db_password'] = '';
 		$this->container['db_host'] = 'localhost';
 		$this->container['db_name'] = 'site-data/naterweb_database.db';
+
+		# The database error level, 1 or 0.
+		# Set at 0 for development and 1 for production.
 		$this->container['db_error_level'] = 1;
 		
 		# Sets the directory for storing dynamically created files
