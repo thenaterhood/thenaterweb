@@ -95,9 +95,10 @@ class article extends dataMonger{
 		$nodeData = Database::select( $this->container['blog_tab'], 'title,date,tags,datestamp,content,type',
 			 array( 'where' => array( 'id' => $nodefile ), 'singleRow' => 'true' ) );
 
-
-		foreach ($nodeData as $key => $value) {
-			$this->container[ $key ] = $value;
+		if ( $nodeData ){
+			foreach ($nodeData as $key => $value) {
+				$this->container[ $key ] = $value;
+			}
 		}
 
 	}
