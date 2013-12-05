@@ -38,7 +38,7 @@ function pullPost( $preferred, $sectionUri='/' ){
 	}
 
 	$i = 0;
-	$article = new article( "", $sectionUri, $articleUri );
+	$article = new article( "", $sectionUri, "" );
 
 	while ( $i < count($preferred) && $article->getType() == "none" ){
 
