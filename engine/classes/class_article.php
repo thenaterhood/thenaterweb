@@ -99,6 +99,9 @@ class article extends dataMonger{
 			foreach ($nodeData as $key => $value) {
 				$this->container[ $key ] = $value;
 			}
+		} else {
+			# Attempt to retrieve from file as a fallback
+			$this->retrieveFromFile( $nodefile );
 		}
 
 	}
