@@ -2,7 +2,7 @@
 
 include_once GNAT_ROOT.'/classes/interface_database.php';
 
-class SqliteDb implements database{
+class SqliteDb implements database_legacy{
 
 	private $dbFile;
 	private $sqldb;

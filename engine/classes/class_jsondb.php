@@ -66,7 +66,7 @@ class Query{
  * than a very simple cache and does not support huge amounts 
  * of data or threading.
  */
-class JsonDb implements database{
+class JsonDb implements database_legacy{
 
 
 	/**

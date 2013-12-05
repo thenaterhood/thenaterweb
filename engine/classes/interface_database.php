@@ -1,6 +1,6 @@
 <?php
 
-interface database{
+interface database_legacy{
 
 	/**
 	 * Allows a preconstructed query string to 
