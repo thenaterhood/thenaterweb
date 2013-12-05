@@ -30,6 +30,13 @@ class config{
 		# Sets up the empty array
 		$this->container = array();
 
+		# Configure whether or not thenaterweb should 
+		# use a database. This takes precedence over the 
+		# settings below, so a value of False will ignore the 
+		# below database settings and will not use a database
+		# even if one is configured.
+		$this->container['use_db'] = True;
+
 		
 		# Configure the storage backend for the engine. Supported 
 		# databases are anything supported by the PDO drivers.
