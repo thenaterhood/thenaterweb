@@ -43,7 +43,7 @@ function generateFeed( $blogdef, $force_regen ){
 
 	while ( $i < count( $postList) && $i < getConfigOption( 'max_feed_items' ) ) {
 
-		$atom->new_item( new article( $postList[$i] ) );
+		$atom->new_item( $postList[$i] );
 
 	}
 
