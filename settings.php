@@ -73,6 +73,11 @@ class config{
 		
 		# How many posts should be displayed per each blog page
 		$this->container['posts_per_page'] = 4;
+
+		# Maximum number of items to show in the feed. If not 
+		# using a database, setting this to a high number will 
+		# cause performance problems.
+		$this->container['max_feed_items'] = 100;
 		
 		# The domain name of the site (note that this can be automatically
 		# determined if needed)

@@ -107,6 +107,24 @@ abstract class controllerBase{
 		return $this->pageData;
 	}
 
+	/**
+	 * Returns a list of pages that should be 
+	 * available publicly. Used by the sitemap 
+	 * generation system.
+	 */
+	public function getPageList(){
+		return array();
+	}
+
+	/**
+	 * Returns a list of posts (in order) that should be 
+	 * available publicly. Used by the feed 
+	 * generation system.
+	 */
+	public function getPostList(){
+		return array();
+	}
+
 }
 
 ?>

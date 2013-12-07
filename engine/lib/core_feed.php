@@ -23,7 +23,11 @@
  * @return $atom (atom_feed): an instance of the atom_feed class
  * 
  */
-function generateFeed( $bloguri, $feedTitle, $feedCatchline, $forceRegen, $postDirectory ){
+function generateFeed( $blogdef, $force_regen ){
+
+	$bloguri = $blogdef->id;
+	$feedTitle = $blogdef->title;
+	$feedCatchline = $blogdef->catchline;
 
 	# These update the inventory when the feed is visited, which is currently 
 	# the only time it would get updated. Needs to be changed, and this removed 
@@ -35,9 +39,13 @@ function generateFeed( $bloguri, $feedTitle, $feedCatchline, $forceRegen, $postD
 
 	$atom = new feed( $feedTitle, $bloguri, $feedCatchline, date(DATE_ATOM) );
 
-	foreach ( getAppPosts( $bloguri ) as $post ) {
+	$i = 0;
+	$postList = array_reverse( $blogdef->getPostList() );
 
-		$atom->new_item( $post );
+	while ( $i < count( $postList) && $i < getConfigOption( 'max_feed_items' ) ) {
+
+		$atom->new_item( new article( $postList[$i] ) );
+
 	}
 
 	return $atom;
