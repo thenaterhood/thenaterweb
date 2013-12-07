@@ -40,12 +40,13 @@ class blog extends controllerBase{
 	      // if file isn't this directory or its parent, add it to the results
 	      if ($file != "." && $file != "..") {
 	      	$nodeid = pathinfo($file);
-	        $posts[] = new article( $this->post_directory.'/'.$nodeid['filename'], 'blog' );
+	        $posts[ $nodeid['filename'] ] = new article( $this->post_directory.'/'.$nodeid['filename'], 'blog' );
 	      }
 
 	  }
 
-	  return $posts;
+	  ksort($posts);
+	  return array_reverse($posts);
 
 
 	}
