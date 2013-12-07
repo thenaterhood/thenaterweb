@@ -39,7 +39,7 @@ class blog extends controllerBase{
 
 	      // if file isn't this directory or its parent, add it to the results
 	      if ($file != "." && $file != "..") {
-	        $posts[] = new article( $this->post_directory.'/'$file, 'blog' );
+	        $posts[] = new article( $this->post_directory.'/'.$file, 'blog' );
 	      }
 
 	  }
