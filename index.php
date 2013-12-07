@@ -33,7 +33,6 @@ include_once GNAT_ROOT.'/lib/core_redirect.php';
  */
 $_ENGINE_BUILTINS = array( 'feeds', 'sitemaps' );
 $CONFIG = new config();
-$NWSESSION = new session( array() );
 
 
 /**
@@ -68,6 +67,11 @@ if ( in_array($controller, $_ENGINE_BUILTINS) ){
 define(strtoupper($controller).'_ROOT', "controller/".$controller );
 
 include $urlHandler->getController();
+$NWSESSION = new session( array( 'id' ) );
+
+$id = $NWSESSION->id;
+
+
 
 
 # Initialize the controller
@@ -88,9 +92,9 @@ if ( $useBuiltin ){
 	try { 
 
 
-		if ( function_exists( $blogdef->id() ) ){
+		if ( function_exists( $blogdef->$id() ) ){
 
-			$blogdef->id();
+			$blogdef->$id();
 
 		} else {
 
