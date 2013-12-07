@@ -45,6 +45,8 @@ function generateFeed( $blogdef, $force_regen ){
 
 		$atom->new_item( $postList[$i] );
 
+		$i++;
+
 	}
 
 	return $atom;

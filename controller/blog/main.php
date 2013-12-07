@@ -44,6 +44,8 @@ class blog extends controllerBase{
 
 	  }
 
+	  return $posts;
+
 
 	}
 
