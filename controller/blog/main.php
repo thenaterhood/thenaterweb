@@ -29,6 +29,24 @@ class blog extends controllerBase{
 
 	}
 
+	public function getPostList(){
+
+    	$posts = array();
+
+    	$handler = opendir($this->post_directory);
+
+    	while ($file = readdir($handler)) {
+
+	      // if file isn't this directory or its parent, add it to the results
+	      if ($file != "." && $file != "..") {
+	        $posts[] = new article( $this->post_directory.'/'$file, 'blog' );
+	      }
+
+	  }
+
+
+	}
+
 
 }
 
