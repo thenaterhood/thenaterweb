@@ -48,6 +48,7 @@ class blog extends controllerBase{
 		$this->pageData['blogid'] = $this->settings['id'];
 		$session = $this->pageData['session'];
 		$this->pageData['articles'] = $this->getPostRange( $session->start, $session->end );
+		$this->pageData['totalPosts'] = count( $this->getPostFiles() );
 
 		$pageData = $this->pageData;
 
