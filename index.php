@@ -85,8 +85,25 @@ if ( $useBuiltin ){
 
 } else{
 
-	$pageData = $blogdef->getPageData();
-	include $blogdef->template;
+	try { 
+
+
+		if ( function_exists( $blogdef->id() ) ){
+
+			$blogdef->id();
+
+		} else {
+
+			$pageData = $blogdef->getPageData();
+			include $blogdef->template;
+
+		}
+
+	} catch ( Exception $e ){
+
+		echo "404: The requested page could not be found.";
+
+	}
 
 }
 
