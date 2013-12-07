@@ -93,7 +93,7 @@ xml:base="'.getConfigOption('site_domain').'/">';
 		$r .= "<updated>". $this->container['feedstamp'] ."</updated>\n";
 		$r .= "<author><name>".$this->container['author']."</name></author>\n";
 		$r .= '<atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="self" type="application/atom+xml" href="'.$this->container['link'].'/feed.php" />';
-		foreach ($this->articles as $item) {
+		foreach ($this->items as $item) {
 			$r .= $item->output( 'atom' );
 		}
 		$r .= "</feed>";
@@ -116,7 +116,7 @@ xml:base="'.getConfigOption('site_domain').'/">';
 		$r .= "<title>" . $this->container['title'] . "</title>";
 		$r .= "<link>" . $this->container['link'] . "</link>";
 		$r .= "<description>" . $this->container['description'] . "</description>";
-		foreach ($this->articles as $item){
+		foreach ($this->items as $item){
 			$r .= $item->output( 'rss' );
 		}
 		

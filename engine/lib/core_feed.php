@@ -33,9 +33,8 @@ function generateFeed( $blogdef, $force_regen ){
 	# the only time it would get updated. Needs to be changed, and this removed 
 	# in the future.
 	# TODO
-	$inventory = new inventory( $postDirectory, $bloguri );
+	$inventory = new inventory( $blogdef->post_directory, $bloguri );
 	$inventory->update();
-	$posts = $inventory->getFileList();
 
 	$atom = new feed( $feedTitle, $bloguri, $feedCatchline, date(DATE_ATOM) );
 
