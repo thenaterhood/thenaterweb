@@ -15,6 +15,6 @@
 
 	if (! $session->start <= 0) echo "<a href='/?url=".$bloguri.'/home/start/'.($session->start - getConfigOption('posts_per_page') )."/end/".($session->end - getConfigOption('posts_per_page') )."'>Newer Posts</a>";
 	if (! $session->start <= 0 and count($pageData['totalPosts'] ) > $session->end ) echo ' / ';
-	if ( count($pageData['totalPosts'] > $session->end ) ) echo "<a href='/?url=".$bloguri.'/home/start/'.($session->start + getConfigOption('posts_per_page') )."/end/".($session->end + getConfigOption('posts_per_page') )."'>  Older Posts</a>  ";
+	if ( $pageData['totalPosts'] > $session->end ) echo "<a href='/?url=".$bloguri.'/home/start/'.($session->start + getConfigOption('posts_per_page') )."/end/".($session->end + getConfigOption('posts_per_page') )."'>  Older Posts</a>  ";
 ?>
 </div>
