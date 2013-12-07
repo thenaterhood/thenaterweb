@@ -58,8 +58,10 @@ class blog extends controllerBase{
 		$articles = array();
 
 		foreach ($posts as $post) {
-			$articles[] = new article( $)
+			$articles[] = new article( $this->post_directory.'/'.$post );
 		}
+
+		return $articles;
 
 	}
 
