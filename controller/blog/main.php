@@ -32,7 +32,9 @@ class blog extends controllerBase{
 	public function read(){
 
 		$this->pageData['content'] = pullContent( BLOG_ROOT.'/pages/page_read' );
+		$session = $this->pageData['session'];
 
+		$this->pageData['displaypost'] = new article( $this->post_directory.'/'.$session->node, $this->settings['id'] );
 
 		$pageData = $this->pageData;
 
@@ -58,7 +60,7 @@ class blog extends controllerBase{
 		$articles = array();
 
 		foreach ($posts as $post) {
-			$articles[] = new article( $this->post_directory.'/'.$post, $this->id );
+			$articles[] = new article( $this->post_directory.'/'.$post, $this->settings['id'] );
 		}
 
 		return $articles;
