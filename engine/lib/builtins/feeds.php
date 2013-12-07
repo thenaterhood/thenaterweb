@@ -9,7 +9,7 @@ Header('Content-type: application/atom+xml');
 $session = new session( array('regen') );
 $config = new config();
 
-$feed = generateFeed( $blogdef->id, $blogdef->title, $blogdef->catchline, $session->regen, $blogdef->post_directory );
+$feed = generateFeed( $blogdef, False );
 print $feed->output( $config->feed_type );
 
 ?>
