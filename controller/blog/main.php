@@ -32,6 +32,8 @@ class blog extends controllerBase{
 	public function read(){
 
 		$this->pageData['content'] = pullContent( BLOG_ROOT.'/pages/page_read' );
+		$this->pageData['blogid'] = $this->settings['id'];
+
 		$session = $this->pageData['session'];
 
 		$this->pageData['displaypost'] = new article( $this->post_directory.'/'.$session->node, $this->settings['id'] );

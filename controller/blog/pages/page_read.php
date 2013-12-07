@@ -10,7 +10,7 @@
 		 * it has a datestamp. Since datestamps will be automatically
 		 * added to posts, all posts will have a datestamp.
 		 */
-		echo '<p><a href="/'.$pageData['appid'].'">Back to Blog Home</a></p>';
+		echo '<p><a href="/'.$pageData['blogid'].'">Back to Blog Home</a></p>';
 	}
 	if ( $displaypost->datestamp and $pageData['session']->node != 'latest'){
 		echo $blogdef->commentCode;
