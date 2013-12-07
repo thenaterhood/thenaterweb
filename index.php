@@ -92,7 +92,7 @@ if ( $useBuiltin ){
 	try { 
 
 
-		if ( function_exists( $blogdef->$id() ) ){
+		if ( function_exists( $blogdef->$id ) ){
 
 			$blogdef->$id();
 
