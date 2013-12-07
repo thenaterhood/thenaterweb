@@ -33,10 +33,10 @@ class feed extends dataMonger{
 	public function __construct($title, $link, $description, $feedstamp) {
 
 		$this->container['title'] = $title;
-		$this->container['link'] = $link;
+		$this->container['link'] = getConfigOption('site_domain').'/feeds/'.$link;
 		$this->container['description'] = $description;
 		$this->container['feedstamp'] = $feedstamp;
-		$this->container['author'] = $config->site_author;
+		$this->container['author'] = getConfigOption('site_author');
 		$this->items = array();
 
 	}
@@ -92,7 +92,7 @@ xml:base="'.getConfigOption('site_domain').'/">';
 		$r .= "<title>" . $this->container['title'] . "</title>\n";
 		$r .= "<updated>". $this->container['feedstamp'] ."</updated>\n";
 		$r .= "<author><name>".$this->container['author']."</name></author>\n";
-		$r .= '<atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="self" type="application/atom+xml" href="'.$this->container['link'].'/feed.php" />';
+		$r .= '<atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="self" type="application/atom+xml" href="'.$this->container['link'].'" />';
 		foreach ($this->items as $item) {
 			$r .= $item->output( 'atom' );
 		}
