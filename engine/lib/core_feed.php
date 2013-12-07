@@ -39,7 +39,7 @@ function generateFeed( $blogdef, $force_regen ){
 	$atom = new feed( $feedTitle, $bloguri, $feedCatchline, date(DATE_ATOM) );
 
 	$i = 0;
-	$postList = array_reverse( $blogdef->getPostList() );
+	$postList = $blogdef->getPostList();
 
 	while ( $i < count( $postList) && $i < getConfigOption( 'max_feed_items' ) ) {
 
