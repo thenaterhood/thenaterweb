@@ -29,24 +29,69 @@ class blog extends controllerBase{
 
 	}
 
+	public function read(){
+
+		$this->pageData['content'] = pullContent( BLOG_ROOT.'/pages/page_read.php' );
+
+
+		$pageData = $this->pageData;
+
+		include $this->template;
+
+	}
+
+	public function home(){
+
+		$this->pageData['content'] = pullContent( BLOG_ROOT.'/pages/page_home.php' );
+		$session = $this->pageData['session'];
+		$this->pageData['articles'] = $this->getPostRange( $session->start, $session->end );
+
+		$pageData = $this->pageData;
+
+		include $this->template;
+
+	}
+
+	private function getPostRange( $start, $end ){
+
+		$posts = array_slice($this->getPostFiles(), $start, $end);
+		$articles = array();
+
+		foreach ($posts as $post) {
+			$articles[] = new article( $)
+		}
+
+	}
+
+	private function getPostFiles(){
+
+		$posts = array();
+
+		$handler = opendir( $this->post_directory );
+
+		while( $file = readdir( $handler)){
+			if ( $file != '.' && $file != '..' ){
+				$nodeinfo = pathinfo($file);
+				$posts[] = $nodeinfo['filename'];
+			}
+		}
+
+		rsort( $posts );
+
+		return $posts;
+
+	}
+
 	public function getPostList(){
 
-    	$posts = array();
+    	$posts = $this->getPostFiles();
+    	$articles = array();
 
-    	$handler = opendir($this->post_directory);
+    	foreach ($posts as $post) {
+    		$articles[] = new article( $this->post_directory.'/'.$post );
+    	}
 
-    	while ($file = readdir($handler)) {
-
-	      // if file isn't this directory or its parent, add it to the results
-	      if ($file != "." && $file != "..") {
-	      	$nodeid = pathinfo($file);
-	        $posts[ $nodeid['filename'] ] = new article( $this->post_directory.'/'.$nodeid['filename'], 'blog' );
-	      }
-
-	  }
-
-	  ksort($posts);
-	  return array_reverse($posts);
+    	return $articles;
 
 
 	}
