@@ -45,6 +45,7 @@ class blog extends controllerBase{
 	public function home(){
 
 		$this->pageData['content'] = pullContent( BLOG_ROOT.'/pages/page_home' );
+		$this->pageData['blogid'] = $this->settings['id'];
 		$session = $this->pageData['session'];
 		$this->pageData['articles'] = $this->getPostRange( $session->start, $session->end );
 
