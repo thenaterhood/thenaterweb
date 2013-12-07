@@ -31,7 +31,7 @@ class blog extends controllerBase{
 
 	public function read(){
 
-		$this->pageData['content'] = pullContent( BLOG_ROOT.'/pages/page_read.php' );
+		$this->pageData['content'] = pullContent( BLOG_ROOT.'/pages/page_read' );
 
 
 		$pageData = $this->pageData;
@@ -42,7 +42,7 @@ class blog extends controllerBase{
 
 	public function home(){
 
-		$this->pageData['content'] = pullContent( BLOG_ROOT.'/pages/page_home.php' );
+		$this->pageData['content'] = pullContent( BLOG_ROOT.'/pages/page_home' );
 		$session = $this->pageData['session'];
 		$this->pageData['articles'] = $this->getPostRange( $session->start, $session->end );
 
