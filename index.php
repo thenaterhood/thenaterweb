@@ -94,7 +94,7 @@ if ( $useBuiltin ){
 	try { 
 
 
-		if ( function_exists( $blogdef->$id ) ){
+		if ( method_exists( $blogdef, $id ) ){
 
 			$blogdef->$id();
 
