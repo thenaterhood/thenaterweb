@@ -25,35 +25,19 @@
  */
 function generateFeed( $bloguri, $feedTitle, $feedCatchline, $forceRegen, $postDirectory ){
 
-	
+	# These update the inventory when the feed is visited, which is currently 
+	# the only time it would get updated. Needs to be changed, and this removed 
+	# in the future.
+	# TODO
 	$inventory = new inventory( $postDirectory, $bloguri );
+	$inventory->update();
 	$posts = $inventory->getFileList();
 
-	$atom = new feed( $postDirectory, $bloguri );
+	$atom = new feed( $feedTitle, $bloguri, $feedCatchline, date(DATE_ATOM) );
 
-	if ( ! getConfigOption('auto_feed_regen') && ! $forceRegen && $atom->exists() ){
-		/*
-		* If the inventory matches the existing number of items in the
-		* directory, return the static feed file
-		*/
-		return $atom;
-	}
+	foreach ( getAppPosts( $bloguri ) as $post ) {
 
-	else if ( $forceRegen ){
-		/*
-		* If the inventory doesn't match the existing number of items in
-		* the directory, regenerate the inventory and the feed file
-		* then return the feed file
-		*/
-		$inventory->regen();
-		$atom->reset( $feedTitle, getConfigOption('site_domain')."/$bloguri", $feedCatchline,  date(DATE_ATOM) );
-
-	}
-
-	else{
-
-		$inventory->update();
-		$atom->update();
+		$atom->new_item( $post );
 	}
 
 	return $atom;

@@ -178,5 +178,25 @@ function loadBlogConf( $id ){
 
 }
 
+function getAppPosts( $appDefinition ){
+
+	$posts = array();
+
+	if ( getConfigOption( 'use_db' ) ){
+		Database::initialize();
+
+		$posts = Database::select( $appDefinition->id, '*' );
+	}
+
+	$posts = array_merge($posts, getPosts( $appDefinition->id, $appDefinition->post_directory ) );
+
+	ksort($posts);
+
+	array_reverse($posts);
+
+	return $posts;
+
+}
+
 
 ?>

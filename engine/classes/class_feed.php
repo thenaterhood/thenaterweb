@@ -7,20 +7,20 @@
 /**
  * Include the inherited dataMonger class
  */
-include_once GNAT_ROOT.'/classes/class_dataMonger.php';
-include_once GNAT_ROOT.'/classes/class_article.php';
-include_once GNAT_ROOT.'/classes/class_mappedArticle.php';
-include_once GNAT_ROOT.'/classes/class_stdClassArticle.php';
-include_once GNAT_ROOT.'/classes/class_lock.php';
-include_once GNAT_ROOT.'/classes/class_directoryIndex.php';
+include_once 'class_dataMonger.php';
 
 /**
  * Defines a data object to contain an atom feed as items
  * are added and the feed is updated then returned
  */
-class feed extends directoryIndex{
+class feed extends dataMonger{
+	
+	/**
+	 * @var $items - an array of article instances
+	 * @var $container - the feed metadata - location, title, author, datestamps
+	 */
 
-	private $articles;
+	private $items;
 	
 	/**
 	 * Creates an empty atom feed object with metadata
@@ -30,59 +30,28 @@ class feed extends directoryIndex{
 	 * @param $description (str): a description or summary of the feed
 	 * @param $feedstamp (str): a datestamp for the feed, in standard atom format
 	 */
-	public function __construct( $directory, $bloguri ) {
+	public function __construct($title, $link, $description, $feedstamp) {
 
-		parent::__construct( $directory, $bloguri, "feed" );
-
-
-	}
-
-	public function update(){
-
-		$this->loadArticles();
-
-
-		parent::update( "dump" );
-	}
-
-	private function loadArticles(){
-
-		foreach ($this->db->selectTable( 'main' ) as $item) {
-			
-			$this->articles[] = new mappedArticle( $item );
-
-		}
+		$this->container['title'] = $title;
+		$this->container['link'] = $link;
+		$this->container['description'] = $description;
+		$this->container['feedstamp'] = $feedstamp;
+		$this->container['author'] = $config->site_author;
+		$this->items = array();
 
 	}
 
+	/**
+	 * Adds an item to the feed as an object in the object's
+	 * items array
+	 * 
+	 * @param $articleect - a fully initialized instance of the article
+	 *	class.
+	 * 
+	 */
+	public function new_item($articleect) {
 
-
-	public function reset($title, $link, $description, $feedstamp){
-
-		$dbCols = array();
-		$dbCols['content'] = 'Text';
-		$dbCols['title'] = 'Text';
-		$dbCols['date'] = 'Text';
-		$dbCols['tags'] = 'Text';
-		$dbCols['datestamp'] = 'Text';
-		$dbCols['updated'] = 'Text';
-		$dbCols['link'] = 'Text';
-		$dbCols['nodeid'] = 'Text';
-
-		$this->db->dropTable( 'main' );
-		$this->db->createTable( 'main', $dbCols );
-
-		$metadata = array();
-		$metadata['title'] = $title;
-		$metadata['link'] = $link;
-		$metadata['description'] = $description;
-		$metadata['feedstamp'] = $feedstamp;
-		$metadata['author'] = getConfigOption('site_author');
-
-		parent::regen( "dump", $metadata );
-
-
-
+		array_push($this->items, $articleect);
 	}
 	
 	/**
@@ -92,7 +61,6 @@ class feed extends directoryIndex{
 	 * to atom (superior) if the type given not recognized.
 	 */
 	public function output( $type ){
-
 		
 		if ( $type == "rss" ){
 			return $this->rss();
@@ -112,21 +80,19 @@ class feed extends directoryIndex{
 	 */
 	private function atom() {
 
-		$this->loadArticles();
-
 
 		$r = '<?xml version="1.0" encoding="UTF-8"?>';
 		$r .='<feed xmlns="http://www.w3.org/2005/Atom"
 xml:lang="en"
 xml:base="'.getConfigOption('site_domain').'/">';
 		$r .= "\n";
-		$r .= '<subtitle type="html">' . $this->metadata['description'] . "</subtitle>\n";
+		$r .= '<subtitle type="html">' . $this->container['description'] . "</subtitle>\n";
 		$r .= "";
-		$r .= "<id>" . $this->metadata['link'] . "</id>\n";
-		$r .= "<title>" . $this->metadata['title'] . "</title>\n";
-		$r .= "<updated>". $this->metadata['feedstamp'] ."</updated>\n";
-		$r .= "<author><name>".$this->metadata['author']."</name></author>\n";
-		$r .= '<atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="self" type="application/atom+xml" href="'.$this->metadata['link'].'/feed.php" />';
+		$r .= "<id>" . $this->container['link'] . "</id>\n";
+		$r .= "<title>" . $this->container['title'] . "</title>\n";
+		$r .= "<updated>". $this->container['feedstamp'] ."</updated>\n";
+		$r .= "<author><name>".$this->container['author']."</name></author>\n";
+		$r .= '<atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="self" type="application/atom+xml" href="'.$this->container['link'].'/feed.php" />';
 		foreach ($this->articles as $item) {
 			$r .= $item->output( 'atom' );
 		}
@@ -143,16 +109,13 @@ xml:base="'.getConfigOption('site_domain').'/">';
 		# The code produced is not valid due to the xml tag 
 		# which should have a ? before each <>. This breaks the
 		# php.
-
-		$this->loadArticles();
-
 		
 		$r ='<xml version="1.0">';
 		$r .= '<rss version = "2.0">\n';
 		$r .= "<channel>";
-		$r .= "<title>" . $this->metadata['title'] . "</title>";
-		$r .= "<link>" . $this->metadata['link'] . "</link>";
-		$r .= "<description>" . $this->metadata['description'] . "</description>";
+		$r .= "<title>" . $this->container['title'] . "</title>";
+		$r .= "<link>" . $this->container['link'] . "</link>";
+		$r .= "<description>" . $this->container['description'] . "</description>";
 		foreach ($this->articles as $item){
 			$r .= $item->output( 'rss' );
 		}
@@ -164,5 +127,4 @@ xml:base="'.getConfigOption('site_domain').'/">';
 	}
 
 }
-
 ?>
