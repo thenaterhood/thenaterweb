@@ -41,12 +41,11 @@ function generateFeed( $blogdef, $force_regen ){
 	$i = 0;
 	$postList = $blogdef->getPostList();
 
-	while ( $i < count( $postList) && $i < getConfigOption( 'max_feed_items' ) ) {
-
-		$atom->new_item( $postList[$i] );
-
+	foreach ($postList as $key => $value) {
+		$atom->new_item( $value );
 		$i++;
-
+		if ( $i > getConfigOption( 'max_feed_items') )
+			break;
 	}
 
 	return $atom;
