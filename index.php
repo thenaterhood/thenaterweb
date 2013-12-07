@@ -33,6 +33,8 @@ include_once GNAT_ROOT.'/lib/core_redirect.php';
  */
 $_ENGINE_BUILTINS = array( 'feeds', 'sitemaps' );
 $CONFIG = new config();
+$NWSESSION = new session( array() );
+
 
 
 /**
