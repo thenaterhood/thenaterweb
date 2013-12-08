@@ -6,11 +6,8 @@
 echo '<br />'; 
 echo '<ul>';
 $year = 0;
-foreach ($pageData['titles'] as $item) {
-	if ( substr($item['datestamp'], 0, 4) != $year ){
-		$year = substr($item['datestamp'], 0, 4 );
-		print '<li><strong>'.$year.'</strong></li>';
-	}
+foreach ($pageData['titles'] as $title => $link ) {
+	
 	print '<li><a href="'.htmlentities( $item['link'] ).'">'.$item['title'].'</a></li>';
 	# code...
 }
