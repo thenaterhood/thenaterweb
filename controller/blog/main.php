@@ -4,13 +4,16 @@ class blog extends controllerBase{
 
 	private $id;
 	private $configFile;
+	private $approot;
 
 	public function __construct(){
 
 		$this->pageData = array();
 
 
-		$configFile = BLOG_ROOT.'/conf.xml';
+		$this->approot = BLOG_ROOT;
+
+		$configFile = $this->approot.'/conf.xml';
 		$this->readConfig( $configFile );
 
 		$session = new session( array('name', 'track', 'konami', 'id', 'tag', 'type', 'node', 'start', 'end') );
@@ -31,7 +34,7 @@ class blog extends controllerBase{
 
 	public function read(){
 
-		$this->pageData['content'] = pullContent( BLOG_ROOT.'/pages/page_read' );
+		$this->pageData['content'] = pullContent( $this->approot.'/pages/page_read' );
 		$this->pageData['blogid'] = $this->settings['id'];
 
 		$session = $this->pageData['session'];
@@ -46,7 +49,7 @@ class blog extends controllerBase{
 
 	public function home(){
 
-		$this->pageData['content'] = pullContent( BLOG_ROOT.'/pages/page_home' );
+		$this->pageData['content'] = pullContent( $this->approot.'/pages/page_home' );
 		$this->pageData['blogid'] = $this->settings['id'];
 		$session = $this->pageData['session'];
 		$this->pageData['articles'] = $this->getPostRange( $session->start, $session->end );
@@ -60,7 +63,7 @@ class blog extends controllerBase{
 
 	public function tags(){
 
-		$this->pageData['content'] = pullContent( BLOG_ROOT.'/pages/page_taghistogram' );
+		$this->pageData['content'] = pullContent( $this->approot.'/pages/page_taghistogram' );
 		$this->pageData['blogid'] = $this->settings['id'];
 		$this->pageData['tags'] = $this->retrieveTagCache();
 
@@ -80,7 +83,7 @@ class blog extends controllerBase{
 
 	public function titles(){
 
-		$this->pageData['content'] = pullContent( BLOG_ROOT.'/pages/page_titles' );
+		$this->pageData['content'] = pullContent( $this->approot.'/pages/page_titles' );
 		$this->pageData['blogid'] = $this->settings['id'];
 		$this->pageData['titles'] = $this->retrieveTitleCache();
 
