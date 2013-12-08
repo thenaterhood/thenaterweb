@@ -15,7 +15,6 @@
  */
  include_once GNAT_ROOT.'/lib/core_blog.php';
  include_once GNAT_ROOT.'/classes/class_feed.php';
- include_once GNAT_ROOT.'/classes/class_inventory.php';
 
 /**
  * Generates an atom feed and returns it
@@ -28,13 +27,6 @@ function generateFeed( $blogdef, $force_regen ){
 	$bloguri = $blogdef->id;
 	$feedTitle = $blogdef->title;
 	$feedCatchline = $blogdef->catchline;
-
-	# These update the inventory when the feed is visited, which is currently 
-	# the only time it would get updated. Needs to be changed, and this removed 
-	# in the future.
-	# TODO
-	$inventory = new inventory( $blogdef->post_directory, $bloguri );
-	$inventory->update();
 
 	$atom = new feed( $feedTitle, $bloguri, $feedCatchline, date(DATE_ATOM) );
 

@@ -13,7 +13,7 @@
 		echo '<p><a href="/'.$pageData['blogid'].'">Back to Blog Home</a></p>';
 	}
 	if ( $displaypost->datestamp and $pageData['session']->node != 'latest'){
-		echo $blogdef->commentCode;
+		echo $pageData['commentCode'];
 	
 	}
 	else {
