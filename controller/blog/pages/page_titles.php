@@ -8,7 +8,7 @@ echo '<ul>';
 $year = 0;
 foreach ($pageData['titles'] as $node => $title ) {
 
-	$link = $pageData['url'].'/?url='.$pageData['blogid'].'/read/'.$node.'.htm';
+	$link = getConfigOption('site_domain').'/?url='.$pageData['blogid'].'/read/'.$node.'.htm';
 	
 	print '<li><a href="'.htmlentities( $link ).'">'.$title.'</a></li>';
 	# code...
