@@ -54,7 +54,7 @@ else{
      * with the tag.
      */
     $tags = $pageData['tags'];
-    $matching = $tags[$tag]
+    $matching = $tags[$tag];
 
     foreach ($matching as $nodeid => $title ) {
         $link = getConfigOption( 'site_domain' ).'/?url='.$pageData['blogid'].'/read/'.$nodeid.'.htm';
