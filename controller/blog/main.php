@@ -201,7 +201,7 @@ class blog extends controllerBase{
 
 				if ( ! array_key_exists($tag, $tagArray) ){
 
-					$tagArray[ $tag ] = array( "$post->nodeid":"$post->title" );
+					$tagArray[ $tag ] = array( "$post->nodeid"=>"$post->title" );
 
 				} else {
 					$tagPosts = $tagArray[ $tag ];
