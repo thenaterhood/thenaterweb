@@ -58,6 +58,114 @@ class blog extends controllerBase{
 
 	}
 
+	public function tags(){
+
+
+
+
+	}
+
+	public function viewtag(){
+
+
+	}
+
+	public function titles(){
+
+		$this->pageData['content'] = pullContent( BLOG_ROOT.'/pages/page_titles.php' );
+		$this->pageData['titles'] = $this->retrieveTitleCache();
+
+		$pageData = $this->pageData;
+
+		include $this->template;
+
+
+	}
+
+	private function retrieveTitleCache(){
+
+		$titleCacheFile = getConfigOption('dynamic_directory' ).'/'.$this->settings['id'].'_titlecache.json';
+
+		if ( file_exists( $titleCacheFile ) ){
+
+			$titleData = json_decode( file_get_contents( $titleCacheFile ), True ), True);
+			$titles = $titleData['titles'];
+
+		} else {
+
+			$titles = $this->buildTitleCache();
+		}
+
+
+		if ( count($titles) != count( $this->getPostFiles() ) ){
+
+			$titles = $this->updateTitleCache();
+		}
+
+		return $titles;
+
+
+	}
+
+	private function buildTitleCache(){
+
+		$titleCacheFile = getConfigOption('dynamic_directory' ).'/'.$this->settings['id'].'_titlecache.json';
+
+
+		$titleArray = array();
+		$postList = $this->getPostFiles();
+
+		foreach ( $this->getPostList() as $post ) {
+
+			$titleArray[ $post->title ] = $post->link;
+		}
+
+		$titleData = array();
+
+		$titleData['titles'] = $titleArray;
+		$titleData['posts'] = $postList;
+
+		$lock = new lock($titleCacheFile = getConfigOption('dynamic_directory' ).'/'.$this->settings['id'].'_titlecache.json' );
+
+		if ( ! $lock->isLocked() {
+
+			$lock->lock();
+			$jsonData = json_encode( $titleData, True );
+			
+			$fhandle = fopen( $titleCacheFile, 'w' );
+			fwrite($fhandle, $jsonData);
+
+			$lock->unlock();
+
+		}
+
+		return $titleArray;
+
+	}
+
+	private function updateTitleCache(){
+
+
+
+	}
+
+	private function retrieveTagCache(){
+
+
+	}
+
+	private function buildTagCache(){
+
+
+	}
+
+	private function updateTagCache(){
+
+
+	}
+
+
+
 	private function getPostRange( $start, $end ){
 
 		$posts = array_slice($this->getPostFiles(), $start, $end);
