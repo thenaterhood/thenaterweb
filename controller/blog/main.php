@@ -197,6 +197,8 @@ class blog extends controllerBase{
 
 			foreach (explode(',', $post->tags) as $tag ) {
 
+				$tag = trim($tag);
+
 				if ( ! array_key_exists($tag, $tagArray) ){
 
 					$tagArray[ $tag ] = array( "$post->nodeid":"$post->title" );
