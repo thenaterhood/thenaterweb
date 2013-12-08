@@ -69,17 +69,33 @@ Template loading example:
 		+ search controllers for YourApp
 		+ include YourApp/main.php
 		+ initialize YourApp/main.php YourApp() class
-		+ include $controller->template 
+		+ run $controller->ViewName() or include $controller->template 
 
 Naming the application's configuration file conf.xml (or simply not 
-having one at all) is entirely optional. Naming it conf.xml allows 
-the application's settings to be managed from the webadmin app that 
-Thenaterweb comes with. There is also nothing wrong with having an 
-application provide its own management system externally from webadmin. 
+having one at all) is entirely optional.
 
 Providing that the controller is stored in the proper place, Thenaterweb 
 places no restrictions on where the associated data is stored and will 
 retrieve the configuration data if need be to find it.
+
+Although optional, Thenaterweb provides some builtin utilities for 
+your application that may be useful, which include feed and sitemap 
+generation. These exist already at YourSite.com/sitemaps/YourApp and 
+YourSite.com/feeds/YourApp (more details in the Provided Utilities section). 
+In order to make use of these, you must override two methods that exist 
+in the base controller class that your application extends.
+
+Feeds: You must override the class method getPostList(). This method should 
+return a list of instances of the builtin article class in the order 
+they should appear in the feed. The article class can be initialized directly 
+from a file or a database table and the appid, or can be initialized by 
+way of the stdClassArticle class (which accepts an stdClass object containing 
+the post data) or by way of the mappedArticle class which accepts an 
+associative array.
+
+Sitemaps: You must override the class method getPageList(). This method 
+should return an associative array of the pages you would like to 
+show in the sitemap. The array should be of the form LocalFile => WebPath.
 
 Provided Utilities
 -----------------------
