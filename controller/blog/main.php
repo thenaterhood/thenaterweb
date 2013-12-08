@@ -88,7 +88,7 @@ class blog extends controllerBase{
 
 		if ( file_exists( $titleCacheFile ) ){
 
-			$titleData = json_decode( file_get_contents( $titleCacheFile ), True ), True);
+			$titleData = json_decode( file_get_contents( $titleCacheFile, True ), True);
 			$titles = $titleData['titles'];
 
 		} else {
