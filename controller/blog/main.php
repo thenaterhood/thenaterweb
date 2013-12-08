@@ -127,7 +127,7 @@ class blog extends controllerBase{
 
 		$lock = new lock($titleCacheFile = getConfigOption('dynamic_directory' ).'/'.$this->settings['id'].'_titlecache.json' );
 
-		if ( ! $lock->isLocked() {
+		if ( ! $lock->isLocked() ){
 
 			$lock->lock();
 			$jsonData = json_encode( $titleData, True );
