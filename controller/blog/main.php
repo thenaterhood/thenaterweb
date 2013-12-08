@@ -97,7 +97,7 @@ class blog extends controllerBase{
 		}
 
 
-		if ( count($titles) != count( $this->getPostFiles() ) ){
+		if ( count($itles) != count( $this->getPostFiles() ) ){
 
 			$titles = $this->updateTitleCache();
 		}
@@ -117,13 +117,12 @@ class blog extends controllerBase{
 
 		foreach ( $this->getPostList() as $post ) {
 
-			$titleArray[ $post->title ] = $post->link;
+			$titleArray[ $post->nodeid ] = $post->title;
 		}
 
 		$titleData = array();
 
 		$titleData['titles'] = $titleArray;
-		$titleData['posts'] = $postList;
 
 		$lock = new lock($titleCacheFile = getConfigOption('dynamic_directory' ).'/'.$this->settings['id'].'_titlecache.json' );
 
