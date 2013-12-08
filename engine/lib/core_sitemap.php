@@ -30,7 +30,7 @@ function createSitemap( $files ){
 	$sitemap = new urlset();
 
 	
-	foreach ( $paths as $file => $uri ) {
+	foreach ( $files as $file => $uri ) {
 
 		if ( !in_array( $file, getConfigOption('hidden_files') ) ){
 			$last_modified = filemtime( $file );
