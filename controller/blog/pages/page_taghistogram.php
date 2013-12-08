@@ -19,7 +19,7 @@ if ( $tag ){
 	 * If a tag was requested, display which tag is being browsed
 	 * with a link back to the main page of tags
 	 */
-    print '<p><strong>Browsing tag "'.$tag.'".  </strong><a href="/?url='.$blogdef->id.'/taghistogram">View all tags.</a></p>'."\n";
+    print '<p><strong>Browsing tag "'.$tag.'".  </strong><a href="/?url='.$pageData['blogid'].'/taghistogram">View all tags.</a></p>'."\n";
 
 }
 
@@ -53,7 +53,8 @@ else{
      * If a tag was requested, call getByTag to print all posts
      * with the tag.
      */
-    $matching = $pageData['titles'];
+    $tags = $pageData['tags'];
+    $matching = $tags[$tag]
 
     foreach ($matching as $nodeid => $title ) {
         $link = getConfigOption( 'site_domain' ).'/?url='.$pageData['blogid'].'/read/'.$nodeid.'.htm';

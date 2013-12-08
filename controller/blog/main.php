@@ -162,7 +162,7 @@ class blog extends controllerBase{
 		$tagCacheFile = getConfigOption('dynamic_directory' ).'/'.$this->settings['id'].'_tagcache.json';
 		$posts = 0;
 
-		if ( file_exists( $titleCacheFile ) ){
+		if ( file_exists( $tagCacheFile ) ){
 
 			$tagData = json_decode( file_get_contents( $titleCacheFile, True ), True);
 			$tags = $tagData['tags'];
