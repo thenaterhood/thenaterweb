@@ -53,10 +53,11 @@ else{
      * If a tag was requested, call getByTag to print all posts
      * with the tag.
      */
-    $matching = $inventory->select( 'tags', $tag );
+    $matching = $pageData['titles'];
 
-    foreach ($matching as $item) {
-        print '<li><a href="'.htmlentities( $item['link'] ).'">'.$item['title'].'</a></li>';
+    foreach ($matching as $nodeid => $title ) {
+        $link = getConfigOption( 'site_domain' ).'/?url='.$pageData['blogid'].'/read/'.$nodeid.'.htm';
+        print '<li><a href="'.htmlentities( $link ).'">'.$title.'</a></li>';
     }
 
     echo "</ul>";

@@ -60,6 +60,14 @@ class blog extends controllerBase{
 
 	public function tags(){
 
+		$this->pageData['content'] = pullContent( BLOG_ROOT.'/pages/page_taghistogram' );
+		$this->pageData['blogid'] = $this->settings['id'];
+		$this->pageData['tags'] = $this->retrieveTagCache();
+
+		$pageData = $this->pageData;
+
+		include $this->template;
+
 
 
 
@@ -73,6 +81,7 @@ class blog extends controllerBase{
 	public function titles(){
 
 		$this->pageData['content'] = pullContent( BLOG_ROOT.'/pages/page_titles' );
+		$this->pageData['blogid'] = $this->settings['id'];
 		$this->pageData['titles'] = $this->retrieveTitleCache();
 
 		$pageData = $this->pageData;
@@ -124,7 +133,7 @@ class blog extends controllerBase{
 
 		$titleData['titles'] = $titleArray;
 
-		$lock = new lock($titleCacheFile = getConfigOption('dynamic_directory' ).'/'.$this->settings['id'].'_titlecache.json' );
+		$lock = new lock( getConfigOption('dynamic_directory' ).'/'.$this->settings['id'].'_titlecache.json' );
 
 		if ( ! $lock->isLocked() ){
 
@@ -150,15 +159,84 @@ class blog extends controllerBase{
 
 	private function retrieveTagCache(){
 
+		$tagCacheFile = getConfigOption('dynamic_directory' ).'/'.$this->settings['id'].'_tagcache.json';
+		$posts = 0;
+
+		if ( file_exists( $titleCacheFile ) ){
+
+			$tagData = json_decode( file_get_contents( $titleCacheFile, True ), True);
+			$tags = $tagData['tags'];
+			$posts = count( $tagData['posts'] );
+
+		} else {
+
+			$tags = $this->buildTagCache();
+			$posts = count( $this->getPostFiles() );
+		}
+
+
+		if ( $posts != count( $this->getPostFiles() ) ){
+
+			$tags = $this->updateTagCache();
+		}
+
+		return $tags;
+
 
 	}
 
 	private function buildTagCache(){
 
+		$tagCacheFile = getConfigOption('dynamic_directory' ).'/'.$this->settings['id'].'_tagcache.json';
+
+
+		$tagArray = array();
+		$postList = $this->getPostFiles();
+
+		foreach ( $this->getPostList() as $post ) {
+
+			foreach (explode(',', $post->tags) as $tag ) {
+
+				if ( ! array_key_exists($tag, $tagArray) ){
+
+					$tagArray[ $tag ] = array( "$post->nodeid":"$post->title" );
+
+				} else {
+					$tagPosts = $tagArray[ $tag ];
+					$tagPosts[ $post->nodeid ] = $post->title;
+					$tagArray[ $tag ] = $tagPosts;
+				}
+
+			}
+
+		}
+
+		$tagData = array();
+		$tagData['tags'] = $tagArray;
+		$tagData['posts'] = $postList;
+
+		$lock = new lock( $tagCacheFile );
+
+		if ( ! $lock->isLocked() ){
+
+			$lock->lock();
+			$jsonData = json_encode( $tagData, True );
+			
+			$fhandle = fopen( $tagCacheFile, 'w' );
+			fwrite($fhandle, $jsonData);
+
+			$lock->unlock();
+
+		}
+
+		return $tagArray;
+
 
 	}
 
 	private function updateTagCache(){
+
+		$this->buildTagCache();
 
 
 	}
