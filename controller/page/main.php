@@ -29,6 +29,23 @@ class page extends controllerBase{
 
 	}
 
+	public function getPageList(){
+
+		$pages = array();
+
+		$handler = opendir( $this->page_directory );
+
+		while( $file = readdir( $handler)){
+			if ( $file != '.' && $file != '..' && substr($file, 0, 5) == 'page_' ){
+				$nodeinfo = pathinfo($file);
+				$pages[ $this->page_directory.'/'.$file ] = $nodeinfo['filename'];
+			}
+		}
+
+		return $pages;
+
+	}
+
 
 }
 
