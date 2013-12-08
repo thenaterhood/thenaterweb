@@ -72,7 +72,7 @@ class blog extends controllerBase{
 
 	public function titles(){
 
-		$this->pageData['content'] = pullContent( BLOG_ROOT.'/pages/page_titles.php' );
+		$this->pageData['content'] = pullContent( BLOG_ROOT.'/pages/page_titles' );
 		$this->pageData['titles'] = $this->retrieveTitleCache();
 
 		$pageData = $this->pageData;
