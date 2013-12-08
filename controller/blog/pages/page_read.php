@@ -1,6 +1,14 @@
 <?php 
 
 	$displaypost = $pageData['displaypost'];
+
+	if ( $pageData['outdated'] ){
+		print '	<div class="alert alert-info">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		This post is more than a year old and its contents may refer to outdated information.
+		</div>';
+	}
+
 	print $pageData['displaypost']->output( 'html' );
 
 	if ( True ){

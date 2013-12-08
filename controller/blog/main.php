@@ -23,7 +23,7 @@ class blog extends controllerBase{
 		$this->pageData['static'] = $this->page_directory;
 		$content = pullContent( array( $this->page_directory.'/page_'.$session->id, $this->page_directory.'/hidden_'.$session->id, GNAT_ROOT.'/lib/pages/page_'.$session->id ) );
 		$this->pageData['content'] = $content;
-		$this->pageData['id'] = $content->title;
+		$this->pageData['id'] = $session->id;
 		$this->pageData['title'] = $this->title;
 		$this->pageData['tagline'] = $this->catchline;
 		$this->pageData['appid'] = $this->id;
@@ -40,6 +40,9 @@ class blog extends controllerBase{
 		$session = $this->pageData['session'];
 
 		$this->pageData['displaypost'] = new article( $this->post_directory.'/'.$session->node, $this->settings['id'] );
+
+		$post = $this->pageData['displaypost'];
+		$this->pageData['outdated'] = ( ( strtotime('today') - strtotime($post->datestamp) ) > 31556916 ); 
 
 		$pageData = $this->pageData;
 
