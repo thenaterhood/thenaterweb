@@ -6,7 +6,7 @@
 echo '<br />'; 
 echo '<ul>';
 $year = 0;
-foreach ($pageData['titles'] as $title => $link ) {
+foreach ($pageData['titles'] as $item ) {
 	
 	print '<li><a href="'.htmlentities( $item['link'] ).'">'.$item['title'].'</a></li>';
 	# code...
