@@ -164,7 +164,7 @@ class blog extends controllerBase{
 
 		if ( file_exists( $tagCacheFile ) ){
 
-			$tagData = json_decode( file_get_contents( $titleCacheFile, True ), True);
+			$tagData = json_decode( file_get_contents( $tagCacheFile, True ), True);
 			$tags = $tagData['tags'];
 			$posts = count( $tagData['posts'] );
 

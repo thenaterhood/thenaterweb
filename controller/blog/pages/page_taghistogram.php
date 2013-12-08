@@ -19,7 +19,7 @@ if ( $tag ){
 	 * If a tag was requested, display which tag is being browsed
 	 * with a link back to the main page of tags
 	 */
-    print '<p><strong>Browsing tag "'.$tag.'".  </strong><a href="/?url='.$pageData['blogid'].'/taghistogram">View all tags.</a></p>'."\n";
+    print '<p><strong>Browsing tag "'.$tag.'".  </strong><a href="/?url='.$pageData['blogid'].'/tags">View all tags.</a></p>'."\n";
 
 }
 
