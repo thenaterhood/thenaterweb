@@ -28,7 +28,7 @@ function getMaxOccurances( $values ){
 	return $maxOccurances;
 }
 
-function generateHistogram2D( $valuesIn ){
+function generateHistogram2D( $valuesIn, $graphChar ){
 
     $statArray = array();
 
@@ -37,7 +37,7 @@ function generateHistogram2D( $valuesIn ){
         $statArray[ $key ] = count( $value );
     }
 
-    return generateHistogramNospace( $statArray );
+    return generateHistogramNospace( $statArray, $graphChar );
 
 }
 
