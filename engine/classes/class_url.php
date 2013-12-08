@@ -56,7 +56,7 @@ class url extends dataMonger{
 
 	public function toHtml(){
 
-		$html = $html.'<a href="'.htmlentities($this->container['loc']).'">'.$this->container['loc'].'</a>';
+		$html = '<a href="'.htmlentities($this->container['loc']).'">'.$this->container['loc'].'</a>';
 
 
 		return $html;
