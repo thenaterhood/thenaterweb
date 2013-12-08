@@ -36,7 +36,6 @@ class config{
 		# below database settings and will not use a database
 		# even if one is configured.
 		$this->container['use_db'] = True;
-
 		
 		# Configure the storage backend for the engine. Supported 
 		# databases are anything supported by the PDO drivers.
@@ -48,18 +47,11 @@ class config{
 		$this->container['db_name'] = 'site-data/naterweb_database.db';
 
 		# The database error level, 1 or 0.
-		# Set at 0 for development and 1 for production.
+		# Set at 1 for development and 0 for production.
 		$this->container['db_error_level'] = 1;
 		
 		# Sets the directory for storing dynamically created files
 		$this->container['dynamic_directory'] =  'engine/var/dynamic';
-		
-		# Whether or not the blog feed should regenerate automatically
-		$this->container['auto_feed_regen'] = True;
-		
-		# Whether or not other dynamic files (such as sitemap) should
-		# regenerate automatically
-		$this->container['auto_file_regen'] = False;
 		
 		# Whether to save the dynamic files when they are generated.
 		# If this is turned off and no dynamic files have been 
