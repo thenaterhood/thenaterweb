@@ -34,14 +34,14 @@ if ( !$tag ){
     ksort($tags);
     $histogram = generateHistogram2D( $tags, "&#9646;" );
     $letter = "";
-    foreach( $histogram as $item => $stats ){
+    foreach( $histogram as $item => $graph ){
         if ( substr($item, 0, 1) != $letter ){
             $letter = substr($item, 0, 1);
             print '<tr><td><a id="alph_'.$letter.'"></a><strong>'.$letter.'</strong></td></tr>'."\n";
         }
         $clean = str_replace( " ", '%20', $item);
-        echo '<tr><td><a href="/?url='.$blogdef->id.'/tags/tag/'.$clean.'">'.$item.'</a></td>';
-        echo '<td>'.$graph.'<em> '.$tags[$item].' posts</em></td></tr>'."\n";
+        echo '<tr><td><a href="/?url='.$pageData['blogid'].'/tags/tag/'.$clean.'">'.$item.'</a></td>';
+        echo '<td>'.$graph.'<em> '.count($tags[$item]).' posts</em></td></tr>'."\n";
     }
 
     echo "</table>";
