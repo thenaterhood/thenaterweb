@@ -25,11 +25,7 @@ class error extends controllerBase{
 		$this->pageData['appid'] = $this->id;
 
 
-		$type = "err404";
-		if ( $session->id != '' && in_array($session->id, array( '404', '403' )));
-			$type = "err".$session->id;
-		
-		$this->$type();
+		$this->err404();
 
 
 	}

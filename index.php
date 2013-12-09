@@ -82,7 +82,7 @@ $NWSESSION = new session( array( 'id' ) );
 
 $id = $NWSESSION->id;
 
-
+include $approot.'/main.php';
 
 
 # Initialize the controller
