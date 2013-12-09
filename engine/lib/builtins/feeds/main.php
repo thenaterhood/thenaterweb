@@ -19,6 +19,8 @@ class feeds extends controllerBase{
 
 		if ( file_exists($appRoot.'/main.php') ){
 			include $appRoot.'/main.php';
+			define( strtoupper($method).'_ROOT', $appRoot );
+			
 			$blogdef = new $method();
 
 			include $this->template;
