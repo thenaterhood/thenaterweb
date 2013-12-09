@@ -33,12 +33,7 @@ class request{
 
 		$sanitized = self::get_sanitized( $varnames );
 
-		$object = new stdClass();
-
-
-		foreach ($variable as $key => $value) {
-			$stdClass->$key = $value;
-		}
+		$object = ( object )$sanitized;
 
 		return $object;
 
