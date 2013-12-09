@@ -31,7 +31,12 @@ include_once GNAT_ROOT.'/lib/core_redirect.php';
  * Set up the main variables for Thenaterweb's 
  * operation
  */
-$_ENGINE_BUILTINS = array( 'feeds', 'sitemaps' );
+$_ENGINE_BUILTINS = array( 
+	'feeds', 
+	'sitemaps',
+	'auth' 
+	);
+
 $CONFIG = new config();
 $NWSESSION = new session( array() );
 
@@ -48,7 +53,6 @@ if ( $CONFIG->friendly_urls ){
 
 # Initialize the URL handler and use it to include 
 # the relevant controller from controllers.
-$useBuiltin = false;
 $urlHandler = new urlHandler();
 $controller = $urlHandler->getControllerId();
 
@@ -57,18 +61,20 @@ $controller = $urlHandler->getControllerId();
 # these tasks.
 if ( in_array($controller, $_ENGINE_BUILTINS) ){
 
-	$feature = $controller;
-	$useBuiltin = true;
-	$urlHandler->reparseUrl();
-	$controller = $urlHandler->getControllerId();
+	define(strtoupper($controller).'_ROOT', GNAT_ROOT."/lib/builtins/".$controller );
+	$approot = GNAT_ROOT."/lib/builtins/".$controller;
 
+
+} else { 
+
+	define(strtoupper($controller).'_ROOT', "controller/".$controller );
+	$approot = 'controller/'.$controller;
 
 }
 
 
-define(strtoupper($controller).'_ROOT', "controller/".$controller );
+include $approot.'/main.php';
 
-include $urlHandler->getController();
 $NWSESSION = new session( array( 'id' ) );
 
 $id = $NWSESSION->id;
@@ -84,30 +90,25 @@ $blogdef = new $controller();
 # request points to a builtin feature, generate content 
 # from the feature instead and don't include a controller 
 # view.
-if ( $useBuiltin ){
-
-	include GNAT_ROOT.'/lib/builtins/'.$feature.'.php';
 
 
-} else{
-
-	try { 
+try { 
 
 
-		if ( method_exists( $blogdef, $id ) ){
+	if ( method_exists( $blogdef, $id ) ){
 
-			$blogdef->$id();
+		$blogdef->$id();
 
-		} else {
+	} else {
 
-			$pageData = $blogdef->getPageData();
-			include $blogdef->template;
+		$pageData = $blogdef->getPageData();
+		include $blogdef->template;
 
-		}
+	}
 
-	} catch ( Exception $e ){
+} catch ( Exception $e ){
 
-		echo "404: The requested page could not be found.";
+	echo "404: The requested page could not be found.";
 
 	}
 
