@@ -16,7 +16,7 @@ class request{
 			$i = 0;
 			$value = '';
 			while ( $i < count( $methods ) and $value == '' ){
-				$value = $this->$methods[$i]($name);
+				$value = self::$methods[$i]($name);
 				$i++;
 			}
 
@@ -31,7 +31,7 @@ class request{
 
 	public static function get_sanitized_as_object( $varnames ){
 
-		$sanitized = $this->get_sanitized( $varnames );
+		$sanitized = self::get_sanitized( $varnames );
 
 		$object = new stdClass();
 
@@ -48,7 +48,7 @@ class request{
 
 		if ( array_key_exists($varname, $_GET) ){
 
-			return $this->sanitize( $_GET[$varname] );
+			return self::sanitize( $_GET[$varname] );
 
 		} else {
 			return '';
@@ -61,7 +61,7 @@ class request{
 
 		if ( array_key_exists($varname, $_POST)){
 
-			return $this->sanitize( $_GET[$varname] );
+			return self::sanitize( $_GET[$varname] );
 
 		} else {
 			return '';
@@ -74,7 +74,7 @@ class request{
 
 		if ( array_key_exists($varname, $_COOKIE) ){
 
-			return $this->sanitize( $_COOKIE[$varname] );
+			return self::sanitize( $_COOKIE[$varname] );
 		} else {
 			return '';
 		}
