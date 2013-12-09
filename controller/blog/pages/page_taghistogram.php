@@ -5,9 +5,9 @@
  * Filename: tags
  * 
  * Description:
- * 	Manages retrieving tags and posts via tags.  Is not intented
- * 	to be called standalone and should be included in another file
- * 	that already has established config and session instances.
+ *  Manages retrieving tags and posts via tags.  Is not intented
+ *  to be called standalone and should be included in another file
+ *  that already has established config and session instances.
  */
 include_once GNAT_ROOT.'/lib/core_histogram.php';
 
@@ -15,10 +15,10 @@ $tag = $pageData['session']->tag;
 
 
 if ( $tag ){
-	/*
-	 * If a tag was requested, display which tag is being browsed
-	 * with a link back to the main page of tags
-	 */
+    /*
+     * If a tag was requested, display which tag is being browsed
+     * with a link back to the main page of tags
+     */
     print '<p><strong>Browsing tag "'.$tag.'".  </strong><a href="/?url='.$pageData['blogid'].'/tags">View all tags.</a></p>'."\n";
 
 }
@@ -54,14 +54,19 @@ else{
      * with the tag.
      */
     $tags = $pageData['tags'];
-    $matching = $tags[$tag];
 
-    foreach ($matching as $nodeid => $title ) {
-        $link = getConfigOption( 'site_domain' ).'/?url='.$pageData['blogid'].'/read/'.$nodeid.'.htm';
-        print '<li><a href="'.htmlentities( $link ).'">'.$title.'</a></li>';
+    if ( array_key_exists($tag, $tags)){
+        $matching = $tags[$tag];
+
+        foreach ($matching as $nodeid => $title ) {
+            $link = getConfigOption( 'site_domain' ).'/?url='.$pageData['blogid'].'/read/'.$nodeid.'.htm';
+            print '<li><a href="'.htmlentities( $link ).'">'.$title.'</a></li>';
+        }
+
+        echo "</ul>";
+    } else {
+        echo "<p>No posts found.</p>";
     }
-
-    echo "</ul>";
 
 }
 
