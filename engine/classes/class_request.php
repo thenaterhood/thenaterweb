@@ -56,7 +56,7 @@ class request{
 
 		if ( array_key_exists($varname, $_POST)){
 
-			return self::sanitize( $_GET[$varname] );
+			return self::sanitize( $_POST[$varname] );
 
 		} else {
 			return '';
