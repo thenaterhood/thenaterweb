@@ -19,7 +19,7 @@ class webadmin extends controllerBase{
 
 	public function __call( $method, $args ){
 
-		authenticate_user( getConfigOption('site_domain').'/webadmin' );
+		auth_user( getConfigOption('site_domain').'/webadmin' );
 
 		$this->pageData['session'] = request::get_sanitized_as_object( array('name', 'track', 'konami', 'id', 'tag', 'type', 'node', 'start', 'end') );
 		$this->pageData['content'] = pullContent( $this->page_directory.'/page_'.$method );
