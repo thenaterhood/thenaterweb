@@ -21,6 +21,22 @@ function auth_user( $toPage='/' ){
 
 }
 
+function log_user_in( $user ){
+
+	$sessionmgr = SessionMgr::getInstance();
+
+	$sessionmgr->valid = 1;
+	$sessionmgr->user = $user;
+
+
+}
+
+function log_user_out(){
+
+	$sessionmgr = SessionMgr::getInstance();
+
+}
+
 
 function check_login_legacy(){
 	if( !($passwd = @fopen( "./.htpasswd", "r" ))) {  
