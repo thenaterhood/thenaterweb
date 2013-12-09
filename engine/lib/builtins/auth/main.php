@@ -15,7 +15,12 @@ class auth extends controllerBase{
 
 		$this->pageData['id'] = 'login';
 		$this->pageData['title'] = "NW Authentication";
-		$this->pageData['static'] - AUTH_ROOT.'/pages';
+		$this->pageData['static'] = AUTH_ROOT.'/pages';
+
+		$sessionmgr = SessionMgr::getInstance();
+
+		$this->pageData['csrf_id'] = $sessionmgr->get_csrf_id();
+		$this->pageData['csrf_token'] = $sessionmgr->get_csrf_token();
 
 		$pageData = $this->pageData;
 
