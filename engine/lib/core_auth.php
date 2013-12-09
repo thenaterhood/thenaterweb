@@ -1,4 +1,25 @@
-<?php 
+<?php
+
+include_once GNAT_ROOT.'/lib/core_redirect.php';
+
+function auth_user( $toPage='/' ){
+
+	$sessionmgr = SessionMgr::getInstance();
+
+	if( isset($sessionmgr->username) && $sessionmgr->valid ){
+		return true;
+		
+	} else {
+		$sessionmgr->toPage = $toPage;
+		$redirect = new redirect( $toPage, getConfigOption('site_domain').'/auth/login' );
+		$redirect->apply( 302 );
+	}
+
+
+	return false;
+
+
+}
 
 if( !($passwd = @fopen( "./.htpasswd", "r" ))) {  
 	 echo "Cannot open password file."; 

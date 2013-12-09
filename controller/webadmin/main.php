@@ -15,17 +15,23 @@ class webadmin extends controllerBase{
 		$configFile = WEBADMIN_ROOT.'/webadmin.conf.xml';
 		$this->readConfig( $configFile );
 
-		$session = request::get_sanitized_as_object( array('name', 'track', 'konami', 'id', 'tag', 'type', 'node', 'start', 'end') );
+	}
 
+	public function __call( $method, $args ){
 
-		$this->pageData['session'] = $session;
-		$this->pageData['static'] = $this->page_directory;
-		$content = pullContent( array( $this->page_directory.'/page_'.$session->id, $this->page_directory.'/hidden_'.$session->id, GNAT_ROOT.'/lib/pages/page_'.$session->id ) );
+		authenticate_user( getConfigOption('site_domain').'/webadmin' );
+
+		$this->pageData['session'] = request::get_sanitized_as_object( array('name', 'track', 'konami', 'id', 'tag', 'type', 'node', 'start', 'end') );
+		$this->pageData['content'] = pullContent( $this->page_directory.'/page_'.$method );
 		$this->pageData['content'] = $content;
 		$this->pageData['id'] = $content->title;
 		$this->pageData['title'] = $this->title;
 		$this->pageData['tagline'] = $this->catchline;
 		$this->pageData['appid'] = $this->id;
+
+		$pageData = $this->pageData;
+
+		include $this->settings['template'];
 
 	}
 
