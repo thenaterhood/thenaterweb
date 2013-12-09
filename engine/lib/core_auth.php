@@ -6,7 +6,7 @@ function auth_user( $toPage='/' ){
 
 	$sessionmgr = SessionMgr::getInstance();
 
-	if( isset($sessionmgr->username) && $sessionmgr->valid ){
+	if( isset($sessionmgr->valid) && $sessionmgr->valid ){
 		return true;
 
 	} else {
