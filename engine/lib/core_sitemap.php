@@ -22,22 +22,19 @@
  * 
  * @param $includePaths (list): a list of local paths to search for files in
  * @param $webpath (list): a list of web addresses, which correspond to the includePathss
- * @param $delimeters (list): a list of file prefixes to search for in the dir
  * 
  * @return $sitemap (sitemap): an xml sitemap
  */
-function createSitemap($includePath, $webpath){
+function createSitemap( $files ){
 
 	$sitemap = new urlset();
 
 	
-	$dir = opendir("$includePath");
-	while ( $file = readdir($dir) ) {
+	foreach ( $files as $file => $uri ) {
 
-		if ( !in_array( $file, getConfigOption('hidden_files') ) and substr($file, 0, 5) == 'page_' ){
-			$pageName = explode(".", substr($file,strpos($file, '_')+1) );
-			$last_modified = filemtime("$includePath/$file");
-			$sitemap->new_item("$webpath/$pageName[0]", date(DATE_ATOM, $last_modified));
+		if ( !in_array( $file, getConfigOption('hidden_files') ) ){
+			$last_modified = filemtime( $file );
+			$sitemap->new_item( $uri, date(DATE_ATOM, $last_modified));
 		}
 	} 
 

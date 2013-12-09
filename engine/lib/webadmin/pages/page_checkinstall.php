@@ -23,11 +23,17 @@ fclose($writetest);
 if ( is_writable( getConfigOption('dynamic_directory').'/writetest.txt') ){
 
 	unlink( getConfigOption('dynamic_directory').'/writetest.txt' );
-	echo '<h4><font color="green">OK: Dynamic storage is writeable.</font></h4>';
+	print '	<div class="alert alert-success">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		OK: Dynamic storage is writeable.
+		</div>';
 }else{
 
-	echo '<h4><font color="red">PROBLEM: Dynamic storage is not writeable.</font></h4>';
-	echo '<p>The dynamic directory is '.getConfigOption('dynamic_directory').'. Thenaterweb needs write access to this directory.</p>';
+	print '	<div class="alert alert-warning">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		PROBLEM: Dynamic storage is not writeable.
+		<p>The dynamic directory is '.getConfigOption('dynamic_directory').'. Thenaterweb needs write access to this directory.</p>
+		</div>';
 
 }
 
@@ -35,11 +41,19 @@ if ( is_writable( getConfigOption('dynamic_directory').'/writetest.txt') ){
 if ( is_writable( GNAT_ROOT.'/var/log/writetest.txt') ){
 
 	unlink( GNAT_ROOT.'/var/log/writetest.txt' );
-	echo '<h4><font color="green">OK: Log storage is writeable.</font></h4>';
+
+
+	print '	<div class="alert alert-success">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		OK: Log storage is writeable.
+		</div>';
 }else{
 
-	echo '<h4><font color="red">PROBLEM: Log storage is not writeable.</font></h4>';
-	echo '<p>The log directory is engine/var/log. Thenaterweb needs write access to this directory.</p>';
+	print '	<div class="alert alert-warning">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		PROBLEM: Log storage is not writeable.
+		<p>The log directory is engine/var/log. Thenaterweb needs write access to this directory.</p>
+		</div>';
 
 }
 

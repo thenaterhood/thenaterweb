@@ -6,6 +6,15 @@ abstract class controllerBase{
 
 	protected $settings;
 	protected $configuration;
+	protected $pageData;
+
+	public function __construct(){
+
+		$this->pageData = array();
+
+
+
+	}
 
 	/**
 	 * Returns a map containing all of the controller 
@@ -92,6 +101,28 @@ abstract class controllerBase{
 	 */
 	public function __get( $field ){
 		return $this->settings[$field];
+	}
+
+	public function getPageData(){
+		return $this->pageData;
+	}
+
+	/**
+	 * Returns a list of pages that should be 
+	 * available publicly. Used by the sitemap 
+	 * generation system.
+	 */
+	public function getPageList(){
+		return array();
+	}
+
+	/**
+	 * Returns a list of posts (in order) that should be 
+	 * available publicly. Used by the feed 
+	 * generation system.
+	 */
+	public function getPostList(){
+		return array();
 	}
 
 }

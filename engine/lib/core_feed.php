@@ -15,7 +15,6 @@
  */
  include_once GNAT_ROOT.'/lib/core_blog.php';
  include_once GNAT_ROOT.'/classes/class_feed.php';
- include_once GNAT_ROOT.'/classes/class_inventory.php';
 
 /**
  * Generates an atom feed and returns it
@@ -23,37 +22,22 @@
  * @return $atom (atom_feed): an instance of the atom_feed class
  * 
  */
-function generateFeed( $bloguri, $feedTitle, $feedCatchline, $forceRegen, $postDirectory ){
+function generateFeed( $blogdef, $force_regen ){
 
-	
-	$inventory = new inventory( $postDirectory, $bloguri );
-	$posts = $inventory->getFileList();
+	$bloguri = $blogdef->id;
+	$feedTitle = $blogdef->title;
+	$feedCatchline = $blogdef->catchline;
 
-	$atom = new feed( $postDirectory, $bloguri );
+	$atom = new feed( $feedTitle, $bloguri, $feedCatchline, date(DATE_ATOM) );
 
-	if ( ! getConfigOption('auto_feed_regen') && ! $forceRegen && $atom->exists() ){
-		/*
-		* If the inventory matches the existing number of items in the
-		* directory, return the static feed file
-		*/
-		return $atom;
-	}
+	$i = 0;
+	$postList = $blogdef->getPostList();
 
-	else if ( $forceRegen ){
-		/*
-		* If the inventory doesn't match the existing number of items in
-		* the directory, regenerate the inventory and the feed file
-		* then return the feed file
-		*/
-		$inventory->regen();
-		$atom->reset( $feedTitle, getConfigOption('site_domain')."/$bloguri", $feedCatchline,  date(DATE_ATOM) );
-
-	}
-
-	else{
-
-		$inventory->update();
-		$atom->update();
+	foreach ($postList as $key => $value) {
+		$atom->new_item( $value );
+		$i++;
+		if ( $i > getConfigOption( 'max_feed_items') )
+			break;
 	}
 
 	return $atom;

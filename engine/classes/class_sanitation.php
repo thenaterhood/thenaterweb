@@ -90,7 +90,7 @@ class sanitation{
 	 */
 	private function num(){
 		
-		return (int) $this->dirty;
+		return (int) $this->str;
 	}
 	
 	/**
@@ -98,7 +98,7 @@ class sanitation{
 	 */
 	private function boo(){
 		
-		if ( $this->dirty and $this->dirty != "False" ){
+		if ( $this->dirty and $this->str != "False" ){
 			return True;
 		}
 		else{ 

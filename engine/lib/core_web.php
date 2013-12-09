@@ -14,13 +14,15 @@
 /**
  * Include the config file
  */
-include GNAT_ROOT.'/config/class_config.php';
+include 'settings.php';
 include GNAT_ROOT.'/classes/class_varGetter.php';
 include GNAT_ROOT.'/classes/class_session.php';
 include GNAT_ROOT.'/classes/class_lock.php';
 include GNAT_ROOT.'/lib/core_extension.php';
 include GNAT_ROOT.'/classes/class_article.php';
 include GNAT_ROOT.'/classes/class_urlHandler.php';
+include GNAT_ROOT.'/lib/core_database.php';
+include GNAT_ROOT.'/classes/class_sessionMgr.php';
 
 /**
 * Checks to see if the preferred file exists, and if it does
@@ -31,10 +33,16 @@ include GNAT_ROOT.'/classes/class_urlHandler.php';
 * 
 * 
 */
-function pullContent($preferred, $sectionUri='/', $articleUri='/' ){
+function pullContent( $preferred, $sectionUri='/', $articleUri='/' ){
+
+	if ( ! is_array($preferred ) ){
+		$to = array();
+		$to[] = $preferred;
+		$preferred = $to;
+	}
 
 	$i = 0;
-	$article = new article( "", $sectionUri, $articleUri );
+	$article = new article( "", $sectionUri, $articleUri, False );
 
 	while ( $i < count($preferred) && $article->getType() == "none" ){
 
@@ -47,94 +55,13 @@ function pullContent($preferred, $sectionUri='/', $articleUri='/' ){
 			$file = substr( $preferred[$i], 0, strpos( $preferred[$i], '.')-1);
 		}
 
-		$article = new article( $file, $sectionUri, $articleUri );
+		$article = new article( $file, $sectionUri, $articleUri, False );
 
 		$i++;
 
 	}
 
 	return $article;
-}
-
-/**
-* Checks to see if the preferred file exists, and if it does
-* returns it, otherwise it returns the secondary file, which ideally
-* should be a file (like an error page) that is guaranteed to exist.
-* 
-* @param $preferred (string): the preferred page to include
-* @param $secondary (string): the secondary, emergency page to include
-* 
-* THIS IS A FUNCTION TO SUPPORT LEGACY INDEX
-*/
-function getContent($preferred, $secondary){
-
-	// Set up a default state, using the secondary.
-	// Note that the secondary will not currently be searched
-	// for, so must include an extension. It is assumed
-	// it will be includable and will exist. If not, woe is you.
-	$file = $secondary;
-	$type = 'php';
-
-	// If no file extension was given, initiate a search
-	// for the file
-	if ( !strpos( $preferred, '.' ) ){
-
-		// Types supported by the class, in order of precedence
-		$supportedTypes = array( 'php', 'html', 'pre' );
-		$contentFile = 'NULL';
-
-		// Search for the file in order of precedence
-		$i = 0;
-		while ( $i < count($supportedTypes) && !file_exists( $contentFile ) ){
-
-			// If the file exists, update the class with it and break
-			if ( file_exists( $preferred.'.'.$supportedTypes[$i] ) ){
-				$contentFile = $preferred.'.'.$supportedTypes[$i];
-				$file = $contentFile;
-				$type = $supportedTypes[$i];
-			}
-
-			++$i;
-
-		}
-
-	}
-	else{
-		if ( file_exists( $preferred ) ){
-			$type = substr( $preferred, strpos( $preferred, '.')+1 );
-			$file = $preferred;
-		}
-	}
-
-	$r = array();
-	$r['file'] = $file;
-    // If the file may contain php, then simply include the file
-	if ( $type == "php" || $type == "html" ){
-
-		$r['pre'] = "";
-		$r['post'] = "";
-		$r['sanitize'] = False;
-
-	}
-
-	// If the file is of type pre (preformatted), insert the
-	// tags and sterilize the contents
-	else if ( $type == "pre" ){
-
-		$r['pre'] = '<pre>';
-		$r['post'] = '</pre>';
-		$r['sanitize'] = True;
-		
-	}
-
-	return $r;
-}
-
-function chooseInclude( $preferred, $secondary ){
-
-	$contentInstructions = getContent( $preferred, $secondary );
-	return $contentInstructions['file'];
-
 }
 
 /**

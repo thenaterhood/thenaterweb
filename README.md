@@ -72,7 +72,8 @@ Thenaterweb requires no additional setup for the addition of controllers.
 Rather, when a location on the site is accessed, i.e yoursite.com/SomeName, 
 Thenaterweb will look in the controllers directory for a file with the name 
 control_SomeName.php. The control classes should extend the controllerBase class 
-from the controller/interface_control.php file. If Thenaterweb doesn't find 
+from the controller/interface_control.php file and have the same name as the 
+directory for the controller. If Thenaterweb doesn't find 
 a file that matches the requested controller, it will display a 404 error page.
 
 You should also take a look at the engine/config/class_config.php file which 

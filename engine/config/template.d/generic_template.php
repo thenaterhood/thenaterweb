@@ -1,48 +1,8 @@
-<?php 
-#error_reporting(E_ALL);
-#ini_set( 'display_errors','1'); 
-include_once GNAT_ROOT.'/lib/core_blog.php';
-include_once GNAT_ROOT.'/lib/core_redirect.php';
-
-$session = new session( array('name', 'track', 'konami', 'id', 'tag', 'type', 'node', 'start', 'end') );
-$config = new config();
-$registerExtensions = array( );
-$extensions = loadExtensions( $session, $registerExtensions );
-
-# Grab variables from the URL. Syntax for this is...
-# name of variable, default value of variable, maxlength of variable
-$static = $blogdef->page_directory;
-
-$content = pullContent( array( $static.'/page_'.$session->id, $static.'/hidden_'.$session->id, GNAT_ROOT.'/lib/pages/page_'.$session->id ) );
-
-$htmlTitle = $blogdef->title.' | '.$content->title;
-$visibleTitle = $blogdef->title;
-
-$id = $content->title;
-$tagline = $blogdef->catchline;
-$type = '404';
-
-if ( $config->friendly_urls ){
-        $redirect = new condRedirect( '/?url', '/'.$_GET['url'], substr( $config->site_domain, 7 ).$session->uri );
-        $redirect->apply( 301 );
-        $redirect = new condRedirect( "?id=post", '/'.$blogdef->id.'/read/'.$session->node.'.htm', $session->uri );
-        $redirect->apply( 301 );
-        $redirect = new condRedirect( '/?id', "page/".$session->id, substr( $config->site_domain, 7 ).$session->uri );
-        $redirect->apply( 301 );
-}
-
-
-// Checks for cookies and sets them (or refreshes them) if necessary
-
-setcookie('name',$session->name,time() + (86400 * 30),"/",$session->domain); // 86400 = 1 day
-setcookie('track',$session->track,time() + (86400 * 30),"/",$session->domain); // 86400 = 1 day
-?>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title><?php print $blogdef->title .' | '. $content->title; ?></title>
+    <title><?php print $pageData['title'] .' | '. $pageData['id']; ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -146,10 +106,10 @@ setcookie('track',$session->track,time() + (86400 * 30),"/",$session->domain); /
 
                 <?php 
 
-                        if ( file_exists( $static.'/template_dropdown.php' ) ){
+                        if ( file_exists( $pageData['static'].'/template_dropdown.php' ) ){
 
                                 print '<li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$blogdef->id.'<b class="caret"></b></a>
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$pageData['appid'].'<b class="caret"></b></a>
                                         <ul class="dropdown-menu">';
                                 include $static.'/template_dropdown.php';
                                 print '
@@ -170,21 +130,19 @@ setcookie('track',$session->track,time() + (86400 * 30),"/",$session->domain); /
       <!-- Begin page content -->
       <div class="container">
         <div class="page-header">
-          <h1><?php print $blogdef->title; ?></h1>
+          <h1><?php print $pageData['title']; ?></h1>
         </div>
                                 <?php 
 
-                                print getPreface( $extensions );
 
 
-                                if ( ! $content->isPhp() ){
-                                        print $content->toHtml();
+                                if ( ! $pageData['content']->isPhp() ){
+                                        print $pageData['content']->toHtml();
                                 }
                                 else{
-                                        include $content->getFile();
+                                        include $pageData['content']->getFile();
                                 }
 
-                                print getPost( $extensions );
 
                                 ?>
       </div>
@@ -194,7 +152,7 @@ setcookie('track',$session->track,time() + (86400 * 30),"/",$session->domain); /
 
     <div id="footer">
       <div class="container">
-        <p class="muted credit">Template based on <a href="http://getbootstrap.com">Bootstrap</a>. Copyright 2012-2013 Nate Levesque (TheNaterhood). <a href="/sitemap.php">View sitemap</a>.</p>
+        <p class="muted credit">Template based on <a href="http://getbootstrap.com">Bootstrap</a>. Copyright 2012-2013 Nate Levesque (TheNaterhood). <a href="/sitemaps/page">View sitemap</a>.</p>
       </div>
     </div>
 

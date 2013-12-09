@@ -16,7 +16,12 @@ called main.php which contains a controller class extending
 controllerBase. Configuration files should be kept in the same 
 directory. Thenaterweb's main index file includes the majority 
 of Thenaterweb's software as well as controllerBase, so your 
-main.php file does not need to do any of this.
+main.php file does not need to do any of this. The constructor 
+of your application's main class should set up some data and 
+otherwise initialize the class. If your application has a config 
+file, it should be set here and the reader for it should load it. 
+A configuration file is not required, but allows for management 
+of your application's settings via the webadmin panel.
 
 All in all, the structure of an application should look like:
 
@@ -29,8 +34,8 @@ All in all, the structure of an application should look like:
           |
           + YourApp
              |
-             + main.php (with class controller extending controllerBase)
-             + conf.xml
+             + main.php (with class YourApp extending controllerBase)
+             + conf.xml (named as you wish, if you use a config file)
              + other files
 
 In this case, the URL to access the main (front) page would be:
@@ -63,18 +68,34 @@ Template loading example:
 		|
 		+ search controllers for YourApp
 		+ include YourApp/main.php
-		+ initialize YourApp/main.php controller() class
-		+ include $controller->template 
+		+ initialize YourApp/main.php YourApp() class
+		+ run $controller->ViewName() or include $controller->template 
 
 Naming the application's configuration file conf.xml (or simply not 
-having one at all) is entirely optional. Naming it conf.xml allows 
-the application's settings to be managed from the webadmin app that 
-Thenaterweb comes with. There is also nothing wrong with having an 
-application provide its own management system externally from webadmin. 
+having one at all) is entirely optional.
 
 Providing that the controller is stored in the proper place, Thenaterweb 
 places no restrictions on where the associated data is stored and will 
 retrieve the configuration data if need be to find it.
+
+Although optional, Thenaterweb provides some builtin utilities for 
+your application that may be useful, which include feed and sitemap 
+generation. These exist already at YourSite.com/sitemaps/YourApp and 
+YourSite.com/feeds/YourApp (more details in the Provided Utilities section). 
+In order to make use of these, you must override two methods that exist 
+in the base controller class that your application extends.
+
+Feeds: You must override the class method getPostList(). This method should 
+return a list of instances of the builtin article class in the order 
+they should appear in the feed. The article class can be initialized directly 
+from a file or a database table and the appid, or can be initialized by 
+way of the stdClassArticle class (which accepts an stdClass object containing 
+the post data) or by way of the mappedArticle class which accepts an 
+associative array.
+
+Sitemaps: You must override the class method getPageList(). This method 
+should return an associative array of the pages you would like to 
+show in the sitemap. The array should be of the form LocalFile => WebPath.
 
 Provided Utilities
 -----------------------

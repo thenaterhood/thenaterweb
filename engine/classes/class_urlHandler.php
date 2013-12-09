@@ -112,6 +112,7 @@ class urlHandler{
 
 		if ( ! file_exists($this->controller) ){
 			$this->controller = "controller/error/main.php";
+			$_GET['id'] = '404';
 		}
 
 
