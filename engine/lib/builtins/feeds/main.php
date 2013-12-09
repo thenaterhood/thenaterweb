@@ -23,7 +23,15 @@ class feeds extends controllerBase{
 			
 			$blogdef = new $method();
 
-			include $this->template;
+			Header('Content-type: application/atom+xml');
+
+
+			$session = new session( array('regen') );
+			$config = new config();
+
+			$feed = generateFeed( $blogdef, False );
+			print $feed->output( getConfigOption('feed_type') );
+			
 		} else {
 			echo 'Feed not found.';
 		}

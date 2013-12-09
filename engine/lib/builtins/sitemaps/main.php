@@ -14,7 +14,7 @@ class sitemaps extends controllerBase{
 	public function __call( $method, $args ){
 
 		$appRoot = 'controller/'.$method;
-		$session = new session( array('id') );
+		$session = new session( array('type') );
 
 		if ( file_exists($appRoot.'/main.php') ){
 			include $appRoot.'/main.php';
@@ -28,6 +28,7 @@ class sitemaps extends controllerBase{
 				print $sitemap->toHtml();
 			}
 			else{
+				Header('Content-Type: text/xml');
 				print $sitemap->toXml();
 			}
 		} else {
