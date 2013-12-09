@@ -29,6 +29,21 @@ class request{
 
 	}
 
+	public static function get_sanitized_as_object( $varnames ){
+
+		$sanitized = $this->get_sanitized( $varnames );
+
+		$object = new stdClass();
+
+
+		foreach ($variable as $key => $value) {
+			$stdClass->$key = $value;
+		}
+
+		return $object;
+
+	}
+
 	public static function sanitized_get( $varname ){
 
 		if ( array_key_exists($varname, $_GET) ){
