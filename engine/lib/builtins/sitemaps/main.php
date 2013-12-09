@@ -14,6 +14,7 @@ class sitemaps extends controllerBase{
 	public function __call( $method, $args ){
 
 		$appRoot = 'controller/'.$method;
+		$session = new session( array('id') );
 
 		if ( file_exists($appRoot.'/main.php') ){
 			include $appRoot.'/main.php';
