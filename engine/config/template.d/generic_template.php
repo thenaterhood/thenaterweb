@@ -2,116 +2,64 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title><?php print $pageData['title'] .' | '. $pageData['id']; ?></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <!-- CSS -->
-    <link href="/assets/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <style type="text/css">
+    <title><?php print $pageData['title'] .' | '. $pageData['id']; ?></title>
 
-      /* Sticky footer styles
-      -------------------------------------------------- */
+    <!-- Bootstrap core CSS -->
+    <link href="/assets/bootstrap3/css/bootstrap.css" rel="stylesheet">
 
-      html,
-      body {
-        height: 100%;
-        /* The html and body elements cannot have any padding or margin. */
-      }
+    <!-- Custom styles for this template -->
+    <link href="/assets/bootstrap3/css/sticky-footer-navbar.css" rel="stylesheet">
 
-      /* Wrapper for page content to push down footer */
-      #wrap {
-        min-height: 100%;
-        height: auto !important;
-        height: 100%;
-        /* Negative indent footer by it's height */
-        margin: 0 auto -60px;
-      }
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
-      /* Set the fixed height of the footer here */
-      #push,
-      #footer {
-        height: 60px;
-      }
-      #footer {
-        background-color: #f5f5f5;
-      }
-
-      /* Lastly, apply responsive CSS fixes as necessary */
-      @media (max-width: 767px) {
-        #footer {
-          margin-left: -20px;
-          margin-right: -20px;
-          padding-left: 20px;
-          padding-right: 20px;
-        }
-      }
-
-
-
-      /* Custom page CSS
-      -------------------------------------------------- */
-      /* Not required for template or sticky footer method. */
-
-      #wrap > .container {
-        padding-top: 60px;
-      }
-      .container .credit {
-        margin: 20px 0;
-      }
-
-      code {
-        font-size: 80%;
-      }
-
-    </style>
-    <link href="/assets/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-      <script src="js/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
-
-    <!-- Fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
-      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
-                    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
-                                   <link rel="shortcut icon" href="../assets/ico/favicon.png">
+    <?php print getConfigOption('tracking_code'); ?>
   </head>
 
   <body>
 
-
-    <!-- Part 1: Wrap all page content here -->
+    <!-- Wrap all page content here -->
     <div id="wrap">
 
       <!-- Fixed navbar -->
-      <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="navbar-inner">
-          <div class="container">
-            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="brand" href="/">TheNaterhood</a>
-            <div class="nav-collapse collapse">
-              <ul class="nav">
-                <li><a href="/">Home</a></li>
+            <a class="navbar-brand" href="/">TheNaterhood</a>
+          </div>
+          <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+             <li><a href="/">Home</a></li>
                 <li><a href="/page/about">About</a></li>
                 <li><a href="/page/connect">Connect</a></li>  
-                <li><a href="/page/projects">Projects</a></li>                              
+                <li><a href="/page/projects">Projects</a></li>
+                <li><a href="/devrants">Devrants</a></li>
+                <li><a href="/blog">Blog</a></li>
 
                 <?php 
 
                         if ( file_exists( $pageData['static'].'/template_dropdown.php' ) ){
 
                                 print '<li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$pageData['appid'].'<b class="caret"></b></a>
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$pageData['blogid'].'<b class="caret"></b></a>
                                         <ul class="dropdown-menu">';
-                                include $static.'/template_dropdown.php';
+                                include $pageData['static'].'/template_dropdown.php';
                                 print '
           
                                 </ul>
@@ -120,17 +68,26 @@
 
                         }
                 ?>
-
-
-            </div><!--/.nav-collapse -->
-          </div>
+                </ul>
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
         </div>
       </div>
 
       <!-- Begin page content -->
       <div class="container">
-        <div class="page-header">
-          <h1><?php print $pageData['title']; ?></h1>
+        <div class="page-header" >
+          <br />
+          <br />
+          <br />
+                    <h1 style="display:inline;"><?php print $pageData['title']; ?></h1>
+          <?php if ( file_exists( $pageData['static'].'/template_head-icons.html' ) ){
+            echo '<span style="margin-left:20px;">';
+            include $pageData['static'].'/template_head-icons.html';
+            echo '</span>';
+          }
+          ?>
         </div>
                                 <?php 
 
@@ -146,25 +103,19 @@
 
                                 ?>
       </div>
-
-      <div id="push"></div>
     </div>
 
     <div id="footer">
       <div class="container">
-        <p class="muted credit">Template based on <a href="http://getbootstrap.com">Bootstrap</a>. Copyright 2012-2013 Nate Levesque (TheNaterhood). <a href="/sitemaps/page">View sitemap</a>.</p>
+        <p class="text-muted">Template based on <a href="http://getbootstrap.com">Bootstrap</a>. Copyright 2012-2013 Nate Levesque (TheNaterhood). <a href="/sitemaps/page">View sitemap</a>.</p>
       </div>
     </div>
 
 
-
-    <!-- Le javascript
+    <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="http://code.jquery.com/jquery.js"></script>
 
-    <script src="/assets/bootstrap/js/bootstrap.js"></script>
-
-  </body>
+    <script src="/assets/bootstrap3/js/bootstrap.js"></script>  </body>
 </html>
-
