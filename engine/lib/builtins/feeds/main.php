@@ -13,14 +13,13 @@ class feeds extends controllerBase{
 
 	}
 
-	public function __call(){
+	public function __call($method, $args){
 
-		$session = new $session( array('id') );
-		$appRoot = 'controller/'.$session->id;
+		$appRoot = 'controller/'.$method;
 
 		if ( file_exists($appRoot.'/main.php') ){
 			include $appRoot.'/main.php';
-			$blogdef = new $session->id();
+			$blogdef = new $method();
 
 			include $this->template;
 		} else {
