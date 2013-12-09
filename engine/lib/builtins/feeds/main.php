@@ -28,4 +28,6 @@ class feeds extends controllerBase{
 
 	}
 
+}
+
 ?>
