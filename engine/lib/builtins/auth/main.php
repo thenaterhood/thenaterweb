@@ -23,8 +23,8 @@ class auth extends controllerBase{
 
 			log_user_in( request::sanitized_post('username') );
 
-			$redir_to = $sessionmgr->pageTo;
-			unset( $sessionmgr->pageTo );
+			$redir_to = $sessionmgr->toPage;
+			unset( $sessionmgr->toPage );
 
 			$redirect = new redirect( '/auth/login', $redir_to );
 			$redirect->apply( 302 );
