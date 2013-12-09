@@ -65,15 +65,18 @@ if ( in_array($controller, $_ENGINE_BUILTINS) ){
 	$approot = GNAT_ROOT."/lib/builtins/".$controller;
 
 
-} else { 
+} else if ( file_exists('controller/'.$controller.'/main.php') ) { 
 
 	define(strtoupper($controller).'_ROOT', "controller/".$controller );
 	$approot = 'controller/'.$controller;
 
+} else {
+
+	$controller = 'error';
+	define('ERROR_ROOT', "controller/".$controller );
+	$approot = 'controller/'.$controller;
+
 }
-
-
-include $approot.'/main.php';
 
 $NWSESSION = new session( array( 'id' ) );
 
@@ -95,7 +98,7 @@ $blogdef = new $controller();
 try { 
 
 
-	if ( method_exists( $blogdef, $id ) ){
+	if ( method_exists( $blogdef, $id ) || method_exists( $blogdef, '__call' ) ){
 
 		$blogdef->$id();
 
