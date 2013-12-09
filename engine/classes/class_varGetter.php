@@ -13,6 +13,8 @@ include_once GNAT_ROOT.'/classes/class_sanitation.php';
 /**
  * Provides an interface for retrieving variables using a specific
  * method or by searching through each method to find a variable.
+ *
+ * @deprecated
  */
 class varGetter extends sanitation{
 	 

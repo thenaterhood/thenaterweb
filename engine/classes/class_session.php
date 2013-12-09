@@ -17,6 +17,8 @@ include_once GNAT_ROOT.'/classes/class_varGetter.php';
  * user in a clean way, so that internal variables for pulling
  * pages and otherwise can be managed more easily and sanitation
  * settings are more easily applied site-wide.
+ *
+ * @deprecated - deprecated in favor of the request class
  * 
  */
 class session extends dataMonger{

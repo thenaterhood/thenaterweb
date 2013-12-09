@@ -15,6 +15,8 @@
  * sanitation functions are implemented. The sanitization for the
  * requested return is called (returns an empty object if the 
  * sanitization can't convert the current one to the requested one).
+ *
+ * @deprecated in favor of the request class
  */
 class sanitation{
 
