@@ -26,7 +26,7 @@ class auth extends controllerBase{
 			$redir_to = $sessionmgr->pageTo;
 			unset( $sessionmgr->pageTo );
 
-			$redirect = new redirect( '/auth/login', $pageTo );
+			$redirect = new redirect( '/auth/login', $redit_to );
 			$redirect->apply( 302 );
 
 
