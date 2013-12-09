@@ -1,7 +1,7 @@
 <?php
 include GNAT_ROOT.'/lib/core_auth.php';
 
-$admSession = new session( array( 'blogid', 'postid', 'isnew' ) );
+$admSession = request::get_sanitized_as_object( array( 'blogid', 'postid', 'isnew' ) );
 
 class webadmin extends controllerBase{
 
@@ -15,7 +15,7 @@ class webadmin extends controllerBase{
 		$configFile = WEBADMIN_ROOT.'/webadmin.conf.xml';
 		$this->readConfig( $configFile );
 
-		$session = new session( array('name', 'track', 'konami', 'id', 'tag', 'type', 'node', 'start', 'end') );
+		$session = request::get_sanitized_as_object( array('name', 'track', 'konami', 'id', 'tag', 'type', 'node', 'start', 'end') );
 
 
 		$this->pageData['session'] = $session;

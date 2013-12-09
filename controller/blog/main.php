@@ -16,7 +16,7 @@ class blog extends controllerBase{
 		$configFile = $this->approot.'/conf.xml';
 		$this->readConfig( $configFile );
 
-		$session = new session( array('name', 'track', 'konami', 'id', 'tag', 'type', 'node', 'start', 'end') );
+		$session = request::get_sanitized_as_object( array('name', 'track', 'konami', 'id', 'tag', 'type', 'node', 'start', 'end') );
 
 
 		$this->pageData['session'] = $session;
