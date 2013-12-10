@@ -155,7 +155,7 @@ class blog extends controllerBase{
 			$this->pageData['csrf_token'] = $sessionmgr->get_csrf_token();
 			$post = new article( $this->post_directory.'/'.$this->pageData['session']->node, $this->settings['id'] );
 
-			$pageData['post'] = $post->dump();
+			$this->pageData['post'] = $post->dump();
 
 			$pageData = $this->pageData;
 
