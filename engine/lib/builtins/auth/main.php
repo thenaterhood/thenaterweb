@@ -114,12 +114,11 @@ class auth extends controllerBase{
 
 				return True;
 
-			} else{
-
-		        return False;
-		    }
+			} 
 
 		}
+
+		return False;
 
 
 	}
