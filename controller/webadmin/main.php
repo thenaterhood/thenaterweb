@@ -61,6 +61,8 @@ class webadmin extends controllerBase{
 			include $this->settings['template'];
 
 
+		}
+
 	}
 
 
