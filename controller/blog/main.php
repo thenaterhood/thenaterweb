@@ -147,17 +147,30 @@ class blog extends controllerBase{
 
 		$sessionmgr = SessionMgr::getInstance();
 
-		$this->pageData['content'] = pullContent( $this->approot.'/pages/page_editpost');
-		$this->pageData['id'] = $this->settings['id'];
-		$this->pageData['csrf_id'] = $sessionmgr->get_csrf_id();
-		$this->pageData['csrf_token'] = $sessionmgr->get_csrf_token();
-		$post = new article( $this->post_directory.'/'.$this->pageData['session']->node, $this->settings['id'] );
+		if ( request::get('node') != '' ){
 
-		$pageData['post'] = $post->dump();
+			$this->pageData['content'] = pullContent( $this->approot.'/pages/page_editpost');
+			$this->pageData['id'] = $this->settings['id'];
+			$this->pageData['csrf_id'] = $sessionmgr->get_csrf_id();
+			$this->pageData['csrf_token'] = $sessionmgr->get_csrf_token();
+			$post = new article( $this->post_directory.'/'.$this->pageData['session']->node, $this->settings['id'] );
 
-		$pageData = $this->pageData;
+			$pageData['post'] = $post->dump();
 
-		include $this->template;
+			$pageData = $this->pageData;
+
+			include $this->template;
+
+		} else {
+
+			$this->pageData['posts'] = $this->getPostList();
+			$this->pageData['content'] = pullContent( $this->approot.'/pages/page_selectpost' );
+
+			$pageData = $this->pageData;
+
+			include $this->template;
+
+		}
 
 
 	}
