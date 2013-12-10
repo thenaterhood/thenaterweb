@@ -104,5 +104,20 @@ function loadApplication( $id ){
 
 }
 
+function load_all_applications(){
+
+    $controllers = getControllers();
+    $initialized = array();
+
+    foreach ($controllers as $c) {
+
+        $initialized[] = loadApplication( $c );
+    }
+
+    return $initialized;
+
+
+}
+
 
 ?>

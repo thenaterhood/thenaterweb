@@ -39,6 +39,30 @@ class webadmin extends controllerBase{
 
 	}
 
+	public function home(){
+
+		$isAuthed = auth_user( getConfigOption('site_domain').'/webadmin' );
+
+		if ( $isAuthed ){
+			$this->pageData['session'] = request::get_sanitized_as_object( 
+				array('name', 'track', 'konami', 'id', 'tag', 'type', 'node', 'start', 'end') );
+			$this->pageData['content'] = pullContent( $this->page_directory.'/page_'.$method );
+
+			$admSession = request::get_sanitized_as_object( array( 'blogid', 'postid', 'isnew' ) );
+
+			$this->pageData['id'] = $content->title;
+			$this->pageData['title'] = $this->title;
+			$this->pageData['tagline'] = $this->catchline;
+			$this->pageData['appid'] = $this->id;
+			$this->pageData['apps'] = load_all_applications();
+
+			$pageData = $this->pageData;
+
+			include $this->settings['template'];
+
+
+	}
+
 
 }
 
