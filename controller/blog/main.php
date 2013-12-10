@@ -192,7 +192,7 @@ class blog extends controllerBase{
 	private function save_post_file( $postData, $file ){
 
 		$pathinfo = pathinfo($file);
-		$postpath $this->settings['post_directory'];
+		$postpath = $this->settings['post_directory'];
 		$postFname = $file['filename'];
 
 
