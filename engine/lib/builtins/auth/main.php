@@ -26,8 +26,14 @@ class auth extends controllerBase{
 			$redir_to = $sessionmgr->toPage;
 			unset( $sessionmgr->toPage );
 
-			$redirect = new redirect( '/auth/login', $redir_to );
-			$redirect->apply( 302 );
+			$this->pageData['content'] = pullContent( AUTH_ROOT.'/pages/welcome' );
+
+			$this->pageData['id'] = 'login';
+			$this->pageData['title'] = "Naterweb Authentication";
+			$this->pageData['static'] = AUTH_ROOT.'/pages';
+			$this->pageData['to'] = $redir_to;
+
+			include $this->settings['template'];
 
 
 		} else {
@@ -35,7 +41,7 @@ class auth extends controllerBase{
 			$this->pageData['content'] = pullContent( AUTH_ROOT.'/pages/login' );
 
 			$this->pageData['id'] = 'login';
-			$this->pageData['title'] = "NW Authentication";
+			$this->pageData['title'] = "Naterweb Authentication";
 			$this->pageData['static'] = AUTH_ROOT.'/pages';
 
 
