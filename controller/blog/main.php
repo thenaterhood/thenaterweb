@@ -170,13 +170,13 @@ class blog extends controllerBase{
 		$session = $this->pageData['session'];
 
 		$postData = array();
-		$postData['content'] = $session->post('content');
-		$postData['title'] = $session->post('title');
-		$postData['date'] = $session->post('date');
-		$postData['tags'] = $session->post('tags');
+		$postData['content'] = request::post('content');
+		$postData['title'] = request::post('title');
+		$postData['date'] = request::post('date');
+		$postData['tags'] = request::post('tags');
 		$postData['datestamp'] = date(DATE_ATOM);
 		$postData['updated'] = date(DATE_ATOM);
-		$file = $sessionmgr->post('file');
+		$file = request::post('file');
 
 		$saved = $this->save_post_file( $postData, $file );
 
