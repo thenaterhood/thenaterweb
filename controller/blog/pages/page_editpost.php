@@ -25,7 +25,7 @@ if ( array_key_exists('isNew', $pageData) && $pageData['isNew'] ){
 
 ?>
 
-<form name="create" action="'.getConfigOption('site_domain').'/webadmin/savepost" method="post">
+<form name="create" action="<?php print getConfigOption('site_domain').'/'.$pageData['id'].'/savepost'; ?>" method="post">
 	<input type='hidden' name='<?php print $pageData['csrf_id']; ?>' value='<?php print $pageData['csrf_token']; ?>' />
 
 	<br />
