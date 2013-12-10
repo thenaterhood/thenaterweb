@@ -184,6 +184,8 @@ class blog extends controllerBase{
 		$this->pageData['saved'] = $saved;
 		$this->pageData['postData'] = $postData;
 
+		$pageData = $this->pageData;
+
 		include $this->template;
 
 	}
