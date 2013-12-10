@@ -183,7 +183,7 @@ class blog extends controllerBase{
 		$this->pageData['content'] = pullContent( $this->approot.'/pages/page_savedpost' );
 		$this->pageData['saved'] = $saved;
 		$this->pageData['postData'] = $postData;
-		$this->pageData['link'] = getConfigOption('site_domain').'/'.$this->settings['id'].'/read/'.
+		$this->pageData['blogid'] = $this->settings['id'];
 
 		$pageData = $this->pageData;
 
