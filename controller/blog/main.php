@@ -1,5 +1,7 @@
 <?php
 
+include_once GNAT_ROOT.'/lib/core_auth.php';
+
 class blog extends controllerBase{
 
 	private $id;
@@ -31,6 +33,11 @@ class blog extends controllerBase{
 
 
 	}
+
+	//////////////////////////////////////////////////////
+	// Public page views 
+	//////////////////////////////////////////////////////
+
 
 	public function read(){
 
@@ -93,6 +100,161 @@ class blog extends controllerBase{
 		$pageData = $this->pageData;
 
 		include $this->template;
+
+
+	}
+
+	/////////////////////////////////////////////////////////////////
+	// Managment functions
+	/////////////////////////////////////////////////////////////////
+
+	public function manage(){
+
+		auth_user( getConfigOption('site_domain').'/'.$this->settings['id'].'/manage' );
+
+		$this->pageData['content'] = pullContent( $this->approot.'/pages/page_manage');
+		$this->pageData['id'] = $this->settings['id'];
+
+		$pageData = $this->pageData;
+
+		include $this->template;
+
+	}
+
+	public function newpost(){
+		
+		auth_user( getConfigOption('site_domain').'/'.$this->settings['id'].'/manage/editpost' );
+
+		$sessionmgr = SessionMgr::getInstance();
+
+
+		$this->pageData['content'] = pullContent( $this->approot.'/pages/page_editpost');
+		$this->pageData['id'] = $this->settings['id'];
+		$this->pageData['csrf_id'] = $sessionmgr->get_csrf_id();
+		$this->pageData['csrf_token'] = $session->get_csrf_token();
+		$this->pageData['newPost'] = True;
+
+		$pageData = $this->pageData;
+
+		include $this->template;
+
+
+	}
+
+	public function editpost(){
+		
+		auth_user( getConfigOption('site_domain').'/'.$this->settings['id'].'/manage/editpost' );
+
+		$sessionmgr = SessionMgr::getInstance();
+
+		$this->pageData['content'] = pullContent( $this->approot.'/pages/page_editpost');
+		$this->pageData['id'] = $this->settings['id'];
+		$this->pageData['csrf_id'] = $sessionmgr->get_csrf_id();
+		$this->pageData['csrf_token'] = $sessionmgr->get_csrf_token();
+		$this->pageData['post'] = new article( $this->post_directory.'/'.$this->pageData['session']->node, $this->settings['id'] );
+
+		$pageData = $this->pageData;
+
+		include $this->template;
+
+
+	}
+
+	public function savepost(){
+
+		auth_user( getConfigOption('site_domain').'/'.$this->settings['id'].'/manage/editpost' );
+
+		$sessionmgr = SessionMgr::getInstance();
+
+		$postData = array();
+		$postData['content'] = $sessionmgr->post('content');
+		$postData['title'] = $sessionmgr->post('title');
+		$postData['date'] = $sessionmgr->post('date');
+		$postData['tags'] = $sessionmgr->post('tags');
+		$postData['datestamp'] = date(DATE_ATOM);
+		$postData['updated'] = date(DATE_ATOM);
+		$file = $sessionmgr->post('file');
+
+		$saved = $this->save_post_file( $postData, $file );
+
+		$this->pageData['content'] = pullContent( $this->approot.'/pages/page_savedpost' );
+		$this->pageData['saved'] = $saved;
+		$this->pageData['postData'] = $postData;
+
+		include $this->template;
+
+	}
+
+	/////////////////////////////////////////////////////////////////
+	// Private functions (internal functionality)
+	/////////////////////////////////////////////////////////////////
+
+	private function save_post_file( $postData, $file ){
+
+		$pathinfo = pathinfo($file);
+		$postpath $this->settings['post_directory'];
+		$postFname = $file['filename'];
+
+
+		if ( $file == '' ){
+			$nodeDate = date("Y.m.d");
+			$nodename = $nodeDate.'.0';
+			$postFname = $nodename.'.json';
+
+			$i = 0;
+			while ( file_exists( $postpath.'/'.$postFname ) ){
+				$i++;
+				$nodename = $nodeDate.'.'.$i;
+				$postFname = $nodename.'.json';
+
+			}
+		}
+
+		else{
+			$postFname = $file;
+			$nodename = substr($postFname, 0, strpos($postFname, '.json') );
+		}
+
+		$postData = array();
+
+		$postData['content'] = $_POST['content'];
+		$postData['title'] = $_POST['title'];
+		$postData['date'] = $_POST['date'];
+		$postData['tags'] = $_POST['tags'];
+		$postData['datestamp'] = date(DATE_ATOM);
+		$postData['updated'] = date(DATE_ATOM);
+
+		$postJsonData = json_encode($postData);
+		$postFile = $postpath.'/'.$postFname;
+
+
+		$lock = new lock( $postFile );
+
+		$postURL = getConfigOption('site_domain').'/'.$_POST['blog'].'/index.php?id=post&node='.$nodename;
+		$writetest = fopen( $postpath.'/writetest.txt', 'w' );
+		fclose( $writetest );
+
+		if ( is_writeable( $postpath.'/writetest.txt' ) && !$lock->isLocked() ){
+
+			$lock->lock();
+
+			$jsonFile = fopen($postpath.'/'.$postFname, 'w');
+			fwrite($jsonFile, $postJsonData);
+			fclose($jsonFile);
+
+			$lock->unlock();
+
+			unlink( $postpath.'/writetest.txt');
+
+			return True;
+
+		} else {
+			
+			return False;
+
+		}
+
+
 
 
 	}
