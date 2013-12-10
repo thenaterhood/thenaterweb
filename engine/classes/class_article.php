@@ -28,7 +28,6 @@ class article extends dataMonger{
 	private $blogurl;
 	private $usePostFormat;
 	private $type;
-	private $file;
 	
 	/**
 	 * Reads and parses a post file and creates an instance
@@ -70,7 +69,7 @@ class article extends dataMonger{
 		# then fall back on searching for the file if the 
 		# item could not be found.
 
-		if ( $from_db == 'auto '){
+		if ( $from_db == 'auto'){
 			$from_db = getConfigOption( 'use_db' );
 		}
 
@@ -112,12 +111,14 @@ class article extends dataMonger{
 		if ( file_exists("$nodefile.json") ){
 			$this->type = "json";
 			$this->usePostFormat = True;
-			$this->container['file'] = $nodefile.'.json';
+
 
 			$jsoncontents = file_get_contents("$nodefile.json");
 			
 			// Directly read data into the class
 			$this->container = json_decode($jsoncontents, True);
+
+			$this->container['file'] = $nodefile.'.json';
 
 			// Parse the atom datestamp into english
 			$this->container['date'] = date( "F j, Y, g:i a", strtotime($this->container['datestamp']) );
