@@ -10,7 +10,7 @@
 
 	foreach ($pageData['apps'] as $app) {
 		echo '<tr>';
-			echo '<td>'
+			echo '<td>';
 			echo $app->id;
 			echo '</td>';
 			echo '<td>';

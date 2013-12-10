@@ -48,7 +48,6 @@ class webadmin extends controllerBase{
 				array('name', 'track', 'konami', 'id', 'tag', 'type', 'node', 'start', 'end') );
 			$this->pageData['content'] = pullContent( $this->page_directory.'/page_home' );
 
-			$this->pageData['id'] = $content->title;
 			$this->pageData['title'] = $this->title;
 			$this->pageData['tagline'] = $this->catchline;
 			$this->pageData['appid'] = $this->id;
