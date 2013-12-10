@@ -1,7 +1,6 @@
 <?php
 include GNAT_ROOT.'/lib/core_auth.php';
 
-$admSession = request::get_sanitized_as_object( array( 'blogid', 'postid', 'isnew' ) );
 
 class webadmin extends controllerBase{
 
@@ -22,8 +21,12 @@ class webadmin extends controllerBase{
 		$isAuthed = auth_user( getConfigOption('site_domain').'/webadmin' );
 
 		if ( $isAuthed ){
-			$this->pageData['session'] = request::get_sanitized_as_object( array('name', 'track', 'konami', 'id', 'tag', 'type', 'node', 'start', 'end') );
+			$this->pageData['session'] = request::get_sanitized_as_object( 
+				array('name', 'track', 'konami', 'id', 'tag', 'type', 'node', 'start', 'end') );
 			$this->pageData['content'] = pullContent( $this->page_directory.'/page_'.$method );
+
+			$admSession = request::get_sanitized_as_object( array( 'blogid', 'postid', 'isnew' ) );
+
 			$this->pageData['id'] = $content->title;
 			$this->pageData['title'] = $this->title;
 			$this->pageData['tagline'] = $this->catchline;
