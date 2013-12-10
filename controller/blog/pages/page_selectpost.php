@@ -2,7 +2,7 @@
 
 $hasPosts = False;
 
-foreach ($blogdef->getPostList() as $post) {
+foreach ($pageData['posts'] as $post) {
 	$hasPosts = True;
 	$path = pathinfo($post->file);
 	print '<p><a href="'.getConfigOption('site_domain').'/'.$pageData['appid'].'/editpost/node/'.$path['filename'].'">'.$post->title.'</a></p>';
