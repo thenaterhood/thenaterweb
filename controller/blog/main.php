@@ -167,12 +167,13 @@ class blog extends controllerBase{
 		auth_user( getConfigOption('site_domain').'/'.$this->settings['id'].'/manage/editpost' );
 
 		$sessionmgr = SessionMgr::getInstance();
+		$session = $this->pageData['session'];
 
 		$postData = array();
-		$postData['content'] = $sessionmgr->post('content');
-		$postData['title'] = $sessionmgr->post('title');
-		$postData['date'] = $sessionmgr->post('date');
-		$postData['tags'] = $sessionmgr->post('tags');
+		$postData['content'] = $session->post('content');
+		$postData['title'] = $session->post('title');
+		$postData['date'] = $session->post('date');
+		$postData['tags'] = $session->post('tags');
 		$postData['datestamp'] = date(DATE_ATOM);
 		$postData['updated'] = date(DATE_ATOM);
 		$file = $sessionmgr->post('file');
