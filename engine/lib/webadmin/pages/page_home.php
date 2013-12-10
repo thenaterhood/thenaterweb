@@ -9,17 +9,17 @@
 	<?php 
 
 	foreach ($pageData['apps'] as $app) {
-		echo '<tr>';
-			echo '<td>';
-			echo $app->id;
-			echo '</td>';
-			echo '<td>';
+		print '<tr>';
+			print '<td>';
+			print $app->id;
+			print '</td>';
+			print '<td>';
 			if ( method_exists($app, 'manage') )
-				echo "<a class='btn btn-success' href='".getConfigOption('site_domain').'/'.$app->id.'/manage'.">Manage</a>";
+				print "<a class='btn btn-success' href='".getConfigOption('site_domain').'/'.$app->id.'/manage'."'>Manage</a>";
 			else
-				echo "Cannot be managed from webadmin.";
-			echo '</td>';
-		echo '</tr>';
+				print "Cannot be managed from webadmin.";
+			print '</td>';
+		print '</tr>';
 
 	}
 
