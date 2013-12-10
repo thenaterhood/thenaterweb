@@ -68,7 +68,8 @@ if ( $admSession->blogid ){
 
 		foreach ($blogdef->getPostList() as $post) {
 			$hasPosts = True;
-			print '<p><a href="'.getConfigOption('site_domain').'/webadmin/editpost/blogid/'.$admSession->blogid.'/postid/'.$post->file.'">'.$post->title.'</a></p>';
+			$path = pathinfo($post->file);
+			print '<p><a href="'.getConfigOption('site_domain').'/webadmin/editpost/blogid/'.$admSession->blogid.'/postid/'.$path['basename'].'">'.$post->title.'</a></p>';
 
 		}
 
