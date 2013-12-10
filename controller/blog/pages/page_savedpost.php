@@ -1,8 +1,10 @@
 <?php
 
 if ( $pageData['saved'] ){
+
+	$link = getConfigOption('site_domain').'/'.$pageData['id'].'/read/'.$saved;
 	
-	print '<p>Post saved successfully!</p>';
+	print '<p>Post saved successfully! View it at <a href="'.$link.'>'.$link.'</a></p>';
 
 } else {
 
