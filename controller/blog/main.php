@@ -164,6 +164,7 @@ class blog extends controllerBase{
 		} else {
 
 			$this->pageData['posts'] = $this->getPostList();
+			$this->pageData['appid'] = $this->settings['id'];
 			$this->pageData['content'] = pullContent( $this->approot.'/pages/page_selectpost' );
 
 			$pageData = $this->pageData;
