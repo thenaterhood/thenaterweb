@@ -213,7 +213,6 @@ class blog extends controllerBase{
 
 		$pathinfo = pathinfo($file);
 		$postpath = $this->settings['post_directory'];
-		$postFname = $file['filename'];
 
 
 		if ( $file == '' ){
@@ -231,7 +230,7 @@ class blog extends controllerBase{
 		}
 
 		else{
-			$postFname = $file;
+			$postFname = $pathinfo['basename'];
 			$nodename = substr($postFname, 0, strpos($postFname, '.json') );
 		}
 
