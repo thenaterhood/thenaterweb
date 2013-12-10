@@ -33,6 +33,8 @@ class auth extends controllerBase{
 			$this->pageData['static'] = AUTH_ROOT.'/pages';
 			$this->pageData['to'] = $redir_to;
 
+			$pageData = $this->pageData;
+
 			include $this->settings['template'];
 
 
