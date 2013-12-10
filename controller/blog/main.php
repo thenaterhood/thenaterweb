@@ -131,7 +131,7 @@ class blog extends controllerBase{
 		$this->pageData['content'] = pullContent( $this->approot.'/pages/page_editpost');
 		$this->pageData['id'] = $this->settings['id'];
 		$this->pageData['csrf_id'] = $sessionmgr->get_csrf_id();
-		$this->pageData['csrf_token'] = $session->get_csrf_token();
+		$this->pageData['csrf_token'] = $sessionmgr->get_csrf_token();
 		$this->pageData['newPost'] = True;
 
 		$pageData = $this->pageData;
@@ -151,7 +151,9 @@ class blog extends controllerBase{
 		$this->pageData['id'] = $this->settings['id'];
 		$this->pageData['csrf_id'] = $sessionmgr->get_csrf_id();
 		$this->pageData['csrf_token'] = $sessionmgr->get_csrf_token();
-		$this->pageData['post'] = new article( $this->post_directory.'/'.$this->pageData['session']->node, $this->settings['id'] );
+		$post = new article( $this->post_directory.'/'.$this->pageData['session']->node, $this->settings['id'] );
+
+		$pageData['post'] = $post->dump();
 
 		$pageData = $this->pageData;
 
