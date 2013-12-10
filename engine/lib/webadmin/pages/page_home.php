@@ -15,9 +15,9 @@
 			print '</td>';
 			print '<td>';
 			if ( method_exists($app, 'manage') )
-				print "<a class='btn-small btn-success' href='".getConfigOption('site_domain').'/'.$app->id.'/manage'."'>Manage</a>";
+				print "<a class='btn btn-success' href='".getConfigOption('site_domain').'/'.$app->id.'/manage'."'>Manage</a>";
 			else
-				print "<a class='btn-small disabled' href='#'>No Management Services.</a>";
+				print "<a class='btn disabled' href='#'>No Management Services.</a>";
 			print '</td>';
 		print '</tr>';
 
