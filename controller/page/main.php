@@ -38,6 +38,7 @@ class page extends controllerBase{
 		$this->pageData['content'] = pullContent( $this->settings['approot'].'/pages/manage' );
 		$this->pageData['id'] = $this->settings['id'];
 		$this->pageData['pages'] = $this->getPageList();
+		$pageData = $this->pageData;
 
 		include $this->settings['template'];
 		
