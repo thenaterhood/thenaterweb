@@ -34,7 +34,7 @@ class page extends controllerBase{
 		auth_user( getConfigOption('site_domain').'/'.$this->settings['id'].'/manage' );
 
 
-		$this->pageData['content'] = pullContent( $this->['settings'].'/pages/manage' );
+		$this->pageData['content'] = pullContent( $this->settings['approot'].'/pages/manage' );
 		$this->pageData['id'] = $this->settings['id'];
 		$this->pageData['pages'] = $this->getPageList();
 
