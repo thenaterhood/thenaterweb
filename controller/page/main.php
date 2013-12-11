@@ -1,4 +1,5 @@
 <?php
+include_once GNAT_ROOT.'/lib/core_auth.php';
 
 class page extends controllerBase{
 
