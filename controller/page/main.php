@@ -10,13 +10,13 @@ class page extends controllerBase{
 
 		$this->pageData = array();
 
-		$this->settings['approot'] = PAGE_ROOT;
-		$configFile = PAGE_ROOT.'/mainsite.conf.xml';
+		$approot = PAGE_ROOT;
+		$configFile = $approot.'/mainsite.conf.xml';
 		$this->readConfig( $configFile );
 
 		$session = request::get_sanitized_as_object( array('name', 'track', 'konami', 'id') );
 
-		
+		$this->settings['approot'] = $approot;
 		$this->pageData['session'] = $session;
 		$this->pageData['static'] = $this->page_directory;
 		$content = pullContent( array( $this->page_directory.'/page_'.$session->id, $this->page_directory.'/hidden_'.$session->id ) );
@@ -38,6 +38,8 @@ class page extends controllerBase{
 		$this->pageData['content'] = pullContent( $this->settings['approot'].'/pages/page_manage' );
 		$this->pageData['id'] = $this->settings['id'];
 		$this->pageData['pages'] = $this->getPageList();
+		$this->pageData['apphome'] = getConfigOption('site_domain').'/'.$this->settings['id'];
+
 		$pageData = $this->pageData;
 
 		include $this->settings['template'];

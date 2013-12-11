@@ -19,7 +19,7 @@
 		print '</td>';
 
 		print '<td>';
-		print '<a class="btn btn-success" href="'.$pageData['apphome'].'/edit/page/'.pathinfo['filename'].'">Edit</a>';
+		print '<a class="btn btn-success" href="'.$pageData['apphome'].'/edit/page/'.$pathinfo['filename'].'">Edit</a>';
 		print '</td>';
 		print '<td>';
 		print '<a class="btn btn-success" href="'.$page.'">View</a>';
