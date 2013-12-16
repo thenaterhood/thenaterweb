@@ -1,6 +1,7 @@
 <?php
 
 include_once GNAT_ROOT.'/lib/core_auth.php';
+include_once 'models.php';
 
 class blog extends controllerBase{
 

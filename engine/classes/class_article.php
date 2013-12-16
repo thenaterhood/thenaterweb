@@ -65,23 +65,8 @@ class article extends dataMonger{
 		If you think it should be here, try browing by post title, or looking at the sitemap.  
 		Otherwise, <a href="/">Return home.</a></p>'."\n";
 
-		# Handle retrieving from a database, if the option is set
-		# then fall back on searching for the file if the 
-		# item could not be found.
+		$this->retrieveFromFile( $nodefile, $bloguri, $articleUri );
 
-		if ( $from_db == 'auto'){
-			$from_db = getConfigOption( 'use_db' );
-		}
-
-		if ( $from_db ){
-
-			$this->retrieveFromDb( $nodefile, $bloguri, $articleUri );
-
-		} else {
-
-			$this->retrieveFromFile( $nodefile, $bloguri, $articleUri );
-
-		}
 
 
 
