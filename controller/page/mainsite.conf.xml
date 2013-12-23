@@ -3,9 +3,9 @@
 
 	<!-- Configure where the engine should look to
 	find entries for this blog/article collection -->
-	<post_directory>/var/www/site-data/pages</post_directory>
+	<post_directory>site-data/page</post_directory>
 
-	<page_directory>/var/www/site-data/pages</page_directory>
+	<page_directory>site-data/page</page_directory>
 
 	<!-- Configure the id of the blog (this is where the
 	 blog is on the web, i.e example.com/yourblog).
