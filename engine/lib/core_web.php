@@ -24,7 +24,7 @@ include GNAT_ROOT.'/classes/class_urlHandler.php';
 include GNAT_ROOT.'/lib/core_database.php';
 include GNAT_ROOT.'/classes/class_sessionMgr.php';
 include GNAT_ROOT.'/classes/class_request.php';
-
+include GNAT_ROOT.'/classes/class_dataAccessLayer.php';
 
 /**
 * Checks to see if the preferred file exists, and if it does

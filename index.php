@@ -62,18 +62,23 @@ $controller = $urlHandler->getControllerId();
 if ( in_array($controller, $_ENGINE_BUILTINS) ){
 
 	define(strtoupper($controller).'_ROOT', GNAT_ROOT."/lib/builtins/".$controller );
+	define("APP_NAME", $controller);
 	$approot = GNAT_ROOT."/lib/builtins/".$controller;
 
 
 } else if ( file_exists('controller/'.$controller.'/main.php') ) { 
 
 	define(strtoupper($controller).'_ROOT', "controller/".$controller );
+	define("APP_NAME", $controller);
+
 	$approot = 'controller/'.$controller;
 
 } else {
 
 	$controller = 'error';
 	define('ERROR_ROOT', "controller/".$controller );
+	define("APP_NAME", $controller);
+
 	$approot = 'controller/'.$controller;
 
 }
