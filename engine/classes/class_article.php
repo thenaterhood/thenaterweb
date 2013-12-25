@@ -26,7 +26,7 @@ include_once GNAT_ROOT.'/lib/core_web.php';
 class article extends dataMonger{
 
 	private $blogurl;
-	private $usePostFormat;
+	protected $usePostFormat;
 	private $type;
 	
 	/**
@@ -52,7 +52,6 @@ class article extends dataMonger{
 		$this->blogurl = $bloguri;
 		$this->container['title'] = "Holy 404, Batman!";
 		$this->container['nodeid'] = $nodefile;
-		$this->container['blog_tab'] = str_replace('/', '_', $bloguri);
 		$this->container['date'] = "";
 		$this->container['tags'] = "";
 		$this->container['datestamp'] = "";
@@ -69,25 +68,6 @@ class article extends dataMonger{
 
 
 
-
-	}
-
-	private function retrieveFromDb( $nodefile, $bloguri, $articleUri ){
-
-		Database::initialize();
-		
-		$nodeData = Database::select( $this->container['blog_tab'], 'title,date,tags,datestamp,content,type',
-			 array( 'where' => array( 'id' => $nodefile ), 'singleRow' => 'true' ) );
-
-		if ( $nodeData ){
-			foreach ($nodeData as $key => $value) {
-				$this->container[ $key ] = $value;
-				$this->type = $this->container['type'];
-			}
-		} else {
-			# Attempt to retrieve from file as a fallback
-			$this->retrieveFromFile( $nodefile, $bloguri, $articleUri );
-		}
 
 	}
 

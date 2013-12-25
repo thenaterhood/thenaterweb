@@ -1,22 +1,23 @@
 <?php
-
-include_once GNAT_ROOT.'/classes/class_dataAccessLayer.php';
+include_once GNAT_ROOT.'/classes/class_model.php';
 
 class ModelBase{
 
-	private $container;
+	protected $container;
+	private $id;
+	public $fields;
 
-	public function __construct( $array ){
-
-		$this->$container = $array();
-
-	}
 
 	public function save(){
 
 
-		if ( isset($this->container) ){
-			DataAccessLayer::save( get_called_class(), $this->container );
+		if ( isset($this->fields) ){
+			foreach ($this->fields as $name => $field) {
+				$validator = $field->validator;
+				print $validator;
+				Model::$validator( $field );
+			}
+			$this->id = DataAccessLayer::save( get_called_class(), $this->as_array() );
 		} else {
 			throw new Exception('This is not a populated model instance');
 
@@ -28,7 +29,7 @@ class ModelBase{
 
 	public function delete(){
 
-		if ( isset($this->container) ){
+		if ( isset($this->fields) ){
 			DataAccessLayer::delete( get_called_class(), array($this->container) );
 		} else {
 			throw new Exception('This is not a populated model instance');
@@ -39,7 +40,11 @@ class ModelBase{
 
 	public static function fromArray( $array ){
 
-		$instance = new static( $array );
+		$instance = new static();
+
+		foreach ($array as $key => $value) {
+			$instance->$key = $value;
+		}
 
 		return $instance;
 	}
@@ -47,24 +52,49 @@ class ModelBase{
 
 	public function __get( $field ){
 
-		if ( array_key_exists($field, $this->container) ){
-			return $this->container[$field];
+		$class = get_called_class();
+
+		if ( array_key_exists($field, $this->fields) ){
+			return $this->fields[$field]->data;
+		} else if ( $field == 'id' ) {
+			return $this->id; 
 		} else {
-			throw new Exception('Model field does not exist.');
+			throw new Exception('Model field "' . $field . '" does not exist.');
 		}
 
 	}
 
 	public function __set( $field, $value ){
 
-		if ( array_key_exists($field, $this->container) ){
+		$class = get_called_class();
 
-			$this->container[$field] = $value;
+		if ( array_key_exists($field, $this->fields) ){
+
+			$this->fields[$field]->data = $value;
+
+		} else if ( $field == 'id' ) {
+
+			$this->id = $value;
 
 		} else {
 
-			throw new Exception('Model field does not exist.');
+			throw new Exception('Model field "' . $field . '" does not exist.');
 		}
+	}
+
+	public function getFields(){
+		return $this->fields;
+	}
+
+	public function as_array(){
+		$data = array();
+		foreach ($this->fields as $name => $value) {
+			$data[$name] = $value->data;
+		}
+
+		$data['id'] = $this->id;
+
+		return $data;
 	}
 
 }

@@ -1,6 +1,5 @@
 <?php
-include_once GNAT_ROOT.'/lib/extern/Database.php';
-include_once GNAT_ROOT.'/lib/classes/class_modelBase';
+include_once GNAT_ROOT.'/lib/extern/php-database/Database.php';
 
 class DataAccessLayer{
 	
@@ -19,15 +18,18 @@ class DataAccessLayer{
 		$this->usedb = getConfigOption('use_db');
 		$this->usefile = ! getConfigOption('use_db');
 
-		if ( $this->usedb )
+		if ( $this->usedb ){
 			Database::initialize();
+		}
 
 
 	}
 
-	public function registerModel( $modelName, $columns, $createTable=True ){
+	public function registerModel( $modelName, $createTable=True ){
 
 		$this->models[] = $modelName;
+		$model = new $modelName();
+		$columns = $model->getFields();
 
 		ksort($columns);
 
@@ -68,7 +70,7 @@ class DataAccessLayer{
 
 			$queryResult = Database::select( $this->getTableName( $modelName ), '*', array('where'=>array( $by=>$value), 'singleRow'=>True ) );
 
-			return $modelName::fromArray($row);
+			return $modelName::fromArray($queryResult);
 
 		}
 
@@ -114,9 +116,11 @@ class DataAccessLayer{
 
 
 		if ( isset($object['id']) ){
-			Database::update( self::getTableName( $modelName ), $object->container, $object->id );
+			Database::update( self::getTableName( $modelName ), $object, array('id') );
+			return $object['id'];
 		} else {
-			throw new Exception('This is not a populated model instance');
+			Database::insert( self::getTableName( $modelName ), $object );
+			return Database::lastInsertId();
 
 		}
 
@@ -145,11 +149,11 @@ class DataAccessLayer{
 
 		if ( $this->usedb ){
 
-			$query = 'CREATE TABLE IF NOT EXISTS' . $name . '( ';
+			$query = 'CREATE TABLE IF NOT EXISTS ' . $name . '( ';
 
 			foreach ($columns as $name => $type) {
 				
-				$query = $query . $name . ' ' . $type . ',';
+				$query = $query . $name . ' ' . $type->type . ',';
 
 			}
 
@@ -160,7 +164,6 @@ class DataAccessLayer{
 			} else {
 				$query = $query . 'id INTEGER AUTO_INCREMENT PRIMARY KEY );';
 			}
-
 			Database::sql( $query );
 
 		}
