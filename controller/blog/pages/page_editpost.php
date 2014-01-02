@@ -5,7 +5,7 @@
 
 $postData = array();
 
-if ( array_key_exists('isNew', $pageData) && $pageData['isNew'] ){
+if ( property_exists($page, 'isNew') && $page->isNew ){
 
 	$postData['title'] = '';
 	$postData['tags'] = '';
@@ -15,7 +15,7 @@ if ( array_key_exists('isNew', $pageData) && $pageData['isNew'] ){
 
 } else {
 
-	$postData = $pageData['post'];
+	$postData = $page->post;
 
 
 }
@@ -25,8 +25,22 @@ if ( array_key_exists('isNew', $pageData) && $pageData['isNew'] ){
 
 ?>
 
-<form name="create" action="<?php print getConfigOption('site_domain').'/'.$pageData['id'].'/savepost'; ?>" method="post">
-	<input type='hidden' name='<?php print $pageData['csrf_id']; ?>' value='<?php print $pageData['csrf_token']; ?>' />
+<form name="create" action="
+
+	<?php 
+
+	if ( $page->isNew ){
+		print getConfigOption('site_domain').'/?url='.$page->id.'/savepost'; 
+	}else {
+		print getConfigOption('site_domain').'/?url='.$page->id.'/updatepost/node/'.$post->nodeid; 
+
+	}
+
+
+	?>" 
+
+	method="post">
+	<input type='hidden' name='<?php print $page->csrf_key; ?>' value='<?php print $page->csrf_token; ?>' />
 
 	<br />
 	<textarea name="title" rows="1" cols="100" placeholder='Post Title'><?php print $postData['title']; ?></textarea><br />
@@ -34,9 +48,9 @@ if ( array_key_exists('isNew', $pageData) && $pageData['isNew'] ){
 	<textarea name="tags" rows="1" cols="100" placeholder='Tags'><?php print $postData['tags']; ?></textarea><br />
 	Write your post - <strong>full html required</strong>: <br />
 	<textarea name="content" rows="50" cols="100" ><?php print $postData['content']; ?></textarea><br />
-	<input type="hidden" name="file" value="<?php print $postData['file']; ?>" />
+	<input type="hidden" name="node" value="<?php print $postData['nodeid']; ?>" />
 	<input type="submit" class='btn btn-success' value="Save" />
-	<a class='btn btn-danger' href='<?php print getConfigOption('site_domain').'/'.$pageData['id'].'/manage'; ?>'>Discard</a>
+	<a class='btn btn-danger' href='<?php print getConfigOption('site_domain').'/?url='.$page->id.'/manage'; ?>'>Discard</a>
 
 </form>
 <br />

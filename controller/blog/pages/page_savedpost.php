@@ -1,14 +1,14 @@
 <?php
 
-if ( $pageData['saved'] ){
+if ( $page->saved ){
 
-	$link = getConfigOption('site_domain').'/'.$pageData['blogid'].'/read/'.$saved;
+	$link = getConfigOption('site_domain').'/'.$page->blogid.'/read/'.$page->saved;
 	
 	print '<p>Post saved successfully! View it at <a href="'.$link.'.htm">'.$link.'.htm</a></p>';
 
 } else {
 
-	$post = $pageData['post'];
+	$post = $page->post;
 
 	print '	<div class="alert alert-warning">
 		<button type="button" class="close" data-dismiss="alert">&times;</button>

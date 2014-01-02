@@ -46,7 +46,7 @@ function pullContent( $preferred, $sectionUri='/', $articleUri='/' ){
 
 	$i = 0;
 	$article = new article( "", $sectionUri, $articleUri, False );
-
+	print_r( $preferred );
 	while ( $i < count($preferred) && $article->getType() == "none" ){
 
 		if ( !strpos( $preferred[$i], '.' ) ){
@@ -65,6 +65,22 @@ function pullContent( $preferred, $sectionUri='/', $articleUri='/' ){
 	}
 
 	return $article;
+}
+
+function render_php_template( $template, $pagedata ){
+
+	$page = (object)$pagedata;
+	$sessionmgr = SessionMgr::getInstance();
+
+	$page->csrf_token = $sessionmgr->get_csrf_token();
+	$page->csrf_key = $sessionmgr->get_csrf_id();
+
+	if ( file_exists($template) ){
+		include $template;
+	} else {
+		throw new Exception('Template could not be loaded.');
+	}
+
 }
 
 /**

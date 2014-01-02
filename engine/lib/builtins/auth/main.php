@@ -33,9 +33,7 @@ class auth extends controllerBase{
 			$this->pageData['static'] = AUTH_ROOT.'/pages';
 			$this->pageData['to'] = $redir_to;
 
-			$pageData = $this->pageData;
-
-			include $this->settings['template'];
+			render_php_template( $this->settings['template'], $this->pageData );
 
 
 		} else {
@@ -46,13 +44,8 @@ class auth extends controllerBase{
 			$this->pageData['title'] = "Naterweb Authentication";
 			$this->pageData['static'] = AUTH_ROOT.'/pages';
 
+			render_php_template( $this->settings['template'], $this->pageData );
 
-			$this->pageData['csrf_id'] = $sessionmgr->get_csrf_id();
-			$this->pageData['csrf_token'] = $sessionmgr->get_csrf_token();
-
-			$pageData = $this->pageData;
-
-			include $this->settings['template'];
 
 		}
 

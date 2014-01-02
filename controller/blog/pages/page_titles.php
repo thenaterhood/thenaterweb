@@ -6,9 +6,9 @@
 echo '<br />'; 
 echo '<ul>';
 $year = 0;
-foreach ($pageData['titles'] as $node => $title ) {
+foreach ($page->titles as $node => $title ) {
 
-	$link = getConfigOption('site_domain').'/?url='.$pageData['blogid'].'/read/'.$node.'.htm';
+	$link = getConfigOption('site_domain').'/?url='.$page->blogid.'/read/'.$node.'.htm';
 	
 	print '<li><a href="'.htmlentities( $link ).'">'.$title.'</a></li>';
 	# code...

@@ -8,7 +8,7 @@
 
 	<?php 
 
-	foreach ($pageData['apps'] as $app) {
+	foreach ($page->apps as $app) {
 		print '<tr>';
 			print '<td>';
 			print $app->id;

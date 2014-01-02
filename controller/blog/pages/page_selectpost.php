@@ -2,10 +2,9 @@
 
 $hasPosts = False;
 
-foreach ($pageData['posts'] as $post) {
+foreach ($page->posts as $post) {
 	$hasPosts = True;
-	$path = pathinfo($post->file);
-	print '<p><a href="'.getConfigOption('site_domain').'/'.$pageData['appid'].'/editpost/node/'.$path['filename'].'">'.$post->title.'</a></p>';
+	print '<p><a href="'.getConfigOption('site_domain').'/'.$page->appid.'/editpost/node/'.$post->nodeid.'">'.$post->title.'</a></p>';
 
 }
 

@@ -1,7 +1,7 @@
 <?php
 
 define("GNAT_ROOT", "engine");
-define("DEBUG", False);
+define("DEBUG", True);
 
 if ( DEBUG ){
 	error_reporting(E_ALL);
@@ -109,14 +109,18 @@ try {
 
 	} else {
 
-		$pageData = $blogdef->getPageData();
+		$page = (object)$blogdef->getPageData();
 		include $blogdef->template;
 
 	}
 
 } catch ( Exception $e ){
 
-	echo "404: The requested page could not be found.";
+	echo "<h1>Error 500:</h1> <p>The requested page could not be loaded due to a problem encountered by the site software.</p>";
+	if ( DEBUG )
+		print "\n" . "<h3><font color='red'>Debug is enabled, so the exception details are below:</font></h3>";
+		print "\n" . $e->getMessage();
+		print "\n". $e->getTraceAsString();
 
 }
 

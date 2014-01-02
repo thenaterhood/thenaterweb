@@ -19,7 +19,7 @@ class page extends controllerBase{
 		$this->settings['approot'] = $approot;
 		$this->pageData['session'] = $session;
 		$this->pageData['static'] = $this->page_directory;
-		$content = pullContent( array( $this->page_directory.'/page_'.$session->id, $this->page_directory.'/hidden_'.$session->id ) );
+		$content = pullContent( array( $this->page_directory.'/page_'.$session->id, $this->page_directory.'/hidden_'.$session->id, $approot.'/pages/page_'.$session->id ));
 		$this->pageData['content'] = $content;
 		$this->pageData['id'] = $content->title;
 		$this->pageData['title'] = $this->title;
@@ -62,6 +62,12 @@ class page extends controllerBase{
 		}
 
 		return $pages;
+
+	}
+
+	public function __call( $page, $args ){
+
+		render_php_template( $this->template, $this->pageData );
 
 	}
 

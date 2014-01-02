@@ -136,7 +136,7 @@ class request{
 	* input sanitizing for nonsecure things.
 	* 
 	*/
-	private function sanitize( $dirty, $maxlength=0 ) {
+	private static function sanitize( $dirty, $maxlength=0 ) {
 		# Check that the string is actually a string, return "" if not
 		if (gettype($dirty) != 'string'){
 			return '';
