@@ -46,7 +46,6 @@ function pullContent( $preferred, $sectionUri='/', $articleUri='/' ){
 
 	$i = 0;
 	$article = new article( "", $sectionUri, $articleUri, False );
-	print_r( $preferred );
 	while ( $i < count($preferred) && $article->getType() == "none" ){
 
 		if ( !strpos( $preferred[$i], '.' ) ){
