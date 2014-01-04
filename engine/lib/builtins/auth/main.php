@@ -1,17 +1,32 @@
 <?php
 
 include_once GNAT_ROOT.'/lib/core_auth.php';
-include_once GNAT_ROOT.'/lib/core_redirect.php';
+
+include_once 'models.php';
 
 class auth extends controllerBase{
+
+	private $dal;
 
 	public function __construct(){
 
 		$this->settings['template'] = GNAT_ROOT.'/config/template.d/generic_template.php';
 		$this->pageData = array();
 
+		if ( getConfigOption( 'use_db') ){
+			$this->dal = new DataAccessLayer();
+			$this->dal->registerModel( 'nwUser' );
+			$this->dal->registerModel( 'nwGroup' );
+
+		}
+
+
 	}
 
+	/**
+	 * Logs a user in after validating their credentials, 
+	 * or redirects back to the login page.
+	 */
 	public function login(){
 
 		$sessionmgr = SessionMgr::getInstance();
@@ -19,7 +34,7 @@ class auth extends controllerBase{
 
 		if ( $sessionmgr->check_csrf('post') && 
 
-			$this->check_htpasswd( request::sanitized_post('username'), request::post('pass') ) ){
+			$this->check_login( request::sanitized_post('username'), request::post('pass') ) ){
 
 			log_user_in( request::sanitized_post('username') );
 
@@ -41,10 +56,180 @@ class auth extends controllerBase{
 			$this->pageData['content'] = pullContent( AUTH_ROOT.'/pages/login' );
 
 			$this->pageData['id'] = 'login';
+			$this->pageData['fail'] = False;
 			$this->pageData['title'] = "Naterweb Authentication";
 			$this->pageData['static'] = AUTH_ROOT.'/pages';
 
 			render_php_template( $this->settings['template'], $this->pageData );
+
+		}
+
+
+
+	}
+
+	/** 
+	 * Renders the group management page where groups can 
+	 * be added.
+	 */
+	public function managegroup(){
+
+		auth_user( getConfigOption('site_domain').'/?url=auth/managegroup' );
+
+		$pageData = array();
+		$pageData['groups'] = $this->dal->getAll( 'nwGroup' );
+		$pageData['content'] = pullContent( AUTH_ROOT.'/pages/managegroup');
+		$pageData['static'] = AUTH_ROOT.'/pages';
+		$pageData['title'] = 'Manage Groups';
+
+		render_php_template( $this->settings['template'], $pageData );
+
+
+	}
+
+	/**
+	 * Renders the add group page where a group can be added.
+	 */
+	public function addgroup(){
+
+		auth_user( getConfigOption('site_domain').'/?url=auth/adduser' );
+
+		$sessionmgr = SessionMgr::getInstance();
+
+
+		if ( $sessionmgr->check_csrf('post') && 
+			 ! $this->dal->get('nwGroup', 'name', request::sanitized_post('name') ) ){
+
+
+
+			$newgroup = new nwGroup();
+
+			$newgroup->name = request::sanitized_post('name');
+
+			$newgroup->save();
+
+
+			$this->pageData['content'] = pullContent( AUTH_ROOT.'/pages/groupadded' );
+
+			$this->pageData['id'] = 'login';
+			$this->pageData['title'] = "Naterweb Authentication";
+			$this->pageData['static'] = AUTH_ROOT.'/pages';
+
+			render_php_template( $this->settings['template'], $this->pageData );
+
+
+		} else {
+
+			$pageData = array();
+			$pageData['content'] = pullContent( AUTH_ROOT.'/pages/addgroup' );
+			$pageData['static'] = AUTH_ROOT.'/pages';
+			$pageData['title'] = 'Add New User';
+			$pageData['id'] = 'adduser';
+
+			render_php_template( $this->settings['template'], $pageData );
+
+
+		}
+
+
+	}
+
+	/**
+	 * Deletes a user from the database along with 
+	 * their group associations.
+	 */
+	public function deluser(){
+
+		auth_user( getConfigOption('site_domain').'/?url=auth/manage' );
+
+		$sessionmgr = SessionMgr::getInstance();
+
+		$user = $this->dal->get( 'nwUser', 'id', request::sanitized_get( 'uid') );
+
+		foreach ($user->getRelated( 'groups' ) as $g) {
+			$user->removeRelated( 'groups', $g );
+		}
+
+		$user->delete();
+
+		$redir = new redirect( 'auth/deluser', '/?url=auth/manage');
+		$redir->apply(302);
+
+
+
+
+	}
+
+
+	/** 
+	 * Updates a user's information and groups
+	 */
+	public function changeuser(){
+
+		auth_user( getConfigOption('site_domain').'/?url=auth/adduser' );
+
+		$sessionmgr = SessionMgr::getInstance();
+
+
+		if ( $sessionmgr->check_csrf('post') && 
+			  $this->dal->get('nwUser', 'id', request::sanitized_post('uid') ) ){
+
+
+
+			$newuser = $this->dal->get( 'nwUser', 'id', request::sanitized_post('uid') );
+
+			$conflicting_unames = $this->dal->get( 'nwUser', 'username', request::sanitized_post('username') );
+
+			if ( ! $conflicting_unames ){
+				$newuser->username = request::sanitized_post('username');
+			}
+
+			$newuser->first_name = request::sanitized_post('first_name');
+			$newuser->last_name = request::sanitized_post('last_name');
+			$newuser->active = True;
+
+			$newuser->save();
+
+			$groups = $this->dal->getAll( 'nwGroup' );
+			$newGroups = array();
+
+			if(!empty($_POST['groups'])) {
+			    foreach($_POST['groups'] as $g) {
+			       	$group = $this->dal->get( 'nwGroup', 'name', $g );
+			       	$newuser->addRelated( 'groups', $group );
+			       	$newGroups[] = $group;
+			    }
+			}
+
+			foreach ($groups as $g) {
+				if ( ! in_array($g, $newGroups ) ){
+					$newuser->removeRelated( 'groups', $g );
+				}
+			}
+
+
+			$this->pageData['content'] = pullContent( AUTH_ROOT.'/pages/useradded' );
+
+			$this->pageData['id'] = 'login';
+			$this->pageData['title'] = "Naterweb Authentication";
+			$this->pageData['static'] = AUTH_ROOT.'/pages';
+
+			render_php_template( $this->settings['template'], $this->pageData );
+
+
+		} else {
+
+			$pageData = array();
+			$pageData['content'] = pullContent( AUTH_ROOT.'/pages/changeuser' );
+			$user = $this->dal->get('nwUser', 'id', request::sanitized_get( 'uid') );
+			$pageData['user'] = $user;
+			$pageData['ingroups'] = $user->getRelated( 'groups' );
+			$pageData['groups'] = $this->dal->getAll( 'nwGroup' );
+			$pageData['static'] = AUTH_ROOT.'/pages';
+			$pageData['title'] = 'Change User';
+			$pageData['id'] = 'changeuser';
+
+			render_php_template( $this->settings['template'], $pageData );
 
 
 		}
@@ -53,17 +238,121 @@ class auth extends controllerBase{
 
 	}
 
+	/**
+	 * Adds a new user to the system
+	 */
+	public function adduser(){
+
+		auth_user( getConfigOption('site_domain').'/?url=auth/adduser' );
+
+		$sessionmgr = SessionMgr::getInstance();
+
+
+		if ( $sessionmgr->check_csrf('post') && 
+			 ! $this->dal->get('nwUser', 'username', request::sanitized_post('username') ) ){
+
+
+
+			$newuser = new nwUser();
+
+			$newuser->username = request::sanitized_post('username');
+			$newuser->set_password( request::post('pass') );
+
+			$newuser->first_name = request::sanitized_post('first_name');
+			$newuser->last_name = request::sanitized_post('last_name');
+			$newuser->active = True;
+
+			$newuser->save();
+
+
+			$this->pageData['content'] = pullContent( AUTH_ROOT.'/pages/useradded' );
+
+			$this->pageData['id'] = 'login';
+			$this->pageData['title'] = "Naterweb Authentication";
+			$this->pageData['static'] = AUTH_ROOT.'/pages';
+
+			render_php_template( $this->settings['template'], $this->pageData );
+
+
+		} else {
+
+			$pageData = array();
+			$pageData['content'] = pullContent( AUTH_ROOT.'/pages/adduser' );
+			$pageData['static'] = AUTH_ROOT.'/pages';
+			$pageData['title'] = 'Add New User';
+			$pageData['id'] = 'adduser';
+
+			render_php_template( $this->settings['template'], $pageData );
+
+
+		}
+
+
+	}
+
+	/**
+	 * Shows the main user management page
+	 */
+	public function manage(){
+
+		auth_user( getConfigOption('site_domain').'/?url=auth/manage' );
+
+		$pageData = array();
+		$pageData['users'] = $this->dal->getAll( 'nwUser' );
+		$pageData['content'] = pullContent( AUTH_ROOT.'/pages/manage');
+		$pageData['static'] = AUTH_ROOT.'/pages';
+		$pageData['title'] = 'Manage Users';
+		$pageData['id'] = 'manage';
+
+		render_php_template( $this->settings['template'], $pageData );
+
+
+
+	}
+
+	/**
+	 * Checks a user's credentials with the database 
+	 * or a .htaccess file depending on the setup.
+	 */
+	public function check_login( $user, $plainpasswd ){
+
+		if ( ! getConfigOption('use_db') ){
+			return $this->check_htpasswd( $user, $plainpasswd );
+		}
+		else{
+			return $this->check_user_db( $user, $plainpasswd );
+		}
+	}
+
+	/**
+	 * Validates a user from the database
+	 */
+	private function check_user_db( $username, $plainpasswd ){
+
+		$user = $this->dal->get( 'nwUser', 'username', $username );
+
+		if ( is_null($user) ){
+			return $this->check_htpasswd( $username, $plainpasswd );
+		}
+		else{
+
+			return $user->auth_user( $plainpasswd );
+		}
+	}
+
 	public function logout(){
 
 
 	}
 
+	/**
+	 * Validates a user from the .htpasswd file
+	 */
 	private function check_htpasswd($user, $plainpasswd){
 
 		# Log the user in
 
 		if( !($passwd = @fopen( "./.htpasswd", "r" ))) {  
-			 
 			  return False;
 		} 
 
@@ -115,22 +404,6 @@ class auth extends controllerBase{
 
 
 	}
-
-	private function retrieveUser(){
-
-
-	}
-
-	private function retrieveUserFromDb(){
-
-
-	}
-
-	private function retrieveUserFromFile(){
-
-
-	}
-
 
 }
 
