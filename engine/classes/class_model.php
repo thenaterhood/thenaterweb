@@ -79,11 +79,44 @@ class Model{
 
 	public static function ForeignKey( $attrs=array() ){
 
+		if ( ! array_key_exists('model', $attrs) ||
+			 ! array_key_exists( 'related_name', $attrs ) ){
+			throw new Exception( "ForeignKey relationship requires a model and related name." );
+			return false;
+		} else {
+			$attrs['validator'] = 'ValidateForeignKey';
+			$attrs['type'] = 'foreignkey';
 
+			return (object)$attrs;
+
+		}
+
+	}
+
+	public static function ValidateForeignKey( $fieldinst ){
+
+		if ( property_exists($fieldinst, 'model') && 
+			get_class( $fieldinst->fmodel ) == $fieldinst->model ) {
+			return true;
+		} else {
+			throw new Exception('Invalid model for ForeignKey relationship: '. $fieldinst->related_name );
+			return false;
+		}
 	}
 
 	public static function ManyToMany( $attrs=array() ){
 
+		if ( ! array_key_exists( 'model', $attrs) ||
+			 ! array_key_exists( 'related_name', $attrs ) ){
+			throw new Exception( "ManyToMany relationship requires a model and related name." );
+			return false;
+		} else {
+
+			$attrs['validator'] = 'ValidateForeignKey';
+			$attrs['type'] = 'many2many';
+			return (object)$attrs;
+
+		}
 
 	}
 
@@ -106,6 +139,7 @@ class Model{
 			return true;
 		}
 	}
+
 
 	public static function ManyToOne( $attrs=array() ){
 
