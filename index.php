@@ -120,7 +120,7 @@ try {
 	if ( DEBUG )
 		print "\n" . "<h3><font color='red'>Debug is enabled, so the exception details are below:</font></h3>";
 		print "\n" . $e->getMessage();
-		print "\n". $e->getTraceAsString();
+		print "\n<pre>". $e->getTraceAsString() . '</pre>';
 
 }
 
