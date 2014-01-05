@@ -4,7 +4,7 @@ define("GNAT_ROOT", "engine");
 include_once 'engine/lib/core_redirect.php';
 include_once 'phpunit.phar';
 
-class redirectTest extends PHPUnit_Framework_TestCase {
+class condRedirectTest extends PHPUnit_Framework_TestCase {
 
 	protected function setUp(){
 
@@ -18,7 +18,7 @@ class redirectTest extends PHPUnit_Framework_TestCase {
 
 	public function test_initialize(){
 
-		$redirect = new redirect( 'here', 'there' );
+		$redirect = new condRedirect( 'here', 'there', 'here' );
 
 		$this->assertEquals( $redirect->toHtml(True), 'here to <a href=\'there\'>there</a>.' );
 		$this->assertEquals( $redirect->view(), 'here to there' );
@@ -32,8 +32,20 @@ class redirectTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function test_301_apply(){
 
-		$redirect = new redirect( 'here', 'there' );
+		$redirect = new condRedirect( 'here', 'there', 'here' );
 		$redirect->apply(301);
+
+
+	}
+
+	/**
+	 * 
+	 */
+	public function test_301_no_apply(){
+
+		$redirect = new condRedirect( 'here', 'here', 'here' );
+		$redirect->apply(301);
+
 
 
 	}
@@ -44,7 +56,19 @@ class redirectTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function test_302_apply(){
 
-		$redirect = new redirect( 'here', 'there' );
+		$redirect = new condRedirect( 'here', 'there', 'anywhere' );
+		$redirect->apply(302);
+
+
+	}
+
+	/**
+	 * 
+	 */
+	public function test_302_no_apply(){
+
+
+		$redirect = new condRedirect( 'here', 'here', 'here' );
 		$redirect->apply(302);
 
 

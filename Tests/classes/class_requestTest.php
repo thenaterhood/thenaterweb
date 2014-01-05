@@ -39,7 +39,7 @@ class requestTest extends PHPUnit_Framework_TestCase {
 
 	}
 
-	public function test_get(){
+	public function test_get_variable_retrieve(){
 
 
 		$this->assertEquals( request::get('easytest'), 'justSoEasy' );
@@ -48,27 +48,27 @@ class requestTest extends PHPUnit_Framework_TestCase {
 
 	}
 
-	public function test_get_messy(){
+	public function test_get_variable_sanitization(){
 
 
 		$this->assertEquals( request::get('messyTest'), '&n()ot.&?@#s*o^^@#.($*nice' );
 		$this->assertEquals( request::sanitized_get('messyTest'), 'not.so.nice' );
 	}
 
-	public function test_post(){
+	public function test_post_variable_retrieve(){
 
 
 		$this->assertEquals( request::post('easyPostTest'), 'justSoEasy' );
 	}
 
-	public function test_post_messy(){
+	public function test_post_variable_sanitization(){
 
 
 		$this->assertEquals( request::sanitized_post('messyPostTest'), 'not.so.nice' );
 		$this->assertEquals( request::sanitized_post('easyPostTest'), 'justSoEasy' );
 	}
 
-	public function test_generic_retrieve(){
+	public function test_generic_retrieve_variable(){
 
 		$this->assertEquals( request::get_sanitized( array('genericpost','genericget') )['genericpost'], 'some.data');
 	}
@@ -77,28 +77,30 @@ class requestTest extends PHPUnit_Framework_TestCase {
 
 		$session = request::get_sanitized_as_object( array( 'easytest', 'messyTest', 'easyPostTest' ) );
 
+		$this->assertTrue( is_object($session) );
+
 		$this->assertEquals( $session->easytest, 'justSoEasy' );
 		$this->assertEquals( $session->messyTest, 'not.so.nice' );
 	}
 
-	public function test_cookie(){
+	public function test_cookie_variable_retrieve(){
 
 		$this->assertEquals( request::cookie('easytest'), 'pretty.easy');
 		$this->assertEquals( request::sanitized_cookie( 'messy' ), 'unpleasant');
 	}
 
-	public function test_meta(){
+	public function test_meta_data_retrieve(){
 
 		$this->assertEquals( request::meta('HTTP_REFERER'), 'someplace/there');
 
 	}
 
-	public function test_default(){
+	public function test_get_default_value(){
 
 		$this->assertEquals( request::default_value('id') , 'home');
 	}
 
-	public function test_nonexistant(){
+	public function test_nonexistant_variable_retrieve(){
 
 		$this->assertEquals( request::get('foo') , '');
 		$this->assertEquals( request::sanitized_get('foo') , '');
@@ -116,14 +118,14 @@ class requestTest extends PHPUnit_Framework_TestCase {
 
 	}
 
-	public function test_nonstring(){
+	public function test_nonstring_retrieve(){
 
 		$this->assertEquals( request::sanitized_get('nonstring'), '' );
 		$this->assertEquals( request::sanitize(True, 2), '');
 
 	}
 
-	public function test_truncate(){
+	public function test_truncate_long_variable(){
 
 		$this->assertEquals( request::sanitize('string', 2), 'st');
 		$this->assertEquals( request::sanitize('string', 0), 'string');
