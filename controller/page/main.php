@@ -42,7 +42,7 @@ class page extends controllerBase{
 
 		$pageData = $this->pageData;
 
-		include $this->settings['template'];
+		render_php_template($this->settings['template'], $pageData );
 		
 	
 	}

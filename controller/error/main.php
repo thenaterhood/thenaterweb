@@ -11,6 +11,7 @@ class error extends controllerBase{
 		
 		$configFile = ERROR_ROOT.'/error.conf.xml';
 		$this->readConfig( $configFile );
+		$this->settings['page_directory'] = ERROR_ROOT.'/pages';
 
 		$session = request::get_sanitized_as_object( array('name', 'track', 'konami', 'id') );
 

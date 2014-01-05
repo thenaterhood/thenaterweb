@@ -1,16 +1,16 @@
-<h3>Manage Pages (<?php print $pageData['id']; ?>)</h3>
+<h3>Manage Pages (<?php print $page->id; ?>)</h3>
 
 <table class='table table-striped table-condensed'>
 
 	<tr>
 		<th>Page name</th>
-		<th>Edit</th>
+		<!-- <th>Edit</th> -->
 		<th>View</th>
 	</tr>
 
 	<?php
 
-	foreach ( $pageData['pages'] as $file => $page ) {
+	foreach ( $page->pages as $file => $p ) {
 
 		print '<tr>';
 		print '<td>';
@@ -19,10 +19,10 @@
 		print '</td>';
 
 		print '<td>';
-		print '<a class="btn btn-success" href="'.$pageData['apphome'].'/?url=edit/page/'.$pathinfo['filename'].'">Edit</a>';
+		print '<!-- <a class="btn btn-success" href="'.$page->apphome.'/?url=edit/page/'.$pathinfo['filename'].'">Edit</a> -->';
 		print '</td>';
 		print '<td>';
-		print '<a class="btn btn-success" href="'.$page.'">View</a>';
+		print '<a class="btn btn-success" href="'.$p.'">View</a>';
 		print '</td>';
 		print '</tr>';
 

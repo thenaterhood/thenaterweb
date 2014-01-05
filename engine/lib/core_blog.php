@@ -97,7 +97,8 @@ function loadBlogConf( $id ){
 function loadApplication( $id ){
 
     include_once 'controller/'.$id.'/main.php';
-    define( strtoupper($id).'_ROOT', 'controller/'.$id );
+    if ( ! defined( strtoupper($id).'_ROOT') )
+        define( strtoupper($id).'_ROOT', 'controller/'.$id );
     
 
     return new $id();

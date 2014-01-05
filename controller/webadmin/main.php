@@ -13,6 +13,8 @@ class webadmin extends controllerBase{
 
 		$configFile = WEBADMIN_ROOT.'/webadmin.conf.xml';
 		$this->readConfig( $configFile );
+		$this->settings['page_directory'] = WEBADMIN_ROOT.'/pages';
+
 
 	}
 
@@ -27,14 +29,15 @@ class webadmin extends controllerBase{
 
 			$admSession = request::get_sanitized_as_object( array( 'blogid', 'postid', 'isnew' ) );
 
-			$this->pageData['id'] = $content->title;
+			$this->pageData['id'] = $this->pageData['content']->title;
 			$this->pageData['title'] = $this->title;
 			$this->pageData['tagline'] = $this->catchline;
 			$this->pageData['appid'] = $this->id;
+			$this->pageData['static'] = WEBADMIN_ROOT.'/pages';
 
 			$pageData = $this->pageData;
 
-			include $this->settings['template'];
+			render_php_template( $this->settings['template'], $pageData );
 		}
 
 	}
@@ -52,10 +55,12 @@ class webadmin extends controllerBase{
 			$this->pageData['tagline'] = $this->catchline;
 			$this->pageData['appid'] = $this->id;
 			$this->pageData['apps'] = load_all_applications();
+			$this->pageData['static'] = WEBADMIN_ROOT.'/pages';
+
 
 			$pageData = $this->pageData;
 
-			include $this->settings['template'];
+			render_php_template( $this->settings['template'], $pageData );
 
 
 		}
