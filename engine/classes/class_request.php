@@ -2,9 +2,6 @@
 
 class request{
 
-	public function __construct(){
-		# pass
-	}
 	
 	public static function get_sanitized( $varnames ){
 
@@ -136,7 +133,7 @@ class request{
 	* input sanitizing for nonsecure things.
 	* 
 	*/
-	private static function sanitize( $dirty, $maxlength=0 ) {
+	public static function sanitize( $dirty, $maxlength=0 ) {
 		# Check that the string is actually a string, return "" if not
 		if (gettype($dirty) != 'string'){
 			return '';
@@ -154,9 +151,7 @@ class request{
 		if (strlen($saferstring) > $maxlength){
 			return substr($saferstring, 0, $maxlength);
 		}
-		else {
-			return $saferstring;
-		}
+
 	}
 
 }

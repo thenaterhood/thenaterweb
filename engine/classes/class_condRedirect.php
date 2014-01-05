@@ -40,7 +40,9 @@ class condRedirect extends redirect{
 	 */
 	public function __construct( $origin, $destination, $uri ){
 		
-		parent::__construct( $uri, $destination );
+		$this->origin = $origin;
+		$this->destination = $destination;
+		
 		if ( is_int( strpos($uri, $origin) ) && $origin != $destination ){
 
 			$this->apply = True;

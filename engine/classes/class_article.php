@@ -37,7 +37,7 @@ class article extends dataMonger{
 	 * 
 	 * @param nodefile (string) - a yyyy.mm.dd string of a nodefile
 	 */
-	public function __construct( $nodefile, $bloguri, $articleUri="", $from_db='auto' ){
+	public function __construct( $nodefile, $bloguri, $articleUri="" ){
 
 		/* Handles the case where the post file does not exist
 		 * at all by pre-setting all the fields to a failure state.

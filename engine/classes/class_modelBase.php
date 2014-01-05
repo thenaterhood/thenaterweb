@@ -149,7 +149,13 @@ class ModelBase{
 		if ( array_key_exists($field, $this->fields) ){
 			return $this->fields[$field]->data;
 		} else if ( $field == 'id' ) {
+
 			return $this->id; 
+
+		} else if ( array_key_exists($field, $this->relatives) ){
+
+			return $this->getRelated( $field );
+
 		} else {
 			throw new Exception('Model field "' . $field . '" does not exist.');
 		}

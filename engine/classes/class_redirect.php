@@ -20,7 +20,7 @@ class redirect{
 	 * @var $origin - the page to redirect from
 	 * @var $destination - the destination to redirect to
 	 */
-	private $origin, $destination;
+	protected $origin, $destination;
 	
 	/**
 	 * Produces an instance of the class
@@ -38,8 +38,10 @@ class redirect{
 	 * was initiated correctly
 	 * 
 	 */
-	public function view(){
-		print $this->origin." to ".$this->destination;
+	public function view( $print=False ){
+		if ( $print )
+			print $this->origin." to ".$this->destination;
+		return $this->origin." to ".$this->destination;
 	}
 
 	/**
@@ -81,6 +83,8 @@ class redirect{
 		
 		header("HTTP/1.1 301 Moved Permanently");
 		header("Location: ".$this->destination);
+
+		throw new RuntimeException('301 redirect');
 		
 	}
 	
@@ -93,6 +97,8 @@ class redirect{
 		header("HTTP/1.1 302 Moved Temporarily");
 
 		header("Location: ".$this->destination);
+
+		throw new RuntimeException('302 redirect');
 		
 	}
 	

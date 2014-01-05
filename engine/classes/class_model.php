@@ -4,6 +4,7 @@ class Model{
 
 	public static function IntegerField( $attrs=array() ){
 
+		if ( array_key_exists('name', $attrs) );
 		$instance = (object)$attrs;
 		$instance->type = 'Int';
 		$instance->validator = 'ValidateIntegerField';
@@ -14,15 +15,12 @@ class Model{
 
 	public static function ValidateIntegerField( $fieldInst ){
 
-		try{
-
-			int( $fieldInst->data );
+		if ( is_numeric( $fieldInst->data ) ){
 			return true;
 
-		} catch (Exception $e) {
+		} else {
 
 			throw new Exception('Invalid data for type IntegerField.');
-			return false;
 
 		}
 
@@ -40,9 +38,8 @@ class Model{
 
 	public static function ValidateTextField( $fieldInst ){
 
-		if ( count($fieldInst->data ) > 65535 ){
+		if ( strlen( $fieldInst->data ) > 65535 ){
 			throw new Exception('Contents of TextField exceeds length limit.');
-			return false;
 		} else {
 			return true;
 		}
@@ -66,9 +63,8 @@ class Model{
 
 	public static function ValidateCharField( $fieldinst ){
 
-		if ( count($fieldinst) > $fieldinst->length ){
+		if ( strlen($fieldinst->data) > $fieldinst->length ){
 			throw new Exception('Length of CharField data exceeds specified length.');
-			return false;
 		} else {
 			return true;
 		}
@@ -82,7 +78,6 @@ class Model{
 		if ( ! array_key_exists('model', $attrs) ||
 			 ! array_key_exists( 'related_name', $attrs ) ){
 			throw new Exception( "ForeignKey relationship requires a model and related name." );
-			return false;
 		} else {
 			$attrs['validator'] = 'ValidateForeignKey';
 			$attrs['type'] = 'foreignkey';
@@ -99,8 +94,8 @@ class Model{
 			get_class( $fieldinst->fmodel ) == $fieldinst->model ) {
 			return true;
 		} else {
-			throw new Exception('Invalid model for ForeignKey relationship: '. $fieldinst->related_name );
-			return false;
+			throw new Exception('Invalid model for ForeignKey relationship. 
+Expected '.$fieldinst->model.' but got: '. $fieldinst->related_name );
 		}
 	}
 
@@ -109,7 +104,6 @@ class Model{
 		if ( ! array_key_exists( 'model', $attrs) ||
 			 ! array_key_exists( 'related_name', $attrs ) ){
 			throw new Exception( "ManyToMany relationship requires a model and related name." );
-			return false;
 		} else {
 
 			$attrs['validator'] = 'ValidateForeignKey';
@@ -134,29 +128,10 @@ class Model{
 	public static function ValidateBooleanField( $fieldinst ){
 		if ( ! is_bool($fieldinst->data) ){
 			throw new Exception('Invalid data for BooleanField.');
-			return false;
 		} else {
 			return true;
 		}
 	}
-
-
-	public static function ManyToOne( $attrs=array() ){
-
-
-	}
-
-	public static function DateField( $attrs=array() ){
-
-
-	}
-
-	public static function PasswordField( $attrs=array() ){
-
-
-	}
-
-
 }
 
 ?>
