@@ -22,9 +22,8 @@ include_once NWEB_ROOT.'/classes/class_article.php';
 * 
 * @param $filename - a filename to pull a line from
 */
-function RandomLine($filename) {
+function RandomItem($lines) {
 
-	$lines = file($filename) ;
 	return $lines[array_rand($lines)] ;
 }
 
@@ -50,7 +49,7 @@ function XmltoArray(SimpleXMLElement $xml) {
  * @param $d - an associative array
  * @return $d - an std class object
  */
-function arrayToObject($d) {
+function RecArrayToObject($d) {
     if (is_array($d)) {
         /*
         * Return array converted to object
@@ -66,10 +65,12 @@ function arrayToObject($d) {
 
 function loadApplication( $id ){
 
-    include_once 'apps/'.$id.'/main.php';
     if ( ! defined( strtoupper($id).'_ROOT') ){
-        define( strtoupper($id).'_ROOT', 'apps/'.$id );
+        define( strtoupper($id).'_ROOT', NWEB_ROOT.'/../apps/'.$id );
     }
+    
+    include_once NWEB_ROOT.'/../apps/'.$id.'/main.php';
+
     
 
     return new $id();

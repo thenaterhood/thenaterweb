@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<head>
+	<title>Server Error</title>
+	<link href="/assets/bootstrap3/css/bootstrap.css" rel="stylesheet" />
+
+</head>
+
+<body>
+	<div id='wrap'>
+		<div id='container'>
+
+
+				<h1><?php echo $page->title; ?></h1>
+
+				
+			<table class="table table-striped">
+
+				<?php
+
+				foreach ($page->stack as $l) {
+					echo '<tr><td>' . $l . '</td></tr>';
+				}
+
+				?>
+
+			</table>
+
+		</div>
+	</div>
+
+
+</div>
+</body>
+</html>
+

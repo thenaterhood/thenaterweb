@@ -15,7 +15,6 @@
  * Include the config file
  */
 include NWEB_ROOT.'/../settings.php';
-include NWEB_ROOT.'/classes/class_varGetter.php';
 include NWEB_ROOT.'/classes/class_lock.php';
 include NWEB_ROOT.'/lib/core_extension.php';
 include NWEB_ROOT.'/classes/class_article.php';
@@ -65,13 +64,16 @@ function pullContent( $preferred, $sectionUri='/', $articleUri='/' ){
 	return $article;
 }
 
-function render_php_template( $template, $pagedata ){
+function render_php_template( $template, $pagedata, $use_csrf=True ){
 
 	$page = (object)$pagedata;
-	$sessionmgr = SessionMgr::getInstance();
+        
+        if ( $use_csrf ){
+            $sessionmgr = SessionMgr::getInstance();
 
-	$page->csrf_token = $sessionmgr->get_csrf_token();
-	$page->csrf_key = $sessionmgr->get_csrf_id();
+            $page->csrf_token = $sessionmgr->get_csrf_token();
+            $page->csrf_key = $sessionmgr->get_csrf_id();
+        }
 
 	if ( file_exists($template) ){
 		include $template;
@@ -81,29 +83,15 @@ function render_php_template( $template, $pagedata ){
 
 }
 
-/**
-* Displays a string with a random greeting and the string
-* the function was called with.
-* 
-* @param $first_name (str): a string, preferably a name
-* 
-* @return - a string with a personal greeting
-*/
-function randomGreeting($first_name){
 
-	$greetings = array("Howdy", "Hello", "Hi", "Hey there", "Hi there", "Greetings", "Hiya");
-	return $greetings[ array_rand($greetings) ].", $first_name";
-	
-}
-
-function getControllers(){
+function getControllers( $directory='apps' ){
 
 	$found = array();
-	$handler = opendir( 'controller' );
+	$handler = opendir( $directory );
 
 	while ($file = readdir($handler)){
 
-		if ( $file != '.' && $file != '..' && !in_array($file, $found) && file_exists( 'controller/'.$file.'/main.php')){
+		if ( $file != '.' && $file != '..' && !in_array($file, $found) && file_exists( $directory.'/'.$file.'/main.php')){
 			$blogid=substr($file, 0, strpos($file, ".") );
 			$found[] = $file;
 		}
