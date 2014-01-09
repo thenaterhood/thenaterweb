@@ -37,7 +37,6 @@ class urlHandler{
 		}
 
 		$this->parseUrl();
-		$this->selectController();
 
 
 	}
@@ -52,7 +51,6 @@ class urlHandler{
 		$this->urlArray = array_values($this->urlArray);
 
 		$this->parseUrl();
-		$this->selectController();
 
 	}
 
@@ -107,24 +105,6 @@ class urlHandler{
 
 			}
 
-	/**
-	 * Locates the controller for the url requested 
-	 * or defaults to the error controller if it doesn't 
-	 * exist.
-	 */
-	private function selectController(){
-
-		$this->controller = "controller/".$this->controllerId."/main.php";
-
-	}
-
-	/**
-	 * Returns the selected controller
-	 * @return the name of the controller file
-	 */
-	public function getController(){
-		return $this->controller;
-	}
 
 	/**
 	 * Returns the controller ID 
