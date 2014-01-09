@@ -1,61 +1,95 @@
-<h1>Installation Details</h1>
 
 <?php
 
 
-echo '<h3>Controllers known to Thenaterweb</h3>';
+echo '<h4>Installed Apps</h4>';
 
 $found = array();
-print '<ul>';
 
-$controllers = getControllers();
-
-foreach ($controllers as $blogid) {
-	print '<li><a href="'.getConfigOption('site_domain').'/webadmin/editblog/blogid/'.$blogid.'">'.$blogid.'</a></li>'."\n";
+$controllers = engine::get_controllers();
+print '<table class="table table-striped">';
+print '<th>Name</th><th>Install Location</th>';
+foreach ($controllers as $blogid=> $location) {
+	print '<tr><td>'.$blogid.'</td><td>'.$location.'</td></tr>'."\n";
 }
-print '</ul>';
-print '<br />';
-
-$writetest = fopen( getConfigOption('dynamic_directory').'/writetest.txt', 'w');
-fclose($writetest);
-
-# Check if dynamic directory is writeable
-if ( is_writable( getConfigOption('dynamic_directory').'/writetest.txt') ){
-
-	unlink( getConfigOption('dynamic_directory').'/writetest.txt' );
-	print '	<div class="alert alert-success">
-		<button type="button" class="close" data-dismiss="alert">&times;</button>
-		OK: Dynamic storage is writeable.
-		</div>';
-}else{
-
-	print '	<div class="alert alert-warning">
-		<button type="button" class="close" data-dismiss="alert">&times;</button>
-		PROBLEM: Dynamic storage is not writeable.
-		<p>The dynamic directory is '.getConfigOption('dynamic_directory').'. Thenaterweb needs write access to this directory.</p>
-		</div>';
-
-}
-
-# Check if log directory is writeable
-if ( is_writable( NWEB_ROOT.'/var/log/writetest.txt') ){
-
-	unlink( NWEB_ROOT.'/var/log/writetest.txt' );
-
-
-	print '	<div class="alert alert-success">
-		<button type="button" class="close" data-dismiss="alert">&times;</button>
-		OK: Log storage is writeable.
-		</div>';
-}else{
-
-	print '	<div class="alert alert-warning">
-		<button type="button" class="close" data-dismiss="alert">&times;</button>
-		PROBLEM: Log storage is not writeable.
-		<p>The log directory is engine/var/log. Thenaterweb needs write access to this directory.</p>
-		</div>';
-
-}
-
 
 ?>
+
+</table>
+<br />
+
+<h4>Install Status</h4>
+<table class="table table-striped">
+
+    <th>Item</th><th>Status</th>
+    <tr>
+        <td>Dynamic Storage</td>
+        <td>
+        <?php
+        
+        $writetest = fopen( getConfigOption('dynamic_directory').'/writetest.txt', 'w');
+        fclose($writetest);
+
+        # Check if dynamic directory is writeable
+        if ( is_writable( getConfigOption('dynamic_directory').'/writetest.txt') ){
+
+	unlink( getConfigOption('dynamic_directory').'/writetest.txt' );
+	print 'Okay (dynamic storage is writeable)';
+        }else{
+
+	print '<font color="red">Problem: cannot write to ' . getConfigOption('dynamic_directory') . '</font>';
+        }
+        ?>
+            
+        </td>
+    </tr>
+    <tr>
+        
+        <td>Log Storage</td>
+        
+        <td>
+        
+        <?php
+        
+        if (file_exists(NWEB_ROOT.'/var/log') && is_dir(NWEB_ROOT.'/var/log') ){
+        $writetest = fopen( NWEB_ROOT.'/var/log/writetest.txt', 'w');
+        fclose($writetest);
+        }
+
+        # Check if dynamic directory is writeable
+        if ( is_writable( NWEB_ROOT.'/var/log/writetest.txt') ){
+
+	unlink( getConfigOption('dynamic_directory').'/writetest.txt' );
+	print 'Okay (dynamic storage is writeable)';
+        }else{
+
+            print '<font color="red">Problem: cannot write to '.NWEB_ROOT.'/var/log</font>';
+        }
+        
+        ?>
+            
+        </td>
+        
+        
+    </tr>
+    
+    <tr>
+        <td>Site Domain</td>
+        <td><?php echo getConfigOption('site_domain'); ?></td>
+    </tr>
+    <tr>
+        <td>Enable Database (disabled if no status shown)</td>
+        <td><?php echo getConfigOption('use_db'); ?></td>
+    </tr>
+    
+    <tr>
+        <td>Timezone</td>
+        <td><?php echo date_default_timezone_get(); ?></td>
+    </tr>
+    
+    <tr>
+        <td>Feed Type</td>
+        <td><?php echo getConfigOption('feed_type'); ?></td>
+    </tr>
+
+</table>
