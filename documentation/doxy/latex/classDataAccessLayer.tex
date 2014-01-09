@@ -1,0 +1,217 @@
+\hypertarget{classDataAccessLayer}{\section{Data\-Access\-Layer Class Reference}
+\label{classDataAccessLayer}\index{Data\-Access\-Layer@{Data\-Access\-Layer}}
+}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classDataAccessLayer_a20b39ae7eb19a2dd4048932f37fdee9b}{register\-Model} (\$model\-Name, \$create\-Table=True)
+\item 
+\hyperlink{classDataAccessLayer_ae71afc8b728e6db696eab8b81c9043d7}{register\-Model\-From\-Instance} (\$instance, \$create\-Table=True)
+\item 
+\hyperlink{classDataAccessLayer_a30555ff6bb6936e13b152fdae3aebd3d}{get\-All} (\$model\-Name)
+\item 
+\hyperlink{classDataAccessLayer_aff8cf1f209e9d1a3b7f5c007640bb81a}{get} (\$model\-Name, \$by, \$value, \$generic\-Class=False)
+\item 
+\hyperlink{classDataAccessLayer_a8c8849ee005e0dcc6ffc6a33709db4ee}{get\-Attribute\-Values} (\$model\-Name, \$attr\-Name)
+\item 
+\hyperlink{classDataAccessLayer_a9e7909fa3cca801baa35ae6f06c02ee4}{filter} (\$model\-Name, \$criteria, \$generic\-Class=False)
+\item 
+\hyperlink{classDataAccessLayer_a71f6b38eecd06b7ca6190292b4a2bcd7}{search} (\$model\-Name, \$criteria)
+\item 
+\hyperlink{classDataAccessLayer_a4b2a05cb91ef6eaa39e876c237baa805}{create\-Registered\-Tables} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classDataAccessLayer_a25905efc8a7497195927f06766ae0775}{save} (\$model\-Name, \$object)
+\item 
+static \hyperlink{classDataAccessLayer_aa4ecad29c31c804341d1a211b710211b}{delete} (\$model\-Name, \$criteria)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Include the database library The main data access layer for managing all database interactions. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classDataAccessLayer_a4b2a05cb91ef6eaa39e876c237baa805}{\index{Data\-Access\-Layer@{Data\-Access\-Layer}!create\-Registered\-Tables@{create\-Registered\-Tables}}
+\index{create\-Registered\-Tables@{create\-Registered\-Tables}!DataAccessLayer@{Data\-Access\-Layer}}
+\subsubsection[{create\-Registered\-Tables}]{\setlength{\rightskip}{0pt plus 5cm}Data\-Access\-Layer\-::create\-Registered\-Tables (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classDataAccessLayer_a4b2a05cb91ef6eaa39e876c237baa805}
+Creates tables for the models registered with the data access layer. Called automatically on registering a model if not otherwise instructed, but can also be called externally. \hypertarget{classDataAccessLayer_aa4ecad29c31c804341d1a211b710211b}{\index{Data\-Access\-Layer@{Data\-Access\-Layer}!delete@{delete}}
+\index{delete@{delete}!DataAccessLayer@{Data\-Access\-Layer}}
+\subsubsection[{delete}]{\setlength{\rightskip}{0pt plus 5cm}static Data\-Access\-Layer\-::delete (
+\begin{DoxyParamCaption}
+\item[{}]{\$model\-Name, }
+\item[{}]{\$criteria}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classDataAccessLayer_aa4ecad29c31c804341d1a211b710211b}
+Deletes a model instance from the database. This is generally not called directly, but is called from the delete method of a model instance. It can be called directly in order to handle removing objects that correspond to the data in std\-Class instances. It is recommended that a model be registered with the data access layer before using this method in order to make sure the necessary database structures are in place.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$model\-Name} & -\/ the name of the model class \\
+\hline
+{\em \$criteria} & -\/ the criteria to match to delete the model from the database as an associative array of field\-\_\-name=$>$value.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & -\/ throws an exception if the model does not contain an id. \\
+\hline
+\end{DoxyExceptions}
+\hypertarget{classDataAccessLayer_a9e7909fa3cca801baa35ae6f06c02ee4}{\index{Data\-Access\-Layer@{Data\-Access\-Layer}!filter@{filter}}
+\index{filter@{filter}!DataAccessLayer@{Data\-Access\-Layer}}
+\subsubsection[{filter}]{\setlength{\rightskip}{0pt plus 5cm}Data\-Access\-Layer\-::filter (
+\begin{DoxyParamCaption}
+\item[{}]{\$model\-Name, }
+\item[{}]{\$criteria, }
+\item[{}]{\$generic\-Class = {\ttfamily False}}
+\end{DoxyParamCaption}
+)}}\label{classDataAccessLayer_a9e7909fa3cca801baa35ae6f06c02ee4}
+Returns an array of models that match a given criteria.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$model\-Name} & -\/ the name of the model to retrieve \\
+\hline
+{\em \$criteria} & -\/ an array of values corresponding to fields of the model and the values to select. \\
+\hline
+{\em \$generic\-Class} & -\/ whether to return an instance of the model class or a generic class (std\-Class). True results in a generic class. The generic class does not have full functionality of a class extending from model\-Base but may be useful if a model name does not correspond to an actual table. This is set to true for internally retrieving many2many and foreignkey relations.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\$objects -\/ an array of models or std\-Classes that match the given criteria. 
+\end{DoxyReturn}
+\hypertarget{classDataAccessLayer_aff8cf1f209e9d1a3b7f5c007640bb81a}{\index{Data\-Access\-Layer@{Data\-Access\-Layer}!get@{get}}
+\index{get@{get}!DataAccessLayer@{Data\-Access\-Layer}}
+\subsubsection[{get}]{\setlength{\rightskip}{0pt plus 5cm}Data\-Access\-Layer\-::get (
+\begin{DoxyParamCaption}
+\item[{}]{\$model\-Name, }
+\item[{}]{\$by, }
+\item[{}]{\$value, }
+\item[{}]{\$generic\-Class = {\ttfamily False}}
+\end{DoxyParamCaption}
+)}}\label{classDataAccessLayer_aff8cf1f209e9d1a3b7f5c007640bb81a}
+Retrieves a single model from the database given a criteria.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$model\-Name} & -\/ the name of the model class to retrieve. Must be registered with the data access layer prior to retrieval. \\
+\hline
+{\em \$by} & -\/ the field of the model to filter by \\
+\hline
+{\em \$value} & -\/ the value of the field to search for (ideally, an id or other unique value). \\
+\hline
+{\em \$generic\-Class} & -\/ whether to return an instance of the model class or a generic class (std\-Class). True results in a generic class. The generic class does not have full functionality of a class extending from model\-Base but may be useful if a model name does not correspond to an actual table. This is set to true for internally retrieving many2many and foreignkey relations.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+an instance of the model or an std\-Class 
+\end{DoxyReturn}
+\hypertarget{classDataAccessLayer_a30555ff6bb6936e13b152fdae3aebd3d}{\index{Data\-Access\-Layer@{Data\-Access\-Layer}!get\-All@{get\-All}}
+\index{get\-All@{get\-All}!DataAccessLayer@{Data\-Access\-Layer}}
+\subsubsection[{get\-All}]{\setlength{\rightskip}{0pt plus 5cm}Data\-Access\-Layer\-::get\-All (
+\begin{DoxyParamCaption}
+\item[{}]{\$model\-Name}
+\end{DoxyParamCaption}
+)}}\label{classDataAccessLayer_a30555ff6bb6936e13b152fdae3aebd3d}
+Retrieve all of the instances of a model from the database
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$model\-Name} & -\/ the name of the model class to retrieve. Must already be registered with the data access layer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\$objects -\/ an array of model instances 
+\end{DoxyReturn}
+\hypertarget{classDataAccessLayer_a8c8849ee005e0dcc6ffc6a33709db4ee}{\index{Data\-Access\-Layer@{Data\-Access\-Layer}!get\-Attribute\-Values@{get\-Attribute\-Values}}
+\index{get\-Attribute\-Values@{get\-Attribute\-Values}!DataAccessLayer@{Data\-Access\-Layer}}
+\subsubsection[{get\-Attribute\-Values}]{\setlength{\rightskip}{0pt plus 5cm}Data\-Access\-Layer\-::get\-Attribute\-Values (
+\begin{DoxyParamCaption}
+\item[{}]{\$model\-Name, }
+\item[{}]{\$attr\-Name}
+\end{DoxyParamCaption}
+)}}\label{classDataAccessLayer_a8c8849ee005e0dcc6ffc6a33709db4ee}
+Returns all of the values contained in a database column for a given table. Does not provide functionality for manipulating them, only returns an array.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$model\-Name} & -\/ the name of the model to retrieve for \\
+\hline
+{\em \$attr\-Name} & -\/ the name of the model field to retrieve values for\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+array -\/ an array of values for the field 
+\end{DoxyReturn}
+\hypertarget{classDataAccessLayer_a20b39ae7eb19a2dd4048932f37fdee9b}{\index{Data\-Access\-Layer@{Data\-Access\-Layer}!register\-Model@{register\-Model}}
+\index{register\-Model@{register\-Model}!DataAccessLayer@{Data\-Access\-Layer}}
+\subsubsection[{register\-Model}]{\setlength{\rightskip}{0pt plus 5cm}Data\-Access\-Layer\-::register\-Model (
+\begin{DoxyParamCaption}
+\item[{}]{\$model\-Name, }
+\item[{}]{\$create\-Table = {\ttfamily True}}
+\end{DoxyParamCaption}
+)}}\label{classDataAccessLayer_a20b39ae7eb19a2dd4048932f37fdee9b}
+Registers a model with the data access layer. Will create the database tables if they do not exist and will store the model for later lookups. This function must be called for each of the models that will be used any time a new data access layer is initialized.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$model\-Name} & -\/ the class name of the model \\
+\hline
+{\em \$create\-Table} & -\/ create the associated database table. Defaults to true, as the table will only be created if it does not already exist. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classDataAccessLayer_ae71afc8b728e6db696eab8b81c9043d7}{\index{Data\-Access\-Layer@{Data\-Access\-Layer}!register\-Model\-From\-Instance@{register\-Model\-From\-Instance}}
+\index{register\-Model\-From\-Instance@{register\-Model\-From\-Instance}!DataAccessLayer@{Data\-Access\-Layer}}
+\subsubsection[{register\-Model\-From\-Instance}]{\setlength{\rightskip}{0pt plus 5cm}Data\-Access\-Layer\-::register\-Model\-From\-Instance (
+\begin{DoxyParamCaption}
+\item[{}]{\$instance, }
+\item[{}]{\$create\-Table = {\ttfamily True}}
+\end{DoxyParamCaption}
+)}}\label{classDataAccessLayer_ae71afc8b728e6db696eab8b81c9043d7}
+Registers a new model with the data access layer from an existing instance of the model. All models must be registered with new instances of the data access layer in order to use them with the database.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$instance} & -\/ the instance of the model to register \\
+\hline
+{\em \$create\-Table} & -\/ create the associated database table. Defaults to true as the table will only be created if it does not already exist. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classDataAccessLayer_a25905efc8a7497195927f06766ae0775}{\index{Data\-Access\-Layer@{Data\-Access\-Layer}!save@{save}}
+\index{save@{save}!DataAccessLayer@{Data\-Access\-Layer}}
+\subsubsection[{save}]{\setlength{\rightskip}{0pt plus 5cm}static Data\-Access\-Layer\-::save (
+\begin{DoxyParamCaption}
+\item[{}]{\$model\-Name, }
+\item[{}]{\$object}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classDataAccessLayer_a25905efc8a7497195927f06766ae0775}
+Saves or updates a model instance in the database. This is usually not called directly but is used instead by the model\-Base class for providing the functionality of saving a model directly. It is recommended that a model be registered with the data access layer before using this method in order to make sure that the proper database structures are in place. This function can be called directly rather than using a model's save function in order to save models retrieved as std\-Class instances.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$model\-Name} & -\/ the name of the model to save \\
+\hline
+{\em \$object} & -\/ an associative array of the model's contents as field\-\_\-name =$>$ value.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int -\/ the object id 
+\end{DoxyReturn}
+\hypertarget{classDataAccessLayer_a71f6b38eecd06b7ca6190292b4a2bcd7}{\index{Data\-Access\-Layer@{Data\-Access\-Layer}!search@{search}}
+\index{search@{search}!DataAccessLayer@{Data\-Access\-Layer}}
+\subsubsection[{search}]{\setlength{\rightskip}{0pt plus 5cm}Data\-Access\-Layer\-::search (
+\begin{DoxyParamCaption}
+\item[{}]{\$model\-Name, }
+\item[{}]{\$criteria}
+\end{DoxyParamCaption}
+)}}\label{classDataAccessLayer_a71f6b38eecd06b7ca6190292b4a2bcd7}
+Performs a fuzzy filter based on similarities rather than attempting to match perfectly. Not yet implemented. 
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+engine/classes/class\-\_\-data\-Access\-Layer.\-php\end{DoxyCompactItemize}

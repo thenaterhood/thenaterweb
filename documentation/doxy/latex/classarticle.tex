@@ -1,0 +1,107 @@
+\hypertarget{classarticle}{\section{article Class Reference}
+\label{classarticle}\index{article@{article}}
+}
+Inheritance diagram for article\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classarticle}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classarticle_abc0c9463fc62baf5b4ef25b8ce546719}{\-\_\-\-\_\-construct} (\$nodefile, \$bloguri, \$article\-Uri=\char`\"{}\char`\"{})
+\item 
+\hyperlink{classarticle_a388fbd65b6ac1ab943b57284ce69eb56}{output} (\$type)
+\item 
+\hypertarget{classarticle_acfe6274b03d0051798d935e45d054195}{{\bfseries \-\_\-\-\_\-get} (\$field)}\label{classarticle_acfe6274b03d0051798d935e45d054195}
+
+\item 
+\hypertarget{classarticle_a93fcc436140d32b39762d95475474fb3}{{\bfseries get\-Type} ()}\label{classarticle_a93fcc436140d32b39762d95475474fb3}
+
+\item 
+\hypertarget{classarticle_afdda7e69ce8567ac2be12214fec5a852}{{\bfseries to\-Html} ()}\label{classarticle_afdda7e69ce8567ac2be12214fec5a852}
+
+\item 
+\hypertarget{classarticle_a2a51edc07f4e8ca22aeec3b997a8dc56}{{\bfseries get\-File} ()}\label{classarticle_a2a51edc07f4e8ca22aeec3b997a8dc56}
+
+\item 
+\hyperlink{classarticle_a07b78b42ec5aa8cc3423d758038c69fc}{get\-Meta} ()
+\item 
+\hypertarget{classarticle_a30c5793bc25061365c8b8a79103012be}{{\bfseries is\-Php} ()}\label{classarticle_a30c5793bc25061365c8b8a79103012be}
+
+\item 
+\hyperlink{classarticle_a0fdbe317408cbc7eed6fdbac441bb700}{list\-\_\-item\-\_\-output} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classarticle_abe7cedd17e5d9f8b2382f523595be405}{{\bfseries \$use\-Post\-Format}}\label{classarticle_abe7cedd17e5d9f8b2382f523595be405}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Provides a consistent interface for accessing posts or articles with multiple methods of displaying and managing the contained data.
+
+\begin{DoxyAuthor}{Author}
+Nate Levesque \href{mailto:public@thenaterhood.com}{\tt public@thenaterhood.\-com} Includes the inherited \hyperlink{classdataMonger}{data\-Monger} class Contains everything to do with retrieving and outputting posts in multiple forms. Is capable of retrieving posts stored in .json format (preferred when available) as well as plaintext (file syntax described below in constructor).
+\end{DoxyAuthor}
+Contains functions to output the post data in html format for displaying to a page, and atom format for use in generating an atom feed. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classarticle_abc0c9463fc62baf5b4ef25b8ce546719}{\index{article@{article}!\-\_\-\-\_\-construct@{\-\_\-\-\_\-construct}}
+\index{\-\_\-\-\_\-construct@{\-\_\-\-\_\-construct}!article@{article}}
+\subsubsection[{\-\_\-\-\_\-construct}]{\setlength{\rightskip}{0pt plus 5cm}article\-::\-\_\-\-\_\-construct (
+\begin{DoxyParamCaption}
+\item[{}]{\$nodefile, }
+\item[{}]{\$bloguri, }
+\item[{}]{\$article\-Uri = {\ttfamily \char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)}}\label{classarticle_abc0c9463fc62baf5b4ef25b8ce546719}
+Reads and parses a post file and creates an instance of the class with the post data. Capable of managing posts in json and plaintext, but prefers json if a json file exists for the requested post.
+
+
+\begin{DoxyParams}{Parameters}
+{\em nodefile} & (string) -\/ a yyyy.\-mm.\-dd string of a nodefile \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classarticle_a07b78b42ec5aa8cc3423d758038c69fc}{\index{article@{article}!get\-Meta@{get\-Meta}}
+\index{get\-Meta@{get\-Meta}!article@{article}}
+\subsubsection[{get\-Meta}]{\setlength{\rightskip}{0pt plus 5cm}article\-::get\-Meta (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classarticle_a07b78b42ec5aa8cc3423d758038c69fc}
+Returns the article metadata -\/ tags, title, link, date, and author as an associative array. \begin{DoxyReturn}{Returns}
+\$meta -\/ the metadata array 
+\end{DoxyReturn}
+\hypertarget{classarticle_a0fdbe317408cbc7eed6fdbac441bb700}{\index{article@{article}!list\-\_\-item\-\_\-output@{list\-\_\-item\-\_\-output}}
+\index{list\-\_\-item\-\_\-output@{list\-\_\-item\-\_\-output}!article@{article}}
+\subsubsection[{list\-\_\-item\-\_\-output}]{\setlength{\rightskip}{0pt plus 5cm}article\-::list\-\_\-item\-\_\-output (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classarticle_a0fdbe317408cbc7eed6fdbac441bb700}
+Returns a string containing the post title and tags, suitable for outputting in an atom feed (maybe) or an html list \hypertarget{classarticle_a388fbd65b6ac1ab943b57284ce69eb56}{\index{article@{article}!output@{output}}
+\index{output@{output}!article@{article}}
+\subsubsection[{output}]{\setlength{\rightskip}{0pt plus 5cm}article\-::output (
+\begin{DoxyParamCaption}
+\item[{}]{\$type}
+\end{DoxyParamCaption}
+)}}\label{classarticle_a388fbd65b6ac1ab943b57284ce69eb56}
+Returns a representation of the post in the format requested
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$type} & -\/ the type of feed \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+engine/classes/class\-\_\-article.\-php\end{DoxyCompactItemize}

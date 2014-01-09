@@ -1,0 +1,216 @@
+\hypertarget{classrequest}{\section{request Class Reference}
+\label{classrequest}\index{request@{request}}
+}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classrequest_af5a8fd0735268d19657c87848b5827c4}{get\-\_\-sanitized} (\$varnames)
+\item 
+static \hyperlink{classrequest_abc216f18819cc535803c10177e6b89a6}{get\-\_\-sanitized\-\_\-as\-\_\-object} (\$varnames)
+\item 
+static \hyperlink{classrequest_a34d4adad12486829a5c14719a298797c}{sanitized\-\_\-get} (\$varname)
+\item 
+static \hyperlink{classrequest_a21f215aed587e3bfa86b3d2cf1f666f6}{sanitized\-\_\-post} (\$varname)
+\item 
+static \hyperlink{classrequest_a053c8d3b0c70d2d0f6db4810d9f0b3ba}{sanitized\-\_\-cookie} (\$varname)
+\item 
+static \hyperlink{classrequest_a37ee0eb6206a252716bc33cd4c0e7916}{default\-\_\-value} (\$varname)
+\item 
+static \hyperlink{classrequest_abac59171326160dc151ded6601f8da37}{meta} (\$varname)
+\item 
+static \hyperlink{classrequest_a544f6a832bdef9bd3857082da95887b6}{post} (\$varname)
+\item 
+static \hyperlink{classrequest_a322e929c6e065ccf688769109400b43b}{get} (\$varname)
+\item 
+static \hyperlink{classrequest_acb2ddb22763f6a73e2e5c4990edc277e}{cookie} (\$varname)
+\item 
+static \hyperlink{classrequest_aadbff81f737c00e5a9d634df19bc47cc}{sanitize} (\$dirty, \$maxlength=0)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Provides access and sanitation functions for retrieving data from P\-H\-P H\-T\-T\-P variables.
+
+\begin{DoxyAuthor}{Author}
+Nate Levesque \href{mailto:public@thenaterhood.com}{\tt public@thenaterhood.\-com} 
+\end{DoxyAuthor}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classrequest_acb2ddb22763f6a73e2e5c4990edc277e}{\index{request@{request}!cookie@{cookie}}
+\index{cookie@{cookie}!request@{request}}
+\subsubsection[{cookie}]{\setlength{\rightskip}{0pt plus 5cm}static request\-::cookie (
+\begin{DoxyParamCaption}
+\item[{}]{\$varname}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classrequest_acb2ddb22763f6a73e2e5c4990edc277e}
+Returns a raw value from the cookie array without sanitizing it, or an empty string if it doesn't exist. 
+\begin{DoxyParams}[1]{Parameters}
+type & {\em \$varname} & -\/ the name of the variable \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string -\/ the value of the variable 
+\end{DoxyReturn}
+\hypertarget{classrequest_a37ee0eb6206a252716bc33cd4c0e7916}{\index{request@{request}!default\-\_\-value@{default\-\_\-value}}
+\index{default\-\_\-value@{default\-\_\-value}!request@{request}}
+\subsubsection[{default\-\_\-value}]{\setlength{\rightskip}{0pt plus 5cm}static request\-::default\-\_\-value (
+\begin{DoxyParamCaption}
+\item[{}]{\$varname}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classrequest_a37ee0eb6206a252716bc33cd4c0e7916}
+Returns the default value for a variable name as configured in the settings.\-php file.
+
+
+\begin{DoxyParams}[1]{Parameters}
+type & {\em \$varname} & -\/ the name of the variable \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+type -\/ the default value 
+\end{DoxyReturn}
+\hypertarget{classrequest_a322e929c6e065ccf688769109400b43b}{\index{request@{request}!get@{get}}
+\index{get@{get}!request@{request}}
+\subsubsection[{get}]{\setlength{\rightskip}{0pt plus 5cm}static request\-::get (
+\begin{DoxyParamCaption}
+\item[{}]{\$varname}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classrequest_a322e929c6e065ccf688769109400b43b}
+Returns a raw value from the G\-E\-T array without sanitizing it, or an empty string if it doesn't exist. 
+\begin{DoxyParams}[1]{Parameters}
+type & {\em \$varname} & -\/ the name of the variable \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string -\/ the value of the variable 
+\end{DoxyReturn}
+\hypertarget{classrequest_af5a8fd0735268d19657c87848b5827c4}{\index{request@{request}!get\-\_\-sanitized@{get\-\_\-sanitized}}
+\index{get\-\_\-sanitized@{get\-\_\-sanitized}!request@{request}}
+\subsubsection[{get\-\_\-sanitized}]{\setlength{\rightskip}{0pt plus 5cm}static request\-::get\-\_\-sanitized (
+\begin{DoxyParamCaption}
+\item[{}]{\$varnames}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classrequest_af5a8fd0735268d19657c87848b5827c4}
+Returns an array of variables retrieved and sanitized from (in order of precedence) \$\-\_\-\-P\-O\-S\-T, \$\-\_\-\-G\-E\-T, \$\-\_\-\-C\-O\-O\-K\-I\-E and a default value if configured.
+
+
+\begin{DoxyParams}[1]{Parameters}
+type & {\em \$varnames} & -\/ an array of variable names \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+type -\/ an array of cleaned variable values. 
+\end{DoxyReturn}
+\hypertarget{classrequest_abc216f18819cc535803c10177e6b89a6}{\index{request@{request}!get\-\_\-sanitized\-\_\-as\-\_\-object@{get\-\_\-sanitized\-\_\-as\-\_\-object}}
+\index{get\-\_\-sanitized\-\_\-as\-\_\-object@{get\-\_\-sanitized\-\_\-as\-\_\-object}!request@{request}}
+\subsubsection[{get\-\_\-sanitized\-\_\-as\-\_\-object}]{\setlength{\rightskip}{0pt plus 5cm}static request\-::get\-\_\-sanitized\-\_\-as\-\_\-object (
+\begin{DoxyParamCaption}
+\item[{}]{\$varnames}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classrequest_abc216f18819cc535803c10177e6b89a6}
+Returns an object with the requested variables cleaned. This is primarily to take the place of the session class from previous versions. It acts as a drop-\/in replacement. Uses the get\-\_\-sanitized function internally then casts the array to an object.
+
+
+\begin{DoxyParams}[1]{Parameters}
+type & {\em \$varnames} & -\/ an array of variable names to find \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+type -\/ an std\-Class instance containing the requested variables as fields. 
+\end{DoxyReturn}
+\hypertarget{classrequest_abac59171326160dc151ded6601f8da37}{\index{request@{request}!meta@{meta}}
+\index{meta@{meta}!request@{request}}
+\subsubsection[{meta}]{\setlength{\rightskip}{0pt plus 5cm}static request\-::meta (
+\begin{DoxyParamCaption}
+\item[{}]{\$varname}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classrequest_abac59171326160dc151ded6601f8da37}
+Returns meta information from the S\-E\-R\-V\-E\-R array or an empty string if it doesn't exist.
+
+
+\begin{DoxyParams}[1]{Parameters}
+type & {\em \$varname} & -\/ the name of the variable \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string -\/ the value of the variable 
+\end{DoxyReturn}
+\hypertarget{classrequest_a544f6a832bdef9bd3857082da95887b6}{\index{request@{request}!post@{post}}
+\index{post@{post}!request@{request}}
+\subsubsection[{post}]{\setlength{\rightskip}{0pt plus 5cm}static request\-::post (
+\begin{DoxyParamCaption}
+\item[{}]{\$varname}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classrequest_a544f6a832bdef9bd3857082da95887b6}
+Returns a raw value from the P\-O\-S\-T array without sanitizing it, or an empty string if it doesn't exist. 
+\begin{DoxyParams}[1]{Parameters}
+type & {\em \$varname} & -\/ the name of the variable \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string -\/ the value of the variable 
+\end{DoxyReturn}
+\hypertarget{classrequest_aadbff81f737c00e5a9d634df19bc47cc}{\index{request@{request}!sanitize@{sanitize}}
+\index{sanitize@{sanitize}!request@{request}}
+\subsubsection[{sanitize}]{\setlength{\rightskip}{0pt plus 5cm}static request\-::sanitize (
+\begin{DoxyParamCaption}
+\item[{}]{\$dirty, }
+\item[{}]{\$maxlength = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classrequest_aadbff81f737c00e5a9d634df19bc47cc}
+Verify that a string is made of html-\/safe characters and short enough to fit where it belongs. Basically some simple input sanitizing for nonsecure things. \hypertarget{classrequest_a053c8d3b0c70d2d0f6db4810d9f0b3ba}{\index{request@{request}!sanitized\-\_\-cookie@{sanitized\-\_\-cookie}}
+\index{sanitized\-\_\-cookie@{sanitized\-\_\-cookie}!request@{request}}
+\subsubsection[{sanitized\-\_\-cookie}]{\setlength{\rightskip}{0pt plus 5cm}static request\-::sanitized\-\_\-cookie (
+\begin{DoxyParamCaption}
+\item[{}]{\$varname}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classrequest_a053c8d3b0c70d2d0f6db4810d9f0b3ba}
+Returns a sanitized variable value from the cookie array or an empty string if it doesn't exist.
+
+
+\begin{DoxyParams}[1]{Parameters}
+type & {\em \$varname} & -\/ the name of the variable \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string -\/ the value of the variable 
+\end{DoxyReturn}
+\hypertarget{classrequest_a34d4adad12486829a5c14719a298797c}{\index{request@{request}!sanitized\-\_\-get@{sanitized\-\_\-get}}
+\index{sanitized\-\_\-get@{sanitized\-\_\-get}!request@{request}}
+\subsubsection[{sanitized\-\_\-get}]{\setlength{\rightskip}{0pt plus 5cm}static request\-::sanitized\-\_\-get (
+\begin{DoxyParamCaption}
+\item[{}]{\$varname}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classrequest_a34d4adad12486829a5c14719a298797c}
+Returns a sanitized variable value from the get array or an empty string if it doesn't exist.
+
+
+\begin{DoxyParams}[1]{Parameters}
+type & {\em \$varname} & -\/ the name of the variable \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string -\/ the value of the variable 
+\end{DoxyReturn}
+\hypertarget{classrequest_a21f215aed587e3bfa86b3d2cf1f666f6}{\index{request@{request}!sanitized\-\_\-post@{sanitized\-\_\-post}}
+\index{sanitized\-\_\-post@{sanitized\-\_\-post}!request@{request}}
+\subsubsection[{sanitized\-\_\-post}]{\setlength{\rightskip}{0pt plus 5cm}static request\-::sanitized\-\_\-post (
+\begin{DoxyParamCaption}
+\item[{}]{\$varname}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classrequest_a21f215aed587e3bfa86b3d2cf1f666f6}
+Returns a sanitized variable value from the post array or an empty string if it doesn't exist.
+
+
+\begin{DoxyParams}[1]{Parameters}
+type & {\em \$varname} & -\/ the name of the variable \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string -\/ the value of the variable 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+engine/classes/class\-\_\-request.\-php\end{DoxyCompactItemize}

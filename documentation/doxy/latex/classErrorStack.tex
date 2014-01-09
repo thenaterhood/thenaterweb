@@ -1,0 +1,228 @@
+\hypertarget{classErrorStack}{\section{Error\-Stack Class Reference}
+\label{classErrorStack}\index{Error\-Stack@{Error\-Stack}}
+}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classErrorStack_a20d6f809dbcb58224f5d4fc55b056660}{stack} (\$class=null, \$function=null, \$context=null, \$error\-Code=null)
+\item 
+static \hyperlink{classErrorStack_a6c3ccaff191e9e24ad88fec0fa13d892}{has\-Error} (\$class=null, \$function=null, \$context=null, \$error\-Code=null)
+\item 
+\hypertarget{classErrorStack_a0ee37a5d0c2f944f420cc027bf9043d4}{static {\bfseries has\-Error\-With\-Code} (\$code)}\label{classErrorStack_a0ee37a5d0c2f944f420cc027bf9043d4}
+
+\item 
+static \hyperlink{classErrorStack_a9fc1e04e762628613015cf62a055d4aa}{errors\-With\-Context} (\$context)
+\item 
+static \hyperlink{classErrorStack_a670a1b10810e2c230bbe8dc4cb7eca3f}{get\-Message} (\$class, \$function, \$context, \$error\-Code)
+\item 
+static \hyperlink{classErrorStack_aa1e47d928ad756d6b8fe20bc726ab32e}{get\-Message\-With\-Context} (\$context)
+\item 
+static \hyperlink{classErrorStack_ae2ee29b47d837e6d59436469593652f3}{add} (\$message, \$class=null, \$function=null, \$variables=array(), \$context=null, \$code=0)
+\item 
+static \hyperlink{classErrorStack_ad2333eb215c105c406b97bffb814a13c}{set\-Context} (\$context)
+\item 
+static \hyperlink{classErrorStack_a239a25d7d6616a65cfae42fb0a68d4ab}{clear\-Context} ()
+\item 
+static \hyperlink{classErrorStack_ad809b79d98533e74b1fa4cc8e3273e9a}{dump} ()
+\item 
+\hypertarget{classErrorStack_a140907f6dc51528f612170d866bdcff9}{static {\bfseries generate\-Message} (\$message, \$variables=array())}\label{classErrorStack_a140907f6dc51528f612170d866bdcff9}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Handles the creation and storing of non-\/fatal errors. This class may be useful for logging errors or displaying them to users. \begin{DoxyAuthor}{Author}
+Jared King \href{mailto:j@jaredtking.com}{\tt j@jaredtking.\-com} \hyperlink{}{1.\-0  2012 Groupr  M\-I\-T Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \char`\"{}\-Software\char`\"{}), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions\-:  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.  T\-H\-E S\-O\-F\-T\-W\-A\-R\-E I\-S P\-R\-O\-V\-I\-D\-E\-D \char`\"{}\-A\-S I\-S\char`\"{}, W\-I\-T\-H\-O\-U\-T W\-A\-R\-R\-A\-N\-T\-Y O\-F A\-N\-Y K\-I\-N\-D, E\-X\-P\-R\-E\-S\-S O\-R I\-M\-P\-L\-I\-E\-D, I\-N\-C\-L\-U\-D\-I\-N\-G B\-U\-T N\-O\-T L\-I\-M\-I\-T\-E\-D T\-O T\-H\-E W\-A\-R\-R\-A\-N\-T\-I\-E\-S O\-F M\-E\-R\-C\-H\-A\-N\-T\-A\-B\-I\-L\-I\-T\-Y, F\-I\-T\-N\-E\-S\-S F\-O\-R A P\-A\-R\-T\-I\-C\-U\-L\-A\-R P\-U\-R\-P\-O\-S\-E A\-N\-D N\-O\-N\-I\-N\-F\-R\-I\-N\-G\-E\-M\-E\-N\-T. I\-N N\-O E\-V\-E\-N\-T S\-H\-A\-L\-L T\-H\-E A\-U\-T\-H\-O\-R\-S O\-R C\-O\-P\-Y\-R\-I\-G\-H\-T H\-O\-L\-D\-E\-R\-S B\-E L\-I\-A\-B\-L\-E F\-O\-R A\-N\-Y C\-L\-A\-I\-M, D\-A\-M\-A\-G\-E\-S O\-R O\-T\-H\-E\-R L\-I\-A\-B\-I\-L\-I\-T\-Y, W\-H\-E\-T\-H\-E\-R I\-N A\-N A\-C\-T\-I\-O\-N O\-F C\-O\-N\-T\-R\-A\-C\-T, T\-O\-R\-T O\-R O\-T\-H\-E\-R\-W\-I\-S\-E, A\-R\-I\-S\-I\-N\-G F\-R\-O\-M, O\-U\-T O\-F O\-R I\-N C\-O\-N\-N\-E\-C\-T\-I\-O\-N W\-I\-T\-H T\-H\-E S\-O\-F\-T\-W\-A\-R\-E O\-R T\-H\-E U\-S\-E O\-R O\-T\-H\-E\-R D\-E\-A\-L\-I\-N\-G\-S I\-N T\-H\-E S\-O\-F\-T\-W\-A\-R\-E. }
+\end{DoxyAuthor}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classErrorStack_ae2ee29b47d837e6d59436469593652f3}{\index{Error\-Stack@{Error\-Stack}!add@{add}}
+\index{add@{add}!ErrorStack@{Error\-Stack}}
+\subsubsection[{add}]{\setlength{\rightskip}{0pt plus 5cm}static Error\-Stack\-::add (
+\begin{DoxyParamCaption}
+\item[{}]{\$message, }
+\item[{}]{\$class = {\ttfamily null}, }
+\item[{}]{\$function = {\ttfamily null}, }
+\item[{}]{\$variables = {\ttfamily array()}, }
+\item[{}]{\$context = {\ttfamily null}, }
+\item[{}]{\$code = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classErrorStack_ae2ee29b47d837e6d59436469593652f3}
+Adds an error message to the stack
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$message} & message \\
+\hline
+string & {\em \$class} & class \\
+\hline
+string & {\em \$function} & function \\
+\hline
+string & {\em \$context} & context \\
+\hline
+string & {\em \$code} & error code\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean true if successful 
+\end{DoxyReturn}
+\hypertarget{classErrorStack_a239a25d7d6616a65cfae42fb0a68d4ab}{\index{Error\-Stack@{Error\-Stack}!clear\-Context@{clear\-Context}}
+\index{clear\-Context@{clear\-Context}!ErrorStack@{Error\-Stack}}
+\subsubsection[{clear\-Context}]{\setlength{\rightskip}{0pt plus 5cm}static Error\-Stack\-::clear\-Context (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classErrorStack_a239a25d7d6616a65cfae42fb0a68d4ab}
+Clears the error context
+
+\begin{DoxyReturn}{Returns}
+null 
+\end{DoxyReturn}
+\hypertarget{classErrorStack_ad809b79d98533e74b1fa4cc8e3273e9a}{\index{Error\-Stack@{Error\-Stack}!dump@{dump}}
+\index{dump@{dump}!ErrorStack@{Error\-Stack}}
+\subsubsection[{dump}]{\setlength{\rightskip}{0pt plus 5cm}static Error\-Stack\-::dump (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classErrorStack_ad809b79d98533e74b1fa4cc8e3273e9a}
+Prints out the error stack (for debugging) \hypertarget{classErrorStack_a9fc1e04e762628613015cf62a055d4aa}{\index{Error\-Stack@{Error\-Stack}!errors\-With\-Context@{errors\-With\-Context}}
+\index{errors\-With\-Context@{errors\-With\-Context}!ErrorStack@{Error\-Stack}}
+\subsubsection[{errors\-With\-Context}]{\setlength{\rightskip}{0pt plus 5cm}static Error\-Stack\-::errors\-With\-Context (
+\begin{DoxyParamCaption}
+\item[{}]{\$context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classErrorStack_a9fc1e04e762628613015cf62a055d4aa}
+Finds errors based on the given parameters
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$context} & error context\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+array 
+\end{DoxyReturn}
+\hypertarget{classErrorStack_a670a1b10810e2c230bbe8dc4cb7eca3f}{\index{Error\-Stack@{Error\-Stack}!get\-Message@{get\-Message}}
+\index{get\-Message@{get\-Message}!ErrorStack@{Error\-Stack}}
+\subsubsection[{get\-Message}]{\setlength{\rightskip}{0pt plus 5cm}static Error\-Stack\-::get\-Message (
+\begin{DoxyParamCaption}
+\item[{}]{\$class, }
+\item[{}]{\$function, }
+\item[{}]{\$context, }
+\item[{}]{\$error\-Code}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classErrorStack_a670a1b10810e2c230bbe8dc4cb7eca3f}
+Gets a single (first) message based on the given parameters.
+
+If multiple errors are matched then only the first one will be returned. If more than one error is possible it is best to user the \hyperlink{classErrorStack_a20d6f809dbcb58224f5d4fc55b056660}{stack()} method
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$class} & class \\
+\hline
+string & {\em \$function} & function \\
+\hline
+string & {\em \$context} & context \\
+\hline
+string | int & {\em \$error\-Code} & error code\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string message 
+\end{DoxyReturn}
+\hypertarget{classErrorStack_aa1e47d928ad756d6b8fe20bc726ab32e}{\index{Error\-Stack@{Error\-Stack}!get\-Message\-With\-Context@{get\-Message\-With\-Context}}
+\index{get\-Message\-With\-Context@{get\-Message\-With\-Context}!ErrorStack@{Error\-Stack}}
+\subsubsection[{get\-Message\-With\-Context}]{\setlength{\rightskip}{0pt plus 5cm}static Error\-Stack\-::get\-Message\-With\-Context (
+\begin{DoxyParamCaption}
+\item[{}]{\$context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classErrorStack_aa1e47d928ad756d6b8fe20bc726ab32e}
+Gets the first message from the error stack for a given context
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$context} & context\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string message 
+\end{DoxyReturn}
+\hypertarget{classErrorStack_a6c3ccaff191e9e24ad88fec0fa13d892}{\index{Error\-Stack@{Error\-Stack}!has\-Error@{has\-Error}}
+\index{has\-Error@{has\-Error}!ErrorStack@{Error\-Stack}}
+\subsubsection[{has\-Error}]{\setlength{\rightskip}{0pt plus 5cm}static Error\-Stack\-::has\-Error (
+\begin{DoxyParamCaption}
+\item[{}]{\$class = {\ttfamily null}, }
+\item[{}]{\$function = {\ttfamily null}, }
+\item[{}]{\$context = {\ttfamily null}, }
+\item[{}]{\$error\-Code = {\ttfamily null}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classErrorStack_a6c3ccaff191e9e24ad88fec0fa13d892}
+Checks if an error exists based on the given parameters.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$class} & class \\
+\hline
+string & {\em \$function} & function \\
+\hline
+string & {\em \$context} & context \\
+\hline
+string | int & {\em \$error\-Code} & error code\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean true if at least one error exists 
+\end{DoxyReturn}
+\hypertarget{classErrorStack_ad2333eb215c105c406b97bffb814a13c}{\index{Error\-Stack@{Error\-Stack}!set\-Context@{set\-Context}}
+\index{set\-Context@{set\-Context}!ErrorStack@{Error\-Stack}}
+\subsubsection[{set\-Context}]{\setlength{\rightskip}{0pt plus 5cm}static Error\-Stack\-::set\-Context (
+\begin{DoxyParamCaption}
+\item[{}]{\$context}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classErrorStack_ad2333eb215c105c406b97bffb814a13c}
+Sets the context for all errors created.
+
+Unless explicitly overridden all errors will be created with the current context. Don't forget to clear the context when finished with it.
+
+
+\begin{DoxyParams}{Parameters}
+{\em string} & context\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+null 
+\end{DoxyReturn}
+\hypertarget{classErrorStack_a20d6f809dbcb58224f5d4fc55b056660}{\index{Error\-Stack@{Error\-Stack}!stack@{stack}}
+\index{stack@{stack}!ErrorStack@{Error\-Stack}}
+\subsubsection[{stack}]{\setlength{\rightskip}{0pt plus 5cm}static Error\-Stack\-::stack (
+\begin{DoxyParamCaption}
+\item[{}]{\$class = {\ttfamily null}, }
+\item[{}]{\$function = {\ttfamily null}, }
+\item[{}]{\$context = {\ttfamily null}, }
+\item[{}]{\$error\-Code = {\ttfamily null}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classErrorStack_a20d6f809dbcb58224f5d4fc55b056660}
+Gets error(s) in the stack based on the desired parameters
+
+This method is useful for pulling errors off the stack that occured within a class, function, context, by error code or any combination of these parameters.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$class} & class (optional) \\
+\hline
+string & {\em \$function} & function (optional) \\
+\hline
+string & {\em \$context} & context (optional) \\
+\hline
+string | int & {\em \$error\-Code} & error code (optional)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+array errors 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+engine/lib/extern/php-\/database/Error\-Stack.\-php\end{DoxyCompactItemize}

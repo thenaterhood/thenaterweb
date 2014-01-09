@@ -1,0 +1,70 @@
+\hypertarget{classlock}{\section{lock Class Reference}
+\label{classlock}\index{lock@{lock}}
+}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classlock_a2b1318e68e5f10a8e87ea653023f4966}{\-\_\-\-\_\-construct} (\$file)
+\item 
+\hyperlink{classlock_a8a4d0c241ded71bb02dbdf9b26e759dd}{is\-Locked} ()
+\item 
+\hyperlink{classlock_a50f07760e0ecc88f17310b820d38e7e3}{lock} ()
+\item 
+\hyperlink{classlock_af3a6ea9d4064b261a59a0760dc42980c}{unlock} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Contains a class that deals with managing file locks Include the config class so we can retrieve the dynamic directory Defines a class to manage locks for files \begin{DoxySince}{Since}
+06/05/2013 
+\end{DoxySince}
+\begin{DoxyAuthor}{Author}
+Nate Levesque \href{mailto:public@thenaterhood.com}{\tt public@thenaterhood.\-com} 
+\end{DoxyAuthor}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classlock_a2b1318e68e5f10a8e87ea653023f4966}{\index{lock@{lock}!\-\_\-\-\_\-construct@{\-\_\-\-\_\-construct}}
+\index{\-\_\-\-\_\-construct@{\-\_\-\-\_\-construct}!lock@{lock}}
+\subsubsection[{\-\_\-\-\_\-construct}]{\setlength{\rightskip}{0pt plus 5cm}lock\-::\-\_\-\-\_\-construct (
+\begin{DoxyParamCaption}
+\item[{}]{\$file}
+\end{DoxyParamCaption}
+)}}\label{classlock_a2b1318e68e5f10a8e87ea653023f4966}
+Constructs and instance of the lock class 
+\begin{DoxyParams}{Parameters}
+{\em \$file} & -\/ the file (full path) to create a lock for \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classlock_a8a4d0c241ded71bb02dbdf9b26e759dd}{\index{lock@{lock}!is\-Locked@{is\-Locked}}
+\index{is\-Locked@{is\-Locked}!lock@{lock}}
+\subsubsection[{is\-Locked}]{\setlength{\rightskip}{0pt plus 5cm}lock\-::is\-Locked (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classlock_a8a4d0c241ded71bb02dbdf9b26e759dd}
+Returns whether or not the file has been locked \begin{DoxyReturn}{Returns}
+-\/ boolean True if a lock exists 
+\end{DoxyReturn}
+\hypertarget{classlock_a50f07760e0ecc88f17310b820d38e7e3}{\index{lock@{lock}!lock@{lock}}
+\index{lock@{lock}!lock@{lock}}
+\subsubsection[{lock}]{\setlength{\rightskip}{0pt plus 5cm}lock\-::lock (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classlock_a50f07760e0ecc88f17310b820d38e7e3}
+Creates a lock for the file in the dynamic directory. Note that for this to be effective, everything must actually observe locks. \hypertarget{classlock_af3a6ea9d4064b261a59a0760dc42980c}{\index{lock@{lock}!unlock@{unlock}}
+\index{unlock@{unlock}!lock@{lock}}
+\subsubsection[{unlock}]{\setlength{\rightskip}{0pt plus 5cm}lock\-::unlock (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classlock_af3a6ea9d4064b261a59a0760dc42980c}
+Removes a lock on a file 
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+engine/classes/class\-\_\-lock.\-php\end{DoxyCompactItemize}

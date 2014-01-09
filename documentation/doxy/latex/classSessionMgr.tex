@@ -1,0 +1,109 @@
+\hypertarget{classSessionMgr}{\section{Session\-Mgr Class Reference}
+\label{classSessionMgr}\index{Session\-Mgr@{Session\-Mgr}}
+}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classSessionMgr_aedbc4cb2228951b67f6176c95a9c177a}{get\-\_\-csrf\-\_\-id} ()
+\item 
+\hyperlink{classSessionMgr_a6fc75c805601b86bf75e32e74a5dec16}{get\-\_\-csrf\-\_\-token} ()
+\item 
+\hyperlink{classSessionMgr_ac1a7c2c9873c8f7b64aef607ab96bc78}{check\-\_\-csrf} (\$method)
+\item 
+\hyperlink{classSessionMgr_aafc03db5cc80b14a459c81a99865b91b}{form\-\_\-names} (\$names, \$regenerate)
+\item 
+\hyperlink{classSessionMgr_a54067567a91677f592751bcc3096b175}{start\-Session} ()
+\item 
+\hyperlink{classSessionMgr_a65a1ebe7f9d219bdb88efa18df697295}{\-\_\-\-\_\-set} (\$name, \$value)
+\item 
+\hyperlink{classSessionMgr_a0c2ca3fa3663059b2490c80897f8d437}{\-\_\-\-\_\-get} (\$name)
+\item 
+\hypertarget{classSessionMgr_a992329fbe672857d8fd74ebee57329bc}{{\bfseries \-\_\-\-\_\-isset} (\$name)}\label{classSessionMgr_a992329fbe672857d8fd74ebee57329bc}
+
+\item 
+\hypertarget{classSessionMgr_ac3cec7da4442db2d333f1ca0a693e1e0}{{\bfseries \-\_\-\-\_\-unset} (\$name)}\label{classSessionMgr_ac3cec7da4442db2d333f1ca0a693e1e0}
+
+\item 
+\hypertarget{classSessionMgr_a5eecf3a633697c6dbcd6052575629423}{{\bfseries destroy} ()}\label{classSessionMgr_a5eecf3a633697c6dbcd6052575629423}
+
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classSessionMgr_a089318cf1224b6c02cc755aee63a1d9c}{get\-Instance} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classSessionMgr_aa3b423ebb39b16714c0baec2d2a6df8d}{const {\bfseries S\-E\-S\-S\-I\-O\-N\-\_\-\-S\-T\-A\-R\-T\-E\-D} = True}\label{classSessionMgr_aa3b423ebb39b16714c0baec2d2a6df8d}
+
+\item 
+\hypertarget{classSessionMgr_acc8882dff09da4854e1b02245f25de95}{const {\bfseries S\-E\-S\-S\-I\-O\-N\-\_\-\-N\-O\-T\-\_\-\-S\-T\-A\-R\-T\-E\-D} = False}\label{classSessionMgr_acc8882dff09da4854e1b02245f25de95}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classSessionMgr_a0c2ca3fa3663059b2490c80897f8d437}{\index{Session\-Mgr@{Session\-Mgr}!\-\_\-\-\_\-get@{\-\_\-\-\_\-get}}
+\index{\-\_\-\-\_\-get@{\-\_\-\-\_\-get}!SessionMgr@{Session\-Mgr}}
+\subsubsection[{\-\_\-\-\_\-get}]{\setlength{\rightskip}{0pt plus 5cm}Session\-Mgr\-::\-\_\-\-\_\-get (
+\begin{DoxyParamCaption}
+\item[{}]{\$name}
+\end{DoxyParamCaption}
+)}}\label{classSessionMgr_a0c2ca3fa3663059b2490c80897f8d437}
+Retrieves data from the session \hypertarget{classSessionMgr_a65a1ebe7f9d219bdb88efa18df697295}{\index{Session\-Mgr@{Session\-Mgr}!\-\_\-\-\_\-set@{\-\_\-\-\_\-set}}
+\index{\-\_\-\-\_\-set@{\-\_\-\-\_\-set}!SessionMgr@{Session\-Mgr}}
+\subsubsection[{\-\_\-\-\_\-set}]{\setlength{\rightskip}{0pt plus 5cm}Session\-Mgr\-::\-\_\-\-\_\-set (
+\begin{DoxyParamCaption}
+\item[{}]{\$name, }
+\item[{}]{\$value}
+\end{DoxyParamCaption}
+)}}\label{classSessionMgr_a65a1ebe7f9d219bdb88efa18df697295}
+Allows for storing data into the session \hypertarget{classSessionMgr_ac1a7c2c9873c8f7b64aef607ab96bc78}{\index{Session\-Mgr@{Session\-Mgr}!check\-\_\-csrf@{check\-\_\-csrf}}
+\index{check\-\_\-csrf@{check\-\_\-csrf}!SessionMgr@{Session\-Mgr}}
+\subsubsection[{check\-\_\-csrf}]{\setlength{\rightskip}{0pt plus 5cm}Session\-Mgr\-::check\-\_\-csrf (
+\begin{DoxyParamCaption}
+\item[{}]{\$method}
+\end{DoxyParamCaption}
+)}}\label{classSessionMgr_ac1a7c2c9873c8f7b64aef607ab96bc78}
+Checks the validity of the C\-S\-R\-F token from the given method (post or get) \hypertarget{classSessionMgr_aafc03db5cc80b14a459c81a99865b91b}{\index{Session\-Mgr@{Session\-Mgr}!form\-\_\-names@{form\-\_\-names}}
+\index{form\-\_\-names@{form\-\_\-names}!SessionMgr@{Session\-Mgr}}
+\subsubsection[{form\-\_\-names}]{\setlength{\rightskip}{0pt plus 5cm}Session\-Mgr\-::form\-\_\-names (
+\begin{DoxyParamCaption}
+\item[{}]{\$names, }
+\item[{}]{\$regenerate}
+\end{DoxyParamCaption}
+)}}\label{classSessionMgr_aafc03db5cc80b14a459c81a99865b91b}
+Generates csrf-\/safe form names for a form. \hypertarget{classSessionMgr_aedbc4cb2228951b67f6176c95a9c177a}{\index{Session\-Mgr@{Session\-Mgr}!get\-\_\-csrf\-\_\-id@{get\-\_\-csrf\-\_\-id}}
+\index{get\-\_\-csrf\-\_\-id@{get\-\_\-csrf\-\_\-id}!SessionMgr@{Session\-Mgr}}
+\subsubsection[{get\-\_\-csrf\-\_\-id}]{\setlength{\rightskip}{0pt plus 5cm}Session\-Mgr\-::get\-\_\-csrf\-\_\-id (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classSessionMgr_aedbc4cb2228951b67f6176c95a9c177a}
+Returns the csrf token id \hypertarget{classSessionMgr_a6fc75c805601b86bf75e32e74a5dec16}{\index{Session\-Mgr@{Session\-Mgr}!get\-\_\-csrf\-\_\-token@{get\-\_\-csrf\-\_\-token}}
+\index{get\-\_\-csrf\-\_\-token@{get\-\_\-csrf\-\_\-token}!SessionMgr@{Session\-Mgr}}
+\subsubsection[{get\-\_\-csrf\-\_\-token}]{\setlength{\rightskip}{0pt plus 5cm}Session\-Mgr\-::get\-\_\-csrf\-\_\-token (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classSessionMgr_a6fc75c805601b86bf75e32e74a5dec16}
+Returns the value of the C\-S\-R\-F token \hypertarget{classSessionMgr_a089318cf1224b6c02cc755aee63a1d9c}{\index{Session\-Mgr@{Session\-Mgr}!get\-Instance@{get\-Instance}}
+\index{get\-Instance@{get\-Instance}!SessionMgr@{Session\-Mgr}}
+\subsubsection[{get\-Instance}]{\setlength{\rightskip}{0pt plus 5cm}static Session\-Mgr\-::get\-Instance (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classSessionMgr_a089318cf1224b6c02cc755aee63a1d9c}
+Returns the instance of the session and automatically initializes it if necessary \hypertarget{classSessionMgr_a54067567a91677f592751bcc3096b175}{\index{Session\-Mgr@{Session\-Mgr}!start\-Session@{start\-Session}}
+\index{start\-Session@{start\-Session}!SessionMgr@{Session\-Mgr}}
+\subsubsection[{start\-Session}]{\setlength{\rightskip}{0pt plus 5cm}Session\-Mgr\-::start\-Session (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classSessionMgr_a54067567a91677f592751bcc3096b175}
+Starts or restarts the session 
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+engine/classes/class\-\_\-session\-Mgr.\-php\end{DoxyCompactItemize}

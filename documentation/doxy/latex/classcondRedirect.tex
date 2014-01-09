@@ -1,0 +1,68 @@
+\hypertarget{classcondRedirect}{\section{cond\-Redirect Class Reference}
+\label{classcondRedirect}\index{cond\-Redirect@{cond\-Redirect}}
+}
+Inheritance diagram for cond\-Redirect\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcondRedirect}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classcondRedirect_ad18d689973246f0b672e27b969f3ce31}{\-\_\-\-\_\-construct} (\$origin, \$destination, \$uri)
+\item 
+\hyperlink{classcondRedirect_aeeb36f32e9bf27e34c5806efeb41d35a}{apply} (\$type)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Provides a means of redirecting a page conditionally based on whether the destination is where the user currently is or not. \begin{DoxyAuthor}{Author}
+Nate Levesque \href{mailto:public@thenaterhood.com}{\tt public@thenaterhood.\-com} Include the extended redirect class Manages conditionally redirecting pages based on the requested uri and a given uri to redirect from. Checks to see if the uri requested by the user contains the uri to redirect from, and prepares to perform the redirect if so.
+\end{DoxyAuthor}
+Relies on the redirect class to manage the actual redirecting, this class is primarly an interface to it that deals with the conditional aspect. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classcondRedirect_ad18d689973246f0b672e27b969f3ce31}{\index{cond\-Redirect@{cond\-Redirect}!\-\_\-\-\_\-construct@{\-\_\-\-\_\-construct}}
+\index{\-\_\-\-\_\-construct@{\-\_\-\-\_\-construct}!condRedirect@{cond\-Redirect}}
+\subsubsection[{\-\_\-\-\_\-construct}]{\setlength{\rightskip}{0pt plus 5cm}cond\-Redirect\-::\-\_\-\-\_\-construct (
+\begin{DoxyParamCaption}
+\item[{}]{\$origin, }
+\item[{}]{\$destination, }
+\item[{}]{\$uri}
+\end{DoxyParamCaption}
+)}}\label{classcondRedirect_ad18d689973246f0b672e27b969f3ce31}
+Creates an instance of the conditional redirect class and decides whether the redirect will be performed
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$origin} & -\/ a chosen uri to redirect from \\
+\hline
+{\em \$destination} & -\/ a uri to redirect to \\
+\hline
+{\em \$uri} & -\/ the uri requested by the user \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classcondRedirect_aeeb36f32e9bf27e34c5806efeb41d35a}{\index{cond\-Redirect@{cond\-Redirect}!apply@{apply}}
+\index{apply@{apply}!condRedirect@{cond\-Redirect}}
+\subsubsection[{apply}]{\setlength{\rightskip}{0pt plus 5cm}cond\-Redirect\-::apply (
+\begin{DoxyParamCaption}
+\item[{}]{\$type}
+\end{DoxyParamCaption}
+)}}\label{classcondRedirect_aeeb36f32e9bf27e34c5806efeb41d35a}
+Applies the redirect to the page if the redirect should happen
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$type} & -\/ the type of redirect to apply \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+engine/classes/class\-\_\-cond\-Redirect.\-php\end{DoxyCompactItemize}
