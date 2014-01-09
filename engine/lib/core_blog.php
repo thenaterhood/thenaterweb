@@ -64,13 +64,13 @@ function RecArrayToObject($d) {
     }       
 }       
 
-function loadApplication( $id ){
+function loadApplication( $id, $location ){
 
     if ( ! defined( strtoupper($id).'_ROOT') ){
-        define( strtoupper($id).'_ROOT', NWEB_ROOT.'/../apps/'.$id );
+        define( strtoupper($id).'_ROOT', $location );
     }
     
-    include_once NWEB_ROOT.'/../apps/'.$id.'/main.php';
+    include_once $location.'/main.php';
 
     
 
@@ -80,12 +80,12 @@ function loadApplication( $id ){
 
 function load_all_applications(){
 
-    $controllers = getControllers();
+    $controllers = engine::get_controllers();
     $initialized = array();
 
-    foreach ($controllers as $c) {
+    foreach ($controllers as $c=> $location) {
 
-        $initialized[] = loadApplication( $c );
+        $initialized[] = loadApplication( $c, $location );
     }
 
     return $initialized;

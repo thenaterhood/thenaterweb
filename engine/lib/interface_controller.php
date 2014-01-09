@@ -100,7 +100,11 @@ abstract class ControllerBase{
 	 * @return the item
 	 */
 	public function __get( $field ){
+                if ( $field == 'id'){
+                    return get_called_class();
+                } else {
 		return $this->settings[$field];
+                }
 	}
 
 	public function getPageData(){

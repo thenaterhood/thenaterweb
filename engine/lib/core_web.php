@@ -24,6 +24,7 @@ include NWEB_ROOT.'/classes/class_sessionMgr.php';
 include NWEB_ROOT.'/classes/class_request.php';
 include NWEB_ROOT.'/classes/class_dataAccessLayer.php';
 include NWEB_ROOT.'/classes/class_modelBase.php';
+include NWEB_ROOT.'/classes/class_engineErrorHandler.php';
 include_once NWEB_ROOT.'/classes/class_engine.php';
 
 /**
@@ -81,24 +82,6 @@ function render_php_template( $template, $pagedata, $use_csrf=True ){
 	} else {
 		throw new Exception('Template could not be loaded.');
 	}
-
-}
-
-
-function getControllers( $directory='apps' ){
-
-	$found = array();
-	$handler = opendir( $directory );
-
-	while ($file = readdir($handler)){
-
-		if ( $file != '.' && $file != '..' && !in_array($file, $found) && file_exists( $directory.'/'.$file.'/main.php')){
-			$blogid=substr($file, 0, strpos($file, ".") );
-			$found[] = $file;
-		}
-	}
-
-	return $found;
 
 }
 
