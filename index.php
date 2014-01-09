@@ -5,7 +5,9 @@
  * engine directory. Many things internally 
  * rely on paths relative to this, so it is 
  * recommended you install the engine to the 
- * web root.
+ * web root. If you install the engine elsewhere, 
+ * you will need to adjust this path.
+ * 
  */
 define("NWEB_ROOT", "engine");
 
@@ -20,48 +22,71 @@ if ( DEBUG ){
 
 }
 
-
 include_once NWEB_ROOT.'/classes/class_engine.php';
-
 /**
  * These include the core utilities that Thenaterweb requires.
  * core_blog imports all of the various utilities in one shot.
  */
 include_once NWEB_ROOT.'/lib/core_blog.php';
-
 /**
  * This includes the base controller that all controllers must 
  * extend in order to properly work.
  */
 include_once NWEB_ROOT.'/lib/interface_controller.php';
-
 /**
  * Include the redirect mechanism
  */
 include_once NWEB_ROOT.'/lib/core_redirect.php';
 
 /**
- * Set up the main variables for Thenaterweb's 
- * operation
+ * This array contains the applications enabled 
+ * on thenaterweb. It is an associative array, 
+ * containing the name of the app (url to route 
+ * to it, ie /page/about would load the application 
+ * with the url designated as "page". Anything not 
+ * added to this array will route to a 404 error page.
  */
-$_ENGINE_BUILTINS = array( 
-	'feeds', 
-	'sitemaps',
-	'auth',
-        'robots.txt'
+$_INSTALLED_APPS = array( 
+	'feeds'=>       NWEB_ROOT.'/lib/builtins/feeds', 
+	'sitemaps'=>    NWEB_ROOT.'/lib/builtins/sitemaps',
+	'auth'=>        NWEB_ROOT.'/lib/builtins/auth',
+        'page'=>        NWEB_ROOT.'/lib/builtins/simplepage',
+        'webadmin'=>    'apps/webadmin',
+        'blog'=>        'apps/blog'
 	);
 
-$CONFIG = new config();
-$NWSESSION = request::get_sanitized_as_object( array() );
+engine::setup_installed($_INSTALLED_APPS);
 
+/**
+ * This array contains aliases for applications. 
+ * With the current design, applications must be 
+ * defined in a class with the same name as the 
+ * name described in the $_INSTALLED_APPS array. 
+ * They can be aliased with additional names in this 
+ * array, which should be of the format "alias"=>"realname"
+ * This can be used to add additional canonical names for 
+ * an app to handle common typos or things like that. The 
+ * builtin apps are aliased so that both the plural and 
+ * non-plural forms of their names will work, as 
+ * an example.
+ */
+$_APP_ALIASES = array(
+    
+        'pages'=>       'page',
+        'feed'=>        'feeds',
+        'sitemap'=>     'sitemaps'
+    
+    
+        );
 
+engine::setup_aliases( $_APP_ALIASES );
 
 /**
  * Manage redirects to "friendly" URLs if the configuration
  * option is set.
  */
-if ( $CONFIG->friendly_urls ){
-    $redirect = new condRedirect( '/?url', '/'.$_GET['url'], substr( $CONFIG->site_domain, 7 ).$NWSESSION->uri );
+if ( engine::get_option('friendly_urls') ){
+    $redirect = new condRedirect( '/?url', '/'.$_GET['url'], substr( engine::get_option('site_domain'), 7 ) );
     $redirect->apply( 301 );
 }
 
@@ -70,22 +95,19 @@ if ( $CONFIG->friendly_urls ){
 $urlHandler = new urlHandler();
 $controller = $urlHandler->getControllerId();
 
-# Manage builtin features such as feeds and sitemaps 
-# rather than using the selected controller to perform 
-# these tasks.
-if ( in_array($controller, $_ENGINE_BUILTINS) ){
+# Handle application aliases
+if (array_key_exists($controller, $_APP_ALIASES)){
+    $controller = $_APP_ALIASES[$controller];
+}
 
-	define(strtoupper($controller).'_ROOT', NWEB_ROOT."/lib/builtins/".$controller );
+# Handle the actual loading of the application and 
+# calling the requested view.
+if (array_key_exists($controller, $_INSTALLED_APPS) ){
+
+	define(strtoupper($controller).'_ROOT', $_INSTALLED_APPS[$controller] );
 	define("APP_NAME", $controller);
-	$approot = NWEB_ROOT."/lib/builtins/".$controller;
+	$approot = $_INSTALLED_APPS[$controller];
 
-
-} else if ( file_exists('apps/'.$controller.'/main.php') ) { 
-
-	define(strtoupper($controller).'_ROOT', "apps/".$controller );
-	define("APP_NAME", $controller);
-
-	$approot = 'apps/'.$controller;
 
 } else {
 
@@ -97,9 +119,7 @@ if ( in_array($controller, $_ENGINE_BUILTINS) ){
 
 }
 
-$NWSESSION = request::get_sanitized_as_object( array( 'id' ) );
-
-$id = $NWSESSION->id;
+$id = request::variable('id');
 
 include $approot.'/main.php';
 
@@ -115,7 +135,6 @@ $blogdef = new $controller();
 
 
 try { 
-
 	if ( method_exists( $blogdef, $id ) || method_exists( $blogdef, '__call' ) ){
 
 		$blogdef->$id();
@@ -132,7 +151,7 @@ try {
 } catch ( Exception $e ){
 
 
-	engine::handle_exception( $e );
+	EngineErrorHandler::handle_exception( $e );
 
 
 }
