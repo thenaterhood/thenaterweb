@@ -3,7 +3,7 @@ include 'engine/lib/core_sitemap.php';
 
 $session = request::get_sanitized_as_object( array('regen', 'type', 'page') );
 
-class sitemaps extends controllerBase{
+class sitemaps extends ControllerBase{
 
 	public function __construct(){
 

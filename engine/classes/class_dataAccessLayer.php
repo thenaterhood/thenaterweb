@@ -1,6 +1,23 @@
 <?php
+/**
+ * Handles all access to data via 
+ * a database. This file contains 
+ * classes and functions that interact 
+ * with the database and database library 
+ * directly.
+ * 
+ * @package DatabaseAccess
+ */
+
+/**
+ * Include the database library
+ */
 include_once NWEB_ROOT.'/lib/extern/php-database/Database.php';
 
+/**
+ * The main data access layer for managing 
+ * all database interactions.
+ */
 class DataAccessLayer{
 	
 	private $tables;

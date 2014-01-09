@@ -24,6 +24,7 @@ include NWEB_ROOT.'/classes/class_sessionMgr.php';
 include NWEB_ROOT.'/classes/class_request.php';
 include NWEB_ROOT.'/classes/class_dataAccessLayer.php';
 include NWEB_ROOT.'/classes/class_modelBase.php';
+include_once NWEB_ROOT.'/classes/class_engine.php';
 
 /**
 * Checks to see if the preferred file exists, and if it does
@@ -110,11 +111,17 @@ function getControllers( $directory='apps' ){
  * @param $key - the name of a config key to retrieve
  * 
  * @return - the value of the config key
+ * 
+ * @deprecated 1/8/2014 - deprecated in favor of 
+ *  directly calling engine::get_option, as this is now 
+ *  a waste of lines of code.
  */
 function getConfigOption($key){
-	
-	$CONFIG = new config();
-	return $CONFIG->$key;
+        // This extra include is necessary in order for 
+        // phpunit tests to work as expected. Why is beyond 
+        // me.
+	include_once NWEB_ROOT.'/classes/class_engine.php';
+	return engine::get_option($key);
 }
 	
 

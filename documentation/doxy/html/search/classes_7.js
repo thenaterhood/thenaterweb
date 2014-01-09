@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['mappedarticle',['mappedArticle',['../classmappedArticle.html',1,'']]],
-  ['model',['Model',['../classModel.html',1,'']]],
-  ['modelbase',['ModelBase',['../classModelBase.html',1,'']]]
+  ['nwgroup',['nwGroup',['../classnwGroup.html',1,'']]],
+  ['nwuser',['nwUser',['../classnwUser.html',1,'']]]
 ];

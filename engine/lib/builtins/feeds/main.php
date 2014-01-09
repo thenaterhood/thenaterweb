@@ -2,7 +2,7 @@
 
 include NWEB_ROOT.'/lib/core_feed.php';
 
-class feeds extends controllerBase{
+class feeds extends ControllerBase{
 
 	public function __construct(){
 

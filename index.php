@@ -1,6 +1,17 @@
 <?php
 
+/**
+ * Define the root of the naterweb 
+ * engine directory. Many things internally 
+ * rely on paths relative to this, so it is 
+ * recommended you install the engine to the 
+ * web root.
+ */
 define("NWEB_ROOT", "engine");
+
+/**
+ * Enables or disables debug mode.
+ */
 define("DEBUG", True);
 
 if ( DEBUG ){
@@ -9,6 +20,8 @@ if ( DEBUG ){
 
 }
 
+
+include_once NWEB_ROOT.'/classes/class_engine.php';
 
 /**
  * These include the core utilities that Thenaterweb requires.
@@ -27,9 +40,6 @@ include_once NWEB_ROOT.'/lib/interface_controller.php';
  */
 include_once NWEB_ROOT.'/lib/core_redirect.php';
 
-include_once NWEB_ROOT.'/classes/class_engine.php';
-
-
 /**
  * Set up the main variables for Thenaterweb's 
  * operation
@@ -37,7 +47,8 @@ include_once NWEB_ROOT.'/classes/class_engine.php';
 $_ENGINE_BUILTINS = array( 
 	'feeds', 
 	'sitemaps',
-	'auth' 
+	'auth',
+        'robots.txt'
 	);
 
 $CONFIG = new config();

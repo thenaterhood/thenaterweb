@@ -2,7 +2,7 @@
 include NWEB_ROOT.'/lib/core_auth.php';
 
 
-class webadmin extends controllerBase{
+class webadmin extends ControllerBase{
 
 	private $id;
 	private $configFile;

@@ -3,7 +3,7 @@
 include_once NWEB_ROOT.'/lib/core_auth.php';
 include_once 'models.php';
 
-class blog extends controllerBase{
+class blog extends ControllerBase{
 
 	private $id;
 	private $configFile;

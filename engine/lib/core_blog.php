@@ -15,6 +15,7 @@
 include_once NWEB_ROOT.'/lib/core_web.php';
 include_once NWEB_ROOT.'/classes/class_article.php';
 
+
 /**
 * Returns a random line of a given file.
 * Used mainly for generating random suggestions 

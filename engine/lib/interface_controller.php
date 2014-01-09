@@ -2,7 +2,7 @@
 
 include_once NWEB_ROOT.'/lib/core_blog.php';
 
-abstract class controllerBase{
+abstract class ControllerBase{
 
 	protected $settings;
 	protected $configuration;
@@ -48,7 +48,7 @@ abstract class controllerBase{
 	            
 	    }
 
-	    $this->settings = (array) arrayToObject($conf);
+	    $this->settings = (array) RecArrayToObject($conf);
 	    $this->settings['configFile'] = $path;
 
 	    if ( !array_key_exists( 'template', $this->settings ) )

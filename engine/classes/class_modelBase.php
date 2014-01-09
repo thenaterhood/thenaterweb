@@ -1,6 +1,20 @@
 <?php
+/**
+ * Contains the base model class that all 
+ * database-using models of applications need to 
+ * inherit from.
+ * 
+ * @package DatabaseAccess
+ */
+
+/**
+ * Include the main model field types class.
+ */
 include_once NWEB_ROOT.'/classes/class_model.php';
 
+/**
+ * 
+ */
 class ModelBase{
 
 	protected $container;

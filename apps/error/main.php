@@ -1,6 +1,6 @@
 <?php
 
-class error extends controllerBase{
+class error extends ControllerBase{
 
 	private $id;
 	private $configFile;

@@ -1,0 +1,134 @@
+\hypertarget{classControllerBase}{\section{Controller\-Base Class Reference}
+\label{classControllerBase}\index{Controller\-Base@{Controller\-Base}}
+}
+Inheritance diagram for Controller\-Base\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classControllerBase}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classControllerBase_adf22b33f94d79eadbae786f31fdb4b8b}{get\-Configurables} ()
+\item 
+\hyperlink{classControllerBase_a3de3699fd3f729abfc5fa59decef958f}{read\-Config} (\$path)
+\item 
+\hyperlink{classControllerBase_ae75dea3157d019d04c663481c60ff201}{save\-Config} (\$path)
+\item 
+\hyperlink{classControllerBase_afd930559882de5e0d77c5357e07f1af4}{set\-Config} (\$map)
+\item 
+\hyperlink{classControllerBase_add5cf51bbc1b21b6cea292aed3cb6b29}{\-\_\-\-\_\-get} (\$field)
+\item 
+\hypertarget{classControllerBase_ad017b0ed4dcdc83cdfa052ceb288366a}{{\bfseries get\-Page\-Data} ()}\label{classControllerBase_ad017b0ed4dcdc83cdfa052ceb288366a}
+
+\item 
+\hyperlink{classControllerBase_aae0d40bf6721d92c1a2285ba8edd5ebf}{get\-Page\-List} ()
+\item 
+\hyperlink{classControllerBase_a0cff8483987ef3926f543d46368a62bf}{get\-Post\-List} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classControllerBase_a8da9c7c22f36c812ecacc11234337f27}{{\bfseries \$settings}}\label{classControllerBase_a8da9c7c22f36c812ecacc11234337f27}
+
+\item 
+\hypertarget{classControllerBase_a7557163c5c72c5e3998e3cb8e71ee5d9}{{\bfseries \$configuration}}\label{classControllerBase_a7557163c5c72c5e3998e3cb8e71ee5d9}
+
+\item 
+\hypertarget{classControllerBase_a19f7437237e6e6a3e5bc8493942c3cfc}{{\bfseries \$page\-Data}}\label{classControllerBase_a19f7437237e6e6a3e5bc8493942c3cfc}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classControllerBase_add5cf51bbc1b21b6cea292aed3cb6b29}{\index{Controller\-Base@{Controller\-Base}!\-\_\-\-\_\-get@{\-\_\-\-\_\-get}}
+\index{\-\_\-\-\_\-get@{\-\_\-\-\_\-get}!ControllerBase@{Controller\-Base}}
+\subsubsection[{\-\_\-\-\_\-get}]{\setlength{\rightskip}{0pt plus 5cm}Controller\-Base\-::\-\_\-\-\_\-get (
+\begin{DoxyParamCaption}
+\item[{}]{\$field}
+\end{DoxyParamCaption}
+)}}\label{classControllerBase_add5cf51bbc1b21b6cea292aed3cb6b29}
+Returns requested fields from the settings array.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$field} & -\/ the name of the item to return \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the item 
+\end{DoxyReturn}
+\hypertarget{classControllerBase_adf22b33f94d79eadbae786f31fdb4b8b}{\index{Controller\-Base@{Controller\-Base}!get\-Configurables@{get\-Configurables}}
+\index{get\-Configurables@{get\-Configurables}!ControllerBase@{Controller\-Base}}
+\subsubsection[{get\-Configurables}]{\setlength{\rightskip}{0pt plus 5cm}Controller\-Base\-::get\-Configurables (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classControllerBase_adf22b33f94d79eadbae786f31fdb4b8b}
+Returns a map containing all of the controller settings.
+
+\begin{DoxyReturn}{Returns}
+a map of the class settings 
+\end{DoxyReturn}
+\hypertarget{classControllerBase_aae0d40bf6721d92c1a2285ba8edd5ebf}{\index{Controller\-Base@{Controller\-Base}!get\-Page\-List@{get\-Page\-List}}
+\index{get\-Page\-List@{get\-Page\-List}!ControllerBase@{Controller\-Base}}
+\subsubsection[{get\-Page\-List}]{\setlength{\rightskip}{0pt plus 5cm}Controller\-Base\-::get\-Page\-List (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classControllerBase_aae0d40bf6721d92c1a2285ba8edd5ebf}
+Returns a list of pages that should be available publicly. Used by the sitemap generation system. \hypertarget{classControllerBase_a0cff8483987ef3926f543d46368a62bf}{\index{Controller\-Base@{Controller\-Base}!get\-Post\-List@{get\-Post\-List}}
+\index{get\-Post\-List@{get\-Post\-List}!ControllerBase@{Controller\-Base}}
+\subsubsection[{get\-Post\-List}]{\setlength{\rightskip}{0pt plus 5cm}Controller\-Base\-::get\-Post\-List (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classControllerBase_a0cff8483987ef3926f543d46368a62bf}
+Returns a list of posts (in order) that should be available publicly. Used by the feed generation system. \hypertarget{classControllerBase_a3de3699fd3f729abfc5fa59decef958f}{\index{Controller\-Base@{Controller\-Base}!read\-Config@{read\-Config}}
+\index{read\-Config@{read\-Config}!ControllerBase@{Controller\-Base}}
+\subsubsection[{read\-Config}]{\setlength{\rightskip}{0pt plus 5cm}Controller\-Base\-::read\-Config (
+\begin{DoxyParamCaption}
+\item[{}]{\$path}
+\end{DoxyParamCaption}
+)}}\label{classControllerBase_a3de3699fd3f729abfc5fa59decef958f}
+Reads an X\-M\-L configuration file and sets the class settings field
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$path} & -\/ the path to the config file \\
+\hline
+\end{DoxyParams}
+\hypertarget{classControllerBase_ae75dea3157d019d04c663481c60ff201}{\index{Controller\-Base@{Controller\-Base}!save\-Config@{save\-Config}}
+\index{save\-Config@{save\-Config}!ControllerBase@{Controller\-Base}}
+\subsubsection[{save\-Config}]{\setlength{\rightskip}{0pt plus 5cm}Controller\-Base\-::save\-Config (
+\begin{DoxyParamCaption}
+\item[{}]{\$path}
+\end{DoxyParamCaption}
+)}}\label{classControllerBase_ae75dea3157d019d04c663481c60ff201}
+Saves an xml configuration file. This is untested!
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$path} & -\/ the path to the file to save \\
+\hline
+\end{DoxyParams}
+\hypertarget{classControllerBase_afd930559882de5e0d77c5357e07f1af4}{\index{Controller\-Base@{Controller\-Base}!set\-Config@{set\-Config}}
+\index{set\-Config@{set\-Config}!ControllerBase@{Controller\-Base}}
+\subsubsection[{set\-Config}]{\setlength{\rightskip}{0pt plus 5cm}Controller\-Base\-::set\-Config (
+\begin{DoxyParamCaption}
+\item[{}]{\$map}
+\end{DoxyParamCaption}
+)}}\label{classControllerBase_afd930559882de5e0d77c5357e07f1af4}
+Allows the class settings to be overwritten en-\/masse externally by providing a new map.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$map} & -\/ the new settings array to use \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+engine/lib/interface\-\_\-controller.\-php\end{DoxyCompactItemize}

@@ -4,7 +4,7 @@ include_once NWEB_ROOT.'/lib/core_auth.php';
 
 include_once 'models.php';
 
-class auth extends controllerBase{
+class auth extends ControllerBase{
 
 	private $dal;
 

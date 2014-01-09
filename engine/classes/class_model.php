@@ -1,4 +1,11 @@
 <?php
+/**
+ * Contains the main Model class which 
+ * holds utilities for managing model field 
+ * types.
+ * 
+ * @package DatabaseAccess
+ */
 
 class Model{
 

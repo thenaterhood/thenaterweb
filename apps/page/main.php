@@ -1,7 +1,7 @@
 <?php
 include_once NWEB_ROOT.'/lib/core_auth.php';
 
-class page extends controllerBase{
+class page extends ControllerBase{
 
 	private $id;
 	private $configFile;

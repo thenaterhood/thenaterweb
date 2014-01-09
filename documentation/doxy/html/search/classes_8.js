@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['nwgroup',['nwGroup',['../classnwGroup.html',1,'']]],
-  ['nwuser',['nwUser',['../classnwUser.html',1,'']]]
+  ['redirect',['redirect',['../classredirect.html',1,'']]],
+  ['request',['request',['../classrequest.html',1,'']]]
 ];

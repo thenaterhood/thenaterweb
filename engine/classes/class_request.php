@@ -1,8 +1,21 @@
 <?php
-
+/**
+ * Provides access and sanitation functions for 
+ * retrieving data from PHP HTTP variables.
+ * 
+ * @author Nate Levesque <public@thenaterhood.com>
+ */
 class request{
 
-	
+	/**
+         * Returns an array of variables retrieved 
+         * and sanitized from (in order of precedence)
+         * $_POST, $_GET, $_COOKIE and a default value
+         * if configured.
+         * 
+         * @param type $varnames - an array of variable names
+         * @return type - an array of cleaned variable values.
+         */
 	public static function get_sanitized( $varnames ){
 
 		$sanitized = array();
@@ -26,6 +39,17 @@ class request{
 
 	}
 
+        /**
+         * Returns an object with the requested variables 
+         * cleaned. This is primarily to take the place of 
+         * the session class from previous versions. It 
+         * acts as a drop-in replacement. Uses the get_sanitized 
+         * function internally then casts the array to an object.
+         * 
+         * @param type $varnames - an array of variable names to find
+         * @return type - an stdClass instance containing the requested 
+         *  variables as fields.
+         */
 	public static function get_sanitized_as_object( $varnames ){
 
 		$sanitized = self::get_sanitized( $varnames );
@@ -36,6 +60,13 @@ class request{
 
 	}
 
+        /**
+         * Returns a sanitized variable value from the get 
+         * array or an empty string if it doesn't exist.
+         * 
+         * @param type $varname - the name of the variable
+         * @return string - the value of the variable
+         */
 	public static function sanitized_get( $varname ){
 
 		if ( array_key_exists($varname, $_GET) ){
@@ -49,6 +80,13 @@ class request{
 
 	}
 
+        /**
+         * Returns a sanitized variable value from the post 
+         * array or an empty string if it doesn't exist.
+         * 
+         * @param type $varname - the name of the variable
+         * @return string - the value of the variable
+         */
 	public static function sanitized_post( $varname ){
 
 		if ( array_key_exists($varname, $_POST)){
@@ -62,6 +100,13 @@ class request{
 
 	}
 
+        /**
+         * Returns a sanitized variable value from the cookie 
+         * array or an empty string if it doesn't exist.
+         * 
+         * @param type $varname - the name of the variable
+         * @return string - the value of the variable
+         */
 	public static function sanitized_cookie( $varname ){
 
 		if ( array_key_exists($varname, $_COOKIE) ){
@@ -73,6 +118,13 @@ class request{
 
 	}
 
+        /**
+         * Returns the default value for a variable name 
+         * as configured in the settings.php file.
+         * 
+         * @param type $varname - the name of the variable
+         * @return type - the default value
+         */
 	public static function default_value( $varname ){
 
 		$conf = getConfigOption( $varname );
@@ -81,6 +133,13 @@ class request{
 
 	}
 
+        /**
+         * Returns meta information from the SERVER 
+         * array or an empty string if it doesn't exist.
+         * 
+         * @param type $varname - the name of the variable
+         * @return string - the value of the variable
+         */
 	public static function meta( $varname ){
 
 		if ( array_key_exists($varname, $_SERVER) ){
@@ -92,6 +151,13 @@ class request{
 
 	}
 
+        /**
+         * Returns a raw value from the POST array 
+         * without sanitizing it, or an empty string 
+         * if it doesn't exist.
+         * @param type $varname - the name of the variable
+         * @return string - the value of the variable
+         */
 	public static function post( $varname ){
 
 		if ( array_key_exists($varname, $_POST) ){
@@ -103,6 +169,13 @@ class request{
 
 	}
 
+        /**
+         * Returns a raw value from the GET array 
+         * without sanitizing it, or an empty string 
+         * if it doesn't exist.
+         * @param type $varname - the name of the variable
+         * @return string - the value of the variable
+         */
 	public static function get( $varname ){
 
 		if ( array_key_exists($varname, $_GET) ){
@@ -115,6 +188,13 @@ class request{
 
 	}
 
+        /**
+         * Returns a raw value from the cookie array 
+         * without sanitizing it, or an empty string 
+         * if it doesn't exist.
+         * @param type $varname - the name of the variable
+         * @return string - the value of the variable
+         */
 	public static function cookie( $varname ){
 
 		if ( array_key_exists($varname, $_COOKIE) ){
