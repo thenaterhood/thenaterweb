@@ -12,15 +12,19 @@ class sitemaps extends ControllerBase{
 	}
 
 	public function __call( $method, $args ){
-
-		$appRoot = 'apps/'.$method;
+            
+                $app = engine::get_app($method);
+            
+		$appRoot = $app['root'];
+                $name = $app['name'];
+                
 		$session = request::get_sanitized_as_object( array('type') );
 
 		if ( file_exists($appRoot.'/main.php') ){
 			include $appRoot.'/main.php';
-			define( strtoupper($method).'_ROOT', $appRoot );
+			define( strtoupper($name).'_ROOT', $appRoot );
 			
-			$blogdef = new $method();
+			$blogdef = new $name();
 
 			$sitemap = createSitemap( $blogdef->getPageList() );
 
@@ -32,7 +36,7 @@ class sitemaps extends ControllerBase{
 				print $sitemap->toXml();
 			}
 		} else {
-			echo '';
+			echo 'Sitemap not found.';
 		}
 
 	}

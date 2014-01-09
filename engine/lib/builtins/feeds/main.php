@@ -14,14 +14,17 @@ class feeds extends ControllerBase{
 	}
 
 	public function __call($method, $args){
-
-		$appRoot = 'controller/'.$method;
+            
+                $app = engine::get_app($method);
+            
+		$appRoot = $app['root'];
+                $name = $app['name'];
 
 		if ( file_exists($appRoot.'/main.php') ){
 			include $appRoot.'/main.php';
-			define( strtoupper($method).'_ROOT', $appRoot );
+			define( strtoupper($name).'_ROOT', $appRoot );
 			
-			$blogdef = new $method();
+			$blogdef = new $name();
 
 			Header('Content-type: application/atom+xml');
 
