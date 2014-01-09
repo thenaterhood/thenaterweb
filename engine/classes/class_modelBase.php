@@ -469,7 +469,11 @@ class ModelBase{
 
 			$this->fields[$field]->data = $value;
 
-		} else if ( $field == 'id' ) {
+		} else if (array_key_exists($field, $this->relatives )) {
+                    
+                        $this->setRelated($field, $value);
+                    
+                } else if ( $field == 'id' ) {
 
 			$this->id = $value;
 
