@@ -1,6 +1,6 @@
 <?php 
 
-include_once GNAT_ROOT.'/lib/core_blog.php';
+include_once NWEB_ROOT.'/lib/core_blog.php';
 
 abstract class controllerBase{
 
@@ -52,7 +52,7 @@ abstract class controllerBase{
 	    $this->settings['configFile'] = $path;
 
 	    if ( !array_key_exists( 'template', $this->settings ) )
-	    	$this->settings['template'] = GNAT_ROOT.'/config/template.d/generic_template.php';
+	    	$this->settings['template'] = NWEB_ROOT.'/config/template.d/generic_template.php';
 
 	}
 

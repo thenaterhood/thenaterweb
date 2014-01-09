@@ -8,7 +8,7 @@
 /**
  * Include the sanitation class
  */
-include_once GNAT_ROOT.'/classes/class_sanitation.php';
+include_once NWEB_ROOT.'/classes/class_sanitation.php';
 
 /**
  * Provides an interface for retrieving variables using a specific

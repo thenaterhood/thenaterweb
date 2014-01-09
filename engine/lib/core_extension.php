@@ -1,6 +1,6 @@
 <?php
 
-include_once GNAT_ROOT.'/config/config_extensions.php';
+include_once NWEB_ROOT.'/config/config_extensions.php';
 
 /**
  * Initializes an array of extensions

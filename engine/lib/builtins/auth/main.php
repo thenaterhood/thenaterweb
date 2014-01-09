@@ -1,6 +1,6 @@
 <?php
 
-include_once GNAT_ROOT.'/lib/core_auth.php';
+include_once NWEB_ROOT.'/lib/core_auth.php';
 
 include_once 'models.php';
 
@@ -10,7 +10,7 @@ class auth extends controllerBase{
 
 	public function __construct(){
 
-		$this->settings['template'] = GNAT_ROOT.'/config/template.d/generic_template.php';
+		$this->settings['template'] = NWEB_ROOT.'/config/template.d/generic_template.php';
 		$this->pageData = array();
 
 		if ( getConfigOption( 'use_db') ){

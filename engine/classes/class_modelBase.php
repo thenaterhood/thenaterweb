@@ -1,5 +1,5 @@
 <?php
-include_once GNAT_ROOT.'/classes/class_model.php';
+include_once NWEB_ROOT.'/classes/class_model.php';
 
 class ModelBase{
 

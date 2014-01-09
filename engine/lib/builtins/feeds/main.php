@@ -1,6 +1,6 @@
 <?php
 
-include GNAT_ROOT.'/lib/core_feed.php';
+include NWEB_ROOT.'/lib/core_feed.php';
 
 class feeds extends controllerBase{
 

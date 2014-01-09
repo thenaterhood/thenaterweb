@@ -9,8 +9,8 @@
 /**
  * Include the dataMonger abstract class
  */
-include_once GNAT_ROOT.'/classes/class_dataMonger.php';
-include_once GNAT_ROOT.'/classes/class_varGetter.php';
+include_once NWEB_ROOT.'/classes/class_dataMonger.php';
+include_once NWEB_ROOT.'/classes/class_varGetter.php';
 
 /**
  * Provides a common interface for picking up variables from the

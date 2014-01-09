@@ -1,6 +1,6 @@
 <?php
 
-define("GNAT_ROOT", "engine");
+define("NWEB_ROOT", "engine");
 define("DEBUG", True);
 
 if ( DEBUG ){
@@ -14,18 +14,21 @@ if ( DEBUG ){
  * These include the core utilities that Thenaterweb requires.
  * core_blog imports all of the various utilities in one shot.
  */
-include_once GNAT_ROOT.'/lib/core_blog.php';
+include_once NWEB_ROOT.'/lib/core_blog.php';
 
 /**
  * This includes the base controller that all controllers must 
  * extend in order to properly work.
  */
-include_once GNAT_ROOT.'/lib/interface_controller.php';
+include_once NWEB_ROOT.'/lib/interface_controller.php';
 
 /**
  * Include the redirect mechanism
  */
-include_once GNAT_ROOT.'/lib/core_redirect.php';
+include_once NWEB_ROOT.'/lib/core_redirect.php';
+
+include_once NWEB_ROOT.'/classes/class_engine.php';
+
 
 /**
  * Set up the main variables for Thenaterweb's 
@@ -61,25 +64,25 @@ $controller = $urlHandler->getControllerId();
 # these tasks.
 if ( in_array($controller, $_ENGINE_BUILTINS) ){
 
-	define(strtoupper($controller).'_ROOT', GNAT_ROOT."/lib/builtins/".$controller );
+	define(strtoupper($controller).'_ROOT', NWEB_ROOT."/lib/builtins/".$controller );
 	define("APP_NAME", $controller);
-	$approot = GNAT_ROOT."/lib/builtins/".$controller;
+	$approot = NWEB_ROOT."/lib/builtins/".$controller;
 
 
-} else if ( file_exists('controller/'.$controller.'/main.php') ) { 
+} else if ( file_exists('apps/'.$controller.'/main.php') ) { 
 
-	define(strtoupper($controller).'_ROOT', "controller/".$controller );
+	define(strtoupper($controller).'_ROOT', "apps/".$controller );
 	define("APP_NAME", $controller);
 
-	$approot = 'controller/'.$controller;
+	$approot = 'apps/'.$controller;
 
 } else {
 
 	$controller = 'error';
-	define('ERROR_ROOT', "controller/".$controller );
+	define('ERROR_ROOT', "apps/".$controller );
 	define("APP_NAME", $controller);
 
-	$approot = 'controller/'.$controller;
+	$approot = 'apps/'.$controller;
 
 }
 
@@ -102,25 +105,24 @@ $blogdef = new $controller();
 
 try { 
 
-
 	if ( method_exists( $blogdef, $id ) || method_exists( $blogdef, '__call' ) ){
 
 		$blogdef->$id();
+		die();
 
 	} else {
 
 		$page = (object)$blogdef->getPageData();
 		include $blogdef->template;
+		die();
 
 	}
 
 } catch ( Exception $e ){
 
-	echo "<h1>Error 500:</h1> <p>The requested page could not be loaded due to a problem encountered by the site software.</p>";
-	if ( DEBUG )
-		print "\n" . "<h3><font color='red'>Debug is enabled, so the exception details are below:</font></h3>";
-		print "\n" . $e->getMessage();
-		print "\n<pre>". $e->getTraceAsString() . '</pre>';
+
+	engine::handle_exception( $e );
+
 
 }
 

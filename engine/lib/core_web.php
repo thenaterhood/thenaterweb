@@ -15,17 +15,17 @@
  * Include the config file
  */
 include 'settings.php';
-include GNAT_ROOT.'/classes/class_varGetter.php';
-include GNAT_ROOT.'/classes/class_session.php';
-include GNAT_ROOT.'/classes/class_lock.php';
-include GNAT_ROOT.'/lib/core_extension.php';
-include GNAT_ROOT.'/classes/class_article.php';
-include GNAT_ROOT.'/classes/class_urlHandler.php';
-include GNAT_ROOT.'/lib/core_database.php';
-include GNAT_ROOT.'/classes/class_sessionMgr.php';
-include GNAT_ROOT.'/classes/class_request.php';
-include GNAT_ROOT.'/classes/class_dataAccessLayer.php';
-include GNAT_ROOT.'/classes/class_modelBase.php';
+include NWEB_ROOT.'/classes/class_varGetter.php';
+include NWEB_ROOT.'/classes/class_session.php';
+include NWEB_ROOT.'/classes/class_lock.php';
+include NWEB_ROOT.'/lib/core_extension.php';
+include NWEB_ROOT.'/classes/class_article.php';
+include NWEB_ROOT.'/classes/class_urlHandler.php';
+include NWEB_ROOT.'/lib/core_database.php';
+include NWEB_ROOT.'/classes/class_sessionMgr.php';
+include NWEB_ROOT.'/classes/class_request.php';
+include NWEB_ROOT.'/classes/class_dataAccessLayer.php';
+include NWEB_ROOT.'/classes/class_modelBase.php';
 
 /**
 * Checks to see if the preferred file exists, and if it does

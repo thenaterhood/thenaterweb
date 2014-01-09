@@ -1,6 +1,6 @@
 <?php
 
-include_once GNAT_ROOT.'/classes/class_article.php';
+include_once NWEB_ROOT.'/classes/class_article.php';
 
 class mappedArticle extends article{
 	

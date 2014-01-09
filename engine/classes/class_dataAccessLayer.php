@@ -1,5 +1,5 @@
 <?php
-include_once GNAT_ROOT.'/lib/extern/php-database/Database.php';
+include_once NWEB_ROOT.'/lib/extern/php-database/Database.php';
 
 class DataAccessLayer{
 	

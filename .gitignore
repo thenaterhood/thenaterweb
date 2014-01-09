@@ -167,3 +167,4 @@ feed.xml
 sitemap.xml
 *.json
 *.lock
+/nbproject/private/

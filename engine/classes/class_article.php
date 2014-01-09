@@ -11,8 +11,8 @@
 /**
  * Includes the inherited dataMonger class
  */
-include_once GNAT_ROOT.'/classes/class_dataMonger.php';
-include_once GNAT_ROOT.'/lib/core_web.php';
+include_once NWEB_ROOT.'/classes/class_dataMonger.php';
+include_once NWEB_ROOT.'/lib/core_web.php';
 /**
 * Contains everything to do with retrieving and outputting
 * posts in multiple forms.  Is capable of retrieving posts stored

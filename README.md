@@ -55,7 +55,7 @@ at this point. In any case, the engine/config/class_config.php file also
 needs to be adjusted, otherwise generated URLs will be incorrect.
 
 The engine loads controllers for site sections in order to display 
-pages. These are expected to be located in controllers. They contain 
+pages. These are expected to be located in the "apps" directory. They contain 
 configuration data for page and post locations as well as various other 
 functionality depending on the controller. Shipped with Thenaterweb are 
 controllers for pages (yoursite.com/page/somePage), a blog 

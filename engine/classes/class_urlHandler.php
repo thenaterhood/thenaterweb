@@ -10,7 +10,7 @@
 /**
  * Include the main blog functionality
  */
-include_once GNAT_ROOT.'/lib/core_blog.php';
+include_once NWEB_ROOT.'/lib/core_blog.php';
 
 /**
  * A class for managing URL related data

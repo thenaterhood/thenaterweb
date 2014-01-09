@@ -11,8 +11,8 @@ DEFINE ('DB_HOST', getConfigOption( 'db_host' ) );
 DEFINE ('DB_NAME', getConfigOption( 'db_name' ) );
 DEFINE ('ERROR_LEVEL', getConfigOption( 'db_error_level' ) );
 
-include_once GNAT_ROOT.'/lib/extern/php-database/Database.php';
-include_once GNAT_ROOT.'/lib/extern/php-database/ErrorStack.php';
+include_once NWEB_ROOT.'/lib/extern/php-database/Database.php';
+include_once NWEB_ROOT.'/lib/extern/php-database/ErrorStack.php';
 
 
 ?>

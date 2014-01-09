@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                    <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                    </ul>
+                    </li>
+                    <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                    <i class="icon-list-alt"></i>&#160;Errors
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                    <i class="icon-list-alt"></i>&#160;Markers
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-172841225"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-172841225" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Extension.html">Extension</a></li>
+                                                                                                    <li class="class"><a href="../classes/webadmin.html">webadmin</a></li>
+                                                    <li class="class"><a href="../classes/page.html">page</a></li>
+                                                    <li class="class"><a href="../classes/error.html">error</a></li>
+                                                    <li class="class"><a href="../classes/Blogpost.html">Blogpost</a></li>
+                                                    <li class="class"><a href="../classes/PostTag.html">PostTag</a></li>
+                                                    <li class="class"><a href="../classes/blog.html">blog</a></li>
+                                                    <li class="class"><a href="../classes/config.html">config</a></li>
+                                                    <li class="class"><a href="../classes/condRedirectTest.html">condRedirectTest</a></li>
+                                                    <li class="class"><a href="../classes/sessionTest.html">sessionTest</a></li>
+                                                    <li class="class"><a href="../classes/lockTest.html">lockTest</a></li>
+                                                    <li class="class"><a href="../classes/urlHandlerTest.html">urlHandlerTest</a></li>
+                                                    <li class="class"><a href="../classes/sanitationTest.html">sanitationTest</a></li>
+                                                    <li class="class"><a href="../classes/requestTest.html">requestTest</a></li>
+                                                    <li class="class"><a href="../classes/redirectTest.html">redirectTest</a></li>
+                                                    <li class="class"><a href="../classes/testModel.html">testModel</a></li>
+                                                    <li class="class"><a href="../classes/modelTest.html">modelTest</a></li>
+                                                    <li class="class"><a href="../classes/articleTest.html">articleTest</a></li>
+                                                    <li class="class"><a href="../classes/jsonMaker.html">jsonMaker</a></li>
+                                                    <li class="class"><a href="../classes/feeds.html">feeds</a></li>
+                                                    <li class="class"><a href="../classes/nwUser.html">nwUser</a></li>
+                                                    <li class="class"><a href="../classes/nwGroup.html">nwGroup</a></li>
+                                                    <li class="class"><a href="../classes/auth.html">auth</a></li>
+                                                    <li class="class"><a href="../classes/sitemaps.html">sitemaps</a></li>
+                                                    <li class="class"><a href="../classes/Database.html">Database</a></li>
+                                                    <li class="class"><a href="../classes/ErrorStack.html">ErrorStack</a></li>
+                                                    <li class="class"><a href="../classes/controllerBase.html">controllerBase</a></li>
+                                                    <li class="class"><a href="../classes/varGetter.html">varGetter</a></li>
+                                                    <li class="class"><a href="../classes/urlHandler.html">urlHandler</a></li>
+                                                    <li class="class"><a href="../classes/DataAccessLayer.html">DataAccessLayer</a></li>
+                                                    <li class="class"><a href="../classes/condRedirect.html">condRedirect</a></li>
+                                                    <li class="class"><a href="../classes/File.html">File</a></li>
+                                                    <li class="class"><a href="../classes/urlset.html">urlset</a></li>
+                                                    <li class="class"><a href="../classes/redirect.html">redirect</a></li>
+                                                    <li class="class"><a href="../classes/mappedArticle.html">mappedArticle</a></li>
+                                                    <li class="class"><a href="../classes/stdClassArticle.html">stdClassArticle</a></li>
+                                                    <li class="class"><a href="../classes/article.html">article</a></li>
+                                                    <li class="class"><a href="../classes/directoryIndex.html">directoryIndex</a></li>
+                                                    <li class="class"><a href="../classes/lock.html">lock</a></li>
+                                                    <li class="class"><a href="../classes/sanitation.html">sanitation</a></li>
+                                                    <li class="class"><a href="../classes/Model.html">Model</a></li>
+                                                    <li class="class"><a href="../classes/engine.html">engine</a></li>
+                                                    <li class="class"><a href="../classes/url.html">url</a></li>
+                                                    <li class="class"><a href="../classes/ModelBase.html">ModelBase</a></li>
+                                                    <li class="class"><a href="../classes/feed.html">feed</a></li>
+                                                    <li class="class"><a href="../classes/dataMonger.html">dataMonger</a></li>
+                                                    <li class="class"><a href="../classes/session.html">session</a></li>
+                                                    <li class="class"><a href="../classes/SessionMgr.html">SessionMgr</a></li>
+                                                    <li class="class"><a href="../classes/request.html">request</a></li>
+                                                    <li class="class"><a href="../classes/blogdef.html">blogdef</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/default.html">\</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\</small>ModelBase</h1>
+                    <p><em></em></p>
+                    
+
+
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/ModelBase.html#method_save" class="">save()</a><br />
+                                                                    <a href="../classes/ModelBase.html#method_delete" class="">delete()</a><br />
+                                                                    <a href="../classes/ModelBase.html#method_fromArray" class="">fromArray()</a><br />
+                                                                    <a href="../classes/ModelBase.html#method_fromStdClass" class="">fromStdClass()</a><br />
+                                                                    <a href="../classes/ModelBase.html#method___get" class="">__get()</a><br />
+                                                                    <a href="../classes/ModelBase.html#method_getRelated" class="">getRelated()</a><br />
+                                                                    <a href="../classes/ModelBase.html#method_setRelated" class="">setRelated()</a><br />
+                                                                    <a href="../classes/ModelBase.html#method_addRelated" class="">addRelated()</a><br />
+                                                                    <a href="../classes/ModelBase.html#method_removeRelated" class="">removeRelated()</a><br />
+                                                                    <a href="../classes/ModelBase.html#method___set" class="">__set()</a><br />
+                                                                    <a href="../classes/ModelBase.html#method_getFields" class="">getFields()</a><br />
+                                                                    <a href="../classes/ModelBase.html#method_as_array" class="">as_array()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/ModelBase.html#property_fields" class="">$fields</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <a href="../classes/ModelBase.html#method_addfield" class="">addfield()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/ModelBase.html#property_container" class="">$container</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <a href="../classes/ModelBase.html#method_setupRelated" class="">setupRelated()</a><br />
+                                                                    <a href="../classes/ModelBase.html#method_convertRelatedToModel" class="">convertRelatedToModel()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/ModelBase.html#property_dal" class="">$dal</a><br />
+                                                                    <a href="../classes/ModelBase.html#property_id" class="">$id</a><br />
+                                                                    <a href="../classes/ModelBase.html#property_relatives" class="">$relatives</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/engine.classes.class_modelBase.php.html"><div class="path-wrapper">engine/classes/class_modelBase.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">\Default</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                    <div class="namespace-wrapper">\ModelBase</div>
+                            </dd>
+
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr><td colspan="2"><em>None found</em></td></tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_fields" name="property_fields" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$fields</h3>
+                <pre class="signature">$fields</pre>
+                <p><em></em></p>
+                
+
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_container" name="property_container" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$container</h3>
+                <pre class="signature">$container</pre>
+                <p><em></em></p>
+                
+
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_dal" name="property_dal" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$dal</h3>
+                <pre class="signature">$dal</pre>
+                <p><em></em></p>
+                
+
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_id" name="property_id" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$id</h3>
+                <pre class="signature">$id</pre>
+                <p><em></em></p>
+                
+
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_relatives" name="property_relatives" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$relatives</h3>
+                <pre class="signature">$relatives</pre>
+                <p><em></em></p>
+                
+
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_save" name="method_save" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">save()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">save()</pre>
+                <p><em>Saves a model via the data access layer.</em></p>
+                <p>This function validates the fields of the model
+according to the type they are specified to be, throwing
+exceptions if they do not validate. It is recommended that
+the model be registered with the data access layer before
+attempting to store models using the layer.</p>
+
+
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\-</dt>
+                            <dd><p>throws an exception if the model does not contain data</p>
+</dd>
+                                                                    </dl>
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_delete" name="method_delete" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">delete()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">delete()</pre>
+                <p><em>Deletes a model instance from the database via the
+data access layer. It is recommended that the model
+be registered with the data access layer beforehand
+in order to make sure the necessary database structures
+exist.</em></p>
+                
+
+
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Exception</dt>
+                            <dd><ul>
+<li>throws an exception if the model
+does not contain fields or data.</li>
+</ul>
+</dd>
+                                                                    </dl>
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_fromArray" name="method_fromArray" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">fromArray()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">fromArray(mixed <span class="argument">$array</span>) : \$instance</pre>
+                <p><em>Creates a new instance of the model and populates it
+from an array. The array must contain ONLY the data
+that the model is expected to contain, or the model
+instance will throw exceptions. This method is used
+by the data access layer to create model instances from
+an associative array returned by the database layer.</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$array</td>
+                                <td><ul>
+<li>an associative array (string=>string)
+of data for the model. This array does not contain
+fields or types, as the model is initialized first
+and those are set in the model's own constructor.</li>
+</ul>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \$instance
+                                            &mdash; <ul>
+<li>a populated model instance</li>
+</ul>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_fromStdClass" name="method_fromStdClass" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">fromStdClass()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">fromStdClass(mixed <span class="argument">$class</span>) : \-</pre>
+                <p><em>Creates a new instance of the model from an
+stdClass instance. The instance must contain
+ONLY the fields that the model itself contains
+or exceptions will be thrown. Field types do not
+need to be defined as those will be configured in
+the model&#039;s constructor prior to populating the data.</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$class</td>
+                                <td><ul>
+<li>an stdClass instance containing model data</li>
+</ul>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \-
+                                            &mdash; <p>an instance of the model class</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___get" name="method___get" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__get()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__get(mixed <span class="argument">$field</span>) : \-</pre>
+                <p><em>Retrieves data from the model and returns it. This is necessary
+as data is contained in the field instances in the model and isn&#039;t
+directly available. Returns the data or the id of the object.</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$field</td>
+                                <td><ul>
+<li>the field of the model to return data for</li>
+</ul>
+</td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Exception</dt>
+                            <dd><ul>
+<li>throws an exception if the model field does not exist.</li>
+</ul>
+</dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    \-
+                                            &mdash; <p>the data contained in the field</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getRelated" name="method_getRelated" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getRelated()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getRelated(mixed <span class="argument">$name</span>) : \-</pre>
+                <p><em>Gets the objects that are associated with the model in a
+relational way by ForeignKey or ManyToMany fields and returns them.</em></p>
+                <p>The field must have already been added to the model via the addfield
+method.</p>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$name</td>
+                                <td><ul>
+<li>the field name from the main model to retrieve the related
+objects for.</li>
+</ul>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \-
+                                            &mdash; <p>an array of the related objects</p>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setRelated" name="method_setRelated" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setRelated()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setRelated(mixed <span class="argument">$name</span>, mixed <span class="argument">$value</span>)</pre>
+                <p><em>Replaces a single foreignkey relationship
+value and raises an exception if the relationship
+is not a foreignkey. The field must have already
+been added to the model by way of the addfield method.</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$name</td>
+                                <td><ul>
+<li>the name of the modelField to set
+a relation for.</li>
+</ul>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value</td>
+                                <td><ul>
+<li>the new instance of the model to
+set a new relation towards.</li>
+</ul>
+</td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Exception</dt>
+                            <dd><ul>
+<li>throws an exception of the field to be
+set is not a ForeignKey relationship.</li>
+</ul>
+</dd>
+                                                                    </dl>
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addRelated" name="method_addRelated" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addRelated()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addRelated(mixed <span class="argument">$name</span>, mixed <span class="argument">$value</span>)</pre>
+                <p><em>Adds another item to the object&#039;s ManyToMany relationship
+with another table. This method updates the join table
+with the additional data if the object is not already
+associated with the model. The field is required to have been
+added to the model by way of the addfield method.</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$name</td>
+                                <td><ul>
+<li>the name of the model field to
+add a relating item to.</li>
+</ul>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value</td>
+                                <td><ul>
+<li>the item to add to the related array.</li>
+</ul>
+</td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Exception</dt>
+                            <dd><ul>
+<li>throws an exception when trying to add objects
+to a ForeignKey relationship rather than a ManyToMany relationship.</li>
+</ul>
+</dd>
+                                                                    </dl>
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_removeRelated" name="method_removeRelated" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">removeRelated()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">removeRelated(mixed <span class="argument">$name</span>, mixed <span class="argument">$value</span>)</pre>
+                <p><em>Removes a related object from the model ManyToMany field.</em></p>
+                <p>It is required that the field has been added to the model via the
+addfield method prior to using this method.</p>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$name</td>
+                                <td><ul>
+<li>the name of the model field to remove the relative from.</li>
+</ul>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value</td>
+                                <td><ul>
+<li>the initialized model to remove from the relatives.</li>
+</ul>
+</td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Exception</dt>
+                            <dd><ul>
+<li>throws an exception when trying to remove an object
+from something other than a ManyToMany field.</li>
+</ul>
+</dd>
+                                                                    </dl>
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___set" name="method___set" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__set()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__set(mixed <span class="argument">$field</span>, mixed <span class="argument">$value</span>)</pre>
+                <p><em>Sets the data for a field in the model. This is required
+as data is stored internally in instances of fields rather
+than directly in a container or as properties.</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$field</td>
+                                <td><ul>
+<li>the field name to set data for</li>
+</ul>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value</td>
+                                <td><ul>
+<li>the data to set</li>
+</ul>
+</td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Exception</dt>
+                            <dd><ul>
+<li>throws an exception if the model field
+does not exist in the model.</li>
+</ul>
+</dd>
+                                                                    </dl>
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getFields" name="method_getFields" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getFields()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getFields()</pre>
+                <p><em>Returns the model&#039;s fields array which contains the field names,
+types, and contents. This is used by the data access layer
+to register the model.</em></p>
+                
+
+
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_as_array" name="method_as_array" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">as_array()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">as_array()</pre>
+                <p><em>Returns the contained data of the object as an associative
+array stripped of the field types. This is used when saving
+and deleting an object, as the field types have been validated
+by the class already and the types are already configured
+in the database.</em></p>
+                
+
+
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addfield" name="method_addfield" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">addfield()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addfield(mixed <span class="argument">$name</span>, mixed <span class="argument">$object</span>)</pre>
+                <p><em>Adds a field to the model. This is intended to be called
+in the constructor of the classes that inherit this class
+in order to register the fields and relational functionality
+with the class and the data access layer. Adding fields
+dynamically is not supported, so adding columns to the database
+after the model has been registered with the data access layer
+the first time needs to be done manually.</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$name</td>
+                                <td><ul>
+<li>the name of the field to add</li>
+</ul>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$object</td>
+                                <td><ul>
+<li>an instance of a Model field.</li>
+</ul>
+</td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Exception</dt>
+                            <dd><ul>
+<li>throws an exception for unsupported field types</li>
+</ul>
+</dd>
+                                                                    </dl>
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setupRelated" name="method_setupRelated" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">setupRelated()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setupRelated(mixed <span class="argument">$name</span>) : array</pre>
+                <p><em>Sets up any foreignkey and manyToMany relationship fields in the database
+as the fields are registered with the model. These fields are handled as
+separate models contained by the main model, which is why registering
+all of the model fields with the model class is required. This method
+is automatically called when any new ForeignKey or ManyToMany field is
+registered for the first time (adding these types of fields after the
+initial registration with the data access layer is supported), as well
+as when any such field is accessed or changed in order to ensure that
+the necessary structures are in place to handle them.</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$name</td>
+                                <td><ul>
+<li>the name of the relationship which matches the name of
+the field in the model.</li>
+</ul>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <ul>
+<li>an array containing the data access layer with the
+models for the fields registered, and the related name (which
+corresponds to the internal name of the model and the database table).</li>
+</ul>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_convertRelatedToModel" name="method_convertRelatedToModel" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">convertRelatedToModel()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">convertRelatedToModel(mixed <span class="argument">$objects</span>, mixed <span class="argument">$rel_name</span>, mixed <span class="argument">$model</span>, mixed <span class="argument">$dal</span>) : \$related</pre>
+                <p><em>Converts objects retrieved from the database for a relational field
+into the proper type. Due to the internal workings of the modelBase,
+and to avoid duplicate database data, these are retrieved from the
+data access layer as stdClass instances which are then converted to
+the proper type using this method. Iterates through the stdClass methods
+to retrieve the row ids of the objects then retrieves them.</em></p>
+                
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$objects</td>
+                                <td><ul>
+<li>an array of stdClass objects retrieved from the
+data access layer</li>
+</ul>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$rel_name</td>
+                                <td><ul>
+<li>the name of the relationship (relation_name in the field
+attributes) which is used to locate the right column</li>
+</ul>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$model</td>
+                                <td><ul>
+<li>the model that is being related to and that the objects
+will be translated to.</li>
+</ul>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$dal</td>
+                                <td><ul>
+<li>the data access layer with all the necessary models
+registered.</li>
+</ul>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \$related
+                                            &mdash; <ul>
+<li>an array of model instances</li>
+</ul>
+
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">class_modelBase.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/engine/classes/class_modelBase.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="">Errors</a></li>
+                                    <li><a href="">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on January 9th, 2014 at 00:34.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

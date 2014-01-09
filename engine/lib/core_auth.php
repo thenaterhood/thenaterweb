@@ -1,6 +1,6 @@
 <?php
 
-include_once GNAT_ROOT.'/lib/core_redirect.php';
+include_once NWEB_ROOT.'/lib/core_redirect.php';
 
 function auth_user( $toPage='/' ){
 

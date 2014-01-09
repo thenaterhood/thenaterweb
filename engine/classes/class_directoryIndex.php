@@ -9,10 +9,10 @@
  * Includes the necessary facilities for managing
  * the inventory
  */
-include_once GNAT_ROOT.'/lib/core_web.php';
-include_once GNAT_ROOT.'/classes/class_article.php';
-include_once GNAT_ROOT.'/classes/class_sqlitedb.php';
-include_once GNAT_ROOT.'/classes/class_databaseFactory.php';
+include_once NWEB_ROOT.'/lib/core_web.php';
+include_once NWEB_ROOT.'/classes/class_article.php';
+include_once NWEB_ROOT.'/classes/class_sqlitedb.php';
+include_once NWEB_ROOT.'/classes/class_databaseFactory.php';
 
 /**
  * Provides a database-like means of accessing an inventory

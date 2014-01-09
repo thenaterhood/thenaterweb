@@ -1,0 +1,1 @@
+<p>You are now logged in. <a href='<?php print $page->to; ?>'>Continue (to <?php print htmlspecialchars($page->to); ?>)</a></p>
