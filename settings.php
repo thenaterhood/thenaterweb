@@ -58,7 +58,7 @@ class config{
 		$this->container['db_error_level'] = 1;
 		
 		# Sets the directory for storing dynamically created files
-		$this->container['dynamic_directory'] =  'engine/var/dynamic';
+		$this->container['dynamic_directory'] =  NWEB_ROOT.'/var/dynamic';
 		
 		# Whether to save the dynamic files when they are generated.
 		# If this is turned off and no dynamic files have been 

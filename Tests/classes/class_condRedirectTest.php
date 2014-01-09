@@ -1,8 +1,4 @@
 <?php
-define("GNAT_ROOT", "engine");
-
-include_once 'engine/lib/core_redirect.php';
-include_once 'phpunit.phar';
 
 class condRedirectTest extends PHPUnit_Framework_TestCase {
 

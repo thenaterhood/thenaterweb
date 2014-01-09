@@ -100,7 +100,7 @@ class urlHandler{
 
 				}
 
-				$sessionMvc = new session( array( 'controller' ) );
+				$sessionMvc = request::get_sanitized_as_object( array( 'controller' ) );
 				$this->controllerId = $sessionMvc->controller;
 
 

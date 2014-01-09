@@ -1,7 +1,4 @@
 <?php 
-define("GNAT_ROOT", "engine");
-
-include_once 'engine/lib/core_blog.php';
 include_once 'phpunit.phar';
 
 class articleTest extends PHPUnit_Framework_TestCase {
@@ -18,7 +15,7 @@ class articleTest extends PHPUnit_Framework_TestCase {
 		$article['datestamp'] = '';
 
 
-		$handle = fopen('Tests/test-data/article.json', 'w');
+		$handle = fopen(NWEB_ROOT.'/../Tests/test-data/article.json', 'w');
 		fwrite( $handle, json_encode($article, True) );
 		fclose( $handle );
 
@@ -26,14 +23,14 @@ class articleTest extends PHPUnit_Framework_TestCase {
 
 	protected function tearDown(){
 
-		unlink( 'Tests/test-data/article.json');
+		unlink( NWEB_ROOT.'/../Tests/test-data/article.json');
 
 
 	}
 
 	public function test_read_json(){
 
-		$article = new article( 'Tests/test-data/article', 'test/uri' );
+		$article = new article( NWEB_ROOT.'/../Tests/test-data/article', 'test/uri' );
 
 		$this->assertEquals( $article->title, 'Test' );
 		$this->assertEquals( $article->tags, 'foo,bar' );

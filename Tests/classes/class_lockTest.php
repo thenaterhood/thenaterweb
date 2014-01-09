@@ -1,6 +1,4 @@
 <?php
-define("GNAT_ROOT", "engine");
-
 include_once 'phpunit.phar';
 
 class lockTest extends PHPUnit_Framework_TestCase {

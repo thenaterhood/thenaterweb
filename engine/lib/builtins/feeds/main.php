@@ -26,7 +26,7 @@ class feeds extends controllerBase{
 			Header('Content-type: application/atom+xml');
 
 
-			$session = new session( array('regen') );
+			$session = request::get_sanitized_as_object( array('regen') );
 			$config = new config();
 
 			$feed = generateFeed( $blogdef, False );

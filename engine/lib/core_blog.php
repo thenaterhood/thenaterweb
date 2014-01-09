@@ -64,41 +64,12 @@ function arrayToObject($d) {
     }       
 }       
 
-/**
- * Loads a section/blog configuration xml file
- * @param $id - the section id
- * @return $conf - an stdclass instance with the config data
- */       
-function loadBlogConf( $id ){
-
-
-	include_once 'controller/'.$id.'/main.php';
-	define( strtoupper($id).'_ROOT', 'controller/'.$id );
-	$blogController = new $id();
-	$confFile = $blogController->configFile;
-
-    $conf = array();
-    $conf['title'] = "Error";
-    $conf['catchline'] = "";
-    $conf['commentCode'] = "";
-    
-    
-    if ( file_exists($confFile) ){
-            $xml = simplexml_load_file( $confFile );
-            $conf = xmltoArray( $xml ); 
-            
-            
-    }
-
-    return arrayToObject($conf);
-
-}
-
 function loadApplication( $id ){
 
-    include_once 'controller/'.$id.'/main.php';
-    if ( ! defined( strtoupper($id).'_ROOT') )
-        define( strtoupper($id).'_ROOT', 'controller/'.$id );
+    include_once 'apps/'.$id.'/main.php';
+    if ( ! defined( strtoupper($id).'_ROOT') ){
+        define( strtoupper($id).'_ROOT', 'apps/'.$id );
+    }
     
 
     return new $id();

@@ -41,7 +41,7 @@ $_ENGINE_BUILTINS = array(
 	);
 
 $CONFIG = new config();
-$NWSESSION = new session( array() );
+$NWSESSION = request::get_sanitized_as_object( array() );
 
 
 
@@ -86,7 +86,7 @@ if ( in_array($controller, $_ENGINE_BUILTINS) ){
 
 }
 
-$NWSESSION = new session( array( 'id' ) );
+$NWSESSION = request::get_sanitized_as_object( array( 'id' ) );
 
 $id = $NWSESSION->id;
 

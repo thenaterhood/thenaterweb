@@ -1,8 +1,4 @@
 <?php
-
-define("GNAT_ROOT", "engine");
-
-include_once 'engine/lib/core_blog.php';
 include_once 'phpunit.phar';
 
 class sanitationTest extends PHPUnit_Framework_Testcase {

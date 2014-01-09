@@ -1,7 +1,7 @@
 <?php
 include 'engine/lib/core_sitemap.php';
 
-$session = new session( array('regen', 'type', 'page') );
+$session = request::get_sanitized_as_object( array('regen', 'type', 'page') );
 
 class sitemaps extends controllerBase{
 
@@ -13,8 +13,8 @@ class sitemaps extends controllerBase{
 
 	public function __call( $method, $args ){
 
-		$appRoot = 'controller/'.$method;
-		$session = new session( array('type') );
+		$appRoot = 'apps/'.$method;
+		$session = request::get_sanitized_as_object( array('type') );
 
 		if ( file_exists($appRoot.'/main.php') ){
 			include $appRoot.'/main.php';

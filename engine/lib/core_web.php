@@ -14,9 +14,8 @@
 /**
  * Include the config file
  */
-include 'settings.php';
+include NWEB_ROOT.'/../settings.php';
 include NWEB_ROOT.'/classes/class_varGetter.php';
-include NWEB_ROOT.'/classes/class_session.php';
 include NWEB_ROOT.'/classes/class_lock.php';
 include NWEB_ROOT.'/lib/core_extension.php';
 include NWEB_ROOT.'/classes/class_article.php';
