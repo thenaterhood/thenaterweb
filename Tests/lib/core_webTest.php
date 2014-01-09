@@ -15,16 +15,6 @@ class core_webTest extends PHPUnit_Framework_TestCase {
         
     }
     
-    public function test_get_controllers(){
-        
-        $controllers = getControllers( NWEB_ROOT.'/../apps' );
-        
-        $this->assertTrue( in_array('page', $controllers ));
-        $this->assertTrue( in_array('error', $controllers ));
-
-        
-    }
-    
     /**
      * @expectedException Exception
      * @expectedExceptionmessage Template could not be loaded.
