@@ -6,6 +6,15 @@
  * @author Nate Levesque <public@thenaterhood.com>
  */
 class request{
+    
+        public static function variable( $varname ){
+            $array = array();
+            $array[] = $varname;
+            
+            $values = self::get_sanitized($array);
+            
+            return $values[$varname];
+        }
 
 	/**
          * Returns an array of variables retrieved 
