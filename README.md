@@ -1,4 +1,4 @@
-3.0.0+0
+3.0.1+0
 
 ^ Current version number above ^
 
@@ -245,3 +245,8 @@ Add database support, major code cleanup, better app support
 - Add better support for handling uncaught exceptions
 - Change documentation generator
 - Improve UI of admin panel
+
+
+v3.0.1+0
+
+BUGFIX: fix friendly url not redirecting properly
