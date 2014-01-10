@@ -59,8 +59,8 @@ foreach ($controllers as $blogid=> $location) {
         # Check if dynamic directory is writeable
         if ( is_writable( NWEB_ROOT.'/var/log/writetest.txt') ){
 
-	unlink( getConfigOption('dynamic_directory').'/writetest.txt' );
-	print 'Okay (dynamic storage is writeable)';
+	unlink( NWEB_ROOT.'/var/log/writetest.txt' );
+	print 'Okay (log storage is writeable)';
         }else{
 
             print '<font color="red">Problem: cannot write to '.NWEB_ROOT.'/var/log</font>';
