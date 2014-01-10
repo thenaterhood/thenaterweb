@@ -50,7 +50,7 @@ class Database {
 				} else if ( DB_PORT == '' ) {
 					self::$DBH = new PDO(DB_TYPE . ':host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASSWORD);
 				} else{
-					self::$DBH = new PDO(DB_TYPE . ':host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER .';port=' . DB_PORT, DB_PASSWORD);
+					self::$DBH = new PDO(DB_TYPE . ':host=' . DB_HOST . ';dbname=' . DB_NAME . ';port=' . DB_PORT, DB_USER, DB_PASSWORD);
 				}
 
 			}
