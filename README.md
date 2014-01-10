@@ -1,4 +1,4 @@
-2.1.0+f9659
+3.0.0+0
 
 ^ Current version number above ^
 
@@ -13,7 +13,8 @@ from my site that may be included in commits throughout.
 
 For information about developing applications that run on Thenaterweb, 
 see the DEVELOPING.md file and phpdoc documentation in the documentation 
-folder.
+folder. See also the wiki on Github which should have the most up-to-date 
+documentation.
 
 License
 ------------------
@@ -47,37 +48,7 @@ design is adapted more to the MVC design (it was originally not MVC).
 
 Setup
 -------------------
-Assuming that the basic setup works, there is no need to adjust the 
-prepend.php or .htaccess prepend path. However, if the engine is going to 
-be stored anywhere other than the web root, the two need to be adjusted. 
-Note that putting the engine somewhere other than the web root is untested 
-at this point. In any case, the engine/config/class_config.php file also 
-needs to be adjusted, otherwise generated URLs will be incorrect.
-
-The engine loads controllers for site sections in order to display 
-pages. These are expected to be located in the "apps" directory. They contain 
-configuration data for page and post locations as well as various other 
-functionality depending on the controller. Shipped with Thenaterweb are 
-controllers for pages (yoursite.com/page/somePage), a blog 
-(yoursite.com/blog) and a feed (yoursite.com/feed). Paths in these will 
-need to be adjusted to the actual locations of things.
-
-Controllers may read additional configuration files to determine the 
-locations of items. These are located in engine/config/section.d/controller.conf.xml. 
-The XML files there will need to be adjusted so paths point to the correct 
-locations. This is an artifact of the previously non-MVC design of the 
-engine, and may change in the future.
-
-Thenaterweb requires no additional setup for the addition of controllers. 
-Rather, when a location on the site is accessed, i.e yoursite.com/SomeName, 
-Thenaterweb will look in the controllers directory for a file with the name 
-control_SomeName.php. The control classes should extend the controllerBase class 
-from the controller/interface_control.php file and have the same name as the 
-directory for the controller. If Thenaterweb doesn't find 
-a file that matches the requested controller, it will display a 404 error page.
-
-You should also take a look at the engine/config/class_config.php file which 
-contains various other settings as well.
+See https://github.com/thenaterhood/thenaterweb/wiki/Initial-Setup
 
 The default page template (based on bootstrap) is in 
 engine/config/template.d/page_template.php.
@@ -109,65 +80,28 @@ unavailable, you MUST turn off friendly urls in Thenaterweb's config. Otherwise,
 Thenaterweb will force a 301 redirect to the "friendly" URL which it expects 
 mod_rewrite to rewrite into a compatible URL which will fail without it.
 
+
+
 Blogs and Pages and Controllers, Oh My!
 ------------------------
 No lions or tigers or bears though.
 
 Each set of pages or each item that can be accessed on your site after 
-a single slash (yoursite.com/whatever) requires its own controller. Config data 
-for these controllers must be placed in engine/config/section.d/whatever.conf.xml, 
-where it is expected to be by various Thenaterweb builtins such as the feed system.
+a single slash (yoursite.com/whatever) requires its own controller. Thenaterweb 
+has builtin applications for generating RSS/ATOM feeds and XML sitemaps. Sitemaps 
+and feeds generated for an application can be viewed at yourdomain.com/sitemaps/YourApp 
+and yourdomain.com/feeds/YourApp respectively. 
 
-For blogs, the feed system will load the configuration file from the engine 
-and construct the feed from the posts it finds at the location specified. 
-At the same time, it will produce a summary of posts that can be used via 
-the inventory class to produce lists of tags or titles of posts. 
+The builtin feed and sitemap apps can be disabled in the index.php file 
+(see the wiki for more information) and will only show what your app 
+provides to them, in the order provided. For feeds, you need to implement the 
+getPostList() method, which returns a list of your posts, in the order 
+to be shown in the feed, as instances of the article class. For sitemaps, 
+you need to implement the getPageList() method, which should return 
+an array with the paths to the files and the web url for the files, 
+ie /server/path/to/file => yourdomain.com/YourApp/page. The sitemap 
+app will do the rest.
 
-The engine supports displaying pages stored as preformatted text (.pre), 
-PHP (.php), html (.html), and JSON (.json), if you're using engine builtins. 
-Loading and displaying these is managed by the article class which can output 
-in a variety of formats. The article class will simply include PHP files in 
-the page, but will echo HTML (so no PHP embedded in a .html file will work), 
-parse Json files, and place preformatted text between pre tags after sanitizing 
-it.
-
-The JSON format for files contains the following fields, which are parsed as an 
-object:
-
-	title : "Page Title"
-	tags : "page,tags,here"
-	content: "the actual content of the page, in html format"
-	datestamp: "the modification date"
-
-The article class will load these into html and display it.
-
-The framework has prebuilt pages for showing blog tags, titles, and posts in 
-engine/lib/pages. It will look first in the page directory for the blog/page 
-defined in the conf.xml file for that controller and load it if it exists, 
-and if not will load from the builtin pages. Pages can be added to sites or blogs 
-by adding them to the designated directory for pages for the controller. Blog posts 
-can be stored in a few different formats (though .json is preferred) as with pages 
-in the post directory configured for the blog in the .conf.xml file. Pages are 
-expected to be stored with the filenames page_pageName.html or hidden_pageName.html. 
-Pages prefaced with hidden_ are not shown in the sitemap.
-
-Engine Data
--------------------
-The engine is configured (unless you change it) to store various cache-type 
-files in engine/var/dynamic. These follow a few conventions:
-
-	xxx.lock - a mutex for other files. They expire after 30 seconds, the default PHP timeout.
-	xxx.inventory.json - a searchable array of posts on a blog.
-	xxx.feed.json - feed data for a blog.
-
-The names are the path to the file or directory they apply to with 
-any forward slash replaced with an underscore.
-
-These files are maintained by the engine and are updated automatically. Since 
-they depend on the locations of where things are, they may not carry between 
-different configurations. If they get corrupted, they can simply be removed 
-or the engine told to regenerate them (/feed/YourBlog/regen/true will regenerate 
-the feed and the inventory from scratch).
 
 Version Change Summaries (Oldest to Newest)
 ==================
@@ -292,3 +226,22 @@ Update webadmin panel for compatbility with new changes
 v2.1.0+f9659
 
 Improve database support
+
+v3.0.0+0
+
+Add database support, major code cleanup, better app support
+
+- Add a data access layer with support for relational databases
+	- Add support applications to add their own models
+	- Add ability to create database schema
+
+- Remove obsolete/unused code and files
+- Remove app-specific code from engine
+- Add builtin app for authentication
+- Improve URL routing and application support
+- Expand testing
+- Move files to more portable locations 
+	(engine/config/class_config.php -> settings.php)
+- Add better support for handling uncaught exceptions
+- Change documentation generator
+- Improve UI of admin panel
