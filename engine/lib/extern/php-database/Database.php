@@ -21,6 +21,7 @@
 	IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
 	WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 	SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
  */
  
 class Database {
@@ -46,8 +47,10 @@ class Database {
 
 				if ( DB_TYPE == 'sqlite' ){
 					self::$DBH = new PDO('sqlite:' . DB_NAME );
-				} else {
+				} else if ( DB_PORT == '' ) {
 					self::$DBH = new PDO(DB_TYPE . ':host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASSWORD);
+				} else{
+					self::$DBH = new PDO(DB_TYPE . ':host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER .';port=' . DB_PORT, DB_PASSWORD);
 				}
 
 			}

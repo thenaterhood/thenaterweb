@@ -46,6 +46,7 @@ class Config{
 		$this->container['engine_storage_db'] = 'sqlite';
 		$this->container['db_user'] = '';
 		$this->container['db_password'] = '';
+                $this->container['db_port'] = '';
 		$this->container['db_host'] = 'localhost';
 		$this->container['db_name'] = 'site-data/naterweb_database.db';
 

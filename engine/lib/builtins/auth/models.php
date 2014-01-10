@@ -1,6 +1,6 @@
 <?php
 
-class nwUser extends modelBase{
+class nwUser extends ModelBase{
 
 	public function __construct(){
 
@@ -32,7 +32,7 @@ class nwUser extends modelBase{
 
 }
 
-class nwGroup extends modelBase{
+class nwGroup extends ModelBase{
 
 	public function __construct(){
 

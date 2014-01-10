@@ -168,7 +168,7 @@ class auth extends ControllerBase{
 
 		$user->delete();
 
-		$redir = new redirect( 'auth/deluser', '/?url=auth/manage');
+		$redir = new Redirect( 'auth/deluser', '/?url=auth/manage');
 		$redir->apply(302);
 
 

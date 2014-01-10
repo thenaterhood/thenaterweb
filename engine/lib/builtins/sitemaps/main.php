@@ -13,7 +13,7 @@ class sitemaps extends ControllerBase{
 
 	public function __call( $method, $args ){
             
-                $app = engine::get_app($method);
+                $app = Engine::get_app($method);
             
 		$appRoot = $app['root'];
                 $name = $app['name'];
