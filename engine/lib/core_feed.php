@@ -13,8 +13,8 @@
 /**
  * Include the main blog functions and classes
  */
- include_once GNAT_ROOT.'/lib/core_blog.php';
- include_once GNAT_ROOT.'/classes/class_feed.php';
+ include_once NWEB_ROOT.'/lib/core_blog.php';
+ include_once NWEB_ROOT.'/classes/class_feed.php';
 
 /**
  * Generates an atom feed and returns it

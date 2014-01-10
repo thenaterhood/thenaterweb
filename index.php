@@ -1,7 +1,20 @@
 <?php
 
-define("GNAT_ROOT", "engine");
-define("DEBUG", False);
+/**
+ * Define the root of the naterweb 
+ * engine directory. Many things internally 
+ * rely on paths relative to this, so it is 
+ * recommended you install the engine to the 
+ * web root. If you install the engine elsewhere, 
+ * you will need to adjust this path.
+ * 
+ */
+define("NWEB_ROOT", "engine");
+
+/**
+ * Enables or disables debug mode.
+ */
+define("DEBUG", True);
 
 if ( DEBUG ){
 	error_reporting(E_ALL);
@@ -9,71 +22,106 @@ if ( DEBUG ){
 
 }
 
-
+include_once NWEB_ROOT.'/classes/class_engine.php';
 /**
  * These include the core utilities that Thenaterweb requires.
  * core_blog imports all of the various utilities in one shot.
  */
-include_once GNAT_ROOT.'/lib/core_blog.php';
-
+include_once NWEB_ROOT.'/lib/core_blog.php';
 /**
  * This includes the base controller that all controllers must 
  * extend in order to properly work.
  */
-include_once GNAT_ROOT.'/lib/interface_controller.php';
-
+include_once NWEB_ROOT.'/lib/interface_controller.php';
 /**
  * Include the redirect mechanism
  */
-include_once GNAT_ROOT.'/lib/core_redirect.php';
+include_once NWEB_ROOT.'/lib/core_redirect.php';
 
 /**
- * Set up the main variables for Thenaterweb's 
- * operation
+ * This array contains the applications enabled 
+ * on thenaterweb. It is an associative array, 
+ * containing the name of the app (url to route 
+ * to it, ie /page/about would load the application 
+ * with the url designated as "page". Anything not 
+ * added to this array will route to a 404 error page.
  */
-$_ENGINE_BUILTINS = array( 'feeds', 'sitemaps' );
-$CONFIG = new config();
-$NWSESSION = new session( array() );
+$_INSTALLED_APPS = array( 
+	'feeds'=>       NWEB_ROOT.'/lib/builtins/feeds', 
+	'sitemaps'=>    NWEB_ROOT.'/lib/builtins/sitemaps',
+	'auth'=>        NWEB_ROOT.'/lib/builtins/auth',
+        'page'=>        NWEB_ROOT.'/lib/builtins/simplepage',
+        'webadmin'=>    'apps/webadmin',
+        'blog'=>        'apps/blog'
+	);
 
+engine::setup_installed($_INSTALLED_APPS);
 
+/**
+ * This array contains aliases for applications. 
+ * With the current design, applications must be 
+ * defined in a class with the same name as the 
+ * name described in the $_INSTALLED_APPS array. 
+ * They can be aliased with additional names in this 
+ * array, which should be of the format "alias"=>"realname"
+ * This can be used to add additional canonical names for 
+ * an app to handle common typos or things like that. The 
+ * builtin apps are aliased so that both the plural and 
+ * non-plural forms of their names will work, as 
+ * an example.
+ */
+$_APP_ALIASES = array(
+    
+        'pages'=>       'page',
+        'feed'=>        'feeds',
+        'sitemap'=>     'sitemaps'
+    
+    
+        );
+
+engine::setup_aliases( $_APP_ALIASES );
 
 /**
  * Manage redirects to "friendly" URLs if the configuration
  * option is set.
  */
-if ( $CONFIG->friendly_urls ){
-    $redirect = new condRedirect( '/?url', '/'.$_GET['url'], substr( $CONFIG->site_domain, 7 ).$NWSESSION->uri );
+if ( engine::get_option('friendly_urls') ){
+    $redirect = new condRedirect( '/?url', '/'.$_GET['url'], substr( engine::get_option('site_domain'), 7 ) );
     $redirect->apply( 301 );
 }
 
 # Initialize the URL handler and use it to include 
 # the relevant controller from controllers.
-$useBuiltin = false;
 $urlHandler = new urlHandler();
 $controller = $urlHandler->getControllerId();
 
-# Manage builtin features such as feeds and sitemaps 
-# rather than using the selected controller to perform 
-# these tasks.
-if ( in_array($controller, $_ENGINE_BUILTINS) ){
+# Handle application aliases
+if (array_key_exists($controller, $_APP_ALIASES)){
+    $controller = $_APP_ALIASES[$controller];
+}
 
-	$feature = $controller;
-	$useBuiltin = true;
-	$urlHandler->reparseUrl();
-	$controller = $urlHandler->getControllerId();
+# Handle the actual loading of the application and 
+# calling the requested view.
+if (array_key_exists($controller, $_INSTALLED_APPS) ){
 
+	define(strtoupper($controller).'_ROOT', $_INSTALLED_APPS[$controller] );
+	define("APP_NAME", $controller);
+	$approot = $_INSTALLED_APPS[$controller];
+
+
+} else {
+
+	$controller = 'error';
+	define('ERROR_ROOT', "apps/".$controller );
+	define("APP_NAME", $controller);
+
+	$approot = 'apps/'.$controller;
 
 }
 
+$id = request::variable('id');
 
-define(strtoupper($controller).'_ROOT', "controller/".$controller );
-
-include $urlHandler->getController();
-$NWSESSION = new session( array( 'id' ) );
-
-$id = $NWSESSION->id;
-
-
+include $approot.'/main.php';
 
 
 # Initialize the controller
@@ -84,33 +132,29 @@ $blogdef = new $controller();
 # request points to a builtin feature, generate content 
 # from the feature instead and don't include a controller 
 # view.
-if ( $useBuiltin ){
-
-	include GNAT_ROOT.'/lib/builtins/'.$feature.'.php';
 
 
-} else{
+try { 
+	if ( method_exists( $blogdef, $id ) || method_exists( $blogdef, '__call' ) ){
 
-	try { 
+		$blogdef->$id();
+		die();
 
+	} else {
 
-		if ( method_exists( $blogdef, $id ) ){
-
-			$blogdef->$id();
-
-		} else {
-
-			$pageData = $blogdef->getPageData();
-			include $blogdef->template;
-
-		}
-
-	} catch ( Exception $e ){
-
-		echo "404: The requested page could not be found.";
+		$page = (object)$blogdef->getPageData();
+		include $blogdef->template;
+		die();
 
 	}
 
+} catch ( Exception $e ){
+
+
+	EngineErrorHandler::handle_exception( $e );
+
+
 }
+
 
 ?>

@@ -11,8 +11,8 @@
 /**
  * Includes the inherited dataMonger class
  */
-include_once GNAT_ROOT.'/classes/class_dataMonger.php';
-include_once GNAT_ROOT.'/lib/core_web.php';
+include_once NWEB_ROOT.'/classes/class_dataMonger.php';
+include_once NWEB_ROOT.'/lib/core_web.php';
 /**
 * Contains everything to do with retrieving and outputting
 * posts in multiple forms.  Is capable of retrieving posts stored
@@ -26,9 +26,8 @@ include_once GNAT_ROOT.'/lib/core_web.php';
 class article extends dataMonger{
 
 	private $blogurl;
-	private $usePostFormat;
+	protected $usePostFormat;
 	private $type;
-	private $file;
 	
 	/**
 	 * Reads and parses a post file and creates an instance
@@ -38,7 +37,7 @@ class article extends dataMonger{
 	 * 
 	 * @param nodefile (string) - a yyyy.mm.dd string of a nodefile
 	 */
-	public function __construct( $nodefile, $bloguri, $articleUri="", $from_db='auto' ){
+	public function __construct( $nodefile, $bloguri, $articleUri="" ){
 
 		/* Handles the case where the post file does not exist
 		 * at all by pre-setting all the fields to a failure state.
@@ -53,7 +52,6 @@ class article extends dataMonger{
 		$this->blogurl = $bloguri;
 		$this->container['title'] = "Holy 404, Batman!";
 		$this->container['nodeid'] = $nodefile;
-		$this->container['blog_tab'] = str_replace('/', '_', $bloguri);
 		$this->container['date'] = "";
 		$this->container['tags'] = "";
 		$this->container['datestamp'] = "";
@@ -66,44 +64,10 @@ class article extends dataMonger{
 		If you think it should be here, try browing by post title, or looking at the sitemap.  
 		Otherwise, <a href="/">Return home.</a></p>'."\n";
 
-		# Handle retrieving from a database, if the option is set
-		# then fall back on searching for the file if the 
-		# item could not be found.
-
-		if ( $from_db == 'auto '){
-			$from_db = getConfigOption( 'use_db' );
-		}
-
-		if ( $from_db ){
-
-			$this->retrieveFromDb( $nodefile, $bloguri, $articleUri );
-
-		} else {
-
-			$this->retrieveFromFile( $nodefile, $bloguri, $articleUri );
-
-		}
+		$this->retrieveFromFile( $nodefile, $bloguri, $articleUri );
 
 
 
-	}
-
-	private function retrieveFromDb( $nodefile, $bloguri, $articleUri ){
-
-		Database::initialize();
-		
-		$nodeData = Database::select( $this->container['blog_tab'], 'title,date,tags,datestamp,content,type',
-			 array( 'where' => array( 'id' => $nodefile ), 'singleRow' => 'true' ) );
-
-		if ( $nodeData ){
-			foreach ($nodeData as $key => $value) {
-				$this->container[ $key ] = $value;
-				$this->type = $this->container['type'];
-			}
-		} else {
-			# Attempt to retrieve from file as a fallback
-			$this->retrieveFromFile( $nodefile, $bloguri, $articleUri );
-		}
 
 	}
 
@@ -112,12 +76,14 @@ class article extends dataMonger{
 		if ( file_exists("$nodefile.json") ){
 			$this->type = "json";
 			$this->usePostFormat = True;
-			$this->container['file'] = $nodefile.'.json';
+
 
 			$jsoncontents = file_get_contents("$nodefile.json");
 			
 			// Directly read data into the class
 			$this->container = json_decode($jsoncontents, True);
+
+			$this->container['file'] = $nodefile.'.json';
 
 			// Parse the atom datestamp into english
 			$this->container['date'] = date( "F j, Y, g:i a", strtotime($this->container['datestamp']) );

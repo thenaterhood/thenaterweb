@@ -6,7 +6,7 @@
 /**
  * Include the config class so we can retrieve the dynamic directory
  */
-include_once 'settings.php';
+include_once NWEB_ROOT.'/../settings.php';
 
 
 /**

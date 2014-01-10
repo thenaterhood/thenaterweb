@@ -10,7 +10,7 @@
  * Include the extended redirect class
  */
 
-include_once GNAT_ROOT.'/classes/class_redirect.php';
+include_once NWEB_ROOT.'/classes/class_redirect.php';
 
 /**
  * Manages conditionally redirecting pages based
@@ -40,7 +40,9 @@ class condRedirect extends redirect{
 	 */
 	public function __construct( $origin, $destination, $uri ){
 		
-		parent::__construct( $uri, $destination );
+		$this->origin = $origin;
+		$this->destination = $destination;
+		
 		if ( is_int( strpos($uri, $origin) ) && $origin != $destination ){
 
 			$this->apply = True;

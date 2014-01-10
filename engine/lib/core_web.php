@@ -14,15 +14,18 @@
 /**
  * Include the config file
  */
-include 'settings.php';
-include GNAT_ROOT.'/classes/class_varGetter.php';
-include GNAT_ROOT.'/classes/class_session.php';
-include GNAT_ROOT.'/classes/class_lock.php';
-include GNAT_ROOT.'/lib/core_extension.php';
-include GNAT_ROOT.'/classes/class_article.php';
-include GNAT_ROOT.'/classes/class_urlHandler.php';
-include GNAT_ROOT.'/lib/core_database.php';
-include GNAT_ROOT.'/classes/class_sessionMgr.php';
+include NWEB_ROOT.'/../settings.php';
+include NWEB_ROOT.'/classes/class_lock.php';
+include NWEB_ROOT.'/lib/core_extension.php';
+include NWEB_ROOT.'/classes/class_article.php';
+include NWEB_ROOT.'/classes/class_urlHandler.php';
+include NWEB_ROOT.'/lib/core_database.php';
+include NWEB_ROOT.'/classes/class_sessionMgr.php';
+include NWEB_ROOT.'/classes/class_request.php';
+include NWEB_ROOT.'/classes/class_dataAccessLayer.php';
+include NWEB_ROOT.'/classes/class_modelBase.php';
+include NWEB_ROOT.'/classes/class_engineErrorHandler.php';
+include_once NWEB_ROOT.'/classes/class_engine.php';
 
 /**
 * Checks to see if the preferred file exists, and if it does
@@ -43,7 +46,6 @@ function pullContent( $preferred, $sectionUri='/', $articleUri='/' ){
 
 	$i = 0;
 	$article = new article( "", $sectionUri, $articleUri, False );
-
 	while ( $i < count($preferred) && $article->getType() == "none" ){
 
 		if ( !strpos( $preferred[$i], '.' ) ){
@@ -64,35 +66,22 @@ function pullContent( $preferred, $sectionUri='/', $articleUri='/' ){
 	return $article;
 }
 
-/**
-* Displays a string with a random greeting and the string
-* the function was called with.
-* 
-* @param $first_name (str): a string, preferably a name
-* 
-* @return - a string with a personal greeting
-*/
-function randomGreeting($first_name){
+function render_php_template( $template, $pagedata, $use_csrf=True ){
 
-	$greetings = array("Howdy", "Hello", "Hi", "Hey there", "Hi there", "Greetings", "Hiya");
-	return $greetings[ array_rand($greetings) ].", $first_name";
-	
-}
+	$page = (object)$pagedata;
+        
+        if ( $use_csrf ){
+            $sessionmgr = SessionMgr::getInstance();
 
-function getControllers(){
+            $page->csrf_token = $sessionmgr->get_csrf_token();
+            $page->csrf_key = $sessionmgr->get_csrf_id();
+        }
 
-	$found = array();
-	$handler = opendir( 'controller' );
-
-	while ($file = readdir($handler)){
-
-		if ( $file != '.' && $file != '..' && !in_array($file, $found) && file_exists( 'controller/'.$file.'/main.php')){
-			$blogid=substr($file, 0, strpos($file, ".") );
-			$found[] = $file;
-		}
+	if ( file_exists($template) ){
+		include $template;
+	} else {
+		throw new Exception('Template could not be loaded.');
 	}
-
-	return $found;
 
 }
 
@@ -105,11 +94,17 @@ function getControllers(){
  * @param $key - the name of a config key to retrieve
  * 
  * @return - the value of the config key
+ * 
+ * @deprecated 1/8/2014 - deprecated in favor of 
+ *  directly calling engine::get_option, as this is now 
+ *  a waste of lines of code.
  */
 function getConfigOption($key){
-	
-	$CONFIG = new config();
-	return $CONFIG->$key;
+        // This extra include is necessary in order for 
+        // phpunit tests to work as expected. Why is beyond 
+        // me.
+	include_once NWEB_ROOT.'/classes/class_engine.php';
+	return engine::get_option($key);
 }
 	
 

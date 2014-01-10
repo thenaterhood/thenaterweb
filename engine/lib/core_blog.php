@@ -12,8 +12,9 @@
 /**
  * Includes the core_web functions
  */
-include_once GNAT_ROOT.'/lib/core_web.php';
-include_once GNAT_ROOT.'/classes/class_article.php';
+include_once NWEB_ROOT.'/lib/core_web.php';
+include_once NWEB_ROOT.'/classes/class_article.php';
+
 
 /**
 * Returns a random line of a given file.
@@ -22,9 +23,8 @@ include_once GNAT_ROOT.'/classes/class_article.php';
 * 
 * @param $filename - a filename to pull a line from
 */
-function RandomLine($filename) {
+function RandomItem($lines) {
 
-	$lines = file($filename) ;
 	return $lines[array_rand($lines)] ;
 }
 
@@ -50,7 +50,7 @@ function XmltoArray(SimpleXMLElement $xml) {
  * @param $d - an associative array
  * @return $d - an std class object
  */
-function arrayToObject($d) {
+function RecArrayToObject($d) {
     if (is_array($d)) {
         /*
         * Return array converted to object
@@ -64,33 +64,32 @@ function arrayToObject($d) {
     }       
 }       
 
-/**
- * Loads a section/blog configuration xml file
- * @param $id - the section id
- * @return $conf - an stdclass instance with the config data
- */       
-function loadBlogConf( $id ){
+function loadApplication( $id, $location ){
 
-
-	include_once 'controller/'.$id.'/main.php';
-	define( strtoupper($id).'_ROOT', 'controller/'.$id );
-	$blogController = new $id();
-	$confFile = $blogController->configFile;
-
-    $conf = array();
-    $conf['title'] = "Error";
-    $conf['catchline'] = "";
-    $conf['commentCode'] = "";
+    if ( ! defined( strtoupper($id).'_ROOT') ){
+        define( strtoupper($id).'_ROOT', $location );
+    }
     
+    include_once $location.'/main.php';
+
     
-    if ( file_exists($confFile) ){
-            $xml = simplexml_load_file( $confFile );
-            $conf = xmltoArray( $xml ); 
-            
-            
+
+    return new $id();
+
+}
+
+function load_all_applications(){
+
+    $controllers = engine::get_controllers();
+    $initialized = array();
+
+    foreach ($controllers as $c=> $location) {
+
+        $initialized[] = loadApplication( $c, $location );
     }
 
-    return arrayToObject($conf);
+    return $initialized;
+
 
 }
 

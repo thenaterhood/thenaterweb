@@ -30,6 +30,9 @@ class config{
 		# Sets up the empty array
 		$this->container = array();
 
+		# Configure the timezone
+		date_default_timezone_set('America/New_York');
+
 		# Configure whether or not thenaterweb should 
 		# use a database. This takes precedence over the 
 		# settings below, so a value of False will ignore the 
@@ -51,7 +54,7 @@ class config{
 		$this->container['db_error_level'] = 1;
 		
 		# Sets the directory for storing dynamically created files
-		$this->container['dynamic_directory'] =  'engine/var/dynamic';
+		$this->container['dynamic_directory'] =  NWEB_ROOT.'/var/dynamic';
 		
 		# Whether to save the dynamic files when they are generated.
 		# If this is turned off and no dynamic files have been 
@@ -73,7 +76,7 @@ class config{
 		
 		# The domain name of the site (note that this can be automatically
 		# determined if needed)
-		$this->container['site_domain'] = 'http://gatekeeper.thenaterhood.com';
+		$this->container['site_domain'] = 'http://localhost:8000';
 		
 		# The owner/author of the website, used in places where an author
 		# is needed, such as the atom feed.
@@ -84,7 +87,7 @@ class config{
 		# site.com/?id=home. ONLY enable this if your server allows you
 		# to do url rewriting, otherwise it won't work out well. Requires
 		# modifications to .htaccess as currently implemented.
-		$this->container['friendly_urls'] = True;
+		$this->container['friendly_urls'] = False;
 
 		# Sets which feed format to use when generating feeds. Valid
 		# options are 'atom' and 'rss'. Anything other than those will

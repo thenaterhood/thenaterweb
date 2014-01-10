@@ -1,8 +1,8 @@
 <?php 
 
-include_once GNAT_ROOT.'/lib/core_blog.php';
+include_once NWEB_ROOT.'/lib/core_blog.php';
 
-abstract class controllerBase{
+abstract class ControllerBase{
 
 	protected $settings;
 	protected $configuration;
@@ -48,11 +48,11 @@ abstract class controllerBase{
 	            
 	    }
 
-	    $this->settings = (array) arrayToObject($conf);
+	    $this->settings = (array) RecArrayToObject($conf);
 	    $this->settings['configFile'] = $path;
 
 	    if ( !array_key_exists( 'template', $this->settings ) )
-	    	$this->settings['template'] = GNAT_ROOT.'/config/template.d/generic_template.php';
+	    	$this->settings['template'] = NWEB_ROOT.'/config/template.d/generic_template.php';
 
 	}
 
@@ -100,7 +100,11 @@ abstract class controllerBase{
 	 * @return the item
 	 */
 	public function __get( $field ){
+                if ( $field == 'id'){
+                    return get_called_class();
+                } else {
 		return $this->settings[$field];
+                }
 	}
 
 	public function getPageData(){
@@ -124,6 +128,11 @@ abstract class controllerBase{
 	public function getPostList(){
 		return array();
 	}
+        
+        public function unauthorized(){
+            echo "403: You are not authorized to access this page.";
+            die();
+        }
 
 }
 

@@ -1,12 +1,12 @@
 <?php
 
-include GNAT_ROOT.'/lib/core_feed.php';
+include NWEB_ROOT.'/lib/core_feed.php';
 
 
 Header('Content-type: application/atom+xml');
 
 
-$session = new session( array('regen') );
+$session = request::get_sanitized_as_object( array('regen') );
 $config = new config();
 
 $feed = generateFeed( $blogdef->id, $blogdef->title, $blogdef->catchline, $session->regen, $blogdef->post_directory );

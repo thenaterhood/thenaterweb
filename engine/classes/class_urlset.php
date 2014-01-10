@@ -8,7 +8,7 @@
 /**
  * Include the required url class to use internally
  */
-include_once GNAT_ROOT.'/classes/class_url.php';
+include_once NWEB_ROOT.'/classes/class_url.php';
 
 /**
  * Defines a data object to contain an xml sitemap.
