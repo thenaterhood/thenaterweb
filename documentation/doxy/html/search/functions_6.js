@@ -8,7 +8,6 @@ var searchData=
   ['getall',['getAll',['../classDataAccessLayer.html#a30555ff6bb6936e13b152fdae3aebd3d',1,'DataAccessLayer']]],
   ['getattributevalues',['getAttributeValues',['../classDataAccessLayer.html#a8c8849ee005e0dcc6ffc6a33709db4ee',1,'DataAccessLayer']]],
   ['getconfigurables',['getConfigurables',['../classControllerBase.html#adf22b33f94d79eadbae786f31fdb4b8b',1,'ControllerBase']]],
-  ['getcontroller',['getController',['../classurlHandler.html#ac15274538beabbd91be8806e34a8d0a5',1,'urlHandler']]],
   ['getcontrollerid',['getControllerId',['../classurlHandler.html#a7791427f40a3a6bd741d03eb0273ebf0',1,'urlHandler']]],
   ['getfields',['getFields',['../classModelBase.html#a8e1e93de9f1c2541ac66777e5513f34a',1,'ModelBase']]],
   ['getinstance',['getInstance',['../classSessionMgr.html#a089318cf1224b6c02cc755aee63a1d9c',1,'SessionMgr']]],
