@@ -22,7 +22,7 @@ class urlHandlerTest extends PHPUnit_Framework_TestCase {
 
 		$_GET['url'] = 'page/foo/test/bar';
 
-		$urlHandlerInstance = new urlHandler();
+		$urlHandlerInstance = new UrlHandler();
 
 		$this->assertEquals( $urlHandlerInstance->getControllerId(), 'page' );
 		$this->assertEquals( $_GET['id'], 'foo' );
@@ -34,7 +34,7 @@ class urlHandlerTest extends PHPUnit_Framework_TestCase {
 
 		$_GET['url'] = 'page/foo/test/bar';
 
-		$urlHandlerInstance = new urlHandler();
+		$urlHandlerInstance = new UrlHandler();
 
 		$this->assertEquals( $urlHandlerInstance->getControllerId(), 'page' );
 
@@ -50,7 +50,7 @@ class urlHandlerTest extends PHPUnit_Framework_TestCase {
 
 		$_GET['url'] = 'page#$#$%$#$/foo/test/bar%@#($#$&&';
 
-		$urlHandlerInstance = new urlHandler();
+		$urlHandlerInstance = new UrlHandler();
 
 		$this->assertEquals( $urlHandlerInstance->getControllerId(), 'page' );
 		$this->assertEquals( $_GET['id'], 'foo' );

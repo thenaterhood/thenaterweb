@@ -23,7 +23,7 @@ include_once NWEB_ROOT.'/classes/class_redirect.php';
  * this class is primarly an interface to it that deals with the
  * conditional aspect.
  */
-class condRedirect extends redirect{
+class ConditionalRedirect extends Redirect{
 	
 	/**
 	 * @var $apply - whether or not the redirect needs to occur

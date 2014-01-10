@@ -5,7 +5,7 @@
  * handling some generic internal features such as 
  * error handling.
  */
-class engine{
+class Engine{
     
     private static $configuration;
     private static $CONFIG_LOADED = false;
@@ -16,7 +16,7 @@ class engine{
             
             if ( ! self::$CONFIG_LOADED ){
                 
-                self::$configuration = new config();
+                self::$configuration = new Config();
                 self::$CONFIG_LOADED = true;
                 
             }

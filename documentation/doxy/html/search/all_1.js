@@ -5,8 +5,8 @@ var searchData=
   ['addgroup',['addgroup',['../classauth.html#ab982268ed2adefb8cf986947b9751dab',1,'auth']]],
   ['addrelated',['addRelated',['../classModelBase.html#ac93115f1d4999b56db948a4097c978d0',1,'ModelBase']]],
   ['adduser',['adduser',['../classauth.html#a4d44da80906dcf985cd50ce4b154e86e',1,'auth']]],
-  ['apply',['apply',['../classcondRedirect.html#aeeb36f32e9bf27e34c5806efeb41d35a',1,'condRedirect\apply()'],['../classredirect.html#a7ebcebe7835af89c6b1a1f923a0721d9',1,'redirect\apply()']]],
-  ['article',['article',['../classarticle.html',1,'']]],
+  ['apply',['apply',['../classConditionalRedirect.html#a20b8041caca16a9d7c6d9fe07ec17a0d',1,'ConditionalRedirect\apply()'],['../classRedirect.html#a1b0db57bb048448e198664670c76e32f',1,'Redirect\apply()']]],
+  ['article',['Article',['../classArticle.html',1,'']]],
   ['as_5farray',['as_array',['../classModelBase.html#ae513caa9e2aa259e42e50003eb4de60a',1,'ModelBase']]],
   ['auth',['auth',['../classauth.html',1,'']]]
 ];

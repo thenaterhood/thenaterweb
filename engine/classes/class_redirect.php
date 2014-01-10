@@ -14,7 +14,7 @@
  * a redirect to another area of a website.
  * 
  */
-class redirect{
+class Redirect{
 	
 	/**
 	 * @var $origin - the page to redirect from

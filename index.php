@@ -55,7 +55,7 @@ $_INSTALLED_APPS = array(
         'blog'=>        'apps/blog'
 	);
 
-engine::setup_installed($_INSTALLED_APPS);
+Engine::setup_installed($_INSTALLED_APPS);
 
 /**
  * This array contains aliases for applications. 
@@ -79,20 +79,20 @@ $_APP_ALIASES = array(
     
         );
 
-engine::setup_aliases( $_APP_ALIASES );
+Engine::setup_aliases( $_APP_ALIASES );
 
 /**
  * Manage redirects to "friendly" URLs if the configuration
  * option is set.
  */
-if ( engine::get_option('friendly_urls') ){
-    $redirect = new condRedirect( '/?url', '/'.$_GET['url'], substr( engine::get_option('site_domain').request::meta('REQUEST_URI'), 7 ) );
+if ( Engine::get_option('friendly_urls') ){
+    $redirect = new ConditionalRedirect( '/?url', '/'.$_GET['url'], substr( Engine::get_option('site_domain').request::meta('REQUEST_URI'), 7 ) );
     $redirect->apply( 301 );
 }
 
 # Initialize the URL handler and use it to include 
 # the relevant controller from controllers.
-$urlHandler = new urlHandler();
+$urlHandler = new UrlHandler();
 $controller = $urlHandler->getControllerId();
 
 # Handle application aliases

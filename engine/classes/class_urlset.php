@@ -13,7 +13,7 @@ include_once NWEB_ROOT.'/classes/class_url.php';
 /**
  * Defines a data object to contain an xml sitemap.
  */
-class urlset {
+class Urlset {
 	
 	/**
 	 * @var $items - an array of url objects
@@ -37,7 +37,7 @@ class urlset {
 	 */
 	public function new_item($loc, $lastmod) {
 
-		array_push($this->items, new url($loc, $lastmod));
+		array_push($this->items, new Url($loc, $lastmod));
 	}
 	
 	/**

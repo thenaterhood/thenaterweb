@@ -2,7 +2,7 @@
 
 include_once NWEB_ROOT.'/classes/class_article.php';
 
-class mappedArticle extends article{
+class MappedArticle extends Article{
 	
 	function __construct( $map, $postFormat=False ){
 

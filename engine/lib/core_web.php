@@ -45,7 +45,7 @@ function pullContent( $preferred, $sectionUri='/', $articleUri='/' ){
 	}
 
 	$i = 0;
-	$article = new article( "", $sectionUri, $articleUri, False );
+	$article = new Article( "", $sectionUri, $articleUri, False );
 	while ( $i < count($preferred) && $article->getType() == "none" ){
 
 		if ( !strpos( $preferred[$i], '.' ) ){
@@ -57,7 +57,7 @@ function pullContent( $preferred, $sectionUri='/', $articleUri='/' ){
 			$file = substr( $preferred[$i], 0, strpos( $preferred[$i], '.')-1);
 		}
 
-		$article = new article( $file, $sectionUri, $articleUri, False );
+		$article = new Article( $file, $sectionUri, $articleUri, False );
 
 		$i++;
 
@@ -104,7 +104,7 @@ function getConfigOption($key){
         // phpunit tests to work as expected. Why is beyond 
         // me.
 	include_once NWEB_ROOT.'/classes/class_engine.php';
-	return engine::get_option($key);
+	return Engine::get_option($key);
 }
 	
 

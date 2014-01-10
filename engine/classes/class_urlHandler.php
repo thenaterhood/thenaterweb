@@ -15,7 +15,7 @@ include_once NWEB_ROOT.'/lib/core_blog.php';
 /**
  * A class for managing URL related data
  */
-class urlHandler{
+class UrlHandler{
 
 	private $url;
 	private $urlArray;

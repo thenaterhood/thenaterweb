@@ -14,7 +14,7 @@ class condRedirectTest extends PHPUnit_Framework_TestCase {
 
 	public function test_initialize(){
 
-		$redirect = new condRedirect( 'here', 'there', 'here' );
+		$redirect = new ConditionalRedirect( 'here', 'there', 'here' );
 
 		$this->assertEquals( $redirect->toHtml(True), 'here to <a href=\'there\'>there</a>.' );
 		$this->assertEquals( $redirect->view(), 'here to there' );
@@ -28,7 +28,7 @@ class condRedirectTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function test_301_apply(){
 
-		$redirect = new condRedirect( 'here', 'there', 'here' );
+		$redirect = new ConditionalRedirect( 'here', 'there', 'here' );
 		$redirect->apply(301);
 
 
@@ -39,7 +39,7 @@ class condRedirectTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function test_301_no_apply(){
 
-		$redirect = new condRedirect( 'here', 'here', 'here' );
+		$redirect = new ConditionalRedirect( 'here', 'here', 'here' );
 		$redirect->apply(301);
 
 
@@ -52,7 +52,7 @@ class condRedirectTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function test_302_apply(){
 
-		$redirect = new condRedirect( 'here', 'there', 'anywhere' );
+		$redirect = new ConditionalRedirect( 'here', 'there', 'anywhere' );
 		$redirect->apply(302);
 
 
@@ -64,7 +64,7 @@ class condRedirectTest extends PHPUnit_Framework_TestCase {
 	public function test_302_no_apply(){
 
 
-		$redirect = new condRedirect( 'here', 'here', 'here' );
+		$redirect = new ConditionalRedirect( 'here', 'here', 'here' );
 		$redirect->apply(302);
 
 

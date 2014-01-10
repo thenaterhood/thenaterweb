@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['tohtml',['toHtml',['../classredirect.html#a17326a08f9ee54def5ba1009a921b497',1,'redirect']]],
-  ['toxml',['toXml',['../classurl.html#a26bdef3d54b526a2bcb27dd7b89b1a1d',1,'url\toXml()'],['../classurlset.html#a6e17ff78d5019fde200589415759e596',1,'urlset\toXml()']]]
+  ['tohtml',['toHtml',['../classRedirect.html#a610648cb74203284297fcb5a46501a4d',1,'Redirect']]],
+  ['toxml',['toXml',['../classUrl.html#a998997990ccb4079da54002106ccd814',1,'Url\toXml()'],['../classUrlset.html#a20e3a3f19708cb691597dc3698c3c648',1,'Urlset\toXml()']]]
 ];

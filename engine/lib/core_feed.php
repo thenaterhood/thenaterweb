@@ -28,7 +28,7 @@ function generateFeed( $blogdef, $force_regen ){
 	$feedTitle = $blogdef->title;
 	$feedCatchline = $blogdef->catchline;
 
-	$atom = new feed( $feedTitle, $bloguri, $feedCatchline, date(DATE_ATOM) );
+	$atom = new Feed( $feedTitle, $bloguri, $feedCatchline, date(DATE_ATOM) );
 
 	$i = 0;
 	$postList = $blogdef->getPostList();

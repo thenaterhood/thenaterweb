@@ -14,7 +14,7 @@ include_once NWEB_ROOT.'/../settings.php';
  * @since 06/05/2013
  * @author Nate Levesque <public@thenaterhood.com>
  */
-class lock{
+class Lock{
 
 	/**
 	 * @var $file - the file to be locked
@@ -41,7 +41,7 @@ class lock{
 
 		$this->file = $file;
 
-		$config = new config();
+		$config = new Config();
 		$this->lockfile = $config->dynamic_directory.'/'.str_replace('/', '_', $file).'.lock';
 		unset( $config );
 
@@ -85,7 +85,7 @@ class lock{
 	 * Note that for this to be effective, everything must
 	 * actually observe locks.
 	 */
-	public function lock(){
+	public function Lock(){
 
 		$handle = fopen($this->lockfile, 'w');
 		fwrite( $handle, time() );

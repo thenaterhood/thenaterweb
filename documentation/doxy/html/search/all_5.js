@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['feed',['feed',['../classfeed.html',1,'']]],
+  ['feed',['Feed',['../classFeed.html',1,'']]],
   ['feeds',['feeds',['../classfeeds.html',1,'']]],
   ['file',['File',['../classFile.html',1,'']]],
   ['filter',['filter',['../classDataAccessLayer.html#a9e7909fa3cca801baa35ae6f06c02ee4',1,'DataAccessLayer']]],

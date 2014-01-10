@@ -14,7 +14,7 @@ include_once NWEB_ROOT.'/classes/class_dataMonger.php';
 /**
  * Represents a url object to store a sitemap url block
  */
-class url extends dataMonger{
+class Url extends dataMonger{
 
 	/**
 	 * Creates the data object to contain the atom feed item.

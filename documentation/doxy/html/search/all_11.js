@@ -17,5 +17,5 @@ var searchData=
   ['stack',['stack',['../classErrorStack.html#a20d6f809dbcb58224f5d4fc55b056660',1,'ErrorStack']]],
   ['startbatch',['startBatch',['../classDatabase.html#adc4c49ce3621fc29590e18c43bc13e27',1,'Database']]],
   ['startsession',['startSession',['../classSessionMgr.html#a54067567a91677f592751bcc3096b175',1,'SessionMgr']]],
-  ['stdclassarticle',['stdClassArticle',['../classstdClassArticle.html',1,'']]]
+  ['stdclassarticle',['StdClassArticle',['../classStdClassArticle.html',1,'']]]
 ];

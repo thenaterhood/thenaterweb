@@ -14,7 +14,7 @@
  * options.  All variables are accessible only internally
  * to keep things fairly clean.
  */
-class config{
+class Config{
 	
 	/**
 	 * variables are documented where they are set lower in the code.

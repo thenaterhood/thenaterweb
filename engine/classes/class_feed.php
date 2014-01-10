@@ -13,7 +13,7 @@ include_once 'class_dataMonger.php';
  * Defines a data object to contain an atom feed as items
  * are added and the feed is updated then returned
  */
-class feed extends dataMonger{
+class Feed extends dataMonger{
 	
 	/**
 	 * @var $items - an array of article instances

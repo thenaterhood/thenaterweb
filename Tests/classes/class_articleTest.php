@@ -30,7 +30,7 @@ class articleTest extends PHPUnit_Framework_TestCase {
 
 	public function test_read_json(){
 
-		$article = new article( NWEB_ROOT.'/../Tests/test-data/article', 'test/uri' );
+		$article = new Article( NWEB_ROOT.'/../Tests/test-data/article', 'test/uri' );
 
 		$this->assertEquals( $article->title, 'Test' );
 		$this->assertEquals( $article->tags, 'foo,bar' );
@@ -42,7 +42,7 @@ class articleTest extends PHPUnit_Framework_TestCase {
 
 	public function test_read_nonexistant(){
 
-		$article = new article( 'Tests/test-data/foo', 'test/uri' );
+		$article = new Article( 'Tests/test-data/foo', 'test/uri' );
 
 		$this->assertEquals( $article->title, 'Holy 404, Batman!' );
 

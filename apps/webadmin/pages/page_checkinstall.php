@@ -6,7 +6,7 @@ echo '<h4>Installed Apps</h4>';
 
 $found = array();
 
-$controllers = engine::get_controllers();
+$controllers = Engine::get_controllers();
 print '<table class="table table-striped">';
 print '<th>Name</th><th>Install Location</th>';
 foreach ($controllers as $blogid=> $location) {

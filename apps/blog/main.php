@@ -280,7 +280,7 @@ class blog extends ControllerBase{
 
 		$titleData['titles'] = $titleArray;
 
-		$lock = new lock( getConfigOption('dynamic_directory' ).'/'.$this->settings['id'].'_titlecache.json' );
+		$lock = new Lock( getConfigOption('dynamic_directory' ).'/'.$this->settings['id'].'_titlecache.json' );
 
 		if ( ! $lock->isLocked() ){
 
@@ -364,7 +364,7 @@ class blog extends ControllerBase{
 		$tagData['tags'] = $tagArray;
 		$tagData['posts'] = $postList;
 
-		$lock = new lock( $tagCacheFile );
+		$lock = new Lock( $tagCacheFile );
 
 		if ( ! $lock->isLocked() ){
 

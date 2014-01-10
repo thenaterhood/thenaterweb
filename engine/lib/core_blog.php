@@ -80,7 +80,7 @@ function loadApplication( $id, $location ){
 
 function load_all_applications(){
 
-    $controllers = engine::get_controllers();
+    $controllers = Engine::get_controllers();
     $initialized = array();
 
     foreach ($controllers as $c=> $location) {

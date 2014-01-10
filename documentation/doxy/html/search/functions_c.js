@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['new_5fitem',['new_item',['../classfeed.html#a470f18a51bf971b23d3ff2881bbb58a0',1,'feed\new_item()'],['../classurlset.html#a6d8beb22e64a52dd84e44c42424bf16a',1,'urlset\new_item()']]],
+  ['new_5fitem',['new_item',['../classFeed.html#a25e3f4d4cd7be52667a5cf262158ddd3',1,'Feed\new_item()'],['../classUrlset.html#a5dca56cce7a2ddb4b0a213387e5bb4f6',1,'Urlset\new_item()']]],
   ['numrows',['numrows',['../classDatabase.html#a33362cec48e9607bbf635017b10e11c4',1,'Database']]]
 ];

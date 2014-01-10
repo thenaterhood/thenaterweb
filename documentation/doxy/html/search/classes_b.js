@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['url',['url',['../classurl.html',1,'']]],
-  ['urlhandler',['urlHandler',['../classurlHandler.html',1,'']]],
-  ['urlset',['urlset',['../classurlset.html',1,'']]]
+  ['url',['Url',['../classUrl.html',1,'']]],
+  ['urlhandler',['UrlHandler',['../classUrlHandler.html',1,'']]],
+  ['urlset',['Urlset',['../classUrlset.html',1,'']]]
 ];

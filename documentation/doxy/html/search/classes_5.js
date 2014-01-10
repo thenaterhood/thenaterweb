@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['lock',['lock',['../classlock.html',1,'']]]
+  ['lock',['Lock',['../classLock.html',1,'']]]
 ];

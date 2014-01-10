@@ -23,7 +23,7 @@ include_once NWEB_ROOT.'/lib/core_web.php';
 * for displaying to a page, and atom format for use in generating
 * an atom feed.
 */
-class article extends dataMonger{
+class Article extends dataMonger{
 
 	private $blogurl;
 	protected $usePostFormat;

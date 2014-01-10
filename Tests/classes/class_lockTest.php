@@ -18,7 +18,7 @@ class lockTest extends PHPUnit_Framework_TestCase {
 
 	public function test_create_lock_file_exists(){
 
-		$lock = new lock( 'index.php' );
+		$lock = new Lock( 'index.php' );
 
 		$this->assertFalse( $lock->isLocked() );
 
@@ -27,14 +27,14 @@ class lockTest extends PHPUnit_Framework_TestCase {
 
 	public function test_create_lock_file_nonexist(){
 
-		$lock = new lock( 'NotReallyAFile' );
+		$lock = new Lock( 'NotReallyAFile' );
 
 		$this->assertFalse( $lock->isLocked() );
 	}
 
 	public function test_lock_file(){
 
-		$lock = new lock( 'index.php' );
+		$lock = new Lock( 'index.php' );
 
 		$this->assertFalse( $lock->isLocked() );
 		$lock->lock();
@@ -51,14 +51,14 @@ class lockTest extends PHPUnit_Framework_TestCase {
 
 	public function test_lock_finds_lock(){
 
-		$lock = new lock( 'index.php' );
+		$lock = new Lock( 'index.php' );
 
 		$this->assertFalse( $lock->isLocked() );
 		$lock->lock();
 
 		$this->assertTrue( $lock->isLocked() );
 
-		$lock2 = new lock('index.php');
+		$lock2 = new Lock('index.php');
 
 		$this->assertTrue( $lock2->isLocked() );
 
@@ -71,7 +71,7 @@ class lockTest extends PHPUnit_Framework_TestCase {
 		fwrite( $handle, time()-240 );
 		fclose( $handle );
 
-		$lock = new lock( 'index.php' );
+		$lock = new Lock( 'index.php' );
 		$this->assertFalse( $lock->isLocked() );
 
 	}

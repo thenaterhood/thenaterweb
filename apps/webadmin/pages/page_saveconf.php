@@ -7,7 +7,7 @@
 $updatedConf = $_POST['content'];
 $confFile = $_POST['rcfile'];
 
-$lock = new lock( $confFile );
+$lock = new Lock( $confFile );
 
 if ( is_writable( $confFile ) && !$lock->isLocked() ){
 

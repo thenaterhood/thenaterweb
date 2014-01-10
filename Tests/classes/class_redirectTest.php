@@ -15,7 +15,7 @@ class redirectTest extends PHPUnit_Framework_TestCase {
 
 	public function test_initialize(){
 
-		$redirect = new redirect( 'here', 'there' );
+		$redirect = new Redirect( 'here', 'there' );
 
 		$this->assertEquals( $redirect->toHtml(True), 'here to <a href=\'there\'>there</a>.' );
 		$this->assertEquals( $redirect->view(), 'here to there' );
@@ -29,7 +29,7 @@ class redirectTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function test_301_apply(){
 
-		$redirect = new redirect( 'here', 'there' );
+		$redirect = new Redirect( 'here', 'there' );
 		$redirect->apply(301);
 
 
@@ -41,7 +41,7 @@ class redirectTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function test_302_apply(){
 
-		$redirect = new redirect( 'here', 'there' );
+		$redirect = new Redirect( 'here', 'there' );
 		$redirect->apply(302);
 
 

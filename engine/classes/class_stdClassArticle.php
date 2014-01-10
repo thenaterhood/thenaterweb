@@ -2,7 +2,7 @@
 
 include_once NWEB_ROOT.'/classes/class_article.php';
 
-class stdClassArticle extends article{
+class StdClassArticle extends Article{
 	
 	function __construct( $stdClass ){
 

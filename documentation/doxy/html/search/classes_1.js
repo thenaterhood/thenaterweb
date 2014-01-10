@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['condredirect',['condRedirect',['../classcondRedirect.html',1,'']]],
-  ['config',['config',['../classconfig.html',1,'']]],
+  ['conditionalredirect',['ConditionalRedirect',['../classConditionalRedirect.html',1,'']]],
+  ['config',['Config',['../classConfig.html',1,'']]],
   ['controllerbase',['ControllerBase',['../classControllerBase.html',1,'']]]
 ];

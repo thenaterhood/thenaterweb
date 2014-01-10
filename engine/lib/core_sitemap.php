@@ -27,7 +27,7 @@
  */
 function createSitemap( $files ){
 
-	$sitemap = new urlset();
+	$sitemap = new Urlset();
 
 	
 	foreach ( $files as $file => $uri ) {
