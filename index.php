@@ -86,7 +86,7 @@ engine::setup_aliases( $_APP_ALIASES );
  * option is set.
  */
 if ( engine::get_option('friendly_urls') ){
-    $redirect = new condRedirect( '/?url', '/'.$_GET['url'], substr( engine::get_option('site_domain'), 7 ) );
+    $redirect = new condRedirect( '/?url', '/'.$_GET['url'], substr( engine::get_option('site_domain').request::meta('REQUEST_URI'), 7 ) );
     $redirect->apply( 301 );
 }
 
