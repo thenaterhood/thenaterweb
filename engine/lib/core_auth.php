@@ -4,6 +4,7 @@ include_once NWEB_ROOT.'/lib/core_redirect.php';
 
 function auth_user( $toPage='/', $require_groups=array() ){
     
+    
         if ( !is_array($require_groups) ){
             $array = array();
             $array[] = $require_groups;
@@ -29,7 +30,9 @@ function auth_user( $toPage='/', $require_groups=array() ){
 
             foreach ($require_groups as $g) {
                 
-                if ( !in_array($g, $groups) ){
+                $nwGroup = $dal->get('nwGroup', 'name', $g);
+                
+                if ( !in_array($nwGroup, $groups) ){
                     $validSession = False;
                 }
 
