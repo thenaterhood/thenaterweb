@@ -128,6 +128,11 @@ abstract class ControllerBase{
 	public function getPostList(){
 		return array();
 	}
+        
+        public function unauthorized(){
+            echo "403: You are not authorized to access this page.";
+            die();
+        }
 
 }
 

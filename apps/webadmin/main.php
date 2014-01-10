@@ -1,5 +1,6 @@
 <?php
 include NWEB_ROOT.'/lib/core_auth.php';
+include_once NWEB_ROOT.'/lib/builtins/auth/models.php';
 
 
 class webadmin extends ControllerBase{
@@ -20,7 +21,7 @@ class webadmin extends ControllerBase{
 
 	public function __call( $method, $args ){
 
-		$isAuthed = auth_user( getConfigOption('site_domain').'/webadmin' );
+		$isAuthed = auth_user( getConfigOption('site_domain').'/webadmin', 'nwadmin' );
 
 		if ( $isAuthed ){
 			$this->pageData['session'] = request::get_sanitized_as_object( 
@@ -38,13 +39,15 @@ class webadmin extends ControllerBase{
 			$pageData = $this->pageData;
 
 			render_php_template( $this->settings['template'], $pageData );
-		}
+		} else {
+                    $this->unauthorized();
+                }
 
 	}
 
 	public function home(){
 
-		$isAuthed = auth_user( getConfigOption('site_domain').'/webadmin' );
+		$isAuthed = auth_user( getConfigOption('site_domain').'/webadmin', 'nwadmin' );
 
 		if ( $isAuthed ){
 			$this->pageData['session'] = request::get_sanitized_as_object( 
@@ -63,7 +66,9 @@ class webadmin extends ControllerBase{
 			render_php_template( $this->settings['template'], $pageData );
 
 
-		}
+		} else {
+                    $this->unauthorized();
+                }
 
 	}
 

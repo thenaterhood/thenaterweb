@@ -36,8 +36,15 @@ class auth extends ControllerBase{
 
 			$this->check_login( request::sanitized_post('username'), request::post('pass') ) ){
 
-			log_user_in( request::sanitized_post('username') );
-
+                        $user = $this->dal->get('nwUser', 'username', request::sanitized_post('username'));
+                        if (is_null($user)){
+                            $user->id = -1;
+                            $user->username = request::sanitized_post('username');
+                            
+                        }
+                        
+			log_user_in( $user );
+                        
 			$redir_to = $sessionmgr->toPage;
 			unset( $sessionmgr->toPage );
 
@@ -74,15 +81,20 @@ class auth extends ControllerBase{
 	 */
 	public function managegroup(){
 
-		auth_user( getConfigOption('site_domain').'/?url=auth/managegroup' );
+		if ( auth_user( getConfigOption('site_domain').'/?url=auth/managegroup', 'nwadmin' ) ){
+                    
+                
 
-		$pageData = array();
-		$pageData['groups'] = $this->dal->getAll( 'nwGroup' );
-		$pageData['content'] = pullContent( AUTH_ROOT.'/pages/managegroup');
-		$pageData['static'] = AUTH_ROOT.'/pages';
-		$pageData['title'] = 'Manage Groups';
+                    $pageData = array();
+                    $pageData['groups'] = $this->dal->getAll( 'nwGroup' );
+                    $pageData['content'] = pullContent( AUTH_ROOT.'/pages/managegroup');
+                    $pageData['static'] = AUTH_ROOT.'/pages';
+                    $pageData['title'] = 'Manage Groups';
 
-		render_php_template( $this->settings['template'], $pageData );
+                    render_php_template( $this->settings['template'], $pageData );
+                } else {
+                    $this->unauthorized();
+                }
 
 
 	}
@@ -92,7 +104,9 @@ class auth extends ControllerBase{
 	 */
 	public function addgroup(){
 
-		auth_user( getConfigOption('site_domain').'/?url=auth/adduser' );
+		if ( ! auth_user( getConfigOption('site_domain').'/?url=auth/adduser', 'nwadmin' ) ){
+                    $this->unauthorized();
+                }
 
 		$sessionmgr = SessionMgr::getInstance();
 
@@ -140,7 +154,9 @@ class auth extends ControllerBase{
 	 */
 	public function deluser(){
 
-		auth_user( getConfigOption('site_domain').'/?url=auth/manage' );
+		if ( ! auth_user( getConfigOption('site_domain').'/?url=auth/manage', 'nwadmin' ) ){
+                    $this->unauthorized();
+                }
 
 		$sessionmgr = SessionMgr::getInstance();
 
@@ -166,7 +182,9 @@ class auth extends ControllerBase{
 	 */
 	public function changeuser(){
 
-		auth_user( getConfigOption('site_domain').'/?url=auth/adduser' );
+		if ( ! auth_user( getConfigOption('site_domain').'/?url=auth/adduser', 'nwadmin' ) ){
+                    $this->unauthorized();
+                }
 
 		$sessionmgr = SessionMgr::getInstance();
 
@@ -243,7 +261,9 @@ class auth extends ControllerBase{
 	 */
 	public function adduser(){
 
-		auth_user( getConfigOption('site_domain').'/?url=auth/adduser' );
+		if ( ! auth_user( getConfigOption('site_domain').'/?url=auth/adduser', 'nwadmin' ) ){
+                    $this->unauthorized();
+                }
 
 		$sessionmgr = SessionMgr::getInstance();
 
@@ -295,7 +315,9 @@ class auth extends ControllerBase{
 	 */
 	public function manage(){
 
-		auth_user( getConfigOption('site_domain').'/?url=auth/manage' );
+		if ( ! auth_user( getConfigOption('site_domain').'/?url=auth/manage', 'nwadmin' ) ){
+                    $this->unauthorized();
+                }
 
 		$pageData = array();
 		$pageData['users'] = $this->dal->getAll( 'nwUser' );
@@ -393,7 +415,8 @@ class auth extends ControllerBase{
 			$hashedpasswd = "$"."apr1"."$".$salt."$".$tmp;
 
 			if (($user == $part[0]) && ($hashedpasswd == $part[1])){
-
+                                $sessionMgr = new SessionMgr();
+                                $sessionMgr->htpasswd = True;
 				return True;
 
 			} 

@@ -503,7 +503,9 @@ class ModelBase{
 		
 		$data = array();
 		foreach ($this->fields as $name => $value) {
+                    if(property_exists($value, 'data')){
 			$data[$name] = $value->data;
+                    }
 		}
 
 		$data['id'] = $this->id;

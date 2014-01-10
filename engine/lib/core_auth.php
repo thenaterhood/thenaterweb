@@ -2,21 +2,44 @@
 
 include_once NWEB_ROOT.'/lib/core_redirect.php';
 
-function auth_user( $toPage='/' ){
+function auth_user( $toPage='/', $require_groups=array() ){
+    
+        if ( !is_array($require_groups) ){
+            $array = array();
+            $array[] = $require_groups;
+            $require_groups = $array;
+        }
 
 	$sessionmgr = SessionMgr::getInstance();
 
 	if( isset($sessionmgr->valid) && $sessionmgr->valid ){
-		return true;
+		$validSession = True;
 
 	} else {
 		$sessionmgr->toPage = $toPage;
 		$redirect = new redirect( $toPage, getConfigOption('site_domain').'/?url=auth/login' );
 		$redirect->apply( 302 );
 	}
+        
+        
+        if ( $sessionmgr->uid > -1 ){
+            $dal = new DataAccessLayer();
+            $user = $dal->get('nwUser', 'id', $sessionmgr->uid);
+            $groups = $user->groups;
 
+            foreach ($require_groups as $g) {
+                
+                if ( !in_array($g, $groups) ){
+                    $validSession = False;
+                }
 
-	return false;
+            }
+        
+        }
+
+        
+
+	return $validSession;
 
 
 }
@@ -26,7 +49,8 @@ function log_user_in( $user ){
 	$sessionmgr = SessionMgr::getInstance();
 
 	$sessionmgr->valid = 1;
-	$sessionmgr->user = $user;
+	$sessionmgr->user = $user->username;
+        $sessionmgr->uid = $user->id;
 
 
 }
