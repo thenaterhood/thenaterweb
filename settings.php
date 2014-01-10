@@ -33,10 +33,6 @@ class config{
 		# Configure the timezone
 		date_default_timezone_set('America/New_York');
 
-		# Configure a salt for the passwords. DO NOT share this. 
-		# Must be at least 22 characters long
-		$this->container['pw_salt'] = 'nweb12345679101112131415';
-
 		# Configure whether or not thenaterweb should 
 		# use a database. This takes precedence over the 
 		# settings below, so a value of False will ignore the 

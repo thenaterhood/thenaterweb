@@ -8,21 +8,21 @@ class nwUser extends modelBase{
 		$this->addfield( 'first_name', 	Model::CharField( array( 'length'=>100) ) );
 		$this->addfield( 'last_name', 	Model::CharField( array( 'length'=>100) ) );
 		$this->addfield( 'email', 		Model::CharField( array( 'length'=>100) ) );
-		$this->addfield( 'password',	Model::CharField( array( 'length'=>60) ) );
+		$this->addfield( 'password',	Model::CharField( array( 'length'=>255) ) );
 		$this->addfield( 'groups',		Model::ManyToMany( array( 'model'=>'nwGroup', 'related_name'=>'auth_groups') ) );
 		$this->addfield( 'active',		Model::BooleanField() );
 
 	}
 
 	public function set_password( $newpass ){
-		$this->fields['password']->data = password_hash( $newpass, PASSWORD_BCRYPT, array('salt'=>getConfigOption('pw_salt') ) );
+		$this->fields['password']->data = password_hash( $newpass, PASSWORD_DEFAULT );
 	}
 
 	public function check_password( $password ){
 
-		$hash = password_hash( $password, PASSWORD_BCRYPT, array('salt'=>getConfigOption('pw_salt') ) );
+		$hash = password_hash( $password, PASSWORD_DEFAULT );
 
-		return ( $hash == $this->fields['password']->data );
+		return ( password_verify( $password, $hash ) );
 	}
 
 	public function auth_user( $pass ){
