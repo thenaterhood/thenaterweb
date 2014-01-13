@@ -15,14 +15,26 @@ class nwUser extends ModelBase{
 	}
 
 	public function set_password( $newpass ){
-		$this->fields['password']->data = password_hash( $newpass, PASSWORD_DEFAULT );
+            
+                if (function_exists('password_hash')){
+                    $this->fields['password']->data = password_hash( $newpass, PASSWORD_DEFAULT );
+                } else {
+                    $this->fields['password']->data = crypt($newpass);
+                }
 	}
 
 	public function check_password( $password ){
 
-		$hash = password_hash( $password, PASSWORD_DEFAULT );
+                if ( function_exists('password_verify')){
+                    $hash = password_hash( $password, PASSWORD_DEFAULT );
+                    return ( password_verify( $password, $hash ) );
 
-		return ( password_verify( $password, $hash ) );
+                } else {
+                    $hashed_password = $this->fields['password']->data;
+                    return (crypt($password, $hashed_password) == $hashed_password);
+                    
+                }
+
 	}
 
 	public function auth_user( $pass ){
