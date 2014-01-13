@@ -4,6 +4,9 @@
  * and miscellaneous functions into a single includable
  * file.
  */
+
+include_once NWEB_ROOT.'/classes/class_engine.php';
+
 DEFINE ('DB_TYPE',      Engine::get_option( 'engine_storage_db' ) );
 DEFINE ('DB_USER',      Engine::get_option( 'db_user' ) );
 DEFINE ('DB_PORT',      Engine::get_option( 'db_port' ) );
