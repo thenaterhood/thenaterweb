@@ -24,6 +24,7 @@ function auth_user( $toPage='/', $require_groups=array() ){
         
         
         if ( $sessionmgr->uid > -1 ){
+            include_once NWEB_ROOT.'/lib/builtins/auth/models.php';
             $dal = new DataAccessLayer();
             $user = $dal->get('nwUser', 'id', $sessionmgr->uid);
             $groups = $user->groups;
