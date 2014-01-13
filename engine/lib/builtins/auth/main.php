@@ -30,6 +30,7 @@ class auth extends ControllerBase{
 	public function login(){
 
 		$sessionmgr = SessionMgr::getInstance();
+                $sessionmgr->noRedirect = True;
 
 
 		if ( $sessionmgr->check_csrf('post') && 
@@ -54,7 +55,7 @@ class auth extends ControllerBase{
 			$this->pageData['title'] = "Naterweb Authentication";
 			$this->pageData['static'] = AUTH_ROOT.'/pages';
 			$this->pageData['to'] = $redir_to;
-
+                        
 			render_php_template( $this->settings['template'], $this->pageData );
 
 
@@ -80,10 +81,12 @@ class auth extends ControllerBase{
 	 * be added.
 	 */
 	public function managegroup(){
+            
 
 		if ( auth_user( getConfigOption('site_domain').'/?url=auth/managegroup', 'nwadmin' ) ){
                     
-                
+                    $sess = SessionMgr::getInstance();
+                    $sess->noRedirect = True;
 
                     $pageData = array();
                     $pageData['groups'] = $this->dal->getAll( 'nwGroup' );
@@ -109,6 +112,7 @@ class auth extends ControllerBase{
                 }
 
 		$sessionmgr = SessionMgr::getInstance();
+                $sessionmgr->noRedirect = True;
 
 
 		if ( $sessionmgr->check_csrf('post') && 
@@ -159,6 +163,7 @@ class auth extends ControllerBase{
                 }
 
 		$sessionmgr = SessionMgr::getInstance();
+                $sessionmgr->noRedirect = True;
 
 		$user = $this->dal->get( 'nwUser', 'id', request::sanitized_get( 'uid') );
 
@@ -187,6 +192,7 @@ class auth extends ControllerBase{
                 }
 
 		$sessionmgr = SessionMgr::getInstance();
+                $sessionmgr->noRedirect = True;
 
 
 		if ( $sessionmgr->check_csrf('post') && 
@@ -266,6 +272,7 @@ class auth extends ControllerBase{
                 }
 
 		$sessionmgr = SessionMgr::getInstance();
+                $sessionmgr->noRedirect = True;
 
 
 		if ( $sessionmgr->check_csrf('post') && 

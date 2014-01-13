@@ -81,14 +81,18 @@ $_APP_ALIASES = array(
 
 engine::setup_aliases( $_APP_ALIASES );
 
+$sessionmgr = SessionMgr::getInstance();
+
 /**
  * Manage redirects to "friendly" URLs if the configuration
  * option is set.
  */
-if ( engine::get_option('friendly_urls') ){
-    $redirect = new condRedirect( '/?url', '/'.$_GET['url'], substr( engine::get_option('site_domain').request::meta('REQUEST_URI'), 7 ) );
+if ( engine::get_option('friendly_urls') && ! $sessionmgr->noRedirect ){
+    $redirect = new ConditionalRedirect( '/?url', '/'.$_GET['url'], substr( engine::get_option('site_domain').request::meta('REQUEST_URI'), 7 ) );
     $redirect->apply( 301 );
 }
+
+$sessionmgr->noRedirect = False;
 
 # Initialize the URL handler and use it to include 
 # the relevant controller from controllers.
