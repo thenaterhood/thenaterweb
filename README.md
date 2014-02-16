@@ -1,6 +1,8 @@
 3.0.1+0
 
-^ Current version number above ^
+^ Current production version number above ^
+
+Master: [![Build Status](https://travis-ci.org/thenaterhood/thenaterweb.png?branch=master)](https://travis-ci.org/thenaterhood/thenaterweb)
 
 Thenaterweb
 ===================
