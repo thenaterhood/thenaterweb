@@ -6,5 +6,3 @@ if ( !defined("NWEB_ROOT")){
 
 include_once NWEB_ROOT.'/lib/core_blog.php';
 include_once NWEB_ROOT.'/lib/core_redirect.php';
-include_once 'phpunit.phar';
-
