@@ -139,7 +139,8 @@ abstract class ControllerBase{
     	echo "User-agent: * \n";
     	echo "Allow: / \n";
     	echo "\n";
-    	echo "Sitemap: " . Engine::get_option( 'site_domain' ) . '/sitemaps/' . get_called_class();
+    	echo "Sitemap: " . Engine::get_option( 'site_domain' ) . '/sitemaps/' . get_called_class() + "\n";
+    	echo "Sitemap: " . Engine::get_option( 'site_domain' ) . '/feeds/' . get_called_class();
     }
 
 }
