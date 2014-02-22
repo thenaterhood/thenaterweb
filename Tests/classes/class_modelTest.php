@@ -1,5 +1,4 @@
 <?php 
-include_once 'phpunit.phar';
 
 /**
  * An empty test model so that we can fool anything

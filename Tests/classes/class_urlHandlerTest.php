@@ -1,5 +1,4 @@
 <?php 
-include_once 'phpunit.phar';
 
 class urlHandlerTest extends PHPUnit_Framework_TestCase {
 

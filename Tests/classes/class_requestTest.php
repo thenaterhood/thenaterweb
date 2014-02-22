@@ -1,5 +1,4 @@
 <?php
-include_once 'phpunit.phar';
 
 /**
  * This implicitly tests the VarGetter and sanitation 
