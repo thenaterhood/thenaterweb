@@ -98,6 +98,8 @@ $sessionmgr->noRedirect = False;
 $urlHandler = new UrlHandler();
 $controller = $urlHandler->getControllerId();
 
+define( 'REQUESTED_NAME', $controller );
+
 # Handle application aliases
 if (array_key_exists($controller, $_APP_ALIASES)){
     $controller = $_APP_ALIASES[$controller];
@@ -122,7 +124,7 @@ if (array_key_exists($controller, $_INSTALLED_APPS) ){
 
 }
 
-$id = request::variable('id');
+$id = preg_replace("/[^a-zA-Z0-9\s]/", "", request::variable('id'));
 
 include $approot.'/main.php';
 

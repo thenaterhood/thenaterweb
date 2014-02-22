@@ -132,7 +132,15 @@ abstract class ControllerBase{
         public function unauthorized(){
             echo "403: You are not authorized to access this page.";
             die();
-        }
+    }
+
+    public function robotstxt(){
+    	header("Content-Type: text/plain");
+    	echo "User-agent: * \n";
+    	echo "Allow: / \n";
+    	echo "\n";
+    	echo "Sitemap: " . Engine::get_option( 'site_domain' ) . '/sitemaps/' . get_called_class();
+    }
 
 }
 
