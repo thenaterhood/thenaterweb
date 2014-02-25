@@ -20,7 +20,11 @@ documentation.
 
 License
 ------------------
-Licensed under the GPLv2. See license.txt for full license text.
+Licensed under the BSD License. See LICENSE for full license text.
+
+Although not required by the license terms, please consider contributing 
+back, offering feedback, or simply dropping a line to let Thenaterweb 
+contributers know that you find it useful.
 
 
 Project Brief
