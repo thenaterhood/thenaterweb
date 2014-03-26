@@ -1,6 +1,7 @@
 <?php
 
 include_once NWEB_ROOT.'/lib/core_redirect.php';
+include_once NWEB_ROOT.'/lib/builtins/auth/models.php';
 
 function auth_user( $toPage='/', $require_groups=array() ){
     
