@@ -25,7 +25,7 @@ class Blogpost extends ModelBase{
 		$asArray = $this->as_array();
 
 		$article = new MappedArticle( $asArray, True );
-		$article->link = $bloguri.'/read/'.$article->nodeid.'.htm';
+		$article->link = getConfigOption('site_domain').'/'.$bloguri.'/read/'.$article->nodeid.'.htm';
 		$article->date = date( "F j, Y, g:i a", strtotime($asArray['datestamp']) );
 		return $article;
 	}

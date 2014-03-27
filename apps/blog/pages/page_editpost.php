@@ -32,7 +32,7 @@ if ( property_exists($page, 'isNew') && $page->isNew ){
 	if ( $page->isNew ){
 		print getConfigOption('site_domain').'/?url='.$page->id.'/savepost'; 
 	}else {
-		print getConfigOption('site_domain').'/?url='.$page->id.'/updatepost/node/'.$post->nodeid; 
+		print getConfigOption('site_domain').'/?url='.$page->id.'/updatepost/node/'; 
 
 	}
 
