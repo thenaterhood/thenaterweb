@@ -14,7 +14,7 @@ define("NWEB_ROOT", "engine");
 /**
  * Enables or disables debug mode.
  */
-define("DEBUG", True);
+define("DEBUG", False);
 
 if ( DEBUG ){
 	error_reporting(E_ALL);
@@ -47,7 +47,6 @@ include_once NWEB_ROOT.'/lib/core_redirect.php';
  * added to this array will route to a 404 error page.
  */
 $_INSTALLED_APPS = array( 
-	'feeds'=>       NWEB_ROOT.'/lib/builtins/feeds', 
 	'sitemaps'=>    NWEB_ROOT.'/lib/builtins/sitemaps',
 	'auth'=>        NWEB_ROOT.'/lib/builtins/auth',
         'page'=>        NWEB_ROOT.'/lib/builtins/simplepage',
@@ -68,13 +67,16 @@ Engine::setup_installed($_INSTALLED_APPS);
  * an app to handle common typos or things like that. The 
  * builtin apps are aliased so that both the plural and 
  * non-plural forms of their names will work, as 
- * an example.
+ * an example. Some applications may allow for different 
+ * functionality based on the alias used, as the alias 
+ * requested (REQUESTED_NAME) is stored and accessible 
+ * to applications.
  */
 $_APP_ALIASES = array(
     
         'pages'=>       'page',
-        'feed'=>        'feeds',
-        'sitemap'=>     'sitemaps'
+        'sitemap'=>     'sitemaps',
+        'devrants' => 	'blog'
     
     
         );
