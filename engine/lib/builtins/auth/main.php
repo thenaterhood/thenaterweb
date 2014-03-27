@@ -84,20 +84,21 @@ class auth extends ControllerBase{
             
 
 		if ( auth_user( getConfigOption('site_domain').'/?url=auth/managegroup', 'nwadmin' ) ){
-                    
-                    $sess = SessionMgr::getInstance();
-                    $sess->noRedirect = True;
+            
+            $sess = SessionMgr::getInstance();
+            $sess->noRedirect = True;
+            $pageData = array();
+            $pageData['groups'] = $this->dal->getAll( 'nwGroup' );
+            $pageData['content'] = pullContent( AUTH_ROOT.'/pages/managegroup');
+            $pageData['static'] = AUTH_ROOT.'/pages';
+            $pageData['title'] = 'Manage Groups';
 
-                    $pageData = array();
-                    $pageData['groups'] = $this->dal->getAll( 'nwGroup' );
-                    $pageData['content'] = pullContent( AUTH_ROOT.'/pages/managegroup');
-                    $pageData['static'] = AUTH_ROOT.'/pages';
-                    $pageData['title'] = 'Manage Groups';
+            render_php_template( $this->settings['template'], $pageData );
+        } else {
 
-                    render_php_template( $this->settings['template'], $pageData );
-                } else {
-                    $this->unauthorized();
-                }
+            $this->unauthorized();
+        }
+
 
 
 	}
@@ -108,15 +109,15 @@ class auth extends ControllerBase{
 	public function addgroup(){
 
 		if ( ! auth_user( getConfigOption('site_domain').'/?url=auth/adduser', 'nwadmin' ) ){
-                    $this->unauthorized();
-                }
+            $this->unauthorized();
+        }
 
 		$sessionmgr = SessionMgr::getInstance();
-                $sessionmgr->noRedirect = True;
+        $sessionmgr->noRedirect = True;
 
 
 		if ( $sessionmgr->check_csrf('post') && 
-			 ! $this->dal->get('nwGroup', 'name', request::sanitized_post('name') ) ){
+			! $this->dal->get('nwGroup', 'name', request::sanitized_post('name') ) ){
 
 
 
@@ -179,6 +180,10 @@ class auth extends ControllerBase{
 
 
 
+	}
+
+	public function changegroup(){
+		print 'not implemented';
 	}
 
 
