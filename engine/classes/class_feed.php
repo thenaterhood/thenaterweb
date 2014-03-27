@@ -33,7 +33,7 @@ class Feed extends dataMonger{
 	public function __construct($title, $link, $description, $feedstamp) {
 
 		$this->container['title'] = $title;
-		$this->container['link'] = getConfigOption('site_domain').'/feeds/'.$link;
+		$this->container['link'] = getConfigOption('site_domain').'/'.$link.'/feed';
 		$this->container['description'] = $description;
 		$this->container['feedstamp'] = $feedstamp;
 		$this->container['author'] = getConfigOption('site_author');
