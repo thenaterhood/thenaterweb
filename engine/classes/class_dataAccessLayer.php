@@ -26,6 +26,7 @@ class DataAccessLayer{
 	private $source;
 	private $usedb;
 	private $usefile;
+	private static $modelRenames = array();
 
 	public function __construct(){
 
@@ -53,7 +54,11 @@ class DataAccessLayer{
 	 * @param $createTable - create the associated database table. Defaults 
 	 *	to true, as the table will only be created if it does not already exist.
 	 */
-	public function registerModel( $modelName, $createTable=True ){
+	public function registerModel( $modelName, $createTable=True, $altname='' ){
+
+		if ( $altname != '' ){
+			self::$modelRenames[$modelName] = $altname;
+		}
 
 		$this->models[] = $modelName;
 		$model = new $modelName();
@@ -121,6 +126,7 @@ class DataAccessLayer{
 		return $objects;
 
 	}
+
 
 	/**
 	 * Retrieves a single model from the database given a criteria.
@@ -260,6 +266,8 @@ class DataAccessLayer{
 
 	}
 
+
+
 	/**
 	 * Deletes a model instance from the database. This is generally not called 
 	 * directly, but is called from the delete method of a model instance. It can be 
@@ -369,10 +377,24 @@ that does not appear to have been stored in the database.");
 	 */
 	private static function getTableName( $modelName ){
 
+		if ( array_key_exists($modelName, self::$modelRenames) ){
+			return self::$modelRenames[$modelName];
+		} else {
+			return 'naterweb_' . strtolower( $modelName ) .'s';
+		}
 
-		return 'naterweb_' . strtolower( $modelName ) .'s';
 
 	}
+
+	public function getModelName( $modelName ){
+
+		if ( array_key_exists($modelName, self::$modelRenames) ){
+			return self::$modelRenames[$modelName];
+		} else {
+			return $modelName;
+		}
+	}
+
 
 	private function getCacheName( $modelName, $data ){
 
