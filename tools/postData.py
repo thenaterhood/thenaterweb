@@ -157,19 +157,5 @@ def getConfig():
     Returns:
         config (dict): the site config in dictionary form
     """
-    currPath = os.getcwd()
-    rootPath = os.getcwd() + "/.."
-    confPath = rootPath + "/engine/core_config.php"
-    config = {}
-    
-    config[ "curr_path" ] = rootPath
-    
-    for line in open( confPath ):
-        try:
-            if ( line.strip()[0] == '$' ):
-                confdata =  line[9:-3].strip().split(' = ')
-                config[ confdata[0] ] = confdata[1]
-        except:
-            pass
         
-    return config
+    return {'post_directory':'/home/nate'}

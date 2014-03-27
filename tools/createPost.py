@@ -27,7 +27,7 @@ def main():
     # www directory so the path can be made relative to the current
     # directory.  This makes it possible to use this program from
     # any system no matter where the web stuff is mounted locally
-    postPath = config["curr_path"] + config["post_directory"].split('www')[1]
+    postPath = config["post_directory"]
 
     filename = getfilename()
     title = input("Title: ")
