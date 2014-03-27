@@ -201,21 +201,21 @@ class ModelBase{
 
 		$relatedmodel = (object)array();
 		$relatedmodel->fields = array();
-		$relatedmodel->fields[ get_called_class() ] = Model::IntegerField();
+		$relatedmodel->fields[ $dal->getModelName(get_called_class()) ] = Model::IntegerField();
 		$relative = $this->relatives[ $name ];
 		$relatedmodel->fields[ $relative->related_name ] = Model::IntegerField();
 
 		if ( $model->type == 'foreignkey' ){
 
 
-			$relatedmodel->name = get_called_class() . '_fk_' . $name;
+			$relatedmodel->name = $dal->getModelName( get_called_class() ) . '_fk_' . $name;
 
 			$dal->registerModelFromInstance( $relatedmodel );
 
 
 		} else if ( $model->type == 'many2many' ){
 
-			$relatedmodel->name = get_called_class() . '_m2m_' . $name;
+			$relatedmodel->name = $dal->getModelName( get_called_class() ) . '_m2m_' . $name;
 
 			$dal->registerModelFromInstance( $relatedmodel );
 
@@ -226,6 +226,28 @@ class ModelBase{
 
 
 	}
+        
+        public function reverseLookup( $origin, $related_name ){
+            
+            $dal = new DataAccessLayer();
+            $tables = $dal->listTables();
+            $tableName = "";
+            
+            foreach ($tables as $t) {
+                
+                if ( strpos($origin, $t) 
+                     && strpos(get_called_class(), $t)
+                     && strpos( $origin, $t) < strpos(get_called_class(), $t) ){
+                   
+                    $tableName = $t;
+                }
+                
+            }
+            
+            
+            
+            
+        }
 
 	/**
 	 * Converts objects retrieved from the database for a relational field 
