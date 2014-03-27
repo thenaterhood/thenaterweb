@@ -25,6 +25,7 @@ include NWEB_ROOT.'/classes/class_request.php';
 include NWEB_ROOT.'/classes/class_dataAccessLayer.php';
 include NWEB_ROOT.'/classes/class_modelBase.php';
 include NWEB_ROOT.'/classes/class_engineErrorHandler.php';
+include NWEB_ROOT.'/lib/core_httpstatus.php';
 include_once NWEB_ROOT.'/classes/class_engine.php';
 
 /**

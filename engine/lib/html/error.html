@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-	<title>Server Error</title>
+	<title><?php echo $page->title; ?></title>
 	<link href="/assets/bootstrap3/css/bootstrap.css" rel="stylesheet" />
 
 </head>
@@ -17,8 +17,12 @@
 
 				<?php
 
-				foreach ($page->stack as $l) {
-					echo '<tr><td>' . $l . '</td></tr>';
+				if ( $page->hasStack ){
+					foreach ($page->stack as $l) {
+						echo '<tr><td>' . $l . '</td></tr>';
+					}
+				} else {
+					echo '<p>' . $page->text . '</p>';
 				}
 
 				?>
