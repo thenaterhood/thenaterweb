@@ -9,8 +9,11 @@ class blog extends ControllerBase{
 	private $configFile;
 	private $approot;
 	private $dal;
+	private $usedb;
 
 	public function __construct(){
+
+		$this->usedb = getConfigOption('use_db');
 
 		$name = REQUESTED_NAME;
 		$this->pageData = array();
@@ -18,15 +21,22 @@ class blog extends ControllerBase{
 		$this->approot = constant(strtoupper(get_class($this)).'_ROOT');
 
 		if ( file_exists($this->approot.'/'.strtolower(REQUESTED_NAME).'-config.php') ){
+
+			include_once $this->approot.'/'.strtolower(REQUESTED_NAME).'-config.php';
+			$this->settings = $app_config;
+
+			if ( array_key_exists('use_db', $app_config) ){
+				print $app_config['use_db'];
+				$this->usedb = $app_config['use_db'];
+			}
+
 			// Configure the models
-			if ( getConfigOption('use_db') ){
+			if ( $this->usedb ){
 				$this->dal = new DataAccessLayer();
 				$this->dal->registerModel( 'Blogpost', True, strtolower(REQUESTED_NAME).'_blogposts' );
 			}
 
-			include_once $this->approot.'/'.strtolower(REQUESTED_NAME).'-config.php';
 
-			$this->settings = $app_config;
 		} else {
 			throw new Exception("Blog not found.", 404 );
 		}
@@ -57,7 +67,7 @@ class blog extends ControllerBase{
 
 		$session = $this->pageData['session'];
 
-		if ( getConfigOption('use_db') ){
+		if ( $this->usedb ){
 			$post = $this->dal->get( 'Blogpost', 'nodeid', $session->node );
 			if ( is_null($post ) ){
 				return new article( '', REQUESTED_NAME );
@@ -249,7 +259,7 @@ class blog extends ControllerBase{
 		$session = $this->pageData['session'];
 
 
-		if ( getConfigOption('use_db') ){
+		if ( $this->usedb ){
 			$post = $this->dal->get( 'Blogpost', 'nodeid', $session->node );
 
 			$post->content = request::post('content');
@@ -306,7 +316,7 @@ class blog extends ControllerBase{
 		if ( $nodeid == '' )
 			$nodeDate = date("Y.m.d");
 
-		if ( getConfigOption('use_db') ){
+		if ( $this->usedb ){
 			$post->nodeid = $nodeDate;
 			$post->save();
 
@@ -568,7 +578,7 @@ class blog extends ControllerBase{
 
 	public function getPostList(){
 
-		if ( getConfigOption('use_db') ){
+		if ( $this->usedb ){
 
 	    	$posts = $this->dal->getAll( 'Blogpost' );
 	    	$articles = array();

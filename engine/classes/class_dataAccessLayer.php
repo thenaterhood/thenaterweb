@@ -33,8 +33,8 @@ class DataAccessLayer{
 		$this->tables = array();
 		$this->models = array();
 		$this->mode = 'rw';
-		$this->usedb = getConfigOption('use_db');
-		$this->usefile = ! getConfigOption('use_db');
+		$this->usedb = True;
+		$this->usefile = False;
 
 		if ( $this->usedb ){
 			Database::initialize();
