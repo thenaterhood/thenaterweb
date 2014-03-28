@@ -90,6 +90,7 @@ class blog extends ControllerBase{
 
 		$post = $this->get_post();
 		$this->pageData['displaypost'] = $post;
+		$this->pageData['commentCode'] = $this->settings['comment_code'];
 		$this->pageData['outdated'] = ( ( strtotime('today') - strtotime($post->datestamp) ) > 31556916 ); 
 
 		render_php_template( $this->template, $this->pageData );
@@ -124,12 +125,12 @@ class blog extends ControllerBase{
 
 		$session = $this->pageData['session'];
 
-		$post = $this->get_post();
+		$post = $this->get_post()->dump();
 
-		print '<h1>' . $post->dump()['title'] . '</h1>';
-		print '<h2>' . $post->dump()['datestamp'] . '</h2>';
+		print '<h1>' . $post['title'] . '</h1>';
+		print '<h2>' . $post['datestamp'] . '</h2>';
 
-		print $post->dump()['content'];
+		print $post['content'];
 
 
 	}
