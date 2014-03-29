@@ -84,7 +84,6 @@ class Redirect{
 		header("HTTP/1.1 301 Moved Permanently");
 		header("Location: ".$this->destination);
 
-		throw new RuntimeException('301 redirect');
 		
 	}
 	
@@ -98,7 +97,6 @@ class Redirect{
 
 		header("Location: ".$this->destination);
 
-		throw new RuntimeException('302 redirect');
 		
 	}
 	
