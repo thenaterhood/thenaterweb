@@ -28,6 +28,9 @@ if ( !$tag ){
      * Check if a tag was requested, otherwise list the available
      * tags.
      */
+    echo '<h2>All Tags</h2>';
+    echo '<p style="font-size: .9em;">More formats: <a href="'.getConfigOption('site_domain').'/?url='.$page->blogid.'/tags/as/json"><img height="16px" src="http://www.dev411.com/images/cats/json_54.png" /> json</a></p>';
+
     echo "<table>";
 
     $tags = $page->tags;

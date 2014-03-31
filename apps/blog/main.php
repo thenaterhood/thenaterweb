@@ -150,11 +150,20 @@ class blog extends ControllerBase{
 
 	public function tags(){
 
-		$this->pageData['content'] = pullContent( $this->approot.'/pages/page_taghistogram' );
-		$this->pageData['blogid'] = $this->settings['id'];
-		$this->pageData['tags'] = $this->retrieveTagCache();
+		$format = request::sanitized_get('as');
 
-		render_php_template( $this->template, $this->pageData );
+		if ( ! is_null( $format ) && $format == 'json' ){
+
+			Header('Content-type: application/json');
+			print file_get_contents( getConfigOption('dynamic_directory' ).'/'.$this->settings['id'].'_tagcache.json' );
+		} else {
+
+			$this->pageData['content'] = pullContent( $this->approot.'/pages/page_taghistogram' );
+			$this->pageData['blogid'] = $this->settings['id'];
+			$this->pageData['tags'] = $this->retrieveTagCache();
+
+			render_php_template( $this->template, $this->pageData );
+		}
 
 
 	}
@@ -166,11 +175,25 @@ class blog extends ControllerBase{
 
 	public function titles(){
 
-		$this->pageData['content'] = pullContent( $this->approot.'/pages/page_titles' );
-		$this->pageData['blogid'] = $this->settings['id'];
-		$this->pageData['titles'] = $this->retrieveTitleCache();
+		$format = request::sanitized_get('as');
 
-		render_php_template( $this->template, $this->pageData );
+		if ( ! is_null($format) && $format == 'json' ){
+
+			Header('Content-type: application/json');
+			print file_get_contents( getConfigOption('dynamic_directory' ).'/'.$this->settings['id'].'_titlecache.json' );
+
+
+
+		} else {
+			print $format;
+
+			$this->pageData['content'] = pullContent( $this->approot.'/pages/page_titles' );
+			$this->pageData['blogid'] = $this->settings['id'];
+			$this->pageData['titles'] = $this->retrieveTitleCache();
+
+			render_php_template( $this->template, $this->pageData );
+
+		}
 
 	}
 

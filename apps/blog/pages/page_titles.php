@@ -1,8 +1,6 @@
+<h2>Title List</h2>
+<p style="font-size: .9em;">More formats: <a href="<?php print getConfigOption('site_domain').'/?url='.$page->blogid.'/titles/as/json'; ?>"><img height="16px" src="http://www.dev411.com/images/cats/json_54.png" /> json</a></p>
 <?php
-/* Provides a nice filename (read: ID) for displaying the
- * inventory.  Simply includes the inventory file after adding
- * appropriate list tags for the html
- */
 echo '<br />'; 
 echo '<ul>';
 $year = 0;

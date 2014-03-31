@@ -9,7 +9,7 @@
 		</div>';
 	}
 
-	print $page->displaypost->output( 'html' );
+	print $displaypost->toHtml();
 
 	if ( True ){
 		/*
@@ -18,7 +18,7 @@
 		 * it has a datestamp. Since datestamps will be automatically
 		 * added to posts, all posts will have a datestamp.
 		 */
-		echo '<p><a href="/'.$page->blogid.'">Back to Blog Home</a></p>';
+	echo '<h5><span style="">Formats: <a href="/?url='.$page->blogid.'/json/node/'.$page->displaypost->nodeid.'">json</a>, <a href="/?url='.$page->blogid.'/simple/node/'.$page->displaypost->nodeid.'">simple html</a></span></h5>';
 	}
 	if ( $displaypost->datestamp and $page->session->node != 'latest'){
 		echo $page->commentCode;
