@@ -10,7 +10,7 @@ class auth extends ControllerBase{
 
 	public function __construct(){
 
-		$this->settings['template'] = NWEB_ROOT.'/config/template.d/generic_template.php';
+		$this->settings['template'] = getConfigOption('template');
 		$this->pageData = array();
 
 		if ( getConfigOption( 'use_db') ){
@@ -35,7 +35,8 @@ class auth extends ControllerBase{
 
 		if ( $sessionmgr->check_csrf('post') && 
 
-			$this->check_login( request::sanitized_post('username'), request::post('pass') ) ){
+			$this->check_login( request::sanitized_post('username'), request::post('pass') ) && 
+			){
 
                         $user = $this->dal->get('nwUser', 'username', request::sanitized_post('username'));
                         if (is_null($user)){

@@ -104,10 +104,13 @@
     ?>
   </div>
 </div>
-
+<hr />
 <div id="footer">
   <div class="container">
-    <p class="text-muted">Template based on <a href="http://getbootstrap.com">Bootstrap</a>. Copyright 2012-2013 Nate Levesque (TheNaterhood). <a href="/sitemaps/page">View sitemap</a>.</p>
+    <p class="text-muted">Template based on <a href="http://getbootstrap.com">Bootstrap</a>.</p>
+    <p class="text-muted">All content is available under the <a href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons ShareAlike Attribution 4.0 license</a> unless otherwise stated, and in a variety of formats. <a href="/?url=page/license">More Information</a></p>
+    
+    <p> <a href="/sitemaps/page">View sitemap</a>.</p>
   </div>
 </div>
 

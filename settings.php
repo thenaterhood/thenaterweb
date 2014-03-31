@@ -33,6 +33,10 @@ class Config{
 		# Configure the timezone
 		date_default_timezone_set('America/New_York');
 
+		# Configure the main site template here. Most engine 
+		# features and apps will observe this setting.
+		$this->container['template'] = NWEB_ROOT.'/config/template.d/generic_template.php';
+
 		# Configure whether or not thenaterweb should 
 		# use a database. This takes precedence over the 
 		# settings below, so a value of False will ignore the 

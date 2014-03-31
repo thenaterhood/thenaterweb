@@ -34,7 +34,7 @@ class EngineErrorHandler {
 			$pageData['text'] = "Whoops, looks like a problem!";
 
 			$pageData['content'] = pullContent('/home/nate/gnat/engine/lib/html/errorpage');
-			render_php_template( NWEB_ROOT.'/config/template.d/generic_template.php', $pageData );
+			render_php_template( getConfigOption('template'), $pageData );
 
 		}
 
@@ -86,7 +86,7 @@ class EngineErrorHandler {
 		}
 
 		$pageData['content'] = pullContent('/home/nate/gnat/engine/lib/html/errorpage');
-		render_php_template( NWEB_ROOT.'/config/template.d/generic_template.php', $pageData );
+		render_php_template( getConfigOption('template'), $pageData );
 
 		die();
 
