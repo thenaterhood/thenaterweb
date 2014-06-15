@@ -11,6 +11,7 @@
 </ul>
 <br />
 <h4>Manage Installed Applications</h4>
+<p><em>Note: Not all applications can be shown in this list. To list all applications, visit the installation details page.</em></p>
 <table class="table table-striped table-condensed">
 	<tr>
 		<th>Application Name</th>

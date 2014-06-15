@@ -84,8 +84,11 @@ function load_all_applications(){
     $initialized = array();
 
     foreach ($controllers as $c=> $location) {
+	try{
+            $initialized[] = loadApplication( $c, $location );
+	} catch ( Exception $e ){
 
-        $initialized[] = loadApplication( $c, $location );
+	}
     }
 
     return $initialized;
