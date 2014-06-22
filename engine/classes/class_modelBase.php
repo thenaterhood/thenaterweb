@@ -129,6 +129,17 @@ class ModelBase{
 	}
 
 	/**
+	 * Returns the model in the data as an associative 
+	 * array. This does NOT preserve the ability to save 
+	 * the model or update it in the database.
+	 */
+	public function toArray(){
+
+		return $this->container;
+
+	}
+
+	/**
 	 * Creates a new instance of the model from an 
 	 * stdClass instance. The instance must contain 
 	 * ONLY the fields that the model itself contains 

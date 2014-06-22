@@ -21,10 +21,10 @@ if ( $page->saved ){
 		until the problem gets resolved.
 		</div>';
 
-	print '<h1>'.htmlspecialchars( $post['title'] ).'</h1>';
-	print '<p>'.htmlspecialchars( $post['date'] ).'</p>';
-	print '<p>'.htmlspecialchars( $post['tags'] ).'</p>';
-	print '<p>'.htmlspecialchars( $post['content'] ).'</p>';
+	print '<h1>'.htmlspecialchars( $post->title ).'</h1>';
+	print '<p>'.htmlspecialchars( $post->date ).'</p>';
+	print '<p>'.htmlspecialchars( $post->tags ).'</p>';
+	print '<p>'.htmlspecialchars( $post->content ).'</p>';
 
 }
 

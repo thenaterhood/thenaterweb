@@ -1,5 +1,6 @@
 <?php
 include_once NWEB_ROOT.'/lib/core_auth.php';
+require_once NWEB_ROOT.'/classes/class_contentFactory.php';
 
 class page extends ControllerBase{
 
@@ -19,7 +20,15 @@ class page extends ControllerBase{
 		$this->settings['approot'] = $approot;
 		$this->pageData['session'] = $session;
 		$this->pageData['static'] = $this->page_directory;
-		$content = pullContent( array( $this->page_directory.'/page_'.$session->id, $this->page_directory.'/hidden_'.$session->id, $approot.'/pages/page_'.$session->id ));
+
+		if ( file_exists($this->page_directory.'/page_'.$session->id.'.html') ){
+			$content = \Content\Loaders\ContentFactory::loadContentFile($this->page_directory.'/page_'.$session->id.'.html');
+		} else {
+			$content = \Content\Loaders\ContentFactory::loadContentFile($this->page_directory.'/hidden_'.$session->id.'.html');
+		}
+
+		$content->setTitle($session->id);
+
 		$this->pageData['content'] = $content;
 		$this->pageData['id'] = $content->title;
 		$this->pageData['title'] = $this->title;
@@ -28,23 +37,6 @@ class page extends ControllerBase{
 
 
 
-	}
-
-	public function manage(){
-
-		auth_user( getConfigOption('site_domain').'/'.$this->settings['id'].'/manage' );
-
-
-		$this->pageData['content'] = pullContent( $this->settings['approot'].'/pages/page_manage' );
-		$this->pageData['id'] = $this->settings['id'];
-		$this->pageData['pages'] = $this->getPageList();
-		$this->pageData['apphome'] = getConfigOption('site_domain').'/'.$this->settings['id'];
-
-		$pageData = $this->pageData;
-
-		render_php_template($this->settings['template'], $pageData );
-		
-	
 	}
 
 	public function getPageList(){

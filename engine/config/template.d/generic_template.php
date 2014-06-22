@@ -91,15 +91,7 @@
     </div>
     <?php 
 
-
-
-    if ( ! $page->content->isPhp() ){
-      print $page->content->toHtml();
-    }
-    else{
-      include $page->content->getFile();
-    }
-
+    print $page->content->render_html( $page );
 
     ?>
   </div>

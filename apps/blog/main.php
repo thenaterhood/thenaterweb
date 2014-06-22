@@ -3,6 +3,8 @@
 include_once NWEB_ROOT.'/lib/core_auth.php';
 include_once 'models.php';
 
+require_once(NWEB_ROOT.'/classes/class_contentFactory.php');
+
 class blog extends ControllerBase{
 
 	private $id;
@@ -46,8 +48,7 @@ class blog extends ControllerBase{
 
 		$this->pageData['session'] = $session;
 		$this->pageData['static'] = $this->page_directory;
-		$content = pullContent( array( $this->page_directory.'/page_'.$session->id, $this->page_directory.'/hidden_'.$session->id, NWEB_ROOT.'/lib/pages/page_'.$session->id ) );
-		$this->pageData['content'] = $content;
+
 		$this->pageData['id'] = $session->id;
 		$this->pageData['title'] = $this->title;
 		$this->pageData['tagline'] = $this->catchline;
@@ -70,12 +71,14 @@ class blog extends ControllerBase{
 		if ( $this->usedb ){
 			$post = $this->dal->get( 'Blogpost', 'nodeid', $session->node );
 			if ( is_null($post ) ){
-				return new article( '', REQUESTED_NAME );
+				return null;
 			} else {
-				return $post->getArticle();
+				return $post;
 			}
 		} else {
-			$post = new article( $this->post_directory.'/'.$session->node, $this->settings['id'] );
+
+			$post = 
+				Content\Loaders\ContentFactory::loadContentFile( "$this->post_directory/$session->node.json" );
 			return $post;
 		}
 	}
@@ -83,10 +86,13 @@ class blog extends ControllerBase{
 
 	public function read(){
 
-		$this->pageData['content'] = pullContent( $this->approot.'/pages/page_read' );
+		$this->pageData['content'] = 
+			\Content\Loaders\ContentFactory::loadContentFile( $this->approot.'/pages/page_read.php' );
 		$this->pageData['blogid'] = $this->settings['id'];
 
 		$session = $this->pageData['session'];
+
+		$this->pageData['nodeid'] = $session->node;
 
 		$post = $this->get_post();
 		$this->pageData['displaypost'] = $post;
@@ -99,7 +105,6 @@ class blog extends ControllerBase{
 
 	public function json(){
 
-		$this->pageData['content'] = pullContent( $this->approot.'/pages/page_read' );
 		$this->pageData['blogid'] = $this->settings['id'];
 
 		$session = $this->pageData['session'];
@@ -109,38 +114,42 @@ class blog extends ControllerBase{
 
 		Header('Content-type: application/json');
 
-		$postdata = $post->dump();
+		$blogpost = array();
+		$blogpost['title'] = $post->title;
+		$blogpost['content'] = $post->content;
+		$blogpost['tags'] = $post->tags;
+		$blogpost['author'] = $post->author;
+		$blogpost['datestamp'] = $post->datestamp;
 
-		unset($postdata['file']);
-
-		print json_encode($postdata);
+		print json_encode($blogpost);
 
 
 	}
 
 	public function simple(){
 
-		$this->pageData['content'] = pullContent( $this->approot.'/pages/page_read' );
 		$this->pageData['blogid'] = $this->settings['id'];
 
 		$session = $this->pageData['session'];
 
-		$post = $this->get_post()->dump();
+		$post = $this->get_post();
 
-		print '<h1>' . $post['title'] . '</h1>';
-		print '<h2>' . $post['datestamp'] . '</h2>';
+		print '<h1>' . $post->title . '</h1>';
+		print '<h2>' . $post->datestamp . '</h2>';
 
-		print $post['content'];
+		print $post->content;
 
 
 	}
 
 	public function home(){
 
-		$this->pageData['content'] = pullContent( $this->approot.'/pages/page_home' );
+		$this->pageData['content'] = 
+			\Content\Loaders\ContentFactory::loadContentFile( $this->approot.'/pages/page_home.php' );
 		$this->pageData['blogid'] = $this->settings['id'];
 		$session = $this->pageData['session'];
 		$this->pageData['articles'] = $this->getPostRange( $session->start, $session->end );
+
 		$this->pageData['totalPosts'] = count( $this->getPostList() );
 
 		render_php_template( $this->template, $this->pageData );
@@ -158,7 +167,8 @@ class blog extends ControllerBase{
 			print file_get_contents( getConfigOption('dynamic_directory' ).'/'.$this->settings['id'].'_tagcache.json' );
 		} else {
 
-			$this->pageData['content'] = pullContent( $this->approot.'/pages/page_taghistogram' );
+			$this->pageData['content'] = 
+				\Content\Loaders\ContentFactory::loadContentFile( $this->approot.'/pages/page_taghistogram.php' );
 			$this->pageData['blogid'] = $this->settings['id'];
 			$this->pageData['tags'] = $this->retrieveTagCache();
 
@@ -187,7 +197,8 @@ class blog extends ControllerBase{
 		} else {
 			print $format;
 
-			$this->pageData['content'] = pullContent( $this->approot.'/pages/page_titles' );
+			$this->pageData['content'] = 
+				\Content\Loaders\ContentFactory::loadContentFile( $this->approot.'/pages/page_titles.php' );
 			$this->pageData['blogid'] = $this->settings['id'];
 			$this->pageData['titles'] = $this->retrieveTitleCache();
 
@@ -216,7 +227,8 @@ class blog extends ControllerBase{
 
 		auth_user( getConfigOption('site_domain').'/'.$this->settings['id'].'/manage' );
 
-		$this->pageData['content'] = pullContent( $this->approot.'/pages/page_manage');
+		$this->pageData['content'] = 
+			\Content\Loaders\ContentFactory::loadContentFile( $this->approot.'/pages/page_manage.php');
 		$this->pageData['id'] = $this->settings['id'];
 
 
@@ -231,7 +243,8 @@ class blog extends ControllerBase{
 		$sessionmgr = SessionMgr::getInstance();
 
 
-		$this->pageData['content'] = pullContent( $this->approot.'/pages/page_editpost');
+		$this->pageData['content'] = 
+			\Content\Loaders\ContentFactory::loadContentFile( $this->approot.'/pages/page_editpost.php');
 		$this->pageData['id'] = $this->settings['id'];
 		$this->pageData['csrf_id'] = $sessionmgr->get_csrf_id();
 		$this->pageData['csrf_token'] = $sessionmgr->get_csrf_token();
@@ -250,21 +263,24 @@ class blog extends ControllerBase{
 
 		if ( request::get('node') != '' ){
 
-			$this->pageData['content'] = pullContent( $this->approot.'/pages/page_editpost');
+			$this->pageData['content'] = 
+				\Content\Loaders\ContentFactory::loadContentFile( $this->approot.'/pages/page_editpost.php');
 			$this->pageData['id'] = $this->settings['id'];
 
 			$article = $this->get_post();
 
-			$this->pageData['post'] = $article->dump();
+			$this->pageData['post'] = $article;
+			$this->pageData['node'] = request::get('node');
 
 			render_php_template( $this->template, $this->pageData );
+
 
 
 		} else {
 
 			$this->pageData['posts'] = $this->getPostList();
 			$this->pageData['appid'] = $this->settings['id'];
-			$this->pageData['content'] = pullContent( $this->approot.'/pages/page_selectpost' );
+			$this->pageData['content'] = pullContent( $this->approot.'/pages/page_selectpost.php' );
 
 			render_php_template( $this->template, $this->pageData );
 
@@ -276,7 +292,7 @@ class blog extends ControllerBase{
 
 	public function updatepost(){
 
-		auth_user( getConfigOption('site_domain').'/'.$this->settings['id'].'/manage/editpost' );
+		auth_user( getConfigOption('site_domain').'/'.$this->settings['id'].'/manage/editpost.php' );
 
 		$sessionmgr = SessionMgr::getInstance();
 
@@ -293,6 +309,8 @@ class blog extends ControllerBase{
 
 			$post->save();
 
+			$this->pageData['saved'] = $session->node;
+
 		} else {
 			$post = $this->get_post();
 
@@ -301,14 +319,15 @@ class blog extends ControllerBase{
 			$post->tags = request::post('tags');
 			$post->updated = date(DATE_ATOM);
 
-			$file = $post->file;
+			$file = $post->page_filename;
 
-			$this->save_post_file( $post->dump(), $file );
+			$nodename = $this->save_post_file( (array)$post, $file );
+
+			$this->pageData['saved'] = $nodename;
 		}
 
-
-		$this->pageData['content'] = pullContent( $this->approot.'/pages/page_savedpost' );
-		$this->pageData['saved'] = $post->nodeid;
+		$this->pageData['post'] = $post;
+		$this->pageData['content'] = pullContent( $this->approot.'/pages/page_savedpost.php' );
 		$this->pageData['blogid'] = $this->settings['id'];
 
 		$this->buildTagCache();
@@ -326,7 +345,11 @@ class blog extends ControllerBase{
 		$sessionmgr = SessionMgr::getInstance();
 		$session = $this->pageData['session'];
 
-		$post = new Blogpost();
+		if ( $this->usedb ){
+			$post = new Blogpost();
+		} else {
+			$post = new stdClass();
+		}
 
 		$post->content = request::post('content');
 		$post->title = request::post('title');
@@ -337,7 +360,7 @@ class blog extends ControllerBase{
 		$post->datestamp = date(DATE_ATOM);
 		$post->updated = date(DATE_ATOM);
 
-		if ( $nodeid == '' )
+		if ( !isset($nodeid) or $nodeid == '' )
 			$nodeDate = date("Y.m.d");
 
 		if ( $this->usedb ){
@@ -349,11 +372,18 @@ class blog extends ControllerBase{
 			$this->pageData['saved'] = $post->nodeid;
 
 		} else {
-			$nodename = $this->save_post_file( $post->as_array() );
+			$blogpost = array();
+			$blogpost['title'] = $post->title;
+			$blogpost['content'] = $post->content;
+			$blogpost['tags'] = $post->tags;
+			$blogpost['author'] = $post->author;
+			$blogpost['datestamp'] = $post->datestamp;
+			$nodename = $this->save_post_file( $blogpost );
+
 			$this->pageData['saved'] = $nodename;
 		}
 
-		$this->pageData['content'] = pullContent( $this->approot.'/pages/page_savedpost' );
+		$this->pageData['content'] = pullContent( $this->approot.'/pages/page_savedpost.php' );
 
 		$this->pageData['blogid'] = $this->settings['id'];
 
@@ -397,7 +427,7 @@ class blog extends ControllerBase{
 
 		$postData['content'] = $_POST['content'];
 		$postData['title'] = $_POST['title'];
-		$postData['date'] = $_POST['date'];
+		//$postData['date'] = $_POST['date'];
 		$postData['tags'] = $_POST['tags'];
 		$postData['datestamp'] = date(DATE_ATOM);
 		$postData['updated'] = date(DATE_ATOM);
@@ -408,7 +438,7 @@ class blog extends ControllerBase{
 
 		$lock = new lock( $postFile );
 
-		$postURL = getConfigOption('site_domain').'/'.$_POST['blog'].'/index.php?id=post&node='.$nodename;
+		$postURL = getConfigOption('site_domain').'/'.REQUESTED_NAME.'/index.php?id=post&node='.$nodename;
 		$writetest = fopen( $postpath.'/writetest.txt', 'w' );
 		fclose( $writetest );
 
@@ -452,7 +482,7 @@ class blog extends ControllerBase{
 		}
 
 
-		if ( count($itles) != count( $this->getPostList() ) ){
+		if ( count($titles) != count( $this->getPostList() ) ){
 
 			$titles = $this->updateTitleCache();
 		}
@@ -468,11 +498,10 @@ class blog extends ControllerBase{
 
 
 		$titleArray = array();
-		$postList = $this->getPostList();
 
-		foreach ( $this->getPostList() as $post ) {
+		foreach ( $this->getPostList() as $postid => $post ) {
 
-			$titleArray[ $post->nodeid ] = $post->title;
+			$titleArray[$postid] = $post['title'];
 		}
 
 		$titleData = array();
@@ -539,19 +568,18 @@ class blog extends ControllerBase{
 		$tagArray = array();
 		$postList = $this->getPostList();
 
-		foreach ( $this->getPostList() as $post ) {
+		foreach ( $this->getPostList() as $node => $post ) {
 
-			foreach (explode(',', $post->tags) as $tag ) {
-
+			foreach (explode(',', $post['tags']) as $tag ) {
 				$tag = trim($tag);
 
 				if ( ! array_key_exists($tag, $tagArray) ){
 
-					$tagArray[ $tag ] = array( "$post->nodeid"=>"$post->title" );
+					$tagArray[ $tag ] = array( "$node"=>$post['title'] );
 
 				} else {
 					$tagPosts = $tagArray[ $tag ];
-					$tagPosts[ $post->nodeid ] = $post->title;
+					$tagPosts[ $node ] = $post['title'];
 					$tagArray[ $tag ] = $tagPosts;
 				}
 
@@ -608,7 +636,9 @@ class blog extends ControllerBase{
 	    	$articles = array();
 
 	    	foreach ($posts as $p) {
-	    		$articles[] = $p->getArticle( strtolower(REQUESTED_NAME) );
+	    		$postarray = $p->as_array( strtolower(REQUESTED_NAME) );
+	    		$postarray['link'] = getConfigOption('site_domain') . '/?url=' . REQUESTED_NAME . '/read/' . $p->nodeid . '.html';
+	    		$articles[] = $postarray;
 	    	}
 
 	    	$articles = array_reverse($articles);
@@ -627,7 +657,10 @@ class blog extends ControllerBase{
     	$articles = array();
 
     	foreach ($posts as $post) {
-    		$articles[] = new article( $this->post_directory.'/'.$post, $this->settings['id'] );
+    		$article = json_decode(file_get_contents("$this->post_directory/$post.json"),true);
+	    	$article['link'] = getConfigOption('site_domain') . '/?url=' . REQUESTED_NAME . '/read/' . $post . '.html';
+
+    		$articles[$post] = $article;
     	}
 
     	return $articles;

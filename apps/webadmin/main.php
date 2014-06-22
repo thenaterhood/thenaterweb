@@ -26,7 +26,7 @@ class webadmin extends ControllerBase{
 		if ( $isAuthed ){
 			$this->pageData['session'] = request::get_sanitized_as_object( 
 				array('name', 'track', 'konami', 'id', 'tag', 'type', 'node', 'start', 'end') );
-			$this->pageData['content'] = pullContent( WEBADMIN_ROOT.'/pages/page_'.$method );
+			$this->pageData['content'] = pullContent( WEBADMIN_ROOT.'/pages/page_'.$method.'.php' );
 
 			$admSession = request::get_sanitized_as_object( array( 'blogid', 'postid', 'isnew' ) );
 
@@ -52,7 +52,7 @@ class webadmin extends ControllerBase{
 		if ( $isAuthed ){
 			$this->pageData['session'] = request::get_sanitized_as_object( 
 				array('name', 'track', 'konami', 'id', 'tag', 'type', 'node', 'start', 'end') );
-			$this->pageData['content'] = pullContent( WEBADMIN_ROOT.'/pages/page_home' );
+			$this->pageData['content'] = pullContent( WEBADMIN_ROOT.'/pages/page_home.php' );
 
 			$this->pageData['title'] = $this->title;
 			$this->pageData['tagline'] = $this->catchline;

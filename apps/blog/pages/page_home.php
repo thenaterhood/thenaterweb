@@ -6,9 +6,18 @@
 		if ( $session->start == 42 ){
 			print "<p style='font-size:2em;'>42! It's the meaning of life, the universe, and everything!</p><br />\n";
 		}
-		foreach ($page->articles as $key => $value) {
+		foreach ($page->articles as $id => $post) {
 
-			print $value->toHtml();
+			print '<h3><a href=/?url='.$bloguri.'/read/'.$id.'.htm>' . $post['title'] . '</a></h3>';
+			print '<h4>'. date( "F j, Y, g:i a", strtotime($post['datestamp']) ). '</h4>';
+
+			if ( is_array($post['content']) ){
+				echo '<p>' . implode($post['content']) . '</p>';
+			} else {
+				echo $post['content'];
+			}
+
+			print '<p><strong>Tags: </strong>' . $post['tags'] . '</p>';
 			echo "<hr />";
 
 		}

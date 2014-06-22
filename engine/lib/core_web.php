@@ -17,7 +17,6 @@
 include NWEB_ROOT.'/../settings.php';
 include NWEB_ROOT.'/classes/class_lock.php';
 include NWEB_ROOT.'/lib/core_extension.php';
-include NWEB_ROOT.'/classes/class_article.php';
 include NWEB_ROOT.'/classes/class_urlHandler.php';
 include NWEB_ROOT.'/lib/core_database.php';
 include NWEB_ROOT.'/classes/class_sessionMgr.php';
@@ -28,6 +27,8 @@ include NWEB_ROOT.'/classes/class_engineErrorHandler.php';
 include NWEB_ROOT.'/lib/core_httpstatus.php';
 include_once NWEB_ROOT.'/classes/class_engine.php';
 
+require_once NWEB_ROOT.'/classes/class_contentFactory.php';
+
 /**
 * Checks to see if the preferred file exists, and if it does
 * returns it, otherwise it returns the secondary file, which ideally
@@ -37,46 +38,22 @@ include_once NWEB_ROOT.'/classes/class_engine.php';
 * 
 * 
 */
-function pullContent( $preferred, $sectionUri='/', $articleUri='/' ){
+function pullContent( $preferred ){
 
-	if ( ! is_array($preferred ) ){
-		$to = array();
-		$to[] = $preferred;
-		$preferred = $to;
-	}
-
-	$i = 0;
-	$article = new Article( "", $sectionUri, $articleUri, False );
-	while ( $i < count($preferred) && $article->getType() == "none" ){
-
-		if ( !strpos( $preferred[$i], '.' ) ){
-
-			$file = $preferred[$i];
-
-		}
-		else{
-			$file = substr( $preferred[$i], 0, strpos( $preferred[$i], '.')-1);
-		}
-
-		$article = new Article( $file, $sectionUri, $articleUri, False );
-
-		$i++;
-
-	}
-
-	return $article;
+	return \Content\Loaders\ContentFactory::loadContentFile($preferred);
+	
 }
 
 function render_php_template( $template, $pagedata, $use_csrf=True ){
 
 	$page = (object)$pagedata;
         
-        if ( $use_csrf ){
-            $sessionmgr = SessionMgr::getInstance();
+    if ( $use_csrf ){
+        $sessionmgr = SessionMgr::getInstance();
 
-            $page->csrf_token = $sessionmgr->get_csrf_token();
-            $page->csrf_key = $sessionmgr->get_csrf_id();
-        }
+        $page->csrf_token = $sessionmgr->get_csrf_token();
+        $page->csrf_key = $sessionmgr->get_csrf_id();
+    }
 
 	if ( file_exists($template) ){
 		include $template;

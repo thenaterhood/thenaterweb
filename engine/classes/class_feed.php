@@ -8,6 +8,7 @@
  * Include the inherited dataMonger class
  */
 include_once 'class_dataMonger.php';
+require_once NWEB_ROOT.'/classes/class_contentFactory.php';
 
 /**
  * Defines a data object to contain an atom feed as items
@@ -45,13 +46,14 @@ class Feed extends dataMonger{
 	 * Adds an item to the feed as an object in the object's
 	 * items array
 	 * 
-	 * @param $articleect - a fully initialized instance of the article
-	 *	class.
+	 * @param $articleect - a fully initialized instance of an stdclass
+	 * containing the data for the feed item
 	 * 
 	 */
 	public function new_item($articleect) {
 
-		array_push($this->items, $articleect);
+		$instance = Content\Loaders\ContentFactory::loadContentFile($articleect, 'std');
+		array_push($this->items, $instance);
 	}
 	
 	/**
@@ -94,7 +96,7 @@ xml:base="'.getConfigOption('site_domain').'/">';
 		$r .= "<author><name>".$this->container['author']."</name></author>\n";
 		$r .= '<atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="self" type="application/atom+xml" href="'.$this->container['link'].'" />';
 		foreach ($this->items as $item) {
-			$r .= $item->output( 'atom' );
+			$r .= $item->render_atom();
 		}
 		$r .= "</feed>";
 		return $r;
@@ -117,7 +119,7 @@ xml:base="'.getConfigOption('site_domain').'/">';
 		$r .= "<link>" . $this->container['link'] . "</link>";
 		$r .= "<description>" . $this->container['description'] . "</description>";
 		foreach ($this->items as $item){
-			$r .= $item->output( 'rss' );
+			$r .= $item->render_rss();
 		}
 		
 		$r .= "</channel>";

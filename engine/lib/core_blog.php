@@ -13,7 +13,6 @@
  * Includes the core_web functions
  */
 include_once NWEB_ROOT.'/lib/core_web.php';
-include_once NWEB_ROOT.'/classes/class_article.php';
 
 
 /**
