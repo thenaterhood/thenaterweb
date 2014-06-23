@@ -27,15 +27,15 @@ class page extends ControllerBase{
 			$content = \Content\Loaders\ContentFactory::loadContentFile($this->page_directory.'/hidden_'.$session->id.'.html');
 		} elseif ( file_exists($this->page_directory.'/page_'.$session->id.'.pre') ){
 			$content = \Content\Loaders\ContentFactory::loadContentFile($this->page_directory.'/page_'.$session->id.'.pre', 'txt');
-		} elseif ( file_exists($this->page_directory.'/hidden_'.$session->id.'pre')){
+		} elseif ( file_exists($this->page_directory.'/hidden_'.$session->id.'.pre')){
 			$content = \Content\Loaders\ContentFactory::loadContentFile($this->page_directory.'/hidden_'.$session->id.'.pre', 'txt');
 		} elseif ( file_exists($this->page_directory.'/page_'.$session->id.'.txt') ){
 			$content = \Content\Loaders\ContentFactory::loadContentFile($this->page_directory.'/page_'.$session->id.'.txt', 'txt');
-		} elseif ( file_exists($this->page_directory.'/hidden_'.$session->id.'txt')){
+		} elseif ( file_exists($this->page_directory.'/hidden_'.$session->id.'.txt')){
 			$content = \Content\Loaders\ContentFactory::loadContentFile($this->page_directory.'/hidden_'.$session->id.'.txt', 'txt');
 		} elseif ( file_exists($this->page_directory.'/page_'.$session->id.'.php') ){
 			$content = \Content\Loaders\ContentFactory::loadContentFile($this->page_directory.'/page_'.$session->id.'.php');
-		} elseif ( file_exists($this->page_directory.'/hidden_'.$session->id.'php')){
+		} elseif ( file_exists($this->page_directory.'/hidden_'.$session->id.'.php')){
 			$content = \Content\Loaders\ContentFactory::loadContentFile($this->page_directory.'/hidden_'.$session->id.'.php');
 		} else {
 			throw new \Exception("Page not found.");
