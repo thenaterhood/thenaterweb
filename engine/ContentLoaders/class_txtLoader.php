@@ -2,9 +2,9 @@
 
 namespace Naterweb\Content\Loaders;
 
-require_once(NWEB_ROOT.'/classes/ContentLoaders/interface_contentLoader.php');
+require_once(NWEB_ROOT.'/ContentLoaders/interface_contentLoader.php');
 
-class HtmlLoader implements ContentLoader{
+class TxtLoader implements ContentLoader{
 
 	private $page_modification;
 	private $page_filename;
@@ -46,7 +46,7 @@ class HtmlLoader implements ContentLoader{
 	}
 
 	public function render_html( $context=null ){
-		echo $this->__get('page_content');
+		echo '<pre>'.$this->__get('page_content').'</pre>';
 	}
 
 	public function render_atom($context=null){

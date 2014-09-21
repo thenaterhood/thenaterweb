@@ -2,14 +2,13 @@
 
 namespace Naterweb\Content\Loaders;
 
-require_once(NWEB_ROOT.'/classes/ContentLoaders/interface_contentLoader.php');
+require_once(NWEB_ROOT.'/ContentLoaders/interface_contentLoader.php');
 
-class TxtLoader implements ContentLoader{
+class PhpLoader implements ContentLoader{
 
 	private $page_modification;
 	private $page_filename;
 	private $title;
-	private $page_content;
 
 	private static $type = 'html';
 
@@ -22,20 +21,11 @@ class TxtLoader implements ContentLoader{
 
 	public function __get($property){
 
-		if ($property == 'page_content'){
-			$this->load_content();
-		}
-
 		if (property_exists($this, $property)){
 			return $this->$property;
 		}
 	}
 
-	private function load_content(){
-
-		$this->page_content = file_get_contents($this->page_filename);
-
-	}
 
 	public function getType(){
 		return $this->type;
@@ -46,7 +36,8 @@ class TxtLoader implements ContentLoader{
 	}
 
 	public function render_html( $context=null ){
-		echo '<pre>'.$this->__get('page_content').'</pre>';
+		$page=$context;
+		include $this->page_filename;
 	}
 
 	public function render_atom($context=null){

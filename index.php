@@ -14,7 +14,7 @@ define("NWEB_ROOT", "engine");
 /**
  * Enables or disables debug mode.
  */
-define("DEBUG", False);
+define("DEBUG", True);
 
 if ( DEBUG ){
 	error_reporting(E_ALL);
@@ -22,7 +22,7 @@ if ( DEBUG ){
 
 }
 
-include_once NWEB_ROOT.'/classes/class_engine.php';
+include_once NWEB_ROOT.'/classes/class_applications.php';
 /**
  * These include the core utilities that Thenaterweb requires.
  * core_blog imports all of the various utilities in one shot.
@@ -54,7 +54,7 @@ $_INSTALLED_APPS = array(
         'blog'=>        'apps/blog'
 	);
 
-Engine::setup_installed($_INSTALLED_APPS);
+Naterweb\Engine\Applications::setup_installed($_INSTALLED_APPS);
 
 /**
  * This array contains aliases for applications. 
@@ -81,15 +81,15 @@ $_APP_ALIASES = array(
     
         );
 
-Engine::setup_aliases( $_APP_ALIASES );
+Naterweb\Engine\Applications::setup_aliases( $_APP_ALIASES );
 $sessionmgr = SessionMgr::getInstance();
 
 /**
  * Manage redirects to "friendly" URLs if the configuration
  * option is set.
  */
-if ( Engine::get_option('friendly_urls') && ! $sessionmgr->noRedirect ){
-    $redirect = new ConditionalRedirect( '/?url', '/'.$_GET['url'], substr( Engine::get_option('site_domain').request::meta('REQUEST_URI'), 7 ) );
+if ( Naterweb\Engine\Configuration::get_option('friendly_urls') && ! $sessionmgr->noRedirect ){
+    $redirect = new Naterweb\Site\Redirects\ConditionalRedirect( '/?url', '/'.$_GET['url'], substr( Naterweb\Engine\Configuration::get_option('site_domain').request::meta('REQUEST_URI'), 7 ) );
     $redirect->apply( 301 );
 }
 

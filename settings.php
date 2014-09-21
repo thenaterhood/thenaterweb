@@ -8,13 +8,13 @@
  * Filename: core_config.php
  *
  */
-
+namespace Naterweb\Engine;
 /**
  * Defines a class to hold variables for configuration
  * options.  All variables are accessible only internally
  * to keep things fairly clean.
  */
-class Config{
+class Configuration{
 	
 	/**
 	 * variables are documented where they are set lower in the code.
@@ -22,11 +22,13 @@ class Config{
 	 * mass of variables.
 	 */
 	private $container;
+
+	private static $instance;
 	
 	/**
 	 * Sets the configuration options en-masse.
 	 */
-	public function __construct(){
+	private function __construct(){
 		# Sets up the empty array
 		$this->container = array();
 
@@ -42,7 +44,7 @@ class Config{
 		# settings below, so a value of False will ignore the 
 		# below database settings and will not use a database
 		# even if one is configured.
-		$this->container['use_db'] = True;
+		$this->container['use_db'] = False;
 		
 		# Configure the storage backend for the engine. Supported 
 		# databases are anything supported by the PDO drivers.
@@ -50,7 +52,7 @@ class Config{
 		$this->container['engine_storage_db'] = 'sqlite';
 		$this->container['db_user'] = '';
 		$this->container['db_password'] = '';
-                $this->container['db_port'] = '';
+        $this->container['db_port'] = '';
 		$this->container['db_host'] = 'localhost';
 		$this->container['db_name'] = 'site-data/naterweb_database.db';
 
@@ -157,6 +159,13 @@ class Config{
 			return NULL;
 	}
 
-   
+
+	public static function get_option($setting){
+		if ( ! self::$instance ){
+			self::$instance = new self();
+		}
+
+		return self::$instance->$setting;
+  	} 
  }
 ?>
