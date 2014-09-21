@@ -8,7 +8,7 @@
  *
  * @author Nate Levesque <public@thenaterhood.com>
  */
-
+namespace Naterweb\Site\Redirects;
 /**
  * Provides a class for storing and applying
  * a redirect to another area of a website.

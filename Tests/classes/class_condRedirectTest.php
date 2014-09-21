@@ -1,4 +1,5 @@
 <?php
+use Naterweb\Site\Redirects\ConditionalRedirect;
 
 class condRedirectTest extends PHPUnit_Framework_TestCase {
 

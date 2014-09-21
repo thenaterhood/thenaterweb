@@ -19,7 +19,7 @@ function auth_user( $toPage='/', $require_groups=array() ){
 
 	} else {
 		$sessionmgr->toPage = $toPage;
-		$redirect = new Redirect( $toPage, getConfigOption('site_domain').'/?url=auth/login' );
+		$redirect = new Naterweb\Site\Redirects\Redirect( $toPage, getConfigOption('site_domain').'/?url=auth/login' );
 		$redirect->apply( 302 );
 	}
         

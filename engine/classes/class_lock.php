@@ -3,6 +3,7 @@
  * Contains a class that deals with managing file locks
  */
 
+use Naterweb\Engine\Configuration;
 /**
  * Include the config class so we can retrieve the dynamic directory
  */
@@ -41,8 +42,7 @@ class Lock{
 
 		$this->file = $file;
 
-		$config = new Config();
-		$this->lockfile = $config->dynamic_directory.'/'.str_replace('/', '_', $file).'.lock';
+		$this->lockfile = Configuration::get_option('dynamic_directory').'/'.str_replace('/', '_', $file).'.lock';
 		unset( $config );
 
 		if ( file_exists($this->lockfile) ){
