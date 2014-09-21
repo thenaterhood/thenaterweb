@@ -1,31 +1,17 @@
 <?php
 
+namespace Naterweb\Engine;
 /**
  * Contains internal naterweb functionality for 
  * handling some generic internal features such as 
  * error handling.
  */
-class Engine{
+class Applications{
     
     private static $configuration;
     private static $CONFIG_LOADED = false;
     private static $aliases;
     private static $installed;
-        
-        public static function get_option( $option ){
-            
-            if ( ! self::$CONFIG_LOADED ){
-                
-                self::$configuration = new Config();
-                self::$CONFIG_LOADED = true;
-                
-            }
-            
-            return self::$configuration->$option;
-                        
-            
-            
-        }
         
         public static function setup_aliases( $aliases ){
             

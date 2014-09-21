@@ -79,7 +79,7 @@ function loadApplication( $id, $location ){
 
 function load_all_applications(){
 
-    $controllers = Engine::get_controllers();
+    $controllers = Naterweb\Engine\Applications::get_controllers();
     $initialized = array();
 
     foreach ($controllers as $c=> $location) {

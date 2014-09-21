@@ -25,7 +25,7 @@ include NWEB_ROOT.'/classes/class_dataAccessLayer.php';
 include NWEB_ROOT.'/classes/class_modelBase.php';
 include NWEB_ROOT.'/classes/class_engineErrorHandler.php';
 include NWEB_ROOT.'/lib/core_httpstatus.php';
-include_once NWEB_ROOT.'/classes/class_engine.php';
+include_once NWEB_ROOT.'/classes/class_applications.php';
 
 require_once NWEB_ROOT.'/classes/class_contentFactory.php';
 
@@ -74,15 +74,15 @@ function render_php_template( $template, $pagedata, $use_csrf=True ){
  * @return - the value of the config key
  * 
  * @deprecated 1/8/2014 - deprecated in favor of 
- *  directly calling engine::get_option, as this is now 
- *  a waste of lines of code.
+ *  directly calling Naterweb\Engine\Configuration\::get_option,
+ *  as this is now a waste of lines of code.
  */
 function getConfigOption($key){
         // This extra include is necessary in order for 
         // phpunit tests to work as expected. Why is beyond 
         // me.
-	include_once NWEB_ROOT.'/classes/class_engine.php';
-	return Engine::get_option($key);
+	include_once NWEB_ROOT.'/../settings.php';
+	return Naterweb\Engine\Configuration::get_option($key);
 }
 	
 
