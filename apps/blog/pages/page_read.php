@@ -1,5 +1,4 @@
 <?php 
-
 	$displaypost = $context->displaypost;
 
 	if ( $context->outdated ){

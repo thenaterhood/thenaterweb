@@ -15,12 +15,12 @@ class ContentFactory{
 		$loader = strtolower($type) . "Loader";
 
 		if ( $type_override != 'std' && !file_exists($file) ){
-			throw new \Exception("File not found");
+			throw new \Exception("File ($file) not found");
 		} 
 
 		if (file_exists(NWEB_ROOT."/classes/ContentLoaders/class_$loader.php")){
 			require_once(NWEB_ROOT."/classes/ContentLoaders/class_$loader.php");
-			$loader = "\Content\Loaders\\".ucfirst($loader);
+			$loader = "Naterweb\Content\Loaders\\".ucfirst($loader);
 			return new $loader($file);
 		} else {
 			throw new \Exception("Unsupported content type");
@@ -35,7 +35,6 @@ class ContentFactory{
 	}
 
 	private static function getContentType( $file ){
-
 		$path = pathinfo( $file );
 		return $path['extension'];
 

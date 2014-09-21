@@ -52,7 +52,7 @@ class Feed extends dataMonger{
 	 */
 	public function new_item($articleect) {
 
-		$instance = Content\Loaders\ContentFactory::loadContentFile($articleect, 'std');
+		$instance = Naterweb\Content\Loaders\ContentFactory::loadContentFile($articleect, 'std');
 		array_push($this->items, $instance);
 	}
 	

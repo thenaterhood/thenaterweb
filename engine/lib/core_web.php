@@ -40,7 +40,7 @@ require_once NWEB_ROOT.'/classes/class_contentFactory.php';
 */
 function pullContent( $preferred ){
 
-	return \Content\Loaders\ContentFactory::loadContentFile($preferred);
+	return Naterweb\Content\Loaders\ContentFactory::loadContentFile($preferred);
 	
 }
 

@@ -2,6 +2,8 @@
 include_once NWEB_ROOT.'/lib/core_auth.php';
 require_once NWEB_ROOT.'/classes/class_contentFactory.php';
 
+use Naterweb\Content\Loaders\ContentFactory;
+
 class page extends ControllerBase{
 
 	private $id;
@@ -22,21 +24,21 @@ class page extends ControllerBase{
 		$this->pageData['static'] = $this->page_directory;
 
 		if ( file_exists($this->page_directory.'/page_'.$session->id.'.html') ){
-			$content = \Content\Loaders\ContentFactory::loadContentFile($this->page_directory.'/page_'.$session->id.'.html');
+			$content = ContentFactory::loadContentFile($this->page_directory.'/page_'.$session->id.'.html');
 		} elseif ( file_exists($this->page_directory.'/hidden_'.$session->id.'.html')) {
-			$content = \Content\Loaders\ContentFactory::loadContentFile($this->page_directory.'/hidden_'.$session->id.'.html');
+			$content = ContentFactory::loadContentFile($this->page_directory.'/hidden_'.$session->id.'.html');
 		} elseif ( file_exists($this->page_directory.'/page_'.$session->id.'.pre') ){
-			$content = \Content\Loaders\ContentFactory::loadContentFile($this->page_directory.'/page_'.$session->id.'.pre', 'txt');
+			$content = ContentFactory::loadContentFile($this->page_directory.'/page_'.$session->id.'.pre', 'txt');
 		} elseif ( file_exists($this->page_directory.'/hidden_'.$session->id.'.pre')){
-			$content = \Content\Loaders\ContentFactory::loadContentFile($this->page_directory.'/hidden_'.$session->id.'.pre', 'txt');
+			$content = ContentFactory::loadContentFile($this->page_directory.'/hidden_'.$session->id.'.pre', 'txt');
 		} elseif ( file_exists($this->page_directory.'/page_'.$session->id.'.txt') ){
-			$content = \Content\Loaders\ContentFactory::loadContentFile($this->page_directory.'/page_'.$session->id.'.txt', 'txt');
+			$content = ContentFactory::loadContentFile($this->page_directory.'/page_'.$session->id.'.txt', 'txt');
 		} elseif ( file_exists($this->page_directory.'/hidden_'.$session->id.'.txt')){
-			$content = \Content\Loaders\ContentFactory::loadContentFile($this->page_directory.'/hidden_'.$session->id.'.txt', 'txt');
+			$content = ContentFactory::loadContentFile($this->page_directory.'/hidden_'.$session->id.'.txt', 'txt');
 		} elseif ( file_exists($this->page_directory.'/page_'.$session->id.'.php') ){
-			$content = \Content\Loaders\ContentFactory::loadContentFile($this->page_directory.'/page_'.$session->id.'.php');
+			$content = ContentFactory::loadContentFile($this->page_directory.'/page_'.$session->id.'.php');
 		} elseif ( file_exists($this->page_directory.'/hidden_'.$session->id.'.php')){
-			$content = \Content\Loaders\ContentFactory::loadContentFile($this->page_directory.'/hidden_'.$session->id.'.php');
+			$content = ContentFactory::loadContentFile($this->page_directory.'/hidden_'.$session->id.'.php');
 		} else {
 			throw new \Exception("Page not found.");
 		}

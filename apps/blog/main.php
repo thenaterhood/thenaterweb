@@ -5,6 +5,8 @@ include_once 'models.php';
 
 require_once(NWEB_ROOT.'/classes/class_contentFactory.php');
 
+use Naterweb\Content\Loaders\ContentFactory;
+
 class blog extends ControllerBase{
 
 	private $id;
@@ -69,16 +71,11 @@ class blog extends ControllerBase{
 		$session = $this->pageData['session'];
 
 		if ( $this->usedb ){
-			$post = $this->dal->get( 'Blogpost', 'nodeid', $session->node );
-			if ( is_null($post ) ){
-				return null;
-			} else {
-				return $post;
-			}
+			return $this->dal->get( 'Blogpost', 'nodeid', $session->node );
 		} else {
 
 			$post = 
-				Content\Loaders\ContentFactory::loadContentFile( "$this->post_directory/$session->node.json" );
+				ContentFactory::loadContentFile( "{$this->post_directory}/{$session->node}.json" );
 			return $post;
 		}
 	}
@@ -86,16 +83,16 @@ class blog extends ControllerBase{
 
 	public function read(){
 
-		$this->pageData['content'] = 
-			\Content\Loaders\ContentFactory::loadContentFile( $this->approot.'/pages/page_read.php' );
-		$this->pageData['blogid'] = $this->settings['id'];
-
 		$session = $this->pageData['session'];
-
 		$this->pageData['nodeid'] = $session->node;
-
 		$post = $this->get_post();
 		$this->pageData['displaypost'] = $post;
+
+		$this->pageData['content'] = 
+			ContentFactory::loadContentFile( $this->approot.'/pages/page_read.php' );
+		$this->pageData['blogid'] = $this->settings['id'];
+
+
 		$this->pageData['commentCode'] = $this->settings['comment_code'];
 		$this->pageData['outdated'] = ( ( strtotime('today') - strtotime($post->datestamp) ) > 31556916 ); 
 
@@ -145,7 +142,7 @@ class blog extends ControllerBase{
 	public function home(){
 
 		$this->pageData['content'] = 
-			\Content\Loaders\ContentFactory::loadContentFile( $this->approot.'/pages/page_home.php' );
+			ContentFactory::loadContentFile( $this->approot.'/pages/page_home.php' );
 		$this->pageData['blogid'] = $this->settings['id'];
 		$session = $this->pageData['session'];
 		$this->pageData['articles'] = $this->getPostRange( $session->start, $session->end );
@@ -168,7 +165,7 @@ class blog extends ControllerBase{
 		} else {
 
 			$this->pageData['content'] = 
-				\Content\Loaders\ContentFactory::loadContentFile( $this->approot.'/pages/page_taghistogram.php' );
+				ContentFactory::loadContentFile( $this->approot.'/pages/page_taghistogram.php' );
 			$this->pageData['blogid'] = $this->settings['id'];
 			$this->pageData['tags'] = $this->retrieveTagCache();
 
@@ -198,7 +195,7 @@ class blog extends ControllerBase{
 			print $format;
 
 			$this->pageData['content'] = 
-				\Content\Loaders\ContentFactory::loadContentFile( $this->approot.'/pages/page_titles.php' );
+				ContentFactory::loadContentFile( $this->approot.'/pages/page_titles.php' );
 			$this->pageData['blogid'] = $this->settings['id'];
 			$this->pageData['titles'] = $this->retrieveTitleCache();
 
@@ -228,7 +225,7 @@ class blog extends ControllerBase{
 		auth_user( getConfigOption('site_domain').'/'.$this->settings['id'].'/manage' );
 
 		$this->pageData['content'] = 
-			\Content\Loaders\ContentFactory::loadContentFile( $this->approot.'/pages/page_manage.php');
+			ContentFactory::loadContentFile( $this->approot.'/pages/page_manage.php');
 		$this->pageData['id'] = $this->settings['id'];
 
 
@@ -244,7 +241,7 @@ class blog extends ControllerBase{
 
 
 		$this->pageData['content'] = 
-			\Content\Loaders\ContentFactory::loadContentFile( $this->approot.'/pages/page_editpost.php');
+			ContentFactory::loadContentFile( $this->approot.'/pages/page_editpost.php');
 		$this->pageData['id'] = $this->settings['id'];
 		$this->pageData['csrf_id'] = $sessionmgr->get_csrf_id();
 		$this->pageData['csrf_token'] = $sessionmgr->get_csrf_token();
@@ -264,7 +261,7 @@ class blog extends ControllerBase{
 		if ( request::get('node') != '' ){
 
 			$this->pageData['content'] = 
-				\Content\Loaders\ContentFactory::loadContentFile( $this->approot.'/pages/page_editpost.php');
+				ContentFactory::loadContentFile( $this->approot.'/pages/page_editpost.php');
 			$this->pageData['id'] = $this->settings['id'];
 
 			$article = $this->get_post();
