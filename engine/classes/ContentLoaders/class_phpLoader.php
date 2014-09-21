@@ -1,6 +1,6 @@
 <?php
 
-namespace Content\Loaders;
+namespace Naterweb\Content\Loaders;
 
 require_once(NWEB_ROOT.'/classes/ContentLoaders/interface_contentLoader.php');
 

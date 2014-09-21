@@ -1,6 +1,6 @@
 <?php
 
-namespace Content\Loaders;
+namespace Naterweb\Content\Loaders;
 
 interface ContentLoader{
 	
