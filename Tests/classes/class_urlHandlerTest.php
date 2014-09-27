@@ -1,4 +1,6 @@
-<?php 
+<?php
+
+use Naterweb\Routing\Urls\UrlHandler;
 
 class urlHandlerTest extends PHPUnit_Framework_TestCase {
 
@@ -23,7 +25,7 @@ class urlHandlerTest extends PHPUnit_Framework_TestCase {
 
 		$urlHandlerInstance = new UrlHandler();
 
-		$this->assertEquals( $urlHandlerInstance->getControllerId(), 'page' );
+		$this->assertEquals( $_GET['controller'], 'page' );
 		$this->assertEquals( $_GET['id'], 'foo' );
 		$this->assertEquals( $_GET['test'], 'bar' );
 
@@ -35,11 +37,11 @@ class urlHandlerTest extends PHPUnit_Framework_TestCase {
 
 		$urlHandlerInstance = new UrlHandler();
 
-		$this->assertEquals( $urlHandlerInstance->getControllerId(), 'page' );
+		$this->assertEquals( $_GET['controller'], 'page' );
 
 		$urlHandlerInstance->reparseUrl();
 
-		$this->assertEquals( $urlHandlerInstance->getControllerId(), 'foo' );
+		$this->assertEquals( $_GET['controller'], 'foo' );
 		$this->assertEquals( $_GET['id'], 'test' );
 		$this->assertEquals( $_GET['bar'], '' );
 
@@ -51,7 +53,6 @@ class urlHandlerTest extends PHPUnit_Framework_TestCase {
 
 		$urlHandlerInstance = new UrlHandler();
 
-		$this->assertEquals( $urlHandlerInstance->getControllerId(), 'page' );
 		$this->assertEquals( $_GET['id'], 'foo' );
 		$this->assertEquals( $_GET['test'], 'bar%@#($#$&&' );
 

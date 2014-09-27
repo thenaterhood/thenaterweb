@@ -17,7 +17,7 @@
 include NWEB_ROOT.'/../settings.php';
 include NWEB_ROOT.'/classes/class_lock.php';
 include NWEB_ROOT.'/lib/core_extension.php';
-include NWEB_ROOT.'/classes/class_urlHandler.php';
+include NWEB_ROOT.'/Routing/Urls/class_urlHandler.php';
 include NWEB_ROOT.'/lib/core_database.php';
 include NWEB_ROOT.'/classes/class_sessionMgr.php';
 include NWEB_ROOT.'/classes/class_request.php';

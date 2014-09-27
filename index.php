@@ -40,6 +40,7 @@ include_once NWEB_ROOT.'/lib/core_redirect.php';
 
 use Naterweb\Engine\Applications;
 use Naterweb\Engine\Configuration;
+use Naterweb\Routing\Urls\UrlHandler;
 
 /**
  * This array contains the applications enabled 
@@ -101,7 +102,7 @@ $sessionmgr->noRedirect = False;
 # Initialize the URL handler and use it to include 
 # the relevant controller from controllers.
 $urlHandler = new UrlHandler();
-$controller = $urlHandler->getControllerId();
+$controller = request::sanitized_get('controller');
 
 define( 'REQUESTED_NAME', $controller );
 

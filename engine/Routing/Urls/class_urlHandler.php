@@ -7,10 +7,14 @@
  *
  */
 
+
+namespace Naterweb\Routing\Urls;
+
 /**
  * Include the main blog functionality
  */
 include_once NWEB_ROOT.'/lib/core_blog.php';
+
 
 /**
  * A class for managing URL related data
@@ -98,22 +102,11 @@ class UrlHandler{
 
 				}
 
-				$sessionMvc = request::get_sanitized_as_object( array( 'controller' ) );
-				$this->controllerId = $sessionMvc->controller;
+				$this->controllerId = $_GET['controller'];
 
 
 
 			}
-
-
-	/**
-	 * Returns the controller ID 
-	 * @return the name of the controller
-	 */
-	public function getControllerId(){
-		return $this->controllerId;
-	}
-	
 
 }
 
