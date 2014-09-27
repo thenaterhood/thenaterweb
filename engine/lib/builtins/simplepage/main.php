@@ -65,8 +65,13 @@ class page extends ControllerBase{
 		while( $file = readdir( $handler)){
 			if ( $file != '.' && $file != '..' && substr($file, 0, 5) == 'page_' ){
 				$nodeinfo = pathinfo($file);
+
+				$url = new UrlBuilder(array(
+					$this->settings['id'] => substr($nodeinfo['filename'], 5)
+					));
+
 				$pages[ $this->settings['page_directory'].'/'.$file ] = 
-				     getConfigOption('site_domain').'/?url='.$this->settings['id'].'/'.substr($nodeinfo['filename'], 5);
+				     $url->build();
 			}
 		}
 

@@ -83,7 +83,7 @@ class Configuration{
 		
 		# The domain name of the site (note that this can be automatically
 		# determined if needed)
-		$this->container['site_domain'] = 'http://localhost:8000';
+		$this->container['site_domain'] = 'http://localhost:8080';
 		
 		# The owner/author of the website, used in places where an author
 		# is needed, such as the atom feed.

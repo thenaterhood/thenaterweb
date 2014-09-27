@@ -4,6 +4,7 @@ include_once NWEB_ROOT.'/lib/core_redirect.php';
 include_once NWEB_ROOT.'/lib/builtins/auth/models.php';
 
 use Naterweb\Client\SessionMgr;
+use Naterweb\Routing\Urls\UrlBuilder;
 
 function auth_user( $toPage='/', $require_groups=array() ){
     
@@ -21,7 +22,8 @@ function auth_user( $toPage='/', $require_groups=array() ){
 
 	} else {
 		$sessionmgr->toPage = $toPage;
-		$redirect = new Naterweb\Routing\Redirects\Redirect( $toPage, getConfigOption('site_domain').'/?url=auth/login' );
+		$urlBuilder = new UrlBuilder(array('auth'=>'login'));
+		$redirect = new Naterweb\Routing\Redirects\Redirect( $toPage, $urlBuilder->build());
 		$redirect->apply( 302 );
 	}
         

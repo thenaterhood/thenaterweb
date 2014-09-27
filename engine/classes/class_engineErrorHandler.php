@@ -1,6 +1,6 @@
 <?php
 
-use Naterweb\ContentLoader\ContentFactory;
+use Naterweb\Content\Loaders\ContentFactory;
 /*
  *
  */
@@ -86,7 +86,7 @@ class EngineErrorHandler {
 
 		}
 
-		$pageData['content'] = ContentFactory::loadContentFile('/home/nate/gnat/engine/lib/html/errorpage');
+		$pageData['content'] = ContentFactory::loadContentFile(NWEB_ROOT.'/lib/html/errorpage.php');
 		render_php_template( getConfigOption('template'), $pageData );
 
 		die();

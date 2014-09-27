@@ -15,8 +15,8 @@ class UrlBuilder {
 
 	public function build()
 	{
-		$friendlyUrl = Configuration::get_config_option('friendly_urls');
-		$domain = Configuration::get_config_option('site_domain');
+		$friendlyUrl = Configuration::get_option('friendly_urls');
+		$domain = Configuration::get_option('site_domain');
 
 		$params = array();
 		$params[] = $domain;

@@ -86,8 +86,8 @@ class auth extends ControllerBase{
 	 */
 	public function managegroup(){
             
-
-		if ( auth_user( getConfigOption('site_domain').'/?url=auth/managegroup', 'nwadmin' ) ){
+		$urlBuilder = new UrlBuilder(array('auth'=>'managegroup'));
+		if ( auth_user( $urlBuilder->build(), 'nwadmin' ) ){
             
             $sess = SessionMgr::getInstance();
             $sess->noRedirect = True;
@@ -111,8 +111,8 @@ class auth extends ControllerBase{
 	 * Renders the add group page where a group can be added.
 	 */
 	public function addgroup(){
-
-		if ( ! auth_user( getConfigOption('site_domain').'/?url=auth/adduser', 'nwadmin' ) ){
+		$urlBuilder = new UrlBuilder(array('auth'=>'adduser'));
+		if ( ! auth_user( $urlBuilder->build(), 'nwadmin' ) ){
             $this->unauthorized();
         }
 
@@ -162,8 +162,8 @@ class auth extends ControllerBase{
 	 * their group associations.
 	 */
 	public function deluser(){
-
-		if ( ! auth_user( getConfigOption('site_domain').'/?url=auth/manage', 'nwadmin' ) ){
+		$urlBuilder = new UrlBuilder(array('auth'=>'manage'));
+		if ( ! auth_user( $urlBuilder->build(), 'nwadmin' ) ){
                     $this->unauthorized();
                 }
 
@@ -177,8 +177,8 @@ class auth extends ControllerBase{
 		}
 
 		$user->delete();
-
-		$redir = new Redirect( 'auth/deluser', '/?url=auth/manage');
+		$urlBuilder = new UrlBuilder(array('auth'=>'manage'));
+		$redir = new Redirect( 'auth/deluser', $urlBuilder->build());
 		$redir->apply(302);
 
 
@@ -195,8 +195,8 @@ class auth extends ControllerBase{
 	 * Updates a user's information and groups
 	 */
 	public function changeuser(){
-
-		if ( ! auth_user( getConfigOption('site_domain').'/?url=auth/adduser', 'nwadmin' ) ){
+		$urlBuilder = new UrlBuilder(array('auth'=>'adduser'));
+		if ( ! auth_user( $urlBuilder->build(), 'nwadmin' ) ){
                     $this->unauthorized();
                 }
 
@@ -275,8 +275,9 @@ class auth extends ControllerBase{
 	 * Adds a new user to the system
 	 */
 	public function adduser(){
+		$url = new UrlBuilder(array('auth'=>'adduser'));
 
-		if ( ! auth_user( getConfigOption('site_domain').'/?url=auth/adduser', 'nwadmin' ) ){
+		if ( ! auth_user( $url->build(), 'nwadmin' ) ){
                     $this->unauthorized();
                 }
 
@@ -330,8 +331,8 @@ class auth extends ControllerBase{
 	 * Shows the main user management page
 	 */
 	public function manage(){
-
-		if ( ! auth_user( getConfigOption('site_domain').'/?url=auth/manage', 'nwadmin' ) ){
+		$url = new UrlBuilder(array('auth'=>'manage'));
+		if ( ! auth_user( $url->build(), 'nwadmin' ) ){
                     $this->unauthorized();
                 }
 
