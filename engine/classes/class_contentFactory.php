@@ -18,8 +18,8 @@ class ContentFactory{
 			throw new \Exception("File ($file) not found");
 		} 
 
-		if (file_exists(NWEB_ROOT."/ContentLoaders/class_$loader.php")){
-			require_once(NWEB_ROOT."/ContentLoaders/class_$loader.php");
+		if (file_exists(NWEB_ROOT."/Content/Loaders/class_$loader.php")){
+			require_once(NWEB_ROOT."/Content/Loaders/class_$loader.php");
 			$loader = "Naterweb\Content\Loaders\\".ucfirst($loader);
 			return new $loader($file);
 		} else {

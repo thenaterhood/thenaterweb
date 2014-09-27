@@ -2,7 +2,7 @@
 
 namespace Naterweb\Content\Loaders;
 
-require_once(NWEB_ROOT.'/ContentLoaders/interface_contentLoader.php');
+require_once(NWEB_ROOT.'/Content/Loaders/interface_contentLoader.php');
 
 class TxtLoader implements ContentLoader{
 

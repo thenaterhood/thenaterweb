@@ -34,7 +34,7 @@ class EngineErrorHandler {
 			$pageData['title'] = 'Holy ' . $e->getCode() . ' (error), Batman!';
 			$pageData['text'] = "Whoops, looks like a problem!";
 
-			$pageData['content'] = ContentFactory::loadContentFile('/home/nate/gnat/engine/lib/html/errorpage');
+			$pageData['content'] = ContentFactory::loadContentFile(NWEB_ROOT.'/lib/html/errorpage.php');
 			render_php_template( getConfigOption('template'), $pageData );
 
 		}
