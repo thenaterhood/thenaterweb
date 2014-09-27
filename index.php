@@ -93,7 +93,7 @@ $sessionmgr = SessionMgr::getInstance();
  * option is set.
  */
 if ( Configuration::get_option('friendly_urls') && ! $sessionmgr->noRedirect ){
-    $redirect = new Naterweb\Site\Redirects\ConditionalRedirect( '/?url', '/'.$_GET['url'], substr( Configuration::get_option('site_domain').request::meta('REQUEST_URI'), 7 ) );
+    $redirect = new Naterweb\Routing\Redirects\ConditionalRedirect( '/?url', '/'.$_GET['url'], substr( Configuration::get_option('site_domain').request::meta('REQUEST_URI'), 7 ) );
     $redirect->apply( 301 );
 }
 
