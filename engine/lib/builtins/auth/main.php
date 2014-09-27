@@ -4,6 +4,7 @@ include_once NWEB_ROOT.'/lib/core_auth.php';
 
 include_once 'models.php';
 
+use Naterweb\Content\Loaders\ContentFactory;
 use Naterweb\Client\SessionMgr;
 use Naterweb\Client\request;
 
@@ -52,7 +53,7 @@ class auth extends ControllerBase{
 			$redir_to = $sessionmgr->toPage;
 			unset( $sessionmgr->toPage );
 
-			$this->pageData['content'] = pullContent( AUTH_ROOT.'/pages/welcome.php' );
+			$this->pageData['content'] = ContentFactory::loadContentFile( AUTH_ROOT.'/pages/welcome.php' );
 
 			$this->pageData['id'] = 'login';
 			$this->pageData['title'] = "Naterweb Authentication";
@@ -64,7 +65,7 @@ class auth extends ControllerBase{
 
 		} else {
 
-			$this->pageData['content'] = pullContent( AUTH_ROOT.'/pages/login.php' );
+			$this->pageData['content'] = ContentFactory::loadContentFile( AUTH_ROOT.'/pages/login.php' );
 
 			$this->pageData['id'] = 'login';
 			$this->pageData['fail'] = False;
@@ -92,7 +93,7 @@ class auth extends ControllerBase{
             $sess->noRedirect = True;
             $pageData = array();
             $pageData['groups'] = $this->dal->getAll( 'nwGroup' );
-            $pageData['content'] = pullContent( AUTH_ROOT.'/pages/managegroup.php');
+            $pageData['content'] = ContentFactory::loadContentFile( AUTH_ROOT.'/pages/managegroup.php');
             $pageData['static'] = AUTH_ROOT.'/pages';
             $pageData['title'] = 'Manage Groups';
 
@@ -131,7 +132,7 @@ class auth extends ControllerBase{
 			$newgroup->save();
 
 
-			$this->pageData['content'] = pullContent( AUTH_ROOT.'/pages/groupadded.php' );
+			$this->pageData['content'] = ContentFactory::loadContentFile( AUTH_ROOT.'/pages/groupadded.php' );
 
 			$this->pageData['id'] = 'login';
 			$this->pageData['title'] = "Naterweb Authentication";
@@ -143,7 +144,7 @@ class auth extends ControllerBase{
 		} else {
 
 			$pageData = array();
-			$pageData['content'] = pullContent( AUTH_ROOT.'/pages/addgroup.php' );
+			$pageData['content'] = ContentFactory::loadContentFile( AUTH_ROOT.'/pages/addgroup.php' );
 			$pageData['static'] = AUTH_ROOT.'/pages';
 			$pageData['title'] = 'Add New User';
 			$pageData['id'] = 'adduser';
@@ -240,7 +241,7 @@ class auth extends ControllerBase{
 			}
 
 
-			$this->pageData['content'] = pullContent( AUTH_ROOT.'/pages/useradded.php' );
+			$this->pageData['content'] = ContentFactory::loadContentFile( AUTH_ROOT.'/pages/useradded.php' );
 
 			$this->pageData['id'] = 'login';
 			$this->pageData['title'] = "Naterweb Authentication";
@@ -252,7 +253,7 @@ class auth extends ControllerBase{
 		} else {
 
 			$pageData = array();
-			$pageData['content'] = pullContent( AUTH_ROOT.'/pages/changeuser.php' );
+			$pageData['content'] = ContentFactory::loadContentFile( AUTH_ROOT.'/pages/changeuser.php' );
 			$user = $this->dal->get('nwUser', 'id', request::sanitized_get( 'uid') );
 			$pageData['user'] = $user;
 			$pageData['ingroups'] = $user->getRelated( 'groups' );
@@ -300,7 +301,7 @@ class auth extends ControllerBase{
 			$newuser->save();
 
 
-			$this->pageData['content'] = pullContent( AUTH_ROOT.'/pages/useradded.php' );
+			$this->pageData['content'] = ContentFactory::loadContentFile( AUTH_ROOT.'/pages/useradded.php' );
 
 			$this->pageData['id'] = 'login';
 			$this->pageData['title'] = "Naterweb Authentication";
@@ -312,7 +313,7 @@ class auth extends ControllerBase{
 		} else {
 
 			$pageData = array();
-			$pageData['content'] = pullContent( AUTH_ROOT.'/pages/adduser.php' );
+			$pageData['content'] = ContentFactory::loadContentFile( AUTH_ROOT.'/pages/adduser.php' );
 			$pageData['static'] = AUTH_ROOT.'/pages';
 			$pageData['title'] = 'Add New User';
 			$pageData['id'] = 'adduser';
@@ -336,7 +337,7 @@ class auth extends ControllerBase{
 
 		$pageData = array();
 		$pageData['users'] = $this->dal->getAll( 'nwUser' );
-		$pageData['content'] = pullContent( AUTH_ROOT.'/pages/manage.php');
+		$pageData['content'] = ContentFactory::loadContentFile( AUTH_ROOT.'/pages/manage.php');
 		$pageData['static'] = AUTH_ROOT.'/pages';
 		$pageData['title'] = 'Manage Users';
 		$pageData['id'] = 'manage';

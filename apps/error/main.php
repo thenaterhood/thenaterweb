@@ -1,5 +1,7 @@
 <?php
 
+use Naterweb\Content\Loaders\ContentFactory;
+
 class error extends ControllerBase{
 
 	private $id;
@@ -18,7 +20,7 @@ class error extends ControllerBase{
 
 		$this->pageData['session'] = $session;
 		$this->pageData['static'] = $this->page_directory;
-		$content = pullContent( $this->page_directory.'/hidden_404'.'.php' );
+		$content = ContentFactory::loadContentFile( $this->page_directory.'/hidden_404'.'.php' );
 		$this->pageData['content'] = $content;
 		$this->pageData['id'] = $content->title;
 		$this->pageData['title'] = $this->title;

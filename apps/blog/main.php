@@ -278,7 +278,7 @@ class blog extends ControllerBase{
 
 			$this->pageData['posts'] = $this->getPostList();
 			$this->pageData['appid'] = $this->settings['id'];
-			$this->pageData['content'] = pullContent( $this->approot.'/pages/page_selectpost.php' );
+			$this->pageData['content'] = ContentFactory::loadContentFile( $this->approot.'/pages/page_selectpost.php' );
 
 			render_php_template( $this->template, $this->pageData );
 
@@ -325,7 +325,7 @@ class blog extends ControllerBase{
 		}
 
 		$this->pageData['post'] = $post;
-		$this->pageData['content'] = pullContent( $this->approot.'/pages/page_savedpost.php' );
+		$this->pageData['content'] = ContentFactory::loadContentFile( $this->approot.'/pages/page_savedpost.php' );
 		$this->pageData['blogid'] = $this->settings['id'];
 
 		$this->buildTagCache();
@@ -381,7 +381,7 @@ class blog extends ControllerBase{
 			$this->pageData['saved'] = $nodename;
 		}
 
-		$this->pageData['content'] = pullContent( $this->approot.'/pages/page_savedpost.php' );
+		$this->pageData['content'] = ContentFactory::loadContentFile( $this->approot.'/pages/page_savedpost.php' );
 
 		$this->pageData['blogid'] = $this->settings['id'];
 

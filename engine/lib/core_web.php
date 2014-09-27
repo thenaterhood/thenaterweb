@@ -31,20 +31,6 @@ require_once NWEB_ROOT.'/classes/class_contentFactory.php';
 
 use Naterweb\Client\SessionMgr;
 
-/**
-* Checks to see if the preferred file exists, and if it does
-* returns it, otherwise it returns the secondary file, which ideally
-* should be a file (like an error page) that is guaranteed to exist.
-* 
-* @param $preferred (string): the preferred page to include
-* 
-* 
-*/
-function pullContent( $preferred ){
-
-	return Naterweb\Content\Loaders\ContentFactory::loadContentFile($preferred);
-	
-}
 
 function render_php_template( $template, $pagedata, $use_csrf=True ){
 

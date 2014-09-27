@@ -1,5 +1,6 @@
 <?php
 
+use Naterweb\ContentLoader\ContentFactory;
 /*
  *
  */
@@ -33,7 +34,7 @@ class EngineErrorHandler {
 			$pageData['title'] = 'Holy ' . $e->getCode() . ' (error), Batman!';
 			$pageData['text'] = "Whoops, looks like a problem!";
 
-			$pageData['content'] = pullContent('/home/nate/gnat/engine/lib/html/errorpage');
+			$pageData['content'] = ContentFactory::loadContentFile('/home/nate/gnat/engine/lib/html/errorpage');
 			render_php_template( getConfigOption('template'), $pageData );
 
 		}
@@ -85,7 +86,7 @@ class EngineErrorHandler {
 
 		}
 
-		$pageData['content'] = pullContent('/home/nate/gnat/engine/lib/html/errorpage');
+		$pageData['content'] = ContentFactory::loadContentFile('/home/nate/gnat/engine/lib/html/errorpage');
 		render_php_template( getConfigOption('template'), $pageData );
 
 		die();

@@ -2,6 +2,7 @@
 include NWEB_ROOT.'/lib/core_auth.php';
 include_once NWEB_ROOT.'/lib/builtins/auth/models.php';
 
+use Naterweb\Content\Loaders\ContentFactory;
 
 class webadmin extends ControllerBase{
 
@@ -26,7 +27,7 @@ class webadmin extends ControllerBase{
 		if ( $isAuthed ){
 			$this->pageData['session'] = request::get_sanitized_as_object( 
 				array('name', 'track', 'konami', 'id', 'tag', 'type', 'node', 'start', 'end') );
-			$this->pageData['content'] = pullContent( WEBADMIN_ROOT.'/pages/page_'.$method.'.php' );
+			$this->pageData['content'] = ContentFactory::loadContentFile( WEBADMIN_ROOT.'/pages/page_'.$method.'.php' );
 
 			$admSession = request::get_sanitized_as_object( array( 'blogid', 'postid', 'isnew' ) );
 
@@ -52,7 +53,7 @@ class webadmin extends ControllerBase{
 		if ( $isAuthed ){
 			$this->pageData['session'] = request::get_sanitized_as_object( 
 				array('name', 'track', 'konami', 'id', 'tag', 'type', 'node', 'start', 'end') );
-			$this->pageData['content'] = pullContent( WEBADMIN_ROOT.'/pages/page_home.php' );
+			$this->pageData['content'] = ContentFactory::loadContentFile( WEBADMIN_ROOT.'/pages/page_home.php' );
 
 			$this->pageData['title'] = $this->title;
 			$this->pageData['tagline'] = $this->catchline;
