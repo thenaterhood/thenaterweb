@@ -31,8 +31,6 @@ include_once NWEB_ROOT.'/classes/class_applications.php';
 require_once NWEB_ROOT.'/Content/Loaders/class_contentFactory.php';
 include NWEB_ROOT.'/Content/Renderers/class_phpRenderer.php';
 
-use Naterweb\Client\SessionMgr;
-
 
 /**
  * Built to abstract retrieving config variables, since
