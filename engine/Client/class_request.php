@@ -1,4 +1,7 @@
 <?php
+
+namespace Naterweb\Client;
+
 /**
  * Provides access and sanitation functions for 
  * retrieving data from PHP HTTP variables.

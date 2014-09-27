@@ -41,6 +41,8 @@ include_once NWEB_ROOT.'/lib/core_redirect.php';
 use Naterweb\Engine\Applications;
 use Naterweb\Engine\Configuration;
 use Naterweb\Routing\Urls\UrlHandler;
+use Naterweb\Client\SessionMgr;
+use Naterweb\Client\request;
 
 /**
  * This array contains the applications enabled 

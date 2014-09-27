@@ -1,5 +1,7 @@
 <?php
 
+namespace Naterweb\Client;
+
 class SessionMgr{
 	
 	const SESSION_STARTED = True;

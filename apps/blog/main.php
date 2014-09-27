@@ -6,6 +6,7 @@ include_once 'models.php';
 require_once(NWEB_ROOT.'/classes/class_contentFactory.php');
 
 use Naterweb\Content\Loaders\ContentFactory;
+use Naterweb\Client\request;
 
 class blog extends ControllerBase{
 

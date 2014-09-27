@@ -19,8 +19,8 @@ include NWEB_ROOT.'/classes/class_lock.php';
 include NWEB_ROOT.'/lib/core_extension.php';
 include NWEB_ROOT.'/Routing/Urls/class_urlHandler.php';
 include NWEB_ROOT.'/lib/core_database.php';
-include NWEB_ROOT.'/classes/class_sessionMgr.php';
-include NWEB_ROOT.'/classes/class_request.php';
+include NWEB_ROOT.'/Client/class_sessionMgr.php';
+include NWEB_ROOT.'/Client/class_request.php';
 include NWEB_ROOT.'/classes/class_dataAccessLayer.php';
 include NWEB_ROOT.'/classes/class_modelBase.php';
 include NWEB_ROOT.'/classes/class_engineErrorHandler.php';
@@ -28,6 +28,8 @@ include NWEB_ROOT.'/lib/core_httpstatus.php';
 include_once NWEB_ROOT.'/classes/class_applications.php';
 
 require_once NWEB_ROOT.'/classes/class_contentFactory.php';
+
+use Naterweb\Client\SessionMgr;
 
 /**
 * Checks to see if the preferred file exists, and if it does

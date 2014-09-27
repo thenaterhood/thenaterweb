@@ -4,6 +4,9 @@ include_once NWEB_ROOT.'/lib/core_auth.php';
 
 include_once 'models.php';
 
+use Naterweb\Client\SessionMgr;
+use Naterweb\Client\request;
+
 class auth extends ControllerBase{
 
 	private $dal;

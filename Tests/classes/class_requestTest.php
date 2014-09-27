@@ -1,5 +1,7 @@
 <?php
 
+use Naterweb\Client\request;
+
 /**
  * This implicitly tests the VarGetter and sanitation 
  * classes as well, as the session object's data will 

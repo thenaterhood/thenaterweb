@@ -1,6 +1,8 @@
 <?php
 include 'engine/lib/core_sitemap.php';
 
+use Naterweb\Client\request;
+
 $session = request::get_sanitized_as_object( array('regen', 'type', 'page') );
 
 class sitemaps extends ControllerBase{
