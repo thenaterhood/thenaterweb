@@ -8,7 +8,7 @@
  * Include the inherited dataMonger class
  */
 include_once 'class_dataMonger.php';
-require_once NWEB_ROOT.'/classes/class_contentFactory.php';
+require_once NWEB_ROOT.'/Content/Loaders/class_contentFactory.php';
 
 /**
  * Defines a data object to contain an atom feed as items

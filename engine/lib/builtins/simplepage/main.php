@@ -1,6 +1,6 @@
 <?php
 include_once NWEB_ROOT.'/lib/core_auth.php';
-require_once NWEB_ROOT.'/classes/class_contentFactory.php';
+require_once NWEB_ROOT.'/Content/Loaders/class_contentFactory.php';
 
 use Naterweb\Content\Loaders\ContentFactory;
 use Naterweb\Client\request;

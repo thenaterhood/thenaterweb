@@ -28,7 +28,7 @@ include NWEB_ROOT.'/lib/core_httpstatus.php';
 include NWEB_ROOT.'/Routing/Urls/class_urlBuilder.php';
 include_once NWEB_ROOT.'/classes/class_applications.php';
 
-require_once NWEB_ROOT.'/classes/class_contentFactory.php';
+require_once NWEB_ROOT.'/Content/Loaders/class_contentFactory.php';
 
 use Naterweb\Client\SessionMgr;
 
