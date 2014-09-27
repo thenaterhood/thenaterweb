@@ -1,28 +1,29 @@
 <?php
 include_once NWEB_ROOT.'/lib/core_auth.php';
-require_once NWEB_ROOT.'/Content/Loaders/class_contentFactory.php';
 
 use Naterweb\Content\Loaders\ContentFactory;
+use Naterweb\Content\Renderers\PhpRenderer;
 use Naterweb\Client\request;
 
 class page extends ControllerBase{
 
 	private $id;
 	private $configFile;
+	private $renderer;
 
 	public function __construct(){
 
-		$this->pageData = array();
 
 		$approot = PAGE_ROOT;
 		$configFile = $approot.'/mainsite.conf.xml';
 		$this->readConfig( $configFile );
+		$this->renderer = new PhpRenderer($this->template);
 
 		$session = request::get_sanitized_as_object( array('name', 'track', 'konami', 'id') );
 
 		$this->settings['approot'] = $approot;
-		$this->pageData['session'] = $session;
-		$this->pageData['static'] = $this->page_directory;
+		$this->renderer->set_value('session', $session);
+		$this->renderer->set_value('static', $this->page_directory);
 
 		if ( file_exists($this->page_directory.'/page_'.$session->id.'.html') ){
 			$content = ContentFactory::loadContentFile($this->page_directory.'/page_'.$session->id.'.html');
@@ -46,11 +47,11 @@ class page extends ControllerBase{
 
 		$content->setTitle($session->id);
 
-		$this->pageData['content'] = $content;
-		$this->pageData['id'] = $content->title;
-		$this->pageData['title'] = $this->title;
-		$this->pageData['tagline'] = $this->catchline;
-		$this->pageData['appid'] = $this->id;
+		$this->renderer->set_value('content', $content);
+		$this->renderer->set_value('id', $content->title);
+		$this->renderer->set_value('title', $this->title);
+		$this->renderer->set_value('tagline', $this->catchline);
+		$this->renderer->set_value('appid', $this->id);
 
 
 
@@ -81,7 +82,7 @@ class page extends ControllerBase{
 
 	public function __call( $page, $args ){
 
-		render_php_template( $this->template, $this->pageData );
+		$this->renderer->render();
 
 	}
 

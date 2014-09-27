@@ -5,6 +5,7 @@ include_once NWEB_ROOT.'/lib/core_auth.php';
 include_once 'models.php';
 
 use Naterweb\Content\Loaders\ContentFactory;
+use Naterweb\Content\Renderers\PhpRenderer;
 use Naterweb\Client\SessionMgr;
 use Naterweb\Client\request;
 
@@ -15,7 +16,6 @@ class auth extends ControllerBase{
 	public function __construct(){
 
 		$this->settings['template'] = getConfigOption('template');
-		$this->pageData = array();
 
 		if ( getConfigOption( 'use_db') ){
 			$this->dal = new DataAccessLayer();
@@ -27,6 +27,10 @@ class auth extends ControllerBase{
 
 	}
 
+	public function home(){
+		$this->login();
+	}
+
 	/**
 	 * Logs a user in after validating their credentials, 
 	 * or redirects back to the login page.
@@ -35,6 +39,7 @@ class auth extends ControllerBase{
 
 		$sessionmgr = SessionMgr::getInstance();
                 $sessionmgr->noRedirect = True;
+		$renderer = new PhpRenderer($this->settings['template']);
 
 
 		if ( $sessionmgr->check_csrf('post') && 
@@ -53,28 +58,25 @@ class auth extends ControllerBase{
 			$redir_to = $sessionmgr->toPage;
 			unset( $sessionmgr->toPage );
 
-			$this->pageData['content'] = ContentFactory::loadContentFile( AUTH_ROOT.'/pages/welcome.php' );
-
-			$this->pageData['id'] = 'login';
-			$this->pageData['title'] = "Naterweb Authentication";
-			$this->pageData['static'] = AUTH_ROOT.'/pages';
-			$this->pageData['to'] = $redir_to;
+			$renderer->set_value('content', ContentFactory::loadContentFile( AUTH_ROOT.'/pages/welcome.php' ));
+			$renderer->set_value('id', 'login');
+			$renderer->set_value('title', 'Naterweb Authentication');
+			$renderer->set_value('static', AUTH_ROOT.'/pages');
+			$renderer->set_value('to', $redir_to);
                         
-			render_php_template( $this->settings['template'], $this->pageData );
 
 
 		} else {
 
-			$this->pageData['content'] = ContentFactory::loadContentFile( AUTH_ROOT.'/pages/login.php' );
-
-			$this->pageData['id'] = 'login';
-			$this->pageData['fail'] = False;
-			$this->pageData['title'] = "Naterweb Authentication";
-			$this->pageData['static'] = AUTH_ROOT.'/pages';
-
-			render_php_template( $this->settings['template'], $this->pageData );
+			$renderer->set_value('content', ContentFactory::loadContentFile( AUTH_ROOT.'/pages/login.php' ));
+			$renderer->set_value('id', 'login');
+			$renderer->set_value('fail', False);
+			$renderer->set_value('title', 'Naterweb Authentication');
+			$renderer->set_value('static', AUTH_ROOT.'/pages');
 
 		}
+
+		$renderer->render();
 
 
 
@@ -91,13 +93,15 @@ class auth extends ControllerBase{
             
             $sess = SessionMgr::getInstance();
             $sess->noRedirect = True;
-            $pageData = array();
-            $pageData['groups'] = $this->dal->getAll( 'nwGroup' );
-            $pageData['content'] = ContentFactory::loadContentFile( AUTH_ROOT.'/pages/managegroup.php');
-            $pageData['static'] = AUTH_ROOT.'/pages';
-            $pageData['title'] = 'Manage Groups';
+	    $renderer = new PhpRenderer($this->settings['template']);
 
-            render_php_template( $this->settings['template'], $pageData );
+            $renderer->set_value('groups', $this->dal->getAll( 'nwGroup' ));
+	    $renderer->set_value('content', ContentFactory::loadContentFile( AUTH_ROOT.'/pages/managegroup.php'));
+	    $renderer->set_value('static', AUTH_ROOT.'/pages');
+	    $renderer->set_value('title', 'Manage Groups');
+
+	    $renderer->render();
+
         } else {
 
             $this->unauthorized();
@@ -119,6 +123,7 @@ class auth extends ControllerBase{
 		$sessionmgr = SessionMgr::getInstance();
         $sessionmgr->noRedirect = True;
 
+		$renderer = new PhpRenderer($this->settings['template']);
 
 		if ( $sessionmgr->check_csrf('post') && 
 			! $this->dal->get('nwGroup', 'name', request::sanitized_post('name') ) ){
@@ -131,28 +136,23 @@ class auth extends ControllerBase{
 
 			$newgroup->save();
 
-
-			$this->pageData['content'] = ContentFactory::loadContentFile( AUTH_ROOT.'/pages/groupadded.php' );
-
-			$this->pageData['id'] = 'login';
-			$this->pageData['title'] = "Naterweb Authentication";
-			$this->pageData['static'] = AUTH_ROOT.'/pages';
-
-			render_php_template( $this->settings['template'], $this->pageData );
+			$renderer->set_value('content', ContentFactory::loadContentFile( AUTH_ROOT.'/pages/groupadded.php' ));
+			$renderer->set_value('id', 'login');
+			$renderer->set_value('title', 'Naterweb Authentication');
+			$renderer->set_value('static', AUTH_ROOT.'/pages');
 
 
 		} else {
 
-			$pageData = array();
-			$pageData['content'] = ContentFactory::loadContentFile( AUTH_ROOT.'/pages/addgroup.php' );
-			$pageData['static'] = AUTH_ROOT.'/pages';
-			$pageData['title'] = 'Add New User';
-			$pageData['id'] = 'adduser';
-
-			render_php_template( $this->settings['template'], $pageData );
+			$renderer->set_value('content', ContentFactory::loadContentFile( AUTH_ROOT.'/pages/addgroup.php' ));
+			$renderer->set_value('static', AUTH_ROOT.'/pages');
+			$renderer->set_value('title', 'Add New User');
+			$renderer->set_value('id', 'adduser');
 
 
 		}
+
+		$renderer->render();
 
 
 	}
@@ -203,6 +203,7 @@ class auth extends ControllerBase{
 		$sessionmgr = SessionMgr::getInstance();
                 $sessionmgr->noRedirect = True;
 
+		$renderer = new PhpRenderer($this->settings['template']);
 
 		if ( $sessionmgr->check_csrf('post') && 
 			  $this->dal->get('nwUser', 'id', request::sanitized_post('uid') ) ){
@@ -241,31 +242,27 @@ class auth extends ControllerBase{
 			}
 
 
-			$this->pageData['content'] = ContentFactory::loadContentFile( AUTH_ROOT.'/pages/useradded.php' );
-
-			$this->pageData['id'] = 'login';
-			$this->pageData['title'] = "Naterweb Authentication";
-			$this->pageData['static'] = AUTH_ROOT.'/pages';
-
-			render_php_template( $this->settings['template'], $this->pageData );
-
+			$renderer->set_value('content', ContentFactory::loadContentFile( AUTH_ROOT.'/pages/useradded.php' ));
+			$renderer->set_value('id', 'login');
+			$renderer->set_value('title', 'Naterweb Authentication');
+			$renderer->set_value('static', AUTH_ROOT.'/pages');
 
 		} else {
 
 			$pageData = array();
-			$pageData['content'] = ContentFactory::loadContentFile( AUTH_ROOT.'/pages/changeuser.php' );
+			$renderer->set_value('content', ContentFactory::loadContentFile( AUTH_ROOT.'/pages/changeuser.php' ));
+
 			$user = $this->dal->get('nwUser', 'id', request::sanitized_get( 'uid') );
-			$pageData['user'] = $user;
-			$pageData['ingroups'] = $user->getRelated( 'groups' );
-			$pageData['groups'] = $this->dal->getAll( 'nwGroup' );
-			$pageData['static'] = AUTH_ROOT.'/pages';
-			$pageData['title'] = 'Change User';
-			$pageData['id'] = 'changeuser';
-
-			render_php_template( $this->settings['template'], $pageData );
-
+			$renderer->set_value('user', $user);
+			$renderer->set_value('ingroups', $user->getRelated('groups'));
+			$renderer->set_value('groups', $user->dal->getAll('nwGroup'));
+			$renderer->set_value('static', AUTH_ROOT.'/pages');
+			$renderer->set_value('title', 'Change User');
+			$renderer->set_value('id', 'changeuser');
 
 		}
+
+		$renderer->render();
 
 
 
@@ -284,6 +281,7 @@ class auth extends ControllerBase{
 		$sessionmgr = SessionMgr::getInstance();
                 $sessionmgr->noRedirect = True;
 
+		$renderer = new PhpRenderer($this->settings['template']);
 
 		if ( $sessionmgr->check_csrf('post') && 
 			 ! $this->dal->get('nwUser', 'username', request::sanitized_post('username') ) ){
@@ -301,28 +299,22 @@ class auth extends ControllerBase{
 
 			$newuser->save();
 
-
-			$this->pageData['content'] = ContentFactory::loadContentFile( AUTH_ROOT.'/pages/useradded.php' );
-
-			$this->pageData['id'] = 'login';
-			$this->pageData['title'] = "Naterweb Authentication";
-			$this->pageData['static'] = AUTH_ROOT.'/pages';
-
-			render_php_template( $this->settings['template'], $this->pageData );
+			$renderer->set_value('content', ContentFactory::loadContentFile( AUTH_ROOT.'/pages/useradded.php'));
+			$renderer->set_value('id', 'login');
+			$renderer->set_value('title', 'Naterweb Authentication');
+			$renderer->set_value('static', AUTH_ROOT.'/pages');
 
 
 		} else {
 
-			$pageData = array();
-			$pageData['content'] = ContentFactory::loadContentFile( AUTH_ROOT.'/pages/adduser.php' );
-			$pageData['static'] = AUTH_ROOT.'/pages';
-			$pageData['title'] = 'Add New User';
-			$pageData['id'] = 'adduser';
-
-			render_php_template( $this->settings['template'], $pageData );
-
+			$renderer->set_value('content', ContentFactory::loadContentFile( AUTH_ROOT.'/pages/adduser.php'));
+			$renderer->set_value('static', AUTH_ROOT.'/pages');
+			$renderer->set_value('title', 'Add New User');
+			$renderer->set_value('id', 'adduser');
 
 		}
+
+		$renderer->render();
 
 
 	}
@@ -336,15 +328,14 @@ class auth extends ControllerBase{
                     $this->unauthorized();
                 }
 
-		$pageData = array();
-		$pageData['users'] = $this->dal->getAll( 'nwUser' );
-		$pageData['content'] = ContentFactory::loadContentFile( AUTH_ROOT.'/pages/manage.php');
-		$pageData['static'] = AUTH_ROOT.'/pages';
-		$pageData['title'] = 'Manage Users';
-		$pageData['id'] = 'manage';
+		$renderer = new PhpRenderer($this->settings['template']);
+		$renderer->set_value('users', $this->dal->getAll( 'nwUser' ));
+		$renderer->set_value('content', ContentFactory::loadContentFile( AUTH_ROOT.'/pages/manage.php'));
+		$renderer->set_value('static', AUTH_ROOT.'/pages');
+		$renderer->set_value('title', 'Manage Users');
+		$renderer->set_value('id', 'manage');
 
-		render_php_template( $this->settings['template'], $pageData );
-
+		$renderer->render();
 
 
 	}

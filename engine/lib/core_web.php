@@ -29,28 +29,10 @@ include NWEB_ROOT.'/Routing/Urls/class_urlBuilder.php';
 include_once NWEB_ROOT.'/classes/class_applications.php';
 
 require_once NWEB_ROOT.'/Content/Loaders/class_contentFactory.php';
+include NWEB_ROOT.'/Content/Renderers/class_phpRenderer.php';
 
 use Naterweb\Client\SessionMgr;
 
-
-function render_php_template( $template, $pagedata, $use_csrf=True ){
-
-	$page = (object)$pagedata;
-        
-    if ( $use_csrf ){
-        $sessionmgr = SessionMgr::getInstance();
-
-        $page->csrf_token = $sessionmgr->get_csrf_token();
-        $page->csrf_key = $sessionmgr->get_csrf_id();
-    }
-
-	if ( file_exists($template) ){
-		include $template;
-	} else {
-		throw new Exception('Template could not be loaded.');
-	}
-
-}
 
 /**
  * Built to abstract retrieving config variables, since

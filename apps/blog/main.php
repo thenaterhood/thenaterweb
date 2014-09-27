@@ -6,6 +6,7 @@ include_once 'models.php';
 require_once(NWEB_ROOT.'/Content/Loaders/class_contentFactory.php');
 
 use Naterweb\Content\Loaders\ContentFactory;
+use Naterweb\Content\Renderers\PhpRenderer;
 use Naterweb\Client\request;
 
 class blog extends ControllerBase{
@@ -95,9 +96,11 @@ class blog extends ControllerBase{
 
 
 		$this->pageData['commentCode'] = $this->settings['comment_code'];
-		$this->pageData['outdated'] = ( ( strtotime('today') - strtotime($post->datestamp) ) > 31556916 ); 
+		$this->pageData['outdated'] = ( ( strtotime('today') - strtotime($post->datestamp) ) > 31556916 );
 
-		render_php_template( $this->template, $this->pageData );
+		$renderer = new PhpRenderer($this->template);
+		$renderer->bulk_set_values($this->pageData);
+		$renderer->render();
 
 	}
 
@@ -150,8 +153,9 @@ class blog extends ControllerBase{
 
 		$this->pageData['totalPosts'] = count( $this->getPostList() );
 
-		render_php_template( $this->template, $this->pageData );
-
+		$renderer = new PhpRenderer($this->template);
+		$renderer->bulk_set_values($this->pageData);
+		$renderer->render();
 
 	}
 
@@ -170,7 +174,9 @@ class blog extends ControllerBase{
 			$this->pageData['blogid'] = $this->settings['id'];
 			$this->pageData['tags'] = $this->retrieveTagCache();
 
-			render_php_template( $this->template, $this->pageData );
+			$renderer = new PhpRenderer($this->template);
+			$renderer->bulk_set_values($this->pageData);
+			$renderer->render();
 		}
 
 
@@ -199,9 +205,9 @@ class blog extends ControllerBase{
 				ContentFactory::loadContentFile( $this->approot.'/pages/page_titles.php' );
 			$this->pageData['blogid'] = $this->settings['id'];
 			$this->pageData['titles'] = $this->retrieveTitleCache();
-
-			render_php_template( $this->template, $this->pageData );
-
+			$renderer = new PhpRenderer($this->template);
+			$renderer->bulk_set_values($this->pageData);
+			$renderer->render();
 		}
 
 	}
@@ -229,8 +235,9 @@ class blog extends ControllerBase{
 			ContentFactory::loadContentFile( $this->approot.'/pages/page_manage.php');
 		$this->pageData['id'] = $this->settings['id'];
 
-
-		render_php_template( $this->template, $this->pageData );
+		$renderer = new PhpRenderer($this->template);
+		$renderer->bulk_set_values($this->pageData);
+		$renderer->render();
 
 	}
 
@@ -248,7 +255,9 @@ class blog extends ControllerBase{
 		$this->pageData['csrf_token'] = $sessionmgr->get_csrf_token();
 		$this->pageData['isNew'] = True;
 
-		render_php_template( $this->template, $this->pageData );
+		$renderer = new PhpRenderer($this->template);
+		$renderer->bulk_set_values($this->pageData);
+		$renderer->render();
 
 
 	}
@@ -258,7 +267,7 @@ class blog extends ControllerBase{
 		auth_user( getConfigOption('site_domain').'/'.$this->settings['id'].'/manage/editpost' );
 
 		$sessionmgr = SessionMgr::getInstance();
-
+		$renderer = new PhpRenderer($this->template);
 		if ( request::get('node') != '' ){
 
 			$this->pageData['content'] = 
@@ -269,8 +278,7 @@ class blog extends ControllerBase{
 
 			$this->pageData['post'] = $article;
 			$this->pageData['node'] = request::get('node');
-
-			render_php_template( $this->template, $this->pageData );
+			$renderer->bulk_set_values($this->pageData);
 
 
 
@@ -279,11 +287,11 @@ class blog extends ControllerBase{
 			$this->pageData['posts'] = $this->getPostList();
 			$this->pageData['appid'] = $this->settings['id'];
 			$this->pageData['content'] = ContentFactory::loadContentFile( $this->approot.'/pages/page_selectpost.php' );
-
-			render_php_template( $this->template, $this->pageData );
-
+			$renderer->bulk_set_values($this->pageData);
 
 		}
+
+		$renderer->render();
 
 
 	}
@@ -327,12 +335,12 @@ class blog extends ControllerBase{
 		$this->pageData['post'] = $post;
 		$this->pageData['content'] = ContentFactory::loadContentFile( $this->approot.'/pages/page_savedpost.php' );
 		$this->pageData['blogid'] = $this->settings['id'];
-
+		$renderer = new PhpRenderer($this->template);
+		$renderer->bulk_set_values($this->pageData);
 		$this->buildTagCache();
 
 
-		render_php_template( $this->template, $this->pageData );
-
+		$renderer->render();
 
 	}
 
@@ -387,8 +395,9 @@ class blog extends ControllerBase{
 
 		$this->buildTagCache();
 
-		render_php_template( $this->template, $this->pageData );
-
+		$renderer = new PhpRenderer($this->template);
+		$renderer->bulk_set_values($this->pageData);
+		$renderer->render();
 
 	}
 

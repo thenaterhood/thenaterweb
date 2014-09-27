@@ -1,6 +1,7 @@
 <?php
 
 use Naterweb\Content\Loaders\ContentFactory;
+use Naterweb\Content\Renderers\PhpRenderer;
 /*
  *
  */
@@ -30,12 +31,11 @@ class EngineErrorHandler {
 		if ( DEBUG ){
 			self::handle_generic_exception( $e );
 		} else {
-			$pageData = array();
-			$pageData['title'] = 'Holy ' . $e->getCode() . ' (error), Batman!';
-			$pageData['text'] = "Whoops, looks like a problem!";
-
-			$pageData['content'] = ContentFactory::loadContentFile(NWEB_ROOT.'/lib/html/errorpage.php');
-			render_php_template( getConfigOption('template'), $pageData );
+			$renderer = new PhpRenderer(Naterweb\Engine\Configuration::get_option('template'));
+			$renderer->set_value('title', 'Holy ' . $e->getCode() . ' (error), Batman!');
+			$renderer->set_value('text', 'Whoops, looks like a problem!');
+			$renderer->set_value('content', ContentFactory::loadContentFile(NWEB_ROOT.'/lib/html/errorpage.php'));
+			$renderer->render();
 
 		}
 
@@ -46,10 +46,10 @@ class EngineErrorHandler {
 
 		if ( DEBUG ){
 
-			$pageData = array();
-			$pageData['title'] = "Server Error (" . $e->getCode() . ')';
+			$renderer = new PhpRenderer(Naterweb\Engine\Configuration::get_option('template'));
+			$renderer->set_value('title', "Server Error (" . $e->getCode() . ')');
 
-			$stack = array();
+
 			$stack[] = $e->getFile() . ' line ' . $e->getLine() . ': <strong>' . $e->getMessage() . '</strong>' . 
 			"<pre style='border:0px; background:none;'>". $e->getTraceAsString() . '</pre>';
 
@@ -66,28 +66,28 @@ class EngineErrorHandler {
 
 
 
-			$pageData['stack'] = $stack;
-			$pageData['hasStack'] = true;
-			$pageData['static'] = "";
-			$pageData['id'] = "Error";
+			$renderer->set_value('stack', $stack);
+			$renderer->set_value('hasStack', true);
+			$renderer->set_value('static', "");
+			$renderer->set_value('id', "Error");
 
 
 
 
 		} else {
+			$renderer = new PhpRenderer(Naterweb\Engine\Configuration::get_option('template'));
 
-			$pageData = array();
-			$pageData['hasStack'] = false;
-			$pageData['static'] = "";
-			$pageData['id'] = "Error";
-			$pageData['title'] = "Internal Server Error";
-			$pageData['text'] = 'Sorry, but the site software was not able to provide the page you requested due to a problem.';
+			$renderer->set_value('hasStack', false);
+			$renderer->set_value('static', "");
+			$renderer->set_value('id', "Error");
+			$renderer->set_value('title', "Internal Server Error");
+			$renderer->set_value('text', 'Sorry, but the site software was not able to provide the page you requested due to a problem.');
 
 
 		}
 
-		$pageData['content'] = ContentFactory::loadContentFile(NWEB_ROOT.'/lib/html/errorpage.php');
-		render_php_template( getConfigOption('template'), $pageData );
+		$renderer->set_value('content', ContentFactory::loadContentFile(NWEB_ROOT.'/lib/html/errorpage.php'));
+		$renderer->render();
 
 		die();
 

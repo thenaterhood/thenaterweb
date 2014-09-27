@@ -3,6 +3,8 @@ include NWEB_ROOT.'/lib/core_auth.php';
 include_once NWEB_ROOT.'/lib/builtins/auth/models.php';
 
 use Naterweb\Content\Loaders\ContentFactory;
+use Naterweb\Content\Renderers\PhpRenderer;
+use Naterweb\Client\request;
 
 class webadmin extends ControllerBase{
 
@@ -25,21 +27,22 @@ class webadmin extends ControllerBase{
 		$isAuthed = auth_user( getConfigOption('site_domain').'/webadmin', 'nwadmin' );
 
 		if ( $isAuthed ){
-			$this->pageData['session'] = request::get_sanitized_as_object( 
-				array('name', 'track', 'konami', 'id', 'tag', 'type', 'node', 'start', 'end') );
-			$this->pageData['content'] = ContentFactory::loadContentFile( WEBADMIN_ROOT.'/pages/page_'.$method.'.php' );
+			$renderer = new PhpRenderer($this->settings['template']);
+
+			$renderer->set_value('session', request::get_sanitized_as_object( 
+				array('name', 'track', 'konami', 'id', 'tag', 'type', 'node', 'start', 'end') ));
+			$renderer->set_value('content', ContentFactory::loadContentFile( WEBADMIN_ROOT.'/pages/page_'.$method.'.php' ));
 
 			$admSession = request::get_sanitized_as_object( array( 'blogid', 'postid', 'isnew' ) );
 
-			$this->pageData['id'] = $this->pageData['content']->title;
-			$this->pageData['title'] = $this->title;
-			$this->pageData['tagline'] = $this->catchline;
-			$this->pageData['appid'] = $this->id;
-			$this->pageData['static'] = WEBADMIN_ROOT.'/pages';
+			$renderer->set_value('id', $this->pageData['content']->title);
+			$renderer->set_value('title', $this->title);
+			$renderer->set_value('tagline', $this->catchline);
+			$renderer->set_value('appid', $this->id);
+			$renderer->set_value('static', WEBADMIN_ROOT.'/pages');
 
-			$pageData = $this->pageData;
+			$renderer->render();
 
-			render_php_template( $this->settings['template'], $pageData );
 		} else {
                     $this->unauthorized();
                 }
@@ -51,21 +54,19 @@ class webadmin extends ControllerBase{
 		$isAuthed = auth_user( getConfigOption('site_domain').'/webadmin', 'nwadmin' );
 
 		if ( $isAuthed ){
-			$this->pageData['session'] = request::get_sanitized_as_object( 
-				array('name', 'track', 'konami', 'id', 'tag', 'type', 'node', 'start', 'end') );
-			$this->pageData['content'] = ContentFactory::loadContentFile( WEBADMIN_ROOT.'/pages/page_home.php' );
+			$renderer = new PhpRenderer($this->settings['template']);
 
-			$this->pageData['title'] = $this->title;
-			$this->pageData['tagline'] = $this->catchline;
-			$this->pageData['appid'] = $this->id;
-			$this->pageData['apps'] = load_all_applications();
-			$this->pageData['static'] = WEBADMIN_ROOT.'/pages';
+			$renderer->set_value('session', request::get_sanitized_as_object( 
+				array('name', 'track', 'konami', 'id', 'tag', 'type', 'node', 'start', 'end') ));
+			$renderer->set_value('content', ContentFactory::loadContentFile( WEBADMIN_ROOT.'/pages/page_home.php' ));
 
+			$renderer->set_value('title', $this->title);
+			$renderer->set_value('tagline', $this->catchline);
+			$renderer->set_value('appid', $this->id);
+			$renderer->set_value('apps', load_all_applications());
+			$renderer->set_value('static', WEBADMIN_ROOT.'/pages');
 
-			$pageData = $this->pageData;
-
-			render_php_template( $this->settings['template'], $pageData );
-
+			$renderer->render();
 
 		} else {
                     $this->unauthorized();
