@@ -38,6 +38,9 @@ include_once NWEB_ROOT.'/lib/interface_controller.php';
  */
 include_once NWEB_ROOT.'/lib/core_redirect.php';
 
+use Naterweb\Engine\Applications;
+use Naterweb\Engine\Configuration;
+
 /**
  * This array contains the applications enabled 
  * on thenaterweb. It is an associative array, 
@@ -54,7 +57,7 @@ $_INSTALLED_APPS = array(
         'blog'=>        'apps/blog'
 	);
 
-Naterweb\Engine\Applications::setup_installed($_INSTALLED_APPS);
+Applications::setup_installed($_INSTALLED_APPS);
 
 /**
  * This array contains aliases for applications. 
@@ -81,15 +84,15 @@ $_APP_ALIASES = array(
     
         );
 
-Naterweb\Engine\Applications::setup_aliases( $_APP_ALIASES );
+Applications::setup_aliases( $_APP_ALIASES );
 $sessionmgr = SessionMgr::getInstance();
 
 /**
  * Manage redirects to "friendly" URLs if the configuration
  * option is set.
  */
-if ( Naterweb\Engine\Configuration::get_option('friendly_urls') && ! $sessionmgr->noRedirect ){
-    $redirect = new Naterweb\Site\Redirects\ConditionalRedirect( '/?url', '/'.$_GET['url'], substr( Naterweb\Engine\Configuration::get_option('site_domain').request::meta('REQUEST_URI'), 7 ) );
+if ( Configuration::get_option('friendly_urls') && ! $sessionmgr->noRedirect ){
+    $redirect = new Naterweb\Site\Redirects\ConditionalRedirect( '/?url', '/'.$_GET['url'], substr( Configuration::get_option('site_domain').request::meta('REQUEST_URI'), 7 ) );
     $redirect->apply( 301 );
 }
 
