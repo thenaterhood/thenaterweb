@@ -6,10 +6,10 @@
  * @author Nate Levesque <public@thenaterhood.com>
  */
 
-namespace Naterweb\Site\Redirects;
+namespace Naterweb\Routing\Redirects;
 
 
-include_once NWEB_ROOT.'/Site/Redirects/class_redirect.php';
+include_once NWEB_ROOT.'/Routing/Redirects/class_redirect.php';
 
 /**
  * Manages conditionally redirecting pages based

@@ -14,5 +14,5 @@
 /**
  * Includes both redirect classes, once
  */
-include_once NWEB_ROOT.'/Site/Redirects/class_redirect.php';
-include_once NWEB_ROOT.'/Site/Redirects/class_condRedirect.php';
+include_once NWEB_ROOT.'/Routing/Redirects/class_redirect.php';
+include_once NWEB_ROOT.'/Routing/Redirects/class_condRedirect.php';
