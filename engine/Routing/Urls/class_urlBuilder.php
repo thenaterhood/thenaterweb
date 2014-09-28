@@ -21,13 +21,14 @@ class UrlBuilder {
 		$params = array();
 		$params[] = $domain;
 
-		$formatString = "%s/";
+		$formatString = "%s";
 		$formatString .= $friendlyUrl ? '' : '?url=';
-
+		$firstPass = True;
 		foreach ($this->urlParams as $key => $value) {
-			$formatString .= '%s/%s/';
+			$formatString .= $firstPass ? '%s/%s' : '/%s/%s';
 			$params[] = urlencode($key);
 			$params[] = urlencode($value);
+			$firstPass = False;
 		}
 
 		return vsprintf($formatString, $params);
