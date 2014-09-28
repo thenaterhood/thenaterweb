@@ -19,7 +19,7 @@ if ( $tag ){
      * If a tag was requested, display which tag is being browsed
      * with a link back to the main page of tags
      */
-    print '<p><strong>Browsing tag "'.$tag.'".  </strong><a href="/?url='.$page->blogid.'/tags">View all tags.</a></p>'."\n";
+    print '<p><strong>Browsing tag "'.$tag.'".  </strong><a href="'.$page->urlBase.'tags">View all tags.</a></p>'."\n";
 
 }
 
@@ -29,7 +29,7 @@ if ( !$tag ){
      * tags.
      */
     echo '<h2>All Tags</h2>';
-    echo '<p style="font-size: .9em;">More formats: <a href="'.getConfigOption('site_domain').'/?url='.$page->blogid.'/tags/as/json"><img height="16px" src="http://www.dev411.com/images/cats/json_54.png" /> json</a></p>';
+    echo '<p style="font-size: .9em;">More formats: <a href="'.$page->urlBase.'tags/as/json"><img height="16px" src="http://www.dev411.com/images/cats/json_54.png" /> json</a></p>';
 
     echo "<table>";
 
@@ -43,7 +43,7 @@ if ( !$tag ){
             print '<tr><td><a id="alph_'.$letter.'"></a><strong>'.$letter.'</strong></td></tr>'."\n";
         }
         $clean = str_replace( " ", '%20', $item);
-        echo '<tr><td><a href="/?url='.$page->blogid.'/tags/tag/'.$clean.'">'.$item.'</a></td>';
+        echo '<tr><td><a href="'.$page->urlBase.'tags/tag/'.$clean.'">'.$item.'</a></td>';
         echo '<td>'.$graph.'<em> '.count($tags[$item]).' posts</em></td></tr>'."\n";
     }
 
@@ -62,7 +62,7 @@ else{
         $matching = $tags[$tag];
 
         foreach ($matching as $nodeid => $title ) {
-            $link = getConfigOption( 'site_domain' ).'/?url='.$page->blogid.'/read/'.$nodeid.'.htm';
+            $link = $page->urlBase.'read/'.$nodeid.'.htm';
             print '<li><a href="'.htmlentities( $link ).'">'.$title.'</a></li>';
         }
 

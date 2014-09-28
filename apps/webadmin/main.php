@@ -5,6 +5,7 @@ include_once NWEB_ROOT.'/lib/builtins/auth/models.php';
 use Naterweb\Content\Loaders\ContentFactory;
 use Naterweb\Content\Renderers\PhpRenderer;
 use Naterweb\Client\request;
+use Naterweb\Routing\Urls\UrlBuilder;
 
 class webadmin extends ControllerBase{
 
@@ -18,6 +19,7 @@ class webadmin extends ControllerBase{
 		$configFile = WEBADMIN_ROOT.'/webadmin.conf.xml';
 		$this->readConfig( $configFile );
 		$this->settings['page_directory'] = WEBADMIN_ROOT.'/pages';
+		$this->id = request::sanitized_get('controller');
 
 
 	}
@@ -35,12 +37,14 @@ class webadmin extends ControllerBase{
 
 			$admSession = request::get_sanitized_as_object( array( 'blogid', 'postid', 'isnew' ) );
 
-			$renderer->set_value('id', $this->pageData['content']->title);
+			$renderer->set_value('id', $method);
 			$renderer->set_value('title', $this->title);
 			$renderer->set_value('tagline', $this->catchline);
 			$renderer->set_value('appid', $this->id);
 			$renderer->set_value('static', WEBADMIN_ROOT.'/pages');
 
+			$urlBase = new UrlBuilder(array($this->id=>''));
+			$renderer->set_value('urlBase', $urlBase->build());
 			$renderer->render();
 
 		} else {
@@ -65,7 +69,8 @@ class webadmin extends ControllerBase{
 			$renderer->set_value('appid', $this->id);
 			$renderer->set_value('apps', load_all_applications());
 			$renderer->set_value('static', WEBADMIN_ROOT.'/pages');
-
+			$urlBase = new UrlBuilder(array($this->id=>''));
+			$renderer->set_value('urlBase', $urlBase->build());
 			$renderer->render();
 
 		} else {

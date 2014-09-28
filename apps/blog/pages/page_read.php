@@ -17,7 +17,7 @@
 		 * it has a datestamp. Since datestamps will be automatically
 		 * added to posts, all posts will have a datestamp.
 		 */
-	echo '<h5><span style="">Formats: <a href="/?url='.$page->blogid.'/json/node/'.$page->nodeid.'">json</a>, <a href="/?url='.$page->blogid.'/simple/node/'.$page->nodeid.'">simple html</a></span></h5>';
+	echo '<h5><span style="">Formats: <a href="'.$page->urlBase.'json/node/'.$page->nodeid.'">json</a>, <a href="'.$page->urlBase.'simple/node/'.$page->nodeid.'">simple html</a></span></h5>';
 	}
 	if ( $displaypost->datestamp and $page->session->node != 'latest'){
 		echo $page->commentCode;

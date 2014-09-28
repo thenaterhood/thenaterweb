@@ -4,7 +4,7 @@
 
 ?>
 
-<form name="login" action="/?url=auth/changeuser" method="post">
+<form name="login" action="<?php print $page->urlBase; ?>changeuser" method="post">
 		<input type='hidden' name='uid' value='<?php echo $page->user->id; ?>' />
         <input type='hidden' name='<?php echo $page->csrf_key; ?>' value='<?php echo $page->csrf_token; ?>' />
  		<br />
@@ -32,7 +32,7 @@
         <br />
         <br />
         <input type="submit" class='btn btn-success' value="Save and Continue" />
-        <a class="btn btn-danger" href="/?url=auth/deluser/uid/<?php echo $page->user->id; ?>">Delete User</a>
+        <a class="btn btn-danger" href="<?php print $page->urlBase; ?>deluser/uid/<?php echo $page->user->id; ?>">Delete User</a>
 
 </form>
 

@@ -4,7 +4,7 @@ $hasPosts = False;
 
 foreach ($page->posts as $node => $post) {
 	$hasPosts = True;
-	print '<p><a href="'.getConfigOption('site_domain').'/'.$page->appid.'/editpost/node/'.$node.'">'.$post['title'].'</a></p>';
+	print '<p><a href="'.$page->urlBase.'editpost/node/'.$node.'">'.$post['title'].'</a></p>';
 
 }
 

@@ -8,6 +8,8 @@ require_once(NWEB_ROOT.'/Content/Loaders/class_contentFactory.php');
 use Naterweb\Content\Loaders\ContentFactory;
 use Naterweb\Content\Renderers\PhpRenderer;
 use Naterweb\Client\request;
+use Naterweb\Client\SessionMgr;
+use Naterweb\Routing\Urls\UrlBuilder;
 
 class blog extends ControllerBase{
 
@@ -23,7 +25,6 @@ class blog extends ControllerBase{
 
 		$name = REQUESTED_NAME;
 		$this->pageData = array();
-
 		$this->approot = constant(strtoupper(get_class($this)).'_ROOT');
 
 		if ( file_exists($this->approot.'/'.strtolower(REQUESTED_NAME).'-config.php') ){
@@ -58,7 +59,8 @@ class blog extends ControllerBase{
 		$this->pageData['tagline'] = $this->catchline;
 		$this->pageData['appid'] = $this->id;
 		$this->pageData['blogid'] = $this->settings['id'];
-
+		$urlBase = new UrlBuilder(array($this->settings['id']=>''));
+		$this->pageData['urlBase'] = $urlBase->build();
 
 
 
@@ -229,12 +231,12 @@ class blog extends ControllerBase{
 
 	public function manage(){
 
-		auth_user( getConfigOption('site_domain').'/'.$this->settings['id'].'/manage' );
+		$url = new UrlBuilder(array($this->settings['id']=>'manage'));
+		auth_user( $url->build() );
 
 		$this->pageData['content'] = 
 			ContentFactory::loadContentFile( $this->approot.'/pages/page_manage.php');
 		$this->pageData['id'] = $this->settings['id'];
-
 		$renderer = new PhpRenderer($this->template);
 		$renderer->bulk_set_values($this->pageData);
 		$renderer->render();
@@ -242,11 +244,10 @@ class blog extends ControllerBase{
 	}
 
 	public function newpost(){
-		
-		auth_user( getConfigOption('site_domain').'/'.$this->settings['id'].'/manage/editpost' );
+		$url = new UrlBuilder(array($this->settings['id']=>'manage', 'editpost'=>''));
+		auth_user( $url->build() );
 
 		$sessionmgr = SessionMgr::getInstance();
-
 
 		$this->pageData['content'] = 
 			ContentFactory::loadContentFile( $this->approot.'/pages/page_editpost.php');
@@ -263,8 +264,8 @@ class blog extends ControllerBase{
 	}
 
 	public function editpost(){
-		
-		auth_user( getConfigOption('site_domain').'/'.$this->settings['id'].'/manage/editpost' );
+		$url = new UrlBuilder(array($this->settings['id']=>'manage', 'editpost'=>''));
+		auth_user( $url->build() );
 
 		$sessionmgr = SessionMgr::getInstance();
 		$renderer = new PhpRenderer($this->template);
@@ -297,8 +298,8 @@ class blog extends ControllerBase{
 	}
 
 	public function updatepost(){
-
-		auth_user( getConfigOption('site_domain').'/'.$this->settings['id'].'/manage/editpost.php' );
+		$url = new UrlBuilder(array($this->settings['id']=>'manage','editpost'=>''));
+		auth_user( $url->build() );
 
 		$sessionmgr = SessionMgr::getInstance();
 
@@ -345,8 +346,8 @@ class blog extends ControllerBase{
 	}
 
 	public function savepost(){
-
-		auth_user( getConfigOption('site_domain').'/'.$this->settings['id'].'/manage/editpost' );
+		$url = new UrlBuilder(array($this->settings['id']=>'manage', 'editpost'=>''));
+		auth_user( $url->build() );
 
 		$sessionmgr = SessionMgr::getInstance();
 		$session = $this->pageData['session'];
@@ -445,7 +446,6 @@ class blog extends ControllerBase{
 
 		$lock = new lock( $postFile );
 
-		$postURL = getConfigOption('site_domain').'/'.REQUESTED_NAME.'/index.php?id=post&node='.$nodename;
 		$writetest = fopen( $postpath.'/writetest.txt', 'w' );
 		fclose( $writetest );
 
@@ -644,7 +644,8 @@ class blog extends ControllerBase{
 
 	    	foreach ($posts as $p) {
 	    		$postarray = $p->as_array( strtolower(REQUESTED_NAME) );
-	    		$postarray['link'] = getConfigOption('site_domain') . '/?url=' . REQUESTED_NAME . '/read/' . $p->nodeid . '.html';
+			$url = new UrlBuilder(array(REQUESTED_NAME=>'read', $p->nodeid.'.htm'=>''));
+	    		$postarray['link'] = $url->build();
 	    		$articles[] = $postarray;
 	    	}
 
@@ -665,7 +666,9 @@ class blog extends ControllerBase{
 
     	foreach ($posts as $post) {
     		$article = json_decode(file_get_contents("$this->post_directory/$post.json"),true);
-	    	$article['link'] = getConfigOption('site_domain') . '/?url=' . REQUESTED_NAME . '/read/' . $post . '.html';
+		$postName = $post.'.htm';
+		$url = new UrlBuilder(array(REQUESTED_NAME=>'read',$postName=>''));
+	    	$article['link'] = $url->build();
 
     		$articles[$post] = $article;
     	}

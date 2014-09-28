@@ -8,6 +8,8 @@ use Naterweb\Content\Loaders\ContentFactory;
 use Naterweb\Content\Renderers\PhpRenderer;
 use Naterweb\Client\SessionMgr;
 use Naterweb\Client\request;
+use Naterweb\Routing\Urls\UrlBuilder;
+use Naterweb\Engine\Configuration;
 
 class auth extends ControllerBase{
 
@@ -16,8 +18,8 @@ class auth extends ControllerBase{
 	public function __construct(){
 
 		$this->settings['template'] = getConfigOption('template');
-
-		if ( getConfigOption( 'use_db') ){
+		// Currently this app requires the database.
+		if ( getConfigOption( 'use_db') || true){
 			$this->dal = new DataAccessLayer();
 			$this->dal->registerModel( 'nwUser' );
 			$this->dal->registerModel( 'nwGroup' );
@@ -40,14 +42,17 @@ class auth extends ControllerBase{
 		$sessionmgr = SessionMgr::getInstance();
                 $sessionmgr->noRedirect = True;
 		$renderer = new PhpRenderer($this->settings['template']);
+		$user = null;
 
 
 		if ( $sessionmgr->check_csrf('post') && 
 
 			$this->check_login( request::sanitized_post('username'), request::post('pass') ) ){
-
-                        $user = $this->dal->get('nwUser', 'username', request::sanitized_post('username'));
+			if (Configuration::get_option('use_db')) {
+	                        $user = $this->dal->get('nwUser', 'username', request::sanitized_post('username'));
+			}
                         if (is_null($user)){
+			    $user = new nwUser();
                             $user->id = -1;
                             $user->username = request::sanitized_post('username');
                             
@@ -57,7 +62,8 @@ class auth extends ControllerBase{
                         
 			$redir_to = $sessionmgr->toPage;
 			unset( $sessionmgr->toPage );
-
+			$urlBase = new UrlBuilder(array(request::sanitized_get('controller')=>''));
+			$renderer->set_value('urlBase', $urlBase->build());
 			$renderer->set_value('content', ContentFactory::loadContentFile( AUTH_ROOT.'/pages/welcome.php' ));
 			$renderer->set_value('id', 'login');
 			$renderer->set_value('title', 'Naterweb Authentication');
@@ -71,6 +77,9 @@ class auth extends ControllerBase{
 			$renderer->set_value('content', ContentFactory::loadContentFile( AUTH_ROOT.'/pages/login.php' ));
 			$renderer->set_value('id', 'login');
 			$renderer->set_value('fail', False);
+
+			$urlBase = new UrlBuilder(array(request::sanitized_get('controller')=>''));
+			$renderer->set_value('urlBase', $urlBase->build());
 			$renderer->set_value('title', 'Naterweb Authentication');
 			$renderer->set_value('static', AUTH_ROOT.'/pages');
 
@@ -94,6 +103,9 @@ class auth extends ControllerBase{
             $sess = SessionMgr::getInstance();
             $sess->noRedirect = True;
 	    $renderer = new PhpRenderer($this->settings['template']);
+
+	    $urlBase = new UrlBuilder(array(request::sanitized_get('controller')=>''));
+	    $renderer->set_value('urlBase', $urlBase->build());
 
             $renderer->set_value('groups', $this->dal->getAll( 'nwGroup' ));
 	    $renderer->set_value('content', ContentFactory::loadContentFile( AUTH_ROOT.'/pages/managegroup.php'));
@@ -135,6 +147,9 @@ class auth extends ControllerBase{
 			$newgroup->name = request::sanitized_post('name');
 
 			$newgroup->save();
+	                $urlBase = new UrlBuilder(array(request::sanitized_get('controller')=>''));
+		        $renderer->set_value('urlBase', $urlBase->build());
+
 
 			$renderer->set_value('content', ContentFactory::loadContentFile( AUTH_ROOT.'/pages/groupadded.php' ));
 			$renderer->set_value('id', 'login');
@@ -143,6 +158,9 @@ class auth extends ControllerBase{
 
 
 		} else {
+	   	        $urlBase = new UrlBuilder(array(request::sanitized_get('controller')=>''));
+		        $renderer->set_value('urlBase', $urlBase->build());
+
 
 			$renderer->set_value('content', ContentFactory::loadContentFile( AUTH_ROOT.'/pages/addgroup.php' ));
 			$renderer->set_value('static', AUTH_ROOT.'/pages');
@@ -241,6 +259,9 @@ class auth extends ControllerBase{
 				}
 			}
 
+	                $urlBase = new UrlBuilder(array(request::sanitized_get('controller')=>''));
+ 	                $renderer->set_value('urlBase', $urlBase->build());
+
 
 			$renderer->set_value('content', ContentFactory::loadContentFile( AUTH_ROOT.'/pages/useradded.php' ));
 			$renderer->set_value('id', 'login');
@@ -259,6 +280,9 @@ class auth extends ControllerBase{
 			$renderer->set_value('static', AUTH_ROOT.'/pages');
 			$renderer->set_value('title', 'Change User');
 			$renderer->set_value('id', 'changeuser');
+		        $urlBase = new UrlBuilder(array(request::sanitized_get('controller')=>''));
+		        $renderer->set_value('urlBase', $urlBase->build());
+
 
 		}
 
@@ -298,6 +322,9 @@ class auth extends ControllerBase{
 			$newuser->active = True;
 
 			$newuser->save();
+		        $urlBase = new UrlBuilder(array(request::sanitized_get('controller')=>''));
+		        $renderer->set_value('urlBase', $urlBase->build());
+
 
 			$renderer->set_value('content', ContentFactory::loadContentFile( AUTH_ROOT.'/pages/useradded.php'));
 			$renderer->set_value('id', 'login');
@@ -306,6 +333,9 @@ class auth extends ControllerBase{
 
 
 		} else {
+  		        $urlBase = new UrlBuilder(array(request::sanitized_get('controller')=>''));
+		        $renderer->set_value('urlBase', $urlBase->build());
+
 
 			$renderer->set_value('content', ContentFactory::loadContentFile( AUTH_ROOT.'/pages/adduser.php'));
 			$renderer->set_value('static', AUTH_ROOT.'/pages');
@@ -334,6 +364,8 @@ class auth extends ControllerBase{
 		$renderer->set_value('static', AUTH_ROOT.'/pages');
 		$renderer->set_value('title', 'Manage Users');
 		$renderer->set_value('id', 'manage');
+		$urlBase = new UrlBuilder(array(request::sanitized_get('controller')=>''));
+		$renderer->set_value('urlBase', $urlBase->build());
 
 		$renderer->render();
 

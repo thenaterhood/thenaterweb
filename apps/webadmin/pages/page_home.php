@@ -3,10 +3,10 @@
 
 <ul>
 <li style="list-style-image: url('/assets/tango/22x22/emblems/emblem-system.png')">
-	<a href="<?php print getConfigOption('site_domain'); ?>/?url=webadmin/editconf">Modify engine configuration</a>
+	<a href="<?php print $page->urlBase.'editconf'?>">Modify engine configuration</a>
 </li>
 <li style="list-style-image: url('/assets/tango/22x22/apps/utilities-system-monitor.png')">
-	<a href="<?php print getConfigOption('site_domain'); ?>/?url=webadmin/checkinstall">Installation details/status</a>
+	<a href="<?php print $page->urlBase; ?>checkinstall">Installation details/status</a>
 </li>
 </ul>
 <br />
@@ -27,7 +27,7 @@
 			print '</td>';
 			print '<td>';
 			if ( method_exists($app, 'manage') ){
-				print "<a class='btn btn-success' href='".getConfigOption('site_domain').'/?url='.$app->id.'/manage'."'>Manage</a>";
+				print "<a class='btn btn-success' href='/?url=".$app->id.'/manage'."'>Manage</a>";
                         } else {
 				print "<a class='btn disabled' href='#'>No Management Services.</a>";
                         }

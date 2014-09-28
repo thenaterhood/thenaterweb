@@ -1,4 +1,4 @@
-<form name="login" action="/?url=auth/adduser" method="post">
+<form name="login" action="<?php print $page->urlBase; ?>adduser" method="post">
         <input type='hidden' name='<?php echo $page->csrf_key; ?>' value='<?php echo $page->csrf_token; ?>' />
  		<br />
  		<input type="text" name="first_name" maxlength="30" placeholder='First Name' />

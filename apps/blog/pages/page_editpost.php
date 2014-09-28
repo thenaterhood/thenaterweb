@@ -32,9 +32,9 @@ if ( property_exists($page, 'isNew') && $page->isNew ){
 	<?php 
 
 	if ( isset($page->isNew) ){
-		print getConfigOption('site_domain').'/?url='.$page->id.'/savepost'; 
+		print $page->urlBase.'savepost'; 
 	}else {
-		print getConfigOption('site_domain').'/?url='.$page->id.'/updatepost/node/'; 
+		print $page->urlBase.'updatepost/node/'; 
 
 	}
 
@@ -52,7 +52,7 @@ if ( property_exists($page, 'isNew') && $page->isNew ){
 	<textarea name="content" rows="50" cols="100" ><?php print $postData->content; ?></textarea><br />
 	<input type="hidden" name="node" value="<?php print $page->node; ?>" />
 	<input type="submit" class='btn btn-success' value="Save" />
-	<a class='btn btn-danger' href='<?php print getConfigOption('site_domain').'/?url='.$page->id.'/manage'; ?>'>Discard</a>
+	<a class='btn btn-danger' href='<?php print $page->urlBase.'manage'; ?>'>Discard</a>
 
 </form>
 <br />

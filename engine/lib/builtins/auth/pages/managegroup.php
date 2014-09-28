@@ -1,6 +1,6 @@
 
-<a class="btn btn-success" href="/?url=auth/addgroup">Add Group</a>
-<a class="btn btn-success" href="/?url=auth/manage">Manage Users</a>
+<a class="btn btn-success" href="<?php print $page->urlBase; ?>addgroup">Add Group</a>
+<a class="btn btn-success" href="<?php print $page->urlBase; ?>manage">Manage Users</a>
 <br />
 <br />
 <table class="table table-striped">
@@ -10,7 +10,7 @@
 foreach ($page->groups as $g ) {
 
 	echo '<tr>';
-	$link = getConfigOption('site_domain').'/?url=auth/changegroup/gid/'.$g->id;
+	$link = $page->urlBase.'changegroup/gid/'.$g->id;
 	
 	print '<td><a href="'.htmlentities( $link ).'">'.$g->name.'</a></td>';
 }
