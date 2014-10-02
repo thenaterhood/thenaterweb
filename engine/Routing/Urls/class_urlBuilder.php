@@ -21,7 +21,7 @@ class UrlBuilder {
 		$params = array();
 		$params[] = $domain;
 
-		$formatString = "%s";
+		$formatString = (substr($domain, -1) === '/') ? "%s" : "%s/";
 		$formatString .= $friendlyUrl ? '' : '?url=';
 		$firstPass = True;
 		foreach ($this->urlParams as $key => $value) {
