@@ -90,17 +90,6 @@ $_APP_ALIASES = array(
 Applications::setup_aliases( $_APP_ALIASES );
 $sessionmgr = SessionMgr::getInstance();
 
-/**
- * Manage redirects to "friendly" URLs if the configuration
- * option is set.
- */
-if ( Configuration::get_option('friendly_urls') && ! $sessionmgr->noRedirect ){
-    $redirect = new Naterweb\Routing\Redirects\ConditionalRedirect( '/?url', '/'.$_GET['url'], substr( Configuration::get_option('site_domain').request::meta('REQUEST_URI'), 7 ) );
-    $redirect->apply( 301 );
-}
-
-$sessionmgr->noRedirect = False;
-
 # Initialize the URL handler and use it to include 
 # the relevant controller from controllers.
 $urlHandler = new UrlHandler();
