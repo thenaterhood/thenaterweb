@@ -12,7 +12,7 @@
 	the .htaccess file for your server correctly if you intend to use friendly urls.</li>
 	<li>Configure the authentication app so you have access to the admin panel if you intend to use it 
 		or intend to offer a service with logins.</li>
-	<li><a href="<?php echo getConfigOption('site_domain'); ?>/?url=webadmin">Log into the administration page 
+	<li><a href="/?url=webadmin">Log into the administration page 
 		to manage your site</a>.</li>
 	<li><a href="https://github.com/thenaterhood/thenaterweb">Visit Thenaterweb on github for documentation 
 		or to contribute</a>.</li>
