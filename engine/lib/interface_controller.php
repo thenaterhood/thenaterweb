@@ -2,6 +2,9 @@
 
 include_once NWEB_ROOT.'/lib/core_blog.php';
 
+use Naterweb\Engine\Configuration;
+use Naterweb\Routing\Urls\UrlBuilder;
+
 abstract class ControllerBase{
 
 	protected $settings;
@@ -139,10 +142,12 @@ abstract class ControllerBase{
     	echo "User-agent: * \n";
     	echo "Allow: / \n";
     	echo "\n";
-    	echo "Sitemap: " . Engine::get_option( 'site_domain' ) . '/?url=sitemaps/' . get_called_class() . "\n";
-    	echo "Sitemap: " . Engine::get_option( 'site_domain' ) . '/?url=feeds/' . get_called_class();
+	$feedUrl = new UrlBuilder(array(get_called_class()=>'feed'));
+	$mapUrl = new UrlBuilder(array(get_called_class()=>'sitemap'));
+    	echo "Sitemap: " . $mapUrl->build() . "\n";
+    	echo "Sitemap: " . $feedUrl->build();
     }
 
 }
 
-?>
+
