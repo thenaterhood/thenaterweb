@@ -139,7 +139,7 @@ class request{
          */
 	public static function default_value( $varname ){
 
-		$conf = getConfigOption( $varname );
+		$conf = \Naterweb\Engine\Configuration::get_option( $varname );
 		return $conf[0];
 
 

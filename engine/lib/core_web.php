@@ -31,28 +31,3 @@ include_once NWEB_ROOT.'/Engine/class_applications.php';
 require_once NWEB_ROOT.'/Content/Loaders/class_contentFactory.php';
 include NWEB_ROOT.'/Content/Renderers/class_phpRenderer.php';
 
-
-/**
- * Built to abstract retrieving config variables, since
- * they're now contained in a class this is just for legacy
- * support until everything else gets moved off
- * of using this function
- * 
- * @param $key - the name of a config key to retrieve
- * 
- * @return - the value of the config key
- * 
- * @deprecated 1/8/2014 - deprecated in favor of 
- *  directly calling Naterweb\Engine\Configuration\::get_option,
- *  as this is now a waste of lines of code.
- */
-function getConfigOption($key){
-        // This extra include is necessary in order for 
-        // phpunit tests to work as expected. Why is beyond 
-        // me.
-	include_once NWEB_ROOT.'/../settings.php';
-	return Naterweb\Engine\Configuration::get_option($key);
-}
-	
-
-?>

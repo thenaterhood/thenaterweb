@@ -27,4 +27,4 @@ else{
 }
 
 ?>
-<p><a href="<?php print getConfigOption('site_domain'); ?>/webadmin">Back to webadmin panel</a></p>
+<p><a href="<?php print \Naterweb\Engine\Configuration::get_option('site_domain'); ?>/webadmin">Back to webadmin panel</a></p>

@@ -36,7 +36,7 @@ function generateFeed( $blogdef, $force_regen ){
 	foreach ($postList as $key => $value) {
 		$atom->new_item( $value );
 		$i++;
-		if ( $i > getConfigOption( 'max_feed_items') )
+		if ( $i > \Naterweb\Engine\Configuration::get_option( 'max_feed_items') )
 			break;
 	}
 

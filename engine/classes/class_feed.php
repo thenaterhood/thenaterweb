@@ -34,10 +34,10 @@ class Feed extends dataMonger{
 	public function __construct($title, $link, $description, $feedstamp) {
 
 		$this->container['title'] = $title;
-		$this->container['link'] = getConfigOption('site_domain').'/'.$link.'/feed';
+		$this->container['link'] = \Naterweb\Engine\Configuration::get_option('site_domain').'/'.$link.'/feed';
 		$this->container['description'] = $description;
 		$this->container['feedstamp'] = $feedstamp;
-		$this->container['author'] = getConfigOption('site_author');
+		$this->container['author'] = \Naterweb\Engine\Configuration::get_option('site_author');
 		$this->items = array();
 
 	}
@@ -86,7 +86,7 @@ class Feed extends dataMonger{
 		$r = '<?xml version="1.0" encoding="UTF-8"?>';
 		$r .='<feed xmlns="http://www.w3.org/2005/Atom"
 xml:lang="en"
-xml:base="'.getConfigOption('site_domain').'/">';
+xml:base="'.\Naterweb\Engine\Configuration::get_option('site_domain').'/">';
 		$r .= "\n";
 		$r .= '<subtitle type="html">' . $this->container['description'] . "</subtitle>\n";
 		$r .= "";

@@ -9,8 +9,8 @@ class lockTest extends PHPUnit_Framework_TestCase {
 
 	protected function tearDown(){
 
-		if( file_exists(getConfigOption('dynamic_directory').'/index.php.lock' ) )
-			unlink( getConfigOption('dynamic_directory').'/index.php.lock' );
+		if( file_exists(\Naterweb\Engine\Configuration::get_option('dynamic_directory').'/index.php.lock' ) )
+			unlink( \Naterweb\Engine\Configuration::get_option('dynamic_directory').'/index.php.lock' );
 
 
 	}
@@ -39,11 +39,11 @@ class lockTest extends PHPUnit_Framework_TestCase {
 		$lock->lock();
 
 		$this->assertTrue( $lock->isLocked() );
-		$this->assertTrue( file_exists(getConfigOption('dynamic_directory').'/index.php.lock' ));
+		$this->assertTrue( file_exists(\Naterweb\Engine\Configuration::get_option('dynamic_directory').'/index.php.lock' ));
 
 		$lock->unlock();
 		$this->assertFalse( $lock->isLocked() );
-		$this->assertFalse( file_exists(getConfigOption('dynamic_directory').'/index.php.lock' ));
+		$this->assertFalse( file_exists(\Naterweb\Engine\Configuration::get_option('dynamic_directory').'/index.php.lock' ));
 
 
 	}
@@ -66,7 +66,7 @@ class lockTest extends PHPUnit_Framework_TestCase {
 
 	public function test_lock_expired(){
 
-		$handle = fopen( getConfigOption('dynamic_directory').'/index.php.lock', 'w');
+		$handle = fopen( \Naterweb\Engine\Configuration::get_option('dynamic_directory').'/index.php.lock', 'w');
 		fwrite( $handle, time()-240 );
 		fclose( $handle );
 

@@ -26,7 +26,7 @@ class webadmin extends ControllerBase{
 
 	public function __call( $method, $args ){
 
-		$isAuthed = auth_user( getConfigOption('site_domain').'/webadmin', 'nwadmin' );
+		$isAuthed = auth_user( \Naterweb\Engine\Configuration::get_option('site_domain').'/webadmin', 'nwadmin' );
 
 		if ( $isAuthed ){
 			$renderer = new PhpRenderer($this->settings['template']);
@@ -55,7 +55,7 @@ class webadmin extends ControllerBase{
 
 	public function home(){
 
-		$isAuthed = auth_user( getConfigOption('site_domain').'/webadmin', 'nwadmin' );
+		$isAuthed = auth_user( \Naterweb\Engine\Configuration::get_option('site_domain').'/webadmin', 'nwadmin' );
 
 		if ( $isAuthed ){
 			$renderer = new PhpRenderer($this->settings['template']);

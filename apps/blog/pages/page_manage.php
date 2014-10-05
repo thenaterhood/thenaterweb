@@ -1,5 +1,5 @@
 
-<h4>Administering <?php print $page->id .' on '. getConfigOption('site_domain'); ?></h4>
+<h4>Administering <?php print $page->id .' on '. \Naterweb\Engine\Configuration::get_option('site_domain'); ?></h4>
 
 <ul>
 <li style="list-style-image: url('/assets/tango/22x22/actions/document-new.png')">

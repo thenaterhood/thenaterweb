@@ -21,7 +21,7 @@ class blog extends ControllerBase{
 
 	public function __construct(){
 
-		$this->usedb = getConfigOption('use_db');
+		$this->usedb = \Naterweb\Engine\Configuration::get_option('use_db');
 
 		$name = REQUESTED_NAME;
 		$this->pageData = array();
@@ -168,7 +168,7 @@ class blog extends ControllerBase{
 		if ( ! is_null( $format ) && $format == 'json' ){
 
 			Header('Content-type: application/json');
-			print file_get_contents( getConfigOption('dynamic_directory' ).'/'.$this->settings['id'].'_tagcache.json' );
+			print file_get_contents( \Naterweb\Engine\Configuration::get_option('dynamic_directory' ).'/'.$this->settings['id'].'_tagcache.json' );
 		} else {
 
 			$this->pageData['content'] = 
@@ -196,7 +196,7 @@ class blog extends ControllerBase{
 		if ( ! is_null($format) && $format == 'json' ){
 
 			Header('Content-type: application/json');
-			print file_get_contents( getConfigOption('dynamic_directory' ).'/'.$this->settings['id'].'_titlecache.json' );
+			print file_get_contents( \Naterweb\Engine\Configuration::get_option('dynamic_directory' ).'/'.$this->settings['id'].'_titlecache.json' );
 
 
 
@@ -221,7 +221,7 @@ class blog extends ControllerBase{
 
 		Header('Content-type: application/atom+xml');
 		$feed = generateFeed( $this, False );
-		print $feed->output( getConfigOption('feed_type') );
+		print $feed->output( \Naterweb\Engine\Configuration::get_option('feed_type') );
 
 	}
 
@@ -476,7 +476,7 @@ class blog extends ControllerBase{
 
 	private function retrieveTitleCache(){
 
-		$titleCacheFile = getConfigOption('dynamic_directory' ).'/'.$this->settings['id'].'_titlecache.json';
+		$titleCacheFile = \Naterweb\Engine\Configuration::get_option('dynamic_directory' ).'/'.$this->settings['id'].'_titlecache.json';
 
 		if ( file_exists( $titleCacheFile ) ){
 
@@ -501,7 +501,7 @@ class blog extends ControllerBase{
 
 	private function buildTitleCache(){
 
-		$titleCacheFile = getConfigOption('dynamic_directory' ).'/'.$this->settings['id'].'_titlecache.json';
+		$titleCacheFile = \Naterweb\Engine\Configuration::get_option('dynamic_directory' ).'/'.$this->settings['id'].'_titlecache.json';
 
 
 		$titleArray = array();
@@ -515,7 +515,7 @@ class blog extends ControllerBase{
 
 		$titleData['titles'] = $titleArray;
 
-		$lock = new Lock( getConfigOption('dynamic_directory' ).'/'.$this->settings['id'].'_titlecache.json' );
+		$lock = new Lock( \Naterweb\Engine\Configuration::get_option('dynamic_directory' ).'/'.$this->settings['id'].'_titlecache.json' );
 
 		if ( ! $lock->isLocked() ){
 
@@ -541,7 +541,7 @@ class blog extends ControllerBase{
 
 	private function retrieveTagCache(){
 
-		$tagCacheFile = getConfigOption('dynamic_directory' ).'/'.$this->settings['id'].'_tagcache.json';
+		$tagCacheFile = \Naterweb\Engine\Configuration::get_option('dynamic_directory' ).'/'.$this->settings['id'].'_tagcache.json';
 		$posts = 0;
 
 		if ( file_exists( $tagCacheFile ) ){
@@ -569,7 +569,7 @@ class blog extends ControllerBase{
 
 	private function buildTagCache(){
 
-		$tagCacheFile = getConfigOption('dynamic_directory' ).'/'.$this->settings['id'].'_tagcache.json';
+		$tagCacheFile = \Naterweb\Engine\Configuration::get_option('dynamic_directory' ).'/'.$this->settings['id'].'_tagcache.json';
 
 
 		$tagArray = array();

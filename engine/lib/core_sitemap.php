@@ -32,7 +32,7 @@ function createSitemap( $files ){
 	
 	foreach ( $files as $file => $uri ) {
 
-		if ( !in_array( $file, getConfigOption('hidden_files') ) ){
+		if ( !in_array( $file, \Naterweb\Engine\Configuration::get_option('hidden_files') ) ){
 			$last_modified = filemtime( $file );
 			$sitemap->new_item( $uri, date(DATE_ATOM, $last_modified));
 		}

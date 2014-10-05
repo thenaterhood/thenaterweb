@@ -17,9 +17,9 @@ class auth extends ControllerBase{
 
 	public function __construct(){
 
-		$this->settings['template'] = getConfigOption('template');
+		$this->settings['template'] = \Naterweb\Engine\Configuration::get_option('template');
 		// Currently this app requires the database.
-		if ( getConfigOption( 'use_db') || true){
+		if ( \Naterweb\Engine\Configuration::get_option( 'use_db') || true){
 			$this->dal = new DataAccessLayer();
 			$this->dal->registerModel( 'nwUser' );
 			$this->dal->registerModel( 'nwGroup' );
@@ -378,7 +378,7 @@ class auth extends ControllerBase{
 	 */
 	public function check_login( $user, $plainpasswd ){
 
-		if ( ! getConfigOption('use_db') ){
+		if ( ! \Naterweb\Engine\Configuration::get_option('use_db') ){
 			return $this->check_htpasswd( $user, $plainpasswd );
 		}
 		else{

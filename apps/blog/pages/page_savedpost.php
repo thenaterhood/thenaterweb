@@ -2,7 +2,7 @@
 
 if ( $page->saved ){
 
-	$link = getConfigOption('site_domain').'/'.$page->blogid.'/read/'.$page->saved;
+	$link = \Naterweb\Engine\Configuration::get_option('site_domain').'/'.$page->blogid.'/read/'.$page->saved;
 	
 	print '<p>Post saved successfully! View it at <a href="'.$link.'.htm">'.$link.'.htm</a></p>';
 

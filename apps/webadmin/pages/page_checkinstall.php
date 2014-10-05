@@ -27,17 +27,17 @@ foreach ($controllers as $blogid=> $location) {
         <td>
         <?php
         
-        $writetest = fopen( getConfigOption('dynamic_directory').'/writetest.txt', 'w');
+        $writetest = fopen( \Naterweb\Engine\Configuration::get_option('dynamic_directory').'/writetest.txt', 'w');
         fclose($writetest);
 
         # Check if dynamic directory is writeable
-        if ( is_writable( getConfigOption('dynamic_directory').'/writetest.txt') ){
+        if ( is_writable( \Naterweb\Engine\Configuration::get_option('dynamic_directory').'/writetest.txt') ){
 
-	unlink( getConfigOption('dynamic_directory').'/writetest.txt' );
+	unlink( \Naterweb\Engine\Configuration::get_option('dynamic_directory').'/writetest.txt' );
 	print 'Okay (dynamic storage is writeable)';
         }else{
 
-	print '<font color="red">Problem: cannot write to ' . getConfigOption('dynamic_directory') . '</font>';
+	print '<font color="red">Problem: cannot write to ' . \Naterweb\Engine\Configuration::get_option('dynamic_directory') . '</font>';
         }
         ?>
             
@@ -75,11 +75,11 @@ foreach ($controllers as $blogid=> $location) {
     
     <tr>
         <td>Site Domain</td>
-        <td><?php echo getConfigOption('site_domain'); ?></td>
+        <td><?php echo \Naterweb\Engine\Configuration::get_option('site_domain'); ?></td>
     </tr>
     <tr>
         <td>Enable Database (disabled if no status shown)</td>
-        <td><?php echo getConfigOption('use_db'); ?></td>
+        <td><?php echo \Naterweb\Engine\Configuration::get_option('use_db'); ?></td>
     </tr>
     
     <tr>
@@ -89,7 +89,7 @@ foreach ($controllers as $blogid=> $location) {
     
     <tr>
         <td>Feed Type</td>
-        <td><?php echo getConfigOption('feed_type'); ?></td>
+        <td><?php echo \Naterweb\Engine\Configuration::get_option('feed_type'); ?></td>
     </tr>
 
 </table>

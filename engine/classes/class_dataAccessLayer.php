@@ -335,9 +335,9 @@ that does not appear to have been stored in the database.");
 
 			}
 
-			if ( getConfigOption('engine_storage_db') == 'sqlite' ){
+			if ( \Naterweb\Engine\Configuration::get_option('engine_storage_db') == 'sqlite' ){
 				$query = $query . 'id INTEGER PRIMARY KEY );';
-			} else if ( getConfigOption('engine_storage_db') == 'pgsql' ){
+			} else if ( \Naterweb\Engine\Configuration::get_option('engine_storage_db') == 'pgsql' ){
 				$query = $query . 'id SERIAL );';
 			} else {
 				$query = $query . 'id INTEGER AUTO_INCREMENT PRIMARY KEY );';
