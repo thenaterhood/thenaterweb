@@ -14,31 +14,6 @@
  * Include classes and functions from core_web
  */
  include_once NWEB_ROOT.'/lib/core_web.php';
- include_once NWEB_ROOT.'/classes/class_urlset.php';
 
-/**
- * Generates a sitemap given a list of local and web paths
- * which correspond to each other
- * 
- * @param $includePaths (list): a list of local paths to search for files in
- * @param $webpath (list): a list of web addresses, which correspond to the includePathss
- * 
- * @return $sitemap (sitemap): an xml sitemap
- */
-function createSitemap( $files ){
-
-	$sitemap = new Urlset();
-
-	
-	foreach ( $files as $file => $uri ) {
-
-		if ( !in_array( $file, \Naterweb\Engine\Configuration::get_option('hidden_files') ) ){
-			$last_modified = filemtime( $file );
-			$sitemap->new_item( $uri, date(DATE_ATOM, $last_modified));
-		}
-	} 
-
-	return $sitemap;	
-}
-
-?>
+ include NWEB_ROOT.'/Content/Generators/Sitemap/HtmlSitemap.php';
+ include NWEB_ROOT.'/Content/Generators/Sitemap/XmlSitemap.php';

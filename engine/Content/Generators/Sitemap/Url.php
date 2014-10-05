@@ -6,15 +6,15 @@
  * a sitemap.
  */
 
-/**
- * Includes the inherited class
- */
-include_once NWEB_ROOT.'/classes/class_dataMonger.php';
+namespace Naterweb\Content\Generators\Sitemap;
 
 /**
  * Represents a url object to store a sitemap url block
  */
-class Url extends dataMonger{
+class Url {
+	
+	private $weblink;
+	private $lastmod;
 
 	/**
 	 * Creates the data object to contain the atom feed item.
@@ -24,19 +24,19 @@ class Url extends dataMonger{
 	 */
 	public function __construct( $link, $lastmod ) {
 
-		$this->container['loc'] = $link;
-		$this->container['lastmod'] = $lastmod;
+		$this->weblink = $link;
+		$this->lastmod = $lastmod;
 	 
 	}
-
-	/**
-	 * Produces output in the requested format, defaulting to xml
-	 * @param $output - ignored
-	 */
-	public function output( $type='Xml' ){
-
-		return "";
-
+	
+	public function getWeblink()
+	{
+	    return $this->weblink;
+	}
+	
+	public function getLastmod()
+	{
+	    return $this->lastmod;
 	}
 	
 	/**
@@ -57,8 +57,6 @@ class Url extends dataMonger{
 	public function toHtml(){
 
 		$html = '<a href="'.htmlentities($this->container['loc']).'">'.$this->container['loc'].'</a>';
-
-
 		return $html;
 	}
 

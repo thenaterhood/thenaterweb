@@ -4,16 +4,20 @@
  * a sitemap with the ability to export it as xml data.
  * @author Nate Levesque <public@thenaterhood.com>
  */
+ 
+namespace Naterweb\Content\Generators\Sitemap;
 
 /**
  * Include the required url class to use internally
  */
-include_once NWEB_ROOT.'/classes/class_url.php';
+include_once NWEB_ROOT.'/Content/Generators/Sitemap/Url.php';
+
+use Naterweb\Content\Generators\Url;
 
 /**
  * Defines a data object to contain an xml sitemap.
  */
-class Urlset {
+abstract class Urlset {
 	
 	/**
 	 * @var $items - an array of url objects
@@ -46,31 +50,6 @@ class Urlset {
 	* 
 	* @return $r (string) - an xml encoded output of the class
 	*/
-	public function toXml() {
-
-		$r ='<?xml version="1.0" encoding="UTF-8"?>'."\n";
-		$r .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">'."\n";
-		$r .= "\n";
-		foreach ($this->items as $item) {
-			$r .= $item->toXml();
-		}
-		$r .= "</urlset>";
-		return $r;
-	}
-
-	public function toHtml(){
-
-		$r = '<ul>'."\n";
-
-		foreach ($this->items as $item) {
-			$r .= '<li>'.$item->toHtml().'</li>'."\n";
-		}
-
-		$r .= "</ul>\n";
-
-		return $r;
-
-	}
+	public abstract function render();
 
 }
-?>

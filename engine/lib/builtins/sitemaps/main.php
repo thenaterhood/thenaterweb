@@ -2,6 +2,8 @@
 include 'engine/lib/core_sitemap.php';
 
 use Naterweb\Client\request;
+use Naterweb\Content\Generators\Sitemap\XmlSitemap;
+use Naterweb\Content\Generators\Sitemap\HtmlSitemap;
 
 $session = request::get_sanitized_as_object( array('regen', 'type', 'page') );
 
@@ -28,18 +30,27 @@ class sitemaps extends ControllerBase{
 			
 			$blogdef = new $name();
 
-			$sitemap = createSitemap( $blogdef->getPageList() );
-
 			if ( $session->type == "html" ){
-				print $sitemap->toHtml();
+				$sitemap = new HtmlSitemap();
 			}
 			else{
-				Header('Content-Type: text/xml');
-				print $sitemap->toXml();
+				$sitemap = new XmlSitemap();
 			}
+			
+			foreach ( $blogdef->getPageList() as $file => $uri ) {
+
+				if ( !in_array( $file, \Naterweb\Engine\Configuration::get_option('hidden_files') ) ){
+					$last_modified = filemtime( $file );
+					$sitemap->new_item( $uri, date(DATE_ATOM, $last_modified));
+				}
+			} 	
+			
 		} else {
 			echo 'Sitemap not found.';
 		}
+		
+		$sitemap->render();
+		die();
 
 	}
 
