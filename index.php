@@ -22,7 +22,7 @@ if ( DEBUG ){
 
 }
 
-include_once NWEB_ROOT.'/classes/class_applications.php';
+include_once NWEB_ROOT.'/Engine/class_applications.php';
 /**
  * These include the core utilities that Thenaterweb requires.
  * core_blog imports all of the various utilities in one shot.
