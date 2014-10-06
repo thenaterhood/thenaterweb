@@ -12,7 +12,7 @@ namespace Naterweb\Content\Generators\Sitemap;
  */
 include_once NWEB_ROOT.'/Content/Generators/Sitemap/Url.php';
 
-use Naterweb\Content\Generators\Url;
+use Naterweb\Content\Generators\Sitemap\Url;
 
 /**
  * Defines a data object to contain an xml sitemap.
@@ -22,7 +22,7 @@ abstract class Urlset {
 	/**
 	 * @var $items - an array of url objects
 	 */
-	private $items;
+	protected $items;
 	
 	/**
 	* Creates an empty sitemap class

@@ -48,15 +48,15 @@ class Url {
 	public function toXml() {
 
 		$item = "<url>\n";
-		$item .= "<loc>" . htmlentities($this->container['loc'] ). "</loc>\n";
-		$item .= '<lastmod>'.$this->container['lastmod']."</lastmod>\n";
+		$item .= "<loc>" . htmlentities($this->weblink ). "</loc>\n";
+		$item .= '<lastmod>'.$this->lastmod."</lastmod>\n";
 		$item .= "</url>\n";
 		return $item;
 	}
 
 	public function toHtml(){
 
-		$html = '<a href="'.htmlentities($this->container['loc']).'">'.$this->container['loc'].'</a>';
+		$html = '<a href="'.htmlentities($this->weblink).'">'.$this->weblink.'</a>';
 		return $html;
 	}
 

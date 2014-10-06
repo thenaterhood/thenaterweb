@@ -52,7 +52,6 @@ use Naterweb\Client\request;
  * added to this array will route to a 404 error page.
  */
 $_INSTALLED_APPS = array( 
-	'sitemaps'=>    NWEB_ROOT.'/lib/builtins/sitemaps',
 	'auth'=>        NWEB_ROOT.'/lib/builtins/auth',
         'page'=>        NWEB_ROOT.'/lib/builtins/simplepage',
         'webadmin'=>    'apps/webadmin',
@@ -80,9 +79,7 @@ Applications::setup_installed($_INSTALLED_APPS);
 $_APP_ALIASES = array(
     
         'pages'=>       'page',
-        'sitemap'=>     'sitemaps',
         'devrants' => 	'blog'
-    
     
         );
 

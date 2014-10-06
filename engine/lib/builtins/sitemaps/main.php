@@ -18,7 +18,6 @@ class sitemaps extends ControllerBase{
 	public function __call( $method, $args ){
             
                 $app = Naterweb\Engine\Applications::get_app($method);
-            
 		$appRoot = $app['root'];
                 $name = $app['name'];
                 

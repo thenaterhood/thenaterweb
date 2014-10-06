@@ -1,9 +1,13 @@
 <?php 
 
 include_once NWEB_ROOT.'/lib/core_blog.php';
+include NWEB_ROOT.'/lib/core_sitemap.php';
 
 use Naterweb\Engine\Configuration;
 use Naterweb\Routing\Urls\UrlBuilder;
+use Naterweb\Content\Generators\Sitemap\XmlSitemap;
+use Naterweb\Content\Generators\Sitemap\HtmlSitemap;
+use Naterweb\Client\request;
 
 abstract class ControllerBase{
 
@@ -146,6 +150,26 @@ abstract class ControllerBase{
 	$mapUrl = new UrlBuilder(array(get_called_class()=>'sitemap'));
     	echo "Sitemap: " . $mapUrl->build() . "\n";
     	echo "Sitemap: " . $feedUrl->build();
+    }
+
+    public function sitemap(){
+
+	$type = request::sanitized_get('type');
+	if ($type === "html") {
+		$sitemap = new HtmlSitemap();
+	} else {
+		$sitemap = new XmlSitemap();
+	}
+
+	foreach($this->getPageList() as $file => $uri) {
+		if (!in_array($file, \Naterweb\Engine\Configuration::get_option('hidden_files'))) {
+			$last_modified = filemtime($file);
+			$sitemap->new_item($uri, date(DATE_ATOM, $last_modified));
+		}
+	}
+	$sitemap->render();
+	die();
+	
     }
 
 }
