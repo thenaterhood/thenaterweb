@@ -9,11 +9,12 @@ class JsonLoader implements ContentLoader{
 	private $page_modification;
 	private $page_filename;
 	private $page_container;
-
+	private $container;
 	private static $type = 'html';
 
 	public function __construct($file){
 
+		$this->page_container = array();
 		$this->page_filename     = $file;
 		$this->page_modification = filemtime($file);
 		$this->load_content();
@@ -45,7 +46,11 @@ class JsonLoader implements ContentLoader{
 	}
 
 	public function setTitle($title){
-		$this->container['title'] = $title;
+		$this->page_container['title'] = $title;
+	}
+
+	public function setUri($uri){
+		$this->page_container['link'] = $uri;
 	}
 
 	public function render_html( $context=null ){
@@ -64,8 +69,8 @@ class JsonLoader implements ContentLoader{
 		# In order to make the feed validate, we pull the http out of the id and append it
 		# statically, then urlencode the rest of the url. Otherwise, the feed does not 
 		# validate.
-		$r .= "<id>http://" . urlencode( $this->__get('link'), 7) . "</id>";
-		$r .= '<link href="http://'. htmlspecialchars( substr($context['link'], 7) ) .'" />';
+		$r .= "<id>" . urlencode($this->__get('link')) . "</id>";
+		$r .= '<link href="http://'. htmlspecialchars( substr($this->__get('link'), 7) ) .'" />';
 		$r .= '<updated>'.$this->__get('datestamp').'</updated>';
 		$r .= "<title>" . htmlspecialchars( $this->__get('title') ) . "</title>";
 		if ( is_array($this->__get('content') ) ){

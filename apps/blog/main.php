@@ -214,17 +214,6 @@ class blog extends ControllerBase{
 
 	}
 
-	public function feed(){
-
-		include_once NWEB_ROOT.'/lib/core_feed.php';
-
-
-		Header('Content-type: application/atom+xml');
-		$feed = generateFeed( $this, False );
-		print $feed->output( \Naterweb\Engine\Configuration::get_option('feed_type') );
-
-	}
-
 	/////////////////////////////////////////////////////////////////
 	// Managment functions
 	/////////////////////////////////////////////////////////////////
@@ -665,10 +654,10 @@ class blog extends ControllerBase{
     	$articles = array();
 
     	foreach ($posts as $post) {
-    		$article = json_decode(file_get_contents("$this->post_directory/$post.json"),true);
+		$article = ContentFactory::loadContentFile("{$this->post_directory}/$post.json");
 		$postName = $post.'.htm';
 		$url = new UrlBuilder(array(REQUESTED_NAME=>'read',$postName=>''));
-	    	$article['link'] = $url->build();
+	    	$article->setUri($url->build());
 
     		$articles[$post] = $article;
     	}

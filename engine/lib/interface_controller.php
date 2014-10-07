@@ -2,11 +2,14 @@
 
 include_once NWEB_ROOT.'/lib/core_blog.php';
 include NWEB_ROOT.'/lib/core_sitemap.php';
+include NWEB_ROOT.'/lib/core_feed.php';
 
 use Naterweb\Engine\Configuration;
 use Naterweb\Routing\Urls\UrlBuilder;
 use Naterweb\Content\Generators\Sitemap\XmlSitemap;
 use Naterweb\Content\Generators\Sitemap\HtmlSitemap;
+use Naterweb\Content\Generators\Syndication\AtomFeed;
+use Naterweb\Content\Generators\Syndication\RssFeed;
 use Naterweb\Client\request;
 
 abstract class ControllerBase{
@@ -170,6 +173,27 @@ abstract class ControllerBase{
 	$sitemap->render();
 	die();
 	
+    }
+
+    public function feed()
+    {
+	    $type = request::sanitized_get('type');
+	    if ($type === 'rss') {
+		    $feed = new RssFeed($this->title, $this->id, $this->catchline, date(DATE_ATOM));
+	    } else {
+                    $feed = new AtomFeed($this->title, $this->id, $this->catchline, date(DATE_ATOM));
+	    }
+
+            $i = 0;
+	    foreach ($this->getPostList() as $post) {
+		    $feed->new_item($post);
+		    $i++;
+		    if ($i > \Naterweb\Engine\Configuration::get_option('max_feed_items')) {
+			    break;
+		    }
+	    }
+
+	    $feed->render();
     }
 
 }

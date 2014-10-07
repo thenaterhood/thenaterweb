@@ -14,33 +14,6 @@
  * Include the main blog functions and classes
  */
  include_once NWEB_ROOT.'/lib/core_blog.php';
- include_once NWEB_ROOT.'/classes/class_feed.php';
+ include_once NWEB_ROOT.'/Content/Generators/Syndication/AtomFeed.php';
+ include_once NWEB_ROOT.'/Content/Generators/Syndication/RssFeed.php';
 
-/**
- * Generates an atom feed and returns it
- * 
- * @return $atom (atom_feed): an instance of the atom_feed class
- * 
- */
-function generateFeed( $blogdef, $force_regen ){
-
-	$bloguri = $blogdef->id;
-	$feedTitle = $blogdef->title;
-	$feedCatchline = $blogdef->catchline;
-
-	$atom = new Feed( $feedTitle, $bloguri, $feedCatchline, date(DATE_ATOM) );
-
-	$i = 0;
-	$postList = $blogdef->getPostList();
-
-	foreach ($postList as $key => $value) {
-		$atom->new_item( $value );
-		$i++;
-		if ( $i > \Naterweb\Engine\Configuration::get_option( 'max_feed_items') )
-			break;
-	}
-
-	return $atom;
-}
-
-?>

@@ -12,6 +12,8 @@ interface ContentLoader{
 
 	public function setTitle($title);
 
+	public function setUri($uri);
+
 	public function render_html( $context );
 
 	public function render_atom( $context );

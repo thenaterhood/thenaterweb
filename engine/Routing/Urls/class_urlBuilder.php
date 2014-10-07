@@ -31,7 +31,12 @@ class UrlBuilder {
 			$firstPass = False;
 		}
 
-		return vsprintf($formatString, $params);
+		$url = vsprintf($formatString, $params);
+
+		if (substr($url, -1) === '/') {
+			$url = rtrim($url, '/');
+		}
+		return $url;
 	}
 
 
