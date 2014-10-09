@@ -4,13 +4,13 @@ namespace Naterweb\Content\Loaders;
 
 require_once(NWEB_ROOT.'/Content/Loaders/interface_contentLoader.php');
 
-class TxtLoader implements ContentLoader{
+class TxtLoader extends ContentLoader{
 
 	private $page_modification;
 	private $page_filename;
 	private $title;
 	private $page_content;
-
+	private $uri;
 	private static $type = 'html';
 
 	public function __construct($file){
@@ -39,6 +39,11 @@ class TxtLoader implements ContentLoader{
 
 	public function getType(){
 		return $this->type;
+	}
+
+	public function setUri($uri)
+	{
+		$this->uri = $uri;
 	}
 
 	public function setTitle($title){

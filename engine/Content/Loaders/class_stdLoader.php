@@ -4,7 +4,7 @@ namespace Naterweb\Content\Loaders;
 
 require_once(NWEB_ROOT.'/Content/Loaders/interface_contentLoader.php');
 
-class StdLoader implements ContentLoader{
+class StdLoader extends ContentLoader{
 
 	private $page_container;
 
@@ -27,6 +27,11 @@ class StdLoader implements ContentLoader{
 
 	public function getType(){
 		return $this->type;
+	}
+
+	public function getUri($uri)
+	{
+		$this->page_container['uri'] = $uri;
 	}
 
 	public function setTitle($title){

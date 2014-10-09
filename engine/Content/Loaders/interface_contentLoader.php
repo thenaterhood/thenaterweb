@@ -2,24 +2,27 @@
 
 namespace Naterweb\Content\Loaders;
 
-interface ContentLoader{
-	
-	public function __construct( $file );
+abstract class ContentLoader{
 
-	public function __get( $field );
+	abstract public function __construct( $file );
 
-	public function getType();
+	abstract public function __get( $field );
 
-	public function setTitle($title);
+	public function getType()
+	{
+		return get_called_class();
+	}
 
-	public function setUri($uri);
+	abstract public function setTitle($title);
 
-	public function render_html( $context );
+	abstract public function setUri($uri);
 
-	public function render_atom( $context );
+	abstract public function render_html( $context );
 
-	public function render_rss( $context );
+	abstract public function render_atom( $context );
 
-	public function getMetadata();
+	abstract public function render_rss( $context );
+
+	abstract public function getMetadata();
 
 }

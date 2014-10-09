@@ -4,7 +4,7 @@ namespace Naterweb\Content\Loaders;
 
 require_once(NWEB_ROOT.'/Content/Loaders/interface_contentLoader.php');
 
-class JsonLoader implements ContentLoader{
+class JsonLoader extends ContentLoader{
 
 	private $page_modification;
 	private $page_filename;

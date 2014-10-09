@@ -4,12 +4,13 @@ namespace Naterweb\Content\Loaders;
 
 require_once(NWEB_ROOT.'/Content/Loaders/interface_contentLoader.php');
 
-class HtmlLoader implements ContentLoader{
+class HtmlLoader extends ContentLoader{
 
 	private $page_modification;
 	private $page_filename;
 	private $title;
 	private $page_content;
+	private $uri;
 
 	private static $type = 'html';
 
@@ -39,6 +40,11 @@ class HtmlLoader implements ContentLoader{
 
 	public function getType(){
 		return $this->type;
+	}
+
+	public function setUri($uri)
+	{
+		$this->uri = $uri;
 	}
 
 	public function setTitle($title){
