@@ -497,7 +497,7 @@ class blog extends ControllerBase{
 
 		foreach ( $this->getPostList() as $postid => $post ) {
 
-			$titleArray[$postid] = $post['title'];
+			$titleArray[$postid] = $post->title;
 		}
 
 		$titleData = array();
@@ -566,16 +566,16 @@ class blog extends ControllerBase{
 
 		foreach ( $this->getPostList() as $node => $post ) {
 
-			foreach (explode(',', $post['tags']) as $tag ) {
+			foreach (explode(',', $post->tags) as $tag ) {
 				$tag = trim($tag);
 
 				if ( ! array_key_exists($tag, $tagArray) ){
 
-					$tagArray[ $tag ] = array( "$node"=>$post['title'] );
+					$tagArray[ $tag ] = array( "$node"=>$post->title );
 
 				} else {
 					$tagPosts = $tagArray[ $tag ];
-					$tagPosts[ $node ] = $post['title'];
+					$tagPosts[ $node ] = $post->title;
 					$tagArray[ $tag ] = $tagPosts;
 				}
 
