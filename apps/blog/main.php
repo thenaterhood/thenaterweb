@@ -60,7 +60,7 @@ class blog extends ControllerBase{
 		$this->pageData['appid'] = $this->id;
 		$this->pageData['blogid'] = $this->settings['id'];
 		$urlBase = new UrlBuilder(array($this->settings['id']=>''));
-		$this->pageData['urlBase'] = $urlBase->build();
+		$this->pageData['urlBase'] = $urlBase->build().'/';
 
 
 
