@@ -8,7 +8,7 @@
 		}
 		foreach ($page->articles as $id => $post) {
 
-			print '<h3><a href='.$page->urlBase.'/read/'.$id.'.htm>' . $post->title . '</a></h3>';
+			print '<h3><a href='.$page->urlBase.'read/'.$id.'.htm>' . $post->title . '</a></h3>';
 			print '<h4>'. date( "F j, Y, g:i a", strtotime($post->datestamp) ). '</h4>';
 
 			if ( is_array($post->content) ){
@@ -22,8 +22,8 @@
 
 		}
 
-	if (! $session->start <= 0) echo "<a href='".$page->urlBase.'/home/start/'.($session->start - \Naterweb\Engine\Configuration::get_option('posts_per_page') )."/end/".($session->end - \Naterweb\Engine\Configuration::get_option('posts_per_page') )."'>Newer Posts</a>";
+	if (! $session->start <= 0) echo "<a href='".$page->urlBase.'home/start/'.($session->start - \Naterweb\Engine\Configuration::get_option('posts_per_page') )."/end/".($session->end - \Naterweb\Engine\Configuration::get_option('posts_per_page') )."'>Newer Posts</a>";
 	if (! $session->start <= 0 and count($page->totalPosts ) > $session->end ) echo ' / ';
-	if ( $page->totalPosts > $session->end ) echo "<a href='".$page->urlBase.'/home/start/'.($session->start + \Naterweb\Engine\Configuration::get_option('posts_per_page') )."/end/".($session->end + \Naterweb\Engine\Configuration::get_option('posts_per_page') )."'>  Older Posts</a>  ";
+	if ( $page->totalPosts > $session->end ) echo "<a href='".$page->urlBase.'home/start/'.($session->start + \Naterweb\Engine\Configuration::get_option('posts_per_page') )."/end/".($session->end + \Naterweb\Engine\Configuration::get_option('posts_per_page') )."'>  Older Posts</a>  ";
 ?>
 </div>
