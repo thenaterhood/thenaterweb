@@ -63,7 +63,7 @@ class auth extends ControllerBase{
 			$redir_to = $sessionmgr->toPage;
 			unset( $sessionmgr->toPage );
 			$urlBase = new UrlBuilder(array(request::sanitized_get('controller')=>''));
-			$renderer->set_value('urlBase', $urlBase->build());
+			$renderer->set_value('urlBase', $urlBase->build().'/');
 			$renderer->set_value('content', ContentFactory::loadContentFile( AUTH_ROOT.'/pages/welcome.php' ));
 			$renderer->set_value('id', 'login');
 			$renderer->set_value('title', 'Naterweb Authentication');
@@ -79,7 +79,7 @@ class auth extends ControllerBase{
 			$renderer->set_value('fail', False);
 
 			$urlBase = new UrlBuilder(array(request::sanitized_get('controller')=>''));
-			$renderer->set_value('urlBase', $urlBase->build());
+			$renderer->set_value('urlBase', $urlBase->build().'/');
 			$renderer->set_value('title', 'Naterweb Authentication');
 			$renderer->set_value('static', AUTH_ROOT.'/pages');
 
@@ -105,7 +105,7 @@ class auth extends ControllerBase{
 	    $renderer = new PhpRenderer($this->settings['template']);
 
 	    $urlBase = new UrlBuilder(array(request::sanitized_get('controller')=>''));
-	    $renderer->set_value('urlBase', $urlBase->build());
+	    $renderer->set_value('urlBase', $urlBase->build().'/');
 
             $renderer->set_value('groups', $this->dal->getAll( 'nwGroup' ));
 	    $renderer->set_value('content', ContentFactory::loadContentFile( AUTH_ROOT.'/pages/managegroup.php'));
@@ -148,7 +148,7 @@ class auth extends ControllerBase{
 
 			$newgroup->save();
 	                $urlBase = new UrlBuilder(array(request::sanitized_get('controller')=>''));
-		        $renderer->set_value('urlBase', $urlBase->build());
+		        $renderer->set_value('urlBase', $urlBase->build().'/');
 
 
 			$renderer->set_value('content', ContentFactory::loadContentFile( AUTH_ROOT.'/pages/groupadded.php' ));
@@ -159,7 +159,7 @@ class auth extends ControllerBase{
 
 		} else {
 	   	        $urlBase = new UrlBuilder(array(request::sanitized_get('controller')=>''));
-		        $renderer->set_value('urlBase', $urlBase->build());
+		        $renderer->set_value('urlBase', $urlBase->build().'/');
 
 
 			$renderer->set_value('content', ContentFactory::loadContentFile( AUTH_ROOT.'/pages/addgroup.php' ));
@@ -260,7 +260,7 @@ class auth extends ControllerBase{
 			}
 
 	                $urlBase = new UrlBuilder(array(request::sanitized_get('controller')=>''));
- 	                $renderer->set_value('urlBase', $urlBase->build());
+ 	                $renderer->set_value('urlBase', $urlBase->build().'/');
 
 
 			$renderer->set_value('content', ContentFactory::loadContentFile( AUTH_ROOT.'/pages/useradded.php' ));
@@ -281,7 +281,7 @@ class auth extends ControllerBase{
 			$renderer->set_value('title', 'Change User');
 			$renderer->set_value('id', 'changeuser');
 		        $urlBase = new UrlBuilder(array(request::sanitized_get('controller')=>''));
-		        $renderer->set_value('urlBase', $urlBase->build());
+		        $renderer->set_value('urlBase', $urlBase->build().'/');
 
 
 		}
@@ -323,7 +323,7 @@ class auth extends ControllerBase{
 
 			$newuser->save();
 		        $urlBase = new UrlBuilder(array(request::sanitized_get('controller')=>''));
-		        $renderer->set_value('urlBase', $urlBase->build());
+		        $renderer->set_value('urlBase', $urlBase->build().'/');
 
 
 			$renderer->set_value('content', ContentFactory::loadContentFile( AUTH_ROOT.'/pages/useradded.php'));
@@ -334,7 +334,7 @@ class auth extends ControllerBase{
 
 		} else {
   		        $urlBase = new UrlBuilder(array(request::sanitized_get('controller')=>''));
-		        $renderer->set_value('urlBase', $urlBase->build());
+		        $renderer->set_value('urlBase', $urlBase->build().'/');
 
 
 			$renderer->set_value('content', ContentFactory::loadContentFile( AUTH_ROOT.'/pages/adduser.php'));
@@ -365,7 +365,7 @@ class auth extends ControllerBase{
 		$renderer->set_value('title', 'Manage Users');
 		$renderer->set_value('id', 'manage');
 		$urlBase = new UrlBuilder(array(request::sanitized_get('controller')=>''));
-		$renderer->set_value('urlBase', $urlBase->build());
+		$renderer->set_value('urlBase', $urlBase->build().'/');
 
 		$renderer->render();
 

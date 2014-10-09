@@ -1,6 +1,7 @@
 <?php
 
 use Naterweb\Content\Loaders\ContentFactory;
+use Naterweb\Client\request;
 
 class error extends ControllerBase{
 
