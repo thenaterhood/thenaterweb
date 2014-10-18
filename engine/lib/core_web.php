@@ -23,7 +23,7 @@ include NWEB_ROOT.'/Client/class_sessionMgr.php';
 include NWEB_ROOT.'/Client/class_request.php';
 include NWEB_ROOT.'/classes/class_dataAccessLayer.php';
 include NWEB_ROOT.'/classes/class_modelBase.php';
-include NWEB_ROOT.'/classes/class_engineErrorHandler.php';
+include NWEB_ROOT.'/Engine/class_engineErrorHandler.php';
 include NWEB_ROOT.'/lib/core_httpstatus.php';
 include NWEB_ROOT.'/Routing/Urls/class_urlBuilder.php';
 include NWEB_ROOT.'/Engine/class_applications.php';

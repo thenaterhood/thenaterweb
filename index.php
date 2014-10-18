@@ -39,6 +39,7 @@ include_once NWEB_ROOT.'/lib/core_redirect.php';
 
 use Naterweb\Engine\Applications;
 use Naterweb\Engine\Configuration;
+use Naterweb\Engine\ErrorHandler;
 use Naterweb\Routing\Urls\UrlHandler;
 use Naterweb\Client\SessionMgr;
 use Naterweb\Client\request;
@@ -149,7 +150,7 @@ try {
 } catch ( Exception $e ){
 
 
-	EngineErrorHandler::handle_exception( $e );
+	ErrorHandler::handle_exception( $e );
 
 
 }

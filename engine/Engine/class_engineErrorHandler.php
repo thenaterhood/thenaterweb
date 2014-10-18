@@ -1,5 +1,7 @@
 <?php
 
+namespace Naterweb\Engine;
+
 use Naterweb\Content\Loaders\ContentFactory;
 use Naterweb\Content\Renderers\PhpRenderer;
 /*
@@ -11,7 +13,7 @@ use Naterweb\Content\Renderers\PhpRenderer;
  *
  * @author nate
  */
-class EngineErrorHandler {
+class ErrorHandler {
     
     	public static function handle_exception( $e ){
 
