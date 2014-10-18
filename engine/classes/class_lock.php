@@ -7,7 +7,7 @@ use Naterweb\Engine\Configuration;
 /**
  * Include the config class so we can retrieve the dynamic directory
  */
-include_once NWEB_ROOT.'/../settings.php';
+include_once NWEB_ROOT.'/Engine/Configuration.php';
 
 
 /**

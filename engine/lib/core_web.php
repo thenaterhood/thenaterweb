@@ -14,7 +14,7 @@
 /**
  * Include the config file
  */
-include NWEB_ROOT.'/../settings.php';
+include NWEB_ROOT.'/Engine/Configuration.php';
 include NWEB_ROOT.'/classes/class_lock.php';
 include NWEB_ROOT.'/lib/core_extension.php';
 include NWEB_ROOT.'/Routing/Urls/class_urlHandler.php';

@@ -6,7 +6,7 @@
  * 
  */
 
-include_once NWEB_ROOT.'/../settings.php';
+include_once NWEB_ROOT.'/Engine/Configuration.php';
 
 use Naterweb\Engine\Configuration;
 
