@@ -16,7 +16,6 @@
  */
 include NWEB_ROOT.'/Engine/Configuration.php';
 include NWEB_ROOT.'/Util/Lock.php';
-include NWEB_ROOT.'/lib/core_extension.php';
 include NWEB_ROOT.'/Routing/Urls/class_urlHandler.php';
 include NWEB_ROOT.'/lib/core_database.php';
 include NWEB_ROOT.'/Client/class_sessionMgr.php';
