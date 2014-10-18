@@ -1,5 +1,5 @@
 <?php
-
+use Naterweb\Util\Lock;
 class lockTest extends PHPUnit_Framework_TestCase {
 
 	protected function setUp(){

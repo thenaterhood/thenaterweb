@@ -2,6 +2,7 @@
 /**
  * Contains a class that deals with managing file locks
  */
+namespace Naterweb\Util;
 
 use Naterweb\Engine\Configuration;
 /**

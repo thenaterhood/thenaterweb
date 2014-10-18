@@ -4,6 +4,7 @@
  * @author Nate Levesque <public@thenaterhood.com>
  * @since 06/04/2013
  */
+use Naterweb\Util\Lock;
 $updatedConf = $_POST['content'];
 $confFile = $_POST['rcfile'];
 

@@ -10,6 +10,7 @@ use Naterweb\Content\Renderers\PhpRenderer;
 use Naterweb\Client\request;
 use Naterweb\Client\SessionMgr;
 use Naterweb\Routing\Urls\UrlBuilder;
+use Naterweb\Util\Lock;
 
 class blog extends ControllerBase{
 
