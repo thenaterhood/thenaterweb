@@ -9,7 +9,7 @@
  * you will need to adjust this path.
  * 
  */
-define("NWEB_ROOT", "engine");
+define("NWEB_ROOT", "Naterweb");
 
 /**
  * Enables or disables debug mode.
