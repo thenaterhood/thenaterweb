@@ -10,7 +10,7 @@
 /**
  * Include the main model field types class.
  */
-include_once NWEB_ROOT.'/classes/class_model.php';
+include_once NWEB_ROOT.'/Database/class_model.php';
 
 /**
  * 
